@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,12 +12,14 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     LoggerModule.forRoot({
-      serverLoggingUrl: '/api/logs',
+      serverLoggingUrl: 'localhost:8080/api/logs',
       level: NgxLoggerLevel.DEBUG,
-      serverLogLevel: NgxLoggerLevel.ERROR
+      serverLogLevel: NgxLoggerLevel.ERROR,
+      disableConsoleLogging: true,
     }),
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
