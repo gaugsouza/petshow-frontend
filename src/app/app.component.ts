@@ -10,7 +10,7 @@ import { MyLoggerMonitor } from './logger-monitor';
 export class AppComponent {
   constructor(private logger: NGXLogger) {
     this.logger.registerMonitor(new MyLoggerMonitor());
-    this.logger.debug("Teste");
+    this.logger.error("Teste");
   }
   title = 'petshow-frontend';
 }
