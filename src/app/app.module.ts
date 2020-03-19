@@ -12,10 +12,11 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     LoggerModule.forRoot({
-      serverLoggingUrl: 'localhost:8080/api/logs',
       level: NgxLoggerLevel.DEBUG,
       serverLogLevel: NgxLoggerLevel.ERROR,
       disableConsoleLogging: true,
+      httpResponseType: 'json',
+      timestampFormat: "shortDate"
     }),
     BrowserModule,
     AppRoutingModule,
