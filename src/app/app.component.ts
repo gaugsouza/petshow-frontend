@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'petshow-frontend';
+  constructor(){
+    console.log("Teste Papertrail");
+    console.warn("Teste Papertrail warn");
+    console.error("Teste papertrail error");
+  }
 }
