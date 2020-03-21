@@ -16,7 +16,8 @@ import { AppComponent } from './app.component';
       serverLogLevel: NgxLoggerLevel.ERROR,
       disableConsoleLogging: true,
       httpResponseType: 'json',
-      timestampFormat: "shortDate"
+      timestampFormat: "shortDate",
+      serverLoggingUrl: '/server/logger',
     }),
     BrowserModule,
     AppRoutingModule,
