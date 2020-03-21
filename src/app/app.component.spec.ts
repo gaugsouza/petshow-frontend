@@ -1,6 +1,9 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { NGXLogger, NGXMapperService, NGXLoggerHttpService, LoggerConfig } from 'ngx-logger';
+import { HttpBackend } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -11,6 +14,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      providers: [NGXLogger, NGXMapperService, HttpBackend, NGXLoggerHttpService, LoggerConfig, DatePipe]
     }).compileComponents();
   }));
 
