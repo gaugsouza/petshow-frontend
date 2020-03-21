@@ -10,14 +10,8 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class AppComponent {
   constructor(private logger: NGXLogger) {
-    this.logger.setCustomHttpHeaders(new HttpHeaders({'Content-Type': 'application/json'}))
-    // this.logger.registerMonitor(new MyLoggerMonitor());
+    // this.logger.setCustomHttpHeaders(new HttpHeaders({'Content-Type': 'application/json'}))
     this.logger.error("Teste");
   }
   title = 'petshow-frontend';
-  constructor(){
-    console.log("Teste Papertrail");
-    console.warn("Teste Papertrail warn");
-    console.error("Teste papertrail error");
-  }
 }
