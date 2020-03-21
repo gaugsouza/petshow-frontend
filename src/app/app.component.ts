@@ -15,4 +15,9 @@ export class AppComponent {
     this.logger.error("Teste");
   }
   title = 'petshow-frontend';
+  constructor(){
+    console.log("Teste Papertrail");
+    console.warn("Teste Papertrail warn");
+    console.error("Teste papertrail error");
+  }
 }
