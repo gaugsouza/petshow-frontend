@@ -20,7 +20,7 @@
     "cy:open": "cypress open",
     "ci:start-server": "angular-http-server --path ./dist/petshow-frontend -p 4200",
     "ci:cy-run": "start-server-and-test ci:start-server http://localhost:4200 cy:run",
-    "cy:test": "ng serve --port 4205 && npm run cy:run"
+    "cy:test": "npm run build:prod && start-server-and-test ci:start-server http://localhost:4200 cy:run"
   },
   "private": true,
   "dependencies": {
