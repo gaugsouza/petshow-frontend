@@ -10,7 +10,7 @@
     "clean": "rimraf ./dist",
     "build": "ng build",
     "build:prod": "ng build --prod",
-    "test": "ng test --watch=false --browsers=ChromeHeadlessCustom",
+    "test": "npm run ci:cy-run",
     "test:watch": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -18,8 +18,9 @@
     "build:ci": "npm run clean && npm run test && npm run build:prod",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
-    "ci:start-server": "angular-http-server --path ./dist/petshow-frontend -p 4205",
-    "ci:cy-run": "start-server-and-test ci:start-server http://localhost:4205 cy:run"
+    "ci:start-server": "angular-http-server --path ./dist/petshow-frontend -p 4200",
+    "ci:cy-run": "start-server-and-test ci:start-server http://localhost:4200 cy:run",
+    "cy:test": "ng serve --port 4205 && npm run cy:run"
   },
   "private": true,
   "dependencies": {

@@ -2,5 +2,5 @@
     "$schema": "https://on.cypress.io/cypress.schema.json",
     "testFiles":"**/*.{feature,features}",
     "video":false,
-    "baseUrl":"http://localhost:4205"
+    "baseUrl":"http://localhost:4200"
 }
