@@ -15,7 +15,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "heroku-postbuild": "ng build --prod",
-    "build:ci": "npm run clean && npm run test && npm run build:prod",
+    "build:ci": "npm run clean && npm run cy:test && npm run build:prod",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
     "ci:start-server": "angular-http-server --path ./dist/petshow-frontend -p 4200",
