@@ -1,8 +1,6 @@
 # PetshowFrontend
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/eb9876a38045476b87c9384743372754)](https://app.codacy.com/gh/Equipe-HYVE/petshow-frontend?utm_source=github.com&utm_medium=referral&utm_content=Equipe-HYVE/petshow-frontend&utm_campaign=Badge_Grade_Dashboard)
 [![build status](https://github.com/coryrylan/angular-github-actions/workflows/Build/badge.svg)](https://github.com/gaugsouza/petshow-frontend/actions)
-
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.3.
 
