@@ -24,11 +24,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Cypress tests
+      - name: Codacy coverage 
         run: |
           npm install
+          npm run nyc:instrument
           npm run test:cy
-      - name: Run codacy-coverage-reporter
-        run: |
-          bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Javascript -r ./.nyc_output/out.json
+          bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Javascript -r ./coverage/lcov.info
+          
       

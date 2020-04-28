@@ -9,7 +9,8 @@
     "e2e": "ng e2e",
     "test:cy": "nyc ng run petshow-frontend:cypress-run",
     "heroku-postbuild": "ng build --prod",
-    "start": "node server.js"
+    "start": "node server.js",
+    "nyc:instrument": "nyc instrument --compact=false src instrumented"
   },
   "private": true,
   "dependencies": {
