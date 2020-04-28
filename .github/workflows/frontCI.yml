@@ -38,6 +38,6 @@ jobs:
       - name: Codacy Coverage
         uses: codacy/codacy-coverage-reporter-action@master
         with:
-            project-token: ${{ secrets.CODACY_TOKEN }}
+            project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
 
           
