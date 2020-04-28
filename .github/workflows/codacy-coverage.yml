@@ -9,9 +9,9 @@ on:
 env:
   CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
 jobs:
-  run-gradle-task-and-send-to-codacy:
+  run-test-task-and-send-coverage:
     runs-on: ubuntu-latest
-        steps:
+    steps:
       - uses: actions/checkout@v1
       - name: Cache node modules
         uses: actions/cache@v1
