@@ -29,16 +29,15 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-
-      - name: Codacy Coverage
-        uses: codacy/codacy-coverage-reporter-action@master
-        with:
-            project-token: ${{ secrets.CODACY_TOKEN }}
       - name: Cypress tests
         run: |
           npm install
           npm ci
           npm run test:coverage
           npm run heroku-postbuild
+      - name: Codacy Coverage
+        uses: codacy/codacy-coverage-reporter-action@master
+        with:
+            project-token: ${{ secrets.CODACY_TOKEN }}
 
           
