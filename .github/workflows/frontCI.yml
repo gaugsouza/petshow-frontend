@@ -30,10 +30,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Cypress Tests
+      - name: Codacy Coverage
         uses: codacy/codacy-coverage-reporter-action@master
         with:
             project-token: ${{ secrets.CODACY_TOKEN }}
+      - name: Cypress tests
         run: |
           npm install
           npm ci
