@@ -41,7 +41,6 @@
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
-    "codacy-coverage": "^3.4.0",
     "codelyzer": "^5.1.2",
     "cypress": "4.4.1",
     "cypress-cucumber-preprocessor": "^2.3.1",
