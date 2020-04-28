@@ -9,8 +9,7 @@
     "e2e": "ng e2e",
     "test:cy": "nyc ng run petshow-frontend:cypress-run",
     "heroku-postbuild": "ng build --prod",
-    "start": "node server.js",
-    "test:coverage": "npm run test:cy && cat ./coverage/lcov.info | codacy-coverage --token $CODACY_PROJECT_TOKEN && rm -rf ./coverage"
+    "start": "node server.js"
   },
   "private": true,
   "dependencies": {
