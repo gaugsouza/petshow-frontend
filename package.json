@@ -7,7 +7,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "test:cy": "nyc ng run petshow-frontend:cypress-run && cat ./coverage/lcov.info | codacy-coverage && rm -rf ./coverage",
+    "test:cy": "nyc ng run petshow-frontend:cypress-run",
+    "test:coverage": "npm run test:cy && cat ./coverage/lcov.info | codacy-coverage && rm -rf ./coverage",
     "heroku-postbuild": "ng build --prod",
     "start": "node server.js"
   },
