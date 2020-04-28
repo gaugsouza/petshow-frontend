@@ -8,11 +8,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "test:cy": "nyc ng run petshow-frontend:cypress-run",
-<<<<<<< HEAD
     "test:coverage": "npm run test:cy | codacy-coverage --token $CODACY_PROJECT_TOKEN && rm -rf ./coverage",
-=======
-    "test:coverage": "npm run test:cy && cat ./coverage/lcov.info | codacy-coverage -t $CODACY_PROJECT_TOKEN && rm -rf ./coverage",
->>>>>>> 25f02b8677a84d97381bb2543586d56a6ab36977
     "heroku-postbuild": "ng build --prod",
     "start": "node server.js"
   },
