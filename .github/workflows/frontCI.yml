@@ -30,7 +30,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: npm ci and npm run build
+      - name: Cypress Tests
         run: |
           npm install
           npm ci

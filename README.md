@@ -1,6 +1,8 @@
 # PetshowFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
+[![build status](https://github.com/coryrylan/angular-github-actions/workflows/Build/badge.svg)](https://github.com/gaugsouza/petshow-frontend/actions)
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.3.
 
 ## Development server
 
