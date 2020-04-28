@@ -33,7 +33,6 @@ jobs:
           npm install
           npm ci
           npm run test:cy
-      - uses: actions/checkout@master
       - name: Run codacy-coverage-reporter
         uses: codacy/codacy-coverage-reporter-action@master
         with:
