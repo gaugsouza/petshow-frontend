@@ -23,7 +23,7 @@
             "name": "entrei na página inicial",
             "result": {
               "status": "passed",
-              "duration": 1065000000
+              "duration": 1820000000
             }
           },
           {
@@ -33,7 +33,7 @@
             "name": "devo ver \"PetshowFrontend\" no título.",
             "result": {
               "status": "passed",
-              "duration": 8000000
+              "duration": 127000000
             }
           }
         ]
