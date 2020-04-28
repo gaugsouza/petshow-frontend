@@ -1,20 +1,15 @@
-name: Node Build
+name: generate-and-send-coverage-report
 on:
   push:
     branches:
       - master
   pull_request:
-    branches: 
+    branches:
       - master
-
 jobs:
-  build:
+  run-gradle-task-and-send-to-codacy:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
-
-    steps:
+        steps:
       - uses: actions/checkout@v1
       - name: Cache node modules
         uses: actions/cache@v1
@@ -31,4 +26,8 @@ jobs:
         run: |
           npm install
           npm run test:cy
-          npm ci
+      - name: Run codacy-coverage-reporter
+        uses: codacy/codacy-coverage-reporter-action@master
+        with:
+          project-token: ${{secrets.CODACY_PROJECT_TOKEN}}
+      
