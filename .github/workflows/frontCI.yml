@@ -31,13 +31,4 @@ jobs:
         run: |
           npm install
           npm run test:cy
-<<<<<<< HEAD
           npm ci
-=======
-      - name: Run codacy-coverage-reporter
-        uses: codacy/codacy-coverage-reporter-action@master
-        with:
-          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-
-     
->>>>>>> a7d15af97409bc881b53fd41638358c91dbab582
