@@ -1,9 +1,10 @@
 {
     "extends": "@istanbuljs/nyc-config-typescript",
+    "all": true,
     "reporter": [
         "lcov",
-        "html"
-    ],
-    "all": true,
-    "check-coverage": true
+        "html",
+        "json",
+        "text"
+    ]
 }

@@ -1,7 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,17 +9,8 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    LoggerModule.forRoot({
-      level: NgxLoggerLevel.DEBUG,
-      serverLogLevel: NgxLoggerLevel.ERROR,
-      disableConsoleLogging: true,
-      httpResponseType: 'json',
-      timestampFormat: "shortDate",
-      serverLoggingUrl: '/server/logger',
-    }),
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
