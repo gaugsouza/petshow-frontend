@@ -28,19 +28,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+        env:
+          CODACY_PROJECT_TOKEN: ${{secrets.CODACY_PROJECT_TOKEN}}
       - name: Cypress tests
         run: |
           npm install
           npm ci
-          npm run test:cy
-          npm run heroku-postbuild
-  codacy-coverage-reporter:
-      runs-on: ubuntu-latest
-      name: codacy-coverage-reporter
-      steps:
-        - uses: actions/checkout@master
-        - name: Run codacy-coverage-reporter
-          uses: codacy/codacy-coverage-reporter-action@master
-          with:
-            project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          npm run test:coverage
           
