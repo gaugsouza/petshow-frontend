@@ -24,7 +24,8 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-
+        env:
+          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
       - name: Node ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -35,9 +36,5 @@ jobs:
           npm ci
           npm run test:coverage
           npm run heroku-postbuild
-      - name: Codacy Coverage
-        uses: codacy/codacy-coverage-reporter-action@master
-        with:
-            project-token: ${{ secrets.CODACY_TOKEN }}
 
           
