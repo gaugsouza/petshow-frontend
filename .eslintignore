@@ -1,0 +1,6 @@
+/node_modules/
+/cypress/
+/coverage/
+/.nyc_output/
+/instrumented/
+/dist/

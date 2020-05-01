@@ -11,8 +11,8 @@
     "heroku-postbuild": "ng build --prod",
     "start": "node server.js",
     "nyc:instrument": "nyc instrument --compact=false src instrumented",
-    "lint:scss": "stylelint \"**\/*.scss\"",
-    "lint:ts": "eslint \"src\/**/*.ts\""
+    "lint:scss": "stylelint \"**/*.scss\"",
+    "lint:ts": "eslint \"**/*.ts\""
   },
   "private": true,
   "dependencies": {
