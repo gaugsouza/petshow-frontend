@@ -2,10 +2,10 @@ name: Node Build
 on:
   push:
     branches:
-      - master
+      [master, development]
   pull_request:
     branches: 
-      - master
+      [master, development]
 
 jobs:
   build:
