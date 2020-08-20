@@ -1,6 +1,6 @@
 # PetshowFrontend
 
-[![build status](https://github.com/coryrylan/angular-github-actions/workflows/Build/badge.svg)](https://github.com/gaugsouza/petshow-frontend/actions)
+![Node Build](https://github.com/Equipe-HYVE/petshow-frontend/workflows/Node%20Build/badge.svg)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.3.
 
