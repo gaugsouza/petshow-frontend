@@ -1,9 +1,6 @@
 # PetshowFrontend
 
 ![Node Build](https://github.com/Equipe-HYVE/petshow-frontend/workflows/Node%20Build/badge.svg)
-![generate-and-send-coverage-report](https://github.com/Equipe-HYVE/petshow-frontend/workflows/generate-and-send-coverage-report/badge.svg)
-![Team awesome's approval workflow](https://github.com/Equipe-HYVE/petshow-frontend/workflows/Team%20awesome's%20approval%20workflow/badge.svg)
-![automerge](https://github.com/Equipe-HYVE/petshow-frontend/workflows/automerge/badge.svg)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.3.
 
