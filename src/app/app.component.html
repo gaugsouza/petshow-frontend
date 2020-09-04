@@ -18,9 +18,11 @@
 
 
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer mode="side" opened>LKASJDGLKSJGLAKJSDG</mat-drawer>
+  <mat-drawer #drawer mode="{{mode}}" opened="{{opened}}">LKASJDGLKSJGLAKJSDG</mat-drawer>
   <mat-drawer-content>
-    <router-outlet></router-outlet>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
   </mat-drawer-content>
   
 

@@ -8,19 +8,24 @@ import { Component, HostListener } from '@angular/core';
 })
 export class AppComponent {
   title = 'petshow-frontend';
-  public innerWidth: any;
 
   public mode: string  = "";
   public opened: boolean = true;
 
   ngOnInit() {
-    this.innerWidth = window.innerWidth;
-    console.log(this.innerWidth);
+    let innerWidth : number = window.innerWidth;
+    this.updateMenu(innerWidth);
+  }
+
+  updateMenu(innerWidth: number):void {
+    this.mode = innerWidth > 768 ? "side" : "over";
+    this.opened = innerWidth > 768;
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    this.innerWidth = window.innerWidth;
+    let innerWidth : number = window.innerWidth;
+    this.updateMenu(innerWidth);
   }
 
 }
