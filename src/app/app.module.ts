@@ -8,10 +8,15 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import {LoggerModule, NgxLoggerLevel} from 'ngx-logger';
+import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
+import { HomeComponent } from './home/home.component';
+import {MatSidenavModule} from '@angular/material/sidenav'; 
 
 @NgModule({
   declarations: [
     AppComponent,
+    PerfilUsuarioComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +30,9 @@ import {LoggerModule, NgxLoggerLevel} from 'ngx-logger';
       timestampFormat: "shortDate",
       serverLoggingUrl: '/server/logger',
     }),
-    HttpClientModule
+    HttpClientModule,
+    MatSidenavModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

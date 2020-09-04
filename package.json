@@ -4,15 +4,16 @@
   "scripts": {
     "ng": "ng",
     "build": "ng build",
-    "test": "ng test",
+    "test": "jest",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "test:cy": "nyc ng run petshow-frontend:cypress-run",
+    "test:cy": "nyc npm run test:bdd",
     "heroku-postbuild": "ng build --prod",
     "start": "node server.js",
     "nyc:instrument": "nyc instrument --compact=false src instrumented",
     "lint:scss": "stylelint \"**/*.scss\"",
-    "lint:ts": "eslint \"**/*.ts\""
+    "lint:ts": "eslint \"**/*.ts\"",
+    "test:bdd": "ng run petshow-frontend:cypress-run"
   },
   "private": true,
   "dependencies": {
@@ -65,6 +66,7 @@
     "istanbul-lib-coverage": "^3.0.0",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
+    "jest": "^26.4.2",
     "karma": "~4.3.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage-istanbul-reporter": "~2.1.0",
