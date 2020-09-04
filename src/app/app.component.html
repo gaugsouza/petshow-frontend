@@ -1,5 +1,24 @@
+<mat-toolbar>
+  <div>
+    <button mat-icon-button (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Petshow</span>
+  </div>
+  <div>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button aria-label="Example icon-button with share icon">
+      <mat-icon>share</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+
+
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer mode="side" opened>LKASJDGLKSJGLAKJSDG</mat-drawer>
+  <mat-drawer #drawer mode="side" opened>LKASJDGLKSJGLAKJSDG</mat-drawer>
   <mat-drawer-content>
     <router-outlet></router-outlet>
   </mat-drawer-content>

@@ -30,6 +30,7 @@
     "@angular/service-worker": "~9.0.6",
     "express": "^4.17.1",
     "http-server": "^0.12.3",
+    "material-design-icons": "^3.0.1",
     "ngx-logger": "^4.1.9",
     "path": "^0.12.7",
     "rxjs": "~6.5.4",
