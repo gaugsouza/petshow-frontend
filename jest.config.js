@@ -2,7 +2,10 @@ module.exports = {
   clearMocks: true,
   coverageDirectory: "coverage",
   testEnvironment: "node",
-  modulePathIgnorePatterns: ["cypress/"]
+  modulePathIgnorePatterns: ["cypress/"],
+  transform: {
+    '^.+\\.ts?$': 'ts-jest'
+  },
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
   //   "/node_modules/"

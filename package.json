@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "build": "ng build",
-    "test": "jest",
+    "test": "jest --config ./jest.config.js",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "test:cy": "nyc npm run test:bdd",
@@ -38,8 +38,7 @@
     "stylelint-config-airbnb": "0.0.0",
     "stylelint-scss": "^3.17.1",
     "tslib": "^1.10.0",
-    "typescript": "~3.7.5",
-    "zone.js": "~0.10.2"
+    "typescript": "~3.7.5"
   },
   "devDependencies": {
     "@angular-builders/jest": "^10.0.0",
@@ -76,10 +75,12 @@
     "source-map-support": "^0.5.19",
     "stylelint-config-standard": "^20.0.0",
     "stylelint-order": "^4.0.0",
+    "ts-jest": "^26.3.0",
     "ts-loader": "7.0.1",
     "ts-node": "^8.3.0",
     "tslint": "~5.18.0",
-    "typescript": "~3.7.5"
+    "typescript": "~3.7.5",
+    "zone.js": "^0.10.3"
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true,
@@ -94,7 +95,7 @@
   "jest": {
     "preset": "jest-preset-angular",
     "setupFilesAfterEnv": [
-      "<rootDir>/src/test-config/setup-jest.ts"
+      "<rootDir>/src/setup-jest.ts"
     ]
   },
   "engines": {
