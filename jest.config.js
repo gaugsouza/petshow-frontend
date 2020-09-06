@@ -1,7 +1,6 @@
 module.exports = {
   clearMocks: true,
   coverageDirectory: "coverage",
-  testEnvironment: "node",
   modulePathIgnorePatterns: ["cypress/"],
   transform: {
     '^.+\\.ts?$': 'ts-jest'
