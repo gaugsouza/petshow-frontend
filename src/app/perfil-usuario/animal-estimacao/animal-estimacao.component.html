@@ -1,43 +1,24 @@
 <section>
     <h3 class="page-section-title">Animais</h3>
-    <mat-list class="animal-list">
-        <mat-list-item>
-            <div class="animal-list__item">
-                <span>Nome animal</span> 
-                <div class="animal-list__button-container">
-                    <button mat-flat-button color="accent">Editar</button>
-                    <button mat-flat-button color="warn">Remover</button>
+    <div *ngIf="animaisEstimacao; then animaisBlock else vazioBlock"></div>
+    
+    <ng-template #vazioBlock>
+        <p>Nenhum animal cadastrado</p>
+    </ng-template>
+
+    <ng-template #animaisBlock>
+        <mat-list class="animal-list">
+            <mat-list-item *ngFor="let animal of animaisEstimacao">
+                <div class="animal-list__item">
+                    <span>{{animal.nome}}</span> 
+                    <div class="animal-list__button-container">
+                        <button mat-flat-button color="accent">Editar</button>
+                        <button mat-flat-button color="warn">Remover</button>
+                    </div>
                 </div>
-            </div>
-        </mat-list-item>
-        <mat-list-item>
-            <div class="animal-list__item">
-                <span>Nome animal</span> 
-                <div class="animal-list__button-container">
-                    <button mat-flat-button color="accent">Editar</button>
-                    <button mat-flat-button color="warn">Remover</button>
-                </div>
-            </div>
-        </mat-list-item>
-        <mat-list-item>
-            <div class="animal-list__item">
-                <span>Nome animal</span> 
-                <div class="animal-list__button-container">
-                    <button mat-flat-button color="accent">Editar</button>
-                    <button mat-flat-button color="warn">Remover</button>
-                </div>
-            </div>
-        </mat-list-item>
-        <mat-list-item>
-            <div class="animal-list__item">
-                <span>Nome animal</span> 
-                <div class="animal-list__button-container">
-                    <button mat-flat-button color="accent">Editar</button>
-                    <button mat-flat-button color="warn">Remover</button>
-                </div>
-            </div>
-        </mat-list-item>
-    </mat-list>
+                </mat-list-item>
+        </mat-list>
+    </ng-template>
 </section>
 
 <app-formulario-animal></app-formulario-animal>

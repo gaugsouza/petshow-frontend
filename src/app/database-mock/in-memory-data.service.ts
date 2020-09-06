@@ -6,9 +6,9 @@ import { usuariosMock } from '../mocks/usuarioMock';
 })
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
-    const usuarios = usuariosMock;
+    const contas = usuariosMock;
     return {
-      usuarios
+      contas
     }
 
   }
