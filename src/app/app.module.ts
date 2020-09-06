@@ -17,11 +17,15 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import { AnimalEstimacaoComponent } from './perfil-usuario/animal-estimacao/animal-estimacao.component';
+import { FormularioAnimalComponent } from './perfil-usuario/animal-estimacao/formulario-animal/formulario-animal.component';
 @NgModule({
   declarations: [
     AppComponent,
     PerfilUsuarioComponent,
     HomeComponent,
+    AnimalEstimacaoComponent,
+    FormularioAnimalComponent,
   ],
   imports: [
     BrowserModule,
