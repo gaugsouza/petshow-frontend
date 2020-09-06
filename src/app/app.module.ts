@@ -19,6 +19,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { AnimalEstimacaoComponent } from './perfil-usuario/animal-estimacao/animal-estimacao.component';
 import { FormularioAnimalComponent } from './perfil-usuario/animal-estimacao/formulario-animal/formulario-animal.component';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './database-mock/in-memory-data.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +50,10 @@ import { FormularioAnimalComponent } from './perfil-usuario/animal-estimacao/for
     MatButtonModule,
     MatListModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    environment.production ? [] : HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, {dataEncapsulation: false}
+    )
   ],
   providers: [],
   bootstrap: [AppComponent],
