@@ -5,6 +5,12 @@ module.exports = {
   transform: {
     '^.+\\.ts?$': 'ts-jest'
   },
+  testEnvironment: "jsdom",
+  preset: "jest-preset-angular",
+  setupFilesAfterEnv: [
+    "<rootDir>/src/setup-jest.ts"
+  ]
+  
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
   //   "/node_modules/"

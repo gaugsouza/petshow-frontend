@@ -105,9 +105,7 @@
         "e2e": {
           "builder": "@briebug/cypress-schematic:cypress",
           "options": {
-            "devServerTarget": "petshow-frontend:serve",
-            "watch": true,
-            "headless": false
+            "devServerTarget": "petshow-frontend:serve"
           },
           "configurations": {
             "production": {

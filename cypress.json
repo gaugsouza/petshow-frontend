@@ -1,6 +1,9 @@
 {
   "$schema": "https://on.cypress.io/cypress.schema.json",
   "video":false,
-  "testFiles": "**/*.{feature, features, test.ts}",
-  "supportFile": "cypress/support/index.ts"
+  "testFiles": "**/*.{feature, features}",
+  "supportFile": "cypress/support/index.ts",
+  "env": {
+    "TAGS": "feature-tag"
+  }
 }

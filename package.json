@@ -94,12 +94,6 @@
       "fileSuffix": ".cucumber"
     }
   },
-  "jest": {
-    "preset": "jest-preset-angular",
-    "setupFilesAfterEnv": [
-      "<rootDir>/src/setup-jest.ts"
-    ]
-  },
   "engines": {
     "node": "12.16.1",
     "npm": "6.13.4"

@@ -1,3 +1,4 @@
+@feature-tag
 Funcionalidade: Cadastro de animais
 Eu, como cliente
 Devo conseguir cadastrar meus animais de estimação
