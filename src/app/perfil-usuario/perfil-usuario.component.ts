@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../servicos/usuario.service';
 import { Usuario } from '../interfaces/usuario';
 import { ActivatedRoute } from '@angular/router';
+import { Cliente } from '../interfaces/cliente';
 
 @Component({
   selector: 'app-perfil-usuario',
@@ -9,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./perfil-usuario.component.scss']
 })
 export class PerfilUsuarioComponent implements OnInit {
-  usuario:Usuario;
+  usuario:Cliente;
   constructor(private usuarioService:UsuarioService,
               private route:ActivatedRoute) { }
 

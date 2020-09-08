@@ -9,7 +9,8 @@ module.exports = {
   preset: "jest-preset-angular",
   setupFilesAfterEnv: [
     "<rootDir>/src/setup-jest.ts"
-  ]
+  ],
+  verbose: false
   
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [

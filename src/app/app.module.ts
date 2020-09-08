@@ -52,8 +52,8 @@ import { InMemoryDataService } from './database-mock/in-memory-data.service';
     MatInputModule,
     MatSelectModule,
     environment.production ? [] : HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, {dataEncapsulation: false}
-    )
+      InMemoryDataService, {dataEncapsulation: false},
+    ),
   ],
   providers: [],
   bootstrap: [AppComponent],

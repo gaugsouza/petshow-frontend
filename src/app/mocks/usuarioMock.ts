@@ -1,83 +1,35 @@
 import { Usuario } from '../interfaces/usuario';
 import { TipoAnimal } from '../enum/TipoAnimal';
+import { TipoPessoa } from '../enum/tipo-pessoa.enum';
+import { Cliente } from '../interfaces/cliente';
 
 
-export const usuariosMock: Usuario[] = [
-    {
+export const monica: Cliente = {
+    id:1, 
+    nome: "Mônica",
+    cpf:"44444444444",
+    tipo:TipoPessoa.CLIENTE,
+    login: {
         id: 1,
-        nome: "Mônica",
-        animaisEstimacao: [
-            {
-                id: 1,
-                nome: "Monicão",
-                donos: [
-                    {
-                        id: 1,
-                        nome: "Mônica"
-                    }
-                ],
-                tipoAnimal: TipoAnimal.CACHORRO,
-                urlImage: ''
-
-            }
-        ]
+        email: "monica@gmail.com",
+        senha: "teste1234"
     },
-    {
-        id: 2,
-        nome: "Cebolinha",
-        animaisEstimacao: [
-            {
-                id: 2,
-                nome: "Floquinho",
-                donos: [
-                    {
-                        id: 2,
-                        nome: "Cebolinha"
-                    }
-                ],
-                tipoAnimal: TipoAnimal.CACHORRO,
-                urlImage: ''
-
-            }
-        ]
+    endereco: {
+        id:1,
+        logradouro: "Rua aaaaa",
+        numero: 30,
+        estado: "SP",
+        cep: "00000000",
+        bairro: "Exemplo",
+        cidade: "São Paulo",
     },
-    {
-        id: 3,
-        nome: "Magali",
-        animaisEstimacao: [
-            {
-                id: 3,
-                nome: "Mingau",
-                donos: [
-                    {
-                        id: 3,
-                        nome: "Magali"
-                    }
-                ],
-                tipoAnimal: TipoAnimal.GATO,
-                urlImage: ''
-
-            }
-        ]
-    },
-    {
-        id: 4,
-        nome: "Cascão",
-        animaisEstimacao: [
-            {
-                id: 4,
-                nome: "Chovinista",
-                donos: [
-                    {
-                        id: 4,
-                        nome: "Cascão"
-                    }
-                ],
-                tipoAnimal: TipoAnimal.CACHORRO,
-                urlImage: ''
-
-            }
-        ]
-    },
-    
-]
+    telefone: "1129216554",
+    animaisEstimacao: [
+        {
+            id: 1,
+            nome: "Monicão",
+            tipoAnimal: TipoAnimal.CACHORRO,
+        }
+    ]
+}
+export const usuariosMock: Usuario[] = [monica]
