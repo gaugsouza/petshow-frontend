@@ -12,12 +12,20 @@ import {MatListModule} from '@angular/material/list';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { usuariosMock } from '../mocks/usuarioMock';
+import { LocalStorageService } from '../servicos/local-storage.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { LoggerTestingModule } from 'ngx-logger/testing';
 
 
 describe('FormularioAnimalComponent', () => {
   let component: PerfilUsuarioComponent;
   let fixture: ComponentFixture<PerfilUsuarioComponent>;
   const route = ({ data: of({ label: 'hello' }) } as any) as ActivatedRoute;
+  const usuarioMock = usuariosMock[0];
+  let localStorageService: LocalStorageService;
+  let usuarioService : UsuarioService;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
@@ -26,26 +34,23 @@ describe('FormularioAnimalComponent', () => {
           FormularioAnimalComponent
         ],
       providers: [
-          {provide: UsuarioService, useClass: UsuarioServiceMock},
-          {
-            provide: ActivatedRoute,
-            useValue: {
-              snapshot: {
-                paramMap: convertToParamMap({
-                  id: '1'
-                })
-              }
-            }
-          }
+          // {provide: UsuarioService, useClass: UsuarioServiceMock},
+          LocalStorageService,
+          UsuarioService
       ],
       imports: [
         MatListModule,
         MatInputModule,
         MatSelectModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        LoggerTestingModule
       ]
     })
     .compileComponents();
+
+    localStorageService = TestBed.inject(LocalStorageService);
+    usuarioService = TestBed.inject(UsuarioService);
   }));
 
   beforeEach(() => {
@@ -57,4 +62,15 @@ describe('FormularioAnimalComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Deve setar usuario igual ao de localStorage', () => {
+    localStorageService.setItem('usuario', usuarioMock);
+    component.getUsuario();
+    expect(component.usuario).toEqual(usuarioMock);
+  });
+
+  it('Deve deixar usuario nulo', () => {
+    component.getUsuario();
+    expect(component.usuario).toBeNull();
+  })
 });

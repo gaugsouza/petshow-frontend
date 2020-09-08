@@ -4,9 +4,11 @@ Eu, como cliente
 Devo conseguir cadastrar meus animais de estimação
 Para poder associá-los a agendamentos
 
-Cenario: Acesso a formulário
+Background: Estou logado
 Dado que estou logado
-E estou na tela com a lista de animais cadastrados
+
+Cenario: Acesso a formulário
+Dado que estou na tela com a lista de animais cadastrados
 Quando clicar em botão com texto "Adicionar novo animal"
 Então devo ver formulário para cadastro de animais
 

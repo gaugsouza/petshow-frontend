@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Usuario } from '../interfaces/usuario';
 import { NGXLogger } from 'ngx-logger';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,11 @@ export class UsuarioService {
     headers: new HttpHeaders({ 'Content-type' : 'application/json'})
   }
 
-  constructor(private http:HttpClient, private logger: NGXLogger) { }
+  constructor(private http:HttpClient, 
+              private logger: NGXLogger,
+              private storageService:LocalStorageService) { }
+
+  
 
   getUsuario = (id:number): Observable<Usuario> => {
     const url = `${this.usuarioServiceUrl}/${id}`;
@@ -31,5 +36,9 @@ export class UsuarioService {
       this.logger.error(mensagem);
       return of(result as T);
     }
+  }
+
+  buscaUsuarioStorage = () => {
+    return this.storageService.getItem('usuario');
   }
 }

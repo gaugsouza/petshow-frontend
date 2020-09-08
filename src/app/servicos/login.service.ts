@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { NGXLogger } from 'ngx-logger';
-import { LocalStorage }from '@ngx-pwa/local-storage';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class LoginService {
   }
   constructor(private http:HttpClient, 
               private logger:NGXLogger,
-              private localStorage:LocalStorage) { }
+              private storageService:LocalStorageService) { }
 
   realizaLogin(email:string, senha: string) : Observable<Usuario> {
     let response = this.http.post<Usuario>(this.LOGIN_SERVICE_URL, {email, senha}, this.httpOptions)
@@ -30,7 +30,7 @@ export class LoginService {
     
     response.subscribe(usuario => {
       if(usuario) {
-        this.localStorage.setItem('usuario', usuario);
+        this.storageService.setItem('usuario', usuario);
       }
     });
 
@@ -38,7 +38,7 @@ export class LoginService {
   }
 
   buscaUsuarioLogado() {
-    return this.localStorage.getItem('usuario');
+    return this.storageService.getItem('usuario');
   }
 
   private handleError<T> (mensagem: string, result?: T) {

@@ -11,17 +11,14 @@ import { Cliente } from '../interfaces/cliente';
 })
 export class PerfilUsuarioComponent implements OnInit {
   usuario:Cliente;
-  constructor(private usuarioService:UsuarioService,
-              private route:ActivatedRoute) { }
+  constructor(private usuarioService:UsuarioService) { }
 
   ngOnInit(): void {
     this.getUsuario();
   }
 
   getUsuario() : void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.usuarioService.getUsuario(id)
-    .subscribe(usuario => this.usuario = usuario)
+    this.usuarioService.buscaUsuarioStorage()
+    .subscribe((usuario:Cliente) => this.usuario = usuario);
   }
-
 }
