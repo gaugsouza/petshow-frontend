@@ -10,21 +10,6 @@ describe('LoginService', () => {
   let service: LoginService;
   let httpMock: HttpTestingController;
   let usuarioExemplo: Usuario = usuariosMock[0];
-  let store = {};
-
-  beforeEach(() => {
-    let spy = jest.spyOn(Storage.prototype, 'setItem');
-    spy.mockImplementation((key, value) => store[key] = value);
-    let spy2 = jest.spyOn(Storage.prototype, 'getItem');
-    spy2.mockImplementation(key => store[key]);
-    let spy3 = jest.spyOn(Storage.prototype, 'clear');
-    spy3.mockImplementation(() => store = {});
-    // window.localStorage.__proto__.getItem = jest.fn(key => store[key]);
-    // window.localStorage.__proto__.setItem = jest.fn((key, value) => store[key] = value.toString());
-    // window.localStorage.__proto__.clear = jest.fn(() => store = {});
-
-  });
-
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -59,7 +44,10 @@ describe('LoginService', () => {
 
   it('Deve colocar um elemento no localStorage', () => {
     service.realizaLogin(usuarioExemplo.login.email, usuarioExemplo.login.senha);
-    expect(JSON.parse(localStorage.getItem('usuario'))).toEqual(usuarioExemplo);
+    service.buscaUsuarioLogado()
+    .subscribe(usuario => {
+      expect(usuario).toEqual(usuarioExemplo);
+    })
 
     const req = httpMock.match(`${service.LOGIN_SERVICE_URL}`);
     req.forEach(r => {
@@ -70,8 +58,10 @@ describe('LoginService', () => {
 
   it('Deve não colocar nada no localStorage', () => {
     service.realizaLogin('aaaaa', 'bbbbbb');
-    expect(JSON.parse(localStorage.getItem('usuario'))).toBeFalsy();
-
+    service.buscaUsuarioLogado()
+    .subscribe(usuario => {
+      expect(usuario).toBeFalsy();
+    })
     const req = httpMock.match(`${service.LOGIN_SERVICE_URL}`);
     req.forEach(r => {
       expect(r.request.method).toBe('POST');

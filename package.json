@@ -50,6 +50,7 @@
     "@cypress/code-coverage": "^3.5.3",
     "@cypress/webpack-preprocessor": "5.1.2",
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
+    "@ngx-pwa/local-storage": "^10.1.0",
     "@types/cypress-cucumber-preprocessor": "^1.14.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
