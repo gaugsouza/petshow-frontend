@@ -9,7 +9,7 @@ export class LocalStorageService {
   constructor(private localStorage:LocalStorage) { }
 
   setItem(key, value) {
-    this.localStorage.setItem(key, value);
+    return this.localStorage.setItem(key, value);
   }
 
   getItem(key) {

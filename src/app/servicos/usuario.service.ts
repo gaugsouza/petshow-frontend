@@ -6,6 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Usuario } from '../interfaces/usuario';
 import { NGXLogger } from 'ngx-logger';
 import { LocalStorageService } from './local-storage.service';
+import { usuariosMock } from '../mocks/usuarioMock';
 
 @Injectable({
   providedIn: 'root'

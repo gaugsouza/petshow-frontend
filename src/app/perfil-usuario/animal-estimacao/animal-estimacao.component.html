@@ -1,6 +1,6 @@
 <section>
     <h3 class="page-section-title">Animais</h3>
-    <div *ngIf="animaisEstimacao; then animaisBlock else vazioBlock"></div>
+    <div class="conteiner-animal-list" *ngIf="animaisEstimacao; then animaisBlock else vazioBlock"></div>
     
     <ng-template #vazioBlock>
         <p>Nenhum animal cadastrado</p>
@@ -20,5 +20,6 @@
         </mat-list>
     </ng-template>
 </section>
+<button mat-flat-button color="primary">Adicionar novo animal</button>
 
 <app-formulario-animal></app-formulario-animal>
