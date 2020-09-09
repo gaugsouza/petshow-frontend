@@ -4,6 +4,7 @@ import { FormularioAnimalComponent } from './formulario-animal.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 describe('FormularioAnimalComponent', () => {
   let component: FormularioAnimalComponent;
@@ -15,7 +16,8 @@ describe('FormularioAnimalComponent', () => {
       imports: [
         MatInputModule,
         MatSelectModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        FormsModule
       ]
     })
     .compileComponents();

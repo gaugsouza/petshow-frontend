@@ -21,6 +21,8 @@ import { AnimalEstimacaoComponent } from './perfil-usuario/animal-estimacao/anim
 import { FormularioAnimalComponent } from './perfil-usuario/animal-estimacao/formulario-animal/formulario-animal.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './database-mock/in-memory-data.service';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -54,6 +56,7 @@ import { InMemoryDataService } from './database-mock/in-memory-data.service';
     environment.production ? [] : HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, {dataEncapsulation: false},
     ),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

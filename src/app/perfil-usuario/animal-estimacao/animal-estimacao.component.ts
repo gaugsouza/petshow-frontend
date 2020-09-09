@@ -8,6 +8,7 @@ import { AnimalEstimacao } from 'src/app/interfaces/AnimalEstimacao';
 })
 export class AnimalEstimacaoComponent implements OnInit {
   @Input('animais-estimacao') animaisEstimacao?: AnimalEstimacao[];
+  @Input('upd-function') updFunction?: any;
 
   constructor() { }
 

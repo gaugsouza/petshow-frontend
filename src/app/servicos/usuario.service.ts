@@ -12,7 +12,8 @@ import { usuariosMock } from '../mocks/usuarioMock';
   providedIn: 'root'
 })
 export class UsuarioService {
-  private usuarioServiceUrl = `${environment.API_URL}contas`;
+  public USUARIO_SERVICE_URL = `${environment.API_URL}contas`;
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-type' : 'application/json'})
   }
@@ -24,7 +25,7 @@ export class UsuarioService {
   
 
   getUsuario = (id:number): Observable<Usuario> => {
-    const url = `${this.usuarioServiceUrl}/${id}`;
+    const url = `${this.USUARIO_SERVICE_URL}/${id}`;
     return this.http.get<Usuario>(url)
     .pipe(
       tap(_ => this.logger.info(`Request feito a ${url}`)),
@@ -42,4 +43,12 @@ export class UsuarioService {
   buscaUsuarioStorage = () => {
     return this.storageService.getItem('usuario');
   }
+
+  atualizaUsuario = (usuario:Usuario) : Observable<Usuario> => {
+    return this.http.put<Usuario>(this.USUARIO_SERVICE_URL, usuario, this.httpOptions)
+    .pipe(
+      tap(_ => this.logger.info(`Request feito a ${this.USUARIO_SERVICE_URL}`)),
+      catchError(this.handleError<Usuario>('update'))
+    );
+  } 
 }

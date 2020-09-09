@@ -3,16 +3,16 @@
     <div class="form">
         <mat-form-field>
             <mat-label>Nome do pet</mat-label>
-            <input matInput placeholder="Ex. Bidu">
+            <!-- <input matInput [(ngModel)]="animal?.nome" (ngModelChange)="animal?.nome ? animal.nome = $event.target.value : ''" placeholder="Ex. Bidu" /> -->
+            <!-- <input matInput [(ngModel)]="animal?.nome" (ngModelChange)="animal?.nome ? animal.nome = $event.target.value : ''" placeholder="Ex. Bidu" /> -->
+            <input matInput [ngModel]="animal?.nome" placeholder="Ex. Bidu" />
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Tipo do animal</mat-label>
             <mat-select>
-              <mat-option></mat-option>
-              <mat-option value="Cachorro">Cachorro</mat-option>
-              <mat-option value="Gato">Gato</mat-option>
-              <mat-option value="Ave">Ave</mat-option>
-              <mat-option value="Réptil">Réptil</mat-option>
+              <mat-option *ngFor="let tipo of getTipoAnimalKeys()">
+                  {{tipo}}
+              </mat-option>
             </mat-select>
           </mat-form-field>
           <div class="form__button-container">

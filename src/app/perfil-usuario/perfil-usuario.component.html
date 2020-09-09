@@ -1,7 +1,8 @@
 <div *ngIf="usuario">
     <h1 class="mat-display-2 client-name">{{usuario.nome}}</h1>
     <hr>
-    <app-animal-estimacao [animais-estimacao]="usuario.animaisEstimacao"></app-animal-estimacao>
+    <app-animal-estimacao [animais-estimacao]="usuario.animaisEstimacao"
+                          [upd-function]="teste"></app-animal-estimacao>
 </div>
 
 

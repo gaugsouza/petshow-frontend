@@ -10,6 +10,7 @@ import { By } from '@angular/platform-browser';
 import { AnimalEstimacao } from '../../interfaces/AnimalEstimacao';
 import { usuariosMock} from '../../mocks/usuarioMock';
 import {Cliente} from '../../interfaces/cliente';
+import { FormsModule } from '@angular/forms';
 describe('AnimalEstimacaoComponent', () => {
   let component: AnimalEstimacaoComponent;
   let fixture: ComponentFixture<AnimalEstimacaoComponent>;
@@ -25,7 +26,8 @@ describe('AnimalEstimacaoComponent', () => {
         MatListModule,
         MatInputModule,
         MatSelectModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        FormsModule
       ]
     })
     .compileComponents();
