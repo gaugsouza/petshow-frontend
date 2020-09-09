@@ -9,6 +9,9 @@ import { TipoAnimal } from 'src/app/enum/TipoAnimal';
 })
 export class FormularioAnimalComponent implements OnInit {
   @Input() animal?: AnimalEstimacao;
+  @Input("adiciona-animal") adicionaAnimal;
+  @Input("atualiza-animal") atualizaAnimalInput;
+
   public tipoAnimal = TipoAnimal;
   constructor() { }
 
@@ -18,4 +21,11 @@ export class FormularioAnimalComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  insereAnimal() {
+    this.adicionaAnimal(this.animal);
+  }
+
+  atualizaAnimal() {
+    this.atualizaAnimalInput(this.animal);
+  }
 }
