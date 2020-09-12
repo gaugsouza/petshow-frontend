@@ -8,7 +8,6 @@ import { loginsMock } from '../mocks/login-mock';
 export class InMemoryDataService implements InMemoryDbService {
 
   createDb() {
-    // const contas = usuariosMock;
     return {
       contas: usuariosMock,
       logins: loginsMock

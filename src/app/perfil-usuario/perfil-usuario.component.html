@@ -2,7 +2,14 @@
     <h1 class="mat-display-2 client-name">{{usuario.nome}}</h1>
     <hr>
     <app-animal-estimacao [animais-estimacao]="usuario.animaisEstimacao"
-                          [upd-function]="teste"></app-animal-estimacao>
+                          (seleciona-animal)="selecionaAnimal($event)"
+                          (remover-animal)="removeAnimal($event)"></app-animal-estimacao>
+    <button mat-flat-button color="primary" (click)="exibeFormulario()">Adicionar novo animal</button>
+
+    <app-formulario-animal [animal]="animal"
+                           (adiciona-animal)="adicionaAnimal($event)"
+                           (atualiza-animal)="editaAnimal($event)"
+                           [exibeFormulario]="isFormVisivel"></app-formulario-animal>
 </div>
 
 

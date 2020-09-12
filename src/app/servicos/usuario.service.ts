@@ -7,12 +7,13 @@ import { Usuario } from '../interfaces/usuario';
 import { NGXLogger } from 'ngx-logger';
 import { LocalStorageService } from './local-storage.service';
 import { usuariosMock } from '../mocks/usuarioMock';
+import { Login } from '../interfaces/login';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-  public USUARIO_SERVICE_URL = `${environment.API_URL}contas`;
+  public USUARIO_SERVICE_URL = `${environment.API_URL}cliente`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-type' : 'application/json'})
@@ -51,4 +52,13 @@ export class UsuarioService {
       catchError(this.handleError<Usuario>('update'))
     );
   } 
+
+  buscaPorLogin = (login: Login) : Observable<any> => {
+    let url = `${this.USUARIO_SERVICE_URL}/login`;
+    return this.http.post(url, login, this.httpOptions)
+    .pipe(
+      tap(_ => this.logger.info(`Request feito a ${url}`)),
+      catchError(this.handleError<Usuario>('login'))
+    );
+  }
 }

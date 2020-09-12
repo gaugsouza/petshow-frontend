@@ -22,6 +22,7 @@ import { FormularioAnimalComponent } from './perfil-usuario/animal-estimacao/for
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './database-mock/in-memory-data.service';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './acesso/login/login.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     AnimalEstimacaoComponent,
     FormularioAnimalComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

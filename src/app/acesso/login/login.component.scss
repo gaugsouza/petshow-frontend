@@ -1,0 +1,17 @@
+.page-section-title {
+    font-size: 38px;
+    padding: 22px 0px 0px 30px;
+}
+
+.login-form {
+    width: 60%;
+    background: white;
+    margin: 0 auto;
+    padding: 4% 2%;
+    &__form {
+        display: flex;
+        flex-flow: column;
+        width: 50%;
+        margin: 0 auto;
+    }
+}

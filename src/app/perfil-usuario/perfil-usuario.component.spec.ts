@@ -116,5 +116,30 @@ describe('FormularioAnimalComponent', () => {
     animalAEditar.nome = nomeEsperado;
     component.editaAnimal(animalAEditar);
     expect(component.usuario.animaisEstimacao.find(animal => animal.id === 2).nome).toEqual(nomeEsperado);
-  })
+  });
+
+  it('Deve selecionar o animal', () => {
+    let animal: AnimalEstimacao = {
+      id: 2,
+      nome: "Floquinho",
+      tipoAnimal: TipoAnimal.CACHORRO
+    };
+
+    component.selecionaAnimal(animal);
+
+    expect(component.animal).toEqual(animal);
+  });
+
+  it('Deve renderizar com formulário ativo', () => {
+    component.animal = {
+      id: 2,
+      nome: "Floquinho",
+      tipoAnimal: TipoAnimal.CACHORRO
+    };
+
+    fixture.detectChanges();
+    const element: HTMLElement = fixture.nativeElement;
+    const form = element.getElementsByClassName('form');
+    expect(form).not.toBeNull();
+  });
 });

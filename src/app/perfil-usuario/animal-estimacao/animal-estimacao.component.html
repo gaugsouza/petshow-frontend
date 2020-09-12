@@ -12,14 +12,11 @@
                 <div class="animal-list__item">
                     <span>{{animal.nome}}</span> 
                     <div class="animal-list__button-container">
-                        <button mat-flat-button color="accent" (click)="updFunction()">Editar</button>
-                        <button mat-flat-button color="warn">Remover</button>
+                        <button mat-flat-button color="accent" (click)="selecionaAnimal(animal)">Editar</button>
+                        <button mat-flat-button color="warn" (click)="removeAnimal(animal)">Remover</button>
                     </div>
                 </div>
                 </mat-list-item>
         </mat-list>
     </ng-template>
 </section>
-<button mat-flat-button color="primary">Adicionar novo animal</button>
-
-<app-formulario-animal></app-formulario-animal>

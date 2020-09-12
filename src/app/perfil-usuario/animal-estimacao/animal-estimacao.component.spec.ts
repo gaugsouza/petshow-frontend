@@ -57,5 +57,27 @@ describe('AnimalEstimacaoComponent', () => {
     const matListArr = element.getElementsByTagName('mat-list-item');
     console.log(element.textContent);
     expect(matListArr.length).toEqual(animaisMock.length);
-  })
+  });
+
+  it('Deve selecionar um animal', () => {
+    let animal: AnimalEstimacao = null;
+    component.animaisEstimacao = animaisMock;
+    component.selecionaAnimal = (animalSel: AnimalEstimacao) => {
+      animal = animalSel;
+    }
+    component.selecionaAnimal(component.animaisEstimacao[0]);
+    expect(animal).toEqual(component.animaisEstimacao[0]);
+  });
+
+  it('Deve remover um animal', () => {
+    component.animaisEstimacao = animaisMock;
+    let animal = animaisMock[0];
+    component.removerAnimal = (animal:AnimalEstimacao) => {
+      component.animaisEstimacao = component.animaisEstimacao.filter((el:AnimalEstimacao) => el.id !== animal.id);
+    }
+
+    component.removerAnimal(animal);
+
+    expect(component.animaisEstimacao).not.toContain(animal);
+  });
 });

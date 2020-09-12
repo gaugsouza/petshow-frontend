@@ -1,0 +1,16 @@
+<div class="login-form">
+<h3 class="page-section-title">Login</h3>
+    <div class="login-form__form">
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput [(ngModel)]="login.email" placeholder="exemplo@empresa.com" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Senha</mat-label>
+            <input matInput [(ngModel)]="login.senha" type="password" placeholder="senha"/>
+        </mat-form-field>
+          <div class="form__button-container">
+            <button mat-flat-button color="primary" (click)="realizaLogin()">Logar</button>
+          </div>
+    </div>
+</div>

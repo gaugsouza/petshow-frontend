@@ -1,23 +1,25 @@
-<section>
+<section *ngIf="exibeFormulario">
     <h3 class="page-section-title">Adicionar animal</h3>
     <div class="form">
+      <mat-form-field class="invisible">
+          <input matInput [(ngModel)]="animal.id" />
+        </mat-form-field>
         <mat-form-field>
             <mat-label>Nome do pet</mat-label>
-            <!-- <input matInput [(ngModel)]="animal?.nome" (ngModelChange)="animal?.nome ? animal.nome = $event.target.value : ''" placeholder="Ex. Bidu" /> -->
-            <!-- <input matInput [(ngModel)]="animal?.nome" (ngModelChange)="animal?.nome ? animal.nome = $event.target.value : ''" placeholder="Ex. Bidu" /> -->
-            <input matInput [ngModel]="animal?.nome" placeholder="Ex. Bidu" />
+            <input matInput [(ngModel)]="animal.nome" placeholder="Ex. Bidu" />
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Tipo do animal</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let tipo of getTipoAnimalKeys()">
+            <mat-select [(ngModel)]="animal.tipoAnimal" [value]="getSelectionValue()">
+              <mat-option *ngFor="let tipo of getTipoAnimalKeys()" [value]="tipoAnimal[tipo]">
                   {{tipo}}
               </mat-option>
             </mat-select>
           </mat-form-field>
           <div class="form__button-container">
-            <button mat-flat-button color="primary">Adicionar</button>
-            <button mat-stroked-button color="warn">Limpar</button>
+            <button *ngIf="!animal.id" mat-flat-button color="primary" (click)="insereAnimal()">Adicionar</button>
+            <button *ngIf="animal.id" mat-flat-button color="primary" (click)="atualizaAnimal()">Editar</button>
+            <button *ngIf="!animal.id" mat-stroked-button color="warn" (click)="limpa()">Limpar</button>
           </div>
     </div>
     <!-- <input type="file" name="" id="" placeholder="Foto do animal"> -->
