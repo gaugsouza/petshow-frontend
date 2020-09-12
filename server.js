@@ -20,5 +20,5 @@ app.post('/server/logger', function(req, res) {
     // console.log('respnse', res.body);
 });
 // Start the app by listening on the default Heroku port
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 4200);
 console.info(`Aplicação rodando na porta ${process.env.PORT || 8080}`);

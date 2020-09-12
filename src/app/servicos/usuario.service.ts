@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Usuario } from '../interfaces/usuario';
 import { NGXLogger } from 'ngx-logger';
@@ -46,10 +46,14 @@ export class UsuarioService {
   }
 
   atualizaUsuario = (usuario:Usuario) : Observable<Usuario> => {
+    console.log(usuario);
     return this.http.put<Usuario>(this.USUARIO_SERVICE_URL, usuario, this.httpOptions)
     .pipe(
       tap(_ => this.logger.info(`Request feito a ${this.USUARIO_SERVICE_URL}`)),
-      catchError(this.handleError<Usuario>('update'))
+      catchError(err => {
+        this.handleError<Usuario>('update');
+        return throwError(err);
+      })
     );
   } 
 

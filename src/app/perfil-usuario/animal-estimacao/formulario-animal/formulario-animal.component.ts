@@ -21,7 +21,7 @@ export class FormularioAnimalComponent implements OnInit {
   }
 
   getSelectionValue() {
-    return this.animal.tipoAnimal;
+    return this.animal.tipo;
   }
 
   ngOnInit(): void {
@@ -33,13 +33,13 @@ export class FormularioAnimalComponent implements OnInit {
 
   atualizaAnimal() {
     this.atualizaAnimalInput.emit(this.animal);
-    this.animal = null;
+    this.limpa();
   }
 
   limpa() {
     this.animal = {
       nome: "",
-      tipoAnimal: TipoAnimal.CACHORRO
+      tipo: TipoAnimal.CACHORRO
     };
   }
 }

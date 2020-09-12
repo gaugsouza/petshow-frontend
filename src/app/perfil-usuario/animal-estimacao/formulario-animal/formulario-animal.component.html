@@ -10,9 +10,9 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Tipo do animal</mat-label>
-            <mat-select [(ngModel)]="animal.tipoAnimal" [value]="getSelectionValue()">
-              <mat-option *ngFor="let tipo of getTipoAnimalKeys()" [value]="tipoAnimal[tipo]">
-                  {{tipo}}
+            <mat-select [(ngModel)]="animal.tipo" [value]="getSelectionValue()">
+              <mat-option *ngFor="let tipoLoop of getTipoAnimalKeys()" [value]="tipoAnimal[tipoLoop]">
+                  {{tipoLoop}}
               </mat-option>
             </mat-select>
           </mat-form-field>
