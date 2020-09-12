@@ -70,7 +70,9 @@ export class PerfilUsuarioComponent implements OnInit {
   atualizaUsuario() {
     this.usuarioService.atualizaUsuario(this.usuario).subscribe(res => {
       console.log('atualizou');
-      this.localStorageService.setItem('usuario', res).subscribe();
+      this.localStorageService.setItem('usuario', res).subscribe(() => {
+        this.getUsuario();
+      });
     });
   }
 

@@ -28,7 +28,7 @@ export const monica: Cliente = {
         {
             id: 1,
             nome: "Monicão",
-            tipoAnimal: TipoAnimal.CACHORRO,
+            tipo: TipoAnimal.CACHORRO,
         }
     ]
 }
