@@ -42,12 +42,16 @@ describe('FormularioAnimalComponent', () => {
     let animalEsperado: AnimalEstimacao = {
       id: 2,
       nome: "Floquinho",
-      tipoAnimal: TipoAnimal.CACHORRO
+      tipo: TipoAnimal.CACHORRO
     };
     component.animal = animalEsperado;
-    component.adicionaAnimal = (animal) => {
+    let spy = jest.spyOn(component.adicionaAnimal, 'emit');
+    spy.mockImplementation(animal => {
       usuarioMock.animaisEstimacao = [...usuarioMock.animaisEstimacao, animal];
-    }
+    })
+    // component.adicionaAnimal = (animal) => {
+    //   usuarioMock.animaisEstimacao = [...usuarioMock.animaisEstimacao, animal];
+    // }
 
     component.insereAnimal();
 
@@ -59,12 +63,13 @@ describe('FormularioAnimalComponent', () => {
     let animalEsperado: AnimalEstimacao = {
       id: 1,
       nome: "Floquinho",
-      tipoAnimal: TipoAnimal.CACHORRO
+      tipo: TipoAnimal.CACHORRO
     };
     component.animal = animalEsperado;
-    component.atualizaAnimalInput = animal => {
+    let spy = jest.spyOn(component.atualizaAnimalInput, 'emit');
+    spy.mockImplementation(animal => {
       usuarioMock.animaisEstimacao = usuarioMock.animaisEstimacao.map(el => el.id === animal.id ? animal : el);
-    }
+    });
 
     component.atualizaAnimal();
     expect(usuarioMock.animaisEstimacao).toContain(animalEsperado);

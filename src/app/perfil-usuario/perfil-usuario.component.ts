@@ -82,13 +82,6 @@ export class PerfilUsuarioComponent implements OnInit {
     let animais = this.usuario.animaisEstimacao;
     this.usuario.animaisEstimacao = animais.map(el => el.id === animalEstimacao.id ? animalEstimacao : el);
     this.atualizaUsuario();
-    // let animais = this.usuario.animaisEstimacao;
-    // let animaisAtualizados = animais.map(el => el.id === animalEstimacao.id ? animalEstimacao : el);
-    // this.usuario.animaisEstimacao = animaisAtualizados;
-    // this.usuarioService.atualizaUsuario(this.usuario)
-    // .subscribe();
-    // this.ocultaFormulario();
-    // this.limpaAnimal();
   }
 
   limpaAnimal() {

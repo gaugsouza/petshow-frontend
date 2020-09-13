@@ -72,11 +72,14 @@ describe('AnimalEstimacaoComponent', () => {
   it('Deve remover um animal', () => {
     component.animaisEstimacao = animaisMock;
     let animal = animaisMock[0];
-    component.removerAnimal = (animal:AnimalEstimacao) => {
-      component.animaisEstimacao = component.animaisEstimacao.filter((el:AnimalEstimacao) => el.id !== animal.id);
-    }
 
-    component.removerAnimal(animal);
+    let spy = jest.spyOn(component.removerAnimal, 'emit');
+
+    spy.mockImplementation(animal => {
+      component.animaisEstimacao = component.animaisEstimacao.filter((el:AnimalEstimacao) => el.id !== animal.id);
+    });
+
+    component.removeAnimal(animal);
 
     expect(component.animaisEstimacao).not.toContain(animal);
   });

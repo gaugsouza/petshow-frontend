@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { PerfilUsuarioComponent } from './perfil-usuario.component';
 import { UsuarioService } from '../servicos/usuario.service';
 import { UsuarioServiceMock} from '../mocks/usuario-service-mock';
-import { ActivatedRoute, RouterModule, convertToParamMap } from '@angular/router';
+import { ActivatedRoute, RouterModule, convertToParamMap, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import {AnimalEstimacaoComponent} from './animal-estimacao/animal-estimacao.component';
@@ -39,7 +39,8 @@ describe('FormularioAnimalComponent', () => {
       providers: [
           // {provide: UsuarioService, useClass: UsuarioServiceMock},
           LocalStorageService,
-          UsuarioService
+          UsuarioService,
+          {provide: Router, useValue: {navigate: () => true}}
       ],
       imports: [
         MatListModule,
@@ -48,7 +49,8 @@ describe('FormularioAnimalComponent', () => {
         BrowserAnimationsModule,
         HttpClientTestingModule,
         LoggerTestingModule,
-        FormsModule
+        FormsModule,
+        RouterTestingModule
       ]
     })
     .compileComponents();
@@ -73,9 +75,9 @@ describe('FormularioAnimalComponent', () => {
     expect(component.usuario).toEqual(usuarioMock);
   });
 
-  it('Deve deixar usuario nulo', () => {
+  it('Deve deixar usuario indefinido', () => {
     component.getUsuario();
-    expect(component.usuario).toBeNull();
+    expect(component.usuario).toBeFalsy();
   });
 
   it('Deve adicionar um animal a lista de animais', () => {
@@ -83,7 +85,7 @@ describe('FormularioAnimalComponent', () => {
     let animalEsperado: AnimalEstimacao = {
       id: 2,
       nome: "Floquinho",
-      tipoAnimal: TipoAnimal.CACHORRO
+      tipo: TipoAnimal.CACHORRO
     };
     component.adicionaAnimal(animalEsperado);
     expect(component.usuario.animaisEstimacao).toContain(animalEsperado);
@@ -94,7 +96,7 @@ describe('FormularioAnimalComponent', () => {
     let animalARemover: AnimalEstimacao = {
       id: 2,
       nome: "Floquinho",
-      tipoAnimal: TipoAnimal.CACHORRO
+      tipo: TipoAnimal.CACHORRO
     };
     component.adicionaAnimal(animalARemover);
 
@@ -109,7 +111,7 @@ describe('FormularioAnimalComponent', () => {
     let animalAEditar: AnimalEstimacao = {
       id: 2,
       nome: "Floquinho",
-      tipoAnimal: TipoAnimal.CACHORRO
+      tipo: TipoAnimal.CACHORRO
     };
 
     component.adicionaAnimal({...animalAEditar});
@@ -122,7 +124,7 @@ describe('FormularioAnimalComponent', () => {
     let animal: AnimalEstimacao = {
       id: 2,
       nome: "Floquinho",
-      tipoAnimal: TipoAnimal.CACHORRO
+      tipo: TipoAnimal.CACHORRO
     };
 
     component.selecionaAnimal(animal);
@@ -134,7 +136,7 @@ describe('FormularioAnimalComponent', () => {
     component.animal = {
       id: 2,
       nome: "Floquinho",
-      tipoAnimal: TipoAnimal.CACHORRO
+      tipo: TipoAnimal.CACHORRO
     };
 
     fixture.detectChanges();
