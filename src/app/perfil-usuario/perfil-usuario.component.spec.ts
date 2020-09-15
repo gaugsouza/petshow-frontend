@@ -19,7 +19,7 @@ import { LoggerTestingModule } from 'ngx-logger/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AnimalEstimacao } from '../interfaces/AnimalEstimacao';
 import { TipoAnimal } from '../enum/TipoAnimal';
-
+import {TranslateModule} from '@ngx-translate/core';
 
 describe('FormularioAnimalComponent', () => {
   let component: PerfilUsuarioComponent;
@@ -52,7 +52,8 @@ describe('FormularioAnimalComponent', () => {
         LoggerTestingModule,
         FormsModule,
         RouterTestingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        TranslateModule
       ]
     })
     .compileComponents();

@@ -9,6 +9,8 @@ import { AnimalEstimacao } from '../../../interfaces/AnimalEstimacao';
 import { TipoAnimal } from '../../../enum/TipoAnimal';
 import { usuariosMock } from '../../../mocks/usuarioMock';
 import { Cliente } from '../../../interfaces/cliente';
+import {TranslateModule} from '@ngx-translate/core';
+
 
 describe('FormularioAnimalComponent', () => {
   let component: FormularioAnimalComponent;
@@ -22,7 +24,8 @@ describe('FormularioAnimalComponent', () => {
         MatSelectModule,
         BrowserAnimationsModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        TranslateModule
       ]
     })
     .compileComponents();

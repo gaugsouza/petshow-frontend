@@ -11,6 +11,9 @@ import { AnimalEstimacao } from '../../interfaces/AnimalEstimacao';
 import { usuariosMock} from '../../mocks/usuarioMock';
 import {Cliente} from '../../interfaces/cliente';
 import { FormsModule } from '@angular/forms';
+import {TranslateModule, TranslateService, TranslateStore, TranslateLoader, TranslateCompiler, TranslateParser, MissingTranslationHandler, USE_DEFAULT_LANG, USE_EXTEND} from '@ngx-translate/core';
+
+
 describe('AnimalEstimacaoComponent', () => {
   let component: AnimalEstimacaoComponent;
   let fixture: ComponentFixture<AnimalEstimacaoComponent>;
@@ -26,7 +29,8 @@ describe('AnimalEstimacaoComponent', () => {
         MatInputModule,
         MatSelectModule,
         BrowserAnimationsModule,
-        FormsModule
+        FormsModule,
+        TranslateModule.forRoot()
       ]
     })
     .compileComponents();
@@ -46,7 +50,7 @@ describe('AnimalEstimacaoComponent', () => {
     const element: HTMLElement = fixture.nativeElement;
     const matListArr = element.getElementsByTagName('mat-list-item');
     expect(matListArr.length).toEqual(0);
-    expect(element.textContent).toContain('Nenhum animal cadastrado');
+    expect(element.textContent).not.toContain((usuariosMock[0] as Cliente).animaisEstimacao[0].nome)
   });
 
   it('Deve trazer uma lista de animais', () => {
