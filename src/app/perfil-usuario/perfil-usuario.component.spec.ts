@@ -67,6 +67,20 @@ describe('FormularioAnimalComponent', () => {
     fixture.detectChanges();
   });
 
+  beforeEach(() => {
+    jest.spyOn(component, 'adicionaAnimal').mockImplementation(animal => {
+      component.usuario.animaisEstimacao.push(animal);
+    });
+
+    jest.spyOn(component, 'removeAnimal').mockImplementation((animal:AnimalEstimacao) => {
+      component.usuario.animaisEstimacao = component.usuario.animaisEstimacao.filter(el => el.id !== animal.id);
+    });
+
+    jest.spyOn(component, 'editaAnimal').mockImplementation((animal:AnimalEstimacao) => {
+      component.usuario.animaisEstimacao = component.usuario.animaisEstimacao.map(el => el.id === animal.id ? animal : el);
+    })
+  })
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
@@ -82,45 +96,46 @@ describe('FormularioAnimalComponent', () => {
     expect(component.usuario).toBeFalsy();
   });
 
-  // it('Deve adicionar um animal a lista de animais', () => {
-  //   component.usuario = usuarioMock;
-  //   let animalEsperado: AnimalEstimacao = {
-  //     id: 2,
-  //     nome: "Floquinho",
-  //     tipo: TipoAnimal.CACHORRO
-  //   };
-  //   component.adicionaAnimal(animalEsperado);
-  //   expect(component.usuario.animaisEstimacao).toContain(animalEsperado);
-  // });
+  it('Deve adicionar um animal a lista de animais', () => {
+    component.usuario = usuarioMock;
+    let animalEsperado: AnimalEstimacao = {
+      id: 2,
+      nome: "Floquinho",
+      tipo: TipoAnimal.CACHORRO
+    };
+    
+    component.adicionaAnimal(animalEsperado);
+    expect(component.usuario.animaisEstimacao).toContain(animalEsperado);
+  });
 
-  // it('Deve remover um animal da lista de animais', () => {
-  //   component.usuario = usuarioMock;
-  //   let animalARemover: AnimalEstimacao = {
-  //     id: 2,
-  //     nome: "Floquinho",
-  //     tipo: TipoAnimal.CACHORRO
-  //   };
-  //   component.adicionaAnimal(animalARemover);
+  it('Deve remover um animal da lista de animais', () => {
+    component.usuario = usuarioMock;
+    let animalARemover: AnimalEstimacao = {
+      id: 2,
+      nome: "Floquinho",
+      tipo: TipoAnimal.CACHORRO
+    };
+    component.adicionaAnimal(animalARemover);
 
-  //   component.removeAnimal(animalARemover);
+    component.removeAnimal(animalARemover);
 
-  //   expect(component.usuario.animaisEstimacao).not.toContain(animalARemover);
-  // });
+    expect(component.usuario.animaisEstimacao).not.toContain(animalARemover);
+  });
 
-  // it('Deve retornar um animal editado', () => {
-  //   component.usuario = usuarioMock;
-  //   let nomeEsperado = "Mingau";
-  //   let animalAEditar: AnimalEstimacao = {
-  //     id: 2,
-  //     nome: "Floquinho",
-  //     tipo: TipoAnimal.CACHORRO
-  //   };
+  it('Deve retornar um animal editado', () => {
+    component.usuario = usuarioMock;
+    let nomeEsperado = "Mingau";
+    let animalAEditar: AnimalEstimacao = {
+      id: 2,
+      nome: "Floquinho",
+      tipo: TipoAnimal.CACHORRO
+    };
 
-  //   component.adicionaAnimal({...animalAEditar});
-  //   animalAEditar.nome = nomeEsperado;
-  //   component.editaAnimal(animalAEditar);
-  //   expect(component.usuario.animaisEstimacao.find(animal => animal.id === 2).nome).toEqual(nomeEsperado);
-  // });
+    component.adicionaAnimal({...animalAEditar});
+    animalAEditar.nome = nomeEsperado;
+    component.editaAnimal(animalAEditar);
+    expect(component.usuario.animaisEstimacao.find(animal => animal.id === 2).nome).toEqual(nomeEsperado);
+  });
 
   it('Deve selecionar o animal', () => {
     let animal: AnimalEstimacao = {
