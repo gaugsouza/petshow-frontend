@@ -1,9 +1,9 @@
 <section>
-    <h3 class="page-section-title">Animais</h3>
+    <h3 class="page-section-title">{{'ANIMAIS' | translate}}</h3>
     <div class="conteiner-animal-list" *ngIf="animaisEstimacao; then animaisBlock else vazioBlock"></div>
     
     <ng-template #vazioBlock>
-        <p>Nenhum animal cadastrado</p>
+        <p>{{'NENHUM_CADASTRADO' | translate}}</p>
     </ng-template>
 
     <ng-template #animaisBlock>
@@ -12,8 +12,8 @@
                 <div class="animal-list__item">
                     <span>{{animal.nome}}</span> 
                     <div class="animal-list__button-container">
-                        <button mat-flat-button color="accent" (click)="selecionaAnimal(animal)">Editar</button>
-                        <button mat-flat-button color="warn" (click)="removeAnimal(animal)">Remover</button>
+                        <button mat-flat-button color="accent" (click)="selecionaAnimal(animal)">{{'EDITAR' | translate}}</button>
+                        <button mat-flat-button color="warn" (click)="removeAnimal(animal)">{{'REMOVER' | translate}}</button>
                     </div>
                 </div>
                 </mat-list-item>

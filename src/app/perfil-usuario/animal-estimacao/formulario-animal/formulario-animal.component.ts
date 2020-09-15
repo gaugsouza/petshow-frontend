@@ -28,6 +28,9 @@ export class FormularioAnimalComponent implements OnInit {
   public tipoAnimal = TipoAnimal;
   constructor() { }
 
+  hasErrors() {
+    return this.nomeFormControl.hasError('required') || this.nomeFormControl.hasError('minLength');
+  }
   getTipoAnimalKeys() {
     return Object.keys(this.tipoAnimal).filter(x => !(parseInt(x) >= 0));
   }

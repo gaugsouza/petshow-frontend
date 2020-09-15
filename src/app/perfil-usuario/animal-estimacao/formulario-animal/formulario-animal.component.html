@@ -1,19 +1,19 @@
 <section *ngIf="exibeFormulario">
-    <h3 class="page-section-title">Adicionar animal</h3>
+    <h3 class="page-section-title">{{'ADD_ANIMAL_FORM' | translate}}</h3>
     <!-- <form class="form"> -->
       <div class="form">
       <mat-form-field class="invisible">
           <input matInput [(ngModel)]="animal.id" />
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Nome do pet</mat-label>
+            <mat-label>{{'NOME_ANIMAL' | translate}}</mat-label>
             <input matInput [(ngModel)]="animal.nome" placeholder="Ex. Bidu" class="form__animal-nome" [formControl]="nomeFormControl" [errorStateMatcher]="matcher"/>
             <mat-error *ngIf="nomeFormControl.hasError('required')">
-              Campo obrigatório
+              {{'CAMPO_OBRIGATORIO' | translate}}
             </mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
-            <mat-label>Tipo do animal</mat-label>
+            <mat-label>{{'TIPO_ANIMAL' | translate}}</mat-label>
             <mat-select [(ngModel)]="animal.tipo" [value]="getSelectionValue()" class="form__animal-tipo" >
               <mat-option *ngFor="let tipoLoop of getTipoAnimalKeys()" [value]="tipoAnimal[tipoLoop]">
                   {{tipoLoop}}
@@ -21,10 +21,10 @@
             </mat-select>
           </mat-form-field>
           <div class="form__button-container">
-            <button *ngIf="!animal.id" mat-flat-button color="primary" (click)="insereAnimal()">Salvar</button>
-            <button *ngIf="animal.id" mat-flat-button color="primary" (click)="atualizaAnimal()">Salvar alterações</button>
-            <button *ngIf="!animal.id" mat-stroked-button color="warn" (click)="limpa()">Limpar</button>
-            <button mat-stroked-button color="warn" (click)="cancelarOperacao()">Cancelar</button>
+            <button *ngIf="!animal.id" mat-flat-button color="primary" (click)="insereAnimal()" [disabled]="hasErrors()">{{'SALVAR' | translate}}</button>
+            <button *ngIf="animal.id" mat-flat-button color="primary" (click)="atualizaAnimal()" [disabled]="hasErrors()">{{'SALVAR_ALTERACOES' | translate}}</button>
+            <button *ngIf="!animal.id" mat-stroked-button color="warn" (click)="limpa()">{{'LIMPAR' | translate}}</button>
+            <button mat-stroked-button color="warn" (click)="cancelarOperacao()">{{'CANCELAR'|translate}}</button>
           </div>
         </div>
         <!-- </form> -->

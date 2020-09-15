@@ -63,6 +63,8 @@ export class PerfilUsuarioComponent implements OnInit {
   }
 
   exibeFormulario() {
+    this.erroRequisicao = null;
+    this.mensagemSucesso = null;
     this.isFormVisivel = true;
   }
   ocultaFormulario() {

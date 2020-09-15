@@ -1,0 +1,226 @@
+[
+  {
+    "description": "Eu, como cliente\nDevo conseguir cadastrar meus animais de estimação\nPara poder associá-los a agendamentos",
+    "keyword": "Feature",
+    "name": "Cadastro de animais",
+    "line": 1,
+    "id": "cadastro-de-animais",
+    "tags": [],
+    "uri": "AnimalEstimacao.feature",
+    "elements": [
+      {
+        "id": "cadastro-de-animais;acesso-a-formulário",
+        "keyword": "Scenario",
+        "line": 6,
+        "name": "Acesso a formulário",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "que estou logado",
+            "result": {
+              "status": "passed",
+              "duration": 2607000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "que estou na tela com a lista de animais cadastrados",
+            "result": {
+              "status": "passed",
+              "duration": 362000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 9,
+            "name": "clicar em botão com texto \"Adicionar novo animal\"",
+            "result": {
+              "status": "passed",
+              "duration": 258000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 10,
+            "name": "devo ver formulário para cadastro de animais",
+            "result": {
+              "status": "passed",
+              "duration": 73000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "cadastro-de-animais;solicitação-de-edição-de-animal",
+        "keyword": "Scenario",
+        "line": 12,
+        "name": "Solicitação de edição de animal",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 13,
+            "name": "que apertei no botão \"Editar\"",
+            "result": {
+              "status": "passed",
+              "duration": 558000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 14,
+            "name": "devo ver formulário de animais com as informações do animal solicitado",
+            "result": {
+              "status": "passed",
+              "duration": 31000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "cadastro-de-animais;edição-de-animal",
+        "keyword": "Scenario",
+        "line": 16,
+        "name": "Edição de animal",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 17,
+            "name": "estou com formulário com informações de animal solicitado",
+            "result": {
+              "status": "passed",
+              "duration": 410000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 18,
+            "name": "que alterei algum Dado",
+            "result": {
+              "status": "passed",
+              "duration": 245000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 19,
+            "name": "clicar em botão com texto \"Salvar alterações\"",
+            "result": {
+              "status": "passed",
+              "duration": 110000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 20,
+            "name": "devo ver o animal na lista com as informações atualizadas",
+            "result": {
+              "status": "failed",
+              "duration": 4008000000,
+              "error_message": "AssertionError: Timed out retrying: expected '<mat-list.mat-list.mat-list-base.animal-list.ng-star-inserted>' to contain 'jlsgas'\n    at applyChainer (http://localhost:4200/__cypress/runner/cypress_runner.js:131857:32)\n    at http://localhost:4200/__cypress/runner/cypress_runner.js:131898:16\n    at arrayReduce (http://localhost:4200/__cypress/runner/cypress_runner.js:18403:21)\n    at Function.reduce (http://localhost:4200/__cypress/runner/cypress_runner.js:27401:14)\n    at applyChainers (http://localhost:4200/__cypress/runner/cypress_runner.js:131888:18)\n    at tryCatcher (http://localhost:4200/__cypress/runner/cypress_runner.js:9059:23)\n    at Function.Promise.attempt.Promise.try (http://localhost:4200/__cypress/runner/cypress_runner.js:6333:29)\n    at Context.shouldFn (http://localhost:4200/__cypress/runner/cypress_runner.js:131902:23)\n    at Context.should (http://localhost:4200/__cypress/runner/cypress_runner.js:131917:23)\n    at http://localhost:4200/__cypress/runner/cypress_runner.js:127813:39\n    at assertions (http://localhost:4200/__cypress/runner/cypress_runner.js:128073:14)\n    at tryCatcher (http://localhost:4200/__cypress/runner/cypress_runner.js:9059:23)\n    at Object.gotValue (http://localhost:4200/__cypress/runner/cypress_runner.js:8203:18)\n    at Object.gotAccum (http://localhost:4200/__cypress/runner/cypress_runner.js:8190:25)\n    at Object.tryCatcher (http://localhost:4200/__cypress/runner/cypress_runner.js:9059:23)\n    at Promise._settlePromiseFromHandler (http://localhost:4200/__cypress/runner/cypress_runner.js:6994:31)"
+            }
+          }
+        ]
+      },
+      {
+        "id": "cadastro-de-animais;deleção-de-animal",
+        "keyword": "Scenario",
+        "line": 22,
+        "name": "Deleção de animal",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 23,
+            "name": "que apertei no botão \"Remover\"",
+            "result": {
+              "status": "passed",
+              "duration": 986000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 24,
+            "name": "devo ver lista de animais sem o animal deletado",
+            "result": {
+              "status": "failed",
+              "duration": 4001000000,
+              "error_message": "AssertionError: Timed out retrying: expected '<mat-list.mat-list.mat-list-base.animal-list.ng-star-inserted>' not to contain 'Monicão'\n    at applyChainer (http://localhost:4200/__cypress/runner/cypress_runner.js:131857:32)\n    at http://localhost:4200/__cypress/runner/cypress_runner.js:131898:16\n    at arrayReduce (http://localhost:4200/__cypress/runner/cypress_runner.js:18403:21)\n    at Function.reduce (http://localhost:4200/__cypress/runner/cypress_runner.js:27401:14)\n    at applyChainers (http://localhost:4200/__cypress/runner/cypress_runner.js:131888:18)\n    at tryCatcher (http://localhost:4200/__cypress/runner/cypress_runner.js:9059:23)\n    at Function.Promise.attempt.Promise.try (http://localhost:4200/__cypress/runner/cypress_runner.js:6333:29)\n    at Context.shouldFn (http://localhost:4200/__cypress/runner/cypress_runner.js:131902:23)\n    at Context.should (http://localhost:4200/__cypress/runner/cypress_runner.js:131917:23)\n    at http://localhost:4200/__cypress/runner/cypress_runner.js:127813:39\n    at assertions (http://localhost:4200/__cypress/runner/cypress_runner.js:128073:14)\n    at tryCatcher (http://localhost:4200/__cypress/runner/cypress_runner.js:9059:23)\n    at Object.gotValue (http://localhost:4200/__cypress/runner/cypress_runner.js:8203:18)\n    at Object.gotAccum (http://localhost:4200/__cypress/runner/cypress_runner.js:8190:25)\n    at Object.tryCatcher (http://localhost:4200/__cypress/runner/cypress_runner.js:9059:23)\n    at Promise._settlePromiseFromHandler (http://localhost:4200/__cypress/runner/cypress_runner.js:6994:31)"
+            }
+          }
+        ]
+      },
+      {
+        "id": "cadastro-de-animais;cadastro-bem-sucedido",
+        "keyword": "Scenario",
+        "line": 26,
+        "name": "Cadastro bem sucedido",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 27,
+            "name": "estou com formulário para cadastro de animais aberto",
+            "result": {
+              "status": "passed",
+              "duration": 934000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 28,
+            "name": "que preenchi todos os campos corretamente",
+            "result": {
+              "status": "passed",
+              "duration": 257000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 29,
+            "name": "clicar em botão com texto \"Salvar\"",
+            "result": {
+              "status": "passed",
+              "duration": 103000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 30,
+            "name": "devo ver o novo animal na lista de animais cadastrados",
+            "result": {
+              "status": "failed",
+              "duration": 4011000000,
+              "error_message": "AssertionError: Timed out retrying: Expected to find content: 'laskjdg' within the element: <mat-list.mat-list.mat-list-base.animal-list.ng-star-inserted> but never did.\n    + expected - actual\n\n\nAssertionError: Expected to find element: `:not(script,style):cy-contains('laskjdg'), [type='submit'][value~='laskjdg']`, but never found it.\n    at ensureExistence (http://localhost:4200/__cypress/runner/cypress_runner.js:137438:32)\n    at Object.ensureElExistence (http://localhost:4200/__cypress/runner/cypress_runner.js:137456:12)\n    at ensureExistence (http://localhost:4200/__cypress/runner/cypress_runner.js:127861:23)\n    at onFailFn (http://localhost:4200/__cypress/runner/cypress_runner.js:127899:9)\n    at tryCatcher (http://localhost:4200/__cypress/runner/cypress_runner.js:9059:23)\n    at Promise._settlePromiseFromHandler (http://localhost:4200/__cypress/runner/cypress_runner.js:6994:31)\n    at Promise._settlePromise (http://localhost:4200/__cypress/runner/cypress_runner.js:7051:18)\n    at Promise._settlePromise0 (http://localhost:4200/__cypress/runner/cypress_runner.js:7096:10)\n    at Promise._settlePromises (http://localhost:4200/__cypress/runner/cypress_runner.js:7172:18)\n    at _drainQueueStep (http://localhost:4200/__cypress/runner/cypress_runner.js:3766:12)\n    at _drainQueue (http://localhost:4200/__cypress/runner/cypress_runner.js:3759:9)\n    at Async.../../node_modules/bluebird/js/release/async.js.Async._drainQueues (http://localhost:4200/__cypress/runner/cypress_runner.js:3775:5)\n    at Async.drainQueues (http://localhost:4200/__cypress/runner/cypress_runner.js:3645:14)"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

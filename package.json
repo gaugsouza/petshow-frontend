@@ -29,6 +29,8 @@
     "@angular/platform-browser-dynamic": "~9.0.6",
     "@angular/router": "~9.0.6",
     "@angular/service-worker": "~9.0.6",
+    "@ngx-translate/core": "^12.1.2",
+    "@ngx-translate/http-loader": "^6.0.0",
     "express": "^4.17.1",
     "http-server": "^0.12.3",
     "material-design-icons": "^3.0.1",
