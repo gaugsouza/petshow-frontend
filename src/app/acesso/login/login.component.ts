@@ -7,14 +7,7 @@ import { Login } from 'src/app/interfaces/login';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { LoginService } from 'src/app/servicos/login.service';
 import { Router } from '@angular/router';
-
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
+import {MyErrorStateMatcher} from '../../classes/my-error-state-matcher';
 
 @Component({
   selector: 'app-login',
@@ -58,14 +51,13 @@ export class LoginComponent implements OnInit {
     .subscribe(
       (res:Cliente) => {
         if(res) {
-          console.log('Deu bom', res);
-          this.localStorageService.setItem('usuario', res).subscribe(() => {
+          this.localStorageService.setItem('usuario', {...res, cliente:true}).subscribe(() => {
             this.router.navigate(['/perfil']);
           });
         }
       },
       ({error}) => {
-        this.errorMessage = error;
+        this.errorMessage = typeof error === 'string' ? error: 'Erro durante operação';
         this.login.senha = "";
       
       },

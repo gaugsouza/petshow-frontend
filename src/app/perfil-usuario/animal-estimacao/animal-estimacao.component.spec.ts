@@ -19,8 +19,7 @@ describe('AnimalEstimacaoComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        AnimalEstimacaoComponent,
-        FormularioAnimalComponent 
+        AnimalEstimacaoComponent
       ],
       imports: [
         MatListModule,

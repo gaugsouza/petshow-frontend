@@ -1,4 +1,5 @@
 import { Component, HostListener } from '@angular/core';
+import { LocalStorageService } from './servicos/local-storage.service';
 
 
 @Component({
@@ -11,6 +12,8 @@ export class AppComponent {
 
   public mode: string  = "";
   public opened: boolean = true;
+  public isLogged:boolean = false;
+  constructor() {}
 
   ngOnInit() {
     let innerWidth : number = window.innerWidth;

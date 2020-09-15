@@ -7,7 +7,7 @@
             </mat-error>
             <mat-form-field>
                 <mat-label>Email</mat-label>
-                <input matInput [(ngModel)]="login.email" placeholder="exemplo@exemplo.com" [formControl]="emailFormControl" [errorStateMatcher]="matcher"/>
+                <input matInput [(ngModel)]="login.email" placeholder="exemplo@exemplo.com" class="login-form__email" [formControl]="emailFormControl" [errorStateMatcher]="matcher"/>
                 <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                     Por favor insira um endereço de e-mail válido
                 </mat-error>
@@ -17,7 +17,7 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Senha</mat-label>
-                <input matInput [(ngModel)]="login.senha" type="password" placeholder="senha" [formControl]="passwordFormControl" [errorStateMatcher]="matcher"/>
+                <input matInput [(ngModel)]="login.senha" class="login-form__senha"  type="password" placeholder="senha" [formControl]="passwordFormControl" [errorStateMatcher]="matcher"/>
                 <mat-error *ngIf="passwordFormControl.hasError('required')">
                     Por favor insira uma senha
                 </mat-error>

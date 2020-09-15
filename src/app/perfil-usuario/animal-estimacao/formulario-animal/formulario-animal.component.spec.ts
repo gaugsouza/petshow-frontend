@@ -4,7 +4,7 @@ import { FormularioAnimalComponent } from './formulario-animal.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AnimalEstimacao } from '../../../interfaces/AnimalEstimacao';
 import { TipoAnimal } from '../../../enum/TipoAnimal';
 import { usuariosMock } from '../../../mocks/usuarioMock';
@@ -21,7 +21,8 @@ describe('FormularioAnimalComponent', () => {
         MatInputModule,
         MatSelectModule,
         BrowserAnimationsModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
       ]
     })
     .compileComponents();

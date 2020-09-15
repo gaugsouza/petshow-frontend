@@ -11,6 +11,9 @@ mat-toolbar {
   justify-content: space-between;
 }
 
+.menu-item {
+  width: 130px;
+}
 .content {
   width: calc(100% - 20px);
   padding: 10px 0 0 10px;

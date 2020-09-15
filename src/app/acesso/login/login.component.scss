@@ -3,6 +3,11 @@
     padding: 22px 0px 0px 30px;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+}
+
 .login-form {
     width: 60%;
     background: white;

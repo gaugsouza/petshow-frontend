@@ -17,8 +17,10 @@ export class PerfilUsuarioComponent implements OnInit {
     tipo: TipoAnimal.CACHORRO
   };
   usuario:Cliente;
+  usuarioRequest:Cliente;
   isFormVisivel:Boolean = false;
-
+  erroRequisicao:String;
+  mensagemSucesso:String;
   constructor(private usuarioService:UsuarioService,
               private router:Router,
               private localStorageService: LocalStorageService) { }
@@ -29,7 +31,7 @@ export class PerfilUsuarioComponent implements OnInit {
   }
 
   selecionaAnimal(animalEstimacao:AnimalEstimacao): void {
-    this.animal = animalEstimacao;
+    this.animal = {...animalEstimacao};
     this.exibeFormulario();
   }
 
@@ -44,19 +46,19 @@ export class PerfilUsuarioComponent implements OnInit {
     });
   }
 
-  adicionaAnimal(animalEstimacao:AnimalEstimacao) : void {
-    this.ocultaFormulario();
-    this.limpaAnimal();
-    let animaisEstimacao = this.usuario.animaisEstimacao;
-    this.usuario.animaisEstimacao = [...animaisEstimacao, animalEstimacao];
+  adicionaAnimal({...animalEstimacao}:AnimalEstimacao) : void {
+    this.usuarioRequest = {...this.usuario};
+    let animaisEstimacao = this.usuarioRequest.animaisEstimacao;
+    this.usuarioRequest.animaisEstimacao = [...animaisEstimacao, animalEstimacao];
     this.atualizaUsuario();
     
   }
 
   removeAnimal(animalEstimacao : AnimalEstimacao | number):void {
+    this.usuarioRequest = {...this.usuario};
     let id:number = typeof animalEstimacao === 'number' ? animalEstimacao : animalEstimacao.id;
-    let animaisAManter = this.usuario.animaisEstimacao.filter(animal => animal.id !== id);
-    this.usuario.animaisEstimacao = animaisAManter;
+    let animaisAManter = this.usuarioRequest.animaisEstimacao.filter(animal => animal.id !== id);
+    this.usuarioRequest.animaisEstimacao = animaisAManter;
     this.atualizaUsuario();
   }
 
@@ -68,26 +70,38 @@ export class PerfilUsuarioComponent implements OnInit {
   }
 
   atualizaUsuario() {
-    this.usuarioService.atualizaUsuario(this.usuario).subscribe(res => {
-      console.log('atualizou');
+    this.usuarioService.atualizaUsuario(this.usuarioRequest).subscribe(res => {
       this.localStorageService.setItem('usuario', res).subscribe(() => {
         this.getUsuario();
+        this.limpaAnimal();
+        this.ocultaFormulario();
+        this.usuarioRequest = null;
+        this.mensagemSucesso = "Operação realizada com sucesso";
       });
+    },
+    ({error}) => {
+      console.log(error);
+      this.erroRequisicao = "Erro durante a operação";
     });
   }
 
   editaAnimal({...animalEstimacao}: AnimalEstimacao) : void {
-    this.limpaAnimal();
-    this.ocultaFormulario();
-    let animais = this.usuario.animaisEstimacao;
-    this.usuario.animaisEstimacao = animais.map(el => el.id === animalEstimacao.id ? animalEstimacao : el);
+    this.usuarioRequest = {...this.usuario};
+    let animais = this.usuarioRequest.animaisEstimacao;
+    this.usuarioRequest.animaisEstimacao = animais.map(el => el.id === animalEstimacao.id ? animalEstimacao : el);
     this.atualizaUsuario();
   }
+
 
   limpaAnimal() {
     this.animal = {
       nome: "",
       tipo: TipoAnimal.CACHORRO
     }
+  }
+
+  cancelar() {
+    this.isFormVisivel = false;
+    this.limpaAnimal();
   }
 }

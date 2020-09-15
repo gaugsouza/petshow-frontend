@@ -13,7 +13,8 @@
     "nyc:instrument": "nyc instrument --compact=false src instrumented",
     "lint:scss": "stylelint \"**/*.scss\"",
     "lint:ts": "eslint \"**/*.ts\"",
-    "test:bdd": "ng run petshow-frontend:cypress-run"
+    "test:bdd": "ng run petshow-frontend:cypress-run",
+    "cy:open": "cypress open"
   },
   "private": true,
   "dependencies": {

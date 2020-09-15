@@ -3,7 +3,5 @@
   "video":false,
   "testFiles": "**/*.{feature, features}",
   "supportFile": "cypress/support/index.ts",
-  "env": {
-    "TAGS": "feature-tag"
-  }
+  "baseUrl": "http://localhost:4200"
 }

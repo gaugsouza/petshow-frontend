@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AnimalEstimacao } from 'src/app/interfaces/AnimalEstimacao';
 import { TipoAnimal } from 'src/app/enum/TipoAnimal';
+import {MyErrorStateMatcher} from '../../../classes/my-error-state-matcher';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-formulario-animal',
@@ -8,10 +10,20 @@ import { TipoAnimal } from 'src/app/enum/TipoAnimal';
   styleUrls: ['./formulario-animal.component.scss']
 })
 export class FormularioAnimalComponent implements OnInit {
-  @Input() animal: AnimalEstimacao;
+  @Input() animal: AnimalEstimacao = {
+    nome: "",
+    tipo: TipoAnimal.CACHORRO
+  };
   @Output("adiciona-animal") adicionaAnimal = new EventEmitter<AnimalEstimacao>();
   @Output("atualiza-animal") atualizaAnimalInput = new EventEmitter<AnimalEstimacao>();
+  @Output("cancelar-operacao") cancelaOperacao = new EventEmitter<any>();
   @Input() exibeFormulario:Boolean;
+
+  matcher = new MyErrorStateMatcher();
+  nomeFormControl = new FormControl('', [
+    Validators.required,
+    Validators.minLength(3)
+  ]);
 
   public tipoAnimal = TipoAnimal;
   constructor() { }
@@ -33,9 +45,13 @@ export class FormularioAnimalComponent implements OnInit {
 
   atualizaAnimal() {
     this.atualizaAnimalInput.emit(this.animal);
-    this.limpa();
   }
 
+  cancelarOperacao() {
+    this.cancelaOperacao.emit();
+  }
+
+  
   limpa() {
     this.animal = {
       nome: "",

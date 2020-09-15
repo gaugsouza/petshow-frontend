@@ -3,7 +3,7 @@
     <button mat-icon-button (click)="drawer.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <span>Petshow</span>
+    <span><a href="/">Petshow</a></span>
   </div>
   <div>
     <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
@@ -18,7 +18,19 @@
 
 
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer mode="{{mode}}" opened="{{opened}}">LKASJDGLKSJGLAKJSDG</mat-drawer>
+  <!-- <mat-drawer #drawer mode="{{mode}}" opened="{{opened}}">LKASJDGLKSJGLAKJSDG</mat-drawer> -->
+  <mat-drawer #drawer mode="{{mode}}" opened="{{opened}}">
+    <div>
+      <a mat-button href="/login" class="menu-item" *ngIf="!isLogged">
+        Login
+      </a>
+    </div>
+    <div>
+      <a mat-button href="/perfil" class="menu-item">
+        Perfil
+      </a>
+    </div>
+  </mat-drawer>
   <mat-drawer-content>
     <div class="content">
       <router-outlet></router-outlet>
