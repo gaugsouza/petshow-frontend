@@ -2,6 +2,8 @@ import { Component, HostListener } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LocalStorageService } from './servicos/local-storage.service';
 import { Router } from '@angular/router';
+import { LoginComponent } from './acesso/login/login.component';
+
 
 @Component({
   selector: 'app-root',
@@ -11,9 +13,9 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'petshow-frontend';
 
-  public mode: string  = "";
+  public mode: string = "";
   public opened: boolean = true;
-  public isLogged:boolean = false;
+  public isLogged: boolean = true;
   public isPortugues:boolean = true;
 
   constructor(private translate: TranslateService,
@@ -26,8 +28,16 @@ export class AppComponent {
       this.isLogged = !!(usuario);
     });
   }
+  
 
   ngOnInit() {
+    this.localStorageService.getItem('usuario')
+      .subscribe(usuario =>{
+        if(!usuario){
+          this.isLogged = false;
+        }
+      });
+
     let innerWidth : number = window.innerWidth;
     this.updateMenu(innerWidth);
   }
