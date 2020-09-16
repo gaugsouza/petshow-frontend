@@ -8,6 +8,7 @@ import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { LoginService } from 'src/app/servicos/login.service';
 import { Router } from '@angular/router';
 import {MyErrorStateMatcher} from '../../classes/my-error-state-matcher';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +33,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private loginService:LoginService,
               private localStorageService:LocalStorageService,
-              private router:Router) { }
+              private router:Router,
+              private appComponent: AppComponent) { }
 
   ngOnInit(): void {
     this.localStorageService.getItem('usuario')
@@ -52,6 +54,7 @@ export class LoginComponent implements OnInit {
       (res:Cliente) => {
         if(res) {
           this.localStorageService.setItem('usuario', {...res, cliente:true}).subscribe(() => {
+            this.appComponent.isLogged = true;
             this.router.navigate(['/perfil']);
           });
         }

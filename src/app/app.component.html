@@ -20,8 +20,8 @@
 <mat-drawer-container class="example-container" autosize>
   <!-- <mat-drawer #drawer mode="{{mode}}" opened="{{opened}}">LKASJDGLKSJGLAKJSDG</mat-drawer> -->
   <mat-drawer #drawer mode="{{mode}}" opened="{{opened}}">
-    <div>
-      <a mat-button href="/login" class="menu-item" *ngIf="!isLogged">
+    <div *ngIf="!isLogged">
+      <a mat-button href="/login" class="menu-item">
         Login
       </a>
     </div>

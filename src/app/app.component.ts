@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { LocalStorageService } from './servicos/local-storage.service';
+import { LoginComponent } from './acesso/login/login.component';
 
 
 @Component({
@@ -10,12 +11,19 @@ import { LocalStorageService } from './servicos/local-storage.service';
 export class AppComponent {
   title = 'petshow-frontend';
 
-  public mode: string  = "";
+  public mode: string = "";
   public opened: boolean = true;
-  public isLogged:boolean = false;
-  constructor() {}
+  public isLogged: boolean = true;
+  constructor(private localStorageService:LocalStorageService) {}
 
   ngOnInit() {
+    this.localStorageService.getItem('usuario')
+      .subscribe(usuario =>{
+        if(!usuario){
+          this.isLogged = false;
+        }
+      });
+
     let innerWidth : number = window.innerWidth;
     this.updateMenu(innerWidth);
   }
@@ -30,5 +38,4 @@ export class AppComponent {
     let innerWidth : number = window.innerWidth;
     this.updateMenu(innerWidth);
   }
-
 }
