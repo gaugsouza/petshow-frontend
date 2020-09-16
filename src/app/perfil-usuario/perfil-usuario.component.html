@@ -1,0 +1,19 @@
+<div *ngIf="usuario">
+    <h1 class="mat-display-2 client-name">{{usuario.nome}}</h1>
+    <hr>
+    <app-animal-estimacao [animais-estimacao]="usuario.animaisEstimacao"
+                          (seleciona-animal)="selecionaAnimal($event)"
+                          (remover-animal)="removeAnimal($event)"></app-animal-estimacao>
+
+    <button mat-flat-button *ngIf="!isFormVisivel" color="primary" (click)="exibeFormulario()">{{'ADD_ANIMAL' | translate}}</button>
+
+    <mat-error *ngIf="erroRequisicao"> {{'ERRO_REQUISICAO' | translate}} </mat-error>
+    <p class="sucesso" *ngIf="mensagemSucesso">{{'MENSAGEM_SUCESSO' | translate}}</p>
+    <app-formulario-animal [animal]="animal"
+                           (adiciona-animal)="adicionaAnimal($event)"
+                           (atualiza-animal)="editaAnimal($event)"
+                           (cancelar-operacao)="cancelar()"
+                           [exibeFormulario]="isFormVisivel"></app-formulario-animal>
+</div>
+
+
