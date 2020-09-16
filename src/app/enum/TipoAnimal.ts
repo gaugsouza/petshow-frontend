@@ -1,6 +1,6 @@
 export enum TipoAnimal {
+    GATO = 0,
     CACHORRO = 1,
-    GATO,
-    AVE,
-    REPTIL
+    AVE =2 ,
+    REPTIL = 3
 }
