@@ -2,5 +2,6 @@
   "$schema": "https://on.cypress.io/cypress.schema.json",
   "video":false,
   "testFiles": "**/*.{feature, features}",
-  "supportFile": "cypress/support/index.ts"
+  "supportFile": "cypress/support/index.ts",
+  "baseUrl": "http://localhost:4200"
 }

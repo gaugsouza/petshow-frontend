@@ -29,8 +29,9 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
-              "src/styles.scss"
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.scss",
+              "./node_modules/material-design-icons/iconfont/material-icons.css"
             ],
             "scripts": []
           },
@@ -86,23 +87,7 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/manifest.webmanifest"
-            ],
-            "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
-              "src/styles.scss"
-            ],
-            "scripts": []
-          }
+          "builder": "@angular-builders/jest:run"
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -120,9 +105,7 @@
         "e2e": {
           "builder": "@briebug/cypress-schematic:cypress",
           "options": {
-            "devServerTarget": "petshow-frontend:serve",
-            "watch": true,
-            "headless": false
+            "devServerTarget": "petshow-frontend:serve"
           },
           "configurations": {
             "production": {
