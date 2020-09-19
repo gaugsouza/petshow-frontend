@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LocalStorageService } from './servicos/local-storage.service';
 import { Router } from '@angular/router';
 import { LoginComponent } from './acesso/login/login.component';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -20,17 +21,31 @@ export class AppComponent {
 
   constructor(private translate: TranslateService,
               private localStorageService: LocalStorageService) {
-    this.translate.addLangs(['pt', 'en']);
-    this.translate.setDefaultLang('pt');
-    this.translate.use('pt');
+
+    this.defineLangSettings(this.translate);
     this.localStorageService.getItem('usuario')
     .subscribe(usuario => {
       this.isLogged = !!(usuario);
     });
+
+  }
+
+  defineLangSettings(translate:TranslateService):void {
+    translate.addLangs(['pt', 'en']);
+    let defaultLang = navigator.language && navigator.language.toUpperCase() !== 'PT-BR' ? 'en' : 'pt';
+    this.isPortugues = defaultLang === 'pt';
+    translate.setDefaultLang('pt');
+    translate.use(defaultLang);
+
   }
   
 
   ngOnInit() {
+    if (environment.production) {
+      if (location.protocol === 'http:') {
+        window.location.href = location.href.replace('http', 'https');
+      }
+    }
     this.localStorageService.getItem('usuario')
       .subscribe(usuario =>{
         if(!usuario){
