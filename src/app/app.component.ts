@@ -20,13 +20,22 @@ export class AppComponent {
 
   constructor(private translate: TranslateService,
               private localStorageService: LocalStorageService) {
-    this.translate.addLangs(['pt', 'en']);
-    this.translate.setDefaultLang('pt');
-    this.translate.use('pt');
+
+    this.defineLangSettings(this.translate);
     this.localStorageService.getItem('usuario')
     .subscribe(usuario => {
       this.isLogged = !!(usuario);
     });
+
+  }
+
+  defineLangSettings(translate:TranslateService):void {
+    translate.addLangs(['pt', 'en']);
+    let defaultLang = navigator.language && navigator.language.toUpperCase() !== 'PT-BR' ? 'en' : 'pt';
+    this.isPortugues = defaultLang === 'pt';
+    translate.setDefaultLang('pt');
+    translate.use(defaultLang);
+
   }
   
 
