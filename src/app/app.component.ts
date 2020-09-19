@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LocalStorageService } from './servicos/local-storage.service';
 import { Router } from '@angular/router';
 import { LoginComponent } from './acesso/login/login.component';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -40,6 +41,11 @@ export class AppComponent {
   
 
   ngOnInit() {
+    if (environment.production) {
+      if (location.protocol === 'http:') {
+        window.location.href = location.href.replace('http', 'https');
+      }
+    }
     this.localStorageService.getItem('usuario')
       .subscribe(usuario =>{
         if(!usuario){
