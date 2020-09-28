@@ -37,9 +37,9 @@ export class LoginComponent implements OnInit {
               private appComponent: AppComponent) { }
 
   ngOnInit(): void {
-    this.localStorageService.getItem('usuario')
-    .subscribe(usuario => {
-      if(usuario) {
+    this.localStorageService.getItem('token')
+    .subscribe(token => {
+      if(token) {
         this.router.navigate(['/perfil'])
       }
     });
@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
     .subscribe(
       (res:Cliente) => {
         if(res) {
-          this.localStorageService.setItem('usuario', {...res, cliente:true}).subscribe(() => {
+          this.localStorageService.setItem('token', res.id).subscribe(() => {
             this.appComponent.isLogged = true;
             this.router.navigate(['/perfil']);
           });

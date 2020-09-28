@@ -44,9 +44,9 @@ describe('LoginService', () => {
 
   it('Deve colocar um elemento no localStorage', () => {
     service.realizaLogin(usuarioExemplo.login.email, usuarioExemplo.login.senha);
-    service.buscaUsuarioLogado()
-    .subscribe(usuario => {
-      expect(usuario).toEqual(usuarioExemplo);
+    service.buscaTokenUsuario()
+    .subscribe(token => {
+      expect(token).toEqual(usuarioExemplo.id);
     })
 
     const req = httpMock.match(`${service.LOGIN_SERVICE_URL}`);
@@ -58,9 +58,9 @@ describe('LoginService', () => {
 
   it('Deve não colocar nada no localStorage', () => {
     service.realizaLogin('aaaaa', 'bbbbbb');
-    service.buscaUsuarioLogado()
-    .subscribe(usuario => {
-      expect(usuario).toBeFalsy();
+    service.buscaTokenUsuario()
+    .subscribe(token => {
+      expect(token).toBeFalsy();
     })
     const req = httpMock.match(`${service.LOGIN_SERVICE_URL}`);
     req.forEach(r => {

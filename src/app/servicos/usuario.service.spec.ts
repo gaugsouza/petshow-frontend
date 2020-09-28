@@ -34,20 +34,20 @@ describe('UsuarioService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('Deve retornar o usuario em localStorage', () => {
-    let usuarioMock = {a: 'aaaa', b: 'bbbb'};
-    storageService.setItem('usuario', usuarioMock);
+  it('Deve retornar o token em localStorage', () => {
+    let usuarioMock = {id: 1, a: 'aaaa', b: 'bbbb'};
+    storageService.setItem('token', usuarioMock.id);
 
-    service.buscaUsuarioStorage()
-    .subscribe(usuario => {
-      expect(usuario).toEqual(usuarioMock);
+    service.buscaTokenUsuario()
+    .subscribe(token => {
+      expect(token).toEqual(usuarioMock.id);
     });
   });
 
-  it('Deve retornar um usuario nulo', () => {
-    service.buscaUsuarioStorage()
-    .subscribe(usuario => {
-      expect(usuario).toBeFalsy()
+  it('Deve retornar um token nulo', () => {
+    service.buscaTokenUsuario()
+    .subscribe(token => {
+      expect(token).toBeFalsy()
     })
   });
 

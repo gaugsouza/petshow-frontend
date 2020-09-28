@@ -13,7 +13,7 @@ import { LocalStorageService } from './local-storage.service';
   providedIn: 'root'
 })
 export class LoginService {
-  public LOGIN_SERVICE_URL = `${environment.API_URL}cliente/login`;
+  public LOGIN_SERVICE_URL = `${environment.API_URL}/cliente/login`;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-type' : 'application/json'})
   }
@@ -35,8 +35,8 @@ export class LoginService {
     return response;
   }
 
-  buscaUsuarioLogado() {
-    return this.storageService.getItem('usuario');
+  buscaTokenUsuario(){
+    return this.storageService.getItem('token');
   }
 
   private handleError<T> (mensagem: string, result?: T) {
