@@ -56,12 +56,10 @@ export class PerfilUsuarioComponent implements OnInit {
     });    
   }
 
-  removeAnimal(animalEstimacao : AnimalEstimacao | number):void {
-    this.usuarioRequest = {...this.usuario};
-    let id:number = typeof animalEstimacao === 'number' ? animalEstimacao : animalEstimacao.id;
-    let animaisAManter = this.usuarioRequest.animaisEstimacao.filter(animal => animal.id !== id);
-    this.usuarioRequest.animaisEstimacao = animaisAManter;
-    this.atualizaUsuario();
+  removeAnimal(animalEstimacao : AnimalEstimacao):void {
+   this.usuarioService.removerAnimalEstimacao(animalEstimacao.id).subscribe(() => {
+     this.getUsuario();
+   });
   }
 
   exibeFormulario() {
@@ -69,6 +67,7 @@ export class PerfilUsuarioComponent implements OnInit {
     this.mensagemSucesso = null;
     this.isFormVisivel = true;
   }
+  
   ocultaFormulario() {
     this.isFormVisivel = false;
   }
@@ -89,11 +88,14 @@ export class PerfilUsuarioComponent implements OnInit {
     });
   }
 
-  editaAnimal({...animalEstimacao}: AnimalEstimacao) : void {
-    this.usuarioRequest = {...this.usuario};
-    let animais = this.usuarioRequest.animaisEstimacao;
-    this.usuarioRequest.animaisEstimacao = animais.map(el => el.id === animalEstimacao.id ? animalEstimacao : el);
-    this.atualizaUsuario();
+  editaAnimal(animalEstimacao : AnimalEstimacao) : void {
+    animalEstimacao.dono = this.usuario;
+    
+    this.usuarioService.atualizarAnimalEstimacao(animalEstimacao.id, animalEstimacao).subscribe(res => {
+      this.getUsuario();
+      this.limpaAnimal();
+      this.ocultaFormulario();
+    })
   }
 
 

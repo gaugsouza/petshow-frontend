@@ -69,11 +69,28 @@ export class UsuarioService {
 
   adicionarAnimalEstimacao = (animalEstimacao:AnimalEstimacao) : Observable<any> => {
     let url = `${this.USUARIO_SERVICE_URL}/animal-estimacao`;
-    console.log(url);
     return this.http.post(url, animalEstimacao, this.httpOptions)
     .pipe(
       tap(_ => this.logger.info(`Request feito a ${url}`)),
       catchError(this.handleError<AnimalEstimacao>('post'))
       );
+  }
+
+  atualizarAnimalEstimacao = (id:number, animalEstimacao:AnimalEstimacao) : Observable<any> => {
+    let url = `${this.USUARIO_SERVICE_URL}/animal-estimacao/${id}`;
+    return this.http.put(url, animalEstimacao, this.httpOptions)
+    .pipe(
+      tap(_=> this.logger.info(`Request feito a ${url}`)),
+      catchError(this.handleError<AnimalEstimacao>('put'))
+    );
+  }
+
+  removerAnimalEstimacao = (id:number) : Observable<any> => {
+    let url = `${this.USUARIO_SERVICE_URL}/animal-estimacao/${id}`;
+    return this.http.delete(url, this.httpOptions)
+    .pipe(
+      tap(_=> this.logger.info(`Request feito a ${url}`)),
+      catchError(this.handleError<AnimalEstimacao>('put'))
+    );
   }
 }
