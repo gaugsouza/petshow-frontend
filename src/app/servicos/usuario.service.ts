@@ -9,6 +9,7 @@ import { LocalStorageService } from './local-storage.service';
 import { usuariosMock } from '../mocks/usuarioMock';
 import { Login } from '../interfaces/login';
 import { AnimalEstimacao } from '../interfaces/AnimalEstimacao';
+import { TipoAnimal } from '../enum/TipoAnimal';
 
 @Injectable({
   providedIn: 'root'
@@ -92,5 +93,18 @@ export class UsuarioService {
       tap(_=> this.logger.info(`Request feito a ${url}`)),
       catchError(this.handleError<AnimalEstimacao>('put'))
     );
+  }
+
+  buscarTiposAnimalEstimacao = () : Observable<TipoAnimal[]> => {
+    let url = `${this.USUARIO_SERVICE_URL}/animal-estimacao/tipos`;
+    return this.http.get(url, this.httpOptions)
+    .pipe(
+      tap(_ => this.logger.info(`Request feito a ${url}`)),
+      this.handleError<TipoAnimal[]>(`Falha em requisição feita a ${url}`),
+      catchError(err => {
+        this.handleError<TipoAnimal[]>('get');
+        return throwError(err);
+      })
+      );
   }
 }

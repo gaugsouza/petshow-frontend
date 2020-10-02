@@ -14,7 +14,7 @@ import { LocalStorageService } from '../servicos/local-storage.service';
 export class PerfilUsuarioComponent implements OnInit {
   animal:AnimalEstimacao = {
     nome: "",
-    tipo: TipoAnimal.CACHORRO
+    tipo: {nome: 'GATO'}
   };
   usuario:Cliente;
   usuarioRequest:Cliente;
@@ -102,7 +102,7 @@ export class PerfilUsuarioComponent implements OnInit {
   limpaAnimal() {
     this.animal = {
       nome: "",
-      tipo: TipoAnimal.GATO
+      tipo: {nome: 'GATO'}
     }
   }
 

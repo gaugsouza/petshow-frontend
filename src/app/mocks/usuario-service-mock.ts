@@ -35,5 +35,20 @@ export class UsuarioServiceMock {
     usuarioLista.animaisEstimacao.push(animalEstimacao);
     return this.atualizaUsuario(usuarioLista);
   }
+
+  atualizarAnimalEstimacao = (id:number, animalEstimacao:AnimalEstimacao) : Observable<any> => {
+    let usuario = animalEstimacao.dono as Cliente;
+    usuario.animaisEstimacao.forEach(animal => {
+      if(animal.id === id){
+        animal.nome = animalEstimacao.nome;
+      }
+    });
+
+    return this.atualizaUsuario(usuario);
+  }
+
+  removerAnimalEstimacao = (id:number) : Observable<any> => {    
+    return this.atualizaUsuario(this.usuarios[0])
+  }
     
 }

@@ -15,8 +15,8 @@
         <mat-form-field appearance="fill">
             <mat-label>{{'TIPO_ANIMAL' | translate}}</mat-label>
             <mat-select [(ngModel)]="animal.tipo" [value]="getSelectionValue()" class="form__animal-tipo" >
-              <mat-option *ngFor="let tipoLoop of getTipoAnimalKeys()" [value]="tipoAnimal[tipoLoop]">
-                  {{tipoLoop}}
+              <mat-option *ngFor="let tipo of tiposAnimal" [value]="tiposAnimal[tipo]">
+                  {{tipo}}
               </mat-option>
             </mat-select>
           </mat-form-field>
