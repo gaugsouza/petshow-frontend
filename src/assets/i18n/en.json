@@ -21,5 +21,7 @@
     "SENHA_NULA": "Password is required",
     "LOGAR": "Login",
     "ERRO_REQUISICAO": "Error during operation",
-    "MENSAGEM_SUCESSO": "Operation completed successfully"
+    "MENSAGEM_SUCESSO": "Operation completed successfully",
+    "BATH": "GROOMING",
+    "WALKING": "DOG WALKING"
 }

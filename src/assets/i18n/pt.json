@@ -21,5 +21,7 @@
     "SENHA_NULA": "Por favor insira uma senha",
     "LOGAR": "Logar",
     "ERRO_REQUISICAO": "Erro durante a operação",
-    "MENSAGEM_SUCESSO": "Operação realizada com sucesso"
+    "MENSAGEM_SUCESSO": "Operação realizada com sucesso",
+    "BATH": "BANHO E TOSA",
+    "WALKING": "PASSEIO"
 }

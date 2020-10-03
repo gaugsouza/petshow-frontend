@@ -51,7 +51,6 @@ export class PerfilUsuarioComponent implements OnInit {
     let animaisEstimacao = this.usuarioRequest.animaisEstimacao;
     this.usuarioRequest.animaisEstimacao = [...animaisEstimacao, animalEstimacao];
     this.atualizaUsuario();
-    
   }
 
   removeAnimal(animalEstimacao : AnimalEstimacao | number):void {

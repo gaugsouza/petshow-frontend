@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from '../servicos/local-storage.service';
 import { usuariosMock } from '../mocks/usuarioMock';
 import { Router } from '@angular/router';
+import { ServicosService } from '../servicos/servicos.service';
 
 @Component({
   selector: 'app-home',
@@ -10,11 +11,25 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private storageService:LocalStorageService,
+  constructor(private servicosService: ServicosService,
+              private storageService:LocalStorageService,
               private router:Router) { }
 
   ngOnInit(): void {
-    this.router.navigate(['/perfil']);
+    // this.router.navigate(['/perfil']);
+  }
+  
+  exibePrestadoresBanho (Prestador): 1 {
+    this.servicosService.buscarPrestadoresPorServico(1)
+    .subscribe((prestador:Prestador))=>{
+      this.prestador = prestador
+    });
   }
 
+  exibePrestadoresWalking(){
+
+  }
+  exibePrestadoresSitting(){
+
+  }
 }
