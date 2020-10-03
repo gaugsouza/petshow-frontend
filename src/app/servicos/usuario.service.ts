@@ -23,6 +23,12 @@ export class UsuarioService {
               private logger: NGXLogger,
               private storageService:LocalStorageService) { }
 
+  private handleError<T> (mensagem: string, result?: T) {
+    return (error:any) : Observable<T> => {
+      this.logger.error(mensagem);
+      return of(result as T);
+    }
+  }
   
 
   getUsuario = (id:number): Observable<Usuario> => {
@@ -34,12 +40,6 @@ export class UsuarioService {
     );
   }
 
-  private handleError<T> (mensagem: string, result?: T) {
-    return (error:any) : Observable<T> => {
-      this.logger.error(mensagem);
-      return of(result as T);
-    }
-  }
 
   buscaUsuarioStorage = () => {
     return this.storageService.getItem('usuario');
