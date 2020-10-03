@@ -26,6 +26,7 @@ import { LoginComponent } from './acesso/login/login.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { PrestadorServicoComponent } from './prestador-servico/prestador-servico.component';
+import { PerfilPrestadorComponent } from './perfil-prestador/perfil-prestador.component';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -39,6 +40,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     FormularioAnimalComponent,
     LoginComponent,
     PrestadorServicoComponent,
+    PerfilPrestadorComponent,
   ],
   imports: [
     BrowserModule,

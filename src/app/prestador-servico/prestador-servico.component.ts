@@ -15,7 +15,7 @@ export class PrestadorServicoComponent implements OnInit {
 
   prestador:Prestador;
   erroRequisicao:String;
-  
+
   constructor(private prestadorService:PrestadorService,
               private router:Router,
               private localStorageService: LocalStorageService) { }
@@ -23,7 +23,7 @@ export class PrestadorServicoComponent implements OnInit {
   ngOnInit(): void { // mostra tudo automaticamente quando inicia a pagina
   }
 
-  // getUsuario(id:number) : void { //pesquisar por id do prestador
+  // getPrestador(id:number) : void { //pesquisar por id do prestador no back: buscarPrestador
   //   this.prestadorService.getPrestador(id)
   //   .subscribe((prestador:Prestador) => {
   //     if(!prestador) {
@@ -34,9 +34,7 @@ export class PrestadorServicoComponent implements OnInit {
   //   });
   // }
 
-
-
-  criarPrestador(prestador:Prestador) {
+  criarPrestador(prestador:Prestador) { //
     this.prestadorService.criaPrestador(prestador)
       .subscribe(res => {
           const id = res['_id'];
@@ -46,6 +44,40 @@ export class PrestadorServicoComponent implements OnInit {
           this.erroRequisicao = "Erro durante a operação";
         });
   }
+
+  // deletaPrestador(id: number) {
+  //   this.prestadorService.deletaPrestador(id)
+  //     .subscribe(
+  //       data => {
+  //         console.log(data);
+  //         this.
+  //       });
+  //       ,
+  //   ({error}) => {
+  //     console.log(error);
+  //     this.erroRequisicao = "Erro durante a operação";
+  //   });
+  // }
+
+
+
+
+
+
+  // selecionaServicoDetalhado() {
+  //   this.servicosDetalhados = this.servicoDetelhado.getServicosDetalhadosList();
+  // }
+  // Ou essa opção abaixo?
+  // 
+  // selecionaServicoDetalhado(servicoDetelhado: ServicoDetalhado): void {
+  //   this.animal = {...servicoDetalhado};
+  //   this.exibeFormulario();
+  // }
+
+
+
+
+
 
 
 }
