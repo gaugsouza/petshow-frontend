@@ -33,26 +33,3 @@
         width: 60%;
     }
 }
-
-.nova-avaliacao {
-    margin-top: 40px;
-    &__titulo {
-        @media screen and (max-width:$tablet-width) {
-            text-align: center;
-        }
-    }
-    &__cat {
-        display: grid;
-        grid-template-columns: 180px 1fr;
-        align-items: center;
-
-        @media screen and (max-width:$tablet-width) {
-            grid-template-columns: 1fr;
-            justify-items: center;
-        }
-    }
-
-    & mat-icon {
-        cursor: pointer;
-    }
-}

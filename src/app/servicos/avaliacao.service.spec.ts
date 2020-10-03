@@ -19,9 +19,13 @@ describe('AvaliacaoService', () => {
   });
 
   it('Deve retornar objeto com lista de avaliações', () => {
+    let servicoBuscado:ServicoDetalhado;
     service.buscaServicoAvaliadoPorId(1).subscribe((el:ServicoDetalhado) => {
-      expect(el.avaliacoes.length).toBeGreaterThan(0);
+      servicoBuscado = el;
     });
+
+    expect(servicoBuscado).toBeTruthy();
+    expect(servicoBuscado.avaliacoes.length).toBeGreaterThan(0);
   });
 
   it('Deve adicionar novo objeto a lista de avaliações', () => {

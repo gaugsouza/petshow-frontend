@@ -26,6 +26,9 @@ import { LoginComponent } from './acesso/login/login.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
+import { EstrelasComponent } from './avaliacao/estrelas/estrelas.component';
+import { FormularioComponent } from './avaliacao/formulario/formulario.component';
+
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -39,6 +42,8 @@ export function HttpLoaderFactory(http:HttpClient) {
     FormularioAnimalComponent,
     LoginComponent,
     AvaliacaoComponent,
+    EstrelasComponent,
+    FormularioComponent,
   ],
   imports: [
     BrowserModule,

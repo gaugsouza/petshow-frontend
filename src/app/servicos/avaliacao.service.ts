@@ -16,7 +16,8 @@ export class AvaliacaoService {
   constructor() { }
 
   buscaServicoAvaliadoPorId = (id:number):Observable<ServicoDetalhado> => {
-    return of(this.servicos.find(el => el.id === id));
+    let servico = this.servicos.find(servico => servico.id === id);
+    return of(servico);
   }
 
   adicionarAvaliacao = (avaliacao:Avaliacao):Observable<ServicoDetalhado> => {

@@ -10,7 +10,7 @@ export interface Avaliacao {
     qualidadeServico:number,
     comentario?:string,
     media?:number,
-    cliente:Cliente,
-    servicoAvaliado:ServicoDetalhado
+    cliente?:Cliente,
+    servicoAvaliado?:ServicoDetalhado
 
 }
