@@ -58,4 +58,26 @@ let servicoDetalhado:ServicoDetalhado = {
     ]
 }
 
-export const servicos: ServicoDetalhado[] = [servicoDetalhado];
+let servicoDetalhadoSemAvaliacao:ServicoDetalhado = {
+    id: 2,
+    preco: 30.0,
+    tipo: {
+        id: 1,
+        nome: "Banho e tosa",
+        descricao: "Banho e tosa"
+    },
+    prestador: {
+        id: 2,
+        tipo: TipoPessoa.PRESTADOR_AUTONOMO,
+        cpf: "55555555555",
+        descricao: "Serviços gerais para pet",
+        nome: "Petshow",
+        telefone: "1129289282",
+        login: {
+            email: "petshow@teste.com",
+            senha: "petshow1234"
+        }
+    }
+}
+
+export const servicos: ServicoDetalhado[] = [servicoDetalhado, servicoDetalhadoSemAvaliacao];

@@ -13,7 +13,7 @@ import { Login } from '../interfaces/login';
   providedIn: 'root'
 })
 export class UsuarioService {
-  public USUARIO_SERVICE_URL = `${environment.API_URL}cliente`;
+  public USUARIO_SERVICE_URL = `${environment.API_URL}/cliente`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-type' : 'application/json'})

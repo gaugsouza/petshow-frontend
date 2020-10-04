@@ -6,6 +6,10 @@ import { Avaliacao } from '../interfaces/avaliacao';
 import { Servico } from '../interfaces/servico';
 import { Cliente } from '../interfaces/cliente';
 import { usuariosMock } from '../mocks/usuarioMock';
+import { environment } from 'src/environments/environment';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { NGXLogger } from 'ngx-logger';
+import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,19 +17,55 @@ import { usuariosMock } from '../mocks/usuarioMock';
 export class AvaliacaoService {
   private clientes:Cliente[] = usuariosMock;
   servicos: ServicoDetalhado[] = [...servicos];
-  constructor() { }
+  constructor(private http:HttpClient,
+              private logger:NGXLogger) { }
 
-  buscaServicoAvaliadoPorId = (id:number):Observable<ServicoDetalhado> => {
-    let servico = this.servicos.find(servico => servico.id === id);
-    return of(servico);
+  // buscaServicoAvaliadoPorId = (idServico:number, idPrestador?:number):Observable<ServicoDetalhado> => {
+  //   let servico = this.servicos.find(servico => servico.id === idServico);
+  //   return of(servico);
+  // }
+
+  // adicionarAvaliacao = (avaliacao:Avaliacao, idServico?:number, idPrestador?:number):Observable<ServicoDetalhado> => {
+  //   let servico = this.servicos.find(el => el.id === avaliacao.servicoAvaliado.id);
+  //   let avaliador = this.clientes.find(cliente => cliente.id === avaliacao.cliente.id);
+  //   let media = (avaliacao.atencao + avaliacao.custoBeneficio + avaliacao.infraestrutura + avaliacao.qualidadeProdutos + avaliacao.qualidadeServico) / 5;
+  //   servico.avaliacoes.push({...avaliacao, id: servico.avaliacoes.length + 1, media, cliente: avaliador});
+  //   // this.servicos = [...servicos, servico];
+  //   return of(servico);
+  // }
+
+  private AVALIACAO_SERVICE_URL = `${environment.API_URL}/prestador/idPrestador/servicoDetalhado/idServico/avaliacoes`;
+  private SERVICO_DETALHADO_URL = `${environment.API_URL}/prestador/idPrestador/servicoDetalhado/idServico`;
+
+  private httpOptions = {
+    headers: new HttpHeaders({ 'content-type': 'application/json'})
   }
 
-  adicionarAvaliacao = (avaliacao:Avaliacao):Observable<ServicoDetalhado> => {
-    let servico = this.servicos.find(el => el.id === avaliacao.servicoAvaliado.id);
-    let avaliador = this.clientes.find(cliente => cliente.id === avaliacao.cliente.id);
-    let media = (avaliacao.atencao + avaliacao.custoBeneficio + avaliacao.infraestrutura + avaliacao.qualidadeProdutos + avaliacao.qualidadeServico) / 5;
-    servico.avaliacoes.push({...avaliacao, id: servico.avaliacoes.length + 1, media, cliente: avaliador});
-    // this.servicos = [...servicos, servico];
-    return of(servico);
+
+  buscaServicoAvaliadoPorId = (idServico:number, idPrestador?:number):Observable<ServicoDetalhado> => {
+    const url = this.SERVICO_DETALHADO_URL.replace('idPrestador', idPrestador.toString()).replace('idServico', idServico.toString());
+
+    return this.http.get<ServicoDetalhado>(url)
+    .pipe(
+      tap(_ => this.logger.info(`Request feito a ${url}`)),
+      catchError(this.handleError<ServicoDetalhado>(`Falha em requisição feita a ${url}`))
+    )
+  }
+
+  private handleError<T> (mensagem: string, result?: T) {
+    return (error:any) : Observable<T> => {
+      this.logger.error(mensagem);
+      return of(result as T);
+    }
+  }
+
+  adicionarAvaliacao = (avaliacao:Avaliacao, idServico?:number, idPrestador?:number):Observable<ServicoDetalhado> => {
+    const url = this.AVALIACAO_SERVICE_URL.replace('idPrestador', idPrestador.toString()).replace('idServico', idServico.toString());
+
+    return this.http.post(url, avaliacao, this.httpOptions)
+    .pipe(
+      tap(_ => this.logger.info(`Request feito a ${url}`)),
+      catchError(this.handleError<ServicoDetalhado>('Add avaliação'))
+    );
   }
 }

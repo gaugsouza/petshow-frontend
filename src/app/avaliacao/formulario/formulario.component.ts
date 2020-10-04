@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Avaliacao } from 'src/app/interfaces/avaliacao';
 
 @Component({
@@ -7,16 +7,11 @@ import { Avaliacao } from 'src/app/interfaces/avaliacao';
   styleUrls: ['./formulario.component.scss']
 })
 export class FormularioComponent implements OnInit {
+  @Input('avaliacao') avaliacao:Avaliacao;
   @Output('adiciona-avaliacao') adicionaAvaliacao = new EventEmitter<Avaliacao>();
+  @Output('fecha-formulario') fechaFormulario = new EventEmitter<any>();
 
-  avaliacao:Avaliacao = {
-    atencao:0,
-    qualidadeProdutos:0,
-    custoBeneficio:0,
-    infraestrutura:0,
-    qualidadeServico:0,
-    comentario: null
-  }
+
   private NOTA_MAXIMA = 5;
 
   constructor() { }
@@ -30,6 +25,10 @@ export class FormularioComponent implements OnInit {
 
   adicionarAvaliacao() {
     this.adicionaAvaliacao.emit(this.avaliacao);
+  }
+
+  fecharFormulario() {
+    this.fechaFormulario.emit();
   }
 
   getEstrelas(campo:string) {

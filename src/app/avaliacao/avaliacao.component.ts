@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Avaliacao } from '../interfaces/avaliacao';
 import { LocalStorageService } from '../servicos/local-storage.service';
 import { Cliente } from '../interfaces/cliente';
+import { USUARIO_TOKEN } from '../util/constantes';
 
 @Component({
   selector: 'app-avaliacao',
@@ -13,7 +14,19 @@ import { Cliente } from '../interfaces/cliente';
   styleUrls: ['./avaliacao.component.scss']
 })
 export class AvaliacaoComponent implements OnInit {
+  isLogado:boolean = false;
+  isFormVisible:boolean = false;
   servicoAvaliado:ServicoDetalhado;
+  avaliacaoBase:Avaliacao = {
+    atencao:0,
+    qualidadeProdutos:0,
+    custoBeneficio:0,
+    infraestrutura:0,
+    qualidadeServico:0,
+    comentario: null
+  }
+
+
   constructor(private route:ActivatedRoute,
               private avaliacaoService:AvaliacaoService,
               private router:Router,
@@ -21,8 +34,14 @@ export class AvaliacaoComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params:Params) => {
-      let id:number = parseInt(params.servicoAvaliado);
-      this.avaliacaoService.buscaServicoAvaliadoPorId(id).subscribe(servico => {
+      let idServico:number = parseInt(params.servicoAvaliado);
+      let idPrestador:number = parseInt(params.prestador);
+      console.log(idServico, idPrestador)
+      if(isNaN(idServico)|| isNaN(idPrestador)) {
+        this.router.navigate(['/']);
+        return;
+      }
+      this.avaliacaoService.buscaServicoAvaliadoPorId(idServico,idPrestador).subscribe(servico => {
         if(!servico) {
           this.router.navigate(['/']);
           return;
@@ -30,6 +49,14 @@ export class AvaliacaoComponent implements OnInit {
         this.servicoAvaliado = servico;
       });
     });
+
+    this.localStorageService.getItem(USUARIO_TOKEN).subscribe(usuario => {
+      this.isLogado = !!(usuario);
+    })
+  }
+
+  exibeForm() {
+    this.isFormVisible = true;
   }
 
   getNomeServico() {
@@ -44,6 +71,9 @@ export class AvaliacaoComponent implements OnInit {
     return this.servicoAvaliado.avaliacoes;
   }
 
+  possuiAvaliacoes() {
+    return !!(this.getAvaliacoes()) && this.getAvaliacoes().length > 0;
+  }
   getMediaAvaliacoes() {
     if(this.getAvaliacoes().length === 0) {
       return 0;
@@ -52,14 +82,35 @@ export class AvaliacaoComponent implements OnInit {
   }
 
   adicionaAvaliacao(avaliacao:Avaliacao) {
-    let cliente;
     avaliacao.servicoAvaliado = this.servicoAvaliado;
-    this.localStorageService.getItem('usuario').subscribe((usuario:Cliente) => {
+    this.localStorageService.getItem(USUARIO_TOKEN).subscribe((usuario:Cliente) => {
       avaliacao.cliente = usuario;
       this.avaliacaoService.adicionarAvaliacao(avaliacao).subscribe(servico => {
         this.servicoAvaliado = servico;
+        this.isFormVisible = false;
+        this.limpaAvaliacao();
       });
     });    
+  }
+
+  abreFormulario() {
+    this.isFormVisible = true;
+  }
+
+  fechaFormulario() {
+    this.limpaAvaliacao();
+    this.isFormVisible = false;
+  }
+
+  limpaAvaliacao() {
+    this.avaliacaoBase = {
+      atencao:0,
+      qualidadeProdutos:0,
+      custoBeneficio:0,
+      infraestrutura:0,
+      qualidadeServico:0,
+      comentario: null
+    }
   }
 
 }
