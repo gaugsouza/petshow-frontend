@@ -27,6 +27,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { PrestadorServicoComponent } from './prestador-servico/prestador-servico.component';
 import { PerfilPrestadorComponent } from './perfil-prestador/perfil-prestador.component';
+import { ReactiveFormsModule } from "@angular/forms";
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);

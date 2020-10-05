@@ -4,11 +4,14 @@ import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.componen
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './acesso/login/login.component';
 import { PerfilPrestadorComponent } from './perfil-prestador/perfil-prestador.component';
+import { PrestadorServicoComponent } from './prestador-servico/prestador-servico.component';
+
 
 const routes: Routes = [
   {path: 'perfil', component: PerfilUsuarioComponent},
   {path: 'login', component: LoginComponent},
   {path: 'prestador', component: PerfilPrestadorComponent},
+  {path: 'prestador-servico', component: PrestadorServicoComponent},
   {path: '', component: HomeComponent}
 ];
 

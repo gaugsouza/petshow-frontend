@@ -1,17 +1,19 @@
 import { Component, HostListener } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LocalStorageService } from './servicos/local-storage.service';
 import { Router } from '@angular/router';
 import { LoginComponent } from './acesso/login/login.component';
 import { environment } from 'src/environments/environment';
 
+import { FormBuilder, FormGroup } from '../../node_modules/@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'petshow-frontend';
 
   public mode: string = "";

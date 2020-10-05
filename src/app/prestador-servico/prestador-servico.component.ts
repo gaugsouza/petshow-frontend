@@ -34,16 +34,16 @@ export class PrestadorServicoComponent implements OnInit {
   //   });
   // }
 
-  criarPrestador(prestador:Prestador) { //
-    this.prestadorService.criaPrestador(prestador)
-      .subscribe(res => {
-          const id = res['_id'];
-          this.router.navigate(['/prestador', id]);
-        }, (err) => {
-          console.log(err);
-          this.erroRequisicao = "Erro durante a operação";
-        });
-  }
+  // criarPrestador(prestador:Prestador) { //
+  //   this.prestadorService.criaPrestador(prestador)
+  //     .subscribe(res => {
+  //         const id = res['_id'];
+  //         this.router.navigate(['/prestador', id]);
+  //       }, (err) => {
+  //         console.log(err);
+  //         this.erroRequisicao = "Erro durante a operação";
+  //       });
+  // }
 
   // deletaPrestador(id: number) {
   //   this.prestadorService.deletaPrestador(id)
