@@ -35,8 +35,8 @@ export class LoginService {
     return response;
   }
 
-  buscaUsuarioLogado() {
-    return this.storageService.getItem('usuario');
+  buscaTokenUsuario(){
+    return this.storageService.getItem('token');
   }
 
   private handleError<T> (mensagem: string, result?: T) {

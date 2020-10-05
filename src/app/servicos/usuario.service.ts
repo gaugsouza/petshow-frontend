@@ -8,6 +8,7 @@ import { NGXLogger } from 'ngx-logger';
 import { LocalStorageService } from './local-storage.service';
 import { usuariosMock } from '../mocks/usuarioMock';
 import { Login } from '../interfaces/login';
+import { AnimalEstimacao } from '../interfaces/AnimalEstimacao';
 
 @Injectable({
   providedIn: 'root'
@@ -41,10 +42,6 @@ export class UsuarioService {
     }
   }
 
-  buscaUsuarioStorage = () => {
-    return this.storageService.getItem('usuario');
-  }
-
   atualizaUsuario = (usuario:Usuario) : Observable<Usuario> => {
     console.log(usuario);
     return this.http.put<Usuario>(this.USUARIO_SERVICE_URL, usuario, this.httpOptions)
@@ -64,5 +61,19 @@ export class UsuarioService {
       tap(_ => this.logger.info(`Request feito a ${url}`)),
       catchError(this.handleError<Usuario>('login'))
     );
+  }
+
+  buscaTokenUsuario(){
+    return this.storageService.getItem('token');
+  }
+
+  adicionarAnimalEstimacao = (animalEstimacao:AnimalEstimacao) : Observable<any> => {
+    let url = `${this.USUARIO_SERVICE_URL}/animal-estimacao`;
+    console.log(url);
+    return this.http.post(url, animalEstimacao, this.httpOptions)
+    .pipe(
+      tap(_ => this.logger.info(`Request feito a ${url}`)),
+      catchError(this.handleError<AnimalEstimacao>('post'))
+      );
   }
 }
