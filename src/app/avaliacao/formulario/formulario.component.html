@@ -1,43 +1,43 @@
 
 
 <div class="nova-avaliacao">
-    <h1 class="nova-avaliacao__titulo">Avalie o serviço!</h1>
+    <h1 class="nova-avaliacao__titulo">{{'AVALIE_SERVICO' | translate}}</h1>
     <div class="nova-avaliacao__cat">
-        <span>Atenção com o pet</span>
+        <span>{{'ATENCAO_PET' | translate}}</span>
         <div>
             <mat-icon *ngFor="let estrela of getEstrelas('atencao'); let i = index" (click)="atualizaNota('atencao', i+1)">{{estrela}}</mat-icon>
         </div>
     </div>
     <div class="nova-avaliacao__cat">
-        <span>Qualidade dos produtos</span>
+        <span>{{'QUALIDADE_PRODUTO' | translate}}</span>
         <div>
             <mat-icon *ngFor="let estrela of getEstrelas('qualidadeProdutos'); let i = index" (click)="atualizaNota('qualidadeProdutos', i+1)">{{estrela}}</mat-icon>
         </div>
     </div>
     <div class="nova-avaliacao__cat">
-        <span>Custo benefício</span>
+        <span>{{'CUSTO_BENEFICIO' | translate}}</span>
         <div>
             <mat-icon *ngFor="let estrela of getEstrelas('custoBeneficio'); let i = index" (click)="atualizaNota('custoBeneficio', i+1)">{{estrela}}</mat-icon>
         </div>
     </div>
     <div class="nova-avaliacao__cat">
-        <span>Infraestrutura</span>
+        <span>{{'INFRAESTRUTURA' | translate}}</span>
         <div>
             <mat-icon *ngFor="let estrela of getEstrelas('infraestrutura'); let i = index" (click)="atualizaNota('infraestrutura', i+1)">{{estrela}}</mat-icon>
         </div>
     </div>
     <div class="nova-avaliacao__cat">
-        <span>Qualidade do serviço</span>
+        <span>{{'QUALIDADE_SERVICO' | translate}}</span>
         <div>
             <mat-icon *ngFor="let estrela of getEstrelas('qualidadeServico'); let i = index" (click)="atualizaNota('qualidadeServico', i+1)">{{estrela}}</mat-icon>
         </div>
     </div>
     <mat-form-field class="nova-avaliacao__comentario">
-        <mat-label>Deixe um comentário</mat-label>
-        <textarea matInput [(ngModel)]="avaliacao.comentario" placeholder="Ex. O atendimento foi ótimo..."></textarea>
+        <mat-label>{{'DEIXE_COMENTARIO' | translate}}</mat-label>
+        <textarea matInput [(ngModel)]="avaliacao.comentario" placeholder="{{'PLACEHOLDER_AVALIACAO' | translate}}"></textarea>
     </mat-form-field>
     <div>
-        <button mat-flat-button color="primary" (click)="adicionarAvaliacao()">Enviar comentário</button>
-        <button mat-flat-button color="warn" (click)="fecharFormulario()">Cancelar</button>
+        <button mat-flat-button color="primary" (click)="adicionarAvaliacao()">{{'ENVIAR_AVALIACAO' | translate}}</button>
+        <button mat-flat-button color="warn" (click)="fecharFormulario()">{{'CANCELAR' | translate}}</button>
     </div>
 </div>

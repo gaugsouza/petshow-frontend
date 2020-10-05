@@ -3,15 +3,15 @@
 </div>
 
 <div *ngIf="isNotFound">
-    <p>Serviço informado não encontrado</p>
+    <p>{{'SERVICO_NAO_ENCONTRADO' | translate}}</p>
 </div>
 
 <ng-template #carregando>
-    <p>Carregando</p>
+    <p>{{'CARREGANDO' | translate}}</p>
 </ng-template>
 
 <ng-template #avaliacoes>
-    <h1>Avaliações</h1>
+    <h1>{{'AVALIACOES' | translate}}</h1>
 
     <div *ngIf="possuiAvaliacoes(); then avaliacoesBlock else vazioBlock">
     </div>
@@ -19,7 +19,7 @@
     <ng-template #vazioBlock>
         <h3 class="servico-topo">{{getNomeServico()}} - {{getNomePrestador()}}</h3>
         <hr>
-        <p>Nenhuma avaliação foi cadastrada para esse serviço</p>
+        <p>{{'SEM_AVALIACOES' | translate}}</p>
     </ng-template>
     
     <ng-template #avaliacoesBlock>
@@ -51,9 +51,9 @@
     <button mat-flat-button
             color="primary"
             (click)='abreFormulario()'
-            *ngIf='!isFormVisible && isLogado' class="botao-formulario">Adicionar comentário</button>
+            *ngIf='!isFormVisible && isLogado' class="botao-formulario">{{'ADD_COMENTARIO' | translate}}</button>
     
-    <a href='/login' mat-flat-button color="warn" *ngIf='!isLogado' class="botao-formulario">Você precisa estar logado para adicionar um comentário</a> 
+    <a href='/login' mat-flat-button color="warn" *ngIf='!isLogado' class="botao-formulario">{{'AVISO_LOGADO_COMENTARIO' | translate}}</a> 
     
     <app-formulario [avaliacao]='avaliacaoBase' *ngIf='isFormVisible' 
                     (adiciona-avaliacao)="adicionaAvaliacao($event)"
