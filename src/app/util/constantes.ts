@@ -1,1 +1,1 @@
-export const USUARIO_TOKEN = 'usuario';
+export const USUARIO_TOKEN = 'token';

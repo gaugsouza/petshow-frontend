@@ -7,6 +7,7 @@ import { Avaliacao } from '../interfaces/avaliacao';
 import { LocalStorageService } from '../servicos/local-storage.service';
 import { Cliente } from '../interfaces/cliente';
 import { USUARIO_TOKEN } from '../util/constantes';
+import { UsuarioService } from '../servicos/usuario.service';
 
 @Component({
   selector: 'app-avaliacao',
@@ -32,7 +33,8 @@ export class AvaliacaoComponent implements OnInit {
   constructor(private route:ActivatedRoute,
               private avaliacaoService:AvaliacaoService,
               private router:Router,
-              private localStorageService:LocalStorageService) {}
+              private localStorageService:LocalStorageService,
+              private usuarioService:UsuarioService) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params:Params) => {
@@ -85,14 +87,18 @@ export class AvaliacaoComponent implements OnInit {
 
   adicionaAvaliacao(avaliacao:Avaliacao) {
     avaliacao.servicoAvaliado = this.servicoAvaliado;
-    this.localStorageService.getItem(USUARIO_TOKEN).subscribe((usuario:Cliente) => {
-      avaliacao.cliente = usuario;
-      this.avaliacaoService.adicionarAvaliacao(avaliacao,this.idServico, this.idPrestador).subscribe(servico => {
-        this.servicoAvaliado = servico;
-        this.isFormVisible = false;
-        this.limpaAvaliacao();
+    this.localStorageService.getItem(USUARIO_TOKEN)
+    .subscribe((token:number) => {
+      this.usuarioService.getUsuario(token)
+      .subscribe((cliente:Cliente) => {
+        avaliacao.cliente = cliente;
+        this.avaliacaoService.adicionarAvaliacao(avaliacao, this.idServico, this.idPrestador).subscribe(servico => {
+          this.servicoAvaliado = servico;
+          this.fechaFormulario();
+          this.limpaAvaliacao();
+        });
       });
-    });    
+    }); 
   }
 
   abreFormulario() {

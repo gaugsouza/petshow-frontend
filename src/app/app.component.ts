@@ -4,6 +4,7 @@ import { LocalStorageService } from './servicos/local-storage.service';
 import { Router } from '@angular/router';
 import { LoginComponent } from './acesso/login/login.component';
 import { environment } from 'src/environments/environment';
+import { USUARIO_TOKEN } from './util/constantes';
 
 
 @Component({
@@ -20,10 +21,11 @@ export class AppComponent {
   public isPortugues:boolean = true;
 
   constructor(private translate: TranslateService,
-              private localStorageService: LocalStorageService) {
+              private localStorageService: LocalStorageService,
+              private router:Router) {
 
     this.defineLangSettings(this.translate);
-    this.localStorageService.getItem('token')
+    this.localStorageService.getItem(USUARIO_TOKEN)
     .subscribe(token => {
       this.isLogged = !!(token);
     });
@@ -46,7 +48,7 @@ export class AppComponent {
         window.location.href = location.href.replace('http', 'https');
       }
     }
-    this.localStorageService.getItem('token')
+    this.localStorageService.getItem(USUARIO_TOKEN)
       .subscribe(token =>{
         if(!token){
           this.isLogged = false;
@@ -84,6 +86,13 @@ export class AppComponent {
     } else {
       this.langEn();
     }
+  }
+
+  deslogar() {
+    this.localStorageService.removeItem(USUARIO_TOKEN).subscribe(() => {
+      this.router.navigate(['/']);
+      this.isLogged = false;
+    });
   }
 
 }

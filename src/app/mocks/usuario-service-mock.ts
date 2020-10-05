@@ -25,10 +25,6 @@ export class UsuarioServiceMock {
     return of(usuario);
   }
 
-//   buscaTokenUsuario(){
-//     return this.storageService.getItem('token');
-//   }
-
   adicionarAnimalEstimacao = (animalEstimacao:AnimalEstimacao) : Observable<any> => {
     let usuario = animalEstimacao.dono;
     let usuarioLista = (this.usuarios.find(el => el.id === usuario.id) as Cliente);

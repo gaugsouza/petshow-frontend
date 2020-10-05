@@ -47,9 +47,9 @@
     <button mat-flat-button
             color="primary"
             (click)='abreFormulario()'
-            *ngIf='!isFormVisible && isLogado'>Adicionar comentário</button>
+            *ngIf='!isFormVisible && isLogado' class="botao-formulario">Adicionar comentário</button>
     
-    <a href='/login' mat-flat-button color="warn" *ngIf='!isLogado'>Você precisa estar logado para adicionar um comentário</a> 
+    <a href='/login' mat-flat-button color="warn" *ngIf='!isLogado' class="botao-formulario">Você precisa estar logado para adicionar um comentário</a> 
     
     <app-formulario [avaliacao]='avaliacaoBase' *ngIf='isFormVisible' 
                     (adiciona-avaliacao)="adicionaAvaliacao($event)"

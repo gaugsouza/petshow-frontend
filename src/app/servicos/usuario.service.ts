@@ -9,6 +9,7 @@ import { LocalStorageService } from './local-storage.service';
 import { usuariosMock } from '../mocks/usuarioMock';
 import { Login } from '../interfaces/login';
 import { AnimalEstimacao } from '../interfaces/AnimalEstimacao';
+import { USUARIO_TOKEN } from '../util/constantes';
 
 @Injectable({
   providedIn: 'root'
@@ -64,7 +65,7 @@ export class UsuarioService {
   }
 
   buscaTokenUsuario(){
-    return this.storageService.getItem('token');
+    return this.storageService.getItem(USUARIO_TOKEN);
   }
 
   adicionarAnimalEstimacao = (animalEstimacao:AnimalEstimacao) : Observable<any> => {

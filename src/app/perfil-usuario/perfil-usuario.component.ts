@@ -5,6 +5,7 @@ import { AnimalEstimacao } from '../interfaces/AnimalEstimacao';
 import { TipoAnimal } from '../enum/TipoAnimal';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../servicos/local-storage.service';
+import { USUARIO_TOKEN } from '../util/constantes';
 
 @Component({
   selector: 'app-perfil-usuario',
@@ -36,7 +37,7 @@ export class PerfilUsuarioComponent implements OnInit {
   }
 
   getUsuario() : void {
-    this.localStorageService.getItem('token').subscribe((token: number) => {
+    this.localStorageService.getItem(USUARIO_TOKEN).subscribe((token: number) => {
       this.usuarioService.getUsuario(token)
       .subscribe((usuario:Cliente) => {
         if(!usuario) {
@@ -75,7 +76,7 @@ export class PerfilUsuarioComponent implements OnInit {
 
   atualizaUsuario() {
     this.usuarioService.atualizaUsuario(this.usuarioRequest).subscribe(res => {
-      this.localStorageService.setItem('token', res.id).subscribe(() => {
+      this.localStorageService.setItem(USUARIO_TOKEN, res.id).subscribe(() => {
         this.getUsuario();
         this.limpaAnimal();
         this.ocultaFormulario();
