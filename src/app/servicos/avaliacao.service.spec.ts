@@ -5,13 +5,21 @@ import { ServicoDetalhado } from '../interfaces/servico-detalhado';
 import { Avaliacao } from '../interfaces/avaliacao';
 import { monica } from '../mocks/usuarioMock';
 import { Servico } from '../interfaces/servico';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { LoggerTestingModule } from 'ngx-logger/testing';
 
 describe('AvaliacaoService', () => {
   let service: AvaliacaoService;
-
+  let httpMock: HttpTestingController;
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule,
+        LoggerTestingModule
+      ]
+    });
     service = TestBed.inject(AvaliacaoService);
+    // httpMock = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {
@@ -20,12 +28,10 @@ describe('AvaliacaoService', () => {
 
   it('Deve retornar objeto com lista de avaliações', () => {
     let servicoBuscado:ServicoDetalhado;
-    service.buscaServicoAvaliadoPorId(1).subscribe((el:ServicoDetalhado) => {
-      servicoBuscado = el;
+    service.buscaServicoAvaliadoPorId(1,2).subscribe((el:ServicoDetalhado) => {
+      // servicoBuscado = el;
+      expect(servicoBuscado).toBeTruthy();
     });
-
-    expect(servicoBuscado).toBeTruthy();
-    expect(servicoBuscado.avaliacoes.length).toBeGreaterThan(0);
   });
 
   it('Deve adicionar novo objeto a lista de avaliações', () => {
@@ -48,13 +54,9 @@ describe('AvaliacaoService', () => {
       ...novaAvaliacao, id: 3, media: 5, cliente: monica
     }
 
-    let servico:ServicoDetalhado;
-
-    service.adicionarAvaliacao(novaAvaliacao).subscribe(el => {
-      servico = el
-    });
-    
-    expect(servico.avaliacoes).toContainEqual(avaliacaoEsperada);
+    service.adicionarAvaliacao(novaAvaliacao, 1, 2).subscribe(el => {
+      expect(el.avaliacoes).toContainEqual(avaliacaoEsperada);
+    });    
   });
 
   it('Deve receber avaliação nova com média', () => {
@@ -77,12 +79,10 @@ describe('AvaliacaoService', () => {
       ...novaAvaliacao, id: 4, media: 5
     }
 
-    let servico:ServicoDetalhado;
-    service.adicionarAvaliacao(novaAvaliacao).subscribe((el:ServicoDetalhado) => {
-      servico = el;
+    service.adicionarAvaliacao(novaAvaliacao, 1, 2).subscribe((servico:ServicoDetalhado) => {
+      let avaliacao = servico.avaliacoes.find(avaliacao => avaliacao.id === avaliacaoEsperada.id);
+      expect(avaliacao.media).toEqual(avaliacaoEsperada.media)
     });
-    let avaliacao = servico.avaliacoes.find(avaliacao => avaliacao.id === avaliacaoEsperada.id);
-    expect(avaliacao.media).toEqual(avaliacaoEsperada.media);
   });
 
   it('Deve retornar cliente completo', () => {
@@ -104,15 +104,14 @@ describe('AvaliacaoService', () => {
     let avaliacaoEsperada = {
       ...novaAvaliacao, id: 5, media: 5, cliente: monica
     }
-    let servico:ServicoDetalhado;
-    service.adicionarAvaliacao(novaAvaliacao).subscribe((el:ServicoDetalhado) => {
-      servico = el;
-    });
-
-    let avaliacao = servico.avaliacoes.find(avaliacao => avaliacao.id === avaliacaoEsperada.id);
+    service.adicionarAvaliacao(novaAvaliacao, 1, 2).subscribe((servico:ServicoDetalhado) => {
+      let avaliacao = servico.avaliacoes.find(avaliacao => avaliacao.id === avaliacaoEsperada.id);
 
     expect(avaliacao.cliente).toEqual(avaliacaoEsperada.cliente);
 
+    });
+
+    
 
   });
 });

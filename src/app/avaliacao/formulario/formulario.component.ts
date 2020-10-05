@@ -7,7 +7,14 @@ import { Avaliacao } from 'src/app/interfaces/avaliacao';
   styleUrls: ['./formulario.component.scss']
 })
 export class FormularioComponent implements OnInit {
-  @Input('avaliacao') avaliacao:Avaliacao;
+  @Input('avaliacao') avaliacao:Avaliacao = {
+    comentario: '',
+    atencao: 0,
+    custoBeneficio: 0,
+    infraestrutura: 0,
+    qualidadeProdutos: 0,
+    qualidadeServico: 0
+  };
   @Output('adiciona-avaliacao') adicionaAvaliacao = new EventEmitter<Avaliacao>();
   @Output('fecha-formulario') fechaFormulario = new EventEmitter<any>();
 
@@ -32,6 +39,9 @@ export class FormularioComponent implements OnInit {
   }
 
   getEstrelas(campo:string) {
+    if(!this.avaliacao){
+      return;
+    }
     let nota = this.avaliacao[campo];
     let estrelasEmBranco = this.NOTA_MAXIMA - nota
     let estrelas:any[string] = [

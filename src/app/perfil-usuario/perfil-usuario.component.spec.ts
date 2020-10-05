@@ -34,7 +34,6 @@ describe('FormularioAnimalComponent', () => {
       declarations: [ 
           PerfilUsuarioComponent,
           AnimalEstimacaoComponent,
-          // FormularioAnimalComponent
           FormularioAnimalComponent
         ],
       providers: [

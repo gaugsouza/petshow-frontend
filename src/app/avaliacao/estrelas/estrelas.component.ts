@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./estrelas.component.scss']
 })
 export class EstrelasComponent implements OnInit {
-  @Input("media") media:number;
+  @Input("media") media:number = 0;
   constructor() { }
 
   ngOnInit(): void {}

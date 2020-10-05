@@ -20,20 +20,6 @@ export class AvaliacaoService {
   constructor(private http:HttpClient,
               private logger:NGXLogger) { }
 
-  // buscaServicoAvaliadoPorId = (idServico:number, idPrestador?:number):Observable<ServicoDetalhado> => {
-  //   let servico = this.servicos.find(servico => servico.id === idServico);
-  //   return of(servico);
-  // }
-
-  // adicionarAvaliacao = (avaliacao:Avaliacao, idServico?:number, idPrestador?:number):Observable<ServicoDetalhado> => {
-  //   let servico = this.servicos.find(el => el.id === avaliacao.servicoAvaliado.id);
-  //   let avaliador = this.clientes.find(cliente => cliente.id === avaliacao.cliente.id);
-  //   let media = (avaliacao.atencao + avaliacao.custoBeneficio + avaliacao.infraestrutura + avaliacao.qualidadeProdutos + avaliacao.qualidadeServico) / 5;
-  //   servico.avaliacoes.push({...avaliacao, id: servico.avaliacoes.length + 1, media, cliente: avaliador});
-  //   // this.servicos = [...servicos, servico];
-  //   return of(servico);
-  // }
-
   private AVALIACAO_SERVICE_URL = `${environment.API_URL}/prestador/idPrestador/servicoDetalhado/idServico/avaliacoes`;
   private SERVICO_DETALHADO_URL = `${environment.API_URL}/prestador/idPrestador/servicoDetalhado/idServico`;
 

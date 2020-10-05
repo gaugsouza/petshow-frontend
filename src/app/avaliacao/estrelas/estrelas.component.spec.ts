@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EstrelasComponent } from './estrelas.component';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('EstrelasComponent', () => {
   let component: EstrelasComponent;
@@ -8,7 +9,10 @@ describe('EstrelasComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EstrelasComponent ]
+      declarations: [ EstrelasComponent ],
+      imports: [
+        MatIconModule
+      ]
     })
     .compileComponents();
   }));

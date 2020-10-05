@@ -17,6 +17,8 @@ export class AvaliacaoComponent implements OnInit {
   isLogado:boolean = false;
   isFormVisible:boolean = false;
   servicoAvaliado:ServicoDetalhado;
+  idPrestador:number;
+  idServico:number;
   avaliacaoBase:Avaliacao = {
     atencao:0,
     qualidadeProdutos:0,
@@ -34,19 +36,19 @@ export class AvaliacaoComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params:Params) => {
-      let idServico:number = parseInt(params.servicoAvaliado);
-      let idPrestador:number = parseInt(params.prestador);
-      console.log(idServico, idPrestador)
-      if(isNaN(idServico)|| isNaN(idPrestador)) {
+      this.idServico = parseInt(params.servicoAvaliado);
+      this.idPrestador = parseInt(params.prestador);
+      if(isNaN(this.idServico)|| isNaN(this.idPrestador)) {
         this.router.navigate(['/']);
         return;
       }
-      this.avaliacaoService.buscaServicoAvaliadoPorId(idServico,idPrestador).subscribe(servico => {
+      this.avaliacaoService.buscaServicoAvaliadoPorId(this.idServico,this.idPrestador).subscribe(servico => {
         if(!servico) {
           this.router.navigate(['/']);
           return;
         }
         this.servicoAvaliado = servico;
+        console.log(this.servicoAvaliado)
       });
     });
 
@@ -85,7 +87,7 @@ export class AvaliacaoComponent implements OnInit {
     avaliacao.servicoAvaliado = this.servicoAvaliado;
     this.localStorageService.getItem(USUARIO_TOKEN).subscribe((usuario:Cliente) => {
       avaliacao.cliente = usuario;
-      this.avaliacaoService.adicionarAvaliacao(avaliacao).subscribe(servico => {
+      this.avaliacaoService.adicionarAvaliacao(avaliacao,this.idServico, this.idPrestador).subscribe(servico => {
         this.servicoAvaliado = servico;
         this.isFormVisible = false;
         this.limpaAvaliacao();
