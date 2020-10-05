@@ -1,5 +1,14 @@
 <div class=selecao_servico>
-    <button mat-flat-button color="primary" (click)="exibePrestadoresBanho()">{{'BATH' | translate}}</button>
-    <button mat-flat-button color="primary" (click)="exibePrestadoresWalking()">{{'WALKING' | translate}}</button>
-    <button mat-flat-button color="primary" (click)="exibePrestadoresSitting()">PET SITTING</button>
+    <h1>
+        {{'SELECIONE_SERVICO'| translate}}
+    </h1>
+    <div class=selecao_servico__button-container>
+ 
+        <button mat-flat-button color="primary" value=1 (click)="exibirServicosDetalhados(this.value)">{{'BATH' | translate}}</button>
+
+        <button mat-flat-button color="primary" >{{'WALKING' | translate}}</button>
+
+       <button mat-flat-button color="primary" >PET SITTING</button>
+
+    </div>
 </div>

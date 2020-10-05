@@ -1,40 +1,40 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { Prestador } from '../interfaces/prestador';
+import { ServicoDetalhado } from '../interfaces/servico-detalhado';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicosService {
-  public SERVICOS_SERVICE_URL = `${environment.API_URL}servicos`;
+  public SERVICOS_SERVICE_URL = `${environment.API_URL}servico-detalhado`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-type' : 'application/json'})
   }
 
 
-  constructor() {
-              private http:HttpClient, //possibilita fazer requisições
-              private logger: NGXLogger,//faz logs
-              private storageService:LocalStorageService //tá criando o LocalStorage, 
-                                                          //coloca o objeto dentro do local e 
-                                                          //aí ele pode ser acessado daí
-  }
-  
+  constructor(private http:HttpClient, 
+    private logger:NGXLogger,
+    private storageService:LocalStorageService) { }
 
 //   Preciso retornar todos os meus prestadores dado um serviço
-  buscarPrestadoresPorServico = (id:number): Observable<Prestador>=>{
-    const url = `${this.SERVICOS_SERVICE_URL}/${id}`; //essa url tem que ser igual ao back
-    return this.http.get<Prestador>(url)
+  buscarServicosDetalhadosPorTipo = (id:number): Observable<ServicoDetalhado>=>{
+    const url = `${this.SERVICOS_SERVICE_URL}/tipo-servico/${id}`; //essa url tem que ser igual ao back
+    return this.http.get<ServicoDetalhado>(url)
     .pipe(
       tap(_ => this.logger.info(`Request feito a ${url}`)),
-      catchError(this.handleError<Prestador>(`Falha em requisição feita a ${url}`))
+      catchError(this.handleError<ServicoDetalhado>(`Falha em requisição feita a ${url}`))
     );
   }
+
+
+  
 
   private handleError<T> (mensagem: string, result?: T) {
     return (error:any) : Observable<T> => {
@@ -42,7 +42,9 @@ export class ServicosService {
       return of(result as T);
     }
   }
-
+  buscaTipoStorage = () => {
+    return this.storageService.getItem('tipo');
+  }
   // getServicos = (): Observable<Servicos> => { //Observable - objeto assincrono, faz a requisição e fica esperando
   //                                                   //resposta. Em cima dessa resposta ele faz a operação. 
   //   const url = `${this.SERVICOS_SERVICE_URL}`; //la no back-end

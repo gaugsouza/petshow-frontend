@@ -16,20 +16,10 @@ export class HomeComponent implements OnInit {
               private router:Router) { }
 
   ngOnInit(): void {
-    // this.router.navigate(['/perfil']);
-  }
-  
-  exibePrestadoresBanho (Prestador): 1 {
-    this.servicosService.buscarPrestadoresPorServico(1)
-    .subscribe((prestador:Prestador))=>{
-      this.prestador = prestador
-    });
   }
 
-  exibePrestadoresWalking(){
-
-  }
-  exibePrestadoresSitting(){
-
+  exibirServicosDetalhados(id:number) {
+    this.router.navigate(['/servicos-detalhados/tipo-servico/${id}']);
+    this.storageService.setItem('tipo', id);
   }
 }

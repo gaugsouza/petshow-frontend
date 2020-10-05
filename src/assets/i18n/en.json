@@ -23,5 +23,9 @@
     "ERRO_REQUISICAO": "Error during operation",
     "MENSAGEM_SUCESSO": "Operation completed successfully",
     "BATH": "GROOMING",
-    "WALKING": "DOG WALKING"
+    "WALKING": "DOG WALKING",
+    "SELECIONE_SERVICO": "Select the desired service:",
+    "SERVICOS_DISPONIVEIS": "Available services:",
+    "NENHUM_SERVICO_CADASTRADO": "There are no providers registered for the selected service :(",
+    "AGENDAR":"BOOK SERVICE"
 }
