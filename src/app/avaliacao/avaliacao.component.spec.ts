@@ -16,7 +16,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
 
 describe('AvaliacaoComponent', () => {
@@ -51,8 +51,8 @@ describe('AvaliacaoComponent', () => {
         FormsModule,
         RouterTestingModule,
         ReactiveFormsModule,
-        TranslateModule,
-        MatIconModule
+        MatIconModule,
+        TranslateModule.forRoot()
       ]
     })
     .compileComponents();

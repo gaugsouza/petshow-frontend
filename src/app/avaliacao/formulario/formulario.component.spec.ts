@@ -9,7 +9,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
 
 describe('FormularioComponent', () => {
@@ -29,7 +29,7 @@ describe('FormularioComponent', () => {
         FormsModule,
         RouterTestingModule,
         ReactiveFormsModule,
-        TranslateModule,
+        TranslateModule.forRoot(),
         MatIconModule
       ]
     })
