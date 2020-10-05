@@ -20,6 +20,7 @@ export class AvaliacaoComponent implements OnInit {
   servicoAvaliado:ServicoDetalhado;
   idPrestador:number;
   idServico:number;
+  isNotFound:boolean = false;
   avaliacaoBase:Avaliacao = {
     atencao:0,
     qualidadeProdutos:0,
@@ -46,11 +47,10 @@ export class AvaliacaoComponent implements OnInit {
       }
       this.avaliacaoService.buscaServicoAvaliadoPorId(this.idServico,this.idPrestador).subscribe(servico => {
         if(!servico) {
-          this.router.navigate(['/']);
+          this.isNotFound = true;
           return;
         }
         this.servicoAvaliado = servico;
-        console.log(this.servicoAvaliado)
       });
     });
 

@@ -1,5 +1,9 @@
-<div *ngIf="!servicoAvaliado; then carregando else avaliacoes">
+<div *ngIf="!servicoAvaliado && !isNotFound; then carregando else avaliacoes">
     
+</div>
+
+<div *ngIf="isNotFound">
+    <p>Serviço informado não encontrado</p>
 </div>
 
 <ng-template #carregando>
