@@ -23,13 +23,13 @@ export class ServicosService {
     private logger:NGXLogger,
     private storageService:LocalStorageService) { }
 
-//   Preciso retornar todos os meus prestadores dado um serviço
-  buscarServicosDetalhadosPorTipo = (id:number): Observable<ServicoDetalhado>=>{
+//   Preciso retornar todos os meus serviçosDetalhados dado um serviço
+  buscarServicosDetalhadosPorTipo = (id:number): Observable<ServicoDetalhado[]>=>{
     const url = `${this.SERVICOS_SERVICE_URL}/tipo-servico/${id}`; //essa url tem que ser igual ao back
-    return this.http.get<ServicoDetalhado>(url)
+    return this.http.get<ServicoDetalhado[]>(url)
     .pipe(
       tap(_ => this.logger.info(`Request feito a ${url}`)),
-      catchError(this.handleError<ServicoDetalhado>(`Falha em requisição feita a ${url}`))
+      catchError(this.handleError<ServicoDetalhado[]>(`Falha em requisição feita a ${url}`))
     );
   }
 
@@ -42,9 +42,9 @@ export class ServicosService {
       return of(result as T);
     }
   }
-  buscaTipoStorage = () => {
-    return this.storageService.getItem('tipo');
-  }
+  // buscaTipoStorage = () => {
+  //   return this.storageService.getItem('tipo');
+  // }
   // getServicos = (): Observable<Servicos> => { //Observable - objeto assincrono, faz a requisição e fica esperando
   //                                                   //resposta. Em cima dessa resposta ele faz a operação. 
   //   const url = `${this.SERVICOS_SERVICE_URL}`; //la no back-end

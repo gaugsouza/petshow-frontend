@@ -9,7 +9,7 @@ const routes: Routes = [
   {path: 'perfil', component: PerfilUsuarioComponent},
   {path: 'login', component: LoginComponent},
   {path: '', component: HomeComponent},
-  {path: 'servico-detalhado', component: ListaServicosDetalhadosComponent}
+  {path: 'servico-detalhado/tipo-servico/:id', component: ListaServicosDetalhadosComponent}
 ];
 
 @NgModule({
