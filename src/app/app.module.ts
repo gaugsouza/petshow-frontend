@@ -28,6 +28,13 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 import { EstrelasComponent } from './avaliacao/estrelas/estrelas.component';
 import { FormularioComponent } from './avaliacao/formulario/formulario.component';
+import { InformacoesPessoaisComponent } from './perfil-usuario/informacoes-pessoais/informacoes-pessoais.component';
+import { EnderecoComponent } from './perfil-usuario/endereco/endereco.component';
+import {MatGridListModule} from '@angular/material/grid-list'; 
+import {MatCardModule} from '@angular/material/card';
+import { DialogEnderecoComponent } from './perfil-usuario/endereco/dialog-endereco/dialog-endereco.component';
+import {MatDialogModule} from '@angular/material/dialog'; 
+import {NgxMaskModule} from 'ngx-mask';
 
 import { ListaServicosDetalhadosComponent } from './lista-servicos-detalhados/lista-servicos-detalhados.component';
 import { PerfilPrestadorComponent } from './perfil-prestador/perfil-prestador.component';
@@ -54,6 +61,9 @@ export function HttpLoaderFactory(http:HttpClient) {
     PerfilComponent,
     ServicosComponent,
     FormularioServicoComponent,
+    InformacoesPessoaisComponent,
+    EnderecoComponent,
+    DialogEnderecoComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,7 +98,11 @@ export function HttpLoaderFactory(http:HttpClient) {
         deps: [HttpClient],
       },
       defaultLanguage: 'pt'
-    })
+    }),
+    MatGridListModule,
+    MatCardModule,
+    MatDialogModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -43,5 +43,20 @@
     "SELECIONE_SERVICO": "Select the desired service:",
     "SERVICOS_DISPONIVEIS": "Available services:",
     "NENHUM_SERVICO_CADASTRADO": "There are no providers registered for the selected service :(",
-    "AGENDAR":"Book Service"
+    "AGENDAR":"Book Service",
+    "ALTERA_ENDERECO": "Change address",
+    "LOGRADOURO": "Street name",
+    "NUMERO": "Number",
+    "COMPLEMENTO": "Complement",
+    "BAIRRO": "Neighborhood",
+    "CIDADE": "City",
+    "ESTADO": "State",
+    "ALTERAR" :"Update",
+    "NOME": "Name",
+    "TELEFONE": "Phone",
+    "ENDERECO": "Address",
+    "ALTERAR_ENDERECO": "Change address",
+    "NENHUM_ENDERECO_REGISTRADO": "No registered address",
+    "CRIAR_ENDERECO": "Create address",
+    "MUDAR": "Change"
 }

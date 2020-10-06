@@ -43,5 +43,20 @@
     "SELECIONE_SERVICO":"Selecione o serviço desejado:",
     "SERVICOS_DISPONIVEIS": "Serviços disponíveis: ",
     "NENHUM_SERVICO_CADASTRADO": "Não há prestadores registrados para o serviço selecionado :(",
-    "AGENDAR": "Agendar"
+    "AGENDAR": "Agendar",
+    "ALTERA_ENDERECO":"Alterar endereço",
+    "LOGRADOURO": "Logradouro",
+    "NUMERO": "Número",
+    "COMPLEMENTO": "Complemento",
+    "BAIRRO": "Bairro",
+    "CIDADE": "Cidade",
+    "ESTADO": "Estado",
+    "ALTERAR" :"Alterar",
+    "NOME": "Nome",
+    "TELEFONE": "Telefone",
+    "ENDERECO": "Endereço",
+    "ALTERAR_ENDERECO": "Alterar endereço",
+    "NENHUM_ENDERECO_REGISTRADO": "Nenhum endereço registrado",
+    "CRIAR_ENDERECO": "Inserir endereço",
+    "MUDAR": "Alterar"
 }
