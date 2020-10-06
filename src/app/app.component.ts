@@ -23,9 +23,9 @@ export class AppComponent {
               private localStorageService: LocalStorageService) {
 
     this.defineLangSettings(this.translate);
-    this.localStorageService.getItem('usuario')
-    .subscribe(usuario => {
-      this.isLogged = !!(usuario);
+    this.localStorageService.getItem('token')
+    .subscribe(token => {
+      this.isLogged = !!(token);
     });
 
   }
@@ -46,9 +46,9 @@ export class AppComponent {
         window.location.href = location.href.replace('http', 'https');
       }
     }
-    this.localStorageService.getItem('usuario')
-      .subscribe(usuario =>{
-        if(!usuario){
+    this.localStorageService.getItem('token')
+      .subscribe(token =>{
+        if(!token){
           this.isLogged = false;
         }
       });
