@@ -55,6 +55,7 @@ export class UsuarioService {
     );
   } 
 
+
   buscaPorLogin = (login: Login) : Observable<any> => {
     let url = `${this.USUARIO_SERVICE_URL}/login`;
     return this.http.post(url, login, this.httpOptions)

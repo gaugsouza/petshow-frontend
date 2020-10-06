@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from '../servicos/local-storage.service';
 import { usuariosMock } from '../mocks/usuarioMock';
 import { Router } from '@angular/router';
+import { ServicosService } from '../servicos/servicos.service';
+import { Servico } from '../interfaces/servico';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
@@ -9,12 +12,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor(private storageService:LocalStorageService,
-              private router:Router) { }
+  servicos:Servico[]=[{id:1, nome:"BANHO"},{id:2, nome:"PASSEIO"},{id:3, nome:"PET SITTING"}];
+  
+  constructor(private servicosService: ServicosService,
+              private storageService:LocalStorageService,
+              private router:Router,
+              private translate: TranslateService
+              ) { }
 
   ngOnInit(): void {
-    // this.router.navigate(['/perfil']);
+
   }
+
+  exibirServicosDetalhados(id:number) {
+    this.router.navigate(['/servicos-detalhados/tipo-servico/${id}']);
+    this.storageService.setItem('tipo', id);
+  }
+
+
+
 
 }

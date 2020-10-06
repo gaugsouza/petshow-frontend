@@ -29,6 +29,7 @@ import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 import { EstrelasComponent } from './avaliacao/estrelas/estrelas.component';
 import { FormularioComponent } from './avaliacao/formulario/formulario.component';
 
+import { ListaServicosDetalhadosComponent } from './lista-servicos-detalhados/lista-servicos-detalhados.component';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -44,6 +45,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     AvaliacaoComponent,
     EstrelasComponent,
     FormularioComponent,
+    ListaServicosDetalhadosComponent,
   ],
   imports: [
     BrowserModule,

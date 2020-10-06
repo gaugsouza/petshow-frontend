@@ -8,4 +8,5 @@ export interface ServicoDetalhado {
     tipo?:Servico,
     prestador?:Prestador,
     avaliacoes?:Avaliacao[]
+    descricao?: string,
 }
