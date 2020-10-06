@@ -5,11 +5,11 @@ import { TipoPessoa } from '../enum/tipo-pessoa.enum';
 
 export interface Usuario {
     id?: number, 
-    nome: string,
+    nome?: string,
     foto?:string,
-    cpf:string,
-    tipo:TipoPessoa,
-    login:Login,
+    cpf?:string,
+    tipo?:TipoPessoa,
+    login?:Login,
     endereco?: Endereco,
-    telefone: string
+    telefone?: string
 }

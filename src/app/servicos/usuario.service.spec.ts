@@ -7,6 +7,7 @@ import { LocalStorageService } from './local-storage.service';
 import { usuariosMock } from '../mocks/usuarioMock';
 import { Cliente } from '../interfaces/cliente';
 import { TipoPessoa } from '../enum/tipo-pessoa.enum';
+import { USUARIO_TOKEN } from '../util/constantes';
 
 describe('UsuarioService', () => {
   let service: UsuarioService;
@@ -36,7 +37,7 @@ describe('UsuarioService', () => {
 
   it('Deve retornar o token em localStorage', () => {
     let usuarioMock = {id: 1, a: 'aaaa', b: 'bbbb'};
-    storageService.setItem('token', usuarioMock.id);
+    storageService.setItem(USUARIO_TOKEN, usuarioMock.id);
 
     service.buscaTokenUsuario()
     .subscribe(token => {

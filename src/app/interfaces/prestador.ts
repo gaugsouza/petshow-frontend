@@ -1,6 +1,7 @@
-import { ServicoDetalhado } from './servico-detalhado';
 import { Usuario } from './usuario';
+import { ServicoDetalhado } from './servico-detalhado';
 
 export interface Prestador extends Usuario {
-    servicosDetalhados: ServicoDetalhado[]
+    descricao:string,
+    servicosDetalhados?:ServicoDetalhado[]
 }

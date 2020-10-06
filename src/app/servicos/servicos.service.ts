@@ -25,7 +25,9 @@ export class ServicosService {
 
 //   Preciso retornar todos os meus serviçosDetalhados dado um serviço
   buscarServicosDetalhadosPorTipo = (id:number): Observable<ServicoDetalhado[]>=>{
+    console.log(id);
     const url = `${this.SERVICOS_SERVICE_URL}/tipo-servico/${id}`; //essa url tem que ser igual ao back
+    console.log(url)
     return this.http.get<ServicoDetalhado[]>(url)
     .pipe(
       tap(_ => this.logger.info(`Request feito a ${url}`)),
