@@ -9,6 +9,6 @@
         <button mat-flat-button color="primary" >{{'WALKING' | translate}}</button>
 
        <button mat-flat-button color="primary" >PET SITTING</button> -->
-                        <a mat-flat-button *ngFor="let servico of servicos" href="/servico-detalhado/tipo-servico/{{servico.id}}">{{servico.nome}}</a>
+                        <a mat-flat-button *ngFor="let servico of servicos" href="/servico-detalhado/tipo-servico/{{servico.id}}">{{servico.nome|translate}}</a>
         </div>
 </div>

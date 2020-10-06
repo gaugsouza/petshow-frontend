@@ -12,7 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  servicos:Servico[]=[{id:1, nome:"Banho e Tosa"},{id:2, nome:"Passeio"},{id:3, nome:"Pet Sitting"}];
+  servicos:Servico[]=[{id:1, nome:"BANHO"},{id:2, nome:"PASSEIO"},{id:3, nome:"PET SITTING"}];
   
   constructor(private servicosService: ServicosService,
               private storageService:LocalStorageService,
