@@ -1,1 +1,24 @@
-<p>cadastro-cliente works!</p>
+section>
+    <h1 class="page-section-title">{{'SERVICOS_DISPONIVEIS' | translate}}</h1>
+    <div class="conteiner-lista-servicos-detalhados" *ngIf="servicosDetalhados; then servicosDetalhadosBlock else vazioBlock"></div>
+    
+    <ng-template #vazioBlock>
+        <p>{{'NENHUM_SERVICO_CADASTRADO' | translate}}</p>
+    </ng-template>
+  
+    <ng-template #servicosDetalhadosBlock>
+        <mat-list class="lista-servicos-detalhados">
+            <mat-list-item *ngFor="let servicoDetalhado of servicosDetalhados">
+                <div class="lista-servicos-detalhados__item">
+                    <span>{{servicoDetalhado.tipo}}</span> 
+                    <span>{{servicoDetalhado.preco}}</span>
+                    <span>{{servicoDetalhado.prestador}}</span>  
+                    <div class="lista-servicos-detalhados__button-container">
+                        <button mat-flat-button color="accent" >{{'AGENDAR' | translate}}</button>
+                    </div>
+                </div>
+            </mat-list-item>
+        </mat-list>
+    </ng-template>
+  </section>
+  

@@ -8,12 +8,14 @@ import { NGXLogger } from 'ngx-logger';
 import { LocalStorageService } from './local-storage.service';
 import { usuariosMock } from '../mocks/usuarioMock';
 import { Login } from '../interfaces/login';
+import { AnimalEstimacao } from '../interfaces/AnimalEstimacao';
+import { USUARIO_TOKEN } from '../util/constantes';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-  public USUARIO_SERVICE_URL = `${environment.API_URL}cliente`;
+  public USUARIO_SERVICE_URL = `${environment.API_URL}/cliente`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-type' : 'application/json'})
@@ -40,10 +42,13 @@ export class UsuarioService {
     );
   }
 
+<<<<<<< HEAD
+=======
 
   buscaUsuarioStorage = () => {
     return this.storageService.getItem('usuario');
   }
+>>>>>>> 0191104da072bae8d4834cf7da09d0ddecd0228e
 
   atualizaUsuario = (usuario:Usuario) : Observable<Usuario> => {
     console.log(usuario);
@@ -56,6 +61,7 @@ export class UsuarioService {
       })
     );
   } 
+
 
   buscaPorLogin = (login: Login) : Observable<any> => {
     let url = `${this.USUARIO_SERVICE_URL}/login`;
@@ -78,8 +84,25 @@ export class UsuarioService {
   }
 
 
+<<<<<<< HEAD
+  buscaTokenUsuario(){
+    return this.storageService.getItem(USUARIO_TOKEN);
+  }
+
+  adicionarAnimalEstimacao = (animalEstimacao:AnimalEstimacao) : Observable<any> => {
+    let url = `${this.USUARIO_SERVICE_URL}/animal-estimacao`;
+    console.log(url);
+    return this.http.post(url, animalEstimacao, this.httpOptions)
+    .pipe(
+      tap(_ => this.logger.info(`Request feito a ${url}`)),
+      catchError(this.handleError<AnimalEstimacao>('post'))
+      );
+  }
+}
+=======
 
 
 
 
 }
+>>>>>>> 0191104da072bae8d4834cf7da09d0ddecd0228e

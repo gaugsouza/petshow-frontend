@@ -18,9 +18,7 @@ export class CadastroPrestadorComponent implements OnInit {
   isCliente:Boolean= false;
   isPrestador:Boolean= false;
 
-  constructor(private fb: FormBuilder, // Via DI, nós obtemos o FormBuilder.
-    private formularioDeUsuario: FormGroup, // Aqui damos um nome para nosso formulário do tipo FormGroup
-
+  constructor(
     private usuarioService:UsuarioService,
 
     private router:Router,

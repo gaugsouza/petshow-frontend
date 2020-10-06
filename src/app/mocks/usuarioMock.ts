@@ -32,4 +32,33 @@ export const monica: Cliente = {
         }
     ]
 }
-export const usuariosMock: Usuario[] = [monica]
+
+export const cebolinha:Cliente =  {
+    id:2, 
+    nome: "Cebolinha",
+    cpf:"66666666666",
+    tipo:TipoPessoa.CLIENTE,
+    login: {
+        id: 1,
+        email: "cebolinha@gmail.com",
+        senha: "teste1234"
+    },
+    endereco: {
+        id:1,
+        logradouro: "Rua aaaaa",
+        numero: 27,
+        estado: "SP",
+        cep: "00000000",
+        bairro: "Exemplo",
+        cidade: "São Paulo",
+    },
+    telefone: "1129383742",
+    animaisEstimacao: [
+        {
+            id: 1,
+            nome: "Floquinho",
+            tipo: TipoAnimal.CACHORRO,
+        }
+    ]
+}
+export const usuariosMock: Usuario[] = [monica, cebolinha]

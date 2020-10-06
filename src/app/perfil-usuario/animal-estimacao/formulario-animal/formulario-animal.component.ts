@@ -12,7 +12,7 @@ import { FormControl, Validators } from '@angular/forms';
 export class FormularioAnimalComponent implements OnInit {
   @Input() animal: AnimalEstimacao = {
     nome: "",
-    tipo: TipoAnimal.CACHORRO
+    tipo: TipoAnimal.GATO
   };
   @Output("adiciona-animal") adicionaAnimal = new EventEmitter<AnimalEstimacao>();
   @Output("atualiza-animal") atualizaAnimalInput = new EventEmitter<AnimalEstimacao>();

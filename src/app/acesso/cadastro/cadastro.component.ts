@@ -18,9 +18,7 @@ export class CadastroComponent implements OnInit {
   isCliente:Boolean= false;
   isPrestador:Boolean= false;
 
-  constructor(private fb: FormBuilder, // Via DI, nós obtemos o FormBuilder.
-    private formularioDeUsuario: FormGroup, // Aqui damos um nome para nosso formulário do tipo FormGroup
-
+  constructor(
     private usuarioService:UsuarioService,
 
     private router:Router,
@@ -31,31 +29,8 @@ export class CadastroComponent implements OnInit {
   
   }
 
-  cadastrarCliente(cliente:Cliente) {
-    this.usuarioService.cadastrarUsuario(cliente)
-      .subscribe(res => {
-          const id = res['_id'];
-          this.router.navigate(['/cliente', id]);
-        }, (err) => {
-          console.log(err);
-          this.erroRequisicao = "Erro durante a operação";
-        });
-  }
-
-
   exibirFormCliente(){
     this.isCliente=true;
-  }
-
-  cadastrarPrestador(prestador:Prestador) {
-    this.usuarioService.cadastrarUsuario(prestador)
-      .subscribe(res => {
-          const id = res['_id'];
-          this.router.navigate(['/prestador', id]);
-        }, (err) => {
-          console.log(err);
-          this.erroRequisicao = "Erro durante a operação";
-        });
   }
 
   exibirFormPrestador(){

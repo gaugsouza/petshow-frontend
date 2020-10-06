@@ -4,34 +4,34 @@
 <form>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputNome">Nome Completo</label>
+      <label for="inputNome">{{'NOME_COMPLETO' | translate}}</label>
       <input type="text" class="form-control" id="inputNome" placeholder="Nome Completo" required [(ngModel)]="prestador.nome" name="nome">
       <div *ngIf="!nome.pristine && nome.errors">   <!-- Gera mensagem de erro -->
         <p *ngIf="nome.errors.required">
-          Nome é obrigatório.
+          {{'NOME_OBRIGATORIO' | translate}}
         </p>
         <p *ngIf="nome.errors.minlength">
-          Nome deve ter no mínimo 3 caracters.
+          {{'NOME_MIN_CARACT' | translate}}
         </p>
         <p *ngIf="nome.errors.maxlength">
-          Nome deve ter no máximo 100 caracters.
+          {{'NOME_MAX_CARACT' | translate}}
         </p>
       </div>
     </div>
     <div class="form-group col-md-6">
-      <label for="inputNomeSocial">Como gostaria de ser chamado </label>
+      <label for="inputNomeSocial">{{'NOME_SOCIAL' | translate}} </label>
       <input type="text" class="form-control" id="inputNomeSocial" placeholder="Nome Social" required [(ngModel)]="prestador.nomeSocial" name="nomeSocial">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputTelefone">Telefone</label>
+      <label for="inputTelefone">{{'TELEFONE' | translate}}</label>
       <input type="text" class="form-control" id="inputTelefone" placeholder="(11) 99999-9999" required [(ngModel)]="prestador.telefone" name="telefone">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputEmail">Email</label>
+      <label for="inputEmail">E-mail</label>
       <input type="text" class="form-control" id="inputEmail" placeholder="petshow@gmail.com" required [(ngModel)]="prestador.login.email" name="email">
       <div *ngIf="!email.pristine && email.errors">   <!-- Gera mensagem de erro -->
         <p *ngIf="email.errors.email">
-          Digite um e-mail válido.
+          {{'EMAIL_INVALIDO' | translate}}
         </p>
       </div>
     </div>
@@ -39,14 +39,14 @@
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputSenha">Senha</label>
+      <label for="inputSenha">{{'SENHA' | translate}}</label>
       <input type="password" class="form-control" formControlName="senha" id="inputPassword" required [(ngModel)]="prestador.login.senha" name="senha">
     </div>
   </div>
   <!-- VERIFICAR REGRA DE VERIFICACAO SENHA-->
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputConfirmarSenha">Repita a senha</label>
+      <label for="inputConfirmarSenha">{{'REPITA_SENHA' | translate}}</label>
       <input type="password" class="form-control" formControlName="confirmarSenha" id="inputPassword2" required [(ngModel)]="prestador.login.senha" name="senha">
     </div>
   </div>
@@ -56,24 +56,24 @@
       <div class="form-check">
         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="opcao1" required [(ngModel)]="prestador.tipo" name="tipo">
         <label class="form-check-label" for="exampleRadios1">
-          Sou Empresa
+          {{'SOU_EMPRESA' | translate}}
         </label>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="opcao2" checked required [(ngModel)]="prestador.tipo" name="tipo">
         <label class="form-check-label" for="exampleRadios2">
-          Sou autômono
+          {{'SOU_AUTONOMO' | translate}}
         </label>
 
         <div class="form-group">
-          <label for="exampleFormControlTextarea1">Exemplo de texto </label>
+          <label for="exampleFormControlTextarea1">{{'EXEMPLO_TEXTO' | translate}} </label>
           <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required [(ngModel)]="prestador.descricao" name="descricao"></textarea>
         </div>
       </div>
     </div>
     <!-- <div class="col-md-3">
       <div class="form-group">
-        <button type="button" class="btn btn-outline-primary">Adicionar Foto</button>
+        <button type="button" class="btn btn-outline-primary">{{'ADICIONAR_FOTO' | translate}}</button>
         <br>
         <img src="..." class="img-fluid" alt="Responsive image">
       </div>
@@ -82,43 +82,43 @@
 
   <div class="form-row">
     <div class="form-group col-md-12">
-      <h1>Endereço</h1>
+      <h1>{{'ENDEREÇO' | translate}}</h1>
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputCity">Logradouro</label>
+      <label for="inputCity">{{'LOGRADOURO' | translate}}</label>
       <input type="text" class="form-control" id="inputCity" required [(ngModel)]="prestador.endereco.logradouro" name="logradouro">
     </div>
     <div class="form-group col-md-2">
-      <label for="inputCity">Numero</label>
+      <label for="inputCity">{{'NUMERO' | translate}}</label>
       <input type="text" class="form-control" id="inputCity" required [(ngModel)]="prestador.endereco.numero" name="numero">
     </div>
     <div class="form-group col-md-4">
-      <label for="inputCity">Complemento</label>
+      <label for="inputCity">{{'COMPLEMENTO' | translate}}</label>
       <input type="text" class="form-control" id="inputCity" required [(ngModel)]="prestador.endereco.complemento" name="complemento">
     </div>
   </div>
   <div class="form-row">
   <div class="form-group col-md-6">
-    <label for="inputCEP">Bairro</label>
+    <label for="inputCEP">{{'BAIRRO' | translate}}</label>
     <input type="text" class="form-control" id="inputCEP" required [(ngModel)]="prestador.endereco.bairro" name="bairro">
   </div>
   <div class="form-group col-md-3">
-    <label for="inputCEP">CEP</label>
+    <label for="inputCEP">{{'CEP' | translate}}</label>
     <input type="text" class="form-control" id="inputCEP" required [(ngModel)]="prestador.endereco.cep" name="cep">
   </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputCity">Cidade</label>
+      <label for="inputCity">{{'CIDADE' | translate}}</label>
       <input type="text" class="form-control" id="inputCity" required [(ngModel)]="prestador.endereco.cidade" name="cidade">
     </div>
     <div class="form-group col-md-4">
-      <label for="inputEstado">Estado</label>
+      <label for="inputEstado">{{'ESTADO' | translate}}</label>
       <select id="inputEstado" class="form-control" required [(ngModel)]="prestador.endereco.estado" name="estado">
-        <option selected>Escolher...</option>
+        <option selected>{{'ESTADO' | translate}}</option>
         <option>...</option>
       </select>
     </div>
@@ -127,29 +127,29 @@
     <div class="form-check">
       <input class="form-check-input" type="checkbox" id="gridCheck">
       <label class="form-check-label" for="gridCheck">
-        Cartão de Crédio
+        {{'CARTAO_CREDITO' | translate}}
       </label>
     </div>
     <div class="form-check">
         <input class="form-check-input" type="checkbox" id="gridCheck">
         <label class="form-check-label" for="gridCheck">
-        Cartão de Débito
+          {{'CARTAO_DEBITO' | translate}}
         </label>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="checkbox" id="gridCheck">
         <label class="form-check-label" for="gridCheck">
-        Cartão de Crédito/Débito  diretamente com o cliente
+          {{'CARTAO_ESTABELECIMENTO' | translate}}
         </label>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="checkbox" id="gridCheck">
         <label class="form-check-label" for="gridCheck">
-        Dinheiro diretamente com o cliente
+          {{'DINHEIRO_ESTABELECIMENTO' | translate}}
         </label>
       </div>
   </div>
-  <button  [disabled]="!formularioDeUsuario.valid" type="submit" class="btn btn-primary">Cadastrar</button>
+  <button  [disabled]="!formularioDeUsuario.valid" type="submit" class="btn btn-primary">{{'CADASTRAR' | translate}}</button>
  
   <br>
   <br>

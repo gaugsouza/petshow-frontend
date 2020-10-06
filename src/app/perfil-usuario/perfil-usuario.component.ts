@@ -5,6 +5,8 @@ import { AnimalEstimacao } from '../interfaces/AnimalEstimacao';
 import { TipoAnimal } from '../enum/TipoAnimal';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../servicos/local-storage.service';
+import { USUARIO_TOKEN } from '../util/constantes';
+import { monica } from '../mocks/usuarioMock';
 
 @Component({
   selector: 'app-perfil-usuario',
@@ -37,23 +39,27 @@ export class PerfilUsuarioComponent implements OnInit {
   }
 
   getUsuario() : void {
-    this.usuarioService.buscaUsuarioStorage()
-    .subscribe((usuario:Cliente) => {
-      if(!usuario) {
-        this.router.navigate(['/login']);
-        return;
-      }
-      this.usuario = usuario
-    });
+    // this.usuario = monica;
+    this.localStorageService.getItem(USUARIO_TOKEN).subscribe((token: number) => {
+      this.usuarioService.getUsuario(token)
+      .subscribe((usuario:Cliente) => {
+        if(!usuario) {
+          this.router.navigate(['/login']);
+          return;
+        }
+        this.usuario = usuario
+      });
+    });    
   }
 
-  adicionaAnimal({...animalEstimacao}:AnimalEstimacao) : void {
-    this.usuarioRequest = {...this.usuario};
-    let animaisEstimacao = this.usuarioRequest.animaisEstimacao;
-    this.usuarioRequest.animaisEstimacao = [...animaisEstimacao, animalEstimacao];
-    this.atualizaUsuario();
-    
-  }
+  // adicionaAnimal({...animalEstimacao}:AnimalEstimacao) : void {
+  //   animalEstimacao.dono = this.usuario;
+  //   this.usuarioService.adicionarAnimalEstimacao(animalEstimacao).subscribe(() => {
+  //     this.limpaAnimal();
+  //     this.getUsuario();
+  //     this.isFormVisivel = false;
+  //   });    
+  // }
 
   removeAnimal(animalEstimacao : AnimalEstimacao | number):void {
     this.usuarioRequest = {...this.usuario};
@@ -74,7 +80,7 @@ export class PerfilUsuarioComponent implements OnInit {
 
   atualizaUsuario() {
     this.usuarioService.atualizaUsuario(this.usuarioRequest).subscribe(res => {
-      this.localStorageService.setItem('usuario', res).subscribe(() => {
+      this.localStorageService.setItem(USUARIO_TOKEN, res.id).subscribe(() => {
         this.getUsuario();
         this.limpaAnimal();
         this.ocultaFormulario();
@@ -99,7 +105,7 @@ export class PerfilUsuarioComponent implements OnInit {
   limpaAnimal() {
     this.animal = {
       nome: "",
-      tipo: TipoAnimal.CACHORRO
+      tipo: TipoAnimal.GATO
     }
   }
 

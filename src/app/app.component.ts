@@ -5,6 +5,7 @@ import { LocalStorageService } from './servicos/local-storage.service';
 import { Router } from '@angular/router';
 import { LoginComponent } from './acesso/login/login.component';
 import { environment } from 'src/environments/environment';
+import { USUARIO_TOKEN } from './util/constantes';
 
 import { FormBuilder, FormGroup } from '../../node_modules/@angular/forms';
 
@@ -22,12 +23,13 @@ export class AppComponent implements OnInit {
   public isPortugues:boolean = true;
 
   constructor(private translate: TranslateService,
-              private localStorageService: LocalStorageService) {
+              private localStorageService: LocalStorageService,
+              private router:Router) {
 
     this.defineLangSettings(this.translate);
-    this.localStorageService.getItem('usuario')
-    .subscribe(usuario => {
-      this.isLogged = !!(usuario);
+    this.localStorageService.getItem(USUARIO_TOKEN)
+    .subscribe(token => {
+      this.isLogged = !!(token);
     });
 
   }
@@ -48,9 +50,9 @@ export class AppComponent implements OnInit {
         window.location.href = location.href.replace('http', 'https');
       }
     }
-    this.localStorageService.getItem('usuario')
-      .subscribe(usuario =>{
-        if(!usuario){
+    this.localStorageService.getItem(USUARIO_TOKEN)
+      .subscribe(token =>{
+        if(!token){
           this.isLogged = false;
         }
       });
@@ -86,6 +88,13 @@ export class AppComponent implements OnInit {
     } else {
       this.langEn();
     }
+  }
+
+  deslogar() {
+    this.localStorageService.removeItem(USUARIO_TOKEN).subscribe(() => {
+      this.router.navigate(['/']);
+      this.isLogged = false;
+    });
   }
 
 }
