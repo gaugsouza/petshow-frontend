@@ -12,7 +12,7 @@ import { LocalStorageService } from './local-storage.service';
   providedIn: 'root'
 })
 export class ServicosService {
-  public SERVICOS_SERVICE_URL = `${environment.API_URL}servico-detalhado`;
+  public SERVICOS_SERVICE_URL = `${environment.API_URL}/servico-detalhado`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-type' : 'application/json'})

@@ -10,9 +10,9 @@
         <mat-list class="lista-servicos-detalhados">
             <mat-list-item *ngFor="let servicoDetalhado of servicosDetalhados">
                 <div class="lista-servicos-detalhados__item">
-                    <span>{{servicoDetalhado.tipo}}</span> 
+                    <span>{{servicoDetalhado.tipo.nome}}</span> 
                     <span>{{servicoDetalhado.preco}}</span>
-                    <span>{{servicoDetalhado.prestador}}</span>  
+                    <span>{{servicoDetalhado.prestador.nome}}</span>  
                     <div class="lista-servicos-detalhados__button-container">
                         <button mat-flat-button color="accent" >{{'AGENDAR' | translate}}</button>
                     </div>

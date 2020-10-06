@@ -1,7 +1,6 @@
 import { ServicoDetalhado } from './servico-detalhado';
+import { Usuario } from './usuario';
 
-export interface Prestador {
-    id?: Number,
-    nome: String,
-    servicosDetalhados: ServicoDetalhado
+export interface Prestador extends Usuario {
+    servicosDetalhados: ServicoDetalhado[]
 }
