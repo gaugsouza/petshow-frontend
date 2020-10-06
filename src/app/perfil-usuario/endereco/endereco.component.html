@@ -1,0 +1,25 @@
+<div *ngIf="endereco; then enderecoBlock else vazioBlock"></div>
+
+<ng-template #enderecoBlock>
+    <mat-card class="endereco-block">
+        <div>
+            <p>{{'ENDERECO' | translate}}</p>
+            <span>{{endereco.logradouro}}, {{endereco.numero}}</span>
+            <span>{{endereco.complemento}}</span>
+            <span>{{endereco.cep}}</span>
+            <span>{{endereco.bairro}}</span>
+            <span>{{endereco.cidade}} - {{endereco.estado}}</span>
+        </div>
+        <button mat-flat-button color="primary" (click)="openDialog()">{{'ALTERAR_ENDERECO' | translate}}</button>
+    </mat-card>
+</ng-template>
+
+<ng-template #vazioBlock>
+    <mat-card class="endereco-block">
+        <div>
+            <p>{{'ENDERECO' | translate}}</p>
+            <p>{{'NENHUM_ENDERECO_REGISTRADO' | translate}}</p>
+            <button mat-flat-button color="primary">{{'CRIAR_ENDERECO' | translate}}</button>
+        </div>
+    </mat-card>
+</ng-template>

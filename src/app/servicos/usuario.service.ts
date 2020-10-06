@@ -44,8 +44,8 @@ export class UsuarioService {
   }
 
   atualizaUsuario = (usuario:Usuario) : Observable<Usuario> => {
-    console.log(usuario);
-    return this.http.put<Usuario>(this.USUARIO_SERVICE_URL, usuario, this.httpOptions)
+    let url = `${this.USUARIO_SERVICE_URL}/${usuario.id}`
+    return this.http.put<Usuario>(url, usuario, this.httpOptions)
     .pipe(
       tap(_ => this.logger.info(`Request feito a ${this.USUARIO_SERVICE_URL}`)),
       catchError(err => {

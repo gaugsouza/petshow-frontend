@@ -36,5 +36,20 @@
     "ENVIAR_AVALIACAO": "Submit Review",
     "AVALIACOES": "Reviews",
     "SEM_AVALIACOES": "No reviews have been registered for this service",
-    "PLACEHOLDER_AVALIACAO": "Ex. The service was great ..."
+    "PLACEHOLDER_AVALIACAO": "Ex. The service was great ...",
+    "ALTERA_ENDERECO": "Change address",
+    "LOGRADOURO": "Street name",
+    "NUMERO": "Number",
+    "COMPLEMENTO": "Complement",
+    "BAIRRO": "Neighborhood",
+    "CIDADE": "City",
+    "ESTADO": "State",
+    "ALTERAR" :"Update",
+    "NOME": "Name",
+    "TELEFONE": "Phone",
+    "ENDERECO": "Address",
+    "ALTERAR_ENDERECO": "Change address",
+    "NENHUM_ENDERECO_REGISTRADO": "No registered address",
+    "CRIAR_ENDERECO": "Create address",
+    "MUDAR": "Change"
 }
