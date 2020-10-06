@@ -37,10 +37,11 @@
     "AVALIACOES": "Reviews",
     "SEM_AVALIACOES": "No reviews have been registered for this service",
     "PLACEHOLDER_AVALIACAO": "Ex. The service was great ...",
-    "BANHO": "GROOMING",
-    "PASSEIO": "DOG WALKING",
+    "BANHO": "Grooming",
+    "PASSEIO": "Dog Walking",
+    "PET SITTING": "Pet Sitting",
     "SELECIONE_SERVICO": "Select the desired service:",
     "SERVICOS_DISPONIVEIS": "Available services:",
     "NENHUM_SERVICO_CADASTRADO": "There are no providers registered for the selected service :(",
-    "AGENDAR":"BOOK SERVICE"
+    "AGENDAR":"Book Service"
 }

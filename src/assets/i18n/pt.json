@@ -37,10 +37,11 @@
     "AVALIACOES": "Avaliações",
     "SEM_AVALIACOES": "Nenhuma avaliação foi cadastrada para esse serviço",
     "PLACEHOLDER_AVALIACAO": "Ex. O atendimento foi ótimo...",
-    "BANHO": "BANHO E TOSA",
-    "PASSEIO": "PASSEIO",
+    "BANHO": "Banho e tosa",
+    "PASSEIO": "Passeio",
+    "PET SITTING": "Pet Sitting",
     "SELECIONE_SERVICO":"Selecione o serviço desejado:",
     "SERVICOS_DISPONIVEIS": "Serviços disponíveis: ",
     "NENHUM_SERVICO_CADASTRADO": "Não há prestadores registrados para o serviço selecionado :(",
-    "AGENDAR": "AGENDAR"
+    "AGENDAR": "Agendar"
 }
