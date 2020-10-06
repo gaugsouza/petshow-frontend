@@ -47,6 +47,7 @@ export class PerfilUsuarioComponent implements OnInit {
           return;
         }
         this.usuario = usuario
+        console.log(this.usuario.tipo)
       });
     });    
   }

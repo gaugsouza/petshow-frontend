@@ -2,6 +2,7 @@ import { Usuario } from '../interfaces/usuario';
 import { TipoAnimal } from '../enum/TipoAnimal';
 import { TipoPessoa } from '../enum/tipo-pessoa.enum';
 import { Cliente } from '../interfaces/cliente';
+import { Prestador } from '../interfaces/prestador';
 
 
 export const monica: Cliente = {
@@ -61,4 +62,28 @@ export const cebolinha:Cliente =  {
         }
     ]
 }
-export const usuariosMock: Usuario[] = [monica, cebolinha]
+
+export const tina:Prestador = {
+    id:3,
+    descricao:"Tina",
+    cpf:'33333333333',
+    endereco:{
+        id:1,
+        logradouro: "Rua aaaaa",
+        numero: 50,
+        estado: "SP",
+        cep: "00000000",
+        bairro: "Exemplo",
+        cidade: "São Paulo",
+    },
+    foto:null,
+    login: {
+        email: "tina@tina.com",
+        senha: "tina1234"
+    },
+    nome:"Tina",
+    servicosDetalhados:[],
+    telefone:'1129382932',
+    tipo:TipoPessoa.PRESTADOR_AUTONOMO
+}
+export const usuariosMock: Usuario[] = [monica, cebolinha, tina]

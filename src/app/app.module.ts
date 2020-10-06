@@ -30,6 +30,10 @@ import { EstrelasComponent } from './avaliacao/estrelas/estrelas.component';
 import { FormularioComponent } from './avaliacao/formulario/formulario.component';
 
 import { ListaServicosDetalhadosComponent } from './lista-servicos-detalhados/lista-servicos-detalhados.component';
+import { PerfilPrestadorComponent } from './perfil-prestador/perfil-prestador.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { ServicosComponent } from './perfil-prestador/servicos/servicos.component';
+import { FormularioServicoComponent } from './perfil-prestador/formulario-servico/formulario-servico.component';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -46,6 +50,10 @@ export function HttpLoaderFactory(http:HttpClient) {
     EstrelasComponent,
     FormularioComponent,
     ListaServicosDetalhadosComponent,
+    PerfilPrestadorComponent,
+    PerfilComponent,
+    ServicosComponent,
+    FormularioServicoComponent,
   ],
   imports: [
     BrowserModule,
