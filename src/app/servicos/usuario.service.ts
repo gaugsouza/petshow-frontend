@@ -65,4 +65,21 @@ export class UsuarioService {
       catchError(this.handleError<Usuario>('login'))
     );
   }
+
+
+
+  cadastrarUsuario = (usuario:Usuario) : Observable<any> => {
+    let url = `${this.USUARIO_SERVICE_URL}/cadastro`;
+    return this.http.post(url, usuario, this.httpOptions)
+    .pipe(
+      tap(_ => this.logger.info(`Request feito a ${url}`)),
+      catchError(this.handleError<Usuario>('usuario'))
+    );
+  }
+
+
+
+
+
+
 }

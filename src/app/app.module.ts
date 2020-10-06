@@ -28,6 +28,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { PrestadorServicoComponent } from './prestador-servico/prestador-servico.component';
 import { PerfilPrestadorComponent } from './perfil-prestador/perfil-prestador.component';
 import { ReactiveFormsModule } from "@angular/forms";
+import { CadastroComponent } from './acesso/cadastro/cadastro.component';
+import { CadastroPrestadorComponent } from './acesso/cadastro/cadastro-prestador/cadastro-prestador.component';
+import { CadastroClienteComponent } from './acesso/cadastro/cadastro-cliente/cadastro-cliente.component';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -42,6 +45,9 @@ export function HttpLoaderFactory(http:HttpClient) {
     LoginComponent,
     PrestadorServicoComponent,
     PerfilPrestadorComponent,
+    CadastroComponent,
+    CadastroPrestadorComponent,
+    CadastroClienteComponent,
   ],
   imports: [
     BrowserModule,

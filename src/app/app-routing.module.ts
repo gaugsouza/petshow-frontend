@@ -3,15 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './acesso/login/login.component';
-import { PerfilPrestadorComponent } from './perfil-prestador/perfil-prestador.component';
-import { PrestadorServicoComponent } from './prestador-servico/prestador-servico.component';
+import { CadastroClienteComponent } from './acesso/cadastro/cadastro-cliente/cadastro-cliente.component';
+import { CadastroPrestadorComponent } from './acesso/cadastro/cadastro-prestador/cadastro-prestador.component';
 
 
 const routes: Routes = [
   {path: 'perfil', component: PerfilUsuarioComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'prestador', component: PerfilPrestadorComponent},
-  {path: 'prestador-servico', component: PrestadorServicoComponent},
+  {path: 'cadastro-clientegit status', component: CadastroClienteComponent},
+  {path: 'cadastro-prestador', component: CadastroPrestadorComponent},
   {path: '', component: HomeComponent}
 ];
 
