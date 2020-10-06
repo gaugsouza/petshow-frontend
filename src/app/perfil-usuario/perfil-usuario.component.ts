@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../servicos/usuario.service';
 import { Cliente } from '../interfaces/cliente';
-import { AnimalEstimacao } from '../interfaces/AnimalEstimacao';
+import { AnimalEstimacao } from '../interfaces/animalEstimacao';
 import { TipoAnimal } from '../enum/TipoAnimal';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../servicos/local-storage.service';
@@ -14,7 +14,7 @@ import { LocalStorageService } from '../servicos/local-storage.service';
 export class PerfilUsuarioComponent implements OnInit {
   animal:AnimalEstimacao = {
     nome: "",
-    tipo: {nome: 'GATO'}
+    tipo: {id: 2, nome: 'GATO'}
   };
   usuario:Cliente;
   usuarioRequest:Cliente;
@@ -49,8 +49,6 @@ export class PerfilUsuarioComponent implements OnInit {
   }
 
   adicionaAnimal({...animalEstimacao}:AnimalEstimacao) : void {
-    animalEstimacao.dono = this.usuario;
-
     this.usuarioService.adicionarAnimalEstimacao(animalEstimacao).subscribe(() => {
       this.getUsuario();
     });    
@@ -88,9 +86,8 @@ export class PerfilUsuarioComponent implements OnInit {
     });
   }
 
-  editaAnimal(animalEstimacao : AnimalEstimacao) : void {
-    animalEstimacao.dono = this.usuario;
-    
+  editaAnimal(animalEstimacao : AnimalEstimacao) : void { 
+    console.log(animalEstimacao);
     this.usuarioService.atualizarAnimalEstimacao(animalEstimacao.id, animalEstimacao).subscribe(res => {
       this.getUsuario();
       this.limpaAnimal();
@@ -98,11 +95,23 @@ export class PerfilUsuarioComponent implements OnInit {
     })
   }
 
+  buscarTiposAnimalEstimacao() {
+    let tiposAnimal;
+
+    this.usuarioService.buscarTiposAnimalEstimacao().subscribe(tipos => 
+      {
+        console.log(tipos)
+        tiposAnimal = tipos;
+      })
+
+    return tiposAnimal;
+  }
+
 
   limpaAnimal() {
     this.animal = {
       nome: "",
-      tipo: {nome: 'GATO'}
+      tipo: {id: 2, nome: 'GATO'}
     }
   }
 

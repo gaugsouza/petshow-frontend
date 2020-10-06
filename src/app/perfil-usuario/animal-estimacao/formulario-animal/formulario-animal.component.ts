@@ -1,9 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { AnimalEstimacao } from 'src/app/interfaces/AnimalEstimacao';
+import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
 import { TipoAnimal } from 'src/app/enum/TipoAnimal';
 import {MyErrorStateMatcher} from '../../../classes/my-error-state-matcher';
 import { FormControl, Validators } from '@angular/forms';
 import { UsuarioService } from 'src/app/servicos/usuario.service';
+import { PerfilUsuarioComponent } from '../../perfil-usuario.component';
 
 @Component({
   selector: 'app-formulario-animal',
@@ -13,7 +14,7 @@ import { UsuarioService } from 'src/app/servicos/usuario.service';
 export class FormularioAnimalComponent implements OnInit {
   @Input() animal: AnimalEstimacao = {
     nome: "",
-    tipo: {nome: 'GATO'}
+    tipo: {id: 2, nome: 'GATO'}
   };
   @Output("adiciona-animal") adicionaAnimal = new EventEmitter<AnimalEstimacao>();
   @Output("atualiza-animal") atualizaAnimalInput = new EventEmitter<AnimalEstimacao>();
@@ -26,13 +27,12 @@ export class FormularioAnimalComponent implements OnInit {
     Validators.minLength(3)
   ]);
 
-  public tiposAnimal:TipoAnimal[];
+  public tiposAnimal = [];
 
   constructor(private usuarioService:UsuarioService) { }
 
   ngOnInit(): void {
-    this.usuarioService.buscarTiposAnimalEstimacao()
-    .subscribe(tipos => this.tiposAnimal = tipos);
+    this.getTiposAnimal()
   }
   
   hasErrors() {
@@ -55,11 +55,20 @@ export class FormularioAnimalComponent implements OnInit {
     this.cancelaOperacao.emit();
   }
 
+  getTiposAnimal() {
+    this.usuarioService.buscarTiposAnimalEstimacao().subscribe(
+      tipos => {
+        tipos.forEach(tipo => {
+          this.tiposAnimal.push(tipo);  
+        });
+      }
+    );
+  }
   
   limpa() {
     this.animal = {
       nome: "",
-      tipo: {nome: 'GATO'}
+      tipo: this.tiposAnimal[0]
     };
   }
 }

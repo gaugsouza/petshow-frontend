@@ -2,7 +2,7 @@ import {usuariosMock} from './usuarioMock';
 import { Usuario } from '../interfaces/usuario';
 import { Observable, of } from 'rxjs';
 import { Login } from '../interfaces/login';
-import { AnimalEstimacao } from '../interfaces/AnimalEstimacao';
+import { AnimalEstimacao } from '../interfaces/animalEstimacao';
 import { Cliente } from '../interfaces/cliente';
 
 export class UsuarioServiceMock {

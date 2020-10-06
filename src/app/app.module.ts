@@ -25,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './acesso/login/login.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SecurityComponent } from './security/security.component';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -37,6 +38,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     AnimalEstimacaoComponent,
     FormularioAnimalComponent,
     LoginComponent,
+    SecurityComponent,
   ],
   imports: [
     BrowserModule,

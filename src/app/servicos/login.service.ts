@@ -8,6 +8,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { NGXLogger } from 'ngx-logger';
 import { LocalStorageService } from './local-storage.service';
+import { Login } from '../interfaces/login';
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +46,17 @@ export class LoginService {
       this.logger.error(mensagem);
       return of(result as T);
     }
+  }
+
+  realizaLoginAutenticado(login: Login){
+    let url = `${environment.API_URL}/acesso/login`;
+    return this.http.post(url, login, {responseType: 'text' as 'json'});
+  }
+
+  test(token){
+    let url = `${environment.API_URL}/cliente/anima-estimacao`;
+    let tokenStr = 'Bearer ' + token;
+    const headers = new HttpHeaders().set("Authorization", tokenStr);
+    return this.http.get(url, {headers, responseType: 'text' as 'json'})
   }
 }

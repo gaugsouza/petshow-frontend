@@ -8,7 +8,7 @@ import { NGXLogger } from 'ngx-logger';
 import { LocalStorageService } from './local-storage.service';
 import { usuariosMock } from '../mocks/usuarioMock';
 import { Login } from '../interfaces/login';
-import { AnimalEstimacao } from '../interfaces/AnimalEstimacao';
+import { AnimalEstimacao } from '../interfaces/animalEstimacao';
 import { TipoAnimal } from '../enum/TipoAnimal';
 
 @Injectable({
@@ -95,16 +95,12 @@ export class UsuarioService {
     );
   }
 
-  buscarTiposAnimalEstimacao = () : Observable<TipoAnimal[]> => {
+  buscarTiposAnimalEstimacao = () : Observable<any> => {
     let url = `${this.USUARIO_SERVICE_URL}/animal-estimacao/tipos`;
     return this.http.get(url, this.httpOptions)
     .pipe(
-      tap(_ => this.logger.info(`Request feito a ${url}`)),
-      this.handleError<TipoAnimal[]>(`Falha em requisição feita a ${url}`),
-      catchError(err => {
-        this.handleError<TipoAnimal[]>('get');
-        return throwError(err);
-      })
-      );
+      tap(_=> this.logger.info(`Request feito a ${url}`)),
+      catchError(this.handleError<TipoAnimal[]>('put'))
+    );
   }
 }
