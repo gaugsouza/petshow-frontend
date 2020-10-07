@@ -54,9 +54,9 @@
     "SOU_AUTONOMO":"I'm a self-employed worker",
     "EXEMPLO_TEXTO":"Text example",
     "ADICIONAR_FOTO":"Add a photo",
-    "ENDEREÇO":"Address",
+    "ENDERECO":"Address",
     "LOGRADOURO":"Street address or P.O. Box",
-    "NUMERO":"Número",
+    "NUMERO":"Number",
     "COMPLEMENTO":"Apt, Suite, Unit, Building (optional)",
     "BAIRRO":"Neighborhood",
     "CEP":"Zip Code",
@@ -67,5 +67,7 @@
     "CARTAO_DEBITO":"Debit Card",
     "CARTAO_ESTABELECIMENTO":"Credit/Debit Card direct with the custumer",
     "DINHEIRO_ESTABELECIMENTO":"Cash direct with the custumer",
-    "CADASTRAR":"Register"
+    "CADASTRAR":"Register",
+    "ADD_PRESTADOR":"Register of Company",
+    "ADD_Cliente":"Register of Client"
 }

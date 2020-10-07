@@ -28,14 +28,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CadastroComponent } from './acesso/cadastro/cadastro.component';
 import { CadastroPrestadorComponent } from './acesso/cadastro/cadastro-prestador/cadastro-prestador.component';
 import { CadastroClienteComponent } from './acesso/cadastro/cadastro-cliente/cadastro-cliente.component';
-<<<<<<< HEAD
-import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
-import { EstrelasComponent } from './avaliacao/estrelas/estrelas.component';
-import { FormularioComponent } from './avaliacao/formulario/formulario.component';
-
-import { ListaServicosDetalhadosComponent } from './lista-servicos-detalhados/lista-servicos-detalhados.component';
-=======
->>>>>>> 0191104da072bae8d4834cf7da09d0ddecd0228e
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -51,13 +43,6 @@ export function HttpLoaderFactory(http:HttpClient) {
     CadastroComponent,
     CadastroPrestadorComponent,
     CadastroClienteComponent,
-<<<<<<< HEAD
-    AvaliacaoComponent,
-    EstrelasComponent,
-    FormularioComponent,
-    ListaServicosDetalhadosComponent,
-=======
->>>>>>> 0191104da072bae8d4834cf7da09d0ddecd0228e
   ],
   imports: [
     BrowserModule,

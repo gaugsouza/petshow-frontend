@@ -42,13 +42,10 @@ export class UsuarioService {
     );
   }
 
-<<<<<<< HEAD
-=======
 
   buscaUsuarioStorage = () => {
     return this.storageService.getItem('usuario');
   }
->>>>>>> 0191104da072bae8d4834cf7da09d0ddecd0228e
 
   atualizaUsuario = (usuario:Usuario) : Observable<Usuario> => {
     console.log(usuario);
@@ -84,7 +81,6 @@ export class UsuarioService {
   }
 
 
-<<<<<<< HEAD
   buscaTokenUsuario(){
     return this.storageService.getItem(USUARIO_TOKEN);
   }
@@ -99,10 +95,3 @@ export class UsuarioService {
       );
   }
 }
-=======
-
-
-
-
-}
->>>>>>> 0191104da072bae8d4834cf7da09d0ddecd0228e

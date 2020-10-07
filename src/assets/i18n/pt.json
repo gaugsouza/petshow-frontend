@@ -54,7 +54,7 @@
     "SOU_AUTONOMO":"Sou Autômono",
     "EXEMPLO_TEXTO":"Exemplo de texto",
     "ADICIONAR_FOTO":"Add a photo",
-    "ENDEREÇO":"Endereço",
+    "ENDERECO":"Endereço",
     "LOGRADOURO":"Logradouro",
     "NUMERO":"Número",
     "COMPLEMENTO":"Complemento (opcional)",
@@ -66,5 +66,7 @@
     "CARTAO_DEBITO":"Cartão de Débito",
     "CARTAO_ESTABELECIMENTO":"Cartão de Crédito/Débito diretamente com o cliente",
     "DINHEIRO_ESTABELECIMENTO":"Dinheiro diretamente com o cliente",
-    "CADASTRAR":"Cadastrar"
+    "CADASTRAR":"Cadastrar",
+    "ADD_PRESTADOR":"Cadastro de Prestador",
+    "ADD_Cliente":"Cadastro de Cliente"
 }

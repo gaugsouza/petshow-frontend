@@ -5,8 +5,8 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputNome">{{'NOME_COMPLETO' | translate}}</label>
-      <input type="text" class="form-control" id="inputNome" placeholder="Nome Completo" required [(ngModel)]="prestador.nome" name="nome">
-      <div *ngIf="!nome.pristine && nome.errors">   <!-- Gera mensagem de erro -->
+      <input type="text" class="form-control" id="inputNome" placeholder="João" required [(ngModel)]="prestador.nome" name="nome">
+      <!-- <div *ngIf="!nome.pristine && nome.errors">  
         <p *ngIf="nome.errors.required">
           {{'NOME_OBRIGATORIO' | translate}}
         </p>
@@ -16,12 +16,12 @@
         <p *ngIf="nome.errors.maxlength">
           {{'NOME_MAX_CARACT' | translate}}
         </p>
-      </div>
+      </div> -->
     </div>
-    <div class="form-group col-md-6">
+    <!-- <div class="form-group col-md-6">
       <label for="inputNomeSocial">{{'NOME_SOCIAL' | translate}} </label>
       <input type="text" class="form-control" id="inputNomeSocial" placeholder="Nome Social" required [(ngModel)]="prestador.nomeSocial" name="nomeSocial">
-    </div>
+    </div> -->
     <div class="form-group col-md-6">
       <label for="inputTelefone">{{'TELEFONE' | translate}}</label>
       <input type="text" class="form-control" id="inputTelefone" placeholder="(11) 99999-9999" required [(ngModel)]="prestador.telefone" name="telefone">
@@ -29,10 +29,9 @@
     <div class="form-group col-md-6">
       <label for="inputEmail">E-mail</label>
       <input type="text" class="form-control" id="inputEmail" placeholder="petshow@gmail.com" required [(ngModel)]="prestador.login.email" name="email">
-      <div *ngIf="!email.pristine && email.errors">   <!-- Gera mensagem de erro -->
-        <p *ngIf="email.errors.email">
-          {{'EMAIL_INVALIDO' | translate}}
-        </p>
+      <div *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        {{'EMAIL_INVALIDO' | translate}}
+
       </div>
     </div>
   </div>
@@ -82,7 +81,7 @@
 
   <div class="form-row">
     <div class="form-group col-md-12">
-      <h1>{{'ENDEREÇO' | translate}}</h1>
+      <h1>{{'ENDERECO' | translate}}</h1>
     </div>
   </div>
   <div class="form-row">
@@ -149,13 +148,9 @@
         </label>
       </div>
   </div>
-  <button  [disabled]="!formularioDeUsuario.valid" type="submit" class="btn btn-primary">{{'CADASTRAR' | translate}}</button>
- 
-  <br>
-  <br>
-  <!-- utilizado para testar oq está acontecendo no código: -->
-  <div>{{ formularioDeUsuario.value | json}}</div>
-  <div>{{ formularioDeUsuario.valid | json }}</div>
+  <div class="form__button-container">
+    <button mat-flat-button color="primary" (click)="cadastrarPrestador(prestador)" >{{'CADASTRAR' | translate}}</button>
+  </div>
 </form>
 
 

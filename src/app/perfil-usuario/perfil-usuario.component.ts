@@ -52,14 +52,14 @@ export class PerfilUsuarioComponent implements OnInit {
     });    
   }
 
-  // adicionaAnimal({...animalEstimacao}:AnimalEstimacao) : void {
-  //   animalEstimacao.dono = this.usuario;
-  //   this.usuarioService.adicionarAnimalEstimacao(animalEstimacao).subscribe(() => {
-  //     this.limpaAnimal();
-  //     this.getUsuario();
-  //     this.isFormVisivel = false;
-  //   });    
-  // }
+  adicionaAnimal({...animalEstimacao}:AnimalEstimacao) : void {
+    animalEstimacao.dono = this.usuario;
+    this.usuarioService.adicionarAnimalEstimacao(animalEstimacao).subscribe(() => {
+      this.limpaAnimal();
+      this.getUsuario();
+      this.isFormVisivel = false;
+    });    
+  }
 
   removeAnimal(animalEstimacao : AnimalEstimacao | number):void {
     this.usuarioRequest = {...this.usuario};
