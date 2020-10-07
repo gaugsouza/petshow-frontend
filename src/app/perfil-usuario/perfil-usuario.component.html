@@ -1,6 +1,12 @@
 <div *ngIf="usuario">
     <h1 class="mat-display-2 client-name">{{usuario.nome}}</h1>
     <hr>
+    <div class="informacoes-usuario">
+        <app-informacoes-pessoais (altera-telefone)="alteraTelefone($event)"
+        [usuario]='usuario'></app-informacoes-pessoais>
+        <app-endereco (atualiza-endereco)="atualizaEndereco($event)" [endereco]='usuario.endereco'></app-endereco>
+    </div>
+
     <app-animal-estimacao [animais-estimacao]="usuario.animaisEstimacao"
                           (seleciona-animal)="selecionaAnimal($event)"
                           (remover-animal)="removeAnimal($event)"></app-animal-estimacao>

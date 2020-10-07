@@ -1,1 +1,8 @@
-<p>home works!</p>
+<div class=selecao_servico>
+    <h1>
+        {{'SELECIONE_SERVICO'| translate}}
+    </h1>
+    <div class=selecao_servico__button-container>
+                        <a mat-flat-button *ngFor="let servico of servicos" href="/servico-detalhado/tipo-servico/{{servico.id}}">{{servico.nome|translate}}</a>
+        </div>
+</div>

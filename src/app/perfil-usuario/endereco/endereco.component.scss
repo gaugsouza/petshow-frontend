@@ -1,0 +1,16 @@
+@import '../../../global.scss';
+
+.endereco-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    & > div{
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media screen and (max-width: $tablet-width) {
+        grid-template-columns: 1fr ;
+    }
+}

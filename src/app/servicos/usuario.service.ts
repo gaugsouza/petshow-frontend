@@ -9,6 +9,7 @@ import { LocalStorageService } from './local-storage.service';
 import { usuariosMock } from '../mocks/usuarioMock';
 import { Login } from '../interfaces/login';
 import { AnimalEstimacao } from '../interfaces/AnimalEstimacao';
+import { USUARIO_TOKEN } from '../util/constantes';
 
 @Injectable({
   providedIn: 'root'
@@ -43,8 +44,8 @@ export class UsuarioService {
   }
 
   atualizaUsuario = (usuario:Usuario) : Observable<Usuario> => {
-    console.log(usuario);
-    return this.http.put<Usuario>(this.USUARIO_SERVICE_URL, usuario, this.httpOptions)
+    let url = `${this.USUARIO_SERVICE_URL}/${usuario.id}`
+    return this.http.put<Usuario>(url, usuario, this.httpOptions)
     .pipe(
       tap(_ => this.logger.info(`Request feito a ${this.USUARIO_SERVICE_URL}`)),
       catchError(err => {
@@ -53,6 +54,7 @@ export class UsuarioService {
       })
     );
   } 
+
 
   buscaPorLogin = (login: Login) : Observable<any> => {
     let url = `${this.USUARIO_SERVICE_URL}/login`;
@@ -64,7 +66,7 @@ export class UsuarioService {
   }
 
   buscaTokenUsuario(){
-    return this.storageService.getItem('token');
+    return this.storageService.getItem(USUARIO_TOKEN);
   }
 
   adicionarAnimalEstimacao = (animalEstimacao:AnimalEstimacao) : Observable<any> => {
