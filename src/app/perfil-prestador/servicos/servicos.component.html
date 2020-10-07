@@ -1,1 +1,22 @@
-<p>servicos works!</p>
+<section>
+    <h3 class="page-section-title">{{'SERVICOS' | translate}}</h3>
+    <div class="conteiner-animal-list" *ngIf="servicosDetalhados && servicosDetalhados.length; then servicosBlock else vazioBlock"></div>
+    
+    <ng-template #vazioBlock>
+        <p>{{'NENHUM_SERVICO_CADASTRADO_P' | translate}}</p>
+    </ng-template>
+
+    <ng-template #servicosBlock>
+        <mat-list class="servico-list">
+            <mat-list-item *ngFor="let servico of servicosDetalhados">
+                <div class="servico-list__item">
+                    <span>{{servico.tipo.nome | translate}}</span> 
+                    <span>{{servico.preco | currency: 'BRL'}}</span>
+                    <div class="servico-list__button-container">
+                        <button mat-flat-button color="warn" (click)="removeServico(servico)">{{'REMOVER' | translate}}</button>
+                    </div>
+                </div>
+                </mat-list-item>
+        </mat-list>
+    </ng-template>
+</section>

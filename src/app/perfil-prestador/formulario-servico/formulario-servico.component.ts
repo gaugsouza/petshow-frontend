@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
+import { BANHO } from 'src/app/util/tipo-servico';
+import { MyErrorStateMatcher } from 'src/app/classes/my-error-state-matcher';
+import { ServicosService } from 'src/app/servicos/servicos.service';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-formulario-servico',
@@ -6,10 +11,52 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./formulario-servico.component.scss']
 })
 export class FormularioServicoComponent implements OnInit {
+  @Input() servico: ServicoDetalhado = {
+    preco: 0.0,
+    tipo: BANHO
+  };
 
-  constructor() { }
+  @Output('adiciona-servico') adicionaServico = new EventEmitter<ServicoDetalhado>();
+  @Output('cancelar-operacao') cancelaOperacao = new EventEmitter<any>();
+
+  @Input() exibeFormulario:Boolean;
+
+  matcher = new MyErrorStateMatcher();
+
+  precoFormControl = new FormControl('', [
+    Validators.required
+  ])
+
+  descricaoFormControl = new FormControl('', [
+    Validators.required
+  ])
+
+  
+  hasErrors() {
+    return this.precoFormControl.hasError('required') || this.descricaoFormControl.hasError('minLength');
+  }
+ 
+  getTipoServico() {
+    return (this.servico.tipo || BANHO).id
+  }
+
+  insereServico() {
+    this.adicionaServico.emit(this.servico);
+  }
+
+  cancelarOperacao() {
+    this.cancelaOperacao.emit();
+  }
+
+  getTiposServico() {
+    return this.servicoService.getTipos();
+  }
+  
+  constructor(private servicoService:ServicosService) { }
 
   ngOnInit(): void {
   }
 
+ 
+ 
 }

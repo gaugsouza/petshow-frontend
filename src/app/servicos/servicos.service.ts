@@ -7,7 +7,8 @@ import { environment } from 'src/environments/environment';
 import { Prestador } from '../interfaces/prestador';
 import { ServicoDetalhado } from '../interfaces/servico-detalhado';
 import { LocalStorageService } from './local-storage.service';
-
+import { SERVICOS } from '../util/tipo-servico';
+import {Servico} from '../interfaces/servico';
 @Injectable({
   providedIn: 'root'
 })
@@ -27,7 +28,6 @@ export class ServicosService {
   buscarServicosDetalhadosPorTipo = (id:number): Observable<ServicoDetalhado[]>=>{
     console.log(id);
     const url = `${this.SERVICOS_SERVICE_URL}/tipo-servico/${id}`; //essa url tem que ser igual ao back
-    console.log(url)
     return this.http.get<ServicoDetalhado[]>(url)
     .pipe(
       tap(_ => this.logger.info(`Request feito a ${url}`)),
@@ -44,6 +44,8 @@ export class ServicosService {
       return of(result as T);
     }
   }
+
+  getTipos = (): Servico[] => SERVICOS
   // buscaTipoStorage = () => {
   //   return this.storageService.getItem('tipo');
   // }

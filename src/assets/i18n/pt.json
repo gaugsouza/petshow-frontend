@@ -58,5 +58,13 @@
     "ALTERAR_ENDERECO": "Alterar endereço",
     "NENHUM_ENDERECO_REGISTRADO": "Nenhum endereço registrado",
     "CRIAR_ENDERECO": "Inserir endereço",
-    "MUDAR": "Alterar"
+    "MUDAR": "Alterar",
+    "SERVICOS": "Serviços",
+    "NENHUM_SERVICO_CADASTRADO_P": "Nenhum serviço registrado",
+    "ADD_SERVICO": "Adicionar serviço",
+    "ADD_SERVICO_FORM": "Adicionar serviço",
+    "TIPO_SERVICO": "Tipo",
+    "VALOR_SERVICO": "Preço",
+    "DESC_SERVICO": "Descrição",
+    "PLACEHOLDER_DESC_SERVICO": "Fale um pouco sobre o serviço prestado"
 }

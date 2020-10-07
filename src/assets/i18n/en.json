@@ -58,5 +58,13 @@
     "ALTERAR_ENDERECO": "Change address",
     "NENHUM_ENDERECO_REGISTRADO": "No registered address",
     "CRIAR_ENDERECO": "Create address",
-    "MUDAR": "Change"
+    "MUDAR": "Change",
+    "SERVICOS": "Services",
+    "NENHUM_SERVICO_CADASTRADO_P": "0 registered services",
+    "ADD_SERVICO": "Add service",
+    "ADD_SERVICO_FORM": "Add service",
+    "TIPO_SERVICO": "Type",
+    "VALOR_SERVICO": "Price",
+    "DESC_SERVICO": "Description",
+    "PLACEHOLDER_DESC_SERVICO": "Tell about the service"
 }
