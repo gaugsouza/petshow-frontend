@@ -7,6 +7,7 @@ import { LocalStorageService } from './local-storage.service';
 import { usuariosMock } from '../mocks/usuarioMock';
 import { Cliente } from '../interfaces/cliente';
 import { TipoPessoa } from '../enum/tipo-pessoa.enum';
+import { USUARIO_TOKEN } from '../util/constantes';
 
 describe('UsuarioService', () => {
   let service: UsuarioService;
@@ -34,20 +35,20 @@ describe('UsuarioService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('Deve retornar o usuario em localStorage', () => {
-    let usuarioMock = {a: 'aaaa', b: 'bbbb'};
-    storageService.setItem('usuario', usuarioMock);
+  it('Deve retornar o token em localStorage', () => {
+    let usuarioMock = {id: 1, a: 'aaaa', b: 'bbbb'};
+    storageService.setItem(USUARIO_TOKEN, usuarioMock.id);
 
-    service.buscaUsuarioStorage()
-    .subscribe(usuario => {
-      expect(usuario).toEqual(usuarioMock);
+    service.buscaTokenUsuario()
+    .subscribe(token => {
+      expect(token).toEqual(usuarioMock.id);
     });
   });
 
-  it('Deve retornar um usuario nulo', () => {
-    service.buscaUsuarioStorage()
-    .subscribe(usuario => {
-      expect(usuario).toBeFalsy()
+  it('Deve retornar um token nulo', () => {
+    service.buscaTokenUsuario()
+    .subscribe(token => {
+      expect(token).toBeFalsy()
     })
   });
 

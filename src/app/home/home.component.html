@@ -1,1 +1,14 @@
-<p>home works!</p>
+<div class=selecao_servico>
+    <h1>
+        {{'SELECIONE_SERVICO'| translate}}
+    </h1>
+    <div class=selecao_servico__button-container>
+ 
+        <!-- <button mat-flat-button color="primary" value=1 (click)="buscarServicosDetalhadosPorTipo(this.value)">{{'BATH' | translate}}</button>
+
+        <button mat-flat-button color="primary" >{{'WALKING' | translate}}</button>
+
+       <button mat-flat-button color="primary" >PET SITTING</button> -->
+        <a mat-raised-button color="primary" *ngFor="let servico of servicos" href="/servico-detalhado/tipo-servico/{{servico.id}}" target="_blank" >{{servico.nome|translate}}</a>
+    </div>
+</div>

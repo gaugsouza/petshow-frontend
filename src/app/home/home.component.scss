@@ -1,0 +1,14 @@
+.selecao_servico{
+    padding: 10% 20%;
+    height:60vh;
+
+    &__button-container{
+        padding:10 0;
+        display: flex;
+        justify-content: space-around; 
+    }
+    ::ng-deep .mat-raised-button {
+        font-size:25px
+    }
+}
+

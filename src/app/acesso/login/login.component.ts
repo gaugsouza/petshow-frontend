@@ -9,6 +9,7 @@ import { LoginService } from 'src/app/servicos/login.service';
 import { Router } from '@angular/router';
 import {MyErrorStateMatcher} from '../../classes/my-error-state-matcher';
 import { AppComponent } from 'src/app/app.component';
+import { USUARIO_TOKEN } from 'src/app/util/constantes';
 
 @Component({
   selector: 'app-login',
@@ -37,9 +38,9 @@ export class LoginComponent implements OnInit {
               private appComponent: AppComponent) { }
 
   ngOnInit(): void {
-    this.localStorageService.getItem('usuario')
-    .subscribe(usuario => {
-      if(usuario) {
+    this.localStorageService.getItem(USUARIO_TOKEN)
+    .subscribe(token => {
+      if(token) {
         this.router.navigate(['/perfil'])
       }
     });
@@ -53,7 +54,7 @@ export class LoginComponent implements OnInit {
     .subscribe(
       (res:Cliente) => {
         if(res) {
-          this.localStorageService.setItem('usuario', {...res, cliente:true}).subscribe(() => {
+          this.localStorageService.setItem(USUARIO_TOKEN, res.id).subscribe(() => {
             this.appComponent.isLogged = true;
             this.router.navigate(['/perfil']);
           });

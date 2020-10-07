@@ -4,6 +4,16 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
 import { Router } from '@angular/router';
+import { MatListModule } from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { LoggerTestingModule } from 'ngx-logger/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -14,6 +24,19 @@ describe('HomeComponent', () => {
       declarations: [ HomeComponent ],
       providers: [
         {provide: Router, useValue: {navigate: () => true}}
+      ],
+      imports: [
+        MatListModule,
+        MatInputModule,
+        MatSelectModule,
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        LoggerTestingModule,
+        FormsModule,
+        RouterTestingModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        TranslateModule.forRoot()
       ]
     })
     .compileComponents();
