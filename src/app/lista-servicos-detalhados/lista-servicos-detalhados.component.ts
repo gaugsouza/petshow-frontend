@@ -14,7 +14,7 @@ export class ListaServicosDetalhadosComponent implements OnInit {
    servicosDetalhados:ServicoDetalhado[]
 
   constructor(private servicosService:ServicosService,
-              private router:Router, 
+              //private router:Router, 
               private route: ActivatedRoute) {}
 
   ngOnInit(): void {
