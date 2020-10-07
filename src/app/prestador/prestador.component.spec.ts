@@ -1,14 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PerfilPrestadorComponent } from './perfil-prestador.component';
-import { ServicosComponent } from './servicos/servicos.component';
-import { FormularioServicoComponent } from './formulario-servico/formulario-servico.component';
-import { InformacoesPessoaisComponent } from '../perfil-usuario/informacoes-pessoais/informacoes-pessoais.component';
-import { EnderecoComponent } from '../perfil-usuario/endereco/endereco.component';
-import { DialogEnderecoComponent } from '../perfil-usuario/endereco/dialog-endereco/dialog-endereco.component';
+import { PrestadorComponent } from './prestador.component';
 import { PrestadorService } from '../servicos/prestador.service';
 import { LocalStorageService } from '../servicos/local-storage.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -17,31 +13,30 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
-import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
-import { NgxMaskModule } from 'ngx-mask';
 
-describe('PerfilPrestadorComponent', () => {
-  let component: PerfilPrestadorComponent;
-  let fixture: ComponentFixture<PerfilPrestadorComponent>;
+describe('PrestadorComponent', () => {
+  let component: PrestadorComponent;
+  let fixture: ComponentFixture<PrestadorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
-        PerfilPrestadorComponent,
-        ServicosComponent,
-        FormularioServicoComponent,
-        InformacoesPessoaisComponent,
-        EnderecoComponent,
-        DialogEnderecoComponent
-       ],
-       providers: [
-         PrestadorService,
-         LocalStorageService,
-         {provide: Router, useValue: {navigate: () => true}}
-       ],
-       imports: [
+      declarations: [ PrestadorComponent ],
+      providers: [
+        PrestadorService,
+        LocalStorageService,
+        {provide: Router, useValue: {navigate:() => true}},
+        {provide: ActivatedRoute, useValue: {
+          queryParams: of({
+            servicoAvaliado: 1,
+            prestador: 1,
+            idPrestador: 1
+          })
+        }}
+      ],
+      imports: [
         MatListModule,
         MatInputModule,
         MatSelectModule,
@@ -51,18 +46,16 @@ describe('PerfilPrestadorComponent', () => {
         FormsModule,
         RouterTestingModule,
         ReactiveFormsModule,
+        MatIconModule,
         TranslateModule.forRoot(),
-        MatDialogModule,
-        MatCardModule,
-        NgxMaskModule.forRoot()
+        MatCardModule
       ]
-      
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PerfilPrestadorComponent);
+    fixture = TestBed.createComponent(PrestadorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

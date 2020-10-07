@@ -14,35 +14,6 @@ import { catchError, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class PrestadorService {
-  // prestadores:Prestador[] = ([...usuariosMock.filter(usuario => usuario.tipo === TipoPessoa.PRESTADOR_AUTONOMO)] as Prestador[]);
-
-  // constructor(){}
-  
-  // buscaPrestador = (id:number):Observable<Prestador> => {
-  //   let prestador = this.prestadores.find(el => el.id === id);
-  //   return of(prestador);
-  // }
-
-  // adicionarServico = (id:number, servico:ServicoDetalhado): Observable<Prestador> => {
-  //   let prestador = this.prestadores.find(el => el.id === id);
-  //   prestador.servicosDetalhados.push(servico);
-  //   this.prestadores = this.prestadores.map(el => el.id === prestador.id ? prestador : el);
-  //   return of(prestador);
-  // }
-  
-  // editaPrestador = (id:number, prestador:Prestador) :Observable<Prestador> => {
-  //   let prestadorDb = this.prestadores.find(el => el.id === id);
-  //   prestador.login = prestadorDb.login;
-  //   this.prestadores = this.prestadores.map(el => el.id === prestador.id ? prestador : el);
-  //   return this.buscaPrestador(id);
-  // }
-
-  // removeServico = (id:number, idServico:number): Observable<any> => {
-  //   let prestador = this.prestadores.find(el => el.id === id);
-  //   prestador.servicosDetalhados = prestador.servicosDetalhados.filter(el => el.id !== idServico);
-  //   this.prestadores = this.prestadores.map(el => el.id === prestador.id ? prestador : el);
-  //   return this.buscaPrestador(id);
-  // }
   public PRESTADOR_SERVICE_URL = `${environment.API_URL}/prestador`;
 
   httpOptions = {

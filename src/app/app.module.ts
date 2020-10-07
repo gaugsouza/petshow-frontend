@@ -41,6 +41,7 @@ import { PerfilPrestadorComponent } from './perfil-prestador/perfil-prestador.co
 import { PerfilComponent } from './perfil/perfil.component';
 import { ServicosComponent } from './perfil-prestador/servicos/servicos.component';
 import { FormularioServicoComponent } from './perfil-prestador/formulario-servico/formulario-servico.component';
+import { PrestadorComponent } from './prestador/prestador.component';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -64,6 +65,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     InformacoesPessoaisComponent,
     EnderecoComponent,
     DialogEnderecoComponent,
+    PrestadorComponent,
   ],
   imports: [
     BrowserModule,

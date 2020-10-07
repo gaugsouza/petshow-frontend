@@ -51,9 +51,11 @@
     <button mat-flat-button
             color="primary"
             (click)='abreFormulario()'
-            *ngIf='!isFormVisible && isLogado' class="botao-formulario">{{'ADD_COMENTARIO' | translate}}</button>
+            *ngIf='!isFormVisible && isLogado && isCliente' class="botao-formulario">{{'ADD_COMENTARIO' | translate}}</button>
     
-    <a href='/login' mat-flat-button color="warn" *ngIf='!isLogado' class="botao-formulario">{{'AVISO_LOGADO_COMENTARIO' | translate}}</a> 
+    <a href='/login' mat-flat-button color="warn" *ngIf='!isLogado && isCliente' class="botao-formulario">{{'AVISO_LOGADO_COMENTARIO' | translate}}</a> 
+
+
     
     <app-formulario [avaliacao]='avaliacaoBase' *ngIf='isFormVisible' 
                     (adiciona-avaliacao)="adicionaAvaliacao($event)"

@@ -40,18 +40,18 @@ export class PerfilUsuarioComponent implements OnInit {
   }
 
   getUsuario() : void {
-    this.usuario = monica;
-    // this.localStorageService.getItem(USUARIO_TOKEN).subscribe((token: number) => {
-    //   this.usuarioService.getUsuario(token)
-    //   .subscribe((usuario:Cliente) => {
-    //     if(!usuario) {
-    //       this.router.navigate(['/login']);
-    //       return;
-    //     }
-    //     this.usuario = usuario
-    //     console.log(this.usuario.tipo)
-    //   });
-    // });    
+    // this.usuario = monica;
+    this.localStorageService.getItem(USUARIO_TOKEN).subscribe((token: number) => {
+      this.usuarioService.getUsuario(token)
+      .subscribe((usuario:Cliente) => {
+        if(!usuario) {
+          this.router.navigate(['/login']);
+          return;
+        }
+        this.usuario = usuario
+        console.log(this.usuario.tipo)
+      });
+    });    
   }
 
   adicionaAnimal({...animalEstimacao}:AnimalEstimacao) : void {

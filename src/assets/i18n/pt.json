@@ -66,5 +66,8 @@
     "TIPO_SERVICO": "Tipo",
     "VALOR_SERVICO": "Preço",
     "DESC_SERVICO": "Descrição",
-    "PLACEHOLDER_DESC_SERVICO": "Fale um pouco sobre o serviço prestado"
+    "PLACEHOLDER_DESC_SERVICO": "Fale um pouco sobre o serviço prestado",
+    "SERVICOS_PRESTADOS":"Serviços Prestados",
+    "PRESTADOR_NAO_ENCONTRADO":"Não foi encontrado o prestador informado",
+    "VER_AVALIACOES": "Ver avaliações"
 }
