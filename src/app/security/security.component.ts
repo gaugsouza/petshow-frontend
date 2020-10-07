@@ -9,10 +9,10 @@ import { Login } from '../interfaces/login';
 })
 export class SecurityComponent implements OnInit {
 
-  login: Login = {
+  login: any = {
     email: "dandan@laksjdg.com",
     senha: "092orijasf"
-}
+  }
   
   constructor(private loginService: LoginService) { }
 
@@ -20,8 +20,8 @@ export class SecurityComponent implements OnInit {
     this.getAccessToken(this.login)
   }
 
-  getAccessToken(request: Login){
-    let response = this.loginService.realizaLoginAutenticado(this.login);
-    response.subscribe(data=>console.log(data));
+  getAccessToken(request){
+    this.loginService.realizaLoginAutenticado(request).subscribe(
+      data => console.log(data));
   }
 }

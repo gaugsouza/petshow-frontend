@@ -54,7 +54,7 @@ export class LoginService {
   }
 
   test(token){
-    let url = `${environment.API_URL}/cliente/anima-estimacao`;
+    let url = `${environment.API_URL}/acesso/`;
     let tokenStr = 'Bearer ' + token;
     const headers = new HttpHeaders().set("Authorization", tokenStr);
     return this.http.get(url, {headers, responseType: 'text' as 'json'})
