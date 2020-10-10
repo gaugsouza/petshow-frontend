@@ -8,6 +8,7 @@ import { LocalStorageService } from '../servicos/local-storage.service';
 import { Cliente } from '../interfaces/cliente';
 import { USUARIO_TOKEN } from '../util/constantes';
 import { UsuarioService } from '../servicos/usuario.service';
+import { TipoPessoa } from '../enum/tipo-pessoa.enum';
 
 @Component({
   selector: 'app-avaliacao',
@@ -21,6 +22,7 @@ export class AvaliacaoComponent implements OnInit {
   idPrestador:number;
   idServico:number;
   isNotFound:boolean = false;
+  isCliente:boolean = false;
   avaliacaoBase:Avaliacao = {
     atencao:0,
     qualidadeProdutos:0,
@@ -54,8 +56,12 @@ export class AvaliacaoComponent implements OnInit {
       });
     });
 
-    this.localStorageService.getItem(USUARIO_TOKEN).subscribe(usuario => {
-      this.isLogado = !!(usuario);
+    this.localStorageService.getItem(USUARIO_TOKEN).subscribe((token:number) => {
+      this.usuarioService.getUsuario(token).subscribe(usuario => {
+        this.isLogado = !!(usuario);
+        this.isCliente = usuario.tipo === TipoPessoa.CLIENTE || usuario.tipo == 1;
+        console.log(this.isCliente, usuario.tipo, usuario.tipo == 1);
+      })
     })
   }
 

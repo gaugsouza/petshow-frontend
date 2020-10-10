@@ -1,0 +1,35 @@
+<div mat-dialog-content class="dialog">
+    <p>{{'ALTERA_ENDERECO' | translate}}</p>
+    <mat-form-field>
+        <mat-label>{{'LOGRADOURO' | translate}}</mat-label>
+        <input matInput [formControl]="logradouroFormControl" [(ngModel)]="data.logradouro" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>{{'NUMERO' | translate}}</mat-label>
+        <input type="number" [formControl]="numeroFormControl" matInput [(ngModel)]="data.numero" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>{{'COMPLEMENTO' | translate}}</mat-label>
+        <input matInput [(ngModel)]="data.complemento" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>CEP</mat-label>
+        <input [formControl]="cepFormControl" matInput [(ngModel)]="data.cep" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>{{'BAIRRO' | translate}}</mat-label>
+        <input [formControl]="bairroFormControl" matInput [(ngModel)]="data.bairro" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>{{'CIDADE' | translate}}</mat-label>
+        <input [formControl]="cidadeFormControl" matInput [(ngModel)]="data.cidade" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>{{'ESTADO' | translate}}</mat-label>
+        <input [formControl]="estadoFormControl" matInput [(ngModel)]="data.estado" />
+    </mat-form-field>
+    <div class="dialog__button-container">
+        <button mat-flat-button color="warn" (click)="onNoClick()">{{'CANCELAR' | translate}}</button>
+        <button mat-flat-button [mat-dialog-close]="data" [disabled]="hasErrors()" cdkFocusInitial color="primary">{{'ALTERAR' | translate}}</button>
+    </div>
+</div>

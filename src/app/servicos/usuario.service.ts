@@ -43,13 +43,9 @@ export class UsuarioService {
   }
 
 
-  buscaUsuarioStorage = () => {
-    return this.storageService.getItem('usuario');
-  }
-
   atualizaUsuario = (usuario:Usuario) : Observable<Usuario> => {
-    console.log(usuario);
-    return this.http.put<Usuario>(this.USUARIO_SERVICE_URL, usuario, this.httpOptions)
+    let url = `${this.USUARIO_SERVICE_URL}/${usuario.id}`
+    return this.http.put<Usuario>(url, usuario, this.httpOptions)
     .pipe(
       tap(_ => this.logger.info(`Request feito a ${this.USUARIO_SERVICE_URL}`)),
       catchError(err => {
@@ -68,18 +64,6 @@ export class UsuarioService {
       catchError(this.handleError<Usuario>('login'))
     );
   }
-
-
-
-  cadastrarUsuario = (usuario:Usuario) : Observable<any> => {
-    let url = `${this.USUARIO_SERVICE_URL}/cadastro`;
-    return this.http.post(url, usuario, this.httpOptions)
-    .pipe(
-      tap(_ => this.logger.info(`Request feito a ${url}`)),
-      catchError(this.handleError<Usuario>('usuario'))
-    );
-  }
-
 
   buscaTokenUsuario(){
     return this.storageService.getItem(USUARIO_TOKEN);

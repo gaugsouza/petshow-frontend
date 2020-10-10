@@ -7,12 +7,13 @@ import { environment } from 'src/environments/environment';
 import { Prestador } from '../interfaces/prestador';
 import { ServicoDetalhado } from '../interfaces/servico-detalhado';
 import { LocalStorageService } from './local-storage.service';
-
+import { SERVICOS } from '../util/tipo-servico';
+import {Servico} from '../interfaces/servico';
 @Injectable({
   providedIn: 'root'
 })
 export class ServicosService {
-  public SERVICOS_SERVICE_URL = `${environment.API_URL}servico-detalhado`;
+  public SERVICOS_SERVICE_URL = `${environment.API_URL}/servico-detalhado`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-type' : 'application/json'})
@@ -23,13 +24,14 @@ export class ServicosService {
     private logger:NGXLogger,
     private storageService:LocalStorageService) { }
 
-//   Preciso retornar todos os meus prestadores dado um serviço
-  buscarServicosDetalhadosPorTipo = (id:number): Observable<ServicoDetalhado>=>{
+//   Preciso retornar todos os meus serviçosDetalhados dado um serviço
+  buscarServicosDetalhadosPorTipo = (id:number): Observable<ServicoDetalhado[]>=>{
+    console.log(id);
     const url = `${this.SERVICOS_SERVICE_URL}/tipo-servico/${id}`; //essa url tem que ser igual ao back
-    return this.http.get<ServicoDetalhado>(url)
+    return this.http.get<ServicoDetalhado[]>(url)
     .pipe(
       tap(_ => this.logger.info(`Request feito a ${url}`)),
-      catchError(this.handleError<ServicoDetalhado>(`Falha em requisição feita a ${url}`))
+      catchError(this.handleError<ServicoDetalhado[]>(`Falha em requisição feita a ${url}`))
     );
   }
 
@@ -42,9 +44,17 @@ export class ServicosService {
       return of(result as T);
     }
   }
+<<<<<<< HEAD
   buscaTipoStorage = () => {
     return this.storageService.getItem('tipo');
   }
+=======
+
+  getTipos = (): Servico[] => SERVICOS
+  // buscaTipoStorage = () => {
+  //   return this.storageService.getItem('tipo');
+  // }
+>>>>>>> c86dba3a2a6cbd8b51628f778c41dc0a3f3399cd
   // getServicos = (): Observable<Servicos> => { //Observable - objeto assincrono, faz a requisição e fica esperando
   //                                                   //resposta. Em cima dessa resposta ele faz a operação. 
   //   const url = `${this.SERVICOS_SERVICE_URL}`; //la no back-end

@@ -7,6 +7,6 @@ export interface ServicoDetalhado {
     preco?:number,
     tipo?:Servico,
     prestador?:Prestador,
-    descricao: string,
     avaliacoes?:Avaliacao[]
+    descricao?: string,
 }

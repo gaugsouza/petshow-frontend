@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { LocalStorageService } from '../servicos/local-storage.service';
 import { USUARIO_TOKEN } from '../util/constantes';
 import { monica } from '../mocks/usuarioMock';
+import { Endereco } from '../interfaces/endereco';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-perfil-usuario',
@@ -48,6 +50,7 @@ export class PerfilUsuarioComponent implements OnInit {
           return;
         }
         this.usuario = usuario
+        console.log(this.usuario.tipo)
       });
     });    
   }
@@ -112,5 +115,17 @@ export class PerfilUsuarioComponent implements OnInit {
   cancelar() {
     this.isFormVisivel = false;
     this.limpaAnimal();
+  }
+
+  atualizaEndereco(endereco:Endereco):void {
+    this.usuarioRequest = {...this.usuario};
+    this.usuarioRequest.endereco = endereco;
+    this.atualizaUsuario();
+  }
+
+  alteraTelefone(telefone:string):void {
+    this.usuarioRequest = {...this.usuario};
+    this.usuarioRequest.telefone = telefone;
+    this.atualizaUsuario();
   }
 }

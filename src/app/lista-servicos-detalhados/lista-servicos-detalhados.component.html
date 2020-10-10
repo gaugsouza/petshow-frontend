@@ -1,5 +1,5 @@
 <section>
-    <h2 class="page-section-title">{{'SERVICOS_DISPONIVEIS' | translate}}</h2>
+    <h1 class="page-section-title">{{'SERVICOS_DISPONIVEIS' | translate}}</h1>
     <div class="conteiner-lista-servicos-detalhados" *ngIf="servicosDetalhados; then servicosDetalhadosBlock else vazioBlock"></div>
     
     <ng-template #vazioBlock>
@@ -10,11 +10,12 @@
         <mat-list class="lista-servicos-detalhados">
             <mat-list-item *ngFor="let servicoDetalhado of servicosDetalhados">
                 <div class="lista-servicos-detalhados__item">
-                    <span>{{servicoDetalhado.tipo}}</span> 
-                    <span>{{servicoDetalhado.preco}}</span>
-                    <span>{{servicoDetalhado.prestador}}</span>  
+                    <span>{{servicoDetalhado.tipo.nome}}</span> 
+                    <span>{{servicoDetalhado.preco | currency: 'BRL'}}</span>
+                    <span>{{servicoDetalhado.prestador.nome}}</span>  
                     <div class="lista-servicos-detalhados__button-container">
                         <button mat-flat-button color="accent" >{{'AGENDAR' | translate}}</button>
+                        <a mat-button color="primary" href="/avaliacao?servicoAvaliado={{servicoDetalhado.id}}&prestador={{servicoDetalhado.prestador.id}}">{{'AVALIACOES' | translate}}</a>
                     </div>
                 </div>
             </mat-list-item>

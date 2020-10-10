@@ -1,0 +1,21 @@
+<div *ngIf="!carregado"><p>{{'CARREGANDO' | translate}}</p></div>
+
+<div *ngIf="carregado && !prestador">
+    <p>{{'PRESTADOR_NAO_ENCONTRADO' | translate}}</p>
+</div>
+
+<div *ngIf="carregado && prestador">
+    <h1 class="topo">{{prestador.nome}} - {{getMediaUsuario() | number: '1.2'}}<mat-icon>star</mat-icon></h1>
+
+    <hr>
+    <h3>{{'SERVICOS_PRESTADOS' | translate}}</h3>
+    <div class="servico-lista">
+        <mat-card *ngFor="let servico of prestador.servicos" class="servico">
+            <mat-card-title>{{servico.tipo.nome}}</mat-card-title>
+            <mat-card-subtitle>{{servico.preco | currency: 'BRL'}}</mat-card-subtitle>
+            <mat-card-content>
+                {{getMediaAvaliacoes(servico) | number: '1.2'}} <mat-icon>star</mat-icon> - <a mat-button href="/avaliacao?servicoAvaliado={{servico.id}}&prestador={{prestador.id}}" color="primary">{{'VER_AVALIACOES' | translate}}</a>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
