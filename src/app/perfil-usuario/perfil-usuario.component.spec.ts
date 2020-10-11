@@ -21,6 +21,14 @@ import { AnimalEstimacao } from '../interfaces/AnimalEstimacao';
 import { TipoAnimal } from '../enum/TipoAnimal';
 import {TranslateModule} from '@ngx-translate/core';
 import { Cliente } from '../interfaces/cliente';
+import { USUARIO_TOKEN } from '../util/constantes';
+import {InformacoesPessoaisComponent} from './informacoes-pessoais/informacoes-pessoais.component';
+import {EnderecoComponent} from './endereco/endereco.component';
+import {DialogEnderecoComponent} from './endereco/dialog-endereco/dialog-endereco.component';
+import {MatDialogModule} from '@angular/material/dialog'; 
+import {MatCardModule} from '@angular/material/card';
+import {NgxMaskModule} from 'ngx-mask';
+
 
 describe('FormularioAnimalComponent', () => {
   let component: PerfilUsuarioComponent;
@@ -35,7 +43,10 @@ describe('FormularioAnimalComponent', () => {
       declarations: [ 
           PerfilUsuarioComponent,
           AnimalEstimacaoComponent,
-          FormularioAnimalComponent
+          FormularioAnimalComponent,
+          InformacoesPessoaisComponent,
+          EnderecoComponent,
+          DialogEnderecoComponent
         ],
       providers: [
           {provide: UsuarioService, useClass: UsuarioServiceMock},
@@ -53,7 +64,10 @@ describe('FormularioAnimalComponent', () => {
         FormsModule,
         RouterTestingModule,
         ReactiveFormsModule,
-        TranslateModule
+        TranslateModule.forRoot(),
+        MatDialogModule,
+        MatCardModule,
+        NgxMaskModule.forRoot()
       ]
     })
     .compileComponents();
@@ -73,7 +87,7 @@ describe('FormularioAnimalComponent', () => {
   });
 
   it('Deve setar token igual ao de localStorage', () => {
-    localStorageService.setItem('token', usuarioMock.id);
+    localStorageService.setItem(USUARIO_TOKEN, usuarioMock.id);
     component.getUsuario();
     expect(component.usuario.id).toEqual(usuarioMock.id);
   });
@@ -84,7 +98,7 @@ describe('FormularioAnimalComponent', () => {
   });
 
   it('Deve adicionar um animal a lista de animais', () => {
-    localStorageService.setItem('token', usuarioMock.id);
+    localStorageService.setItem(USUARIO_TOKEN, usuarioMock.id);
     component.getUsuario();
     let animalEsperado: AnimalEstimacao = {
       id: 2,

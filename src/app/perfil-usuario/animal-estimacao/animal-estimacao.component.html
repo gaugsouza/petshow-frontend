@@ -1,6 +1,6 @@
 <section>
     <h3 class="page-section-title">{{'ANIMAIS' | translate}}</h3>
-    <div class="conteiner-animal-list" *ngIf="animaisEstimacao; then animaisBlock else vazioBlock"></div>
+    <div class="conteiner-animal-list" *ngIf="animaisEstimacao && animaisEstimacao.length; then animaisBlock else vazioBlock"></div>
     
     <ng-template #vazioBlock>
         <p>{{'NENHUM_CADASTRADO' | translate}}</p>

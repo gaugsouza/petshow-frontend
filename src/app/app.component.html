@@ -32,6 +32,11 @@
         {{'VER_TRADUZIDO' | translate}}
       </button>
     </div>
+    <div *ngIf="isLogged">
+      <button mat-button (click)="deslogar()" class="menu-item">
+        Log out
+      </button>
+    </div>
   </mat-drawer>
   <mat-drawer-content>
     <div class="content">

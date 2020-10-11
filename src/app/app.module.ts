@@ -25,7 +25,27 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './acesso/login/login.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+<<<<<<< HEAD
 import { SecurityComponent } from './security/security.component';
+=======
+import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
+import { EstrelasComponent } from './avaliacao/estrelas/estrelas.component';
+import { FormularioComponent } from './avaliacao/formulario/formulario.component';
+import { InformacoesPessoaisComponent } from './perfil-usuario/informacoes-pessoais/informacoes-pessoais.component';
+import { EnderecoComponent } from './perfil-usuario/endereco/endereco.component';
+import {MatGridListModule} from '@angular/material/grid-list'; 
+import {MatCardModule} from '@angular/material/card';
+import { DialogEnderecoComponent } from './perfil-usuario/endereco/dialog-endereco/dialog-endereco.component';
+import {MatDialogModule} from '@angular/material/dialog'; 
+import {NgxMaskModule} from 'ngx-mask';
+
+import { ListaServicosDetalhadosComponent } from './lista-servicos-detalhados/lista-servicos-detalhados.component';
+import { PerfilPrestadorComponent } from './perfil-prestador/perfil-prestador.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { ServicosComponent } from './perfil-prestador/servicos/servicos.component';
+import { FormularioServicoComponent } from './perfil-prestador/formulario-servico/formulario-servico.component';
+import { PrestadorComponent } from './prestador/prestador.component';
+>>>>>>> c86dba3a2a6cbd8b51628f778c41dc0a3f3399cd
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -38,7 +58,22 @@ export function HttpLoaderFactory(http:HttpClient) {
     AnimalEstimacaoComponent,
     FormularioAnimalComponent,
     LoginComponent,
+<<<<<<< HEAD
     SecurityComponent,
+=======
+    AvaliacaoComponent,
+    EstrelasComponent,
+    FormularioComponent,
+    ListaServicosDetalhadosComponent,
+    PerfilPrestadorComponent,
+    PerfilComponent,
+    ServicosComponent,
+    FormularioServicoComponent,
+    InformacoesPessoaisComponent,
+    EnderecoComponent,
+    DialogEnderecoComponent,
+    PrestadorComponent,
+>>>>>>> c86dba3a2a6cbd8b51628f778c41dc0a3f3399cd
   ],
   imports: [
     BrowserModule,
@@ -73,7 +108,11 @@ export function HttpLoaderFactory(http:HttpClient) {
         deps: [HttpClient],
       },
       defaultLanguage: 'pt'
-    })
+    }),
+    MatGridListModule,
+    MatCardModule,
+    MatDialogModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

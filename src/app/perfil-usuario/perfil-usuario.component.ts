@@ -5,6 +5,10 @@ import { AnimalEstimacao } from '../interfaces/animalEstimacao';
 import { TipoAnimal } from '../enum/TipoAnimal';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../servicos/local-storage.service';
+import { USUARIO_TOKEN } from '../util/constantes';
+import { monica } from '../mocks/usuarioMock';
+import { Endereco } from '../interfaces/endereco';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-perfil-usuario',
@@ -36,7 +40,8 @@ export class PerfilUsuarioComponent implements OnInit {
   }
 
   getUsuario() : void {
-    this.localStorageService.getItem('token').subscribe((token: number) => {
+    // this.usuario = monica;
+    this.localStorageService.getItem(USUARIO_TOKEN).subscribe((token: number) => {
       this.usuarioService.getUsuario(token)
       .subscribe((usuario:Cliente) => {
         if(!usuario) {
@@ -44,13 +49,17 @@ export class PerfilUsuarioComponent implements OnInit {
           return;
         }
         this.usuario = usuario
+        console.log(this.usuario.tipo)
       });
     });    
   }
 
   adicionaAnimal({...animalEstimacao}:AnimalEstimacao) : void {
+    animalEstimacao.dono = this.usuario.id;
     this.usuarioService.adicionarAnimalEstimacao(animalEstimacao).subscribe(() => {
+      this.limpaAnimal();
       this.getUsuario();
+      this.isFormVisivel = false;
     });    
   }
 
@@ -72,7 +81,7 @@ export class PerfilUsuarioComponent implements OnInit {
 
   atualizaUsuario() {
     this.usuarioService.atualizaUsuario(this.usuarioRequest).subscribe(res => {
-      this.localStorageService.setItem('token', res.id).subscribe(() => {
+      this.localStorageService.setItem(USUARIO_TOKEN, res.id).subscribe(() => {
         this.getUsuario();
         this.limpaAnimal();
         this.ocultaFormulario();
@@ -118,5 +127,17 @@ export class PerfilUsuarioComponent implements OnInit {
   cancelar() {
     this.isFormVisivel = false;
     this.limpaAnimal();
+  }
+
+  atualizaEndereco(endereco:Endereco):void {
+    this.usuarioRequest = {...this.usuario};
+    this.usuarioRequest.endereco = endereco;
+    this.atualizaUsuario();
+  }
+
+  alteraTelefone(telefone:string):void {
+    this.usuarioRequest = {...this.usuario};
+    this.usuarioRequest.telefone = telefone;
+    this.atualizaUsuario();
   }
 }

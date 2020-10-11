@@ -1,0 +1,4 @@
+<p *ngIf="!isCliente && !isPrestador">Carregando</p>
+
+<app-perfil-usuario *ngIf="isCliente"></app-perfil-usuario>
+<app-perfil-prestador *ngIf="isPrestador"></app-perfil-prestador>

@@ -4,5 +4,6 @@ export interface AnimalEstimacao {
     id?:number,
     nome:string,
     foto?:string,
-    tipo:TipoAnimal
+    tipo:TipoAnimal,
+    dono?: number
 }
