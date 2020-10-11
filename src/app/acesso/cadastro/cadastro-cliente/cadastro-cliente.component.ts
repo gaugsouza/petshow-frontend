@@ -32,7 +32,7 @@ export class CadastroClienteComponent implements OnInit {
       email: "",
       senha: ""
     },
-    //  animaisEstimacao?: "",
+    animaisEstimacao: [],
     telefone: ""
   };
 
@@ -45,7 +45,7 @@ export class CadastroClienteComponent implements OnInit {
   submitted = false;
   isCliente:Boolean= false;
   isPrestador:Boolean= false;
-
+  confirmaSenha:string = ""
   errorMessage : string = ""
   passwordFormControl = new FormControl('', [
     Validators.required
@@ -58,6 +58,9 @@ export class CadastroClienteComponent implements OnInit {
     private router:Router,
     private localStorageService: LocalStorageService,
     ) { }
+
+    senhaFormControl = new FormControl('', [Validators.required])
+    confirmaSenhaFormControl = new FormControl('', [Validators.required])
 
   ngOnInit(): void {
   

@@ -44,17 +44,12 @@ export class ServicosService {
       return of(result as T);
     }
   }
-<<<<<<< HEAD
-  buscaTipoStorage = () => {
-    return this.storageService.getItem('tipo');
-  }
-=======
 
   getTipos = (): Servico[] => SERVICOS
+  
   // buscaTipoStorage = () => {
   //   return this.storageService.getItem('tipo');
   // }
->>>>>>> c86dba3a2a6cbd8b51628f778c41dc0a3f3399cd
   // getServicos = (): Observable<Servicos> => { //Observable - objeto assincrono, faz a requisição e fica esperando
   //                                                   //resposta. Em cima dessa resposta ele faz a operação. 
   //   const url = `${this.SERVICOS_SERVICE_URL}`; //la no back-end

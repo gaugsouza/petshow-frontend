@@ -42,7 +42,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputSenha">{{'SENHA' | translate}}</label>
-      <input type="password" class="form-control" formControlName="senha" id="inputPassword" required
+      <input type="password" class="form-control" [formControl]="senhaFormControl" id="inputPassword" required
         [(ngModel)]="cliente.login.senha" name="senha">
     </div>
   </div>
@@ -50,7 +50,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputConfirmarSenha">{{'REPITA_SENHA' | translate}}</label>
-      <input type="password" class="form-control" formControlName="confirmarSenha" id="inputPassword2" required
+      <input type="password" class="form-control" [formControl]="confirmaSenhaFormControl" id="inputPassword2" required
         [(ngModel)]="cliente.login.senha" name="senha">
     </div>
   </div>

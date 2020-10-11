@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-<form>
+<!-- <form> -->
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputNome">{{'NOME_COMPLETO' | translate}}</label>
@@ -39,14 +39,14 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputSenha">{{'SENHA' | translate}}</label>
-      <input type="password" class="form-control" formControlName="senha" id="inputPassword" required [(ngModel)]="prestador.login.senha" name="senha">
+      <input type="password" class="form-control" [formControl]="senhaFormControl" id="inputPassword" required [(ngModel)]="prestador.login.senha" name="senha">
     </div>
   </div>
   <!-- VERIFICAR REGRA DE VERIFICACAO SENHA-->
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputConfirmarSenha">{{'REPITA_SENHA' | translate}}</label>
-      <input type="password" class="form-control" formControlName="confirmarSenha" id="inputPassword2" required [(ngModel)]="prestador.login.senha" name="senha">
+      <input type="password" class="form-control" [formControl]="confirmaSenhaFormControl" id="inputPassword2" required [(ngModel)]="confirmaSenha" name="senha">
     </div>
   </div>
 
@@ -151,7 +151,7 @@
   <div class="form__button-container">
     <button mat-flat-button color="primary" (click)="cadastrarPrestador(prestador)" >{{'CADASTRAR' | translate}}</button>
   </div>
-</form>
+<!-- </form> -->
 
 
 

@@ -62,12 +62,7 @@ let servicoDetalhadoSemAvaliacao:ServicoDetalhado = {
     preco: 30.0,
     tipo: {
         id: 1,
-<<<<<<< HEAD
-        nome: "Banho e tosa",
-        descricao: "Banho e tosa"
-=======
         nome: "Banho e tosa"
->>>>>>> c86dba3a2a6cbd8b51628f778c41dc0a3f3399cd
     },
     prestador: {
         id: 2,
