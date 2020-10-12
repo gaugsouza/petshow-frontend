@@ -46,6 +46,7 @@ export class ServicosService {
   }
 
   getTipos = (): Servico[] => SERVICOS
+  
   // buscaTipoStorage = () => {
   //   return this.storageService.getItem('tipo');
   // }

@@ -9,6 +9,7 @@ import { Cliente } from '../interfaces/cliente';
 import { USUARIO_TOKEN } from '../util/constantes';
 import { UsuarioService } from '../servicos/usuario.service';
 import { TipoPessoa } from '../enum/tipo-pessoa.enum';
+import { servicos } from '../mocks/servico-detalhado-mock';
 
 @Component({
   selector: 'app-avaliacao',
@@ -55,6 +56,8 @@ export class AvaliacaoComponent implements OnInit {
         this.servicoAvaliado = servico;
       });
     });
+
+    // this.servicoAvaliado = servicos[0]
 
     this.localStorageService.getItem(USUARIO_TOKEN).subscribe((token:number) => {
       this.usuarioService.getUsuario(token).subscribe(usuario => {

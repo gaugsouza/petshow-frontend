@@ -25,6 +25,12 @@ export class UsuarioService {
               private logger: NGXLogger,
               private storageService:LocalStorageService) { }
 
+  private handleError<T> (mensagem: string, result?: T) {
+    return (error:any) : Observable<T> => {
+      this.logger.error(mensagem);
+      return of(result as T);
+    }
+  }
   
 
   getUsuario = (id:number): Observable<Usuario> => {
@@ -36,12 +42,6 @@ export class UsuarioService {
     );
   }
 
-  private handleError<T> (mensagem: string, result?: T) {
-    return (error:any) : Observable<T> => {
-      this.logger.error(mensagem);
-      return of(result as T);
-    }
-  }
 
   atualizaUsuario = (usuario:Usuario) : Observable<Usuario> => {
     let url = `${this.USUARIO_SERVICE_URL}/${usuario.id}`
@@ -64,6 +64,18 @@ export class UsuarioService {
       catchError(this.handleError<Usuario>('login'))
     );
   }
+
+
+
+  cadastrarUsuario = (usuario:Usuario) : Observable<any> => {
+    let url = `${this.USUARIO_SERVICE_URL}/cadastro`;
+    return this.http.post(url, usuario, this.httpOptions)
+    .pipe(
+      tap(_ => this.logger.info(`Request feito a ${url}`)),
+      catchError(this.handleError<Usuario>('usuario'))
+    );
+  }
+
 
   buscaTokenUsuario(){
     return this.storageService.getItem(USUARIO_TOKEN);

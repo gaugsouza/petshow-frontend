@@ -1,0 +1,8 @@
+
+<div *ngIf="!isCliente && !isPrestador">
+<button (click) = "exibirFormPrestador()">Prestador</button>
+
+<button (click) = "exibirFormCliente()">Cliente</button>
+</div>
+<app-cadastro-cliente *ngIf="isCliente"></app-cadastro-cliente>
+<app-cadastro-prestador *ngIf="isPrestador"></app-cadastro-prestador>
