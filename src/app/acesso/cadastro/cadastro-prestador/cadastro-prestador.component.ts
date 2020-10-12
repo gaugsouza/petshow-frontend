@@ -7,6 +7,7 @@ import { PrestadorService } from '../../../servicos/prestador.service';
 import { Prestador } from '../../../interfaces/prestador';
 import { TipoPessoa } from '../../../enum/tipo-pessoa.enum';
 import {MyErrorStateMatcher} from '../../../classes/my-error-state-matcher';
+import { Estado, Cidade, ConsultaEstadosService } from 'src/app/servicos/consulta-estados.service';
 
 
 @Component({
@@ -53,10 +54,15 @@ export class CadastroPrestadorComponent implements OnInit {
     Validators.required
   ]);
   matcher = new MyErrorStateMatcher();
+    
+  estados:Estado[] = [];
+  cidades:Cidade[] = [] ;
+
+
 
   constructor(
     private prestadorService:PrestadorService,
-
+    private consultaEstadoService:ConsultaEstadosService,
     private router:Router,
     private localStorageService: LocalStorageService,
     ) { }
@@ -65,7 +71,9 @@ export class CadastroPrestadorComponent implements OnInit {
     confirmarSenhaFormControl = new FormControl('', [Validators.required])
 
   ngOnInit(): void {
-  
+    this.consultaEstadoService.getEstados().subscribe(el => {
+      this.estados = el;
+    })
   }
 
   cadastrarPrestador(prestador:Prestador) {
@@ -83,6 +91,11 @@ export class CadastroPrestadorComponent implements OnInit {
 
   hasErrors() {
     return this.emailFormControl.hasError('email') || this.emailFormControl.hasError('required') || this.passwordFormControl.hasError('required');
+  }
+  carregarCidades(uf:string) {
+    this.consultaEstadoService.getCidades(uf).subscribe(el => {
+      this.cidades = el;
+    })
   }
 
 }
