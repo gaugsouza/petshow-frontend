@@ -5,7 +5,7 @@ import { AnimalEstimacao } from '../interfaces/animalEstimacao';
 import { TipoAnimal } from '../enum/TipoAnimal';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../servicos/local-storage.service';
-import { USUARIO_TOKEN } from '../util/constantes';
+import { USER_TOKEN } from '../util/constantes';
 import { monica } from '../mocks/usuarioMock';
 import { Endereco } from '../interfaces/endereco';
 import { TranslateService } from '@ngx-translate/core';
@@ -41,7 +41,7 @@ export class PerfilUsuarioComponent implements OnInit {
 
   getUsuario() : void {
     // this.usuario = monica;
-    this.localStorageService.getItem(USUARIO_TOKEN).subscribe((token: number) => {
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token: number) => {
       this.usuarioService.getUsuario(token)
       .subscribe((usuario:Cliente) => {
         if(!usuario) {
@@ -81,7 +81,7 @@ export class PerfilUsuarioComponent implements OnInit {
 
   atualizaUsuario() {
     this.usuarioService.atualizaUsuario(this.usuarioRequest).subscribe(res => {
-      this.localStorageService.setItem(USUARIO_TOKEN, res.id).subscribe(() => {
+      this.localStorageService.setItem(USER_TOKEN, res.id).subscribe(() => {
         this.getUsuario();
         this.limpaAnimal();
         this.ocultaFormulario();

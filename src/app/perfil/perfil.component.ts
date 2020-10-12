@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ContaService } from '../servicos/conta.service';
 import { LocalStorageService } from '../servicos/local-storage.service';
-import { USUARIO_TOKEN } from '../util/constantes';
+import { USER_TOKEN } from '../util/constantes';
 import { Usuario } from '../interfaces/usuario';
 import { TipoPessoa } from '../enum/tipo-pessoa.enum';
 import { Router } from '@angular/router';
@@ -19,7 +19,7 @@ export class PerfilComponent implements OnInit {
               private router:Router) { }
 
   ngOnInit(): void {
-    this.localStorageService.getItem(USUARIO_TOKEN).subscribe(token => {
+    this.localStorageService.getItem(USER_TOKEN).subscribe(token => {
       this.contaService.buscarPorId(+token).subscribe((usuario:Usuario) => {
         if(!usuario) {
           this.router.navigate(['/login']);

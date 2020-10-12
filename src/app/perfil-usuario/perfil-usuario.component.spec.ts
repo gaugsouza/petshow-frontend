@@ -21,7 +21,7 @@ import { AnimalEstimacao } from '../interfaces/AnimalEstimacao';
 import { TipoAnimal } from '../enum/TipoAnimal';
 import {TranslateModule} from '@ngx-translate/core';
 import { Cliente } from '../interfaces/cliente';
-import { USUARIO_TOKEN } from '../util/constantes';
+import { USER_TOKEN } from '../util/constantes';
 import {InformacoesPessoaisComponent} from './informacoes-pessoais/informacoes-pessoais.component';
 import {EnderecoComponent} from './endereco/endereco.component';
 import {DialogEnderecoComponent} from './endereco/dialog-endereco/dialog-endereco.component';
@@ -87,7 +87,7 @@ describe('FormularioAnimalComponent', () => {
   });
 
   it('Deve setar token igual ao de localStorage', () => {
-    localStorageService.setItem(USUARIO_TOKEN, usuarioMock.id);
+    localStorageService.setItem(USER_TOKEN, usuarioMock.id);
     component.getUsuario();
     expect(component.usuario.id).toEqual(usuarioMock.id);
   });
@@ -98,7 +98,7 @@ describe('FormularioAnimalComponent', () => {
   });
 
   it('Deve adicionar um animal a lista de animais', () => {
-    localStorageService.setItem(USUARIO_TOKEN, usuarioMock.id);
+    localStorageService.setItem(USER_TOKEN, usuarioMock.id);
     component.getUsuario();
     let animalEsperado: AnimalEstimacao = {
       id: 2,

@@ -9,7 +9,7 @@ import { LoginService } from 'src/app/servicos/login.service';
 import { Router } from '@angular/router';
 import {MyErrorStateMatcher} from '../../classes/my-error-state-matcher';
 import { AppComponent } from 'src/app/app.component';
-import { USUARIO_TOKEN } from 'src/app/util/constantes';
+import { USER_TOKEN } from 'src/app/util/constantes';
 
 @Component({
   selector: 'app-login',
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
               private appComponent: AppComponent) { }
 
   ngOnInit(): void {
-    this.localStorageService.getItem(USUARIO_TOKEN)
+    this.localStorageService.getItem(USER_TOKEN)
     .subscribe(token => {
       if(token) {
         this.router.navigate(['/perfil'])
@@ -50,11 +50,11 @@ export class LoginComponent implements OnInit {
     return this.emailFormControl.hasError('email') || this.emailFormControl.hasError('required') || this.passwordFormControl.hasError('required');
   }
   realizaLogin() {
-    this.loginService.realizaLogin(this.login.email, this.login.senha)
+    this.loginService.realizaLogin(this.login)
     .subscribe(
-      (res:Cliente) => {
-        if(res) {
-          this.localStorageService.setItem(USUARIO_TOKEN, res.id).subscribe(() => {
+      (token : String) => {
+        if(token) {
+          this.localStorageService.setItem(USER_TOKEN, token).subscribe(() => {
             this.appComponent.isLogged = true;
             this.router.navigate(['/perfil']);
           });

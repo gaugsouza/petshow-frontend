@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { Avaliacao } from '../interfaces/avaliacao';
 import { LocalStorageService } from '../servicos/local-storage.service';
 import { Cliente } from '../interfaces/cliente';
-import { USUARIO_TOKEN } from '../util/constantes';
+import { USER_TOKEN } from '../util/constantes';
 import { UsuarioService } from '../servicos/usuario.service';
 import { TipoPessoa } from '../enum/tipo-pessoa.enum';
 
@@ -56,7 +56,7 @@ export class AvaliacaoComponent implements OnInit {
       });
     });
 
-    this.localStorageService.getItem(USUARIO_TOKEN).subscribe((token:number) => {
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token:number) => {
       this.usuarioService.getUsuario(token).subscribe(usuario => {
         this.isLogado = !!(usuario);
         this.isCliente = usuario.tipo === TipoPessoa.CLIENTE || usuario.tipo == 1;
@@ -93,7 +93,7 @@ export class AvaliacaoComponent implements OnInit {
 
   adicionaAvaliacao(avaliacao:Avaliacao) {
     avaliacao.servicoAvaliado = this.servicoAvaliado;
-    this.localStorageService.getItem(USUARIO_TOKEN)
+    this.localStorageService.getItem(USER_TOKEN)
     .subscribe((token:number) => {
       this.usuarioService.getUsuario(token)
       .subscribe((cliente:Cliente) => {

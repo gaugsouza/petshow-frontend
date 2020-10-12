@@ -6,10 +6,9 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Usuario } from '../interfaces/usuario';
 import { NGXLogger } from 'ngx-logger';
 import { LocalStorageService } from './local-storage.service';
-import { usuariosMock } from '../mocks/usuarioMock';
 import { Login } from '../interfaces/login';
 import { AnimalEstimacao } from '../interfaces/AnimalEstimacao';
-import { USUARIO_TOKEN } from '../util/constantes';
+import { USER_TOKEN } from '../util/constantes';
 import { TipoAnimal } from '../enum/TipoAnimal';
 
 @Injectable({
@@ -67,7 +66,7 @@ export class UsuarioService {
   }
 
   buscaTokenUsuario(){
-    return this.storageService.getItem(USUARIO_TOKEN);
+    return this.storageService.getItem(USER_TOKEN);
   }
 
   adicionarAnimalEstimacao = (animalEstimacao:AnimalEstimacao) : Observable<any> => {

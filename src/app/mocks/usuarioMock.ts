@@ -60,7 +60,10 @@ export const cebolinha:Cliente =  {
         {
             id: 1,
             nome: "Floquinho",
-            tipo: TipoAnimal.CACHORRO,
+            tipo: {
+                id: 1,
+                nome: "CACHORRO"
+            },
         }
     ]
 }

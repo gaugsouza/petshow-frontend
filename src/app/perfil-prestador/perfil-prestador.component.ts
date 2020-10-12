@@ -4,7 +4,7 @@ import { Prestador } from '../interfaces/prestador';
 import { PrestadorService } from '../servicos/prestador.service';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../servicos/local-storage.service';
-import { USUARIO_TOKEN } from '../util/constantes';
+import { USER_TOKEN } from '../util/constantes';
 import { Endereco } from '../interfaces/endereco';
 
 @Component({
@@ -30,7 +30,7 @@ export class PerfilPrestadorComponent implements OnInit {
   }
 
   getUsuario() {
-    this.localStorageService.getItem(USUARIO_TOKEN).subscribe((token:number) => {
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token:number) => {
       this.prestadorService.buscaPrestador(token)
       .subscribe((usuario:Prestador) => {
         console.log(usuario);
@@ -47,7 +47,7 @@ export class PerfilPrestadorComponent implements OnInit {
 
   atualizaUsuario() {
     this.prestadorService.editaPrestador(this.usuarioRequest.id, this.usuarioRequest).subscribe(res => {
-      this.localStorageService.setItem(USUARIO_TOKEN, res.id).subscribe(() => {
+      this.localStorageService.setItem(USER_TOKEN, res.id).subscribe(() => {
         this.getUsuario();
         this.limpaServico();
         this.ocultaFormulario();
