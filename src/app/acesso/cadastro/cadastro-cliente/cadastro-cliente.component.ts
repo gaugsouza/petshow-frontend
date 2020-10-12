@@ -6,6 +6,7 @@ import { UsuarioService } from '../../../servicos/usuario.service';
 import { Cliente } from '../../../interfaces/cliente';
 import { TipoPessoa } from '../../../enum/tipo-pessoa.enum';
 import {MyErrorStateMatcher} from '../../../classes/my-error-state-matcher';
+import { ConsultaEstadosService, Estado, Cidade } from 'src/app/servicos/consulta-estados.service';
 
 @Component({
   selector: 'app-cadastro-cliente',
@@ -50,19 +51,25 @@ export class CadastroClienteComponent implements OnInit {
     Validators.required
   ]);
   matcher = new MyErrorStateMatcher();
+  
+  estados:Estado[] = [];
+  cidades:Cidade[] = [] ;
+
 
   constructor(
     private usuarioService:UsuarioService,
-
     private router:Router,
     private localStorageService: LocalStorageService,
+    private consultaEstadoService:ConsultaEstadosService
     ) { }
 
     senhaFormControl = new FormControl('', [Validators.required])
     confirmarSenhaFormControl = new FormControl('', [Validators.required])
 
   ngOnInit(): void {
-  
+    this.consultaEstadoService.getEstados().subscribe(el => {
+      this.estados = el;
+    })
   }
 
   cadastrarCliente(cliente:Cliente) {
@@ -76,6 +83,11 @@ export class CadastroClienteComponent implements OnInit {
           console.log(err);
           this.erroRequisicao = "Erro durante a operação";
         });
+  }
+  carregarCidades(uf:string) {
+    this.consultaEstadoService.getCidades(uf).subscribe(el => {
+      this.cidades = el;
+    })
   }
 
   hasErrors() {

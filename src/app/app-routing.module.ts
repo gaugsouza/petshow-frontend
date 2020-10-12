@@ -13,7 +13,7 @@ import { PrestadorComponent } from './prestador/prestador.component';
 const routes: Routes = [
   {path: 'perfil', component: PerfilComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'cadastro-tipo', component: CadastroComponent},  
+  {path: 'cadastro', component: CadastroComponent},  
   {path: 'cadastro-cliente', component: CadastroClienteComponent},
   {path: 'cadastro-prestador', component: CadastroPrestadorComponent},
   {path: '', component: HomeComponent},
