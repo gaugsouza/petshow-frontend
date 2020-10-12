@@ -15,16 +15,13 @@ export class LoginService {
   public LOGIN_BASE_URL = `${environment.API_URL}/acesso`;
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-type' : 'application/json' })
+    headers: new HttpHeaders({ 'Content-type' : 'application/json' }),
+    responseType: 'text' as 'json'
   }
 
   constructor(private http:HttpClient, 
               private logger:NGXLogger,
               private storageService:LocalStorageService) { }
-  
-  ngOnInit(): void {
-    this.httpOptions.headers.set("Authorization", this.buscaTokenUsuario())
-  }
 
   realizaLogin(login: Login) : Observable<String> {
     let url = `${this.LOGIN_BASE_URL}/login`;

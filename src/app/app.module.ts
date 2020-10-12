@@ -25,9 +25,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './acesso/login/login.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-<<<<<<< HEAD
-import { SecurityComponent } from './security/security.component';
-=======
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 import { EstrelasComponent } from './avaliacao/estrelas/estrelas.component';
 import { FormularioComponent } from './avaliacao/formulario/formulario.component';
@@ -45,7 +42,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { ServicosComponent } from './perfil-prestador/servicos/servicos.component';
 import { FormularioServicoComponent } from './perfil-prestador/formulario-servico/formulario-servico.component';
 import { PrestadorComponent } from './prestador/prestador.component';
->>>>>>> c86dba3a2a6cbd8b51628f778c41dc0a3f3399cd
+import { JwtHelper } from './util/jwt-helper';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -58,9 +55,6 @@ export function HttpLoaderFactory(http:HttpClient) {
     AnimalEstimacaoComponent,
     FormularioAnimalComponent,
     LoginComponent,
-<<<<<<< HEAD
-    SecurityComponent,
-=======
     AvaliacaoComponent,
     EstrelasComponent,
     FormularioComponent,
@@ -72,8 +66,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     InformacoesPessoaisComponent,
     EnderecoComponent,
     DialogEnderecoComponent,
-    PrestadorComponent,
->>>>>>> c86dba3a2a6cbd8b51628f778c41dc0a3f3399cd
+    PrestadorComponent
   ],
   imports: [
     BrowserModule,
@@ -114,7 +107,9 @@ export function HttpLoaderFactory(http:HttpClient) {
     MatDialogModule,
     NgxMaskModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    JwtHelper
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -49,30 +49,18 @@ export class LoginComponent implements OnInit {
   hasErrors() {
     return this.emailFormControl.hasError('email') || this.emailFormControl.hasError('required') || this.passwordFormControl.hasError('required');
   }
+
   realizaLogin() {
-    this.loginService.realizaLogin(this.login)
-    .subscribe(
-      (token : String) => {
-        if(token) {
-          this.localStorageService.setItem(USER_TOKEN, token).subscribe(() => {
-            this.appComponent.isLogged = true;
-            this.router.navigate(['/perfil']);
-          });
-        }
-      },
-      ({error}) => {
-        this.errorMessage = typeof error === 'string' ? error: 'Erro durante operação';
-        this.login.senha = "";
-      
-      },
-      () => console.log('terminou')
-    );
+  this.loginService.realizaLogin(this.login).subscribe(
+    token => {
+      this.localStorageService.setItem(USER_TOKEN, token).subscribe(() => {
+        this.router.navigate(['/perfil']);
+        this.appComponent.isLogged = true;
+      });
+    },
+    ({error}) => {
+      this.errorMessage = typeof error === 'string' ? error: 'Erro durante operação';
+      this.login.senha = "";      
+    });
   }
-
-
 }
-
-// login":{
-//   "email": "dandan@laksjdg.com",
-//   "senha": "092orijasf"
-// },

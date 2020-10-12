@@ -27,7 +27,6 @@ import {EnderecoComponent} from './endereco/endereco.component';
 import {DialogEnderecoComponent} from './endereco/dialog-endereco/dialog-endereco.component';
 import {MatDialogModule} from '@angular/material/dialog'; 
 import {MatCardModule} from '@angular/material/card';
-import {NgxMaskModule} from 'ngx-mask';
 
 
 describe('FormularioAnimalComponent', () => {
@@ -67,7 +66,6 @@ describe('FormularioAnimalComponent', () => {
         TranslateModule.forRoot(),
         MatDialogModule,
         MatCardModule,
-        NgxMaskModule.forRoot()
       ]
     })
     .compileComponents();
@@ -103,10 +101,11 @@ describe('FormularioAnimalComponent', () => {
     let animalEsperado: AnimalEstimacao = {
       id: 2,
       nome: "Floquinho",
-      tipo: TipoAnimal.CACHORRO,
-      dono: {
-        ...usuarioMock
-      }
+      tipo: {
+        id: 1,
+        nome: "CACHORRO"
+      },
+      dono: 1
     };
     component.adicionaAnimal(animalEsperado);
     let animalAdicionado = component.usuario.animaisEstimacao.find(animal => animal.id === animalEsperado.id);
@@ -117,8 +116,12 @@ describe('FormularioAnimalComponent', () => {
     component.usuario = usuarioMock;
     let animalARemover: AnimalEstimacao = {
       id: 2,
-      nome: "Floquinho",
-      tipo: TipoAnimal.CACHORRO
+      nome: "Floquinho", 
+      tipo: {
+        id: 1,
+        nome: "CACHORRO"
+      },
+      dono: 1
     };
     component.adicionaAnimal(animalARemover);
 
@@ -133,7 +136,11 @@ describe('FormularioAnimalComponent', () => {
     let animalAEditar: AnimalEstimacao = {
       id: 3,
       nome: "Denao",
-      tipo: TipoAnimal.CACHORRO
+      tipo: {
+        id: 1,
+        nome: "CACHORRO"
+      },
+      dono: 1
     };
 
     component.adicionaAnimal({...animalAEditar});
@@ -146,7 +153,11 @@ describe('FormularioAnimalComponent', () => {
     let animal: AnimalEstimacao = {
       id: 2,
       nome: "Floquinho",
-      tipo: TipoAnimal.CACHORRO
+      tipo: {
+        id: 1,
+        nome: "CACHORRO"
+      },
+      dono: 1
     };
 
     component.selecionaAnimal(animal);
@@ -158,7 +169,11 @@ describe('FormularioAnimalComponent', () => {
     component.animal = {
       id: 2,
       nome: "Floquinho",
-      tipo: TipoAnimal.CACHORRO
+      tipo: {
+        id: 1,
+        nome: "CACHORRO"
+      },
+      dono: 1
     };
 
     fixture.detectChanges();

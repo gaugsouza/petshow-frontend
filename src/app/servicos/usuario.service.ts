@@ -10,30 +10,36 @@ import { Login } from '../interfaces/login';
 import { AnimalEstimacao } from '../interfaces/AnimalEstimacao';
 import { USER_TOKEN } from '../util/constantes';
 import { TipoAnimal } from '../enum/TipoAnimal';
+import { JwtHelper } from '../util/jwt-helper';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
   public USUARIO_SERVICE_URL = `${environment.API_URL}/cliente`;
-
+  
+  token = this.localStorageService.getItem(USER_TOKEN);
+  authorization = 'Bearer ' + this.token;
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-type' : 'application/json'})
+    headers: new HttpHeaders({ 'Content-type' : 'application/json',
+                               'Authorization' : this.authorization})
   }
 
   constructor(private http:HttpClient, 
               private logger: NGXLogger,
-              private storageService:LocalStorageService) { }
+              private storageService:LocalStorageService,
+              private localStorageService: LocalStorageService,
+              private jwtHelper: JwtHelper) { }
 
-  
-
-  getUsuario = (id:number): Observable<Usuario> => {
+  getUsuario() : Observable<Usuario> {
+    let id = this.jwtHelper.decodeToken(this.token).id;
     const url = `${this.USUARIO_SERVICE_URL}/${id}`;
+    
     return this.http.get<Usuario>(url)
     .pipe(
-      tap(_ => this.logger.info(`Request feito a ${url}`)),
-      catchError(this.handleError<Usuario>(`Falha em requisição feita a ${url}`))
-    );
+    tap(_ => this.logger.info(`Request feito a ${url}`)),
+    catchError(this.handleError<Usuario>(`Falha em requisição feita a ${url}`)))  
+     
   }
 
   private handleError<T> (mensagem: string, result?: T) {
@@ -54,7 +60,6 @@ export class UsuarioService {
       })
     );
   } 
-
 
   buscaPorLogin = (login: Login) : Observable<any> => {
     let url = `${this.USUARIO_SERVICE_URL}/login`;

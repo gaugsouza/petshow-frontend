@@ -2,13 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../servicos/usuario.service';
 import { Cliente } from '../interfaces/cliente';
 import { AnimalEstimacao } from '../interfaces/animalEstimacao';
-import { TipoAnimal } from '../enum/TipoAnimal';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../servicos/local-storage.service';
 import { USER_TOKEN } from '../util/constantes';
-import { monica } from '../mocks/usuarioMock';
 import { Endereco } from '../interfaces/endereco';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-perfil-usuario',
@@ -40,18 +37,10 @@ export class PerfilUsuarioComponent implements OnInit {
   }
 
   getUsuario() : void {
-    // this.usuario = monica;
-    this.localStorageService.getItem(USER_TOKEN).subscribe((token: number) => {
-      this.usuarioService.getUsuario(token)
+    this.usuarioService.getUsuario()
       .subscribe((usuario:Cliente) => {
-        if(!usuario) {
-          this.router.navigate(['/login']);
-          return;
-        }
-        this.usuario = usuario
-        console.log(this.usuario.tipo)
-      });
-    });    
+        this.usuario = usuario;
+    });
   }
 
   adicionaAnimal({...animalEstimacao}:AnimalEstimacao) : void {
