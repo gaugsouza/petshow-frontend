@@ -3,6 +3,7 @@ import { FormControl, FormGroupDirective, NgForm, FormBuilder,FormGroup, Validat
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../../../servicos/local-storage.service';
 import { UsuarioService } from '../../../servicos/usuario.service';
+import { PrestadorService } from '../../../servicos/prestador.service';
 import { Prestador } from '../../../interfaces/prestador';
 import { TipoPessoa } from '../../../enum/tipo-pessoa.enum';
 import {MyErrorStateMatcher} from '../../../classes/my-error-state-matcher';
@@ -46,7 +47,7 @@ export class CadastroPrestadorComponent implements OnInit {
   submitted = false;
   isCliente:Boolean= false;
   isPrestador:Boolean= false;
-  confirmaSenha:string = ""
+  confirmarSenha:string = ""
   errorMessage : string = ""
   passwordFormControl = new FormControl('', [
     Validators.required
@@ -54,24 +55,26 @@ export class CadastroPrestadorComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   constructor(
-    private usuarioService:UsuarioService,
+    private prestadorService:PrestadorService,
 
     private router:Router,
     private localStorageService: LocalStorageService,
     ) { }
 
     senhaFormControl = new FormControl('', [Validators.required])
-    confirmaSenhaFormControl = new FormControl('', [Validators.required])
+    confirmarSenhaFormControl = new FormControl('', [Validators.required])
 
   ngOnInit(): void {
   
   }
 
   cadastrarPrestador(prestador:Prestador) {
-    this.usuarioService.cadastrarUsuario(prestador)
+    if(this.confirmarSenha !== this.prestador.login.senha) { 
+      this.errorMessage = 'MENSAGEM_ERRO_SENHA'; return; 
+    }
+    this.prestadorService.cadastrarUsuario(prestador)
       .subscribe(res => {
-          const id = res['_id'];
-          this.router.navigate(['/prestador', id]);
+          this.router.navigate(['/login'])
         }, (err) => {
           console.log(err);
           this.erroRequisicao = "Erro durante a operação";

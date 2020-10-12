@@ -66,6 +66,16 @@ export class PrestadorService {
     )
   }
 
+
+  prestadores:Prestador[] = [];
+  cadastrarUsuario = (prestador:Prestador) : Observable<any> => {
+    prestador.id = this.prestadores.length + 1
+    this.prestadores = [...this.prestadores, prestador]
+    return of(prestador);
+  }
+
+
+
     // getPrestador = (id:number): Observable<Prestador> =>{
     //   const url = `${this.PRESTADOR_SERVICE_URL}/${id}`;
     //   return this.http.get<Prestador>(url)

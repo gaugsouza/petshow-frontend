@@ -22,6 +22,7 @@
     "SENHA_NULA": "Por favor insira uma senha",
     "LOGAR": "Logar",
     "ERRO_REQUISICAO": "Erro durante a operação",
+    "MENSAGEM_ERRO_SENHA" : "As senhas não coincidem",
     "MENSAGEM_SUCESSO": "Operação realizada com sucesso",
     "CARREGANDO": "Carregando",
     "SERVICO_NAO_ENCONTRADO": "Serviço informado não encontrado",

@@ -22,6 +22,7 @@
     "SENHA_NULA": "Password is required",
     "LOGAR": "Login",
     "ERRO_REQUISICAO": "Error during operation",
+    "MENSAGEM_ERRO_SENHA" : "the password does not match",
     "MENSAGEM_SUCESSO": "Operation completed successfully",
     "CARREGANDO": "Loading",
     "SERVICO_NAO_ENCONTRADO": "Service not found",

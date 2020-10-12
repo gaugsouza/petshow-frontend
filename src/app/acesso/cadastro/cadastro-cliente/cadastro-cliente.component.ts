@@ -13,7 +13,6 @@ import {MyErrorStateMatcher} from '../../../classes/my-error-state-matcher';
   styleUrls: ['./cadastro-cliente.component.scss']
 })
 export class CadastroClienteComponent implements OnInit {
-
   cliente:Cliente= {
     nome: "",
     foto: "",
@@ -45,7 +44,7 @@ export class CadastroClienteComponent implements OnInit {
   submitted = false;
   isCliente:Boolean= false;
   isPrestador:Boolean= false;
-  confirmaSenha:string = ""
+  confirmarSenha:string = ""
   errorMessage : string = ""
   passwordFormControl = new FormControl('', [
     Validators.required
@@ -60,17 +59,19 @@ export class CadastroClienteComponent implements OnInit {
     ) { }
 
     senhaFormControl = new FormControl('', [Validators.required])
-    confirmaSenhaFormControl = new FormControl('', [Validators.required])
+    confirmarSenhaFormControl = new FormControl('', [Validators.required])
 
   ngOnInit(): void {
   
   }
 
   cadastrarCliente(cliente:Cliente) {
+    if(this.confirmarSenha !== this.cliente.login.senha) { 
+      this.errorMessage = 'MENSAGEM_ERRO_SENHA'; return; 
+    }
     this.usuarioService.cadastrarUsuario(cliente)
       .subscribe(res => {
-          const id = res['_id'];
-          this.router.navigate(['/cliente', id]);
+          this.router.navigate(['/login'])
         }, (err) => {
           console.log(err);
           this.erroRequisicao = "Erro durante a operação";

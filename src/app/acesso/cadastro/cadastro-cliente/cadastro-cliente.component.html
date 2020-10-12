@@ -50,8 +50,8 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputConfirmarSenha">{{'REPITA_SENHA' | translate}}</label>
-      <input type="password" class="form-control" [formControl]="confirmaSenhaFormControl" id="inputPassword2" required
-        [(ngModel)]="cliente.login.senha" name="senha">
+      <input type="password" class="form-control" [formControl]="confirmarSenhaFormControl" id="inputPassword2" required
+        [(ngModel)]="confirmarSenha" name="senha">
     </div>
   </div>
 
@@ -112,6 +112,9 @@
       </div>
     </div>
   </div>
+
+  <div *ngIf="errorMessage">{{errorMessage | translate}}</div>
+
   <div class="form__button-container">
     <button mat-flat-button color="primary" (click)="cadastrarCliente(cliente)">{{'CADASTRAR' | translate}}</button>
   </div>
