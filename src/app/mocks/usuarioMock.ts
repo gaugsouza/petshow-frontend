@@ -36,7 +36,7 @@ export const monica: Cliente = {
     ]
 }
 
-export const cebolinha:Cliente =  {
+export const cebolinha: Cliente =  {
     id:2, 
     nome: "Cebolinha",
     cpf:"66666666666",
