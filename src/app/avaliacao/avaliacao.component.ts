@@ -10,6 +10,7 @@ import { USER_TOKEN } from '../util/constantes';
 import { UsuarioService } from '../servicos/usuario.service';
 import { TipoPessoa } from '../enum/tipo-pessoa.enum';
 import { PrestadorService } from '../servicos/prestador.service';
+import { servicos } from '../mocks/servico-detalhado-mock';
 
 @Component({
   selector: 'app-avaliacao',

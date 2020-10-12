@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { NGXLogger } from 'ngx-logger';
-import { Observable, of } from 'rxjs';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Prestador } from '../interfaces/prestador';
 import { ServicoDetalhado } from '../interfaces/servico-detalhado';
-import { catchError, tap } from 'rxjs/operators';
 import { JwtHelper } from '../util/jwt-helper';
+import { NGXLogger } from 'ngx-logger';
+import { LocalStorageService } from './local-storage.service';
+import { usuariosMock } from '../mocks/usuarioMock';
+import { Login } from '../interfaces/login';
+import { Endereco } from '../interfaces/endereco';
+import { TipoPessoa } from '../enum/tipo-pessoa.enum';
+import { servicos } from '../mocks/servico-detalhado-mock';
 
 @Injectable({
   providedIn: 'root'
