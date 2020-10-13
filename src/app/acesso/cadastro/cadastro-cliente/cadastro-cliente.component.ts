@@ -88,7 +88,7 @@ export class CadastroClienteComponent implements OnInit {
           this.router.navigate(['/login'])
         }, (err) => {
           console.log(err);
-          this.errorMessage = "";
+          this.errorMessage = null;
           this.erroRequisicao = typeof err === "string" ? err : "Erro durante a operação";
         });
   }

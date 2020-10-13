@@ -127,5 +127,5 @@
   <div *ngIf="erroRequisicao">{{erroRequisicao}}</div>
 
   <div class="form__button-container">
-    <button mat-flat-button color="primary" [disabled]="hasErrors()" (click)="cadastrarPrestador(prestador)" >{{'CADASTRAR' | translate}}</button>
+    <button mat-flat-button color="primary" (click)="cadastrarPrestador(prestador)" >{{'CADASTRAR' | translate}}</button>
   </div>

@@ -17,7 +17,7 @@ import { LocalStorageService } from '../servicos/local-storage.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AnimalEstimacao } from '../interfaces/AnimalEstimacao';
+import { AnimalEstimacao } from '../interfaces/animalEstimacao';
 import { TipoAnimal } from '../enum/TipoAnimal';
 import {TranslateModule} from '@ngx-translate/core';
 import { Cliente } from '../interfaces/cliente';
@@ -27,6 +27,8 @@ import {EnderecoComponent} from './endereco/endereco.component';
 import {DialogEnderecoComponent} from './endereco/dialog-endereco/dialog-endereco.component';
 import {MatDialogModule} from '@angular/material/dialog'; 
 import {MatCardModule} from '@angular/material/card';
+import {NgxMaskModule} from 'ngx-mask';
+
 
 
 describe('FormularioAnimalComponent', () => {
@@ -66,6 +68,7 @@ describe('FormularioAnimalComponent', () => {
         TranslateModule.forRoot(),
         MatDialogModule,
         MatCardModule,
+        NgxMaskModule.forRoot()
       ]
     })
     .compileComponents();
@@ -90,11 +93,6 @@ describe('FormularioAnimalComponent', () => {
     expect(component.usuario.id).toEqual(usuarioMock.id);
   });
 
-  it('Deve deixar usuario indefinido', () => {
-    component.getUsuario();
-    expect(component.usuario).toBeFalsy();
-  });
-
   it('Deve adicionar um animal a lista de animais', () => {
     localStorageService.setItem(USER_TOKEN, usuarioMock.id);
     component.getUsuario();
@@ -105,7 +103,7 @@ describe('FormularioAnimalComponent', () => {
         id: 1,
         nome: "CACHORRO"
       },
-      dono: 1
+      donoId: 1
     };
     component.adicionaAnimal(animalEsperado);
     let animalAdicionado = component.usuario.animaisEstimacao.find(animal => animal.id === animalEsperado.id);
@@ -121,7 +119,7 @@ describe('FormularioAnimalComponent', () => {
         id: 1,
         nome: "CACHORRO"
       },
-      dono: 1
+      donoId: 1
     };
     component.adicionaAnimal(animalARemover);
 
@@ -140,7 +138,7 @@ describe('FormularioAnimalComponent', () => {
         id: 1,
         nome: "CACHORRO"
       },
-      dono: 1
+      donoId: 1
     };
 
     component.adicionaAnimal({...animalAEditar});
@@ -157,7 +155,7 @@ describe('FormularioAnimalComponent', () => {
         id: 1,
         nome: "CACHORRO"
       },
-      dono: 1
+      donoId: 1
     };
 
     component.selecionaAnimal(animal);
@@ -173,7 +171,7 @@ describe('FormularioAnimalComponent', () => {
         id: 1,
         nome: "CACHORRO"
       },
-      dono: 1
+      donoId: 1
     };
 
     fixture.detectChanges();

@@ -8,6 +8,7 @@ import { usuariosMock } from '../mocks/usuarioMock';
 import { Cliente } from '../interfaces/cliente';
 import { TipoPessoa } from '../enum/tipo-pessoa.enum';
 import { USER_TOKEN } from '../util/constantes';
+import { JwtHelper } from '../util/jwt-helper';
 
 describe('UsuarioService', () => {
   let service: UsuarioService;
@@ -22,7 +23,8 @@ describe('UsuarioService', () => {
         LoggerTestingModule
       ],
       providers: [
-        LocalStorageService
+        LocalStorageService,
+        JwtHelper
       ]
     });
     service = TestBed.inject(UsuarioService);
@@ -33,23 +35,6 @@ describe('UsuarioService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
-  });
-
-  it('Deve retornar o token em localStorage', () => {
-    let usuarioMock = {id: 1, a: 'aaaa', b: 'bbbb'};
-    storageService.setItem(USER_TOKEN, usuarioMock.id);
-
-    service.buscaTokenUsuario()
-    .subscribe(token => {
-      expect(token).toEqual(usuarioMock.id);
-    });
-  });
-
-  it('Deve retornar um token nulo', () => {
-    service.buscaTokenUsuario()
-    .subscribe(token => {
-      expect(token).toBeFalsy()
-    })
   });
 
   it('Deve atualizar um usuario', () => {
@@ -66,7 +51,7 @@ describe('UsuarioService', () => {
       }
     }
 
-    service.atualizaUsuario(usuarioMock)
+    service.atualizaUsuario(usuarioMock, "")
     .subscribe(usuario => {
       expect(usuario).toBeTruthy();
       expect(usuario.nome).toEqual('Testinho');
