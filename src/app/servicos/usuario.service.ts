@@ -5,7 +5,6 @@ import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Usuario } from '../interfaces/usuario';
 import { NGXLogger } from 'ngx-logger';
-import { Login } from '../interfaces/login';
 import { AnimalEstimacao } from '../interfaces/AnimalEstimacao';
 import { TipoAnimal } from '../enum/TipoAnimal';
 import { JwtHelper } from '../util/jwt-helper';
@@ -15,6 +14,11 @@ import { JwtHelper } from '../util/jwt-helper';
 })
 export class UsuarioService {
   public USUARIO_SERVICE_URL = `${environment.API_URL}/cliente`;
+  public ACESSO_URL = `${environment.API_URL}/acesso`;
+
+  private httpOptions = {
+    headers: new HttpHeaders({ 'content-type': 'application/json'})
+  }
 
   constructor(private http:HttpClient, 
               private logger: NGXLogger,
@@ -83,6 +87,15 @@ export class UsuarioService {
     .pipe(
       tap(_=> this.logger.info(`Request feito a ${url}`)),
       catchError(this.handleError<AnimalEstimacao>('put'))
+    );
+  }
+
+  cadastrarUsuario = (usuario:Usuario) : Observable<any> => {
+    let url = `${this.ACESSO_URL}/cadastro`;
+    return this.http.post(url, usuario, this.httpOptions)
+    .pipe(
+      tap(_ => this.logger.info(`Request feito a ${url}`)),
+      catchError(this.handleError<Usuario>('usuario'))
     );
   }
 

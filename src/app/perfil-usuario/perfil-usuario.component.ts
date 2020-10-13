@@ -22,6 +22,7 @@ export class PerfilUsuarioComponent implements OnInit {
   isFormVisivel:Boolean = false;
   erroRequisicao:String;
   mensagemSucesso:String;
+  
   constructor(private usuarioService:UsuarioService,
               private router:Router,
               private localStorageService: LocalStorageService) { }

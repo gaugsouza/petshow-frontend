@@ -1,18 +1,25 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { NGXLogger } from 'ngx-logger';
-import { Observable, of } from 'rxjs';
-import { Prestador } from '../interfaces/prestador';
-import { ServicoDetalhado } from '../interfaces/servico-detalhado';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { Prestador } from '../interfaces/prestador';
 import { JwtHelper } from '../util/jwt-helper';
+import { NGXLogger } from 'ngx-logger';
+import { LocalStorageService } from './local-storage.service';
+import { usuariosMock } from '../mocks/usuarioMock';
+import { Login } from '../interfaces/login';
+import { Endereco } from '../interfaces/endereco';
+import { TipoPessoa } from '../enum/tipo-pessoa.enum';
+import { ServicoDetalhado } from '../interfaces/servico-detalhado';
+import { servicos } from '../mocks/servico-detalhado-mock';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PrestadorService {
   public PRESTADOR_SERVICE_URL = `${environment.API_URL}/prestador`;
+  public ACESSO_URL = `${environment.API_URL}/acesso`
 
   private httpOptions = {
     headers: new HttpHeaders({ 'content-type': 'application/json'})
@@ -71,5 +78,14 @@ export class PrestadorService {
       this.logger.error(mensagem);
       return of(result as T);
     }
+  }
+
+  cadastrarUsuario = (prestador:Prestador) : Observable<any> => {
+    let url = `${this.ACESSO_URL}/cadastro`;
+    return this.http.post(url, prestador, this.httpOptions)
+    .pipe(
+      tap(_ => this.logger.info(`Request feito a ${url}`)),
+      catchError(this.handleError<Prestador>('usuario'))
+    );
   }
 }

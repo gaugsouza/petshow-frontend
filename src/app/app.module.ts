@@ -25,6 +25,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './acesso/login/login.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { CadastroComponent } from './acesso/cadastro/cadastro.component';
+import { CadastroPrestadorComponent } from './acesso/cadastro/cadastro-prestador/cadastro-prestador.component';
+import { CadastroClienteComponent } from './acesso/cadastro/cadastro-cliente/cadastro-cliente.component';
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 import { EstrelasComponent } from './avaliacao/estrelas/estrelas.component';
 import { FormularioComponent } from './avaliacao/formulario/formulario.component';
@@ -55,6 +58,10 @@ export function HttpLoaderFactory(http:HttpClient) {
     AnimalEstimacaoComponent,
     FormularioAnimalComponent,
     LoginComponent,
+    CadastroComponent,
+    CadastroPrestadorComponent,
+    CadastroClienteComponent,
+    AvaliacaoComponent,
     EstrelasComponent,
     FormularioComponent,
     ListaServicosDetalhadosComponent,
