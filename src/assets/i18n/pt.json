@@ -92,5 +92,6 @@
     "SERVICOS_PRESTADOS":"Serviços Prestados",
     "PRESTADOR_NAO_ENCONTRADO":"Não foi encontrado o prestador informado",
     "VER_AVALIACOES": "Ver avaliações",
-    "CADASTRO": "Cadastro"
+    "CADASTRO": "Cadastro",
+    "SENHA_MINIMO": "A senha deve conter no mínimo 8 caracteres"
 }
