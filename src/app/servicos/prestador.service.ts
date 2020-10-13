@@ -4,6 +4,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Prestador } from '../interfaces/prestador';
+import { ServicoDetalhado } from '../interfaces/servico-detalhado';
 import { JwtHelper } from '../util/jwt-helper';
 import { NGXLogger } from 'ngx-logger';
 import { LocalStorageService } from './local-storage.service';
@@ -11,7 +12,6 @@ import { usuariosMock } from '../mocks/usuarioMock';
 import { Login } from '../interfaces/login';
 import { Endereco } from '../interfaces/endereco';
 import { TipoPessoa } from '../enum/tipo-pessoa.enum';
-import { ServicoDetalhado } from '../interfaces/servico-detalhado';
 import { servicos } from '../mocks/servico-detalhado-mock';
 
 @Injectable({

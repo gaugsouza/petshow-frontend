@@ -91,5 +91,6 @@
     "PLACEHOLDER_DESC_SERVICO": "Tell about the service",
     "SERVICOS_PRESTADOS": "Services Provided",
     "PRESTADOR_NAO_ENCONTRADO": "The informed provider was not found",
-    "VER_AVALIACOES": "See reviews"
+    "VER_AVALIACOES": "See reviews",
+    "CADASTRO": "Register"
 }

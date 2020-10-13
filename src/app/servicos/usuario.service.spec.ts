@@ -35,23 +35,6 @@ describe('UsuarioService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('Deve retornar o token em localStorage', () => {
-    let usuarioMock = {id: 1, a: 'aaaa', b: 'bbbb'};
-    storageService.setItem(USER_TOKEN, usuarioMock.id);
-
-    service.buscaTokenUsuario()
-    .subscribe(token => {
-      expect(token).toEqual(usuarioMock.id);
-    });
-  });
-
-  it('Deve retornar um token nulo', () => {
-    service.buscaTokenUsuario()
-    .subscribe(token => {
-      expect(token).toBeFalsy()
-    })
-  });
-
   it('Deve atualizar um usuario', () => {
     let usuarioMock: Cliente = {
       id: 1,
@@ -65,13 +48,6 @@ describe('UsuarioService', () => {
         senha: "teste1234"
       }
     }
-
-    service.atualizaUsuario(usuarioMock)
-    .subscribe(usuario => {
-      expect(usuario).toBeTruthy();
-      expect(usuario.nome).toEqual('Testinho');
-      expect(usuario.id).toEqual(1);
-    });
 
     const requests = httpMock.match(`${service.USUARIO_SERVICE_URL}`);
     requests.forEach(req => {
