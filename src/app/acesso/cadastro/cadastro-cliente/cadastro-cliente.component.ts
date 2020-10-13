@@ -9,6 +9,7 @@ import {MyErrorStateMatcher} from '../../../classes/my-error-state-matcher';
 import { ConsultaEstadosService, Estado, Cidade } from 'src/app/servicos/consulta-estados.service';
 import { LoginService } from 'src/app/servicos/login.service';
 import { Validacoes } from 'src/app/validacoes';
+import { telefoneFormControl, nomeFormControl, emailFormControl, senhaFormControl, cpfFormControl } from 'src/app/util/form-controls';
 
 @Component({
   selector: 'app-cadastro-cliente',
@@ -31,26 +32,29 @@ export class CadastroClienteComponent implements OnInit {
       complemento: ""
     },
     login: {
-      email: "",
-      senha: ""
+      email: null,
+      senha: null
     },
     animaisEstimacao: [],
     telefone: ""
   };
 
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-
-  enderecoFormControl = new FormControl('', [
+  telefoneFormControl = telefoneFormControl;
+  cpfFormControl = cpfFormControl;
+  nomeFormControl = nomeFormControl;
+  emailFormControl = emailFormControl;
+  senhaFormControl = senhaFormControl;
+  confirmaSenhaFormControl = new FormControl('', [
     Validators.required
   ]);
-
-  passwordFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
+  logradouroFormControl = new FormControl('', [Validators.required]);
+  numeroFormControl = new FormControl('', [Validators.required]);
+  complementoFormControl = new FormControl('', [Validators.required]);
+  bairroFormControl = new FormControl('', [Validators.required]);
+  cepFormControl = new FormControl('', [Validators.required]);
+  estadoFormControl = new FormControl('', [Validators.required]);
+  cidadeFormControl = new FormControl('', [Validators.required]);
+  
   erroRequisicao:String;
   submitted = false;
   isCliente:Boolean= false;
@@ -70,9 +74,6 @@ export class CadastroClienteComponent implements OnInit {
     private consultaEstadoService:ConsultaEstadosService
     ) { }
 
-    senhaFormControl = new FormControl('', [Validators.required])
-    confirmarSenhaFormControl = new FormControl('', [Validators.required])
-
   ngOnInit(): void {
     this.consultaEstadoService.getEstados().subscribe(el => {
       this.estados = el;
@@ -80,7 +81,9 @@ export class CadastroClienteComponent implements OnInit {
   }
 
   cadastrarCliente(cliente:Cliente) {
+    
     if(this.confirmarSenha !== this.cliente.login.senha) { 
+      console.log(this.confirmarSenha, this.cliente.login.senha);
       this.errorMessage = 'MENSAGEM_ERRO_SENHA'; return; 
     }
     this.loginService.cadastrarUsuario(cliente)
@@ -98,8 +101,20 @@ export class CadastroClienteComponent implements OnInit {
     })
   }
 
-  hasErrors() {
-    return this.emailFormControl.hasError('email') || this.emailFormControl.hasError('required') || this.passwordFormControl.hasError('required') || this.enderecoFormControl.hasError('required');
-  }
+ hasErrors() {
+  return this.telefoneFormControl.hasError('required') ||
+  this.cpfFormControl.hasError('required') ||
+  this.nomeFormControl.hasError('required') ||
+  this.emailFormControl.hasError('required') || this.emailFormControl.hasError('email') ||
+  this.senhaFormControl.hasError('required') || this.senhaFormControl.hasError('min') ||
+  this.confirmaSenhaFormControl.hasError('required') ||  this.logradouroFormControl.hasError('required')  ||
+  this.numeroFormControl.hasError('required') ||
+  this.bairroFormControl.hasError('required')  ||
+  this.cepFormControl.hasError('required') 
+ }
+
+ repetirSenha(senha:string) {
+  this.confirmarSenha = senha;
+}
 
 }
