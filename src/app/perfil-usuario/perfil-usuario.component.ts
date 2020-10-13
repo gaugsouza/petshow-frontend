@@ -37,25 +37,31 @@ export class PerfilUsuarioComponent implements OnInit {
   }
 
   getUsuario() : void {
-    this.usuarioService.getUsuario()
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+      this.usuarioService.getUsuario(token)
       .subscribe((usuario:Cliente) => {
         this.usuario = usuario;
+      });
     });
   }
 
   adicionaAnimal({...animalEstimacao}:AnimalEstimacao) : void {
-    animalEstimacao.dono = this.usuario.id;
-    this.usuarioService.adicionarAnimalEstimacao(animalEstimacao).subscribe(() => {
-      this.limpaAnimal();
-      this.getUsuario();
-      this.isFormVisivel = false;
-    });    
+    animalEstimacao.donoId = this.usuario.id;
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+      this.usuarioService.adicionarAnimalEstimacao(animalEstimacao, token).subscribe(() => {
+        this.limpaAnimal();
+        this.getUsuario();
+        this.isFormVisivel = false;
+      });    
+    })
   }
 
   removeAnimal(animalEstimacao : AnimalEstimacao):void {
-   this.usuarioService.removerAnimalEstimacao(animalEstimacao.id).subscribe(() => {
-     this.getUsuario();
-   });
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+      this.usuarioService.removerAnimalEstimacao(animalEstimacao.id, token).subscribe(() => {
+        this.getUsuario();
+      });
+    });
   }
 
   exibeFormulario() {
@@ -69,8 +75,8 @@ export class PerfilUsuarioComponent implements OnInit {
   }
 
   atualizaUsuario() {
-    this.usuarioService.atualizaUsuario(this.usuarioRequest).subscribe(res => {
-      this.localStorageService.setItem(USER_TOKEN, res.id).subscribe(() => {
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+      this.usuarioService.atualizaUsuario(this.usuarioRequest, token).subscribe(() => {
         this.getUsuario();
         this.limpaAnimal();
         this.ocultaFormulario();
@@ -85,26 +91,14 @@ export class PerfilUsuarioComponent implements OnInit {
   }
 
   editaAnimal(animalEstimacao : AnimalEstimacao) : void { 
-    console.log(animalEstimacao);
-    this.usuarioService.atualizarAnimalEstimacao(animalEstimacao.id, animalEstimacao).subscribe(res => {
-      this.getUsuario();
-      this.limpaAnimal();
-      this.ocultaFormulario();
-    })
-  }
-
-  buscarTiposAnimalEstimacao() {
-    let tiposAnimal;
-
-    this.usuarioService.buscarTiposAnimalEstimacao().subscribe(tipos => 
-      {
-        console.log(tipos)
-        tiposAnimal = tipos;
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+      this.usuarioService.atualizarAnimalEstimacao(animalEstimacao.id, animalEstimacao, token).subscribe(res => {
+        this.getUsuario();
+        this.limpaAnimal();
+        this.ocultaFormulario();
       })
-
-    return tiposAnimal;
+    });
   }
-
 
   limpaAnimal() {
     this.animal = {

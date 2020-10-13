@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Prestador } from '../interfaces/prestador';
 import { ServicoDetalhado } from '../interfaces/servico-detalhado';
 import { Avaliacao } from '../interfaces/avaliacao';
+import { LocalStorageService } from '../servicos/local-storage.service';
+import { USER_TOKEN } from '../util/constantes';
 
 @Component({
   selector: 'app-prestador',
@@ -15,7 +17,8 @@ export class PrestadorComponent implements OnInit {
   carregado:boolean = false;
   constructor(private route:ActivatedRoute,
     private router:Router,
-    private prestadorService:PrestadorService) { }
+    private prestadorService:PrestadorService,
+    private localStorageService:LocalStorageService) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -25,11 +28,12 @@ export class PrestadorComponent implements OnInit {
         return;
       }
       console.log(idPrestador)
-
-      this.prestadorService.buscaPrestador(idPrestador).subscribe(prestador => {
-        this.carregado = true;
-        this.prestador = prestador;
-      });
+      this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
+        this.prestadorService.buscaPrestador(idPrestador, token).subscribe(prestador => {
+          this.carregado = true;
+          this.prestador = prestador;
+        });
+      })
     })
   }
 

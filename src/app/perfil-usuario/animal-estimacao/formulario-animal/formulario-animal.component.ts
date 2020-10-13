@@ -1,10 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
-import { TipoAnimal } from 'src/app/enum/TipoAnimal';
 import {MyErrorStateMatcher} from '../../../classes/my-error-state-matcher';
 import { FormControl, Validators } from '@angular/forms';
 import { UsuarioService } from 'src/app/servicos/usuario.service';
-import { PerfilUsuarioComponent } from '../../perfil-usuario.component';
+import { LocalStorageService } from 'src/app/servicos/local-storage.service';
+import { USER_TOKEN } from 'src/app/util/constantes';
+
 
 @Component({
   selector: 'app-formulario-animal',
@@ -29,7 +30,8 @@ export class FormularioAnimalComponent implements OnInit {
 
   public tiposAnimal = [];
 
-  constructor(private usuarioService:UsuarioService) { }
+  constructor(private usuarioService:UsuarioService,
+              private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
     this.getTiposAnimal()
@@ -56,13 +58,15 @@ export class FormularioAnimalComponent implements OnInit {
   }
 
   getTiposAnimal() {
-    this.usuarioService.buscarTiposAnimalEstimacao().subscribe(
-      tipos => {
-        tipos.forEach(tipo => {
-          this.tiposAnimal.push(tipo);  
-        });
-      }
-    );
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) =>{
+      this.usuarioService.buscarTiposAnimalEstimacao(token).subscribe(
+        tipos => {
+          tipos.forEach(tipo => {
+            this.tiposAnimal.push(tipo);  
+          });
+        }
+      );
+    })
   }
   
   limpa() {

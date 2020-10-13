@@ -20,8 +20,8 @@ export class AvaliacaoService {
   constructor(private http:HttpClient,
               private logger:NGXLogger) { }
 
-  private AVALIACAO_SERVICE_URL = `${environment.API_URL}/prestador/idPrestador/servicoDetalhado/idServico/avaliacoes`;
-  private SERVICO_DETALHADO_URL = `${environment.API_URL}/prestador/idPrestador/servicoDetalhado/idServico`;
+  private AVALIACAO_SERVICE_URL = `${environment.API_URL}/prestador/idPrestador/servico-detalhado/idServico/avaliacoes`;
+  private SERVICO_DETALHADO_URL = `${environment.API_URL}/prestador/idPrestador/servico-detalhado/idServico`;
 
   private httpOptions = {
     headers: new HttpHeaders({ 'content-type': 'application/json'})

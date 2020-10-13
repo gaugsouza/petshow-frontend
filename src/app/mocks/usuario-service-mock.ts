@@ -20,11 +20,6 @@ export class UsuarioServiceMock {
     return of(usuarioAAtualizar);
   } 
 
-  buscaPorLogin = (login: Login) : Observable<any> => {
-    let usuario = this.usuarios.find(el => el.login === login);
-    return of(usuario);
-  }
-
   adicionarAnimalEstimacao = (animalEstimacao:AnimalEstimacao) : Observable<any> => {
     let usuario = animalEstimacao.dono;
     let usuarioLista = (this.usuarios.find(el => el.id === usuario.id) as Cliente);

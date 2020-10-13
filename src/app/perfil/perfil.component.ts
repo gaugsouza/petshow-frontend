@@ -20,6 +20,9 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+      if(!token){
+        this.router.navigate(['/login']);
+      }
       let decodedToken = this.jwtHelper.decodeToken(token);
       this.isCliente = decodedToken.tipo === TipoPessoa.CLIENTE;
       this.isPrestador = decodedToken.tipo === TipoPessoa.PRESTADOR_AUTONOMO;

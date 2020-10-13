@@ -22,7 +22,7 @@
         Login
       </a>
     </div>
-    <div>
+    <div *ngIf="isLogged">
       <a mat-button href="/perfil" class="menu-item">
         {{ 'PERFIL' | translate}}
       </a>

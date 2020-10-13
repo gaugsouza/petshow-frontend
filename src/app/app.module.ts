@@ -55,7 +55,6 @@ export function HttpLoaderFactory(http:HttpClient) {
     AnimalEstimacaoComponent,
     FormularioAnimalComponent,
     LoginComponent,
-    AvaliacaoComponent,
     EstrelasComponent,
     FormularioComponent,
     ListaServicosDetalhadosComponent,

@@ -1,3 +1,5 @@
+import { HttpHeaders } from '@angular/common/http';
+
 export class JwtHelper {
     private urlBase64Decode(str: string) {
         let output = str.replace(/-/g, '+').replace(/_/g, '/');
@@ -28,5 +30,16 @@ export class JwtHelper {
             throw new Error('Cannot decode the token');
         }
         return JSON.parse(decoded);
+    }
+
+    public recuperaIdToken(token:string) : number {
+        return this.decodeToken(token).id;
+    }
+    
+    public constroiHeaders(token:string) {
+        let auth = `Bearer ${token}`;
+        const httpOptions = {headers: new HttpHeaders({'Authorization': auth})};
+    
+        return httpOptions;
     }
 }
