@@ -21,6 +21,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { NgxMaskModule } from 'ngx-mask';
+import { JwtHelper } from '../util/jwt-helper';
 
 describe('PerfilPrestadorComponent', () => {
   let component: PerfilPrestadorComponent;
@@ -39,7 +40,8 @@ describe('PerfilPrestadorComponent', () => {
        providers: [
          PrestadorService,
          LocalStorageService,
-         {provide: Router, useValue: {navigate: () => true}}
+         {provide: Router, useValue: {navigate: () => true}},
+         JwtHelper
        ],
        imports: [
         MatListModule,

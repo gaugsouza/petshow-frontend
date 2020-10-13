@@ -8,6 +8,7 @@ import { Prestador } from '../../../interfaces/prestador';
 import { TipoPessoa } from '../../../enum/tipo-pessoa.enum';
 import {MyErrorStateMatcher} from '../../../classes/my-error-state-matcher';
 import { Estado, Cidade, ConsultaEstadosService } from 'src/app/servicos/consulta-estados.service';
+import { LoginService } from 'src/app/servicos/login.service';
 
 
 @Component({
@@ -20,14 +21,14 @@ export class CadastroPrestadorComponent implements OnInit {
     nome: "",
     foto: "",
     cpf: "",
-    tipo:null,
+    tipo:TipoPessoa.PRESTADOR_AUTONOMO,
     endereco: {
       logradouro: "",
       cep: "",
       bairro: "",
       cidade: "",
       estado: "",
-      numero: 0,
+      numero: null,
       complemento: ""
     },
     login: {
@@ -43,6 +44,10 @@ export class CadastroPrestadorComponent implements OnInit {
     Validators.required,
     Validators.email,
   ]);
+
+  enderecoFormControl = new FormControl('', [
+    Validators.required
+  ])
 
   erroRequisicao:String;
   submitted = false;
@@ -61,7 +66,7 @@ export class CadastroPrestadorComponent implements OnInit {
 
 
   constructor(
-    private prestadorService:PrestadorService,
+    private loginService:LoginService,
     private consultaEstadoService:ConsultaEstadosService,
     private router:Router,
     private localStorageService: LocalStorageService,
@@ -80,17 +85,18 @@ export class CadastroPrestadorComponent implements OnInit {
     if(this.confirmarSenha !== this.prestador.login.senha) { 
       this.errorMessage = 'MENSAGEM_ERRO_SENHA'; return; 
     }
-    this.prestadorService.cadastrarUsuario(prestador)
+    this.loginService.cadastrarUsuario(prestador)
       .subscribe(res => {
           this.router.navigate(['/login'])
         }, (err) => {
           console.log(err);
-          this.erroRequisicao = "Erro durante a operação";
+          this.errorMessage = "";
+          this.erroRequisicao = typeof err === "string" ? err : "Erro durante a operação";
         });
   }
 
   hasErrors() {
-    return this.emailFormControl.hasError('email') || this.emailFormControl.hasError('required') || this.passwordFormControl.hasError('required');
+    return this.emailFormControl.hasError('email') || this.emailFormControl.hasError('required') || this.passwordFormControl.hasError('required') || this.enderecoFormControl.hasError('required');
   }
   carregarCidades(uf:string) {
     this.consultaEstadoService.getCidades(uf).subscribe(el => {

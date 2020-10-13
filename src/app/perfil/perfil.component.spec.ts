@@ -27,6 +27,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { NgxMaskModule } from 'ngx-mask';
 import { FormularioAnimalComponent } from '../perfil-usuario/animal-estimacao/formulario-animal/formulario-animal.component';
+import { JwtHelper } from '../util/jwt-helper';
 describe('PerfilComponent', () => {
   let component: PerfilComponent;
   let fixture: ComponentFixture<PerfilComponent>;
@@ -49,7 +50,8 @@ describe('PerfilComponent', () => {
         PrestadorService,
         LocalStorageService,
         {provide: Router, useValue: {navigate: () => true}},
-        {provide: UsuarioService, useClass: UsuarioServiceMock}
+        {provide: UsuarioService, useClass: UsuarioServiceMock},
+        JwtHelper
        ],
        imports: [
         MatListModule,

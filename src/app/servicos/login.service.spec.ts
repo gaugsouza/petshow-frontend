@@ -33,9 +33,9 @@ describe('LoginService', () => {
   });
 
   it('Deve retornar um cliente', () => {
-    let clienteLogado = service.realizaLogin("monica@gmail.com", "teste1234");
+    let clienteLogado = service.realizaLogin({email: "monica@gmail.com", senha:"teste1234"});
     expect(clienteLogado).toBeTruthy();
-    const req = httpMock.match(`${service.LOGIN_SERVICE_URL}`);
+    const req = httpMock.match(`${service.ACESSO_BASE_URL}`);
     req.forEach(r => {
       expect(r.request.method).toBe('POST');
       r.flush(usuarioExemplo);
@@ -43,29 +43,12 @@ describe('LoginService', () => {
   });
 
   it('Deve colocar um elemento no localStorage', () => {
-    service.realizaLogin(usuarioExemplo.login.email, usuarioExemplo.login.senha);
-    service.buscaTokenUsuario()
-    .subscribe(token => {
-      expect(token).toEqual(usuarioExemplo.id);
-    })
+    service.realizaLogin({email:usuarioExemplo.login.email, senha:usuarioExemplo.login.senha});
 
-    const req = httpMock.match(`${service.LOGIN_SERVICE_URL}`);
+    const req = httpMock.match(`${service.ACESSO_BASE_URL}`);
     req.forEach(r => {
       expect(r.request.method).toBe('POST');
       r.flush(usuarioExemplo);
     });
   });
-
-  it('Deve não colocar nada no localStorage', () => {
-    service.realizaLogin('aaaaa', 'bbbbbb');
-    service.buscaTokenUsuario()
-    .subscribe(token => {
-      expect(token).toBeFalsy();
-    })
-    const req = httpMock.match(`${service.LOGIN_SERVICE_URL}`);
-    req.forEach(r => {
-      expect(r.request.method).toBe('POST');
-      r.flush(null);
-    });
-  })
 });

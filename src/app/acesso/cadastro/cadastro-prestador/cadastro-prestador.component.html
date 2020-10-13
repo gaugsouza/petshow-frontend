@@ -1,34 +1,22 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-<!-- <form> -->
   <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
       <label for="inputNome">{{'NOME_COMPLETO' | translate}}</label>
       <input type="text" class="form-control" id="inputNome" placeholder="João" required [(ngModel)]="prestador.nome" name="nome">
-      <!-- <div *ngIf="!nome.pristine && nome.errors">  
-        <p *ngIf="nome.errors.required">
-          {{'NOME_OBRIGATORIO' | translate}}
-        </p>
-        <p *ngIf="nome.errors.minlength">
-          {{'NOME_MIN_CARACT' | translate}}
-        </p>
-        <p *ngIf="nome.errors.maxlength">
-          {{'NOME_MAX_CARACT' | translate}}
-        </p>
-      </div> -->
     </div>
-    <!-- <div class="form-group col-md-6">
-      <label for="inputNomeSocial">{{'NOME_SOCIAL' | translate}} </label>
-      <input type="text" class="form-control" id="inputNomeSocial" placeholder="Nome Social" required [(ngModel)]="prestador.nomeSocial" name="nomeSocial">
-    </div> -->
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
+      <label for="inputCpf">CPF</label>
+      <input type="text" class="form-control" id="inputCpf" placeholder="444.444.444-44" mask="000.000.000-00" required [(ngModel)]="prestador.cpf" name="cpf">
+    </div>
+    <div class="form-group col-md-4">
       <label for="inputTelefone">{{'TELEFONE' | translate}}</label>
-      <input type="text" class="form-control" id="inputTelefone" placeholder="(11) 99999-9999" required [(ngModel)]="prestador.telefone" name="telefone">
+      <input type="text" class="form-control" id="inputTelefone" placeholder="(11) 99999-9999" mask="(00)00000-0000" required [(ngModel)]="prestador.telefone" name="telefone">
     </div>
     <div class="form-group col-md-6">
       <label for="inputEmail">E-mail</label>
-      <input type="text" class="form-control" id="inputEmail" placeholder="petshow@gmail.com" required [(ngModel)]="prestador.login.email" name="email">
+      <input type="text" class="form-control" id="inputEmail" [formControl]="emailFormControl" placeholder="petshow@gmail.com" required [(ngModel)]="prestador.login.email" name="email">
       <div *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
         {{'EMAIL_INVALIDO' | translate}}
 
@@ -53,30 +41,14 @@
   <div class="row">
     <div class="col-md-9">
       <div class="form-check">
-        <!-- <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="opcao1" required [(ngModel)]="prestador.tipo" name="tipo">
-        <label class="form-check-label" for="exampleRadios1">
-          {{'SOU_EMPRESA' | translate}}
-        </label> -->
       </div>
       <div class="form-check">
-        <!-- <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="opcao2" checked required [(ngModel)]="prestador.tipo" name="tipo">
-        <label class="form-check-label" for="exampleRadios2">
-          {{'SOU_AUTONOMO' | translate}}
-        </label> -->
-
         <div class="form-group">
           <label for="exampleFormControlTextarea1">{{'DESC_SERVICO' | translate}} </label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required [(ngModel)]="prestador.descricao" name="descricao"></textarea>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required [(ngModel)]="prestador.descricao" [formControl]="enderecoFormControl" name="descricao"></textarea>
         </div>
       </div>
     </div>
-    <!-- <div class="col-md-3">
-      <div class="form-group">
-        <button type="button" class="btn btn-outline-primary">{{'ADICIONAR_FOTO' | translate}}</button>
-        <br>
-        <img src="..." class="img-fluid" alt="Responsive image">
-      </div>
-    </div> -->
   </div>
 
   <div class="form-row">
@@ -87,25 +59,25 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCity">{{'LOGRADOURO' | translate}}</label>
-      <input type="text" class="form-control" id="inputCity" required [(ngModel)]="prestador.endereco.logradouro" name="logradouro">
+      <input type="text" class="form-control" id="inputCity" [formControl]="enderecoFormControl" required [(ngModel)]="prestador.endereco.logradouro" name="logradouro">
     </div>
     <div class="form-group col-md-2">
       <label for="inputCity">{{'NUMERO' | translate}}</label>
-      <input type="text" class="form-control" id="inputCity" required [(ngModel)]="prestador.endereco.numero" name="numero">
+      <input type="text" class="form-control" [formControl]="enderecoFormControl" id="inputCity" mask="0*" placeholder="30" required [(ngModel)]="prestador.endereco.numero" name="numero">
     </div>
     <div class="form-group col-md-4">
       <label for="inputCity">{{'COMPLEMENTO' | translate}}</label>
-      <input type="text" class="form-control" id="inputCity" required [(ngModel)]="prestador.endereco.complemento" name="complemento">
+      <input type="text" class="form-control" [formControl]="enderecoFormControl" id="inputCity" required [(ngModel)]="prestador.endereco.complemento" name="complemento">
     </div>
   </div>
   <div class="form-row">
   <div class="form-group col-md-6">
-    <label for="inputCEP">{{'BAIRRO' | translate}}</label>
-    <input type="text" class="form-control" id="inputCEP" required [(ngModel)]="prestador.endereco.bairro" name="bairro">
+    <label for="inputBairro">{{'BAIRRO' | translate}}</label>
+    <input type="text" class="form-control" [formControl]="enderecoFormControl" id="inputBairro" required [(ngModel)]="prestador.endereco.bairro" name="bairro">
   </div>
   <div class="form-group col-md-3">
     <label for="inputCEP">{{'CEP' | translate}}</label>
-    <input type="text" class="form-control" id="inputCEP" required [(ngModel)]="prestador.endereco.cep" name="cep">
+    <input type="text" class="form-control" [formControl]="enderecoFormControl" id="inputCEP" mask="00000-000" required [(ngModel)]="prestador.endereco.cep" name="cep">
   </div>
   </div>
 
@@ -115,16 +87,13 @@
       <select id="inputEstado" class="form-control" required [(ngModel)]="prestador.endereco.estado" name="estado"
       (change)="carregarCidades($event.target.value)">
         <option selected>{{'ESTADO' | translate}}</option>
-        <!-- <option>...</option> -->
         <option *ngFor="let estado of estados" value="{{estado.sigla}}">{{estado.nome}}</option>
       </select>
     </div>
     <div class="form-group col-md-6">
       <label for="inputCity">{{'CIDADE' | translate}}</label>
-      <!-- <input type="text" class="form-control" id="inputCity" required [(ngModel)]="prestador.endereco.cidade"
-        name="cidade"> -->
         <select class="form-control" id="inputCity" required [(ngModel)]="prestador.endereco.cidade" name="cidade">
-          <option *ngFor="let cidade of cidades" value="cidade.sigla">{{cidade.nome}}</option>
+          <option *ngFor="let cidade of cidades" value="{{cidade.nome}}">{{cidade.nome}}</option>
         </select>
     </div>
   </div>
@@ -155,8 +124,8 @@
       </div>
   </div>
   <div *ngIf="errorMessage">{{errorMessage | translate}}</div>
+  <div *ngIf="erroRequisicao">{{erroRequisicao}}</div>
 
   <div class="form__button-container">
     <button mat-flat-button color="primary" (click)="cadastrarPrestador(prestador)" >{{'CADASTRAR' | translate}}</button>
   </div>
-<!-- </form> -->

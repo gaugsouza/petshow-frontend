@@ -7,7 +7,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
-import { AnimalEstimacao } from '../../interfaces/AnimalEstimacao';
+import { AnimalEstimacao } from '../../interfaces/animalEstimacao';
 import { usuariosMock} from '../../mocks/usuarioMock';
 import {Cliente} from '../../interfaces/cliente';
 import { FormsModule } from '@angular/forms';

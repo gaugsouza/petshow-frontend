@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
+import { JwtHelper } from '../util/jwt-helper';
 
 describe('AvaliacaoComponent', () => {
   let component: AvaliacaoComponent;
@@ -39,7 +40,8 @@ describe('AvaliacaoComponent', () => {
             servicoAvaliado: 1,
             prestador: 1
           })
-        }}
+        }},
+        JwtHelper
       ],
       imports: [
         MatListModule,

@@ -31,12 +31,12 @@ export const monica: Cliente = {
         {
             id: 1,
             nome: "Monicão",
-            tipo: TipoAnimal.CACHORRO,
+            tipo: {id:2, nome: 'GATO'},
         }
     ]
 }
 
-export const cebolinha:Cliente =  {
+export const cebolinha: Cliente =  {
     id:2, 
     nome: "Cebolinha",
     cpf:"66666666666",
@@ -60,7 +60,10 @@ export const cebolinha:Cliente =  {
         {
             id: 1,
             nome: "Floquinho",
-            tipo: TipoAnimal.CACHORRO,
+            tipo: {
+                id: 1,
+                nome: "CACHORRO"
+            },
         }
     ]
 }

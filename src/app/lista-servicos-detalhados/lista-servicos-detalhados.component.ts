@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ServicosService } from '../servicos/servicos.service';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import {ActivatedRoute} from '@angular/router';
+import { PrestadorService } from '../servicos/prestador.service';
 @Component({
   selector: 'app-lista-servicos-detalhados',
   templateUrl: './lista-servicos-detalhados.component.html',
@@ -14,8 +15,8 @@ export class ListaServicosDetalhadosComponent implements OnInit {
    servicosDetalhados:ServicoDetalhado[]
 
   constructor(private servicosService:ServicosService,
-              private router:Router, 
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute,
+              private prestadorService: PrestadorService) {}
 
   ngOnInit(): void {
       this.tipoId=+this.route.snapshot.paramMap.get('id');
@@ -25,8 +26,13 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   buscarServicosDetalhadosPorTipo(id:number) : void {
     this.servicosService.buscarServicosDetalhadosPorTipo(id)
     .subscribe((servicosDetalhados) => {
-      this.servicosDetalhados = servicosDetalhados
-    });
+      servicosDetalhados.forEach(servicoDetalhado => {
+        this.prestadorService.buscaPrestador(servicoDetalhado.prestadorId).subscribe(prestador => {
+          servicoDetalhado.prestador = prestador;
+        })
+      })
+      this.servicosDetalhados = servicosDetalhados;
+    }); 
   }
 
 }

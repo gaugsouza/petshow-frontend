@@ -7,6 +7,7 @@ import { monica } from '../mocks/usuarioMock';
 import { Servico } from '../interfaces/servico';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
+import { JwtHelper } from '../util/jwt-helper';
 
 describe('AvaliacaoService', () => {
   let service: AvaliacaoService;
@@ -16,6 +17,8 @@ describe('AvaliacaoService', () => {
       imports: [
         HttpClientTestingModule,
         LoggerTestingModule
+      ], providers: [
+        JwtHelper
       ]
     });
     service = TestBed.inject(AvaliacaoService);

@@ -16,6 +16,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatCardModule } from '@angular/material/card';
+import { JwtHelper } from '../util/jwt-helper';
 
 describe('PrestadorComponent', () => {
   let component: PrestadorComponent;
@@ -34,7 +35,8 @@ describe('PrestadorComponent', () => {
             prestador: 1,
             idPrestador: 1
           })
-        }}
+        }},
+        JwtHelper
       ],
       imports: [
         MatListModule,

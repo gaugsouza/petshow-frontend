@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Endereco } from 'src/app/interfaces/endereco';
 import { FormControl, Validators } from '@angular/forms';
+import { ConsultaEstadosService, Estado, Cidade } from 'src/app/servicos/consulta-estados.service';
 
 @Component({
   selector: 'app-dialog-endereco',
@@ -33,12 +34,26 @@ export class DialogEnderecoComponent implements OnInit {
     Validators.required
   ]);
 
+  estados: Estado[];
+  cidades: Cidade[];
+
   constructor(public dialogRef:MatDialogRef<DialogEnderecoComponent>,
-              @Inject(MAT_DIALOG_DATA) public data:Endereco) { }
+              @Inject(MAT_DIALOG_DATA) public data:Endereco,
+              private consultaEstadoService:ConsultaEstadosService) { }
 
   ngOnInit(): void {
+    this.consultaEstadoService.getEstados().subscribe(el => {
+      this.estados = el;
+    });
+    this.carregarCidades(this.data.estado);
   }
 
+  carregarCidades(uf:string) {
+    console.log(uf);
+    this.consultaEstadoService.getCidades(uf).subscribe(el => {
+      this.cidades = el;
+    })
+  }
   onNoClick(): void {
     this.dialogRef.close();
   }
@@ -46,6 +61,6 @@ export class DialogEnderecoComponent implements OnInit {
   
 
   hasErrors() {
-    return this.logradouroFormControl.hasError('required') || this.numeroFormControl.hasError('required') || this.cepFormControl.hasError('required') || this.bairroFormControl.hasError('required') || this.cidadeFormControl.hasError('required') || this.estadoFormControl.hasError('required') ;
+    return this.logradouroFormControl.hasError('required') || this.numeroFormControl.hasError('required') || this.cepFormControl.hasError('required') || this.bairroFormControl.hasError('required');
   }
 }

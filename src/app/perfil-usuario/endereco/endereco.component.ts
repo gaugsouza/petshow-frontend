@@ -23,7 +23,6 @@ export class EnderecoComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(endereco => {
-      console.log(endereco);
       if(endereco) {
         this.atualizaEndereco.emit(endereco);
       }

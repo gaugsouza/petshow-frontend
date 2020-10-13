@@ -7,6 +7,8 @@ import { Cliente } from '../../../interfaces/cliente';
 import { TipoPessoa } from '../../../enum/tipo-pessoa.enum';
 import {MyErrorStateMatcher} from '../../../classes/my-error-state-matcher';
 import { ConsultaEstadosService, Estado, Cidade } from 'src/app/servicos/consulta-estados.service';
+import { LoginService } from 'src/app/servicos/login.service';
+import { Validacoes } from 'src/app/validacoes';
 
 @Component({
   selector: 'app-cadastro-cliente',
@@ -18,14 +20,14 @@ export class CadastroClienteComponent implements OnInit {
     nome: "",
     foto: "",
     cpf: "",
-    tipo:null,
+    tipo:TipoPessoa.CLIENTE,
     endereco: {
       logradouro: "",
       cep: "",
       bairro: "",
       cidade: "",
       estado: "",
-      numero: 0,
+      numero: null,
       complemento: ""
     },
     login: {
@@ -41,15 +43,20 @@ export class CadastroClienteComponent implements OnInit {
     Validators.email,
   ]);
 
+  enderecoFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  passwordFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
   erroRequisicao:String;
   submitted = false;
   isCliente:Boolean= false;
   isPrestador:Boolean= false;
   confirmarSenha:string = ""
   errorMessage : string = ""
-  passwordFormControl = new FormControl('', [
-    Validators.required
-  ]);
   matcher = new MyErrorStateMatcher();
   
   estados:Estado[] = [];
@@ -57,7 +64,7 @@ export class CadastroClienteComponent implements OnInit {
 
 
   constructor(
-    private usuarioService:UsuarioService,
+    private loginService:LoginService,
     private router:Router,
     private localStorageService: LocalStorageService,
     private consultaEstadoService:ConsultaEstadosService
@@ -76,12 +83,13 @@ export class CadastroClienteComponent implements OnInit {
     if(this.confirmarSenha !== this.cliente.login.senha) { 
       this.errorMessage = 'MENSAGEM_ERRO_SENHA'; return; 
     }
-    this.usuarioService.cadastrarUsuario(cliente)
+    this.loginService.cadastrarUsuario(cliente)
       .subscribe(res => {
           this.router.navigate(['/login'])
         }, (err) => {
           console.log(err);
-          this.erroRequisicao = "Erro durante a operação";
+          this.errorMessage = null;
+          this.erroRequisicao = typeof err === "string" ? err : "Erro durante a operação";
         });
   }
   carregarCidades(uf:string) {
@@ -91,7 +99,7 @@ export class CadastroClienteComponent implements OnInit {
   }
 
   hasErrors() {
-    return this.emailFormControl.hasError('email') || this.emailFormControl.hasError('required') || this.passwordFormControl.hasError('required');
+    return this.emailFormControl.hasError('email') || this.emailFormControl.hasError('required') || this.passwordFormControl.hasError('required') || this.enderecoFormControl.hasError('required');
   }
 
 }

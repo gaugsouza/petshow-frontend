@@ -17,17 +17,18 @@ import { LocalStorageService } from '../servicos/local-storage.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AnimalEstimacao } from '../interfaces/AnimalEstimacao';
+import { AnimalEstimacao } from '../interfaces/animalEstimacao';
 import { TipoAnimal } from '../enum/TipoAnimal';
 import {TranslateModule} from '@ngx-translate/core';
 import { Cliente } from '../interfaces/cliente';
-import { USUARIO_TOKEN } from '../util/constantes';
+import { USER_TOKEN } from '../util/constantes';
 import {InformacoesPessoaisComponent} from './informacoes-pessoais/informacoes-pessoais.component';
 import {EnderecoComponent} from './endereco/endereco.component';
 import {DialogEnderecoComponent} from './endereco/dialog-endereco/dialog-endereco.component';
 import {MatDialogModule} from '@angular/material/dialog'; 
 import {MatCardModule} from '@angular/material/card';
 import {NgxMaskModule} from 'ngx-mask';
+
 
 
 describe('FormularioAnimalComponent', () => {
@@ -87,66 +88,74 @@ describe('FormularioAnimalComponent', () => {
   });
 
   it('Deve setar token igual ao de localStorage', () => {
-    localStorageService.setItem(USUARIO_TOKEN, usuarioMock.id);
+    localStorageService.setItem(USER_TOKEN, usuarioMock.id);
     component.getUsuario();
     expect(component.usuario.id).toEqual(usuarioMock.id);
   });
 
-  it('Deve deixar usuario indefinido', () => {
-    component.getUsuario();
-    expect(component.usuario).toBeFalsy();
-  });
-
   it('Deve adicionar um animal a lista de animais', () => {
-    localStorageService.setItem(USUARIO_TOKEN, usuarioMock.id);
+    localStorageService.setItem(USER_TOKEN, usuarioMock.id);
     component.getUsuario();
     let animalEsperado: AnimalEstimacao = {
       id: 2,
       nome: "Floquinho",
-      tipo: TipoAnimal.CACHORRO,
-      dono: {
-        ...usuarioMock
-      }
+      tipo: {
+        id: 1,
+        nome: "CACHORRO"
+      },
+      donoId: 1
     };
     component.adicionaAnimal(animalEsperado);
     let animalAdicionado = component.usuario.animaisEstimacao.find(animal => animal.id === animalEsperado.id);
     expect(animalAdicionado).toBeTruthy();
   });
 
-  // it('Deve remover um animal da lista de animais', () => {
-  //   component.usuario = usuarioMock;
-  //   let animalARemover: AnimalEstimacao = {
-  //     id: 2,
-  //     nome: "Floquinho",
-  //     tipo: TipoAnimal.CACHORRO
-  //   };
-  //   component.adicionaAnimal(animalARemover);
+  it('Deve remover um animal da lista de animais', () => {
+    component.usuario = usuarioMock;
+    let animalARemover: AnimalEstimacao = {
+      id: 2,
+      nome: "Floquinho", 
+      tipo: {
+        id: 1,
+        nome: "CACHORRO"
+      },
+      donoId: 1
+    };
+    component.adicionaAnimal(animalARemover);
 
-  //   component.removeAnimal(animalARemover);
+    component.removeAnimal(animalARemover);
 
-  //   expect(component.usuario.animaisEstimacao).not.toContain(animalARemover);
-  // });
+    expect(component.usuario.animaisEstimacao).not.toContain(animalARemover);
+  });
 
-  // it('Deve retornar um animal editado', () => {
-  //   component.usuario = usuarioMock;
-  //   let nomeEsperado = "Mingau";
-  //   let animalAEditar: AnimalEstimacao = {
-  //     id: 2,
-  //     nome: "Floquinho",
-  //     tipo: TipoAnimal.CACHORRO
-  //   };
+  it('Deve retornar um animal editado', () => {
+    component.usuario = usuarioMock;
+    let nomeEsperado = "Mingau";
+    let animalAEditar: AnimalEstimacao = {
+      id: 3,
+      nome: "Denao",
+      tipo: {
+        id: 1,
+        nome: "CACHORRO"
+      },
+      donoId: 1
+    };
 
-  //   component.adicionaAnimal({...animalAEditar});
-  //   animalAEditar.nome = nomeEsperado;
-  //   component.editaAnimal(animalAEditar);
-  //   expect(component.usuario.animaisEstimacao.find(animal => animal.id === 2).nome).toEqual(nomeEsperado);
-  // });
+    component.adicionaAnimal({...animalAEditar});
+    animalAEditar.nome = nomeEsperado;
+    component.editaAnimal(animalAEditar);
+    expect(component.usuario.animaisEstimacao.find(animal => animal.id === 3).nome).toEqual(nomeEsperado);
+  });
 
   it('Deve selecionar o animal', () => {
     let animal: AnimalEstimacao = {
       id: 2,
       nome: "Floquinho",
-      tipo: TipoAnimal.CACHORRO
+      tipo: {
+        id: 1,
+        nome: "CACHORRO"
+      },
+      donoId: 1
     };
 
     component.selecionaAnimal(animal);
@@ -158,7 +167,11 @@ describe('FormularioAnimalComponent', () => {
     component.animal = {
       id: 2,
       nome: "Floquinho",
-      tipo: TipoAnimal.CACHORRO
+      tipo: {
+        id: 1,
+        nome: "CACHORRO"
+      },
+      donoId: 1
     };
 
     fixture.detectChanges();
