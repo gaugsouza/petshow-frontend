@@ -8,6 +8,7 @@ import { usuariosMock } from '../mocks/usuarioMock';
 import { Cliente } from '../interfaces/cliente';
 import { TipoPessoa } from '../enum/tipo-pessoa.enum';
 import { USER_TOKEN } from '../util/constantes';
+import { JwtHelper } from '../util/jwt-helper';
 
 describe('UsuarioService', () => {
   let service: UsuarioService;
@@ -22,7 +23,8 @@ describe('UsuarioService', () => {
         LoggerTestingModule
       ],
       providers: [
-        LocalStorageService
+        LocalStorageService,
+        JwtHelper
       ]
     });
     service = TestBed.inject(UsuarioService);
@@ -48,6 +50,13 @@ describe('UsuarioService', () => {
         senha: "teste1234"
       }
     }
+
+    service.atualizaUsuario(usuarioMock, "")
+    .subscribe(usuario => {
+      expect(usuario).toBeTruthy();
+      expect(usuario.nome).toEqual('Testinho');
+      expect(usuario.id).toEqual(1);
+    });
 
     const requests = httpMock.match(`${service.USUARIO_SERVICE_URL}`);
     requests.forEach(req => {

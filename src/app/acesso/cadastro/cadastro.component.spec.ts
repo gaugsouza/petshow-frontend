@@ -14,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { CadastroPrestadorComponent } from './cadastro-prestador/cadastro-prestador.component';
 import { CadastroClienteComponent } from './cadastro-cliente/cadastro-cliente.component';
+import { JwtHelper } from '../../util/jwt-helper';
 
 describe('CadastroComponent', () => {
   let component: CadastroComponent;
@@ -25,6 +26,9 @@ describe('CadastroComponent', () => {
         CadastroComponent,
         CadastroClienteComponent,
         CadastroPrestadorComponent
+      ],
+      providers: [
+        JwtHelper
       ],
       imports: [
         MatListModule,

@@ -4,6 +4,7 @@ import { PrestadorService } from './prestador.service';
 
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
+import { JwtHelper } from '../util/jwt-helper';
 
 describe('PrestadorService', () => {
   let service: PrestadorService;
@@ -13,6 +14,9 @@ describe('PrestadorService', () => {
       imports: [
         HttpClientTestingModule,
         LoggerTestingModule
+      ],
+      providers: [
+        JwtHelper
       ]
     });
     service = TestBed.inject(PrestadorService);

@@ -9,7 +9,7 @@ export class UsuarioServiceMock {
   usuarios = [...usuariosMock];
 
   getUsuario = (id:number): Observable<Usuario> => {
-    let usuario = this.usuarios.find(el => el.id === id);
+    let usuario = this.usuarios[0];
     return of(usuario);
   }
 
@@ -21,14 +21,14 @@ export class UsuarioServiceMock {
   } 
 
   adicionarAnimalEstimacao = (animalEstimacao:AnimalEstimacao) : Observable<any> => {
-    let usuario = animalEstimacao.dono;
-    let usuarioLista = (this.usuarios.find(el => el.id === usuario.id) as Cliente);
+    let usuarioLista = (this.usuarios.find(el => el.id === animalEstimacao.donoId) as Cliente);
     usuarioLista.animaisEstimacao.push(animalEstimacao);
     return this.atualizaUsuario(usuarioLista);
   }
 
   atualizarAnimalEstimacao = (id:number, animalEstimacao:AnimalEstimacao) : Observable<any> => {
-    let usuario = animalEstimacao.dono as Cliente;
+    //let usuario = animalEstimacao.donoId as Cliente;
+    let usuario = (this.usuarios[0] as Cliente);
     usuario.animaisEstimacao.forEach(animal => {
       if(animal.id === id){
         animal.nome = animalEstimacao.nome;
@@ -38,8 +38,19 @@ export class UsuarioServiceMock {
     return this.atualizaUsuario(usuario);
   }
 
-  removerAnimalEstimacao = (id:number) : Observable<any> => {    
-    return this.atualizaUsuario(this.usuarios[0])
+  removerAnimalEstimacao = (id:number) : Observable<any> => {   
+    let usuario = (this.usuarios[0] as Cliente);
+    usuario.animaisEstimacao = usuario.animaisEstimacao.filter(el => el.id !== id);
+    return this.atualizaUsuario(usuario)
   }
+
+  buscarTiposAnimalEstimacao = (token:string) : Observable<any> => {
+    return of([
+      {id: 1, tipo: "CACHORRO"},
+      {id: 2, tipo: "GATO"},
+      {id: 3, tipo: "AVE"},
+      {id:4, tipo: "REPTIL"}
+    ]);
+  } 
     
 }
