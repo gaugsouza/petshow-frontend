@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { NGXLogger } from 'ngx-logger';
 import { tap, catchError } from 'rxjs/operators';
+import { JwtHelper } from '../util/jwt-helper';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +19,11 @@ export class AvaliacaoService {
   private clientes:Cliente[] = usuariosMock;
   servicos: ServicoDetalhado[] = [...servicos];
   constructor(private http:HttpClient,
-              private logger:NGXLogger) { }
+              private logger:NGXLogger,
+              private jwtHelper:JwtHelper) { }
 
-  private AVALIACAO_SERVICE_URL = `${environment.API_URL}/prestador/idPrestador/servicoDetalhado/idServico/avaliacoes`;
-  private SERVICO_DETALHADO_URL = `${environment.API_URL}/prestador/idPrestador/servicoDetalhado/idServico`;
+  private AVALIACAO_SERVICE_URL = `${environment.API_URL}/prestador/idPrestador/servico-detalhado/idServico/avaliacao`;
+  private SERVICO_DETALHADO_URL = `${environment.API_URL}/prestador/idPrestador/servico-detalhado/idServico`;
 
   private httpOptions = {
     headers: new HttpHeaders({ 'content-type': 'application/json'})
@@ -45,10 +47,11 @@ export class AvaliacaoService {
     }
   }
 
-  adicionarAvaliacao = (avaliacao:Avaliacao, idServico?:number, idPrestador?:number):Observable<ServicoDetalhado> => {
+  adicionarAvaliacao = (avaliacao:Avaliacao, idServico?:number, idPrestador?:number, token?:string):Observable<ServicoDetalhado> => {
     const url = this.AVALIACAO_SERVICE_URL.replace('idPrestador', idPrestador.toString()).replace('idServico', idServico.toString());
 
-    return this.http.post(url, avaliacao, this.httpOptions)
+    const headers = this.jwtHelper.constroiHeaders(token);
+    return this.http.post(url, avaliacao, headers)
     .pipe(
       tap(_ => this.logger.info(`Request feito a ${url}`)),
       catchError(this.handleError<ServicoDetalhado>('Add avaliação'))

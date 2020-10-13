@@ -1,0 +1,1055 @@
+listagem_prestador[33mcommit 45159ad8717f6e3b407f5356672711bc6790f456[m[33m ([m[1;36mHEAD -> [m[1;32mlistagem_prestador[m[33m, [m[1;31morigin/listagem_prestador[m[33m)[m
+Merge: 0191104 a586b33
+Author: Thiago Xavier R. de Almeida <thiago.xra@gmail.com>
+Date:   Mon Oct 5 23:45:38 2020 -0300
+
+    mergeado com branch avaliacao
+
+[33mcommit 0191104da072bae8d4834cf7da09d0ddecd0228e[m
+Author: Thiago Xavier R. de Almeida <thiago.xra@gmail.com>
+Date:   Mon Oct 5 23:36:12 2020 -0300
+
+    atualizado cadastro e app.module
+
+[33mcommit ede53b4520486f2c6e04b6bd5e93911bee36b6f2[m
+Author: Thiago Xavier R. de Almeida <thiago.xra@gmail.com>
+Date:   Mon Oct 5 23:20:56 2020 -0300
+
+    atualizado cadastro
+
+[33mcommit f82302a7a0da44e3433242254203b5f24e503fa0[m
+Author: Thiago Xavier R. de Almeida <thiago.xra@gmail.com>
+Date:   Mon Oct 5 23:17:43 2020 -0300
+
+    Criado cadastro Prestador e cadastro Cliente
+
+[33mcommit a586b3345fa806b4a42bf5d03249512633f5dab7[m[33m ([m[1;31morigin/avaliacao[m[33m)[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Mon Oct 5 17:06:17 2020 -0300
+
+    Sem numero - Correçao em testes
+
+[33mcommit a4cf49db64a0be465f8ea105a2d085ea0b02a47f[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Mon Oct 5 16:30:11 2020 -0300
+
+    sem numero - Adição de internacionalização
+
+[33mcommit fc6d833120231e7853375632d483debaaf3d95e9[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Mon Oct 5 15:56:38 2020 -0300
+
+    Sem numero - Correções gerais
+
+[33mcommit 9e11014616628bc4d13e2a477713efe758b548b0[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sun Oct 4 23:30:49 2020 -0300
+
+    Sem numero - Conclusão avaliação
+
+[33mcommit 8ad53eb0ea161230fd803e62123d5724bbbc9a8a[m
+Merge: fb768a6 7b0e2db
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sun Oct 4 22:46:40 2020 -0300
+
+    Merge branch 'correcoes-poc' of https://github.com/Equipe-HYVE/petshow-frontend into avaliacao
+
+[33mcommit fb768a66d1ddb68aa4f02f7b37efcf65b41c3261[m
+Merge: c791fb0 120e83b
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sun Oct 4 22:32:25 2020 -0300
+
+    Merge branch 'development' of https://github.com/Equipe-HYVE/petshow-frontend into avaliacao
+
+[33mcommit c791fb08dec9121a69b974fe4859944a2ab41c28[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sun Oct 4 22:31:21 2020 -0300
+
+    Sem numero - correçao em testes (Todos validam se esta criando)
+
+[33mcommit 1ff1a2bfc7f9daa3606937dd17b65d45f52062c4[m
+Author: Thiago Xavier R. de Almeida <thiago.xra@gmail.com>
+Date:   Sun Oct 4 22:15:31 2020 -0300
+
+    criado validadores para peril-prestador
+
+[33mcommit 935367b7d3ec47b9064b0047a8ebf2c515b54650[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sun Oct 4 18:50:21 2020 -0300
+
+    Sem numero - alteração em service de avaliação
+
+[33mcommit 5fe8d87ae294bc0f141345cdf429250e64a0a39a[m
+Author: Thiago Xavier R. de Almeida <thiago.xra@gmail.com>
+Date:   Sat Oct 3 18:02:44 2020 -0300
+
+    Criado Cadastro Prestador.html
+
+[33mcommit 685401067638e9fd789339ec314592b769c7a1a3[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sat Oct 3 14:00:09 2020 -0300
+
+    Sem numero - Adiçao de codigos para funcionalidades
+
+[33mcommit 435c3da31f867000812495d2d438b781a5a6e78e[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sat Oct 3 10:09:29 2020 -0300
+
+    Sem numero - Avaliacao service
+
+[33mcommit 26d8899270b022f886ee93d617e93971faa40b4b[m
+Author: Thiago Xavier R. de Almeida <thiago.xra@gmail.com>
+Date:   Fri Oct 2 23:48:39 2020 -0300
+
+    criado prestador post
+
+[33mcommit f389fbf488505f859f0a05e9517874b9dee071d9[m
+Author: Thiago Xavier R. de Almeida <thiago.xra@gmail.com>
+Date:   Fri Oct 2 22:41:05 2020 -0300
+
+    criado prestadorservice
+
+[33mcommit 75dd955714ff46a2e1ea9898cf8d2ed12cc1737a[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Fri Oct 2 22:35:08 2020 -0300
+
+    sem numero - adiçao de componentes de avaliaçao
+
+[33mcommit dc62d208593c8c9b78cbfff9a7ed7027c9a7744d[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Fri Oct 2 22:20:36 2020 -0300
+
+    Sem numero - Desenvolvimento do layout
+
+[33mcommit 81a2c084e4335dee862de6e68596970ab3297b71[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Mon Sep 28 15:01:40 2020 -0300
+
+    Sem numero - Adição de .feature
+
+[33mcommit 120e83b9361f4783add29424a182eca8b04fd79e[m[33m ([m[1;31morigin/development[m[33m)[m
+Author: gaugsouza <guilhermeguis@outlook.com>
+Date:   Sun Sep 27 22:57:32 2020 -0300
+
+    #50 ajuste parcial
+
+[33mcommit 7b0e2db7c3e02e4fde4e49e025c17ea32ce176fd[m[33m ([m[1;31morigin/correcoes-poc[m[33m)[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sun Sep 27 21:01:19 2020 -0300
+
+    #50 - correção em testes
+
+[33mcommit 23c71002f60575ce7f52a4b9b3490e18eae2bf7b[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Merge: 6fc383a 373ed4a
+Author: Guilherme Souza <43010976+gaugsouza@users.noreply.github.com>
+Date:   Sat Sep 19 20:32:32 2020 -0300
+
+    Merge pull request #55 from Equipe-HYVE/development
+    
+    Development
+
+[33mcommit 373ed4a846a2ad4b18c73c4adf791cd2b01dc890[m
+Merge: dcfcf69 97efc11
+Author: Guilherme Souza <43010976+gaugsouza@users.noreply.github.com>
+Date:   Sat Sep 19 17:28:10 2020 -0300
+
+    Merge pull request #54 from Equipe-HYVE/ajuste-internacionalizacao
+    
+    Ajuste internacionalizacao
+
+[33mcommit 97efc1181fcb8d1d9a25bec02cba74a9c5a6f88a[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Fri Sep 18 21:50:25 2020 -0300
+
+    Configuração para sempre estar em https quando em produção
+
+[33mcommit 8ce78672c28de097c4b702c75b77aa1ee09bc66f[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Fri Sep 18 21:46:42 2020 -0300
+
+    #51 - Alteração em configuração de i18n, permitindo que a linguagem se baseie no navegador. Só inglês e português por enquanto
+
+[33mcommit c5734de1c5eeb4d36c04aef7dd8626c3995a64aa[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Fri Sep 18 21:34:26 2020 -0300
+
+    Remoção Workflow codacy
+
+[33mcommit 6fc383a3f9d1003d81c40eb8a7c93cb8c1bcf600[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Wed Sep 16 00:40:23 2020 -0300
+
+    Update TipoAnimal.ts
+
+[33mcommit 4ffed12506161732c7deb31ff0dea8cf93777010[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Wed Sep 16 00:40:07 2020 -0300
+
+    Update TipoAnimal.ts
+
+[33mcommit 734513d6a2e4b93defbd124a55dcef997d74ec22[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Wed Sep 16 00:11:25 2020 -0300
+
+    Update environment.prod.ts
+
+[33mcommit bb6545f08bcc3224fb28d5f92d76d4bb82ad3fd9[m
+Merge: 182b2a5 dcfcf69
+Author: Guilherme Souza <43010976+gaugsouza@users.noreply.github.com>
+Date:   Tue Sep 15 23:51:03 2020 -0300
+
+    Merge pull request #48 from Equipe-HYVE/development
+    
+    Development
+
+[33mcommit dcfcf693e12691a7ea640e6338ff094c2631d5c9[m
+Merge: 46ecdb5 eca8b73
+Author: Guilherme Souza <43010976+gaugsouza@users.noreply.github.com>
+Date:   Tue Sep 15 23:43:56 2020 -0300
+
+    Merge pull request #47 from Equipe-HYVE/cadastro-animais
+    
+    Cadastro animais
+
+[33mcommit 182b2a5bbc474e705536ab8f2949ec407298bd3a[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Tue Sep 15 22:35:04 2020 -0300
+
+    Update frontCI.yml
+
+[33mcommit eca8b73d9c13abb6aac1c5f13fb2c27a3dd9f948[m
+Merge: 0c92831 50bb703
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Sep 15 20:17:19 2020 -0300
+
+    Merge branch 'cadastro-animais' of https://github.com/Equipe-HYVE/petshow-frontend into cadastro-animais
+
+[33mcommit 50bb703615fb520d12607a781eb8e0d852e6562b[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Tue Sep 15 22:28:39 2020 -0300
+
+    Update frontCI.yml
+
+[33mcommit 0c928319f66efd315a6cf3b2a1bc8cbbb9feb828[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Sep 15 20:16:48 2020 -0300
+
+    Correções em testes
+
+[33mcommit dbcb423a0db19dfad41a382cee17c664441586d8[m
+Merge: 7e58989 09c7108
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Sep 15 19:21:23 2020 -0300
+
+    #43 - Merge
+
+[33mcommit 09c7108bc19c7b995232da07a14fe66d5be85ce5[m
+Author: gaugsouza <guilhermeguis@outlook.com>
+Date:   Tue Sep 15 22:14:27 2020 -0300
+
+    ajustado menu ao logar
+
+[33mcommit 7e58989dff84e98a60b0857dc31426e09dbb5963[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Sep 15 19:18:56 2020 -0300
+
+    #42 - Adição de internacionalização
+
+[33mcommit 95b8474a0ec820e6501ea6b1ebce147d2bb3dfdf[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Sep 15 16:14:41 2020 -0300
+
+    #41 - Adição de testes
+
+[33mcommit 9e7557e94d434a2107f204813b9577e32727208f[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Sep 15 15:26:32 2020 -0300
+
+    #41 - algumas correções
+
+[33mcommit 9fea846b2f2686b661e92f5295009300aa803fca[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sun Sep 13 16:16:51 2020 -0300
+
+    correção em testes
+
+[33mcommit e57abc1c06b8f29a6c1da5a80713305bfcbeeb77[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sat Sep 12 16:21:15 2020 -0300
+
+    #41 - Correção de bug
+
+[33mcommit 183ea39aeb01facd420d1b4984902c06ad5ad0ca[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sat Sep 12 14:49:14 2020 -0300
+
+    #41 #43 #44 - Crud funcionando, faltam os testes. Sou uma falha para o TDD
+
+[33mcommit 8e65240ac294703569ff995335ff2edba70442b9[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sat Sep 12 01:41:17 2020 -0300
+
+    #41 - feito perfil com lógica de edição e inserção. Falta dar jeito de mock dar login aos animais recém adicionados. Além disso, inicio de tela de login. Falta fazer ela... funcionar
+
+[33mcommit 724a3fed3cf4a1d19b1a8e4ce2bd892ad25f7c98[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Wed Sep 9 15:10:41 2020 -0300
+
+    #41 - Adiçao de testes em formulario animal
+
+[33mcommit 28fe8d443005e365888e725911cb7b3b8db4bcac[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Sep 8 21:33:19 2020 -0300
+
+    #41 - Adiçao de metodos de ediçao, deleçao e inserçao de animais de estimacao
+
+[33mcommit 43403166b20e983cc1c7e54616e853931dc0c173[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Sep 8 18:23:15 2020 -0300
+
+    #41 - Testes em componente de animal de estimação
+
+[33mcommit 1bb62e308c8e0a6b25b55af8b130d2907c779839[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Sep 8 15:37:27 2020 -0300
+
+    #41 - Adição de serviço para localStorage e testes em componente de perfil de usuario
+
+[33mcommit fb785607d7af8dc839698c7ca0fd822b78c40589[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Sep 8 00:28:34 2020 -0300
+
+    #41 - Testes com loginService
+
+[33mcommit a4690c1b731a0f3a15eb55e4897acaf8449ef633[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Sep 8 00:05:32 2020 -0300
+
+    #41 - Tentando fazer teste de serviço de login
+
+[33mcommit 606b408612d299bc96b5dfce51bce4e2bc09f64e[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Mon Sep 7 00:29:19 2020 -0300
+
+    #41 - Arrumando testes de serviços
+
+[33mcommit d800cf750c5111e1e82f8d0dfb3b2d16556c3f80[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Mon Sep 7 00:22:51 2020 -0300
+
+    #41 - Arrumando testes dos componentes
+
+[33mcommit 4149e62a1364e2bb5df5002a9d19fc389cc31d8b[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sun Sep 6 22:26:00 2020 -0300
+
+    #41 - Arrumando configuraçoes Jest
+
+[33mcommit 0fad6c2ebad46f281c39896bd429cd1305c8861b[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sun Sep 6 19:18:51 2020 -0300
+
+    #41 - Alteraçao em configuraçao angular
+
+[33mcommit 72b24e29c9a0cfb3ee07a4e06405548159d7174f[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sun Sep 6 13:12:37 2020 -0300
+
+    #41 - Remoçao de pasta desnecessaria
+
+[33mcommit 2cd78fc900365d0623c691fcdf0830cebef343a7[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sun Sep 6 13:12:03 2020 -0300
+
+    #41 - Exibiçao baseada em componentes
+
+[33mcommit 0327aa53412364460d0825c0a7a3e003bef82314[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sun Sep 6 11:06:45 2020 -0300
+
+    #41 - Adiçao de serviço com DB em memoria pra desenvolvimento
+
+[33mcommit d07e7755ff7947832dc5bc9d5fd87961693355c1[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sun Sep 6 10:27:15 2020 -0300
+
+    #40 - separaçao dos componentes de animais de estimaçao
+
+[33mcommit 7aa69937f153d8a2e87d725af7e9f8fe32a18dad[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sat Sep 5 08:16:36 2020 -0300
+
+    #40 - Alteração em testes unitarios - Jest
+
+[33mcommit 25afe0d4338ec4fc9a8c63590a791f0fca504811[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sat Sep 5 07:43:20 2020 -0300
+
+    #40 - Layout concluido
+
+[33mcommit c2bf4346c14adc823470ac42d38e9983acc116fc[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Fri Sep 4 17:08:49 2020 -0300
+
+    #40 - Adiçao de elementos para cadastro de animais
+
+[33mcommit 81c0abed0fa120d953a5f75923672e0b94df947d[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Fri Sep 4 16:10:39 2020 -0300
+
+    Adição de dependencias e menu
+
+[33mcommit 56098cdafc660e4af597c7c484f8d993139e5b03[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Thu Sep 3 22:27:21 2020 -0300
+
+    Adiçao de teste e inicio de layout perfil usuario
+
+[33mcommit 46ecdb5c54fff7738acfb4b07b548c1961df078d[m
+Merge: 8bbff6d 48da9d5
+Author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+Date:   Thu Aug 20 23:22:50 2020 +0000
+
+    Merge pull request #22 from Equipe-HYVE/master
+
+[33mcommit 48da9d55b8f0234db78ae51076a6ad19ad870b39[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Thu Aug 20 20:07:44 2020 -0300
+
+    Update README.md
+
+[33mcommit 8bbff6ddc9ab5c7ec892ea6f5198b9ea1062a840[m
+Merge: e58bd69 a72a533
+Author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+Date:   Thu Aug 20 22:56:52 2020 +0000
+
+    Merge pull request #21 from Equipe-HYVE/master
+
+[33mcommit a72a533da631735438fffa928af9eef0d7b8ffad[m
+Author: Calebe <calebe.fazzani.facul@gmail.com>
+Date:   Thu Aug 20 19:33:25 2020 -0300
+
+    Add Ngx-Logger
+
+[33mcommit 54734497e90f666d433898e62142ed31edbb4357[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Thu Aug 20 13:53:43 2020 -0300
+
+    Update README.md
+
+[33mcommit 303f026f64a7f2a7e9305d110dfe0577367f4890[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Thu Aug 20 13:48:28 2020 -0300
+
+    Update README.md
+
+[33mcommit e58bd69863852717043fa6f15d4ad11a070d6f34[m
+Merge: da61017 5b89ee4
+Author: Guilherme Souza <43010976+gaugsouza@users.noreply.github.com>
+Date:   Thu Aug 20 09:14:11 2020 -0300
+
+    Merge pull request #20 from Equipe-HYVE/master
+    
+    Update Develpment Branch
+
+[33mcommit 5b89ee49c34ba2f74afb35d6fa5c9f7a661ecb4c[m
+Merge: 7cad268 96cdabd
+Author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+Date:   Thu Aug 20 03:52:25 2020 +0000
+
+    Merge pull request #18 from Equipe-HYVE/dependabot/npm_and_yarn/npm-registry-fetch-4.0.5
+
+[33mcommit 7cad268d1a59d4195166863f66e2ffbb8208938d[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Thu Aug 20 00:51:14 2020 -0300
+
+    Update automerge-action.yml
+
+[33mcommit 35686176ca03bdb03f22270a3e7aafde9d288832[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Thu Aug 20 00:48:46 2020 -0300
+
+    Create automerge-action.yml
+
+[33mcommit 3f65178fb5fd83c4d83e067fe4ade8c3a16657a6[m
+Merge: 12a63c5 a69a5ed
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Thu Aug 20 00:45:45 2020 -0300
+
+    Merge pull request #19 from Equipe-HYVE/dependabot/npm_and_yarn/elliptic-6.5.3
+    
+    Bump elliptic from 6.5.2 to 6.5.3
+
+[33mcommit 12a63c53c497847406c369d7af9b4ede5edee126[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Sat Aug 15 16:47:36 2020 -0300
+
+    Create approval-workflow.yml
+
+[33mcommit 6f09aa4051381f6377eb751c2c73936bf64a9e2b[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Sat Aug 15 16:46:34 2020 -0300
+
+    Update frontCI.yml
+
+[33mcommit fbe9c995472001d1aedf698642793614c242346c[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Sat Aug 15 16:45:54 2020 -0300
+
+    Update frontCI.yml
+
+[33mcommit f97e95acccc34a2eb2f8ec0b298d31589d5d9719[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Sat Aug 15 16:36:42 2020 -0300
+
+    Update frontCI.yml
+
+[33mcommit dca6f9ca9be60913fe5d2eff0939c0f5a67e37d5[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Sat Aug 15 16:36:07 2020 -0300
+
+    Update frontCI.yml
+
+[33mcommit a69a5ed6eb868f5e00c0eb4127ce1255df5d55db[m
+Author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+Date:   Sat Aug 1 16:17:49 2020 +0000
+
+    Bump elliptic from 6.5.2 to 6.5.3
+    
+    Bumps [elliptic](https://github.com/indutny/elliptic) from 6.5.2 to 6.5.3.
+    - [Release notes](https://github.com/indutny/elliptic/releases)
+    - [Commits](https://github.com/indutny/elliptic/compare/v6.5.2...v6.5.3)
+    
+    Signed-off-by: dependabot[bot] <support@github.com>
+
+[33mcommit 96cdabd372499f72d5a7e2a655d67328b777a77e[m
+Author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+Date:   Wed Jul 8 03:52:55 2020 +0000
+
+    Bump npm-registry-fetch from 4.0.3 to 4.0.5
+    
+    Bumps [npm-registry-fetch](https://github.com/npm/registry-fetch) from 4.0.3 to 4.0.5.
+    - [Release notes](https://github.com/npm/registry-fetch/releases)
+    - [Changelog](https://github.com/npm/npm-registry-fetch/blob/latest/CHANGELOG.md)
+    - [Commits](https://github.com/npm/registry-fetch/commits)
+    
+    Signed-off-by: dependabot[bot] <support@github.com>
+
+[33mcommit d20a80d2a9fda36081e57445a1a660a00eb9556f[m
+Merge: a7c3fd1 da61017
+Author: Guilherme Souza <43010976+gaugsouza@users.noreply.github.com>
+Date:   Thu May 28 19:36:25 2020 -0300
+
+    Merge pull request #16 from Equipe-HYVE/development
+    
+    #12 - Configuração de workflow para funcionar na Development
+
+[33mcommit da6101792c79f70fe87479c8fb388def12fbaf4a[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sat May 2 14:52:34 2020 -0300
+
+    #12 - Configuração de workflow para funcionar na Development
+
+[33mcommit a7c3fd10dfd2ce475f7ca1904bdcd5164c3b9f3a[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Fri May 1 13:26:27 2020 -0300
+
+    #13 - Alteracao configs eslint
+
+[33mcommit 5d27af3008305e8c91074a5330fdac0b6573fa31[m
+Merge: d6806fd f17a5d2
+Author: Thiago Xavier R. de Almeida <thiago.xra@gmail.com>
+Date:   Fri May 1 12:58:21 2020 -0300
+
+    instalando PWA
+
+[33mcommit d6806fd9e706f37194b0db624773fe2276c9b7a1[m
+Author: Thiago Xavier R. de Almeida <thiago.xra@gmail.com>
+Date:   Fri May 1 12:55:01 2020 -0300
+
+    instalando PWA
+
+[33mcommit f17a5d2208003677652d733047ca9168aa0731b8[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Fri May 1 11:47:34 2020 -0300
+
+    #13 - Add linter scss
+
+[33mcommit 1d078c991537efad2c4a561e6cdc3566710becb1[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Fri May 1 11:26:52 2020 -0300
+
+    #13 - Add js linter
+
+[33mcommit 55c22910bb8fcf7d335b1c2a365ff63e63f4afb4[m
+Author: Nathalia <nathyh.fischer@gmail.com>
+Date:   Thu Apr 30 19:27:40 2020 -0300
+
+    #5 Adição do Angular Material
+
+[33mcommit d15110ae17a3ea39c407325164a491456ca347b3[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Apr 28 19:17:25 2020 -0300
+
+    #11 - Add comando em workflow coverage
+
+[33mcommit e42690fb2bb820e43a25e9b4dcafc1131005cf87[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Apr 28 19:08:15 2020 -0300
+
+    #11 - Teste output coverage
+
+[33mcommit bf1ea3b3627c37207692fef1e7bafc2fb67891ff[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Apr 28 18:59:33 2020 -0300
+
+    #11 - remoçao dependencia desnecessaria
+
+[33mcommit 6226cfa982eb1a8df14b8a33f16558baefb9b295[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Apr 28 18:43:19 2020 -0300
+
+    #11 - alteracao workflow coverage
+
+[33mcommit 3dd12971d40dae7c30d013004c1d06e353dcaf00[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Apr 28 18:38:58 2020 -0300
+
+    #11 - Alteracao workflow coverage
+
+[33mcommit a91e4abd6701e1ac8ae00ffd23bbc40826e30810[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Tue Apr 28 18:33:40 2020 -0300
+
+    #11 - correcao workflow coverage
+
+[33mcommit cc864be77473704d3d8aabf3822b06ddc1228e07[m
+Merge: 5632a5d 2d9223c
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Apr 28 18:29:10 2020 -0300
+
+    #11 - Alteracao Workflow Coverage - merge
+
+[33mcommit 5632a5da2c03ed474068ce5bce1122170b137a43[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Apr 28 18:28:26 2020 -0300
+
+    #11 - Alteracao workflow coverage
+
+[33mcommit ff195c4f58d453dba9d21cd6e3d415eb9b8f4e0d[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Apr 28 18:28:01 2020 -0300
+
+    #11 - Alteracao workflow coverage
+
+[33mcommit 2d9223c9d3d07f09e3a13d99d7a24119b6b57289[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Tue Apr 28 13:08:41 2020 -0300
+
+    #11 - Correcao workflow
+
+[33mcommit d761ee963125e6d537571ad8f8a21f812e979bee[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Apr 28 13:05:16 2020 -0300
+
+    #11 - alteracao workflow
+
+[33mcommit bf4df492b2ccdf0563471033386ccf0ccab6d6ad[m
+Merge: 16bc8cf a7d15af
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Apr 28 13:04:47 2020 -0300
+
+    #11 - Add codacy-coverage - merge
+
+[33mcommit 16bc8cfe867f0369b4dc2a98e1abee5fbd896376[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Apr 28 13:03:17 2020 -0300
+
+    #11 - Add codacy-coverage workflow
+
+[33mcommit a7d15af97409bc881b53fd41638358c91dbab582[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Tue Apr 28 12:12:12 2020 -0300
+
+    #11 - Mudança Workflow
+
+[33mcommit 30fd592a3443b01ce14096c72730d15483e70706[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Tue Apr 28 12:07:56 2020 -0300
+
+    #11 - Mudança Workflow
+
+[33mcommit 5d64189c1d501057ffa7d9df1114dd4929bb5fb2[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Apr 28 11:50:50 2020 -0300
+
+    #11 - Alteraçao workflow
+
+[33mcommit f00bb1f9a08fda3766927c51b8d0e79403381592[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Apr 28 00:58:25 2020 -0300
+
+    #11 - Update Package.json
+
+[33mcommit 4cdc0ee5af1d5438fc6513e6f95de1c9f6e1d30d[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Apr 28 00:54:24 2020 -0300
+
+    #11 - Update Workflow
+
+[33mcommit f6187ddd3c48085c4f1a0edbc189512ec51d6563[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Tue Apr 28 00:47:20 2020 -0300
+
+    #11 - update workflow
+
+[33mcommit a02bd29f67fa1286b048cfccf276313970167ff1[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Apr 28 00:34:04 2020 -0300
+
+    Alteracao engine package.json
+
+[33mcommit 82ba1623c172c017940d43959222ea3febcf79b1[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Apr 28 00:26:46 2020 -0300
+
+    Adiçao dependencias para deploy no Heroku
+
+[33mcommit ee409e6062f06c7f12da67e1c0dd99035609802e[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Apr 28 00:10:41 2020 -0300
+
+    Add procfile
+
+[33mcommit 409f418ef97cd67f44b16b014b686bebfdfc91d7[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Mon Apr 27 23:56:06 2020 -0300
+
+    #11 - alteracao workflow e package.json
+
+[33mcommit fe931b1599f35f1941d4589cd5e3f4498549c067[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Mon Apr 27 23:38:20 2020 -0300
+
+    #11 - Atualizacao package.json
+
+[33mcommit 6e7ce79948315a6af775777feecc654a11ef09d1[m
+Merge: f6cee01 25f02b8
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Mon Apr 27 23:37:44 2020 -0300
+
+    #11 - Atualizacao package.json
+
+[33mcommit f6cee01c556f610c4628fb148daee7802bef9000[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Mon Apr 27 23:36:40 2020 -0300
+
+    #11 - Atualizacao Workflow
+
+[33mcommit 25f02b8677a84d97381bb2543586d56a6ab36977[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Mon Apr 27 23:23:06 2020 -0300
+
+    #11 - Update Package.json
+
+[33mcommit 5acdbe4a2dc797d9c361a0bf5f85558d8bb9d513[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Mon Apr 27 23:16:06 2020 -0300
+
+    #11 - Alteração package.json
+
+[33mcommit c0aa0d8948ed3593735efd70295bbca125da9df9[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Mon Apr 27 23:06:06 2020 -0300
+
+    #11 - Correcao Workflow
+
+[33mcommit c06bcf9b78475aca2e3918f854cca9db0afeb134[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Mon Apr 27 23:04:15 2020 -0300
+
+    #11 - Correcao Workflow
+
+[33mcommit 21932fbec213d5df81715855959d122696eb6405[m
+Merge: 30d2c23 51fdd5f
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Mon Apr 27 22:53:58 2020 -0300
+
+    #11 - Correcao workflow
+
+[33mcommit 30d2c23081d23c8a5e202e71f2198f52be5443e2[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Mon Apr 27 22:53:15 2020 -0300
+
+    #11 - Workflow corrigido
+
+[33mcommit 51fdd5fe6e0522749656d13cf8a0e7a48960cdf0[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Mon Apr 27 22:40:18 2020 -0300
+
+    #11 - Update workflow
+
+[33mcommit 53c0e79b6df7ee667086b51e678ca00fc1aadad9[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Mon Apr 27 22:32:24 2020 -0300
+
+    #11 - correcao workflow
+
+[33mcommit 0fbe5e71cab573cdba10bc149ba53d3bc2736f84[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Mon Apr 27 22:29:55 2020 -0300
+
+    #11 - Correcao workflow
+
+[33mcommit e5b25a657afe536ffb770b06015ea9f26b4a61ab[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Mon Apr 27 22:27:11 2020 -0300
+
+    #11 - Merge master - Add dependencia coverage
+
+[33mcommit 8ce8d32b8e86cd92857434cc2372b566a62b2b18[m
+Merge: 4c90e79 592c884
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Mon Apr 27 22:25:15 2020 -0300
+
+    Merge branch 'master' of https://github.com/Equipe-HYVE/petshow-frontend
+
+[33mcommit 4c90e797e6f60cd1b84c9d93b430c531bcc00a65[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Mon Apr 27 22:25:09 2020 -0300
+
+    Adiçao dependencia coverage
+
+[33mcommit 592c884b1dc991149cecbaf40c62f5cd8b6f6a69[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Mon Apr 27 22:08:15 2020 -0300
+
+    #11 - Update FrontCI.yml
+
+[33mcommit 3162f505325d60611f06e33aefffdda51c840fb6[m
+Merge: 434a278 c0a6b2c
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Mon Apr 27 21:47:35 2020 -0300
+
+    #11 - Merge com master
+
+[33mcommit 434a278a143bb98b39d424df9e51a10916f9b5f6[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Mon Apr 27 21:46:16 2020 -0300
+
+    #11 - Configuraçao Cypress-Coverage com cucumber
+
+[33mcommit 26e07a96ca04eb3eb349a32e0be03308933a0fd1[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sat Apr 25 11:00:15 2020 -0300
+
+    #11 - Add configuraçoes nyc + coverage cypress
+
+[33mcommit 59b21db4826b0a51cd6df9ffcb3a92a06c3cd2c0[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Fri Apr 24 19:38:13 2020 -0300
+
+    #11 - Adiçao NYC
+
+[33mcommit c0a6b2cdd01cff0cfd040d7c3afc45733103d994[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Wed Apr 22 20:04:48 2020 -0300
+
+    Update README.md
+
+[33mcommit 4c1f4abc42de49064ceddd86b7ae990b265cc74c[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Wed Apr 22 19:18:48 2020 -0300
+
+    #11 - Configuraçao inicial codacy
+
+[33mcommit fbcd32be30c2f9ba43abcd5aad704c87f6adb636[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Sat Apr 4 17:18:12 2020 -0300
+
+    Update server.js
+
+[33mcommit a330d546986bfc86b11c0f851b5dbb470b86cc87[m
+Merge: 7dab9fa f26c634
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Sat Apr 4 14:20:58 2020 -0300
+
+    Merge pull request #9 from gaugsouza/integracao-testes
+
+[33mcommit f26c634503be296a46095a0bdaaec33934ef1eeb[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sat Mar 28 02:00:33 2020 -0300
+
+    Alteraçao script package.json
+
+[33mcommit 131d465e82bba8b6fe7cf8609403bbff073104ff[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sat Mar 28 01:48:32 2020 -0300
+
+    Adiçao de comando para teste
+
+[33mcommit 3f84efdb2d93429eda2609dbc62b85eaff8e4019[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sat Mar 28 00:49:11 2020 -0300
+
+    Alteraçoes integraçao cypress para testes E2E no github actions
+
+[33mcommit f29e4d64342f5621b17403bb820953f88cb7d892[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Sat Mar 28 00:33:56 2020 -0300
+
+    Integraçao Cypress
+
+[33mcommit 7dab9fa8a8252029be06bd1efc9b519aa951e554[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Fri Mar 20 22:41:20 2020 -0300
+
+    #3 - Alteraçao testes AppComponent
+
+[33mcommit ede7fe34702fc25a6c6c8917016044447bdccfa4[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Fri Mar 20 21:43:08 2020 -0300
+
+    Correçao problema construtor em app.component - #3
+
+[33mcommit 98cd1ab134e04ad33d8a8527712145453069cafc[m
+Merge: 39d9ab8 edeac54
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Fri Mar 20 21:31:02 2020 -0300
+
+    merge implantacao master
+
+[33mcommit 39d9ab8ae2c86f069d5a2cc0ab7c699ec80b00eb[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Fri Mar 20 21:27:44 2020 -0300
+
+    #3 - Adiçao de metodo post no server para receber logs do front
+
+[33mcommit edeac54d8f482b90601d4840af12e6c304dfac6b[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Fri Mar 20 20:24:30 2020 -0300
+
+    Testes Papertrail
+
+[33mcommit 730859ab6023cd2baf52264f3b1e15ff45528def[m
+Merge: 429e1b2 c4a5f77
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Wed Mar 18 21:27:24 2020 -0300
+
+    Merge branch 'implantacao-logger' of https://github.com/gaugsouza/petshow-frontend into implantacao-logger
+
+[33mcommit 429e1b2475117ede4ba34d9dae25a990255d0856[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Wed Mar 18 21:22:33 2020 -0300
+
+    Integração Logger (NGXLogger) #3
+
+[33mcommit c4a5f77d796e58d0dded7fb3d1fdc4abfb0bb8db[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Wed Mar 18 21:22:33 2020 -0300
+
+    Testes integração logger (NGXLogger)
+
+[33mcommit 9e2c7434e2d226b6ce2f952e2679c794ac1de142[m
+Merge: dfbbd6e 4974026
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Mar 17 23:36:29 2020 -0300
+
+    #3 merge com master. Adiçao de logger no app-component
+
+[33mcommit 4974026487eee6c5756986f06955938a27d370b7[m
+Merge: e670328 54b6c64
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Mar 17 21:08:45 2020 -0300
+
+    Alteraçoes package.json para deploy no heroku
+
+[33mcommit e670328ff94689788a82e50cdc3b5d3bc661203b[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Mar 17 20:56:10 2020 -0300
+
+    Adiçao express
+
+[33mcommit dfbbd6e3f723979204b8a31d766a4c491ae96c3f[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Mar 17 20:40:53 2020 -0300
+
+    Testando Log #3
+
+[33mcommit 54b6c646fff1a65fdf687c1173f8a180ca78fb69[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Tue Mar 17 20:19:37 2020 -0300
+
+    Adição badge github actions no README.md #4
+
+[33mcommit eae6d994976e2e0f26d88a9f528d31232dc52c10[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Tue Mar 17 20:16:09 2020 -0300
+
+    Adição de pull request no workflow do github actions #4
+
+[33mcommit 9b88636bc3cb8bd7ddbcc00bd22d7e64c5a21c15[m
+Author: calebefazzani <40010758+calebefazzani@users.noreply.github.com>
+Date:   Tue Mar 17 19:52:48 2020 -0300
+
+    Atualização FrontCI.yml #4
+
+[33mcommit 4525ed40799897a855483baa708875053f5ceabf[m
+Author: THIAGO XAVIER <47905998+thiagoxra@users.noreply.github.com>
+Date:   Tue Mar 17 19:50:54 2020 -0300
+
+    Atualizado frontCI.yml #4
+
+[33mcommit d39984ea5acbd4164707c8c14c6f9be1b4ff654c[m
+Author: THIAGO XAVIER <47905998+thiagoxra@users.noreply.github.com>
+Date:   Tue Mar 17 19:37:19 2020 -0300
+
+    criado frontCI.yml #4
+
+[33mcommit e54d5451f25e61ef74e6ac4b3f2f32b3b3d63b90[m
+Author: Thiago Xavier R. de Almeida <thiago.xra@gmail.com>
+Date:   Tue Mar 17 19:29:05 2020 -0300
+
+    Ajustado Puppeteer #4
+
+[33mcommit 9007d6b89b30508d6a9b2ce28705881540935bcd[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Mar 17 01:10:41 2020 -0300
+
+    #3 - Commit parcial - Adiçao de modulo de log
+
+[33mcommit 6118f88ca1463460b962cf5ae02c893d60871a63[m
+Author: calebe <calebe.fazzani.facul@gmail.com>
+Date:   Tue Mar 17 01:00:36 2020 -0300
+
+    #3 - initial commit
+
+[33mcommit f29227aeeaed8cf508f277d65e4f880a32d8b359[m
+Author: gaugsouza <guilhermeguis@outlook.com>
+Date:   Sun Mar 8 23:30:41 2020 -0300
+
+    added sass for heroku compability
+
+[33mcommit 22f1a6622b01f9880371c27d94597e98d6b6fe01[m
+Author: gaugsouza <guilhermeguis@outlook.com>
+Date:   Sun Mar 8 23:24:35 2020 -0300
+
+    added engine for heroku compability
+
+[33mcommit 27c9bf213f133ef11bf3aeb16dc4ff3c58a2b6d1[m
+Author: gaugsouza <guilhermeguis@outlook.com>
+Date:   Sun Mar 8 23:20:21 2020 -0300
+
+    added engine for heroku compability
+
+[33mcommit 1217e4f78b811c8a6afa2569ab7a8958456e6b60[m
+Author: gaugsouza <guilhermeguis@outlook.com>
+Date:   Sun Mar 8 23:14:13 2020 -0300
+
+    init
+
+[33mcommit b5b85baefd822a9c006be0ec905893d91d85ff6b[m
+Author: Guilherme Souza <43010976+gaugsouza@users.noreply.github.com>
+Date:   Sun Mar 8 20:39:50 2020 -0300
+
+    Initial commit

@@ -1,0 +1,13 @@
+<mat-card class="informacoes-pessoais-block" *ngIf="usuario">
+    <span><strong>{{'NOME' | translate}}:</strong> {{usuario.nome}}</span>
+    <span><strong>CPF:</strong> {{usuario.cpf | mask: '000.000.000-00'}}</span>
+    <span><strong>E-mail:</strong> {{usuario.login.email}}</span>
+    <span *ngIf="!alterarTelefone"><strong>{{'TELEFONE' | translate}}:</strong> {{usuario.telefone | mask: '(00) 0000-00000'}} - <button mat-button (click)="abrirFormAlterarTelefone()">{{'MUDAR' | translate}}</button></span>
+    <div *ngIf="alterarTelefone">
+        <mat-form-field>
+            <mat-label>{{'TELEFONE' | translate}}</mat-label>
+            <input matInput  mask="(00) 0000-00000" type="text" [formControl]="telefoneFormControl" [(ngModel)]="telefone"/>
+        </mat-form-field>
+        <button mat-button color="primary" (click)="salvar()" [disabled]="hasErrors()">{{'SALVAR' | translate}}</button><button mat-button color="warn" (click)="cancelar()">{{'CANCELAR' | translate}}</button>
+    </div>
+</mat-card>

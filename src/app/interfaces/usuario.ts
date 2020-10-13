@@ -1,4 +1,4 @@
-import {AnimalEstimacao} from './AnimalEstimacao';
+import {AnimalEstimacao} from './animalEstimacao';
 import { Endereco } from './endereco';
 import { Login } from './login';
 import { TipoPessoa } from '../enum/tipo-pessoa.enum';

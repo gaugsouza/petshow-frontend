@@ -9,7 +9,7 @@ import { LoginService } from 'src/app/servicos/login.service';
 import { Router } from '@angular/router';
 import {MyErrorStateMatcher} from '../../classes/my-error-state-matcher';
 import { AppComponent } from 'src/app/app.component';
-import { USUARIO_TOKEN } from 'src/app/util/constantes';
+import { USER_TOKEN } from 'src/app/util/constantes';
 
 @Component({
   selector: 'app-login',
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
               private appComponent: AppComponent) { }
 
   ngOnInit(): void {
-    this.localStorageService.getItem(USUARIO_TOKEN)
+    this.localStorageService.getItem(USER_TOKEN)
     .subscribe(token => {
       if(token) {
         this.router.navigate(['/perfil'])
@@ -49,30 +49,18 @@ export class LoginComponent implements OnInit {
   hasErrors() {
     return this.emailFormControl.hasError('email') || this.emailFormControl.hasError('required') || this.passwordFormControl.hasError('required');
   }
+
   realizaLogin() {
-    this.loginService.realizaLogin(this.login.email, this.login.senha)
-    .subscribe(
-      (res:Cliente) => {
-        if(res) {
-          this.localStorageService.setItem(USUARIO_TOKEN, res.id).subscribe(() => {
-            this.appComponent.isLogged = true;
-            this.router.navigate(['/perfil']);
-          });
-        }
-      },
-      ({error}) => {
-        this.errorMessage = typeof error === 'string' ? error: 'Erro durante operação';
-        this.login.senha = "";
-      
-      },
-      () => console.log('terminou')
-    );
+  this.loginService.realizaLogin(this.login).subscribe(
+    token => {
+      this.localStorageService.setItem(USER_TOKEN, token).subscribe(() => {
+        this.router.navigate(['/perfil']);
+        this.appComponent.isLogged = true;
+      });
+    },
+    ({error}) => {
+      this.errorMessage = typeof error === 'string' ? error: 'Erro durante operação';
+      this.login.senha = "";      
+    });
   }
-
-
 }
-
-// login":{
-//   "email": "dandan@laksjdg.com",
-//   "senha": "092orijasf"
-// },

@@ -13,7 +13,7 @@ let prestador:Prestador = {
         email: "petshow@teste.com",
         senha: "petshow1234"
     },
-    servicosDetalhados: [
+    servicos: [
         ...servicos
     ]
 }

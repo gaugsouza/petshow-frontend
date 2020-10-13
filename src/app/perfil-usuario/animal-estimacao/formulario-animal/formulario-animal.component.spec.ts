@@ -5,11 +5,14 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AnimalEstimacao } from '../../../interfaces/AnimalEstimacao';
+import { AnimalEstimacao } from '../../../interfaces/animalEstimacao';
 import { TipoAnimal } from '../../../enum/TipoAnimal';
 import { usuariosMock } from '../../../mocks/usuarioMock';
 import { Cliente } from '../../../interfaces/cliente';
 import {TranslateModule} from '@ngx-translate/core';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { LoggerTestingModule } from 'ngx-logger/testing';
+import { JwtHelper } from '../../../util/jwt-helper';
 
 
 describe('FormularioAnimalComponent', () => {
@@ -19,13 +22,18 @@ describe('FormularioAnimalComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ FormularioAnimalComponent ],
+      providers: [
+        JwtHelper
+      ],
       imports: [
         MatInputModule,
         MatSelectModule,
         BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
-        TranslateModule
+        TranslateModule,
+        HttpClientTestingModule,
+        LoggerTestingModule
       ]
     })
     .compileComponents();
@@ -46,7 +54,10 @@ describe('FormularioAnimalComponent', () => {
     let animalEsperado: AnimalEstimacao = {
       id: 2,
       nome: "Floquinho",
-      tipo: TipoAnimal.CACHORRO
+      tipo: {
+        id: 1,
+        nome: "CACHORRO"
+      }
     };
     component.animal = animalEsperado;
     let spy = jest.spyOn(component.adicionaAnimal, 'emit');
@@ -67,7 +78,7 @@ describe('FormularioAnimalComponent', () => {
     let animalEsperado: AnimalEstimacao = {
       id: 1,
       nome: "Floquinho",
-      tipo: TipoAnimal.CACHORRO
+      tipo: {id: 1, nome: "CACHORRO"}
     };
     component.animal = animalEsperado;
     let spy = jest.spyOn(component.atualizaAnimalInput, 'emit');

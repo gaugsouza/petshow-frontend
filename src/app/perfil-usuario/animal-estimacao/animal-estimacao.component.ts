@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { AnimalEstimacao } from 'src/app/interfaces/AnimalEstimacao';
+import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
 
 @Component({
   selector: 'app-animal-estimacao',
@@ -17,7 +17,6 @@ export class AnimalEstimacaoComponent implements OnInit {
   }
 
   selecionaAnimal(animalEstimacao:AnimalEstimacao) {
-    console.log(animalEstimacao);
     this.animalEmitter.emit(animalEstimacao);
   }
 

@@ -1,43 +1,55 @@
 import { Injectable } from '@angular/core';
-import { Usuario } from '../interfaces/usuario';
-import { TipoPessoa } from '../enum/tipo-pessoa.enum';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { usuariosMock } from '../mocks/usuarioMock';
 import { environment } from 'src/environments/environment';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { NGXLogger } from 'ngx-logger';
 import { LocalStorageService } from './local-storage.service';
-import { USUARIO_TOKEN } from '../util/constantes';
+import { USER_TOKEN } from '../util/constantes';
+import { Login } from '../interfaces/login';
+import { Usuario } from '../interfaces/usuario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  public LOGIN_SERVICE_URL = `${environment.API_URL}/cliente/login`;
+  public ACESSO_BASE_URL = `${environment.API_URL}/acesso`;
+
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-type' : 'application/json'})
+    headers: new HttpHeaders({ 'Content-type' : 'application/json' }),
+    responseType: 'text' as 'json'
   }
+
   constructor(private http:HttpClient, 
               private logger:NGXLogger,
               private storageService:LocalStorageService) { }
 
-  realizaLogin(email:string, senha: string) : Observable<Usuario> {
-    console.log(this.LOGIN_SERVICE_URL);
-    let response = this.http.post<Usuario>(this.LOGIN_SERVICE_URL, {email, senha}, this.httpOptions)
+  realizaLogin(login: Login) : Observable<String> {
+    let url = `${this.ACESSO_BASE_URL}/login`;
+    return this.http.post<String>(url, login, this.httpOptions)
     .pipe(
-      tap(_ => this.logger.info(`Request feito a ${this.LOGIN_SERVICE_URL}`)),
+      tap(_ => this.logger.info(`Request feito a ${this.ACESSO_BASE_URL}`)),
       catchError(err => {
-        this.handleError<Usuario>(`Falha em requisição feita a ${this.LOGIN_SERVICE_URL}`)
+        this.handleError<String>(`Falha em requisição feita a ${this.ACESSO_BASE_URL}`)
         return throwError(err);
       })
     );
-    
-    return response;
   }
 
-  buscaTokenUsuario(){
-    return this.storageService.getItem(USUARIO_TOKEN);
+  buscaTokenUsuario() {
+    return JSON.stringify(this.storageService.getItem(USER_TOKEN));
+  }
+
+  cadastrarUsuario(usuario:Usuario):Observable<String> {
+    const URL = `${this.ACESSO_BASE_URL}/cadastro`;
+    return this.http.post<String>(URL, usuario, this.httpOptions)
+    .pipe(
+      tap(_ => this.logger.info(`Request feita a ${URL}`)),
+      catchError(({error}) => {
+        this.handleError<string>(`Erro em requisição feita a ${URL}`);
+        return throwError(error);
+      })
+    );    
   }
 
   private handleError<T> (mensagem: string, result?: T) {

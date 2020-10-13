@@ -14,22 +14,9 @@ import { TranslateService } from '@ngx-translate/core';
 export class HomeComponent implements OnInit {
   servicos:Servico[]=[{id:1, nome:"BANHO"},{id:2, nome:"PASSEIO"},{id:3, nome:"PET SITTING"}];
   
-  constructor(private servicosService: ServicosService,
-              private storageService:LocalStorageService,
-              private router:Router,
-              private translate: TranslateService
-              ) { }
+  constructor() { }
 
   ngOnInit(): void {
 
   }
-
-  exibirServicosDetalhados(id:number) {
-    this.router.navigate(['/servicos-detalhados/tipo-servico/${id}']);
-    this.storageService.setItem('tipo', id);
-  }
-
-
-
-
 }

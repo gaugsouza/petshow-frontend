@@ -13,6 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ServicosService } from '../servicos/servicos.service';
 import { Router, ActivatedRoute, convertToParamMap } from '@angular/router';
 import { of } from 'rxjs';
+import { JwtHelper } from '../util/jwt-helper';
 
 describe('ListaServicosDetalhadosComponent', () => {
   let component: ListaServicosDetalhadosComponent;
@@ -36,7 +37,8 @@ describe('ListaServicosDetalhadosComponent', () => {
               id: '1'
             })
           }
-        }}
+        }},
+        JwtHelper
       ],
       imports: [
         MatListModule,

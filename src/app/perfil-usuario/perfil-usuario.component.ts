@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../servicos/usuario.service';
 import { Cliente } from '../interfaces/cliente';
-import { AnimalEstimacao } from '../interfaces/AnimalEstimacao';
-import { TipoAnimal } from '../enum/TipoAnimal';
+import { AnimalEstimacao } from '../interfaces/animalEstimacao';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../servicos/local-storage.service';
-import { USUARIO_TOKEN } from '../util/constantes';
-import { monica } from '../mocks/usuarioMock';
+import { USER_TOKEN } from '../util/constantes';
+import { Endereco } from '../interfaces/endereco';
 
 @Component({
   selector: 'app-perfil-usuario',
@@ -16,13 +15,14 @@ import { monica } from '../mocks/usuarioMock';
 export class PerfilUsuarioComponent implements OnInit {
   animal:AnimalEstimacao = {
     nome: "",
-    tipo: TipoAnimal.CACHORRO
+    tipo: {id: 2, nome: 'GATO'}
   };
   usuario:Cliente;
   usuarioRequest:Cliente;
   isFormVisivel:Boolean = false;
   erroRequisicao:String;
   mensagemSucesso:String;
+  
   constructor(private usuarioService:UsuarioService,
               private router:Router,
               private localStorageService: LocalStorageService) { }
@@ -38,34 +38,31 @@ export class PerfilUsuarioComponent implements OnInit {
   }
 
   getUsuario() : void {
-    // this.usuario = monica;
-    this.localStorageService.getItem(USUARIO_TOKEN).subscribe((token: number) => {
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
       this.usuarioService.getUsuario(token)
       .subscribe((usuario:Cliente) => {
-        if(!usuario) {
-          this.router.navigate(['/login']);
-          return;
-        }
-        this.usuario = usuario
+        this.usuario = usuario;
       });
-    });    
+    });
   }
 
   adicionaAnimal({...animalEstimacao}:AnimalEstimacao) : void {
-    animalEstimacao.dono = this.usuario;
-    this.usuarioService.adicionarAnimalEstimacao(animalEstimacao).subscribe(() => {
-      this.limpaAnimal();
-      this.getUsuario();
-      this.isFormVisivel = false;
-    });    
+    animalEstimacao.donoId = this.usuario.id;
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+      this.usuarioService.adicionarAnimalEstimacao(animalEstimacao, token).subscribe(() => {
+        this.limpaAnimal();
+        this.getUsuario();
+        this.isFormVisivel = false;
+      });    
+    })
   }
 
-  removeAnimal(animalEstimacao : AnimalEstimacao | number):void {
-    this.usuarioRequest = {...this.usuario};
-    let id:number = typeof animalEstimacao === 'number' ? animalEstimacao : animalEstimacao.id;
-    let animaisAManter = this.usuarioRequest.animaisEstimacao.filter(animal => animal.id !== id);
-    this.usuarioRequest.animaisEstimacao = animaisAManter;
-    this.atualizaUsuario();
+  removeAnimal(animalEstimacao : AnimalEstimacao):void {
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+      this.usuarioService.removerAnimalEstimacao(animalEstimacao.id, token).subscribe(() => {
+        this.getUsuario();
+      });
+    });
   }
 
   exibeFormulario() {
@@ -73,13 +70,14 @@ export class PerfilUsuarioComponent implements OnInit {
     this.mensagemSucesso = null;
     this.isFormVisivel = true;
   }
+  
   ocultaFormulario() {
     this.isFormVisivel = false;
   }
 
   atualizaUsuario() {
-    this.usuarioService.atualizaUsuario(this.usuarioRequest).subscribe(res => {
-      this.localStorageService.setItem(USUARIO_TOKEN, res.id).subscribe(() => {
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+      this.usuarioService.atualizaUsuario(this.usuarioRequest, token).subscribe(() => {
         this.getUsuario();
         this.limpaAnimal();
         this.ocultaFormulario();
@@ -93,23 +91,37 @@ export class PerfilUsuarioComponent implements OnInit {
     });
   }
 
-  editaAnimal({...animalEstimacao}: AnimalEstimacao) : void {
-    this.usuarioRequest = {...this.usuario};
-    let animais = this.usuarioRequest.animaisEstimacao;
-    this.usuarioRequest.animaisEstimacao = animais.map(el => el.id === animalEstimacao.id ? animalEstimacao : el);
-    this.atualizaUsuario();
+  editaAnimal(animalEstimacao : AnimalEstimacao) : void { 
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+      this.usuarioService.atualizarAnimalEstimacao(animalEstimacao.id, animalEstimacao, token).subscribe(res => {
+        this.getUsuario();
+        this.limpaAnimal();
+        this.ocultaFormulario();
+      })
+    });
   }
-
 
   limpaAnimal() {
     this.animal = {
       nome: "",
-      tipo: TipoAnimal.GATO
+      tipo: {id: 2, nome: 'GATO'}
     }
   }
 
   cancelar() {
     this.isFormVisivel = false;
     this.limpaAnimal();
+  }
+
+  atualizaEndereco(endereco:Endereco):void {
+    this.usuarioRequest = {...this.usuario};
+    this.usuarioRequest.endereco = endereco;
+    this.atualizaUsuario();
+  }
+
+  alteraTelefone(telefone:string):void {
+    this.usuarioRequest = {...this.usuario};
+    this.usuarioRequest.telefone = telefone;
+    this.atualizaUsuario();
   }
 }

@@ -1,0 +1,103 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputNome">{{'NOME_COMPLETO' | translate}}</label>
+      <input type="text" class="form-control" id="inputNome" placeholder="João" required [(ngModel)]="cliente.nome"
+        name="nome">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputCpf">CPF</label>
+      <input type="text" class="form-control" id="inputCpf" placeholder="444.444.444-44" mask="000.000.000-00" required
+        [(ngModel)]="cliente.cpf" name="cpf">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputTelefone">{{'TELEFONE' | translate}}</label>
+      <input type="text" class="form-control" id="inputTelefone" placeholder="(11) 99999-9999" mask="(00) 0000-00000" required
+        [(ngModel)]="cliente.telefone" name="telefone">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputEmail">E-mail</label>
+      <input type="text" class="form-control" id="inputEmail" placeholder="petshow@gmail.com" required
+        [(ngModel)]="cliente.login.email" name="email" [formControl]="emailFormControl">
+      <div *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        {{'EMAIL_INVALIDO' | translate}}
+
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputSenha">{{'SENHA' | translate}}</label>
+      <input type="password" class="form-control" [formControl]="senhaFormControl" id="inputPassword" required
+        [(ngModel)]="cliente.login.senha" name="senha">
+    </div>
+  </div>
+  <!-- VERIFICAR REGRA DE VERIFICACAO SENHA-->
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputConfirmarSenha">{{'REPITA_SENHA' | translate}}</label>
+      <input type="password" class="form-control" [formControl]="confirmarSenhaFormControl" id="inputPassword2" required
+        [(ngModel)]="confirmarSenha" name="senha">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <h1>{{'ENDERECO' | translate}}</h1>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">{{'LOGRADOURO' | translate}}</label>
+      <input type="text" class="form-control" [formControl]="enderecoFormControl" id="inputCity" required [(ngModel)]="cliente.endereco.logradouro"
+        name="logradouro">
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputCity">{{'NUMERO' | translate}}</label>
+      <input type="text" class="form-control" [formControl]="enderecoFormControl" id="inputCity" required [(ngModel)]="cliente.endereco.numero" [formControl]="enderecoFormControl" mask="0*" placeholder="30" name="numero">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputCity">{{'COMPLEMENTO' | translate}}</label>
+      <input type="text" class="form-control" [formControl]="enderecoFormControl" id="inputCity" required [(ngModel)]="cliente.endereco.complemento"
+        name="complemento">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCEP">{{'BAIRRO' | translate}}</label>
+      <input type="text" class="form-control" [formControl]="enderecoFormControl" id="inputCEP" required [(ngModel)]="cliente.endereco.bairro"
+        name="bairro">
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputCEP">{{'CEP' | translate}}</label>
+      <input type="text" class="form-control" [formControl]="enderecoFormControl" id="inputCEP" mask="00000-000" required [(ngModel)]="cliente.endereco.cep" name="cep">
+    </div>
+
+    <div class="form-row col-md-12">
+      <div class="form-group col-md-4">
+        <label for="inputEstado">{{'ESTADO' | translate}}</label>
+        <select id="inputEstado" class="form-control" required [(ngModel)]="cliente.endereco.estado" name="estado"
+        (change)="carregarCidades($event.target.value)">
+          <option selected>{{'ESTADO' | translate}}</option>
+          <option *ngFor="let estado of estados" value="{{estado.sigla}}">{{estado.nome}}</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputCity">{{'CIDADE' | translate}}</label>
+          <select class="form-control" id="inputCity" required [(ngModel)]="cliente.endereco.cidade" name="cidade">
+            <option *ngFor="let cidade of cidades" value="{{cidade.nome}}">{{cidade.nome}}</option>
+          </select>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage">{{errorMessage | translate}}</div>
+  <div *ngIf="erroRequisicao">{{erroRequisicao}}</div>
+
+  <div class="form__button-container">
+    <button mat-flat-button color="primary" (click)="cadastrarCliente(cliente)">{{'CADASTRAR' | translate}}</button>
+  </div>
+</form>

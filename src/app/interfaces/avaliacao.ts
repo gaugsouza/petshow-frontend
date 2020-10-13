@@ -11,6 +11,8 @@ export interface Avaliacao {
     comentario?:string,
     media?:number,
     cliente?:Cliente,
+    clienteId?:number,
     servicoAvaliado?:ServicoDetalhado
+    servicoAvaliadoId?:number
 
 }
