@@ -21,12 +21,18 @@
         <input [formControl]="bairroFormControl" matInput [(ngModel)]="data.bairro" />
     </mat-form-field>
     <mat-form-field>
-        <mat-label>{{'CIDADE' | translate}}</mat-label>
-        <input [formControl]="cidadeFormControl" matInput [(ngModel)]="data.cidade" />
+        <mat-label>{{'ESTADO' | translate}}</mat-label>
+        <!-- <input [formControl]="estadoFormControl" matInput [(ngModel)]="data.estado" /> -->
+        <mat-select [(ngModel)]="data.estado" [value]="data.estado" (selectionChange)="carregarCidades($event.value)">
+            <mat-option *ngFor="let estado of estados" value="{{estado.sigla}}">{{estado.nome}}</mat-option>
+        </mat-select>
     </mat-form-field>
     <mat-form-field>
-        <mat-label>{{'ESTADO' | translate}}</mat-label>
-        <input [formControl]="estadoFormControl" matInput [(ngModel)]="data.estado" />
+        <mat-label>{{'CIDADE' | translate}}</mat-label>
+        <!-- <input [formControl]="cidadeFormControl" matInput [(ngModel)]="data.cidade" /> -->
+        <mat-select [(ngModel)]="data.cidade" [value]="data.cidade">
+            <mat-option *ngFor="let cidade of cidades" value="{{cidade.nome}}">{{cidade.nome}}</mat-option>
+        </mat-select>
     </mat-form-field>
     <div class="dialog__button-container">
         <button mat-flat-button color="warn" (click)="onNoClick()">{{'CANCELAR' | translate}}</button>

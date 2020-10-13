@@ -91,5 +91,6 @@
     "PLACEHOLDER_DESC_SERVICO": "Fale um pouco sobre o serviço prestado",
     "SERVICOS_PRESTADOS":"Serviços Prestados",
     "PRESTADOR_NAO_ENCONTRADO":"Não foi encontrado o prestador informado",
-    "VER_AVALIACOES": "Ver avaliações"
+    "VER_AVALIACOES": "Ver avaliações",
+    "CADASTRO": "Cadastro"
 }

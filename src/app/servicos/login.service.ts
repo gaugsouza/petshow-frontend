@@ -7,6 +7,7 @@ import { NGXLogger } from 'ngx-logger';
 import { LocalStorageService } from './local-storage.service';
 import { USER_TOKEN } from '../util/constantes';
 import { Login } from '../interfaces/login';
+import { Usuario } from '../interfaces/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,18 @@ export class LoginService {
 
   buscaTokenUsuario() {
     return JSON.stringify(this.storageService.getItem(USER_TOKEN));
+  }
+
+  cadastrarUsuario(usuario:Usuario):Observable<String> {
+    const URL = `${this.LOGIN_BASE_URL}/cadastro`;
+    return this.http.post<String>(URL, usuario, this.httpOptions)
+    .pipe(
+      tap(_ => this.logger.info(`Request feita a ${URL}`)),
+      catchError(({error}) => {
+        this.handleError<string>(`Erro em requisição feita a ${URL}`);
+        return throwError(error);
+      })
+    );    
   }
 
   private handleError<T> (mensagem: string, result?: T) {

@@ -6,9 +6,10 @@ import { catchError, tap } from 'rxjs/operators';
 import { Usuario } from '../interfaces/usuario';
 import { NGXLogger } from 'ngx-logger';
 import { Login } from '../interfaces/login';
-import { AnimalEstimacao } from '../interfaces/AnimalEstimacao';
+import { AnimalEstimacao } from '../interfaces/animalEstimacao';
 import { TipoAnimal } from '../enum/TipoAnimal';
 import { JwtHelper } from '../util/jwt-helper';
+import { Cliente } from '../interfaces/cliente';
 
 @Injectable({
   providedIn: 'root'
@@ -94,9 +95,7 @@ export class UsuarioService {
       tap(_=> this.logger.info(`Request feito a ${url}`)),
       catchError(this.handleError<TipoAnimal[]>('put'))
     );
-  }
-
- 
+  } 
 
   private handleError<T> (mensagem: string, result?: T) {
     return (error:any) : Observable<T> => {

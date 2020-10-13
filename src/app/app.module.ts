@@ -58,13 +58,10 @@ export function HttpLoaderFactory(http:HttpClient) {
     AnimalEstimacaoComponent,
     FormularioAnimalComponent,
     LoginComponent,
-<<<<<<< HEAD
-=======
     CadastroComponent,
     CadastroPrestadorComponent,
     CadastroClienteComponent,
     AvaliacaoComponent,
->>>>>>> 7f8318cf1d55fcf588f2bb6363a2fa42a94d57b7
     EstrelasComponent,
     FormularioComponent,
     ListaServicosDetalhadosComponent,

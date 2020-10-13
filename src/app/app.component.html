@@ -27,6 +27,11 @@
         {{ 'PERFIL' | translate}}
       </a>
     </div>
+    <div *ngIf="!isLogged">
+      <a mat-button href="/cadastro" class="menu-item">
+        {{ 'CADASTRO' | translate}}
+      </a>
+    </div>
     <div>
       <button mat-button (click)="changeLang()">
         {{'VER_TRADUZIDO' | translate}}

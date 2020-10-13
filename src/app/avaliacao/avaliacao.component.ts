@@ -50,34 +50,41 @@ export class AvaliacaoComponent implements OnInit {
         this.router.navigate(['/']);
         return;
       }
-      this.avaliacaoService.buscaServicoAvaliadoPorId(this.idServico,this.idPrestador).subscribe(servico => {
-        if(!servico) {
-          this.isNotFound = true;
-          return;
-        }
-        this.prestadorService.buscaPrestador(servico.prestadorId).subscribe(prestador => {
-          servico.prestador = prestador;
-          servico.avaliacoes.forEach(avaliacao => {
-            this.usuarioService.buscarUsuario(avaliacao.clienteId).subscribe(cliente => {
-              avaliacao.cliente = cliente;
-            })
-          })
-          
-          this.servicoAvaliado = servico;
-        })
-        
-      });
+      this.preencheServico(this.idServico, this.idPrestador);
     });
 
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       if(token){
         this.usuarioService.getUsuario(token).subscribe(usuario => {
-          this.isCliente = usuario.tipo === TipoPessoa.CLIENTE || usuario.tipo == 1;
+          this.isLogado = !!(usuario);
+          if(this.isLogado) {
+            this.isCliente = usuario.tipo === TipoPessoa.CLIENTE || usuario.tipo == 1;
+          }
         })
       }      
     })
   }
 
+
+  preencheServico(idPrestador, idServico) {
+    this.avaliacaoService.buscaServicoAvaliadoPorId(idPrestador, idServico).subscribe(servico => {
+      if(!servico) {
+        this.isNotFound = true;
+        return;
+      }
+      this.prestadorService.buscaPrestador(servico.prestadorId).subscribe(prestador => {
+        servico.prestador = prestador;
+        servico.avaliacoes.forEach(avaliacao => {
+          this.usuarioService.buscarUsuario(avaliacao.clienteId).subscribe(cliente => {
+            avaliacao.cliente = cliente;
+          })
+        })
+        
+        this.servicoAvaliado = servico;
+      })
+      
+    });
+  }
   exibeForm() {
     this.isFormVisible = true;
   }
@@ -111,9 +118,9 @@ export class AvaliacaoComponent implements OnInit {
     .subscribe((token:string) => {
       this.usuarioService.getUsuario(token)
       .subscribe((cliente:Cliente) => {
-        avaliacao.cliente = cliente;
-        this.avaliacaoService.adicionarAvaliacao(avaliacao, this.idServico, this.idPrestador).subscribe(servico => {
-          this.servicoAvaliado = servico;
+        avaliacao.clienteId = cliente.id;
+        this.avaliacaoService.adicionarAvaliacao(avaliacao, this.idServico, this.idPrestador, token).subscribe(servico => {
+          this.preencheServico(this.idServico, this.idPrestador);
           this.fechaFormulario();
           this.limpaAvaliacao();
         });
