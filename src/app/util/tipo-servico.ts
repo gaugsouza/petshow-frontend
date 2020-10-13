@@ -1,17 +1,17 @@
 import { Servico } from '../interfaces/servico';
 
 export const BANHO:Servico = {
-    id: 1,
+    id: 2,
     nome: 'BANHO'
 }
 
 export const PASSEIO:Servico = {
-    id: 2,
+    id: 12,
     nome: 'PASSEIO'
 }
 
 export const PET_SITTING:Servico = {
-    id: 3,
+    id: 22,
     nome: 'PET SITTING'
 } 
 
