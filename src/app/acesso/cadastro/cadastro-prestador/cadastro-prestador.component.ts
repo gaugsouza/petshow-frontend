@@ -104,15 +104,7 @@ export class CadastroPrestadorComponent implements OnInit {
   }
 
   hasErrors() {
-    return this.telefoneFormControl.hasError('required') ||
-    this.cpfFormControl.hasError('required') ||
-    this.nomeFormControl.hasError('required') ||
-    this.emailFormControl.hasError('required') || this.emailFormControl.hasError('email') ||
-    this.senhaFormControl.hasError('required') || this.senhaFormControl.hasError('min') ||
-    this.confirmaSenhaFormControl.hasError('required') ||  this.logradouroFormControl.hasError('required')  ||
-    this.numeroFormControl.hasError('required') ||
-    this.bairroFormControl.hasError('required')  ||
-    this.cepFormControl.hasError('required') || this.estadoFormControl.hasError('required') || this.cidadeFormControl.hasError('required')
+    return this.telefoneFormControl.invalid || this.cpfFormControl.invalid || this.nomeFormControl.invalid || this.emailFormControl.invalid || this.senhaFormControl.invalid || this.confirmaSenhaFormControl.invalid || this.logradouroFormControl.invalid || this.numeroFormControl.invalid || this.bairroFormControl.invalid || this.cepFormControl.invalid
    }
 
 
