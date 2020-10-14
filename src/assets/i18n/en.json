@@ -93,5 +93,6 @@
     "PRESTADOR_NAO_ENCONTRADO": "The informed provider was not found",
     "VER_AVALIACOES": "See reviews",
     "CADASTRO": "Register",
-    "SENHA_MINIMO": "The password must contain at least 8 characters"
+    "SENHA_MINIMO": "The password must contain at least 8 characters",
+    "SENHA_PADRAO": "The password must contain at least 1 lowercase character, 1 uppercase character and 1 number"
 }
