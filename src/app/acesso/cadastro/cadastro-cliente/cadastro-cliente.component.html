@@ -15,7 +15,8 @@
 [cep-control]="cepFormControl"
 ></app-endereco-cadastro>
 
-<p>{{errorMessage | translate}}</p>
+<p *ngIf="errorMessage">{{errorMessage | translate}}</p>
+<p *ngIf="erroRequisicao">{{erroRequisicao}}</p>
 <div class="form__button-container">
   <button mat-flat-button color="primary" [disabled]="hasErrors()" (click)="cadastrarCliente(cliente)">{{'CADASTRAR' | translate}}</button>
 </div>

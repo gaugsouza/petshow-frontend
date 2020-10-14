@@ -3,6 +3,7 @@
         <mat-label>{{'NOME_COMPLETO' | translate}}</mat-label>
         <input matInput placeholder="João" minlength="3" [formControl]="nomeFormControl" [(ngModel)]="usuario.nome"/>
         <mat-error *ngIf="nomeFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
+        <mat-error *ngIf="nomeFormControl.hasError('minlength')">{{'NOME_INVALIDO' | translate}}</mat-error>
     </mat-form-field>
     <mat-form-field>
         <mat-label>CPF</mat-label>
