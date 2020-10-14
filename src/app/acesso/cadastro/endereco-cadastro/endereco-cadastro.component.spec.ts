@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CadastroComponent } from './cadastro.component';
+import { EnderecoCadastroComponent } from './endereco-cadastro.component';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -12,28 +12,16 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
-import { CadastroPrestadorComponent } from './cadastro-prestador/cadastro-prestador.component';
-import { CadastroClienteComponent } from './cadastro-cliente/cadastro-cliente.component';
-import {EnderecoCadastroComponent} from './endereco-cadastro/endereco-cadastro.component'
-import {InfoPessoalCadastroComponent} from './info-pessoal-cadastro/info-pessoal-cadastro.component'
+import { ConsultaEstadosService, Estado, Cidade } from '../../../servicos/consulta-estados.service';
+describe('EnderecoCadastroComponent', () => {
+  let component: EnderecoCadastroComponent;
+  let fixture: ComponentFixture<EnderecoCadastroComponent>;
 
-import { JwtHelper } from '../../util/jwt-helper';
-
-describe('CadastroComponent', () => {
-  let component: CadastroComponent;
-  let fixture: ComponentFixture<CadastroComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ 
-        CadastroComponent,
-        CadastroClienteComponent,
-        CadastroPrestadorComponent,
-        EnderecoCadastroComponent,
-        InfoPessoalCadastroComponent
-      ],
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ EnderecoCadastroComponent ],
       providers: [
-        JwtHelper
+        ConsultaEstadosService
       ],
       imports: [
         MatListModule,
@@ -51,10 +39,10 @@ describe('CadastroComponent', () => {
       ]
     })
     .compileComponents();
-  });
+  }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CadastroComponent);
+    fixture = TestBed.createComponent(EnderecoCadastroComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

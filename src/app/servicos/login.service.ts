@@ -54,7 +54,6 @@ export class LoginService {
 
   private handleError<T> (mensagem: string, result?: T) {
     return (error:any) : Observable<T> => {
-      // console.log(error.error);
       this.logger.error(mensagem);
       return of(result as T);
     }

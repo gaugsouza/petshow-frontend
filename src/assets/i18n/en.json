@@ -92,5 +92,6 @@
     "SERVICOS_PRESTADOS": "Services Provided",
     "PRESTADOR_NAO_ENCONTRADO": "The informed provider was not found",
     "VER_AVALIACOES": "See reviews",
-    "CADASTRO": "Register"
+    "CADASTRO": "Register",
+    "SENHA_MINIMO": "The password must contain at least 8 characters"
 }

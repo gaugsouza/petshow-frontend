@@ -46,7 +46,8 @@ import { ServicosComponent } from './perfil-prestador/servicos/servicos.componen
 import { FormularioServicoComponent } from './perfil-prestador/formulario-servico/formulario-servico.component';
 import { PrestadorComponent } from './prestador/prestador.component';
 import { JwtHelper } from './util/jwt-helper';
-
+import { EnderecoCadastroComponent } from './acesso/cadastro/endereco-cadastro/endereco-cadastro.component';
+import { InfoPessoalCadastroComponent } from './acesso/cadastro/info-pessoal-cadastro/info-pessoal-cadastro.component';
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -72,7 +73,9 @@ export function HttpLoaderFactory(http:HttpClient) {
     InformacoesPessoaisComponent,
     EnderecoComponent,
     DialogEnderecoComponent,
-    PrestadorComponent
+    PrestadorComponent,
+    EnderecoCadastroComponent,
+    InfoPessoalCadastroComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,4 @@
+@import '../../global.scss';
 .selecao_servico{
     padding: 10% 20%;
     height:60vh;
@@ -6,6 +7,11 @@
         padding:10 0;
         display: flex;
         justify-content: space-around; 
+        @media screen and (max-width: $tablet-width){
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
     }
     ::ng-deep .mat-raised-button {
         font-size:25px
