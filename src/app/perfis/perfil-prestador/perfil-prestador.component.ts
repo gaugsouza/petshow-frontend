@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ServicoDetalhado } from '../interfaces/servico-detalhado';
-import { Prestador } from '../interfaces/prestador';
-import { PrestadorService } from '../servicos/prestador.service';
-import { LocalStorageService } from '../servicos/local-storage.service';
-import { USER_TOKEN } from '../util/constantes';
-import { Endereco } from '../interfaces/endereco';
-import { JwtHelper } from '../util/jwt-helper';
+import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
+import { Prestador } from 'src/app/interfaces/prestador';
+import { PrestadorService } from 'src/app/servicos/prestador.service';
+import { LocalStorageService } from 'src/app/servicos/local-storage.service';
+import { USER_TOKEN } from 'src/app/util/constantes';
+import { Endereco } from 'src/app/interfaces/endereco';
+import { JwtHelper } from 'src/app/util/jwt-helper';
 
 @Component({
   selector: 'app-perfil-prestador',

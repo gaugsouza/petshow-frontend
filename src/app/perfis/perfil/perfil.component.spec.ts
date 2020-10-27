@@ -3,17 +3,17 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { PerfilComponent } from './perfil.component';
 import {PerfilUsuarioComponent} from '../perfil-usuario/perfil-usuario.component';
 import {PerfilPrestadorComponent} from '../perfil-prestador/perfil-prestador.component';
-import { ServicosComponent } from '../perfil-prestador/servicos/servicos.component';
-import { FormularioServicoComponent } from '../perfil-prestador/formulario-servico/formulario-servico.component';
-import { InformacoesPessoaisComponent } from '../perfil-usuario/informacoes-pessoais/informacoes-pessoais.component';
-import { EnderecoComponent } from '../perfil-usuario/endereco/endereco.component';
-import { DialogEnderecoComponent } from '../perfil-usuario/endereco/dialog-endereco/dialog-endereco.component';
-import { AnimalEstimacaoComponent } from '../perfil-usuario/animal-estimacao/animal-estimacao.component';
-import { PrestadorService } from '../servicos/prestador.service';
-import { LocalStorageService } from '../servicos/local-storage.service';
+import { ServicosComponent } from '../servicos/servicos.component';
+import { FormularioServicoComponent } from '../formulario-servico/formulario-servico.component';
+import { InformacoesPessoaisComponent } from '../informacoes-pessoais/informacoes-pessoais.component';
+import { EnderecoComponent } from '../endereco/endereco.component';
+import { EnderecoDialogComponent } from '../endereco-dialog/endereco-dialog.component';
+import { AnimalEstimacaoComponent } from '../animal-estimacao/animal-estimacao.component';
+import { PrestadorService } from '../../servicos/prestador.service';
+import { LocalStorageService } from '../../servicos/local-storage.service';
 import { Router } from '@angular/router';
-import { UsuarioService } from '../servicos/usuario.service';
-import { UsuarioServiceMock } from '../mocks/usuario-service-mock';
+import { UsuarioService } from '../../servicos/usuario.service';
+import { UsuarioServiceMock } from '../../mocks/usuario-service-mock';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -26,8 +26,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { NgxMaskModule } from 'ngx-mask';
-import { FormularioAnimalComponent } from '../perfil-usuario/animal-estimacao/formulario-animal/formulario-animal.component';
-import { JwtHelper } from '../util/jwt-helper';
+import { FormularioAnimalComponent } from '../formulario-animal/formulario-animal.component';
+import { JwtHelper } from '../../util/jwt-helper';
 describe('PerfilComponent', () => {
   let component: PerfilComponent;
   let fixture: ComponentFixture<PerfilComponent>;
@@ -42,7 +42,7 @@ describe('PerfilComponent', () => {
         FormularioServicoComponent,
         InformacoesPessoaisComponent,
         EnderecoComponent,
-        DialogEnderecoComponent,
+        EnderecoDialogComponent,
         AnimalEstimacaoComponent,
         FormularioAnimalComponent
        ],

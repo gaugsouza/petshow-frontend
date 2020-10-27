@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
-import {MyErrorStateMatcher} from '../../../classes/my-error-state-matcher';
+import {MyErrorStateMatcher} from 'src/app/classes/my-error-state-matcher';
 import { FormControl, Validators } from '@angular/forms';
 import { UsuarioService } from 'src/app/servicos/usuario.service';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';

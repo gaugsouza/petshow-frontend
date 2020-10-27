@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalStorageService } from '../servicos/local-storage.service';
-import { USER_TOKEN } from '../util/constantes';
-import { Usuario } from '../interfaces/usuario';
-import { TipoPessoa } from '../enum/tipo-pessoa.enum';
+import { LocalStorageService } from 'src/app/servicos/local-storage.service';
+import { USER_TOKEN } from 'src/app/util/constantes';
+import { Usuario } from 'src/app/interfaces/usuario';
+import { TipoPessoa } from 'src/app/enum/tipo-pessoa.enum';
 import { Router } from '@angular/router';
-import { JwtHelper } from '../util/jwt-helper';
+import { JwtHelper } from 'src/app/util/jwt-helper';
 
 @Component({
   selector: 'app-perfil',

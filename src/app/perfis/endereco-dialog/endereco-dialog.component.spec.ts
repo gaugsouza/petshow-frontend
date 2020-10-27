@@ -1,6 +1,5 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { DialogEnderecoComponent } from './dialog-endereco.component';
+import {async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { EnderecoDialogComponent } from './endereco-dialog.component';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -12,13 +11,13 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
-describe('DialogEnderecoComponent', () => {
-  let component: DialogEnderecoComponent;
-  let fixture: ComponentFixture<DialogEnderecoComponent>;
 
+describe('EnderecoDialogComponent', () => {
+  let component: EnderecoDialogComponent;
+  let fixture: ComponentFixture<EnderecoDialogComponent>;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DialogEnderecoComponent ],
+      declarations: [ EnderecoDialogComponent ],
       imports: [
         MatListModule,
         MatInputModule,
@@ -48,7 +47,7 @@ describe('DialogEnderecoComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DialogEnderecoComponent);
+    fixture = TestBed.createComponent(EnderecoDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

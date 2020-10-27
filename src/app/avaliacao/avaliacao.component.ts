@@ -24,7 +24,7 @@ export class AvaliacaoComponent implements OnInit {
   idPrestador:number;
   idServico:number;
   isNotFound:boolean = false;
-  isCliente:boolean = false;
+  isCliente:boolean = true;
   avaliacaoBase:Avaliacao = {
     atencao:0,
     qualidadeProdutos:0,

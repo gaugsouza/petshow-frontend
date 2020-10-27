@@ -3,13 +3,13 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Endereco } from 'src/app/interfaces/endereco';
 import { FormControl, Validators } from '@angular/forms';
 import { ConsultaEstadosService, Estado, Cidade } from 'src/app/servicos/consulta-estados.service';
-
 @Component({
-  selector: 'app-dialog-endereco',
-  templateUrl: './dialog-endereco.component.html',
-  styleUrls: ['./dialog-endereco.component.scss']
+  selector: 'app-endereco-dialog',
+  templateUrl: './endereco-dialog.component.html',
+  styleUrls: ['./endereco-dialog.component.scss']
 })
-export class DialogEnderecoComponent implements OnInit {
+export class EnderecoDialogComponent implements OnInit {
+
   logradouroFormControl = new FormControl('', [
     Validators.required
   ]);
@@ -37,7 +37,7 @@ export class DialogEnderecoComponent implements OnInit {
   estados: Estado[];
   cidades: Cidade[];
 
-  constructor(public dialogRef:MatDialogRef<DialogEnderecoComponent>,
+  constructor(public dialogRef:MatDialogRef<EnderecoDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data:Endereco,
               private consultaEstadoService:ConsultaEstadosService) { }
 
@@ -63,4 +63,5 @@ export class DialogEnderecoComponent implements OnInit {
   hasErrors() {
     return this.logradouroFormControl.hasError('required') || this.numeroFormControl.hasError('required') || this.cepFormControl.hasError('required') || this.bairroFormControl.hasError('required');
   }
+
 }

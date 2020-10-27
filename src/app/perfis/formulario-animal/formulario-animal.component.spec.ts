@@ -5,14 +5,14 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AnimalEstimacao } from '../../../interfaces/animalEstimacao';
-import { TipoAnimal } from '../../../enum/TipoAnimal';
-import { usuariosMock } from '../../../mocks/usuarioMock';
-import { Cliente } from '../../../interfaces/cliente';
+import { AnimalEstimacao } from '../../interfaces/animalEstimacao';
+import { TipoAnimal } from '../../enum/TipoAnimal';
+import { usuariosMock } from '../../mocks/usuarioMock';
+import { Cliente } from '../../interfaces/cliente';
 import {TranslateModule} from '@ngx-translate/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
-import { JwtHelper } from '../../../util/jwt-helper';
+import { JwtHelper } from '../../util/jwt-helper';
 
 
 describe('FormularioAnimalComponent', () => {

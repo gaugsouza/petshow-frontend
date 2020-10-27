@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from '../servicos/usuario.service';
-import { Cliente } from '../interfaces/cliente';
-import { AnimalEstimacao } from '../interfaces/animalEstimacao';
+import { UsuarioService } from 'src/app/servicos/usuario.service';
+import { Cliente } from 'src/app/interfaces/cliente';
+import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
 import { Router } from '@angular/router';
-import { LocalStorageService } from '../servicos/local-storage.service';
-import { USER_TOKEN } from '../util/constantes';
-import { Endereco } from '../interfaces/endereco';
+import { LocalStorageService } from 'src/app/servicos/local-storage.service';
+import { USER_TOKEN } from 'src/app/util/constantes';
+import { Endereco } from 'src/app/interfaces/endereco';
 
 @Component({
   selector: 'app-perfil-usuario',

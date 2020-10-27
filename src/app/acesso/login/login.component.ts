@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import {MyErrorStateMatcher} from '../../classes/my-error-state-matcher';
 import { AppComponent } from 'src/app/app.component';
 import { USER_TOKEN } from 'src/app/util/constantes';
+import { DataSharingService } from 'src/app/servicos/data-sharing.service';
 
 @Component({
   selector: 'app-login',
@@ -35,12 +36,13 @@ export class LoginComponent implements OnInit {
   constructor(private loginService:LoginService,
               private localStorageService:LocalStorageService,
               private router:Router,
-              private appComponent: AppComponent) { }
+              private dataSharing:DataSharingService) { }
 
   ngOnInit(): void {
     this.localStorageService.getItem(USER_TOKEN)
     .subscribe(token => {
       if(token) {
+        this.dataSharing.isUsuarioLogado.next(true);
         this.router.navigate(['/perfil'])
       }
     });
@@ -54,8 +56,8 @@ export class LoginComponent implements OnInit {
   this.loginService.realizaLogin(this.login).subscribe(
     token => {
       this.localStorageService.setItem(USER_TOKEN, token).subscribe(() => {
+        this.dataSharing.isUsuarioLogado.next(true);;
         this.router.navigate(['/perfil']);
-        this.appComponent.isLogged = true;
       });
     },
     ({error}) => {

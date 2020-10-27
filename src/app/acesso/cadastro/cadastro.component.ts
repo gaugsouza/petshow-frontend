@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,FormGroup, Validators} from '../../../../node_modules/@angular/forms';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../../servicos/local-storage.service';
 import { UsuarioService } from '../../servicos/usuario.service';
-import { Cliente } from '../../interfaces/cliente';
-import { Prestador } from '../../interfaces/prestador';
 
 @Component({
   selector: 'app-cadastro',
@@ -37,5 +34,4 @@ export class CadastroComponent implements OnInit {
     this.isPrestador=true;
   }
   
-
 }

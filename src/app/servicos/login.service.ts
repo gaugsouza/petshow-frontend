@@ -14,6 +14,7 @@ import { Usuario } from '../interfaces/usuario';
 })
 export class LoginService {
   public ACESSO_BASE_URL = `${environment.API_URL}/acesso`;
+  public isLogado:boolean = false;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-type' : 'application/json' }),

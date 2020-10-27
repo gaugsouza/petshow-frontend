@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Endereco } from 'src/app/interfaces/endereco';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { DialogEnderecoComponent } from './dialog-endereco/dialog-endereco.component';
+import { EnderecoDialogComponent } from '../endereco-dialog/endereco-dialog.component';
 
 @Component({
   selector: 'app-endereco',
@@ -17,7 +17,7 @@ export class EnderecoComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(DialogEnderecoComponent, {
+    const dialogRef = this.dialog.open(EnderecoDialogComponent, {
       width: '600px',
       data: {...this.endereco}
     });

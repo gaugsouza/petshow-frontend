@@ -1,13 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PerfilPrestadorComponent } from './perfil-prestador.component';
-import { ServicosComponent } from './servicos/servicos.component';
-import { FormularioServicoComponent } from './formulario-servico/formulario-servico.component';
-import { InformacoesPessoaisComponent } from '../perfil-usuario/informacoes-pessoais/informacoes-pessoais.component';
-import { EnderecoComponent } from '../perfil-usuario/endereco/endereco.component';
-import { DialogEnderecoComponent } from '../perfil-usuario/endereco/dialog-endereco/dialog-endereco.component';
-import { PrestadorService } from '../servicos/prestador.service';
-import { LocalStorageService } from '../servicos/local-storage.service';
+import { ServicosComponent } from '../servicos/servicos.component';
+import { FormularioServicoComponent } from '../formulario-servico/formulario-servico.component';
+import { InformacoesPessoaisComponent } from '../informacoes-pessoais/informacoes-pessoais.component';
+import { EnderecoComponent } from '../endereco/endereco.component';
+import { EnderecoDialogComponent } from '../endereco-dialog/endereco-dialog.component';
+import { PrestadorService } from '../../servicos/prestador.service';
+import { LocalStorageService } from '../../servicos/local-storage.service';
 import { Router } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
@@ -21,7 +21,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { NgxMaskModule } from 'ngx-mask';
-import { JwtHelper } from '../util/jwt-helper';
+import { JwtHelper } from '../../util/jwt-helper';
 
 describe('PerfilPrestadorComponent', () => {
   let component: PerfilPrestadorComponent;
@@ -35,7 +35,7 @@ describe('PerfilPrestadorComponent', () => {
         FormularioServicoComponent,
         InformacoesPessoaisComponent,
         EnderecoComponent,
-        DialogEnderecoComponent
+        EnderecoDialogComponent
        ],
        providers: [
          PrestadorService,
