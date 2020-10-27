@@ -17,7 +17,7 @@ export class FormularioComponent implements OnInit {
   };
   @Output('adiciona-avaliacao') adicionaAvaliacao = new EventEmitter<Avaliacao>();
   @Output('fecha-formulario') fechaFormulario = new EventEmitter<any>();
-
+  public isEnabled:boolean = true;
 
   private NOTA_MAXIMA = 5;
 
@@ -31,6 +31,7 @@ export class FormularioComponent implements OnInit {
   }
 
   adicionarAvaliacao() {
+    this.isEnabled = !this.isEnabled;
     this.adicionaAvaliacao.emit(this.avaliacao);
   }
 

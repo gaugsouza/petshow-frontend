@@ -37,7 +37,7 @@
         <textarea matInput [(ngModel)]="avaliacao.comentario" placeholder="{{'PLACEHOLDER_AVALIACAO' | translate}}"></textarea>
     </mat-form-field>
     <div>
-        <button mat-flat-button color="primary" (click)="adicionarAvaliacao()">{{'ENVIAR_AVALIACAO' | translate}}</button>
+        <button mat-flat-button color="primary" [disabled]="!isEnabled" (click)="adicionarAvaliacao()">{{'ENVIAR_AVALIACAO' | translate}}</button>
         <button mat-flat-button color="warn" (click)="fecharFormulario()">{{'CANCELAR' | translate}}</button>
     </div>
 </div>

@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { AvaliacaoService } from '../servicos/avaliacao.service';
-import { ServicoDetalhado } from '../interfaces/servico-detalhado';
+import { AvaliacaoService } from 'src/app/servicos/avaliacao.service';
+import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { Router } from '@angular/router';
-import { Avaliacao } from '../interfaces/avaliacao';
-import { LocalStorageService } from '../servicos/local-storage.service';
-import { Cliente } from '../interfaces/cliente';
-import { USER_TOKEN } from '../util/constantes';
-import { UsuarioService } from '../servicos/usuario.service';
-import { TipoPessoa } from '../enum/tipo-pessoa.enum';
-import { PrestadorService } from '../servicos/prestador.service';
-import { servicos } from '../mocks/servico-detalhado-mock';
+import { Avaliacao } from 'src/app/interfaces/avaliacao';
+import { LocalStorageService } from 'src/app/servicos/local-storage.service';
+import { Cliente } from 'src/app/interfaces/cliente';
+import { USER_TOKEN } from 'src/app/util/constantes';
+import { UsuarioService } from 'src/app/servicos/usuario.service';
+import { TipoPessoa } from 'src/app/enum/tipo-pessoa.enum';
+import { PrestadorService } from 'src/app/servicos/prestador.service';
+import { servicos } from 'src/app/mocks/servico-detalhado-mock';
+import { DataSharingService } from 'src/app/servicos/data-sharing.service';
 
 @Component({
   selector: 'app-avaliacao',
@@ -24,7 +25,7 @@ export class AvaliacaoComponent implements OnInit {
   idPrestador:number;
   idServico:number;
   isNotFound:boolean = false;
-  isCliente:boolean = true;
+  isCliente:boolean = false;
   avaliacaoBase:Avaliacao = {
     atencao:0,
     qualidadeProdutos:0,
@@ -40,7 +41,8 @@ export class AvaliacaoComponent implements OnInit {
               private router:Router,
               private localStorageService:LocalStorageService,
               private usuarioService:UsuarioService,
-              private prestadorService:PrestadorService) {}
+              private prestadorService:PrestadorService,
+              private dataSharing: DataSharingService) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params:Params) => {
@@ -52,17 +54,34 @@ export class AvaliacaoComponent implements OnInit {
       }
       this.preencheServico(this.idServico, this.idPrestador);
     });
+    this.dataSharing.isUsuarioLogado.subscribe(isLogado => {
+      this.isLogado = isLogado;
+      if(!this.isLogado) {
+        return;
+      }
 
-    this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
-      if(token){
+      this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
+        if(!token) {
+          return;
+        }
         this.usuarioService.getUsuario(token).subscribe(usuario => {
-          this.isLogado = !!(usuario);
-          if(this.isLogado) {
-            this.isCliente = usuario.tipo === TipoPessoa.CLIENTE || usuario.tipo == 1;
-          }
+          this.isCliente = usuario.tipo === TipoPessoa.CLIENTE || usuario.tipo == 1;
+        }, err => {
+          console.log(err);
+          this.isCliente = false;
         })
-      }      
-    })
+      });
+    });
+    // this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
+    //   if(token){
+    //     this.usuarioService.getUsuario(token).subscribe(usuario => {
+    //       this.isLogado = !!(usuario);
+    //       if(this.isLogado) {
+    //         this.isCliente = usuario.tipo === TipoPessoa.CLIENTE || usuario.tipo == 1;
+    //       }
+    //     })
+    //   }      
+    // })
   }
 
 

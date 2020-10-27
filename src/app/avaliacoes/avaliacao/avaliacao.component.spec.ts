@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AvaliacaoComponent } from './avaliacao.component';
-import {EstrelasComponent} from './estrelas/estrelas.component';
-import {FormularioComponent} from './formulario/formulario.component';
-import { AvaliacaoService } from '../servicos/avaliacao.service';
-import {AvaliacaoServiceMock} from '../mocks/avaliacao-service-mock';
-import { LocalStorageService } from '../servicos/local-storage.service';
+import {EstrelasComponent} from '../estrelas/estrelas.component';
+import {FormularioComponent} from '../formulario/formulario.component';
+import { AvaliacaoService } from '../../servicos/avaliacao.service';
+import {AvaliacaoServiceMock} from '../../mocks/avaliacao-service-mock';
+import { LocalStorageService } from '../../servicos/local-storage.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
@@ -18,7 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
-import { JwtHelper } from '../util/jwt-helper';
+import { JwtHelper } from '../../util/jwt-helper';
 
 describe('AvaliacaoComponent', () => {
   let component: AvaliacaoComponent;

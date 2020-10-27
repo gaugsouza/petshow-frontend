@@ -11,12 +11,15 @@ import { InfoPessoalCadastroComponent } from './cadastro/info-pessoal-cadastro/i
 import { CadastroClienteComponent } from './cadastro/cadastro-cliente/cadastro-cliente.component';
 import { CadastroPrestadorComponent } from './cadastro/cadastro-prestador/cadastro-prestador.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HttpLoaderFactory } from '../app.module';
 import { HttpClient } from '@angular/common/http';
 import { NgxMaskModule } from 'ngx-mask';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { MatSelectModule } from '@angular/material/select';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+export function HttpLoaderFactory(http:HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 @NgModule({
   declarations: [
     LoginComponent, 

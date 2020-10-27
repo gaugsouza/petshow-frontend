@@ -12,7 +12,6 @@ import { EnderecoDialogComponent } from './endereco-dialog/endereco-dialog.compo
 import { AnimalEstimacaoComponent } from './animal-estimacao/animal-estimacao.component';
 import { FormularioAnimalComponent } from './formulario-animal/formulario-animal.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HttpLoaderFactory } from '../app.module';
 import { HttpClient } from '@angular/common/http';
 import { NgxMaskModule } from 'ngx-mask';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
@@ -23,7 +22,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list'; 
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+export function HttpLoaderFactory(http:HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 @NgModule({
   declarations: [
     PerfilPrestadorComponent, 

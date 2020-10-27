@@ -19,9 +19,6 @@ import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { AvaliacaoComponent } from 'src/app/avaliacao/avaliacao.component';
-import { EstrelasComponent } from 'src/app/avaliacao/estrelas/estrelas.component';
-import { FormularioComponent } from 'src/app/avaliacao/formulario/formulario.component';
 import {MatCardModule} from '@angular/material/card'; 
 import {NgxMaskModule} from 'ngx-mask';
 import { ListaServicosDetalhadosComponent } from 'src/app/lista-servicos-detalhados/lista-servicos-detalhados.component';
@@ -29,6 +26,7 @@ import { PrestadorComponent } from 'src/app/prestador/prestador.component';
 import { JwtHelper } from 'src/app/util/jwt-helper';
 import { PerfisModule } from 'src/app/perfis/perfis.module';
 import { DataSharingService } from './servicos/data-sharing.service';
+import { AvaliacoesModule } from './avaliacoes/avaliacoes.module';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -37,9 +35,6 @@ export function HttpLoaderFactory(http:HttpClient) {
   declarations: [
     AppComponent,
     HomeComponent,
-    AvaliacaoComponent,
-    EstrelasComponent,
-    FormularioComponent,
     ListaServicosDetalhadosComponent,
     PrestadorComponent,
   ],
@@ -50,6 +45,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     MatFormFieldModule,
     AppRoutingModule,
     MatInputModule,
+    AvaliacoesModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     LoggerModule.forRoot({
       level: NgxLoggerLevel.DEBUG,

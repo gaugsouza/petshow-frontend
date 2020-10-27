@@ -12,7 +12,7 @@
                 <div class="lista-servicos-detalhados__item">
                     <span>{{servicoDetalhado.tipo.nome}}</span> 
                     <span>{{servicoDetalhado.preco | currency: 'BRL'}}</span>
-                    <span>{{servicoDetalhado.prestador.nome}}</span>  
+                    <span *ngIf="servicoDetalhado.prestador">{{servicoDetalhado.prestador.nome}}</span>  
                     <div class="lista-servicos-detalhados__button-container">
                         <button mat-flat-button color="accent" >{{'AGENDAR' | translate}}</button>
                         <a mat-button color="primary" href="/avaliacao?servicoAvaliado={{servicoDetalhado.id}}&prestador={{servicoDetalhado.prestador.id}}">{{'AVALIACOES' | translate}}</a>
