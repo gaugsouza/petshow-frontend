@@ -1,4 +1,4 @@
-<app-info-pessoal-cadastro  [usuario]="prestador" 
+<app-info-pessoal-cadastro  [usuario]="usuario" 
                             [confirma-senha]="confirmarSenha"
                             [telefone-control]="telefoneFormControl"
                             [cpf-control]="cpfFormControl"
@@ -9,19 +9,20 @@
                             (repete-senha)="repetirSenha($event)"
 ></app-info-pessoal-cadastro>
 
-<mat-form-field>
+<mat-form-field *ngIf="isPrestador()">
   <mat-label>{{'DESC_SERVICO' | translate}}</mat-label>
   <textarea matInput></textarea>
 </mat-form-field>
 
-<app-endereco-cadastro [endereco]="prestador.endereco"
-[logradouro-control]="logradouroFormControl"
-[numero-control]="numeroFormControl"
-[complemento-control]="complementoFormControl"
-[bairro-control]="bairroFormControl"
-[cep-control]="cepFormControl"></app-endereco-cadastro>
+<app-endereco-cadastro [endereco]="usuario.endereco"
+                       [logradouro-control]="logradouroFormControl"
+                       [numero-control]="numeroFormControl"
+                       [complemento-control]="complementoFormControl"
+                       [bairro-control]="bairroFormControl"
+                       [cep-control]="cepFormControl"></app-endereco-cadastro>
+
 <p *ngIf="errorMessage">{{errorMessage | translate}}</p>
-<p *ngIf="erroRequisicao">{{erroRequisicao}}</p>
+<p *ngIf="erroRequisicao">{{erroRequisicao | translate}}</p>
 <div class="form__button-container">
-  <button mat-flat-button color="primary" [disabled]="hasErrors()" (click)="cadastrarPrestador(prestador)" >{{'CADASTRAR' | translate}}</button>
+  <button mat-flat-button color="primary" [disabled]="hasErrors()" (click)="cadastrarConta(usuario)" >{{'CADASTRAR' | translate}}</button>
 </div> 

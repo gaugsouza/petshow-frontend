@@ -43,7 +43,7 @@ export class EnderecoDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.consultaEstadoService.getEstados().subscribe(el => {
-      this.estados = el;
+      this.estados = JSON.parse(el);
     });
     this.carregarCidades(this.data.estado);
   }
@@ -51,7 +51,7 @@ export class EnderecoDialogComponent implements OnInit {
   carregarCidades(uf:string) {
     console.log(uf);
     this.consultaEstadoService.getCidades(uf).subscribe(el => {
-      this.cidades = el;
+      this.cidades = JSON.parse(el);
     })
   }
   onNoClick(): void {

@@ -8,14 +8,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { EnderecoCadastroComponent } from './cadastro/endereco-cadastro/endereco-cadastro.component';
 import { InfoPessoalCadastroComponent } from './cadastro/info-pessoal-cadastro/info-pessoal-cadastro.component';
-import { CadastroClienteComponent } from './cadastro/cadastro-cliente/cadastro-cliente.component';
-import { CadastroPrestadorComponent } from './cadastro/cadastro-prestador/cadastro-prestador.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { NgxMaskModule } from 'ngx-mask';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { MatSelectModule } from '@angular/material/select';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { CadastroContaComponent } from './cadastro/cadastro-conta/cadastro-conta.component';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -26,8 +25,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     CadastroComponent,
     EnderecoCadastroComponent, 
     InfoPessoalCadastroComponent, 
-    CadastroClienteComponent, 
-    CadastroPrestadorComponent
+    CadastroContaComponent
   ],
   imports: [
     CommonModule,
@@ -60,8 +58,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     CadastroComponent,
     EnderecoCadastroComponent, 
     InfoPessoalCadastroComponent, 
-    CadastroClienteComponent, 
-    CadastroPrestadorComponent
+    CadastroContaComponent
   ]
 })
 export class AcessoModule { }

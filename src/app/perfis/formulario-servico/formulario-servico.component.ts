@@ -1,9 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
-import { BANHO } from 'src/app/util/tipo-servico';
+import { BANHO, SERVICOS } from 'src/app/util/tipo-servico';
 import { MyErrorStateMatcher } from 'src/app/classes/my-error-state-matcher';
 import { ServicosService } from 'src/app/servicos/servicos.service';
 import { FormControl, Validators } from '@angular/forms';
+import { Servico } from 'src/app/interfaces/servico';
 
 @Component({
   selector: 'app-formulario-servico',
@@ -15,6 +16,8 @@ export class FormularioServicoComponent implements OnInit {
     preco: 0.0,
     tipo: BANHO
   };
+
+  servicos:Servico[];
 
   @Output('adiciona-servico') adicionaServico = new EventEmitter<ServicoDetalhado>();
   @Output('cancelar-operacao') cancelaOperacao = new EventEmitter<any>();
@@ -49,12 +52,18 @@ export class FormularioServicoComponent implements OnInit {
   }
 
   getTiposServico() {
-    return this.servicoService.getTipos();
+    return this.servicos;
   }
   
   constructor(private servicoService:ServicosService) { }
 
   ngOnInit(): void {
+    this.servicoService.getTipos().subscribe(servicos => {
+      this.servicos = JSON.parse(servicos) || SERVICOS;
+    },
+    err => {
+      this.servicos = SERVICOS;
+    })
   }
 
  

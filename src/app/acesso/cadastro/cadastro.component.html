@@ -3,5 +3,9 @@
 
     <button mat-flat-button color="primary" (click) = "exibirFormCliente()">Cliente</button>
 </div>
-<app-cadastro-cliente *ngIf="isCliente"></app-cadastro-cliente>
-<app-cadastro-prestador *ngIf="isPrestador"></app-cadastro-prestador>
+
+<app-cadastro-conta *ngIf="isCliente || isPrestador"
+                    [tipo-conta]="tipoConta"></app-cadastro-conta>
+
+<!-- <app-cadastro-cliente *ngIf="isCliente"></app-cadastro-cliente>
+<app-cadastro-prestador *ngIf="isPrestador"></app-cadastro-prestador> -->

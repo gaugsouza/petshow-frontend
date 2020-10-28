@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TipoPessoa } from 'src/app/enum/tipo-pessoa.enum';
 import { LocalStorageService } from '../../servicos/local-storage.service';
 import { UsuarioService } from '../../servicos/usuario.service';
 
@@ -9,6 +10,7 @@ import { UsuarioService } from '../../servicos/usuario.service';
   styleUrls: ['./cadastro.component.scss']
 })
 export class CadastroComponent implements OnInit {
+  tipoConta:TipoPessoa;
 
   erroRequisicao:String;
   submitted = false;
@@ -27,10 +29,12 @@ export class CadastroComponent implements OnInit {
   }
 
   exibirFormCliente(){
+    this.tipoConta = TipoPessoa.CLIENTE;
     this.isCliente=true;
   }
 
   exibirFormPrestador(){
+    this.tipoConta = TipoPessoa.PRESTADOR_AUTONOMO;
     this.isPrestador=true;
   }
   

@@ -26,12 +26,13 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   buscarServicosDetalhadosPorTipo(id:number) : void {
     this.servicosService.buscarServicosDetalhadosPorTipo(id)
     .subscribe((servicosDetalhados) => {
-      servicosDetalhados.forEach(servicoDetalhado => {
-        this.prestadorService.buscaPrestador(servicoDetalhado.prestadorId).subscribe(prestador => {
-          servicoDetalhado.prestador = prestador;
+      let servicos:ServicoDetalhado[] = JSON.parse(servicosDetalhados);
+      servicos.forEach(servico => {
+        this.prestadorService.buscaPrestador(servico.prestadorId).subscribe(prestador => {
+          servico.prestador = JSON.parse(prestador);
         })
-      })
-      this.servicosDetalhados = servicosDetalhados;
+      });
+      this.servicosDetalhados = servicos;
     }); 
   }
 
