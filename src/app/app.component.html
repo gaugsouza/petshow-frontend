@@ -1,53 +1,50 @@
 <mat-toolbar>
-  <div>
-    <button mat-icon-button (click)="drawer.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span><a href="/">Petshow</a></span>
-  </div>
-  <!-- <div>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
-    </button>
-  </div> -->
-</mat-toolbar>
 
+      <span>
+        <a href="/"><img src="../assets/icons/Logo.png" width=70 ></a>
+      </span>
+      
+      <span class="spacer"></span>
+      <span >
+        <mat-icon>language</mat-icon>
+        <button mat-button (click)="changeLang()">
+          {{'VER_TRADUZIDO' | translate}}
+        </button>
+      </span>
+      
+      <span  *ngIf="!isLogged">   
+        <a mat-button href="/cadastro" class="menu-item">
+          {{ 'CADASTRO' | translate}}
+        </a>
+
+        <a mat-button href="/login" class="menu-item">
+          Login
+        </a>
+      </span>
+    
+      <span *ngIf="isLogged">
+        <a mat-button href="/perfil" class="menu-item">
+          {{ 'PERFIL' | translate}}
+        </a>
+
+        <button mat-button (click)="deslogar()" class="menu-item">
+          Log out
+        </button>
+      </span>
+
+    
+
+</mat-toolbar>
+<div class="content">
+  <router-outlet></router-outlet>
+</div> 
+
+
+<!-- 
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer mode="{{mode}}" opened="{{opened}}">
-    <div *ngIf="!isLogged">
-      <a mat-button href="/login" class="menu-item">
-        Login
-      </a>
-    </div>
-    <div *ngIf="!isLogged">
-      <a mat-button href="/cadastro" class="menu-item">
-        {{ 'CADASTRO' | translate}}
-      </a>
-    </div>
-    <div *ngIf="isLogged">
-      <a mat-button href="/perfil" class="menu-item">
-        {{ 'PERFIL' | translate}}
-      </a>
-    </div>
-    <div>
-      <button mat-button (click)="changeLang()">
-        {{'VER_TRADUZIDO' | translate}}
-      </button>
-    </div>
-    <div *ngIf="isLogged">
-      <button mat-button (click)="deslogar()" class="menu-item">
-        Log out
-      </button>
-    </div>
-  </mat-drawer>
-  <mat-drawer-content>
-    <div class="content">
-      <router-outlet></router-outlet>
-    </div>
-  </mat-drawer-content>
+    
+    
   
 
-</mat-drawer-container>
+</mat-drawer-container> -->
