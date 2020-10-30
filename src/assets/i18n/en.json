@@ -95,5 +95,7 @@
     "CADASTRO": "Register",
     "SENHA_MINIMO": "The password must contain at least 8 characters",
     "SENHA_PADRAO": "The password must contain at least 1 lowercase character, 1 uppercase character and 1 number",
-    "NOME_INVALIDO": "The name must have at least 3 characters"
+    "NOME_INVALIDO": "The name must have at least 3 characters",
+    "CLIENTE": "Client",
+    "PRESTADOR": "Service provider"
 }

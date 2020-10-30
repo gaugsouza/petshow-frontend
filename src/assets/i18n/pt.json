@@ -95,5 +95,7 @@
     "CADASTRO": "Cadastro",
     "SENHA_MINIMO": "A senha deve conter no mínimo 8 caracteres",
     "SENHA_PADRAO": "A senha deve conter pelo menos 1 letra minúscula, 1 letra maiúscula e 1 numero",
-    "NOME_INVALIDO": "O nome precisa ter pelo menos três caracteres"
+    "NOME_INVALIDO": "O nome precisa ter pelo menos três caracteres",
+    "CLIENTE": "Cliente",
+    "PRESTADOR": "Prestador"
 }

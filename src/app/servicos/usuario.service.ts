@@ -28,9 +28,9 @@ export class UsuarioService {
     return this.httpHandler.doGet<Usuario>(URL, token);    
   }
 
-  buscarUsuario(id:number) : Observable<Usuario> {
+  buscarUsuario(id:number) : Observable<any> {
     const URL = `${this.USUARIO_SERVICE_URL}/${id}`;    
-    return this.httpHandler.doGet<Usuario>(URL);    
+    return this.httpHandler.doGet<any>(URL);    
   }
 
   atualizaUsuario(usuario:Usuario, token:string) : Observable<Usuario> {

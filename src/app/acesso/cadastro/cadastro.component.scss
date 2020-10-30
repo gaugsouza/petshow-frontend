@@ -1,6 +1,5 @@
 .selecao-tipo {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 200px;
+    display: flex;
+    flex-direction: row;
     gap: 10px;
 }

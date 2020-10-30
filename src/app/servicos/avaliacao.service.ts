@@ -15,9 +15,9 @@ export class AvaliacaoService {
 
   constructor(private httpHandler:HttpHandlerService) {}
 
-  buscaServicoAvaliadoPorId (idServico:number, idPrestador?:number):Observable<ServicoDetalhado> {
+  buscaServicoAvaliadoPorId (idServico:number, idPrestador?:number):Observable<any> {
     const URL = this.SERVICO_DETALHADO_URL.replace('idPrestador', idPrestador.toString()).replace('idServico', idServico.toString());
-    return this.httpHandler.doGet<ServicoDetalhado>(URL);
+    return this.httpHandler.doGet<any>(URL);
   }
 
   adicionarAvaliacao = (avaliacao:Avaliacao, idServico?:number, idPrestador?:number, token?:string):Observable<ServicoDetalhado> => {

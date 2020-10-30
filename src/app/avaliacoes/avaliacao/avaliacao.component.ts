@@ -81,15 +81,17 @@ export class AvaliacaoComponent implements OnInit {
         this.isNotFound = true;
         return;
       }
-      this.prestadorService.buscaPrestador(servico.prestadorId).subscribe(prestador => {
-        servico.prestador = prestador;
-        servico.avaliacoes.forEach(avaliacao => {
+
+      let servicoDetalhado = JSON.parse(servico);
+      this.prestadorService.buscaPrestador(servicoDetalhado.prestadorId).subscribe(prestador => {
+        servicoDetalhado.prestador = JSON.parse(prestador);
+        servicoDetalhado.avaliacoes.forEach(avaliacao => {
           this.usuarioService.buscarUsuario(avaliacao.clienteId).subscribe(cliente => {
-            avaliacao.cliente = cliente;
+            avaliacao.cliente = JSON.parse(cliente);
           })
         })
-      })
-      this.servicoAvaliado = servico;
+        this.servicoAvaliado = servicoDetalhado;
+      });
       
     });
   }
