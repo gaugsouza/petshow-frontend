@@ -20,7 +20,7 @@
     "SENHA":"Senha",
     "REPITA_SENHA":"Repita a Senha",
     "SENHA_NULA": "Por favor insira uma senha",
-    "LOGAR": "Logar",
+    "LOGAR": "Login",
     "ERRO_REQUISICAO": "Erro durante a operação",
     "MENSAGEM_ERRO_SENHA" : "As senhas não coincidem",
     "MENSAGEM_SUCESSO": "Operação realizada com sucesso",

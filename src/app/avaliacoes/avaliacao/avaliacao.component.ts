@@ -72,16 +72,6 @@ export class AvaliacaoComponent implements OnInit {
         })
       });
     });
-    // this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
-    //   if(token){
-    //     this.usuarioService.getUsuario(token).subscribe(usuario => {
-    //       this.isLogado = !!(usuario);
-    //       if(this.isLogado) {
-    //         this.isCliente = usuario.tipo === TipoPessoa.CLIENTE || usuario.tipo == 1;
-    //       }
-    //     })
-    //   }      
-    // })
   }
 
 
@@ -98,9 +88,8 @@ export class AvaliacaoComponent implements OnInit {
             avaliacao.cliente = cliente;
           })
         })
-        
-        this.servicoAvaliado = servico;
       })
+      this.servicoAvaliado = servico;
       
     });
   }

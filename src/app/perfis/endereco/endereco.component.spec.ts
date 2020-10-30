@@ -12,7 +12,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
-
+import {JwtHelper} from '../../util/jwt-helper';
 describe('EnderecoComponent', () => {
   let component: EnderecoComponent;
   let fixture: ComponentFixture<EnderecoComponent>;
@@ -33,6 +33,9 @@ describe('EnderecoComponent', () => {
         TranslateModule.forRoot(),
         MatDialogModule,
         MatCardModule
+      ],
+      providers: [
+        JwtHelper
       ]
     })
     .compileComponents();

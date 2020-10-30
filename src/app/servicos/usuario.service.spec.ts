@@ -4,10 +4,8 @@ import { UsuarioService } from './usuario.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import { LocalStorageService } from './local-storage.service';
-import { usuariosMock } from '../mocks/usuarioMock';
 import { Cliente } from '../interfaces/cliente';
 import { TipoPessoa } from '../enum/tipo-pessoa.enum';
-import { USER_TOKEN } from '../util/constantes';
 import { JwtHelper } from '../util/jwt-helper';
 
 describe('UsuarioService', () => {

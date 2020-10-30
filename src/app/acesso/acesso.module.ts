@@ -8,13 +8,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { EnderecoCadastroComponent } from './cadastro/endereco-cadastro/endereco-cadastro.component';
 import { InfoPessoalCadastroComponent } from './cadastro/info-pessoal-cadastro/info-pessoal-cadastro.component';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
-import { NgxMaskModule } from 'ngx-mask';
-import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { MatSelectModule } from '@angular/material/select';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CadastroContaComponent } from './cadastro/cadastro-conta/cadastro-conta.component';
+import { ConfigModule } from '../config/config.module';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -35,23 +33,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     MatButtonModule,
     MatFormFieldModule,
     MatSelectModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-      defaultLanguage: 'pt'
-    }),
-    NgxMaskModule.forRoot(),
-    LoggerModule.forRoot({
-      level: NgxLoggerLevel.DEBUG,
-      serverLogLevel: NgxLoggerLevel.ERROR,
-      disableConsoleLogging: true,
-      httpResponseType: 'json',
-      timestampFormat: "shortDate",
-      serverLoggingUrl: '/server/logger',
-    }),
+    ConfigModule
   ],
   exports: [
     LoginComponent, 

@@ -75,18 +75,24 @@ export class CadastroContaComponent implements OnInit {
   isSenhasIguais() {
     return this.confirmarSenha === this.usuario.login.senha;
   }
+  redirect() {
+    this.router.navigate(['/login'])
+  }
 
+  cadastrarUsuario(usuario:Usuario) {
+    this.loginService.cadastrarUsuario(usuario)
+    .subscribe(res => {
+        this.redirect();
+      }, (err) => {
+        console.log(err);
+        this.errorMessage = "";
+        this.erroRequisicao = typeof err === "string" ? err : "ERRO_REQUISICAO";
+      });
+  }
   cadastrarConta(usuario:Usuario) {
     if(!this.isSenhasIguais()) { 
       this.errorMessage = 'MENSAGEM_ERRO_SENHA'; return; 
     }
-    this.loginService.cadastrarUsuario(usuario)
-      .subscribe(res => {
-          this.router.navigate(['/login'])
-        }, (err) => {
-          console.log(err);
-          this.errorMessage = "";
-          this.erroRequisicao = typeof err === "string" ? err : "ERRO_REQUISICAO";
-        });
+    this.cadastrarUsuario(usuario);
   }
 }

@@ -45,4 +45,25 @@ describe('FormularioComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Deve trazer a média de um campo específico', () => {
+    component.avaliacao = {
+      comentario: '',
+      atencao: 3,
+      custoBeneficio: 2,
+      infraestrutura: 1,
+      qualidadeProdutos: 2,
+      qualidadeServico: 3
+    };
+
+
+    expect(component.getEstrelas('atencao')).toEqual(['star', 'star', 'star', 'star_border', 'star_border']);
+  });
+
+  it('Deve adicionar avaliacao', () => {
+    const spy = jest.spyOn(component.adicionaAvaliacao, 'emit');
+
+    component.adicionarAvaliacao();
+    expect(spy).toHaveBeenCalled();
+  })
 });

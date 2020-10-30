@@ -17,12 +17,7 @@ export class CadastroComponent implements OnInit {
   isCliente:Boolean= false;
   isPrestador:Boolean= false;
 
-  constructor(
-    private usuarioService:UsuarioService,
-    
-    private router:Router,
-    private localStorageService: LocalStorageService,
-    ) { }
+  constructor() { }
 
   ngOnInit(): void {
   
@@ -30,11 +25,13 @@ export class CadastroComponent implements OnInit {
 
   exibirFormCliente(){
     this.tipoConta = TipoPessoa.CLIENTE;
+    this.isPrestador = false;
     this.isCliente=true;
   }
 
   exibirFormPrestador(){
     this.tipoConta = TipoPessoa.PRESTADOR_AUTONOMO;
+    this.isCliente = false;
     this.isPrestador=true;
   }
   

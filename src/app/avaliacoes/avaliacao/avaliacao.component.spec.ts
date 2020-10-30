@@ -19,11 +19,13 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
 import { JwtHelper } from '../../util/jwt-helper';
+import { servicos } from '../../mocks/servico-detalhado-mock';
+import { Avaliacao } from '../../interfaces/avaliacao';
 
 describe('AvaliacaoComponent', () => {
   let component: AvaliacaoComponent;
   let fixture: ComponentFixture<AvaliacaoComponent>;
-
+  let service:AvaliacaoService;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
@@ -32,7 +34,7 @@ describe('AvaliacaoComponent', () => {
         FormularioComponent  
       ],
       providers: [
-        {provide: AvaliacaoService, useClass: AvaliacaoServiceMock},
+        AvaliacaoService,
         LocalStorageService,
         {provide: Router, useValue: {navigate:() => true}},
         {provide: ActivatedRoute, useValue: {
@@ -58,6 +60,7 @@ describe('AvaliacaoComponent', () => {
       ]
     })
     .compileComponents();
+    service = TestBed.inject(AvaliacaoService);
   }));
 
   beforeEach(() => {
@@ -69,4 +72,26 @@ describe('AvaliacaoComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Deve preencher servico avaliado', () => {
+    let spyAvaliacao = jest.spyOn(service, 'buscaServicoAvaliadoPorId');
+    spyAvaliacao.mockImplementation((a, b) => of(servicos[0]));
+
+    component.preencheServico(1,2);
+    expect(component.servicoAvaliado).toEqual(servicos[0]);
+  });
+  it('Deve adicionar avaliação', () => {
+    let avaliacoes = [...servicos[0].avaliacoes];
+    let spy = jest.spyOn(component, 'adicionaAvaliacao');
+    spy.mockImplementation(avaliacao => avaliacoes.push(avaliacao));
+    const esperado:Avaliacao = {
+      qualidadeServico: 5,
+      atencao: 5,
+      custoBeneficio: 5,
+      infraestrutura: 5,
+      qualidadeProdutos: 5,
+    }
+    component.adicionaAvaliacao(esperado);
+    expect(avaliacoes).toContainEqual(esperado);
+  })
 });

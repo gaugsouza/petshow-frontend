@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ConfigModule } from '../config/config.module';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -31,23 +32,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    LoggerModule.forRoot({
-      level: NgxLoggerLevel.DEBUG,
-      serverLogLevel: NgxLoggerLevel.ERROR,
-      disableConsoleLogging: true,
-      httpResponseType: 'json',
-      timestampFormat: "shortDate",
-      serverLoggingUrl: '/server/logger',
-    }),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-      defaultLanguage: 'pt'
-    }),
-    NgxMaskModule.forRoot()
+   ConfigModule
   ],
   exports: [
     AvaliacaoComponent, 

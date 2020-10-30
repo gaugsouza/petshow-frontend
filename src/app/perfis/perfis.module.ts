@@ -23,6 +23,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list'; 
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ConfigModule } from '../config/config.module';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -51,23 +52,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     MatListModule,
     FormsModule,
     ReactiveFormsModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-      defaultLanguage: 'pt'
-    }),
-    NgxMaskModule.forRoot(),
-    LoggerModule.forRoot({
-      level: NgxLoggerLevel.DEBUG,
-      serverLogLevel: NgxLoggerLevel.ERROR,
-      disableConsoleLogging: true,
-      httpResponseType: 'json',
-      timestampFormat: "shortDate",
-      serverLoggingUrl: '/server/logger',
-    }),
+    ConfigModule
   ],
   exports: [
     PerfilPrestadorComponent, 

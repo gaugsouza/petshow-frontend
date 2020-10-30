@@ -27,10 +27,8 @@ import { JwtHelper } from 'src/app/util/jwt-helper';
 import { PerfisModule } from 'src/app/perfis/perfis.module';
 import { DataSharingService } from './servicos/data-sharing.service';
 import { AvaliacoesModule } from './avaliacoes/avaliacoes.module';
+import { ConfigModule } from './config/config.module';
 
-export function HttpLoaderFactory(http:HttpClient) {
-  return new TranslateHttpLoader(http);
-}
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,14 +45,6 @@ export function HttpLoaderFactory(http:HttpClient) {
     MatInputModule,
     AvaliacoesModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    LoggerModule.forRoot({
-      level: NgxLoggerLevel.DEBUG,
-      serverLogLevel: NgxLoggerLevel.ERROR,
-      disableConsoleLogging: true,
-      httpResponseType: 'json',
-      timestampFormat: "shortDate",
-      serverLoggingUrl: '/server/logger',
-    }),
     HttpClientModule,
     MatSidenavModule,
     BrowserAnimationsModule,
@@ -64,16 +54,8 @@ export function HttpLoaderFactory(http:HttpClient) {
     MatListModule,
     FormsModule,
     ReactiveFormsModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-      defaultLanguage: 'pt'
-    }),
     MatCardModule,
-    NgxMaskModule.forRoot()
+    ConfigModule
   ],
   providers: [
     JwtHelper,

@@ -11,6 +11,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
+import { JwtHelper } from '../../util/jwt-helper';
 
 describe('EnderecoDialogComponent', () => {
   let component: EnderecoDialogComponent;
@@ -40,7 +41,8 @@ describe('EnderecoDialogComponent', () => {
         {
           provide: MAT_DIALOG_DATA,
           useValue: {}
-        }
+        },
+        JwtHelper
       ]
     })
     .compileComponents();

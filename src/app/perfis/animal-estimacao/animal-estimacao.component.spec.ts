@@ -2,16 +2,14 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AnimalEstimacaoComponent } from './animal-estimacao.component';
 import {MatListModule} from '@angular/material/list';
-import {FormularioAnimalComponent} from '../formulario-animal/formulario-animal.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { By } from '@angular/platform-browser';
 import { AnimalEstimacao } from '../../interfaces/animalEstimacao';
 import { usuariosMock} from '../../mocks/usuarioMock';
 import {Cliente} from '../../interfaces/cliente';
 import { FormsModule } from '@angular/forms';
-import {TranslateModule, TranslateService, TranslateStore, TranslateLoader, TranslateCompiler, TranslateParser, MissingTranslationHandler, USE_DEFAULT_LANG, USE_EXTEND} from '@ngx-translate/core';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 describe('AnimalEstimacaoComponent', () => {

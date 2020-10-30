@@ -14,6 +14,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { NgxMaskModule } from 'ngx-mask';
+import { JwtHelper } from '../../util/jwt-helper';
+
 describe('FormularioServicoComponent', () => {
   let component: FormularioServicoComponent;
   let fixture: ComponentFixture<FormularioServicoComponent>;
@@ -22,7 +24,8 @@ describe('FormularioServicoComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ FormularioServicoComponent ],
       providers: [
-        ServicosService
+        ServicosService,
+        JwtHelper
       ],
       imports: [
         MatListModule,

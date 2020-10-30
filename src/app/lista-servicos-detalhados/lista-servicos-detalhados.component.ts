@@ -10,7 +10,6 @@ import { PrestadorService } from '../servicos/prestador.service';
   styleUrls: ['./lista-servicos-detalhados.component.scss']
 })
 export class ListaServicosDetalhadosComponent implements OnInit {
-  // @Input('servicos-detalhados') servicosDetalhados?: ServicoDetalhado[];
    tipoId:number
    servicosDetalhados:ServicoDetalhado[]
 

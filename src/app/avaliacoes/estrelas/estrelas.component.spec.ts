@@ -26,4 +26,9 @@ describe('EstrelasComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('Deve retornar a quantidade de icones preenchidos na média', () => {
+    const esperado = [ 'star', 'star', 'star', 'star_half', 'star_border' ];
+    component.media = 3.5;
+    expect(component.getEstrelasMediaAvaliacao()).toEqual(esperado);
+  });
 });
