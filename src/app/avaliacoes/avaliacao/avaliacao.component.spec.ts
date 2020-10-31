@@ -21,11 +21,13 @@ import { Observable, of } from 'rxjs';
 import { JwtHelper } from '../../util/jwt-helper';
 import { servicos } from '../../mocks/servico-detalhado-mock';
 import { Avaliacao } from '../../interfaces/avaliacao';
+import {PrestadorService} from '../../servicos/prestador.service';
 
 describe('AvaliacaoComponent', () => {
   let component: AvaliacaoComponent;
   let fixture: ComponentFixture<AvaliacaoComponent>;
   let service:AvaliacaoService;
+  let prestadorService:PrestadorService;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
@@ -43,7 +45,8 @@ describe('AvaliacaoComponent', () => {
             prestador: 1
           })
         }},
-        JwtHelper
+        JwtHelper,
+        PrestadorService
       ],
       imports: [
         MatListModule,
@@ -61,6 +64,7 @@ describe('AvaliacaoComponent', () => {
     })
     .compileComponents();
     service = TestBed.inject(AvaliacaoService);
+    prestadorService = TestBed.inject(PrestadorService);
   }));
 
   beforeEach(() => {
@@ -73,13 +77,25 @@ describe('AvaliacaoComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Deve preencher servico avaliado', () => {
-    let spyAvaliacao = jest.spyOn(service, 'buscaServicoAvaliadoPorId');
-    spyAvaliacao.mockImplementation((a, b) => of(servicos[0]));
+  it('Deve preencher servico avaliado', async () => {
+    let spy = jest.spyOn(component, 'parse');
+    // spyAvaliacao.mockImplementation((a, b) => of(JSON.stringify(servicos[0])));
+    prestadorService.buscaPrestador = jest.fn().mockImplementationOnce(any => {
+      return of(JSON.stringify(servicos[0].prestador));
+    })
+
+    service.buscaServicoAvaliadoPorId = jest.fn().mockImplementationOnce(any => {
+      return of(JSON.stringify(servicos[0]));
+    })
+   
+    spy.mockImplementationOnce(obj => servicos[0]);
+
 
     component.preencheServico(1,2);
     expect(component.servicoAvaliado).toEqual(servicos[0]);
   });
+
+
   it('Deve adicionar avaliação', () => {
     let avaliacoes = [...servicos[0].avaliacoes];
     let spy = jest.spyOn(component, 'adicionaAvaliacao');

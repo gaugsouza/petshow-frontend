@@ -74,6 +74,9 @@ export class AvaliacaoComponent implements OnInit {
     });
   }
 
+  parse(obj:any):any {
+    return JSON.parse(obj);
+  }
 
   preencheServico(idPrestador, idServico) {
     this.avaliacaoService.buscaServicoAvaliadoPorId(idPrestador, idServico).subscribe(servico => {
@@ -82,7 +85,7 @@ export class AvaliacaoComponent implements OnInit {
         return;
       }
 
-      let servicoDetalhado = JSON.parse(servico);
+      let servicoDetalhado = this.parse(servico);
       this.prestadorService.buscaPrestador(servicoDetalhado.prestadorId).subscribe(prestador => {
         servicoDetalhado.prestador = JSON.parse(prestador);
         servicoDetalhado.avaliacoes.forEach(avaliacao => {
