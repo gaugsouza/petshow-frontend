@@ -1,0 +1,22 @@
+@import '../../../global.scss';
+
+.form {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 80%;
+
+    &__button-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
+        align-items: center;
+    }
+}
+
+.invisible {
+    display: block; 
+    visibility: hidden; 
+    height: 0;
+    width: 0;
+}

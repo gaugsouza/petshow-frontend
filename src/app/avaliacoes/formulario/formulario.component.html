@@ -1,0 +1,43 @@
+
+
+<div class="nova-avaliacao">
+    <h1 class="nova-avaliacao__titulo">{{'AVALIE_SERVICO' | translate}}</h1>
+    <div class="nova-avaliacao__cat">
+        <span>{{'ATENCAO_PET' | translate}}</span>
+        <div>
+            <mat-icon *ngFor="let estrela of getEstrelas('atencao'); let i = index" (click)="atualizaNota('atencao', i+1)">{{estrela}}</mat-icon>
+        </div>
+    </div>
+    <div class="nova-avaliacao__cat">
+        <span>{{'QUALIDADE_PRODUTO' | translate}}</span>
+        <div>
+            <mat-icon *ngFor="let estrela of getEstrelas('qualidadeProdutos'); let i = index" (click)="atualizaNota('qualidadeProdutos', i+1)">{{estrela}}</mat-icon>
+        </div>
+    </div>
+    <div class="nova-avaliacao__cat">
+        <span>{{'CUSTO_BENEFICIO' | translate}}</span>
+        <div>
+            <mat-icon *ngFor="let estrela of getEstrelas('custoBeneficio'); let i = index" (click)="atualizaNota('custoBeneficio', i+1)">{{estrela}}</mat-icon>
+        </div>
+    </div>
+    <div class="nova-avaliacao__cat">
+        <span>{{'INFRAESTRUTURA' | translate}}</span>
+        <div>
+            <mat-icon *ngFor="let estrela of getEstrelas('infraestrutura'); let i = index" (click)="atualizaNota('infraestrutura', i+1)">{{estrela}}</mat-icon>
+        </div>
+    </div>
+    <div class="nova-avaliacao__cat">
+        <span>{{'QUALIDADE_SERVICO' | translate}}</span>
+        <div>
+            <mat-icon *ngFor="let estrela of getEstrelas('qualidadeServico'); let i = index" (click)="atualizaNota('qualidadeServico', i+1)">{{estrela}}</mat-icon>
+        </div>
+    </div>
+    <mat-form-field class="nova-avaliacao__comentario">
+        <mat-label>{{'DEIXE_COMENTARIO' | translate}}</mat-label>
+        <textarea matInput [(ngModel)]="avaliacao.comentario" placeholder="{{'PLACEHOLDER_AVALIACAO' | translate}}"></textarea>
+    </mat-form-field>
+    <div>
+        <button mat-flat-button color="primary" [disabled]="!isEnabled" (click)="adicionarAvaliacao()">{{'ENVIAR_AVALIACAO' | translate}}</button>
+        <button mat-flat-button color="warn" (click)="fecharFormulario()">{{'CANCELAR' | translate}}</button>
+    </div>
+</div>

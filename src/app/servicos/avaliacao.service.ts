@@ -1,60 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { ServicoDetalhado } from '../interfaces/servico-detalhado';
-import { servicos } from '../mocks/servico-detalhado-mock';
-import { Avaliacao } from '../interfaces/avaliacao';
-import { Servico } from '../interfaces/servico';
-import { Cliente } from '../interfaces/cliente';
-import { usuariosMock } from '../mocks/usuarioMock';
+import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
+import { Avaliacao } from 'src/app/interfaces/avaliacao';
 import { environment } from 'src/environments/environment';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { NGXLogger } from 'ngx-logger';
-import { tap, catchError } from 'rxjs/operators';
-import { JwtHelper } from '../util/jwt-helper';
+import { HttpHandlerService } from 'src/app/servicos/http-handler.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AvaliacaoService {
-  private clientes:Cliente[] = usuariosMock;
-  servicos: ServicoDetalhado[] = [...servicos];
-  constructor(private http:HttpClient,
-              private logger:NGXLogger,
-              private jwtHelper:JwtHelper) { }
-
   private AVALIACAO_SERVICE_URL = `${environment.API_URL}/prestador/idPrestador/servico-detalhado/idServico/avaliacao`;
   private SERVICO_DETALHADO_URL = `${environment.API_URL}/prestador/idPrestador/servico-detalhado/idServico`;
 
-  private httpOptions = {
-    headers: new HttpHeaders({ 'content-type': 'application/json'})
-  }
 
+  constructor(private httpHandler:HttpHandlerService) {}
 
-  buscaServicoAvaliadoPorId = (idServico:number, idPrestador?:number):Observable<ServicoDetalhado> => {
-    const url = this.SERVICO_DETALHADO_URL.replace('idPrestador', idPrestador.toString()).replace('idServico', idServico.toString());
-
-    return this.http.get<ServicoDetalhado>(url)
-    .pipe(
-      tap(_ => this.logger.info(`Request feito a ${url}`)),
-      catchError(this.handleError<ServicoDetalhado>(`Falha em requisição feita a ${url}`))
-    )
-  }
-
-  private handleError<T> (mensagem: string, result?: T) {
-    return (error:any) : Observable<T> => {
-      this.logger.error(mensagem);
-      return of(result as T);
-    }
+  buscaServicoAvaliadoPorId (idServico:number, idPrestador?:number):Observable<any> {
+    const URL = this.SERVICO_DETALHADO_URL.replace('idPrestador', idPrestador.toString()).replace('idServico', idServico.toString());
+    return this.httpHandler.doGet<any>(URL);
   }
 
   adicionarAvaliacao = (avaliacao:Avaliacao, idServico?:number, idPrestador?:number, token?:string):Observable<ServicoDetalhado> => {
-    const url = this.AVALIACAO_SERVICE_URL.replace('idPrestador', idPrestador.toString()).replace('idServico', idServico.toString());
-
-    const headers = this.jwtHelper.constroiHeaders(token);
-    return this.http.post(url, avaliacao, headers)
-    .pipe(
-      tap(_ => this.logger.info(`Request feito a ${url}`)),
-      catchError(this.handleError<ServicoDetalhado>('Add avaliação'))
-    );
+    const URL = this.AVALIACAO_SERVICE_URL.replace('idPrestador', idPrestador.toString()).replace('idServico', idServico.toString());
+    return this.httpHandler.doPost<ServicoDetalhado>(URL, avaliacao, token);
   }
 }

@@ -1,0 +1,66 @@
+<div *ngIf="!servicoAvaliado && !isNotFound; then carregando else avaliacoes">
+</div>
+
+
+
+<ng-template #carregando>
+    <p>{{'CARREGANDO' | translate}}</p>
+</ng-template>
+
+<ng-template #avaliacoes>
+    <div *ngIf="isNotFound">
+        <p>{{'SERVICO_NAO_ENCONTRADO' | translate}}</p>
+    </div>
+    <div *ngIf="servicoAvaliado">
+        <h1>{{'AVALIACOES' | translate}}</h1>
+
+        <div *ngIf="possuiAvaliacoes(); then avaliacoesBlock else vazioBlock">
+        </div>
+        
+        <ng-template #vazioBlock>
+            <h3 class="servico-topo">{{getNomeServico()}} - {{getNomePrestador()}}</h3>
+            <hr>
+            <p>{{'SEM_AVALIACOES' | translate}}</p>
+        </ng-template>
+        
+        <ng-template #avaliacoesBlock>
+            <h3 class="servico-topo">{{getNomeServico()}} - {{getNomePrestador()}} - {{getMediaAvaliacoes()}} <mat-icon>star</mat-icon></h3>
+            <hr>
+            
+            <div class="card-avaliacao" *ngFor="let avaliacao of getAvaliacoes()">
+                <div *ngIf="avaliacao.cliente" class="card-avaliacao__cliente">
+                    <div>
+                        <mat-icon>face</mat-icon>
+                    </div>
+                    <div class="card-avaliacao__infos-cliente">
+                        <div >
+                            <div><strong>{{avaliacao.cliente.nome}}</strong></div>
+                            <div class="card-avaliacao__nota">
+                                <strong>{{avaliacao.media | number: '1.1'}}</strong>
+                                <app-estrelas [media]="avaliacao.media"></app-estrelas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-avaliacao__comentario">
+                    <span>{{avaliacao.comentario}}</span>
+                </div>
+            </div>
+        </ng-template>
+        
+        
+        <button mat-flat-button
+                color="primary"
+                (click)='abreFormulario()'
+                *ngIf='!isFormVisible && isLogado && isCliente' class="botao-formulario">{{'ADD_COMENTARIO' | translate}}</button>
+        
+        <a href='/login' mat-flat-button color="warn" *ngIf='!isLogado && !isCliente' class="botao-formulario">{{'AVISO_LOGADO_COMENTARIO' | translate}}</a> 
+    
+    
+        
+        <app-formulario [avaliacao]='avaliacaoBase' *ngIf='isFormVisible' 
+                        (adiciona-avaliacao)="adicionaAvaliacao($event)"
+                        (fecha-formulario)="fechaFormulario()"></app-formulario>
+    </div>
+    
+</ng-template>

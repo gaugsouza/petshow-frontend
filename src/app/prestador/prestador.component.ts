@@ -27,7 +27,6 @@ export class PrestadorComponent implements OnInit {
         this.router.navigate(['/']);
         return;
       }
-      console.log(idPrestador)
       this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
         this.prestadorService.buscaPrestador(idPrestador, token).subscribe(prestador => {
           this.carregado = true;
@@ -37,7 +36,7 @@ export class PrestadorComponent implements OnInit {
     })
   }
 
-  getMediaAvaliacoes(servicoDetalhado:ServicoDetalhado) {
+  getMediaAvaliacoes(servicoDetalhado:ServicoDetalhado):number {
     if(!servicoDetalhado.avaliacoes || servicoDetalhado.avaliacoes.length === 0) {
       return 0;
     }
@@ -47,7 +46,7 @@ export class PrestadorComponent implements OnInit {
     return soma / servicoDetalhado.avaliacoes.length;
   }
 
-  getMediaUsuario() {
+  getMediaUsuario():number {
     if(this.prestador.servicos.length === 0) {
       return 0;
     }
