@@ -25,13 +25,13 @@ export class EnderecoCadastroComponent implements OnInit {
 
   ngOnInit(): void {
     this.consultaEstadosService.getEstados().subscribe(estados => {
-      this.estados = estados;
+      this.estados = JSON.parse(estados);
     })
   }
 
   carregarCidades(uf:string) {
     this.consultaEstadosService.getCidades(uf).subscribe(cidades => {
-      this.cidades = cidades;
+      this.cidades = JSON.parse(cidades);
     })
   }
 

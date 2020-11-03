@@ -4,6 +4,7 @@ import { ServicosService } from './servicos.service';
 import { ServicoDetalhado } from '../interfaces/servico-detalhado';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
+import { JwtHelper } from '../util/jwt-helper';
 
 describe('ServicosService', () => {
   let injector: TestBed;
@@ -15,6 +16,9 @@ describe('ServicosService', () => {
       imports: [
         HttpClientTestingModule,
         LoggerTestingModule
+      ],
+      providers: [
+        JwtHelper
       ]});
       injector = getTestBed();
       service = injector.get(ServicosService);
@@ -24,11 +28,4 @@ describe('ServicosService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-
-  // it('Deve retornar objeto com lista de serviços detalhados', () => {
-  //   let servicoBuscado:ServicoDetalhado;
-  //   service.buscarServicosDetalhadosPorTipo(1).subscribe((el:ServicoDetalhado) => {
-  //     expect(servicoBuscado).toBeTruthy();
-  //   });
-  // });
 });

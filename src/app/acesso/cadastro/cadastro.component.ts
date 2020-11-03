@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,FormGroup, Validators} from '../../../../node_modules/@angular/forms';
 import { Router } from '@angular/router';
+import { TipoPessoa } from 'src/app/enum/tipo-pessoa.enum';
 import { LocalStorageService } from '../../servicos/local-storage.service';
 import { UsuarioService } from '../../servicos/usuario.service';
-import { Cliente } from '../../interfaces/cliente';
-import { Prestador } from '../../interfaces/prestador';
 
 @Component({
   selector: 'app-cadastro',
@@ -12,30 +10,29 @@ import { Prestador } from '../../interfaces/prestador';
   styleUrls: ['./cadastro.component.scss']
 })
 export class CadastroComponent implements OnInit {
+  tipoConta:TipoPessoa;
 
   erroRequisicao:String;
   submitted = false;
   isCliente:Boolean= false;
   isPrestador:Boolean= false;
 
-  constructor(
-    private usuarioService:UsuarioService,
-    
-    private router:Router,
-    private localStorageService: LocalStorageService,
-    ) { }
+  constructor() { }
 
   ngOnInit(): void {
   
   }
 
   exibirFormCliente(){
+    this.tipoConta = TipoPessoa.CLIENTE;
+    this.isPrestador = false;
     this.isCliente=true;
   }
 
   exibirFormPrestador(){
+    this.tipoConta = TipoPessoa.PRESTADOR_AUTONOMO;
+    this.isCliente = false;
     this.isPrestador=true;
   }
   
-
 }

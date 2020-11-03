@@ -20,7 +20,7 @@
     "SENHA":"Senha",
     "REPITA_SENHA":"Repita a Senha",
     "SENHA_NULA": "Por favor insira uma senha",
-    "LOGAR": "Logar",
+    "LOGAR": "Login",
     "ERRO_REQUISICAO": "Erro durante a operação",
     "MENSAGEM_ERRO_SENHA" : "As senhas não coincidem",
     "MENSAGEM_SUCESSO": "Operação realizada com sucesso",
@@ -95,5 +95,7 @@
     "CADASTRO": "Cadastro",
     "SENHA_MINIMO": "A senha deve conter no mínimo 8 caracteres",
     "SENHA_PADRAO": "A senha deve conter pelo menos 1 letra minúscula, 1 letra maiúscula e 1 numero",
-    "NOME_INVALIDO": "O nome precisa ter pelo menos três caracteres"
+    "NOME_INVALIDO": "O nome precisa ter pelo menos três caracteres",
+    "CLIENTE": "Cliente",
+    "PRESTADOR": "Prestador"
 }

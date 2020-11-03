@@ -14,11 +14,12 @@ import { ServicosService } from '../servicos/servicos.service';
 import { Router, ActivatedRoute, convertToParamMap } from '@angular/router';
 import { of } from 'rxjs';
 import { JwtHelper } from '../util/jwt-helper';
+import { servicos } from '../mocks/servico-detalhado-mock';
 
 describe('ListaServicosDetalhadosComponent', () => {
   let component: ListaServicosDetalhadosComponent;
   let fixture: ComponentFixture<ListaServicosDetalhadosComponent>;
-
+  let service: ServicosService;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ 
@@ -54,6 +55,7 @@ describe('ListaServicosDetalhadosComponent', () => {
       ]
     })
     .compileComponents();
+    service = TestBed.inject(ServicosService);
   });
 
   beforeEach(() => {
@@ -64,5 +66,13 @@ describe('ListaServicosDetalhadosComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('Deve retornar uma lista de serviços', () => {
+    let spy = jest.spyOn(service, 'buscarServicosDetalhadosPorTipo');
+    spy.mockImplementation(id => of(JSON.stringify(servicos)));
+    component.buscarServicosDetalhadosPorTipo(1);
+    expect(component.servicosDetalhados).toEqual(servicos);
+
   });
 });
