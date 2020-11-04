@@ -1,3 +1,5 @@
+<div class="cadastro_prestador">
+
 <app-info-pessoal-cadastro  [usuario]="prestador" 
                             [confirma-senha]="confirmarSenha"
                             [telefone-control]="telefoneFormControl"
@@ -25,3 +27,4 @@
 <div class="form__button-container">
   <button mat-flat-button color="primary" [disabled]="hasErrors()" (click)="cadastrarPrestador(prestador)" >{{'CADASTRAR' | translate}}</button>
 </div> 
+</div>

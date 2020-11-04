@@ -1,6 +1,15 @@
 .selecao-tipo {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 200px;
-    gap: 10px;
+    padding: 5% 10%;
+    height:60vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items:center;
+}
+
+::ng-deep .mat-flat-button{
+    font-size:25px !important;
+    height:55px !important;
+    background-color:#4CE0DE;
+    color:white; 
 }

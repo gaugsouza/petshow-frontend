@@ -1,9 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Alata');
+
 
 $item-border: #e8e8e8;
-*{
-    font-family:'Alata', sans-serif;
-}
+
 // mat-drawer-container {
 //   width: 100%;
 //   height: 100%;
@@ -11,20 +9,26 @@ $item-border: #e8e8e8;
 
 
 mat-toolbar {
-  color:white;
-  background-color:#039493;
-
+  color:#304B76;
+  background-color:#4CE0DE;
 }
 
 .spacer{
   flex: 1 1 auto;
 }
 
-// .menu-item {
-//   width: 130px;
-// }
+
 .content {
   width: calc(100% - 20px);
   padding: 10px 0 0 10px;
 }
 
+.mat-icon {
+  margin-right:5px;
+  margin-bottom:3px;
+  font-family: 'Material Icons' !important;
+}
+
+.mat-button{
+  font-size:18px !important;
+}
