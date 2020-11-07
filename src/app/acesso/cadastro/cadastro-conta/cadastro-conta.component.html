@@ -23,6 +23,26 @@
 
 <p *ngIf="errorMessage">{{errorMessage | translate}}</p>
 <p *ngIf="erroRequisicao">{{erroRequisicao | translate}}</p>
+
+
+<div>
+  <input type="checkbox" (change)="toggleCheckBoxPoliticas()" />Concordo com a 
+  <button mat-flat-button (click)="openDialog()">{{'POLITICA-PRIVACIDADE' | translate}}</button>
+</div>
+
+
+
+
+
+
+
 <div class="form__button-container">
   <button mat-flat-button color="primary" [disabled]="hasErrors()" (click)="cadastrarConta(usuario)" >{{'CADASTRAR' | translate}}</button>
 </div> 
+
+
+<!-- <section class="example-section">
+  <mat-checkbox class="example-margin" [(ngModel)]="checked"></mat-checkbox> </mat-checkbox>
+  <mat-checkbox class="example-margin" [(ngModel)]="indeterminate">Indeterminate</mat-checkbox>
+</section> -->
+
