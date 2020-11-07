@@ -16,6 +16,10 @@ export class TokenAtivacaoComponent implements OnInit {
               private service: LoginService) { }
 
   ngOnInit(): void {
+    this.ativaConta();
+  }
+
+  ativaConta() {
     this.route.queryParams.subscribe((params:Params) => {
       let token:string = params.token;
       if(!token) {
@@ -23,13 +27,18 @@ export class TokenAtivacaoComponent implements OnInit {
         return;
       }
       this.service.ativaConta(token).subscribe(res => {
-        this.router.navigate(['/login'], {queryParams: {ativo: true}});
+        this.redirect();
       },
       err => {
+        this.possuiErros = true;
         this.mensagemErro = typeof err === 'string' ? err : 'Ocorreu um erro durante a ativação';
       });
       
     });
+  }
+
+  redirect() {
+    this.router.navigate(['/login'], {queryParams: {ativo: true}});
   }
 
 }

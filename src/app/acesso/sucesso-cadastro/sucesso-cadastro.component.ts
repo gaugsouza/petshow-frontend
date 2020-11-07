@@ -12,12 +12,20 @@ export class SucessoCadastroComponent implements OnInit {
               private router:Router) { }
 
   ngOnInit(): void {
+    this.validaRequisicao();
+  }
+
+  validaRequisicao() {
     this.route.queryParams.subscribe((params:Params) => {
       if(!params.token) {
-        this.router.navigate(['/cadastro']);
+        this.redirect();
         return;
       }
     });
+  }
+
+  redirect() {
+    this.router.navigate(['/cadastro']);
   }
 
 }
