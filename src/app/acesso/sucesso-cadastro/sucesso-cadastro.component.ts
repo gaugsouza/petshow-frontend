@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-sucesso-cadastro',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SucessoCadastroComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route:ActivatedRoute,
+              private router:Router) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params:Params) => {
+      if(!params.token) {
+        this.router.navigate(['/cadastro']);
+        return;
+      }
+    });
   }
 
 }

@@ -1,5 +1,8 @@
 <div class="login-form">
     <h3 class="page-section-title">Login</h3>
+    <div *ngIf="foiAtivo" class="mensagem-ativo">
+        <p>{{'MENSAGEM_ATIVA_SUCESSO' | translate}}</p>
+    </div>
         <div class="login-form__form">
             <form>
                 <mat-error *ngIf="errorMessage">

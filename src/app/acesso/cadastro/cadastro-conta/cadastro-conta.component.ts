@@ -16,7 +16,7 @@ import { cpfFormControl, emailFormControl, nomeFormControl, senhaFormControl, te
 export class CadastroContaComponent implements OnInit {
   @Input('tipo-conta') tipoConta:TipoPessoa;
   usuario:Usuario;
-
+  disableSend:boolean = false;
   telefoneFormControl = telefoneFormControl;
   cpfFormControl = cpfFormControl;
   nomeFormControl = nomeFormControl;
@@ -75,14 +75,23 @@ export class CadastroContaComponent implements OnInit {
   isSenhasIguais() {
     return this.confirmarSenha === this.usuario.login.senha;
   }
-  redirect() {
-    this.router.navigate(['/login'])
+  redirect(token?:string) {
+    let tokenTrim = '';
+    if(token) {
+       tokenTrim = token.slice(0, token.length/2);
+    }
+    this.router.navigate(['/cadastro-sucesso'], {queryParams: {token: tokenTrim}});
+  }
+
+  disableButton() {
+    this.disableSend = true;
   }
 
   cadastrarUsuario(usuario:Usuario) {
+    this.disableButton();
     this.loginService.cadastrarUsuario(usuario)
     .subscribe(res => {
-        this.redirect();
+        this.redirect(res);
       }, (err) => {
         console.log(err);
         this.errorMessage = "";

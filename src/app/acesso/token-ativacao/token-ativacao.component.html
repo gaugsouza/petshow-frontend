@@ -1,1 +1,4 @@
-<p>token-ativacao works!</p>
+<div *ngIf="possuiErros">
+    <h1>{{'ERRO_ATIVACAO_CONTA' | translate}}</h1>
+    <p>{{mensagemErro}}</p>
+</div>

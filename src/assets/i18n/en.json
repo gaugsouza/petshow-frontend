@@ -97,5 +97,10 @@
     "SENHA_PADRAO": "The password must contain at least 1 lowercase character, 1 uppercase character and 1 number",
     "NOME_INVALIDO": "The name must have at least 3 characters",
     "CLIENTE": "Client",
-    "PRESTADOR": "Service provider"
+    "PRESTADOR": "Service provider",
+    "MENSAGEM_ATIVA_SUCESSO": "Your account has been successfully activated",
+    "ERRO_ATIVACAO_CONTA": "There was an error activating the account.",
+    "MENSAGEM_CADASTRO_SUCESSO": "Registration successful!",
+    "VERIFIQUE_EMAIL": "Check your email to activate your account. If it doesn't appear in your inbox, check your spam folder.",
+    "VOLTAR_PARA_HOME": "Back to home"
 }
