@@ -1,4 +1,4 @@
-
+<div class="cadastro_cliente">
   <app-info-pessoal-cadastro [usuario]="cliente" [confirma-senha]="confirmarSenha"
 [telefone-control]="telefoneFormControl"
 [cpf-control]="cpfFormControl"
@@ -20,4 +20,5 @@
 <p *ngIf="erroRequisicao">{{erroRequisicao}}</p>
 <div class="form__button-container">
   <button mat-flat-button color="primary" [disabled]="hasErrors()" (click)="cadastrarCliente(cliente)">{{'CADASTRAR' | translate}}</button>
+</div>
 </div>
