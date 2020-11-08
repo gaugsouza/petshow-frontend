@@ -25,8 +25,8 @@
 <p *ngIf="erroRequisicao">{{erroRequisicao | translate}}</p>
 
 <div>
-  <input type="checkbox" (change)="toggleCheckBoxPoliticas()" />Concordo com a 
-  <button mat-flat-button (click)="openDialog()">{{'POLITICA-PRIVACIDADE' | translate}}</button>
+  <input type="checkbox" (change)="toggleCheckBoxPoliticas()" />{{'CONCORDO-COM-A' | translate}} 
+  <button mat-stroked-button color="link" (click)="openDialog()">{{'POLITICA-PRIVACIDADE' | translate}}</button>
 </div>
 
 <div class="form__button-container">
