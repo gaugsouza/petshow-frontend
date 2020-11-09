@@ -24,5 +24,5 @@
 <p *ngIf="errorMessage">{{errorMessage | translate}}</p>
 <p *ngIf="erroRequisicao">{{erroRequisicao | translate}}</p>
 <div class="form__button-container">
-  <button mat-flat-button color="primary" [disabled]="hasErrors()" (click)="cadastrarConta(usuario)" >{{'CADASTRAR' | translate}}</button>
+  <button mat-flat-button color="primary" [disabled]="hasErrors() || disableSend" (click)="cadastrarConta(usuario)" >{{'CADASTRAR' | translate}}</button>
 </div> 

@@ -13,6 +13,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CadastroContaComponent } from './cadastro/cadastro-conta/cadastro-conta.component';
 import { ConfigModule } from '../config/config.module';
+import { SucessoCadastroComponent } from './sucesso-cadastro/sucesso-cadastro.component';
+import { TokenAtivacaoComponent } from './token-ativacao/token-ativacao.component';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -23,7 +25,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     CadastroComponent,
     EnderecoCadastroComponent, 
     InfoPessoalCadastroComponent, 
-    CadastroContaComponent
+    CadastroContaComponent, SucessoCadastroComponent, TokenAtivacaoComponent
   ],
   imports: [
     CommonModule,

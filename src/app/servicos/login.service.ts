@@ -25,9 +25,14 @@ export class LoginService {
     return this.httpHandler.doPost<string>(URL, login);
   }
 
-  cadastrarUsuario(usuario:Usuario):Observable<String> {
+  cadastrarUsuario(usuario:Usuario):Observable<string> {
     const URL = `${this.ACESSO_BASE_URL}/cadastro`;
     return this.httpHandler.doPost<string>(URL, usuario);
+  }
+
+  ativaConta(token:string):Observable<string> {
+    const URL = `${this.ACESSO_BASE_URL}/ativar?token=${token}`;
+    return this.httpHandler.doGet<string>(URL);
   }
 
   buscaTokenUsuario() {
