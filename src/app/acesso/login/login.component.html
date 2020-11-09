@@ -1,30 +1,33 @@
 <div class="login-form">
-<h3 class="page-section-title">Login</h3>
-    <div class="login-form__form">
-        <form>
-            <mat-error *ngIf="errorMessage">
-                {{errorMessage}}
-            </mat-error>
-            <mat-form-field>
-                <mat-label>Email</mat-label>
-                <input matInput [(ngModel)]="login.email" placeholder="exemplo@exemplo.com" class="login-form__email" [formControl]="emailFormControl" [errorStateMatcher]="matcher"/>
-                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                    {{'EMAIL_INVALIDO' | translate}}
-                </mat-error>
-                <mat-error *ngIf="emailFormControl.hasError('required')">
-                    {{'EMAIL_NULO' | translate}}
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>{{'SENHA' | translate}}</mat-label>
-                <input matInput [(ngModel)]="login.senha" class="login-form__senha"  type="password" placeholder="senha" [formControl]="passwordFormControl" [errorStateMatcher]="matcher"/>
-                <mat-error *ngIf="passwordFormControl.hasError('required')">
-                    {{'SENHA_NULA' | translate}}
-                </mat-error>
-            </mat-form-field>
-            <div class="form__button-container">
-                <button mat-flat-button color="primary" (click)="realizaLogin()" [disabled]="hasErrors()">{{'LOGAR' | translate}}</button>
-            </div>
-        </form>
+    <h3 class="page-section-title">Login</h3>
+    <div *ngIf="foiAtivo" class="mensagem-ativo">
+        <p>{{'MENSAGEM_ATIVA_SUCESSO' | translate}}</p>
     </div>
-</div>
+        <div class="login-form__form">
+            <form>
+                <mat-error *ngIf="errorMessage">
+                    {{errorMessage}}
+                </mat-error>
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input matInput [(ngModel)]="login.email" placeholder="exemplo@exemplo.com" class="login-form__email" [formControl]="emailFormControl" [errorStateMatcher]="matcher"/>
+                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                        {{'EMAIL_INVALIDO' | translate}}
+                    </mat-error>
+                    <mat-error *ngIf="emailFormControl.hasError('required')">
+                        {{'EMAIL_NULO' | translate}}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>{{'SENHA' | translate}}</mat-label>
+                    <input matInput [(ngModel)]="login.senha" class="login-form__senha"  type="password" placeholder="senha" [formControl]="passwordFormControl" [errorStateMatcher]="matcher"/>
+                    <mat-error *ngIf="passwordFormControl.hasError('required')">
+                        {{'SENHA_NULA' | translate}}
+                    </mat-error>
+                </mat-form-field>
+                <div class="form__button-container">
+                    <button mat-flat-button color="primary" (click)="realizaLogin()" [disabled]="hasErrors()">{{'LOGAR' | translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>

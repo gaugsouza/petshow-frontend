@@ -1,8 +1,8 @@
-
 <div *ngIf="!isCliente && !isPrestador" class="selecao-tipo">
     <button mat-flat-button color="#039493" (click) = "exibirFormPrestador()">Cadastrar como Prestador</button>
 
     <button mat-flat-button color="prim" (click) = "exibirFormCliente()">Cadastrar como Cliente</button>
 </div>
-<app-cadastro-cliente *ngIf="isCliente"></app-cadastro-cliente>
-<app-cadastro-prestador *ngIf="isPrestador"></app-cadastro-prestador>
+
+<app-cadastro-conta *ngIf="isCliente || isPrestador"
+                    [tipo-conta]="tipoConta"></app-cadastro-conta>

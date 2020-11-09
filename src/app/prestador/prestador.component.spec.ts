@@ -17,7 +17,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatCardModule } from '@angular/material/card';
 import { JwtHelper } from '../util/jwt-helper';
-
+import { servicos } from '../mocks/servico-detalhado-mock';
+import { prestadores } from '../mocks/prestador-mock';
 describe('PrestadorComponent', () => {
   let component: PrestadorComponent;
   let fixture: ComponentFixture<PrestadorComponent>;
@@ -65,4 +66,21 @@ describe('PrestadorComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Deve retornar média de avaliaçoes', () => {
+    let servico = servicos[0];
+    let avaliacoes = servico.avaliacoes;
+    const esperado = avaliacoes.reduce((total, avaliacao) => total += avaliacao.media, 0) / avaliacoes.length;
+
+    expect(component.getMediaAvaliacoes(servico)).toEqual(esperado);
+  });
+
+  it('Deve retornar média de prestador', () => {
+    let prestador = prestadores[0];
+    let esperado = prestador.servicos.reduce((soma, servico) => {
+      return soma += component.getMediaAvaliacoes(servico);
+    }, 0) / prestador.servicos.length;
+
+    component.prestador = prestador;
+  })
 });
