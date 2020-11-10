@@ -19,6 +19,8 @@ import { monica } from '../../../mocks/usuarioMock';
 import { LoginService } from '../../../servicos/login.service';
 import { of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 describe('CadastroContaComponent', () => {
   let component: CadastroContaComponent;
@@ -46,7 +48,8 @@ describe('CadastroContaComponent', () => {
         MatSelectModule,
         HttpClientTestingModule,
         RouterTestingModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MatDialogModule
       ]
     })
     .compileComponents();
