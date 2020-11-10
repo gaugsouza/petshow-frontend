@@ -12,11 +12,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
-import { CadastroPrestadorComponent } from './cadastro-prestador/cadastro-prestador.component';
-import { CadastroClienteComponent } from './cadastro-cliente/cadastro-cliente.component';
 import {EnderecoCadastroComponent} from './endereco-cadastro/endereco-cadastro.component'
 import {InfoPessoalCadastroComponent} from './info-pessoal-cadastro/info-pessoal-cadastro.component'
-
+import {CadastroContaComponent} from './cadastro-conta/cadastro-conta.component';
+import {TipoPessoa} from '../../enum/tipo-pessoa.enum';
 import { JwtHelper } from '../../util/jwt-helper';
 
 describe('CadastroComponent', () => {
@@ -27,8 +26,7 @@ describe('CadastroComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ 
         CadastroComponent,
-        CadastroClienteComponent,
-        CadastroPrestadorComponent,
+        CadastroContaComponent,
         EnderecoCadastroComponent,
         InfoPessoalCadastroComponent
       ],
@@ -62,4 +60,38 @@ describe('CadastroComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Deve colocar tipo-conta como Cliente', () => {
+    component.exibirFormCliente();
+    expect(component.tipoConta).toEqual(TipoPessoa.CLIENTE);
+  });
+
+  it('Deve colocar tipo-conta como prestador', () => {
+    component.exibirFormPrestador();
+    expect(component.tipoConta).toEqual(TipoPessoa.PRESTADOR_AUTONOMO);
+  });
+
+  it('Deve deixar isClient como true', () => {
+    component.exibirFormCliente();
+    expect(component.isCliente).toBe(true);
+  });
+
+  it('Deve deixar isPrestador como true', () => {
+    component.exibirFormPrestador();
+    expect(component.isPrestador).toBe(true);
+  });
+
+  it('Não deve deixar prestador e cliente true ao mesmo tempo', () => {
+    component.exibirFormPrestador();
+    expect(component.isPrestador).toBe(true);
+    component.exibirFormCliente();
+    expect(component.isPrestador).toBe(false);
+  });
+
+  it('Não deve deixar cliente e prestador true ao mesmo tempo', () => {
+    component.exibirFormCliente();
+    expect(component.isCliente).toBe(true);
+    component.exibirFormPrestador();
+    expect(component.isCliente).toBe(false);
+  })
 });

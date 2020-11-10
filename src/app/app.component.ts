@@ -3,11 +3,13 @@ import { OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LocalStorageService } from './servicos/local-storage.service';
 import { Router } from '@angular/router';
-import { LoginComponent } from './acesso/login/login.component';
+import { LoginComponent } from 'src/app/acesso/login/login.component';
 import { environment } from 'src/environments/environment';
-import { USER_TOKEN } from './util/constantes';
+import { USER_TOKEN } from 'src/app/util/constantes';
 
 import { FormBuilder, FormGroup } from '../../node_modules/@angular/forms';
+import { LoginService } from './servicos/login.service';
+import { DataSharingService } from './servicos/data-sharing.service';
 
 @Component({
   selector: 'app-root',
@@ -24,12 +26,17 @@ export class AppComponent implements OnInit {
 
   constructor(private translate: TranslateService,
               private localStorageService: LocalStorageService,
-              private router:Router) {
+              private router:Router,
+              private loginService:LoginService,
+              private dataSharingService: DataSharingService) {
 
     this.defineLangSettings(this.translate);
     this.localStorageService.getItem(USER_TOKEN)
     .subscribe(token => {
-      this.isLogged = !!(token);
+     this.dataSharingService.isUsuarioLogado.next(!!(token));
+     this.dataSharingService.isUsuarioLogado.subscribe(isLogado => {
+       this.isLogged = isLogado;
+     })
     });
 
   }
@@ -92,7 +99,8 @@ export class AppComponent implements OnInit {
   deslogar() {
     this.localStorageService.removeItem(USER_TOKEN).subscribe(() => {
       this.router.navigate(['/']);
-      this.isLogged = false;
+      this.loginService.isLogado = false;
+      this.isLogged = this.loginService.isLogado;
     });
   }
 

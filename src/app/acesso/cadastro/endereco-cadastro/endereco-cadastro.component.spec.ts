@@ -13,6 +13,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { ConsultaEstadosService, Estado, Cidade } from '../../../servicos/consulta-estados.service';
+import { JwtHelper } from '../../..//util/jwt-helper';
+
 describe('EnderecoCadastroComponent', () => {
   let component: EnderecoCadastroComponent;
   let fixture: ComponentFixture<EnderecoCadastroComponent>;
@@ -21,7 +23,8 @@ describe('EnderecoCadastroComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ EnderecoCadastroComponent ],
       providers: [
-        ConsultaEstadosService
+        ConsultaEstadosService,
+        JwtHelper
       ],
       imports: [
         MatListModule,

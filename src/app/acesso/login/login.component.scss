@@ -1,3 +1,6 @@
+$green-bg:#45c145;
+$text-color: #FFF;
+
 .page-section-title {
     font-size: 38px;
     text-align:center !important;
@@ -6,6 +9,18 @@
 form {
     display: flex;
     flex-direction: column;
+}
+
+.mensagem-ativo{
+    background: $green-bg;
+    color: $text-color;
+    text-align: center;
+    padding: 6px 5px;
+    border: 1px solid darken($color: $green-bg, $amount: 10);
+    border-radius: 5px;
+    & > p {
+        margin: 0;
+    }
 }
 
 .login-form {

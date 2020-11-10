@@ -13,7 +13,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
+import {JwtHelper} from '../util/jwt-helper';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -23,7 +24,8 @@ describe('HomeComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ HomeComponent ],
       providers: [
-        {provide: Router, useValue: {navigate: () => true}}
+        {provide: Router, useValue: {navigate: () => true}},
+        JwtHelper
       ],
       imports: [
         MatListModule,

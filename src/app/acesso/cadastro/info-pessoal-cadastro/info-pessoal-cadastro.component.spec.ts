@@ -13,6 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { ChangeDetectorRef } from '@angular/core';
+import { JwtHelper } from '../../../util/jwt-helper';
 
 describe('InfoPessoalCadastroComponent', () => {
   let component: InfoPessoalCadastroComponent;
@@ -22,7 +23,8 @@ describe('InfoPessoalCadastroComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ InfoPessoalCadastroComponent ],
       providers: [
-        ChangeDetectorRef
+        ChangeDetectorRef,
+        JwtHelper
       ],
       imports: [
         MatListModule,

@@ -5,6 +5,7 @@ import {usuariosMock} from '../mocks/usuarioMock';
 import { Usuario } from '../interfaces/usuario';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
+import { JwtHelper } from '../util/jwt-helper';
 describe('LoginService', () => {
   let injector: TestBed;
   let service: LoginService;
@@ -17,7 +18,7 @@ describe('LoginService', () => {
         HttpClientTestingModule,
         LoggerTestingModule
       ],
-      providers: [LoginService]
+      providers: [LoginService, JwtHelper]
     });
     injector = getTestBed();
     service = injector.get(LoginService);
