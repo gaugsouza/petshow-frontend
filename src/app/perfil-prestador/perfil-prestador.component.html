@@ -7,7 +7,7 @@
         <app-endereco (atualiza-endereco)="atualizaEndereco($event)" [endereco]='usuario.endereco'></app-endereco>
     </div>
 
-
+    <div class="servicos">
         <app-servicos [servicos-detalhados]="usuario.servicos"
                             (remover-servico)="removeServico($event)"></app-servicos>
 
@@ -20,7 +20,7 @@
                            (adiciona-servico)="adicionaServico($event)"
                            (cancelar-operacao)="cancelar()"
                            [exibeFormulario]="isFormVisivel"></app-formulario-servico>
-
+    </div>
 </div>
 
 
