@@ -6,7 +6,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { LoginComponent } from './login.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -44,6 +44,11 @@ describe('LoginComponent', () => {
       ],
       providers: [
         {provide: Router, useValue: {navigate: () => true}},
+        {provide: ActivatedRoute, useValue: {
+          queryParams: of({
+            ativo: false
+          })
+        }},
         JwtHelper,
         LoginService
       ],

@@ -102,5 +102,10 @@
     "DISCORDO": "Discordo",
     "POLITICA-PRIVACIDADE": "Política de Privacidade",
     "FECHAR": "Fechar",
-    "CONCORDO-COM-A": "Concordo com a:"
+    "CONCORDO-COM-A": "Concordo com a:",
+    "MENSAGEM_ATIVA_SUCESSO": "Sua conta foi ativada com sucesso",
+    "ERRO_ATIVACAO_CONTA": "Ocorreu um erro na ativação da conta.",
+    "MENSAGEM_CADASTRO_SUCESSO": "Cadastro realizado com sucesso!",
+    "VERIFIQUE_EMAIL": "Cheque seu e-mail para ativar sua conta. Caso não apareça na caixa de entrada, verifique sua pasta de spam.",
+    "VOLTAR_PARA_HOME": "Voltar para a home"
 }

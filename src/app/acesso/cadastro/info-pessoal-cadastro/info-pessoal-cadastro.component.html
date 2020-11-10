@@ -26,7 +26,7 @@
     </mat-form-field>
     <mat-form-field>
         <mat-label>{{'SENHA' | translate}}</mat-label>
-        <input matInput type="password" minlength="8" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$"  [formControl]="senhaFormControl" [(ngModel)]="usuario.login.senha"/>
+        <input matInput type="password" minlength="8" [formControl]="senhaFormControl" [(ngModel)]="usuario.login.senha"/>
         <mat-error *ngIf="senhaFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
         <mat-error *ngIf="senhaFormControl.hasError('minlength')">{{'SENHA_MINIMO' | translate}}</mat-error>
         <mat-error *ngIf="senhaFormControl.hasError('pattern')">{{'SENHA_PADRAO' | translate}}</mat-error>

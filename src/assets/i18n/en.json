@@ -102,5 +102,10 @@
     "DISCORDO": "Desagree",
     "POLITICA-PRIVACIDADE": "Privacy Policy",
     "FECHAR": "Close",
-    "CONCORDO-COM-A": "I agree with:"
+    "CONCORDO-COM-A": "I agree with:",
+    "MENSAGEM_ATIVA_SUCESSO": "Your account has been successfully activated",
+    "ERRO_ATIVACAO_CONTA": "There was an error activating the account.",
+    "MENSAGEM_CADASTRO_SUCESSO": "Registration successful!",
+    "VERIFIQUE_EMAIL": "Check your email to activate your account. If it doesn't appear in your inbox, check your spam folder.",
+    "VOLTAR_PARA_HOME": "Back to home"
 }
