@@ -1,9 +1,12 @@
 @import '../../../global.scss';
 
 .client-name {
-    margin: 0;
+    margin: 15px;
 }
 
+.animais{
+    margin: 0px;
+}
 .sucesso { 
     color: green;
 }
@@ -19,4 +22,12 @@
     @media screen and (max-width: $tablet-width){
         grid-template-columns: 1fr;
     }
+}
+
+.pets{
+    padding: 0px 15px;
+}
+
+.mat-flat-button{
+    margin-left: 15px;
 }

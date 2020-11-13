@@ -20,5 +20,11 @@
 
     & mat-icon {
         cursor: pointer;
+        font-family: 'Material Icons' !important;
     }
+}
+
+
+.mat-flat-button{
+    margin: 5px;
 }

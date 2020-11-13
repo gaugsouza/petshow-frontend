@@ -3,7 +3,7 @@ $text-color: #FFF;
 
 .page-section-title {
     font-size: 38px;
-    padding: 22px 0px 0px 30px;
+    text-align:center !important;
 }
 
 form {
@@ -33,5 +33,13 @@ form {
         flex-flow: column;
         width: 50%;
         margin: 0 auto;
+        font-size:18px;
     }
+}
+.form__button-container{
+    text-align:center;
+    
+}
+.mat-flat-button{
+    font-size:18px;
 }

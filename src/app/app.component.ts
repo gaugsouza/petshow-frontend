@@ -7,9 +7,11 @@ import { LoginComponent } from 'src/app/acesso/login/login.component';
 import { environment } from 'src/environments/environment';
 import { USER_TOKEN } from 'src/app/util/constantes';
 
+
 import { FormBuilder, FormGroup } from '../../node_modules/@angular/forms';
 import { LoginService } from './servicos/login.service';
 import { DataSharingService } from './servicos/data-sharing.service';
+
 
 @Component({
   selector: 'app-root',
@@ -28,7 +30,8 @@ export class AppComponent implements OnInit {
               private localStorageService: LocalStorageService,
               private router:Router,
               private loginService:LoginService,
-              private dataSharingService: DataSharingService) {
+              private dataSharingService: DataSharingService
+              ) {
 
     this.defineLangSettings(this.translate);
     this.localStorageService.getItem(USER_TOKEN)
