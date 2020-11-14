@@ -8,10 +8,8 @@ mat-list-item {
 }
 .page-section-title {
     font-size: 30px;
-    margin: 0;
-    padding: 5px 0 5px 5px;
+    padding: 30px 0 0 75px;
     color: $title-color;
-    margin-bottom: 10px;
 }
 
 .lista-servicos-detalhados {
@@ -30,12 +28,14 @@ mat-list-item {
         @media screen and (max-width: $tablet-width)  {
             grid-template-columns: 100% !important;
         }
+        
 
         & span {
             align-self: center;
             font-size: 20px;
             padding: 10px 0;
             text-align: center;
+
         }
     }
 
@@ -47,4 +47,11 @@ mat-list-item {
 
 .mat-list-item {
     height: auto !important;
+}
+
+.nome_servico{
+    font-size: 25px;
+    align-self: center;
+    padding: 10px 0;
+    text-align: center;
 }

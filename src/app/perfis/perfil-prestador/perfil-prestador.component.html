@@ -7,17 +7,20 @@
         <app-endereco (atualiza-endereco)="atualizaEndereco($event)" [endereco]='usuario.endereco'></app-endereco>
     </div>
 
-    <app-servicos [servicos-detalhados]="usuario.servicos"
-                          (remover-servico)="removeServico($event)"></app-servicos>
 
-    <button mat-flat-button *ngIf="!isFormVisivel" color="primary" (click)="exibeFormulario()">{{'ADD_SERVICO' | translate}}</button>
+        <app-servicos [servicos-detalhados]="usuario.servicos"
+                            (remover-servico)="removeServico($event)"></app-servicos>
 
-    <mat-error *ngIf="erroRequisicao"> {{'ERRO_REQUISICAO' | translate}} </mat-error>
+        <button mat-flat-button *ngIf="!isFormVisivel" color="primary" (click)="exibeFormulario()">{{'ADD_SERVICO' | translate}}</button>
+   
+
+    <mat-error *ngIf="erroRequisicao"> {{erroRequisicao | translate}} </mat-error>
     <p class="sucesso" *ngIf="mensagemSucesso">{{'MENSAGEM_SUCESSO' | translate}}</p>
     <app-formulario-servico [servico]="servico"
                            (adiciona-servico)="adicionaServico($event)"
                            (cancelar-operacao)="cancelar()"
                            [exibeFormulario]="isFormVisivel"></app-formulario-servico>
+
 </div>
 
 

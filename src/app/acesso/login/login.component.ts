@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
       });
     },
     (error) => {
-      this.errorMessage = typeof error === 'string' ? error: 'Erro durante operação';
+      this.errorMessage = typeof error === 'string' ? error: 'ERRO_REQUISICAO';
       this.login.senha = "";      
     });
   }

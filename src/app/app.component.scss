@@ -1,20 +1,34 @@
-* {
-  color: #000;
-}
 
-mat-drawer-container {
-  width: 100%;
-  height: 100%;
-}
+
+$item-border: #e8e8e8;
+
+// mat-drawer-container {
+//   width: 100%;
+//   height: 100%;
+// }
+
 
 mat-toolbar {
-  justify-content: space-between;
+  color:#304B76;
+  background-color:#4CE0DE;
 }
 
-.menu-item {
-  width: 130px;
+.spacer{
+  flex: 1 1 auto;
 }
+
+
 .content {
   width: calc(100% - 20px);
   padding: 10px 0 0 10px;
+}
+
+.mat-icon {
+  margin-right:5px;
+  margin-bottom:3px;
+  font-family: 'Material Icons' !important;
+}
+
+.mat-button{
+  font-size:18px !important;
 }
