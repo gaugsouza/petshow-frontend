@@ -23,6 +23,12 @@
 
 <p *ngIf="errorMessage">{{errorMessage | translate}}</p>
 <p *ngIf="erroRequisicao">{{erroRequisicao | translate}}</p>
+
+<div>
+  <input type="checkbox" (change)="toggleCheckBoxPoliticas()" />{{'CONCORDO-COM-A' | translate}} 
+  <button mat-stroked-button color="link" (click)="openDialog()">{{'POLITICA-PRIVACIDADE' | translate}}</button>
+</div>
+
 <div class="form__button-container">
   <button mat-flat-button color="primary" [disabled]="hasErrors() || disableSend" (click)="cadastrarConta(usuario)" >{{'CADASTRAR' | translate}}</button>
 </div> 
