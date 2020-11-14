@@ -46,6 +46,14 @@
                     <span>{{avaliacao.comentario}}</span>
                 </div>
             </div>
+
+            <mat-paginator #paginator
+                [length]="quantidadeTotal"
+                [pageIndex]="paginaAtual"
+                [pageSize]="quantidadeItens"
+                [pageSizeOptions]="[10, 15, 20, 25]"
+                (page)="pageEvent = eventoPagina($event)">
+            </mat-paginator>
         </ng-template>
         
         

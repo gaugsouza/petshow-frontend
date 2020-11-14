@@ -63,4 +63,9 @@ export class UsuarioService {
     const URL = `${this.USUARIO_SERVICE_URL}/animal-estimacao/tipos`;
     return this.httpHandler.doGet<any>(URL, token);
   }
+
+  buscarAnimaisEstimacaoPorDono(donoId:number, pagina:number, quantidadeItens:number, token:string) : Observable<any> {
+    const URL = `${this.USUARIO_SERVICE_URL}/${donoId}/animal-estimacao?pagina=${pagina}&quantidadeItens=${quantidadeItens}`;
+    return this.httpHandler.doGet<any>(URL, token);
+  }
 }

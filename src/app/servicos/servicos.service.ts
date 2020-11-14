@@ -11,18 +11,23 @@ import { HttpHandlerService } from 'src/app/servicos/http-handler.service';
 })
 export class ServicosService {
   public SERVICOS_SERVICE_URL = `${environment.API_URL}/servico-detalhado`;
+  public PRESTADOR_SERVICE_URL = `${environment.API_URL}/prestador`;
   public SERVICOS_URL = `${environment.API_URL}/servico`;
 
   constructor(private httpHandler:HttpHandlerService) {}
 
-  buscarServicosDetalhadosPorTipo = (id:number): Observable<any>=>{
-    const URL = `${this.SERVICOS_SERVICE_URL}/tipo-servico/${id}`;
+  buscarServicosDetalhadosPorTipo = (id:number, pagina:number, quantidadeItens:number): Observable<any>=>{
+    const URL = `${this.SERVICOS_SERVICE_URL}/tipo-servico/${id}?pagina=${pagina}&quantidadeItens=${quantidadeItens}`;
     return this.httpHandler.doGet<any>(URL);
   }
 
-  // getTipos = (): Servico[] => SERVICOS
   getTipos(): Observable<any> {
     const URL = this.SERVICOS_URL;
     return this.httpHandler.doGet<any>(URL);
+  }
+
+  buscarServicosDetalhadosPorPrestador(prestadorId:number, pagina:number, quantidadeItens:number, token:string) : Observable<any> {
+    const URL = `${this.PRESTADOR_SERVICE_URL}/${prestadorId}/servico-detalhado?pagina=${pagina}&quantidadeItens=${quantidadeItens}`;
+    return this.httpHandler.doGet<any>(URL, token);
   }
 }

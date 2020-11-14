@@ -7,8 +7,8 @@
         <app-endereco (atualiza-endereco)="atualizaEndereco($event)" [endereco]='usuario.endereco'></app-endereco>
     </div>
 
-    <app-servicos [servicos-detalhados]="usuario.servicos"
-                          (remover-servico)="removeServico($event)"></app-servicos>
+    <app-servicos [prestador-id]="usuario.id" 
+                  (remover-servico)="removeServico($event)"></app-servicos>
 
     <button mat-flat-button *ngIf="!isFormVisivel" color="primary" (click)="exibeFormulario()">{{'ADD_SERVICO' | translate}}</button>
 
