@@ -2,6 +2,7 @@ import { ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
 import { JwtHelper } from '../../../util/jwt-helper';
 import { EnderecoCadastroComponent } from '../endereco-cadastro/endereco-cadastro.component';
 import { InfoPessoalCadastroComponent } from '../info-pessoal-cadastro/info-pessoal-cadastro.component';
+import { PoliticaPrivacidadeComponent } from '../politica-privacidade/politica-privacidade.component';
 import { ConfigModule } from '../../../config/config.module';
 import { MatButtonModule } from '@angular/material/button';
 import { CadastroContaComponent } from './cadastro-conta.component';
@@ -18,6 +19,9 @@ import { monica } from '../../../mocks/usuarioMock';
 import { LoginService } from '../../../servicos/login.service';
 import { of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { MatDialogModule } from '@angular/material/dialog';
+
+
 describe('CadastroContaComponent', () => {
   let component: CadastroContaComponent;
   let fixture: ComponentFixture<CadastroContaComponent>;
@@ -27,7 +31,8 @@ describe('CadastroContaComponent', () => {
       declarations: [ 
         CadastroContaComponent,
         EnderecoCadastroComponent,
-        InfoPessoalCadastroComponent
+        InfoPessoalCadastroComponent,
+        PoliticaPrivacidadeComponent
       ],
       providers: [
         JwtHelper,
@@ -43,7 +48,8 @@ describe('CadastroContaComponent', () => {
         MatSelectModule,
         HttpClientTestingModule,
         RouterTestingModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MatDialogModule
       ]
     })
     .compileComponents();

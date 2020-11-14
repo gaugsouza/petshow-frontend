@@ -13,8 +13,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CadastroContaComponent } from './cadastro/cadastro-conta/cadastro-conta.component';
 import { ConfigModule } from '../config/config.module';
+import { PoliticaPrivacidadeComponent } from './cadastro/politica-privacidade/politica-privacidade.component';
+import { MatDialogModule } from '@angular/material/dialog';
 import { SucessoCadastroComponent } from './sucesso-cadastro/sucesso-cadastro.component';
 import { TokenAtivacaoComponent } from './token-ativacao/token-ativacao.component';
+
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -24,7 +27,8 @@ export function HttpLoaderFactory(http:HttpClient) {
     LoginComponent, 
     CadastroComponent,
     EnderecoCadastroComponent, 
-    InfoPessoalCadastroComponent, 
+    InfoPessoalCadastroComponent,
+    PoliticaPrivacidadeComponent,
     CadastroContaComponent, SucessoCadastroComponent, TokenAtivacaoComponent
   ],
   imports: [
@@ -35,7 +39,8 @@ export function HttpLoaderFactory(http:HttpClient) {
     MatButtonModule,
     MatFormFieldModule,
     MatSelectModule,
-    ConfigModule
+    ConfigModule,
+    MatDialogModule
   ],
   exports: [
     LoginComponent, 
