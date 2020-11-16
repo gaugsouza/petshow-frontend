@@ -13,6 +13,7 @@ import {TranslateModule} from '@ngx-translate/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import { JwtHelper } from '../../util/jwt-helper';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 describe('FormularioAnimalComponent', () => {
@@ -33,7 +34,8 @@ describe('FormularioAnimalComponent', () => {
         ReactiveFormsModule,
         TranslateModule,
         HttpClientTestingModule,
-        LoggerTestingModule
+        LoggerTestingModule,
+        MatPaginatorModule
       ]
     })
     .compileComponents();

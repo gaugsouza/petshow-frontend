@@ -22,6 +22,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { NgxMaskModule } from 'ngx-mask';
 import { JwtHelper } from '../../util/jwt-helper';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 describe('PerfilPrestadorComponent', () => {
   let component: PerfilPrestadorComponent;
@@ -56,7 +57,8 @@ describe('PerfilPrestadorComponent', () => {
         TranslateModule.forRoot(),
         MatDialogModule,
         MatCardModule,
-        NgxMaskModule.forRoot()
+        NgxMaskModule.forRoot(),
+        MatPaginatorModule
       ]
       
     })

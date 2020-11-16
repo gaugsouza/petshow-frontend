@@ -28,7 +28,8 @@ import {EnderecoDialogComponent} from '../endereco-dialog/endereco-dialog.compon
 import {MatDialogModule} from '@angular/material/dialog'; 
 import {MatCardModule} from '@angular/material/card';
 import {NgxMaskModule} from 'ngx-mask';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { JwtHelper } from '../../util/jwt-helper';
 
 
 describe('FormularioAnimalComponent', () => {
@@ -51,9 +52,11 @@ describe('FormularioAnimalComponent', () => {
         ],
       providers: [
           {provide: UsuarioService, useClass: UsuarioServiceMock},
+          // UsuarioService,
           LocalStorageService,
           // UsuarioService,
-          {provide: Router, useValue: {navigate: () => true}}
+          {provide: Router, useValue: {navigate: () => true}},
+          JwtHelper
       ],
       imports: [
         MatListModule,
@@ -68,7 +71,8 @@ describe('FormularioAnimalComponent', () => {
         TranslateModule.forRoot(),
         MatDialogModule,
         MatCardModule,
-        NgxMaskModule.forRoot()
+        NgxMaskModule.forRoot(),
+        MatPaginatorModule
       ]
     })
     .compileComponents();
@@ -161,22 +165,5 @@ describe('FormularioAnimalComponent', () => {
     component.selecionaAnimal(animal);
 
     expect(component.animal).toEqual(animal);
-  });
-
-  it('Deve renderizar com formulário ativo', () => {
-    component.animal = {
-      id: 2,
-      nome: "Floquinho",
-      tipo: {
-        id: 1,
-        nome: "CACHORRO"
-      },
-      donoId: 1
-    };
-
-    fixture.detectChanges();
-    const element: HTMLElement = fixture.nativeElement;
-    const form = element.getElementsByClassName('form');
-    expect(form).not.toBeNull();
   });
 });

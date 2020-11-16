@@ -3,16 +3,28 @@ import { Observable, of } from 'rxjs';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { Avaliacao } from 'src/app/interfaces/avaliacao';
 import { HttpHandlerService } from 'src/app/servicos/http-handler.service';
-import {AVALIACAO_SERVICE_URL, SERVICO_DETALHADO_URL} from 'src/app/util/url';
+import {AVALIACAO_SERVICE_URL, SERVICO_DETALHADO_URL, SERVICO_AVALIADO_URL} from 'src/app/util/url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AvaliacaoService {
+  private AVALIACOES_SERVICE_URLS = `${SERVICO_AVALIADO_URL}?pagina=valorPagina&quantidadeItens=valorQuantidadeItens`;
+
+
   constructor(private httpHandler:HttpHandlerService) {}
 
-  buscaServicoAvaliadoPorId (idServico:number, idPrestador?:number):Observable<any> {
-    const URL = SERVICO_DETALHADO_URL.replace('idPrestador', idPrestador.toString()).replace('idServico', idServico.toString());
+  buscarAvaliacoesPorServicoDetalhado(idServico:number, pagina:number, quantidadeItens:number): Observable<any>{
+    const URL = this.AVALIACOES_SERVICE_URLS.replace('idServico', idServico.toString())
+                                           .replace('valorPagina', pagina.toString())
+                                           .replace('valorQuantidadeItens', quantidadeItens.toString());
+    return this.httpHandler.doGet<any>(URL);
+  }
+  
+  buscaServicoAvaliadoPorId (idServico:number, idPrestador?:number): Observable<any> {
+    const BASE_URL = SERVICO_DETALHADO_URL.replace('idPrestador', idPrestador.toString());
+    const URL = `${BASE_URL}/${idServico}`;
+    console.log(URL);
     return this.httpHandler.doGet<any>(URL);
   }
 

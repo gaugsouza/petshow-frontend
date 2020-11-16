@@ -19,6 +19,14 @@
                 </div>
                 </mat-list-item>
         </mat-list>
+
+        <mat-paginator #paginator
+            [length]="quantidadeTotal"
+            [pageIndex]="paginaAtual"
+            [pageSize]="quantidadeItens"
+            [pageSizeOptions]="[5, 7, 10, 15]"
+            (page)="pageEvent = eventoPagina($event)">
+        </mat-paginator>
     </ng-template>
    
 </section>
