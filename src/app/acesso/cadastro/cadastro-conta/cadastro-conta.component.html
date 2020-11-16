@@ -1,34 +1,39 @@
-<app-info-pessoal-cadastro  [usuario]="usuario" 
-                            [confirma-senha]="confirmarSenha"
-                            [telefone-control]="telefoneFormControl"
-                            [cpf-control]="cpfFormControl"
-                            [nome-control]="nomeFormControl"
-                            [email-control]="emailFormControl"
-                            [senha-control]="senhaFormControl"
-                            [confirma-senha-control]="confirmaSenhaFormControl"
-                            (repete-senha)="repetirSenha($event)"
-></app-info-pessoal-cadastro>
+<div class="cadastro-conta">
+  <app-info-pessoal-cadastro  [usuario]="usuario" 
+                              [confirma-senha]="confirmarSenha"
+                              [telefone-control]="telefoneFormControl"
+                              [cpf-control]="cpfFormControl"
+                              [nome-control]="nomeFormControl"
+                              [email-control]="emailFormControl"
+                              [senha-control]="senhaFormControl"
+                              [confirma-senha-control]="confirmaSenhaFormControl"
+                              (repete-senha)="repetirSenha($event)"
+  ></app-info-pessoal-cadastro>
 
-<mat-form-field *ngIf="isPrestador()">
-  <mat-label>{{'DESC_SERVICO' | translate}}</mat-label>
-  <textarea matInput></textarea>
-</mat-form-field>
+  <mat-form-field *ngIf="isPrestador()">
+    <mat-label>{{'DESC_SERVICO' | translate}}</mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field>
 
-<app-endereco-cadastro [endereco]="usuario.endereco"
-                       [logradouro-control]="logradouroFormControl"
-                       [numero-control]="numeroFormControl"
-                       [complemento-control]="complementoFormControl"
-                       [bairro-control]="bairroFormControl"
-                       [cep-control]="cepFormControl"></app-endereco-cadastro>
+  <app-endereco-cadastro [endereco]="usuario.endereco"
+                        [logradouro-control]="logradouroFormControl"
+                        [numero-control]="numeroFormControl"
+                        [complemento-control]="complementoFormControl"
+                        [bairro-control]="bairroFormControl"
+                        [cep-control]="cepFormControl"></app-endereco-cadastro>
 
-<p *ngIf="errorMessage">{{errorMessage | translate}}</p>
-<p *ngIf="erroRequisicao">{{erroRequisicao | translate}}</p>
+  <p *ngIf="errorMessage">{{errorMessage | translate}}</p>
+  <p *ngIf="erroRequisicao">{{erroRequisicao | translate}}</p>
 
-<div>
-  <input type="checkbox" (change)="toggleCheckBoxPoliticas()" />{{'CONCORDO-COM-A' | translate}} 
-  <button mat-stroked-button color="link" (click)="openDialog()">{{'POLITICA-PRIVACIDADE' | translate}}</button>
+  <div>
+    <input type="checkbox" (change)="toggleCheckBoxPoliticas()" />{{'CONCORDO-COM-A' | translate}} 
+    <button mat-stroked-button color="link" (click)="openDialog()">{{'POLITICA-PRIVACIDADE' | translate}}</button>
+  </div>
+
+  
+  <div class="form__button-container">
+    <button mat-flat-button color="primary" [disabled]="hasErrors() || disableSend" (click)="cadastrarConta(usuario)" >{{'CADASTRAR' | translate}}</button>
+  </div> 
+
+
 </div>
-
-<div class="form__button-container">
-  <button mat-flat-button color="primary" [disabled]="hasErrors() || disableSend" (click)="cadastrarConta(usuario)" >{{'CADASTRAR' | translate}}</button>
-</div> 
