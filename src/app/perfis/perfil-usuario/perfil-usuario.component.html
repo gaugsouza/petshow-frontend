@@ -8,7 +8,7 @@
         <app-endereco (atualiza-endereco)="atualizaEndereco($event)" [endereco]='usuario.endereco'></app-endereco>
     </div>
 
-    <app-animal-estimacao [animais-estimacao]="usuario.animaisEstimacao"
+    <app-animal-estimacao [dono-id]="usuario.id"
                           (seleciona-animal)="selecionaAnimal($event)"
                           (remover-animal)="removeAnimal($event)"></app-animal-estimacao>
 

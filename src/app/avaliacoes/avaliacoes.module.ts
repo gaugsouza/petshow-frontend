@@ -14,6 +14,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ConfigModule } from '../config/config.module';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -32,7 +33,8 @@ export function HttpLoaderFactory(http:HttpClient) {
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-   ConfigModule
+    ConfigModule,
+    MatPaginatorModule
   ],
   exports: [
     AvaliacaoComponent, 
