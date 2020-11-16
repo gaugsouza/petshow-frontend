@@ -40,7 +40,7 @@ export class ListaServicosDetalhadosComponent implements OnInit {
     return event;
   }
 
-  buscarServicosDetalhadosPorTipo(id:number, pagina:number, quantidadeItens:number) {
+  buscarServicosDetalhadosPorTipo(id:number, pagina?:number, quantidadeItens?:number) {
     this.servicosService.buscarServicosDetalhadosPorTipo(id, pagina, quantidadeItens)
       .subscribe(paginaServicosDetalhados => {
         let objetoPaginado:ObjetoPaginado = JSON.parse(paginaServicosDetalhados);

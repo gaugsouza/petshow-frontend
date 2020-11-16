@@ -53,4 +53,17 @@ export class UsuarioServiceMock {
     ]);
   } 
     
+  buscarAnimaisEstimacaoPorDono(donoId:number, pagina:number, quantidadeItens:number, token:string) : Observable<any> {
+    let animais = (this.usuarios[0] as Cliente).animaisEstimacao
+    let objRetorno = {
+      content: animais,
+      totalElements: animais.length,
+      size: animais.length,
+      pageable: {
+        pageNumber: 1
+      }
+    }
+    return of(objRetorno);
+
+  }
 }
