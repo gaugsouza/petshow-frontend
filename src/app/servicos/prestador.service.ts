@@ -42,4 +42,11 @@ export class PrestadorService {
     const URL = `${this.ACESSO_URL}/cadastro`;
     return this.httpHandler.doPost<Prestador>(URL, prestador);
   }
+
+  buscarPrestadorPorId = (id:number): Observable<any>=>{
+    const URL = `${this.PRESTADOR_SERVICE_URL}/${id}`;
+    return this.httpHandler.doGet<any>(URL);
+  }
+
+
 }

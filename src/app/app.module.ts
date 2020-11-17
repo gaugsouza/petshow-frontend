@@ -28,6 +28,7 @@ import { PerfisModule } from 'src/app/perfis/perfis.module';
 import { DataSharingService } from './servicos/data-sharing.service';
 import { AvaliacoesModule } from './avaliacoes/avaliacoes.module';
 import { ConfigModule } from './config/config.module';
+import { PrestadorDetalheComponent } from './lista-servicos-detalhados/prestador-detalhe/prestador-detalhe.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ConfigModule } from './config/config.module';
     HomeComponent,
     ListaServicosDetalhadosComponent,
     PrestadorComponent,
+    PrestadorDetalheComponent,
   ],
   imports: [
     AcessoModule,
