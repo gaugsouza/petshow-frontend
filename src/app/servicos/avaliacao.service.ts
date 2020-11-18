@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { Avaliacao } from 'src/app/interfaces/avaliacao';
 import { HttpHandlerService } from 'src/app/servicos/http-handler.service';
-import {AVALIACAO_SERVICE_URL, SERVICO_DETALHADO_URL, SERVICO_AVALIADO_URL} from 'src/app/util/url';
+import {AVALIACAO_SERVICE_URL, PRESTADOR_SERVICO_DETALHADO, SERVICO_AVALIADO_URL} from 'src/app/util/url';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class AvaliacaoService {
   }
   
   buscaServicoAvaliadoPorId (idServico:number, idPrestador?:number): Observable<any> {
-    const BASE_URL = SERVICO_DETALHADO_URL.replace('idPrestador', idPrestador.toString());
+    const BASE_URL = PRESTADOR_SERVICO_DETALHADO.replace('idPrestador', idPrestador.toString());
     const URL = `${BASE_URL}/${idServico}`;
     console.log(URL);
     return this.httpHandler.doGet<any>(URL);

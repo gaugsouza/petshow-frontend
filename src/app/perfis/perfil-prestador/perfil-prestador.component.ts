@@ -79,11 +79,11 @@ export class PerfilPrestadorComponent implements OnInit {
   adicionaServico({...servico}:ServicoDetalhado): void {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       servico.prestador = this.usuario;
-      this.prestadorService.adicionarServico(this.usuario.id, servico, token).subscribe(() => {
+      this.prestadorService.adicionarServico(this.usuario.id, servico, token).subscribe(el => {
         this.limpaServico();
         this.getUsuario();
         this.isFormVisivel = false;
-        this.servicoNotification.notify({});
+        this.servicoNotification.notify(el);
       },
       err => {
         this.handleError(err);

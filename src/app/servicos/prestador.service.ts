@@ -1,14 +1,9 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { Prestador } from '../interfaces/prestador';
 import { ServicoDetalhado } from '../interfaces/servico-detalhado';
-import { JwtHelper } from '../util/jwt-helper';
-import { NGXLogger } from 'ngx-logger';
 import { HttpHandlerService } from 'src/app/servicos/http-handler.service';
-import { PRESTADOR_SERVICE_URL, SERVICO_DETALHADO_URL } from 'src/app/util/url';
+import { PRESTADOR_SERVICE_URL, PRESTADOR_SERVICO_DETALHADO } from 'src/app/util/url';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +16,9 @@ export class PrestadorService {
     return this.httpHandler.doGet<any>(URL, token);
   }
 
-  adicionarServico(id:number, servico:ServicoDetalhado, token:string): Observable<Prestador> {
-    const URL  = `${SERVICO_DETALHADO_URL}`.replace('idPrestador', id.toString());
-    return this.httpHandler.doPost<Prestador>(URL, servico, token);
+  adicionarServico(id:number, servico:ServicoDetalhado, token:string): Observable<ServicoDetalhado> {
+    const URL  = `${PRESTADOR_SERVICO_DETALHADO}`.replace('idPrestador', id.toString());
+    return this.httpHandler.doPost<ServicoDetalhado>(URL, servico, token);
   }
 
   editaPrestador(id:number, prestador:Prestador, token:string): Observable<Prestador> {
@@ -32,7 +27,7 @@ export class PrestadorService {
   }
 
   removeServico = (id:number, idServico:number, token:string): Observable<any> => {
-    const URL_SERVICO_BASE = SERVICO_DETALHADO_URL.replace('idPrestador', id.toString());
+    const URL_SERVICO_BASE = PRESTADOR_SERVICO_DETALHADO.replace('idPrestador', id.toString());
     const URL  = `${URL_SERVICO_BASE}/${idServico}`;
     return this.httpHandler.doDelete<Prestador>(URL, token);
   }
