@@ -1,3 +1,5 @@
+@import '../../../global.scss';
+
 .selecao-tipo {
     padding: 5% 10%;
     height: 60vh;
@@ -5,6 +7,12 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: scenter;
+    @media screen and (max-width: $tablet-width){
+        flex-direction: column;
+        .mat-flat-button{
+            font-size: 17px !important;
+        }
+    }
 }
 
 ::ng-deep .mat-flat-button{

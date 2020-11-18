@@ -20,7 +20,9 @@
     grid-auto-rows: 1fr;
     
     @media screen and (max-width: $tablet-width){
-        grid-template-columns: 1fr;
+        display: flex; 
+        flex-direction: column;
+        width: 100%;
     }
 }
 
