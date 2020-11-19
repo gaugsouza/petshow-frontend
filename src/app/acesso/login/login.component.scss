@@ -25,21 +25,20 @@ form {
 }
 
 .login-form {
-    width: 40%;
+    width: 30%;
     margin: 0 auto;
     padding: 4% 2%;
     &__form {
         display: flex;
         flex-flow: column;
-        width: 50%;
         margin: 0 auto;
         font-size:18px;
     }
     @media screen and (max-width: $tablet-width){
-        width: 90%;
+        width:100%;
         padding: 10px 0px;
         &__form {
-            width: 80%;
+            width: 90%;
             margin: 0 auto;
             font-size:18px;
         }
@@ -50,5 +49,6 @@ form {
     
 }
 .mat-flat-button{
-    font-size:18px;
+    font-size:25px !important;
+    height: 45px !important;
 }
