@@ -40,20 +40,20 @@ export class PrestadorDetalheComponent implements OnInit {
   }; 
 
 
-  buscarServicosDetalhadosPorPrestador(prestadorId:number, pagina:number, quantidadeItens:number){
-    this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
-      this.servicosService.buscarServicosDetalhadosPorPrestador(prestadorId, pagina, quantidadeItens, token)
-        .subscribe(paginaServicosDetalhados => {
-          let objetoPaginado:ObjetoPaginado = paginaServicosDetalhados;
+  // buscarServicosDetalhadosPorPrestador(prestadorId:number, pagina:number, quantidadeItens:number){
+  //   this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+  //     this.servicosService.buscarServicosDetalhadosPorPrestador(prestadorId, pagina, quantidadeItens, token)
+  //       .subscribe(paginaServicosDetalhados => {
+  //         let objetoPaginado:ObjetoPaginado = paginaServicosDetalhados;
 
-          this.servicosDetalhados = objetoPaginado.content;
+  //         this.servicosDetalhados = objetoPaginado.content;
 
-          this.quantidadeTotal = objetoPaginado.totalElements
-          this.paginaAtual = objetoPaginado.pageable.pageNumber;
-          this.quantidadeItens = objetoPaginado.size;
-        });
-    });
-  }
+  //         this.quantidadeTotal = objetoPaginado.totalElements
+  //         this.paginaAtual = objetoPaginado.pageable.pageNumber;
+  //         this.quantidadeItens = objetoPaginado.size;
+  //       });
+  //   });
+  // }
 
 
 }
