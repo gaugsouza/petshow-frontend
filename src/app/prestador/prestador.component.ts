@@ -30,7 +30,7 @@ export class PrestadorComponent implements OnInit {
       }
       this.prestadorService.buscaPrestador(idPrestador).subscribe(prestador => {
         this.carregado = true;
-        this.prestador = prestador;
+        this.prestador = JSON.parse(prestador);
         console.log(this.prestador);
       });
     })
