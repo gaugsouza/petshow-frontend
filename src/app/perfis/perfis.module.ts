@@ -24,6 +24,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list'; 
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ConfigModule } from '../config/config.module';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -52,7 +53,8 @@ export function HttpLoaderFactory(http:HttpClient) {
     MatListModule,
     FormsModule,
     ReactiveFormsModule,
-    ConfigModule
+    ConfigModule,
+    MatPaginatorModule
   ],
   exports: [
     PerfilPrestadorComponent, 

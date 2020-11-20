@@ -22,6 +22,7 @@ import { JwtHelper } from '../../util/jwt-helper';
 import { servicos } from '../../mocks/servico-detalhado-mock';
 import { Avaliacao } from '../../interfaces/avaliacao';
 import {PrestadorService} from '../../servicos/prestador.service';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 describe('AvaliacaoComponent', () => {
   let component: AvaliacaoComponent;
@@ -59,7 +60,8 @@ describe('AvaliacaoComponent', () => {
         RouterTestingModule,
         ReactiveFormsModule,
         MatIconModule,
-        TranslateModule.forRoot()
+        TranslateModule.forRoot(),
+        MatPaginatorModule
       ]
     })
     .compileComponents();
