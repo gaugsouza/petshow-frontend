@@ -28,19 +28,34 @@ mat-list-item {
         margin: 0;
 
         @media screen and (max-width: $tablet-width)  {
-            grid-template-columns: 100% !important;
+            margin-top:20px;
+            width:100%;
+            // grid-template-columns: 100% ;
         }
+
+        
 
         & span {
             // align-self: center;
             font-size: 20px;
             padding: 10px 0;
             text-align: center;
+            @media screen and (max-width: $tablet-width)  {
+                align-items: center;
+                width:100%;
+            }
+    
         }
     }
 
     &__button-container{
         display: flex;
         justify-content: space-around;
+        @media screen and (max-width: $tablet-width)  {
+            flex-direction:column;
+            justify-content: space-between;
+        }
+
     }
 }
+

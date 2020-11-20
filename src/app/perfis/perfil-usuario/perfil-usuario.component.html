@@ -7,10 +7,10 @@
         [usuario]='usuario'></app-informacoes-pessoais>
         <app-endereco (atualiza-endereco)="atualizaEndereco($event)" [endereco]='usuario.endereco'></app-endereco>
     </div>
-    <div class="animais">
+    <!-- <div class="animais">
         <app-animal-estimacao [animais-estimacao]="usuario.animaisEstimacao"
                             (seleciona-animal)="selecionaAnimal($event)"
-                            (remover-animal)="removeAnimal($event)"></app-animal-estimacao>
+                            (remover-animal)="removeAnimal($event)"></app-animal-estimacao> -->
 
     <app-animal-estimacao [dono-id]="usuario.id"
                           (seleciona-animal)="selecionaAnimal($event)"
