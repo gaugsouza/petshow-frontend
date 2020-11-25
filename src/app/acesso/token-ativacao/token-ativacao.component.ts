@@ -31,7 +31,7 @@ export class TokenAtivacaoComponent implements OnInit {
       },
       err => {
         this.possuiErros = true;
-        this.mensagemErro = typeof err === 'string' ? err : 'Ocorreu um erro durante a ativação';
+        this.mensagemErro = typeof err === 'string' ? err : 'ERRO_ATIVACAO_TOKEN';
       });
       
     });

@@ -17,8 +17,8 @@ export class PerfilPrestadorComponent implements OnInit {
   usuario:Prestador;
   usuarioRequest:Prestador;
   isFormVisivel:Boolean = false;
-  erroRequisicao:String;
-  mensagemSucesso:String;
+  erroRequisicao:string;
+  mensagemSucesso:string;
 
   constructor(private prestadorService:PrestadorService,
               private localStorageService:LocalStorageService,
@@ -35,8 +35,14 @@ export class PerfilPrestadorComponent implements OnInit {
       this.prestadorService.buscaPrestador(id, token)
       .subscribe((usuario:Prestador) => {
         this.usuario = usuario;
-      })
-    })
+      },
+      err => {
+        this.handleError(err);
+      });
+    },
+    err =>  {
+      this.handleError(err)
+    });
   }
 
   exibeFormulario() {
@@ -53,6 +59,9 @@ export class PerfilPrestadorComponent implements OnInit {
         this.ocultaFormulario();
         this.usuarioRequest = null;
         this.mensagemSucesso = "Operação realizada com sucesso"
+      },
+      err => {
+        this.handleError(err);
       })
     })
   }
@@ -61,6 +70,9 @@ export class PerfilPrestadorComponent implements OnInit {
     this.isFormVisivel = false;
   }
 
+  handleError(err) {
+    this.erroRequisicao = typeof err === 'string' ? err : 'ERRO_REQUISICAO';
+  }
 
   adicionaServico({...servico}:ServicoDetalhado): void {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
@@ -69,6 +81,9 @@ export class PerfilPrestadorComponent implements OnInit {
         this.limpaServico();
         this.getUsuario();
         this.isFormVisivel = false;
+      },
+      err => {
+        this.handleError(err);
       })
     })
   }
@@ -99,6 +114,9 @@ export class PerfilPrestadorComponent implements OnInit {
       this.prestadorService.removeServico(this.usuario.id, servico.id, token).subscribe(()=> {
         this.getUsuario();
       });
+    },
+    err => {
+      this.handleError(err);
     })
   }
 }

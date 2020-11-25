@@ -15,6 +15,7 @@ import { Router, ActivatedRoute, convertToParamMap } from '@angular/router';
 import { of } from 'rxjs';
 import { JwtHelper } from '../util/jwt-helper';
 import { servicos } from '../mocks/servico-detalhado-mock';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 describe('ListaServicosDetalhadosComponent', () => {
   let component: ListaServicosDetalhadosComponent;
@@ -51,7 +52,8 @@ describe('ListaServicosDetalhadosComponent', () => {
         FormsModule,
         RouterTestingModule,
         ReactiveFormsModule,
-        TranslateModule.forRoot()
+        TranslateModule.forRoot(),
+        MatPaginatorModule
       ]
     })
     .compileComponents();
@@ -67,6 +69,7 @@ describe('ListaServicosDetalhadosComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+<<<<<<< HEAD
 
   it('Deve retornar uma lista de serviços', () => {
     let spy = jest.spyOn(service, 'buscarServicosDetalhadosPorTipo');
@@ -75,4 +78,6 @@ describe('ListaServicosDetalhadosComponent', () => {
     expect(component.servicosDetalhados).toEqual(servicos);
 
   });
+=======
+>>>>>>> dff1b4debc4ddd6b905bdc9e6663b89cc69387df
 });

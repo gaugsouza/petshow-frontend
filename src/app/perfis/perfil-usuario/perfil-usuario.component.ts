@@ -20,8 +20,8 @@ export class PerfilUsuarioComponent implements OnInit {
   usuario:Cliente;
   usuarioRequest:Cliente;
   isFormVisivel:Boolean = false;
-  erroRequisicao:String;
-  mensagemSucesso:String;
+  erroRequisicao:string;
+  mensagemSucesso:string;
   
   constructor(private usuarioService:UsuarioService,
               private router:Router,
@@ -42,8 +42,8 @@ export class PerfilUsuarioComponent implements OnInit {
       this.usuarioService.getUsuario(token)
       .subscribe((usuario:Cliente) => {
         this.usuario = usuario;
-      });
-    });
+      }, err => this.handleError(err));
+    }, err => this.handleError(err));
   }
 
   adicionaAnimal({...animalEstimacao}:AnimalEstimacao) : void {
@@ -53,16 +53,16 @@ export class PerfilUsuarioComponent implements OnInit {
         this.limpaAnimal();
         this.getUsuario();
         this.isFormVisivel = false;
-      });    
-    })
+      }, err => this.handleError(err));    
+    }, err => this.handleError(err))
   }
 
   removeAnimal(animalEstimacao : AnimalEstimacao):void {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
       this.usuarioService.removerAnimalEstimacao(animalEstimacao.id, token).subscribe(() => {
         this.getUsuario();
-      });
-    });
+      }, err => this.handleError(err));
+    }, err => this.handleError(err));
   }
 
   exibeFormulario() {
@@ -85,9 +85,8 @@ export class PerfilUsuarioComponent implements OnInit {
         this.mensagemSucesso = "Operação realizada com sucesso";
       });
     },
-    ({error}) => {
-      console.log(error);
-      this.erroRequisicao = "Erro durante a operação";
+    error => {
+      this.handleError(error);
     });
   }
 
@@ -97,8 +96,9 @@ export class PerfilUsuarioComponent implements OnInit {
         this.getUsuario();
         this.limpaAnimal();
         this.ocultaFormulario();
-      })
-    });
+      },
+      err => this.handleError(err))
+    }, err => this.handleError(err));
   }
 
   limpaAnimal() {
@@ -123,5 +123,9 @@ export class PerfilUsuarioComponent implements OnInit {
     this.usuarioRequest = {...this.usuario};
     this.usuarioRequest.telefone = telefone;
     this.atualizaUsuario();
+  }
+
+  handleError(err) {
+    this.erroRequisicao = typeof err === 'string' ? err : 'ERRO_REQUISICAO';
   }
 }
