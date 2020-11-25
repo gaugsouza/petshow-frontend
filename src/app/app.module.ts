@@ -28,17 +28,18 @@ import { PerfisModule } from 'src/app/perfis/perfis.module';
 import { DataSharingService } from './servicos/data-sharing.service';
 import { AvaliacoesModule } from './avaliacoes/avaliacoes.module';
 import { ConfigModule } from './config/config.module';
-import { PrestadorDetalheComponent } from './lista-servicos-detalhados/prestador-detalhe/prestador-detalhe.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator'; 
+import { NotificationService } from './servicos/notification.service';
+import { ServicoDetalhado } from './interfaces/servico-detalhado';
+import { AnimalEstimacao } from './interfaces/animalEstimacao';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ListaServicosDetalhadosComponent,
-    PrestadorComponent,
-    PrestadorDetalheComponent,
+    PrestadorComponent
   ],
   imports: [
     AcessoModule,
@@ -64,7 +65,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
   ],
   providers: [
     JwtHelper,
-    DataSharingService
+    DataSharingService,
+    { provide: 'ServicoNotificationService', useFactory: () => (new NotificationService<ServicoDetalhado>()) },
+    { provide: 'AnimalNotificationService', useFactory: () => (new NotificationService<AnimalEstimacao>()) },
   ],
   bootstrap: [AppComponent],
 })

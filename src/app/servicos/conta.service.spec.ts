@@ -1,25 +1,26 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PrestadorService } from './prestador.service';
-
+import { ContaService } from './conta.service';
+import { JwtHelper } from '../util/jwt-helper';
+import { HttpHandlerService } from './http-handler.service'
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
-import { JwtHelper } from '../util/jwt-helper';
 
-describe('PrestadorService', () => {
-  let service: PrestadorService;
+describe('ContaService', () => {
+  let service: ContaService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      providers: [
+        JwtHelper,
+        HttpHandlerService
+      ],
       imports: [
         HttpClientTestingModule,
         LoggerTestingModule
-      ],
-      providers: [
-        JwtHelper
       ]
     });
-    service = TestBed.inject(PrestadorService);
+    service = TestBed.inject(ContaService);
   });
 
   it('should be created', () => {

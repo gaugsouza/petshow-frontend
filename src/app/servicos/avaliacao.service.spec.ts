@@ -4,7 +4,6 @@ import { AvaliacaoService } from './avaliacao.service';
 import { ServicoDetalhado } from '../interfaces/servico-detalhado';
 import { Avaliacao } from '../interfaces/avaliacao';
 import { monica } from '../mocks/usuarioMock';
-import { Servico } from '../interfaces/servico';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import { JwtHelper } from '../util/jwt-helper';

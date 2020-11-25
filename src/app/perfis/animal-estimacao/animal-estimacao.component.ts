@@ -1,10 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, Inject } from '@angular/core';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
 import { UsuarioService } from 'src/app/servicos/usuario.service';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { USER_TOKEN } from 'src/app/util/constantes';
 import { ObjetoPaginado } from 'src/app/interfaces/paginacao';
 import { PageEvent } from '@angular/material/paginator';
+import { DataSharingService } from 'src/app/servicos/data-sharing.service';
+import { NotificationService } from 'src/app/servicos/notification.service';
 
 @Component({
   selector: 'app-animal-estimacao',
@@ -24,10 +26,14 @@ export class AnimalEstimacaoComponent implements OnInit {
   paginaAtual:number = 0;
 
   constructor(private usuarioService: UsuarioService,
-              private localStorageService: LocalStorageService) { }
+              private localStorageService: LocalStorageService,
+              @Inject('AnimalNotificationService') private animalNotification: NotificationService<AnimalEstimacao>) { }
 
   ngOnInit(): void {
-    this.buscarAnimaisEstimacaoPorDono(this.donoId, this.paginaAtual, this.quantidadeItens);
+    this.animalNotification.notify({nome: null, tipo: null});
+    this.animalNotification.obs.subscribe(() => {
+      this.buscarAnimaisEstimacaoPorDono(this.donoId, this.paginaAtual, this.quantidadeItens);
+    })
   }
 
   selecionaAnimal(animalEstimacao:AnimalEstimacao) {
@@ -42,6 +48,7 @@ export class AnimalEstimacaoComponent implements OnInit {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
       this.usuarioService.buscarAnimaisEstimacaoPorDono(donoId, pagina, quantidadeItens, token)
         .subscribe(paginaAnimaisEstimacao => {
+          console.log(paginaAnimaisEstimacao);
           let objetoPaginado:ObjetoPaginado = paginaAnimaisEstimacao;
 
           this.animaisEstimacao = objetoPaginado.content;
