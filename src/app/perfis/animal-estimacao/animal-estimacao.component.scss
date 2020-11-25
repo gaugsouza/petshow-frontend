@@ -16,7 +16,7 @@ mat-list-item {
 
 
 .animal-list {
-    margin-bottom: 25px;
+    
     &__item{
         display: grid;
         grid-template-columns: 1fr 30%;
@@ -24,19 +24,17 @@ mat-list-item {
         border: 1px solid $item-border;
         border-radius: 10px;
         padding: 6px 0px;
-        width: 60%;
+        width: 100%;
         margin: 0;
 
         @media screen and (max-width: $tablet-width)  {
-            margin-top:20px;
-            width:100%;
-            // grid-template-columns: 100% ;
+            grid-template-columns: 100%;
         }
 
         
 
         & span {
-            // align-self: center;
+            align-self: center;
             font-size: 20px;
             padding: 10px 0;
             text-align: center;
@@ -51,11 +49,13 @@ mat-list-item {
     &__button-container{
         display: flex;
         justify-content: space-around;
-        @media screen and (max-width: $tablet-width)  {
-            flex-direction:column;
-            justify-content: space-between;
-        }
-
     }
 }
 
+.mat-list-item {
+    height: auto !important;
+}
+
+.no_registered{
+    margin: 15px;
+}
