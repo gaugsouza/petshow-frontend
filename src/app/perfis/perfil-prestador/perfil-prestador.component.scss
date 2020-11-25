@@ -17,10 +17,25 @@
     grid-auto-rows: 1fr;
     
     @media screen and (max-width: $tablet-width){
-        grid-template-columns: 1fr;
+        display: flex; 
+        flex-direction: column;
+        width: 100%;
     }
 }
 
 .servicos{
-    padding: 0px 15px;
+    padding: 0px;
 }
+
+.mat-flat-button{
+    margin-left: 15px;
+}
+
+.page-section-title {
+    font-size: 42px;
+    margin: 15px;
+    // padding: 20px 0 5px 0px;
+    color: $title-color;
+    margin-bottom: 4%;
+}
+
