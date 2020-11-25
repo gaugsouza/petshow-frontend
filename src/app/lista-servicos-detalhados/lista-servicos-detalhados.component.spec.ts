@@ -71,7 +71,7 @@ describe('ListaServicosDetalhadosComponent', () => {
   it('Deve retornar uma lista de serviços', () => {
     let spy = jest.spyOn(service, 'buscarServicosDetalhadosPorTipo');
     spy.mockImplementation(id => of(JSON.stringify(servicos)));
-    component.buscarServicosDetalhadosPorTipo(1);
+    component.buscarServicosDetalhadosPorTipo(1, 0, 5);
     expect(component.servicosDetalhados).toEqual(servicos);
 
   });
