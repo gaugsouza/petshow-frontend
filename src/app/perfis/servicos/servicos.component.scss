@@ -6,16 +6,10 @@ mat-list-item {
         margin-bottom: 40px !important;
     }
 }
-.page-section-title {
-    font-size: 42px;
-    margin: 0;
-    padding: 20px 0 5px 0px;
-    color: $title-color;
-    margin-bottom: 10px;
-}
+
 
 .servico-list {
-    margin-bottom: 25px;
+    
     &__item{
         display: grid;
         grid-template-columns: 1fr 1fr 30%;
@@ -23,11 +17,12 @@ mat-list-item {
         border: 1px solid $item-border;
         border-radius: 10px;
         padding: 6px 0px;
-        width: 90%;
-        margin: 0 auto;
+        width: 100%;
+        margin: 0;
 
         @media screen and (max-width: $tablet-width)  {
-            grid-template-columns: 100% !important;
+           grid-template-columns: 100%;
+           width: 100%;
         }
 
         & span {
@@ -42,4 +37,12 @@ mat-list-item {
         display: flex;
         justify-content: space-around;
     }
+}
+
+.mat-list-item {
+    height: auto !important;
+}
+
+.no-registered{
+    margin: 15px;
 }
