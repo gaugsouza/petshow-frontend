@@ -30,6 +30,7 @@ import {MatCardModule} from '@angular/material/card';
 import {NgxMaskModule} from 'ngx-mask';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { JwtHelper } from '../../util/jwt-helper';
+import { NotificationService } from '../../servicos/notification.service';
 
 
 describe('FormularioAnimalComponent', () => {
@@ -52,11 +53,10 @@ describe('FormularioAnimalComponent', () => {
         ],
       providers: [
           {provide: UsuarioService, useClass: UsuarioServiceMock},
-          // UsuarioService,
           LocalStorageService,
-          // UsuarioService,
           {provide: Router, useValue: {navigate: () => true}},
-          JwtHelper
+          JwtHelper,
+          { provide: 'AnimalNotificationService', useFactory: () => (new NotificationService<AnimalEstimacao>()) }
       ],
       imports: [
         MatListModule,

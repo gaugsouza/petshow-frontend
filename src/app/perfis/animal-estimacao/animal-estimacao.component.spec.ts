@@ -14,7 +14,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import { JwtHelper } from '../../util/jwt-helper';
-
+import { NotificationService } from '../../servicos/notification.service';
 
 describe('AnimalEstimacaoComponent', () => {
   let component: AnimalEstimacaoComponent;
@@ -27,7 +27,8 @@ describe('AnimalEstimacaoComponent', () => {
         AnimalEstimacaoComponent
       ],
       providers: [
-        JwtHelper
+        JwtHelper,
+        { provide: 'AnimalNotificationService', useFactory: () => (new NotificationService<AnimalEstimacao>()) }
       ],
       imports: [
         MatListModule,

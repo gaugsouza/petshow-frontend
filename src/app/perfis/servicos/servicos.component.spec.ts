@@ -16,6 +16,9 @@ import { MatCardModule } from '@angular/material/card';
 import { NgxMaskModule } from 'ngx-mask';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { JwtHelper } from '../../util/jwt-helper';
+import { NotificationService } from '../../servicos/notification.service';
+import { ServicoDetalhado } from '../../interfaces/servico-detalhado';
+
 
 describe('ServicosComponent', () => {
   let component: ServicosComponent;
@@ -25,7 +28,8 @@ describe('ServicosComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ServicosComponent ],
       providers: [
-        JwtHelper
+        JwtHelper,
+        { provide: 'ServicoNotificationService', useFactory: () => (new NotificationService<ServicoDetalhado>()) }
       ],
       imports: [
        MatListModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/app/servicos/usuario.service';
 import { Cliente } from 'src/app/interfaces/cliente';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { USER_TOKEN } from 'src/app/util/constantes';
 import { Endereco } from 'src/app/interfaces/endereco';
+import { NotificationService } from 'src/app/servicos/notification.service';
 
 @Component({
   selector: 'app-perfil-usuario',
@@ -25,7 +26,8 @@ export class PerfilUsuarioComponent implements OnInit {
   
   constructor(private usuarioService:UsuarioService,
               private router:Router,
-              private localStorageService: LocalStorageService) { }
+              private localStorageService: LocalStorageService,
+              @Inject('AnimalNotificationService') private animalNotification: NotificationService<AnimalEstimacao>) { }
 
   ngOnInit(): void {
     this.getUsuario();
@@ -49,10 +51,12 @@ export class PerfilUsuarioComponent implements OnInit {
   adicionaAnimal({...animalEstimacao}:AnimalEstimacao) : void {
     animalEstimacao.donoId = this.usuario.id;
     this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
-      this.usuarioService.adicionarAnimalEstimacao(animalEstimacao, token).subscribe(() => {
+      this.usuarioService.adicionarAnimalEstimacao(animalEstimacao, token).subscribe(obj => {
         this.limpaAnimal();
         this.getUsuario();
+        this.animalNotification.notify(obj);
         this.isFormVisivel = false;
+
       }, err => this.handleError(err));    
     }, err => this.handleError(err))
   }

@@ -1,7 +1,6 @@
 import { getTestBed, TestBed } from '@angular/core/testing';
 
 import { ServicosService } from './servicos.service';
-import { ServicoDetalhado } from '../interfaces/servico-detalhado';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import { JwtHelper } from '../util/jwt-helper';
