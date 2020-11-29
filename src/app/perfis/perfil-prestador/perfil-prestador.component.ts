@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { Prestador } from 'src/app/interfaces/prestador';
 import { PrestadorService } from 'src/app/servicos/prestador.service';
@@ -6,6 +6,7 @@ import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { USER_TOKEN } from 'src/app/util/constantes';
 import { Endereco } from 'src/app/interfaces/endereco';
 import { JwtHelper } from 'src/app/util/jwt-helper';
+import { NotificationService } from 'src/app/servicos/notification.service';
 
 @Component({
   selector: 'app-perfil-prestador',
@@ -22,7 +23,8 @@ export class PerfilPrestadorComponent implements OnInit {
 
   constructor(private prestadorService:PrestadorService,
               private localStorageService:LocalStorageService,
-              private jwtHelper: JwtHelper) { }
+              private jwtHelper: JwtHelper,
+              @Inject('ServicoNotificationService') private servicoNotification: NotificationService<ServicoDetalhado>) { }
 
   ngOnInit(): void {
     this.getUsuario();
@@ -77,10 +79,11 @@ export class PerfilPrestadorComponent implements OnInit {
   adicionaServico({...servico}:ServicoDetalhado): void {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       servico.prestador = this.usuario;
-      this.prestadorService.adicionarServico(this.usuario.id, servico, token).subscribe(() => {
+      this.prestadorService.adicionarServico(this.usuario.id, servico, token).subscribe(el => {
         this.limpaServico();
         this.getUsuario();
         this.isFormVisivel = false;
+        this.servicoNotification.notify(el);
       },
       err => {
         this.handleError(err);

@@ -1,9 +1,10 @@
 <section>
-    <h3 class="page-section-title">{{'SERVICOS' | translate}}</h3>
-    <div class="conteiner-animal-list" *ngIf="servicosDetalhados && servicosDetalhados.length; then servicosBlock else vazioBlock"></div>
+    <!-- <h3 class="page-section-title">{{'SERVICOS' | translate}}</h3> -->
+    
+    <div class="conteiner-servicos-list" *ngIf="servicosDetalhados && servicosDetalhados.length; then servicosBlock else vazioBlock"></div>
     
     <ng-template #vazioBlock>
-        <p>{{'NENHUM_SERVICO_CADASTRADO_P' | translate}}</p>
+        <p class="no_registered">{{'NENHUM_SERVICO_CADASTRADO_P' | translate}}</p>
     </ng-template>
 
     <ng-template #servicosBlock>

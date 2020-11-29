@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { PrestadorService } from './prestador.service';
 
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import { JwtHelper } from '../util/jwt-helper';
 

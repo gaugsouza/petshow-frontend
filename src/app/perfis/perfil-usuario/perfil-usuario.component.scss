@@ -4,6 +4,9 @@
     margin: 15px;
 }
 
+.animais{
+    margin: 0px;
+}
 .sucesso { 
     color: green;
 }
@@ -17,10 +20,24 @@
     grid-auto-rows: 1fr;
     
     @media screen and (max-width: $tablet-width){
-        grid-template-columns: 1fr;
+        display: flex; 
+        flex-direction: column;
+        width: 100%;
     }
 }
 
 .pets{
     padding: 0px 15px;
+}
+
+.mat-flat-button{
+    margin-left: 15px;
+}
+
+.page-section-title {
+    font-size: 42px;
+    margin: 15px;
+    // padding: 20px 0 5px 0px;
+    color: $title-color;
+    margin-bottom: 4%;
 }
