@@ -96,13 +96,9 @@ export class AvaliacaoComponent implements OnInit {
       }
 
       let servicoDetalhado = this.parse(servico);
-      this.prestadorService.buscaPrestador(servicoDetalhado.prestadorId).subscribe(prestador => {
+      console.log(servicoDetalhado);
+      this.prestadorService.buscaPrestador(servicoDetalhado.prestador.id).subscribe(prestador => {
         servicoDetalhado.prestador = JSON.parse(prestador);
-        servicoDetalhado.avaliacoes.forEach(avaliacao => {
-          this.usuarioService.buscarUsuario(avaliacao.clienteId).subscribe(cliente => {
-            avaliacao.cliente = JSON.parse(cliente);
-          })
-        })
         this.servicoAvaliado = servicoDetalhado;
       });
       
@@ -141,7 +137,7 @@ export class AvaliacaoComponent implements OnInit {
     .subscribe((token:string) => {
       this.usuarioService.getUsuario(token)
       .subscribe((cliente:Cliente) => {
-        avaliacao.clienteId = cliente.id;
+        avaliacao.cliente = cliente;
         this.avaliacaoService.adicionarAvaliacao(avaliacao, this.idServico, this.idPrestador, token).subscribe(servico => {
           this.preencheServico(this.idServico, this.idPrestador);
           this.fechaFormulario();
@@ -157,12 +153,6 @@ export class AvaliacaoComponent implements OnInit {
       .subscribe(paginaAvaliacoes => {
         let objetoPaginado:ObjetoPaginado = JSON.parse(paginaAvaliacoes);
         let avaliacoesPaginada = objetoPaginado.content;
-
-        avaliacoesPaginada.forEach(avaliacao => {
-          this.usuarioService.buscarUsuario(avaliacao.clienteId).subscribe(cliente => {
-            avaliacao.cliente = JSON.parse(cliente);
-          })
-        });
 
         this.avaliacoes = avaliacoesPaginada;
 

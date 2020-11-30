@@ -45,12 +45,6 @@ export class ListaServicosDetalhadosComponent implements OnInit {
       .subscribe(paginaServicosDetalhados => {
         let objetoPaginado:ObjetoPaginado = JSON.parse(paginaServicosDetalhados);
         let servicos = objetoPaginado.content;
-
-        servicos.forEach(servico => {
-          this.prestadorService.buscaPrestador(servico.prestadorId).subscribe(prestador => {
-            servico.prestador = JSON.parse(prestador);
-          })
-        });
         
         this.servicosDetalhados = servicos;
         this.quantidadeTotal = objetoPaginado.totalElements
