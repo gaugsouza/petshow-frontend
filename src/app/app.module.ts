@@ -39,7 +39,7 @@ import { AnimalEstimacao } from './interfaces/animalEstimacao';
     AppComponent,
     HomeComponent,
     ListaServicosDetalhadosComponent,
-    PrestadorComponent,
+    PrestadorComponent
   ],
   imports: [
     AcessoModule,

@@ -14,6 +14,7 @@ import { servicos } from 'src/app/mocks/servico-detalhado-mock';
 import { DataSharingService } from 'src/app/servicos/data-sharing.service';
 import { PageEvent } from '@angular/material/paginator';
 import { ObjetoPaginado } from 'src/app/interfaces/paginacao';
+import { ContaService } from 'src/app/servicos/conta.service';
 
 @Component({
   selector: 'app-avaliacao',
@@ -49,7 +50,8 @@ export class AvaliacaoComponent implements OnInit {
               private localStorageService:LocalStorageService,
               private usuarioService:UsuarioService,
               private prestadorService:PrestadorService,
-              private dataSharing: DataSharingService) {}
+              private dataSharing: DataSharingService,
+              private contaService: ContaService) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params:Params) => {
@@ -71,12 +73,11 @@ export class AvaliacaoComponent implements OnInit {
         if(!token) {
           return;
         }
-        this.usuarioService.getUsuario(token).subscribe(usuario => {
-          this.isCliente = usuario.tipo === TipoPessoa.CLIENTE || usuario.tipo == 1;
+        this.contaService.getConta(token).subscribe(conta => {
+          this.isCliente = conta.tipo === TipoPessoa.CLIENTE || conta.tipo == 1;
         }, err => {
-          console.log(err);
-          this.isCliente = false;
-        })
+          this.isLogado = false;
+        });
       });
     });
 
