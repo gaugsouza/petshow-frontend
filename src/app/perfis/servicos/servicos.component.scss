@@ -6,13 +6,7 @@ mat-list-item {
         margin-bottom: 40px !important;
     }
 }
-.page-section-title {
-    font-size: 42px;
-    margin: 15px;
-    // padding: 20px 0 5px 0px;
-    color: $title-color;
-    margin-bottom: 4%;
-}
+
 
 .servico-list {
     
@@ -23,7 +17,7 @@ mat-list-item {
         border: 1px solid $item-border;
         border-radius: 10px;
         padding: 6px 0px;
-        width: 60%;
+        width: 100%;
         margin: 0;
 
         @media screen and (max-width: $tablet-width)  {
@@ -47,4 +41,8 @@ mat-list-item {
 
 .mat-list-item {
     height: auto !important;
+}
+
+.no-registered{
+    margin: 15px;
 }

@@ -21,7 +21,7 @@ const routes: Routes = [
   {path: 'prestador', component: PrestadorComponent},
   //{path: 'prestador/:id', component: PrestadorComponent},
   {path: 'cadastro-sucesso', component: SucessoCadastroComponent},
-  {path: 'dido será confirmado em até 1 dia útil após o pagamento do Boleto. Se o Boleto não for pago até a data de vencimento, o pedido será cancelado.', component: TokenAtivacaoComponent}
+  {path: 'confirmacao-registro', component: TokenAtivacaoComponent}
 ];
 
 @NgModule({
