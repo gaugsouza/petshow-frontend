@@ -1,7 +1,6 @@
-import {AnimalEstimacao} from './animalEstimacao';
-import { Endereco } from './endereco';
-import { Login } from './login';
-import { TipoPessoa } from '../enum/tipo-pessoa.enum';
+import { Endereco } from 'src/app/interfaces/endereco';
+import { Login } from 'src/app/interfaces/login';
+import { TipoPessoa } from 'src/app/enum/tipo-pessoa.enum';
 
 export interface Usuario {
     id?: number, 
@@ -10,6 +9,8 @@ export interface Usuario {
     cpf?:string,
     tipo?:TipoPessoa,
     login?:Login,
-    endereco?: Endereco,
-    telefone?: string
+    endereco?: Endereco,    
+    telefone?: string,
+    isAtivo?:boolean,
+    mensagem?:string
 }

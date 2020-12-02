@@ -1,5 +1,5 @@
-import { Cliente } from './cliente';
-import { ServicoDetalhado } from './servico-detalhado';
+import { Cliente } from 'src/app/interfaces/cliente';
+import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 
 export interface Avaliacao {
     id?:number,

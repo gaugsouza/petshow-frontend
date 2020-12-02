@@ -129,5 +129,9 @@
     "ANIMAL_ESTIMACAO_NAO_ENCONTRADO": "Pet not found",
     "NENHUM_ANIMAL_ESTIMACAO_ENCONTRADO": "No pets found",
     "USUARIO_NAO_PROPRIETARIO_ANIMAL": "This animal does not belong to this user",
-    "ERRO_ATIVACAO_TOKEN": "An error occurred during activation"
+    "ERRO_ATIVACAO_TOKEN": "An error occurred during activation",
+    "MENSAGEM_CONTA_INATIVA": "This account has not yet been activated. Check your email to take advantage of all the platform's features or click in this notification to send a new activation request!",
+    "ATIVE_CONTA": "Activate your account to add services",
+    "SOLICITACAO_REENVIADA": "Request resent successfully",
+    "ERRO_REENVIO_SOLICITACAO": "An error occurred when sending a new activation request"
 }

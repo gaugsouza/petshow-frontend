@@ -1,4 +1,4 @@
-import { Usuario } from './usuario';
+import { Usuario } from 'src/app/interfaces/usuario';
 
 export interface Login {
     id?: number,

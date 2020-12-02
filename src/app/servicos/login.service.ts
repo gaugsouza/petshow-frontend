@@ -35,6 +35,11 @@ export class LoginService {
     return this.httpHandler.doGet<string>(URL);
   }
 
+  reenviaAtivacao(token:string, email:string):Observable<string> {
+    const URL = `${this.ACESSO_BASE_URL}/reenvia-ativacao/`;
+    return this.httpHandler.doPost<string>(URL, email, token);
+  }
+
   buscaTokenUsuario() {
     return JSON.stringify(this.storageService.getItem(USER_TOKEN));
   }

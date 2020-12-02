@@ -1,6 +1,6 @@
-import { Servico } from './servico';
-import { Avaliacao } from './avaliacao';
-import { Prestador } from './prestador';
+import { Servico } from 'src/app/interfaces/servico';
+import { Avaliacao } from 'src/app/interfaces/avaliacao';
+import { Prestador } from 'src/app/interfaces/prestador';
 
 export interface ServicoDetalhado {
     id?:number,
