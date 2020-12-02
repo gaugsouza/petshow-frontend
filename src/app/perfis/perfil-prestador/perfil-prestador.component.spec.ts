@@ -23,6 +23,8 @@ import { MatCardModule } from '@angular/material/card';
 import { NgxMaskModule } from 'ngx-mask';
 import { JwtHelper } from '../../util/jwt-helper';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MensagemAtivacaoComponent } from '../mensagem-ativacao/mensagem-ativacao.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 describe('PerfilPrestadorComponent', () => {
   let component: PerfilPrestadorComponent;
@@ -36,7 +38,8 @@ describe('PerfilPrestadorComponent', () => {
         FormularioServicoComponent,
         InformacoesPessoaisComponent,
         EnderecoComponent,
-        EnderecoDialogComponent
+        EnderecoDialogComponent,
+        MensagemAtivacaoComponent
        ],
        providers: [
          PrestadorService,
@@ -58,7 +61,8 @@ describe('PerfilPrestadorComponent', () => {
         MatDialogModule,
         MatCardModule,
         NgxMaskModule.forRoot(),
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatTooltipModule
       ]
       
     })

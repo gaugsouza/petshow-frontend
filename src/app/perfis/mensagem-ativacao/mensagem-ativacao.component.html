@@ -1,4 +1,4 @@
-<div *ngIf="!usuario.isAtivo && !hideMessage" class="mensagem-ativacao" (click)="enviaSolicitacao()">
+<div *ngIf="usuario && !usuario.isAtivo && !hideMessage" class="mensagem-ativacao" (click)="enviaSolicitacao()">
     <p> 
         {{usuario.mensagem | translate}}
     </p>

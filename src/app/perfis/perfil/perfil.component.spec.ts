@@ -29,6 +29,8 @@ import { NgxMaskModule } from 'ngx-mask';
 import { FormularioAnimalComponent } from '../formulario-animal/formulario-animal.component';
 import { JwtHelper } from '../../util/jwt-helper';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MensagemAtivacaoComponent } from '../mensagem-ativacao/mensagem-ativacao.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 describe('PerfilComponent', () => {
   let component: PerfilComponent;
   let fixture: ComponentFixture<PerfilComponent>;
@@ -45,7 +47,8 @@ describe('PerfilComponent', () => {
         EnderecoComponent,
         EnderecoDialogComponent,
         AnimalEstimacaoComponent,
-        FormularioAnimalComponent
+        FormularioAnimalComponent,
+        MensagemAtivacaoComponent
        ],
        providers: [
         PrestadorService,
@@ -68,7 +71,8 @@ describe('PerfilComponent', () => {
         MatDialogModule,
         MatCardModule,
         NgxMaskModule.forRoot(),
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatTooltipModule
        ]
     })
     .compileComponents();

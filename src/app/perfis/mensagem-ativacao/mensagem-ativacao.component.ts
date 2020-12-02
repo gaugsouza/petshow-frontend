@@ -15,25 +15,22 @@ export class MensagemAtivacaoComponent implements OnInit {
   hideMessage:boolean = false;
   mensagem:string;
   showRequestMessage:boolean = false;
-  constructor(private localStorageService:LocalStorageService,
-              private loginService:LoginService) { }
+  constructor(private loginService:LoginService) { }
 
   ngOnInit(): void {
   }
 
   enviaSolicitacao() {
     this.hideMessage = true;
-    this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
-      this.loginService.reenviaAtivacao(token, this.usuario.login.email)
+    this.loginService.reenviaAtivacao(this.usuario.login.email)
       .subscribe(() => {
         this.mensagem = 'SOLICITACAO_REENVIADA';
-        this.showRequestMessage = false;
+        this.showRequestMessage = true;
       },
-      _ => {
+      () => {
         this.mensagem = 'ERRO_REENVIO_SOLICITACAO';
-        this.showRequestMessage = false;
+        this.showRequestMessage = true;
       });
-    });
   }
 
 }
