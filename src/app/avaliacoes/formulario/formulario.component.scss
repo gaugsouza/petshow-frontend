@@ -17,8 +17,21 @@
             justify-items: center;
         }
     }
-
+  
     & mat-icon {
         cursor: pointer;
+        font-family: 'Material Icons' !important;
+    }
+}
+
+
+.mat-flat-button{
+    margin: 5px;
+}
+
+.botoes{
+    @media screen and (max-width:$tablet-width) {
+        display: flex;
+        justify-content: center;
     }
 }

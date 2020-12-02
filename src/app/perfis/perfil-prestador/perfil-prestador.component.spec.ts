@@ -25,6 +25,8 @@ import { JwtHelper } from '../../util/jwt-helper';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MensagemAtivacaoComponent } from '../mensagem-ativacao/mensagem-ativacao.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { NotificationService } from '../../servicos/notification.service';
+import { ServicoDetalhado } from '../../interfaces/servico-detalhado';
 
 describe('PerfilPrestadorComponent', () => {
   let component: PerfilPrestadorComponent;
@@ -45,7 +47,8 @@ describe('PerfilPrestadorComponent', () => {
          PrestadorService,
          LocalStorageService,
          {provide: Router, useValue: {navigate: () => true}},
-         JwtHelper
+         JwtHelper,
+         { provide: 'ServicoNotificationService', useFactory: () => (new NotificationService<ServicoDetalhado>()) }
        ],
        imports: [
         MatListModule,

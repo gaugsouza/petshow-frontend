@@ -30,13 +30,16 @@ import { AvaliacoesModule } from './avaliacoes/avaliacoes.module';
 import { ConfigModule } from './config/config.module';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator'; 
+import { NotificationService } from './servicos/notification.service';
+import { ServicoDetalhado } from './interfaces/servico-detalhado';
+import { AnimalEstimacao } from './interfaces/animalEstimacao';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ListaServicosDetalhadosComponent,
-    PrestadorComponent,
+    PrestadorComponent
   ],
   imports: [
     AcessoModule,
@@ -62,7 +65,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
   ],
   providers: [
     JwtHelper,
-    DataSharingService
+    DataSharingService,
+    { provide: 'ServicoNotificationService', useFactory: () => (new NotificationService<ServicoDetalhado>()) },
+    { provide: 'AnimalNotificationService', useFactory: () => (new NotificationService<AnimalEstimacao>()) },
   ],
   bootstrap: [AppComponent],
 })

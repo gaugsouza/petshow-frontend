@@ -33,6 +33,8 @@ import { JwtHelper } from '../../util/jwt-helper';
 import { MensagemAtivacaoComponent } from '../mensagem-ativacao/mensagem-ativacao.component';
 import { Usuario } from '../../interfaces/usuario';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { NotificationService } from '../../servicos/notification.service';
+
 
 describe('FormularioAnimalComponent', () => {
   let component: PerfilUsuarioComponent;
@@ -55,11 +57,10 @@ describe('FormularioAnimalComponent', () => {
         ],
       providers: [
           {provide: UsuarioService, useClass: UsuarioServiceMock},
-          // UsuarioService,
           LocalStorageService,
-          // UsuarioService,
           {provide: Router, useValue: {navigate: () => true}},
-          JwtHelper
+          JwtHelper,
+          { provide: 'AnimalNotificationService', useFactory: () => (new NotificationService<AnimalEstimacao>()) }
       ],
       imports: [
         MatListModule,

@@ -1,11 +1,11 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { ServicosService } from '../servicos/servicos.service';
+import { ServicosService } from 'src/app/servicos/servicos.service';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import {ActivatedRoute} from '@angular/router';
-import { PrestadorService } from '../servicos/prestador.service';
+import { PrestadorService } from 'src/app/servicos/prestador.service';
 import { PageEvent } from '@angular/material/paginator';
-import { ObjetoPaginado } from '../interfaces/paginacao';
+import { ObjetoPaginado } from 'src/app/interfaces/paginacao';
 
 @Component({
   selector: 'app-lista-servicos-detalhados',
@@ -45,12 +45,6 @@ export class ListaServicosDetalhadosComponent implements OnInit {
       .subscribe(paginaServicosDetalhados => {
         let objetoPaginado:ObjetoPaginado = JSON.parse(paginaServicosDetalhados);
         let servicos = objetoPaginado.content;
-
-        servicos.forEach(servico => {
-          this.prestadorService.buscaPrestador(servico.prestadorId).subscribe(prestador => {
-            servico.prestador = JSON.parse(prestador);
-          })
-        });
         
         this.servicosDetalhados = servicos;
         this.quantidadeTotal = objetoPaginado.totalElements
