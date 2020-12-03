@@ -1,4 +1,4 @@
-import { TipoAnimal } from '../enum/TipoAnimal';
+import { TipoAnimal } from 'src/app/enum/TipoAnimal';
 
 export interface AnimalEstimacao {
     id?:number,

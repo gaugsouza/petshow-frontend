@@ -1,4 +1,5 @@
 <div *ngIf="usuario">
+    <app-mensagem-ativacao [usuario]='usuario'></app-mensagem-ativacao>
     <h1 class="mat-display-2 client-name">{{usuario.nome}}</h1>
     <hr>
     <div class="informacoes-usuario">
@@ -18,6 +19,13 @@
 
     <app-servicos [prestador-id]="usuario.id" 
                   (remover-servico)="removeServico($event)"></app-servicos>
+
+        <button mat-flat-button *ngIf="!isFormVisivel" 
+                color="primary" 
+                (click)="exibeFormulario()"
+                [disabled]="!usuario.isAtivo"
+                matTooltip="{{usuario.isAtivo ? '' : 'ATIVE_CONTA' | translate}}">{{'ADD_SERVICO' | translate}}</button>
+   
 
     <mat-error *ngIf="erroRequisicao"> {{erroRequisicao | translate}} </mat-error>
     <p class="sucesso" *ngIf="mensagemSucesso">{{'MENSAGEM_SUCESSO' | translate}}</p>

@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "build": "ng build",
-    "test": "jest --config ./jest.config.js",
+    "test": "jest --config ./jest.config.js --coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "test:cy": "nyc npm run test:bdd",

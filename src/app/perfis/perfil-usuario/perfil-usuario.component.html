@@ -1,5 +1,5 @@
-  
 <div *ngIf="usuario">
+    <app-mensagem-ativacao [usuario]='usuario'></app-mensagem-ativacao>
     <h1 class="mat-display-2 client-name">{{usuario.nome}}</h1>
     <hr>
     <div class="informacoes-usuario">

@@ -30,6 +30,9 @@ import {MatCardModule} from '@angular/material/card';
 import {NgxMaskModule} from 'ngx-mask';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { JwtHelper } from '../../util/jwt-helper';
+import { MensagemAtivacaoComponent } from '../mensagem-ativacao/mensagem-ativacao.component';
+import { Usuario } from '../../interfaces/usuario';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { NotificationService } from '../../servicos/notification.service';
 
 
@@ -49,7 +52,8 @@ describe('FormularioAnimalComponent', () => {
           FormularioAnimalComponent,
           InformacoesPessoaisComponent,
           EnderecoComponent,
-          EnderecoDialogComponent
+          EnderecoDialogComponent,
+          MensagemAtivacaoComponent
         ],
       providers: [
           {provide: UsuarioService, useClass: UsuarioServiceMock},
@@ -72,7 +76,8 @@ describe('FormularioAnimalComponent', () => {
         MatDialogModule,
         MatCardModule,
         NgxMaskModule.forRoot(),
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatTooltipModule
       ]
     })
     .compileComponents();
@@ -92,13 +97,13 @@ describe('FormularioAnimalComponent', () => {
   });
 
   it('Deve setar token igual ao de localStorage', () => {
-    localStorageService.setItem(USER_TOKEN, usuarioMock.id);
+    localStorageService.setItem(USER_TOKEN, (usuarioMock as Usuario).id);
     component.getUsuario();
-    expect(component.usuario.id).toEqual(usuarioMock.id);
+    expect(component.usuario.id).toEqual((usuarioMock as Usuario).id);
   });
 
   it('Deve adicionar um animal a lista de animais', () => {
-    localStorageService.setItem(USER_TOKEN, usuarioMock.id);
+    localStorageService.setItem(USER_TOKEN, (usuarioMock as Usuario).id);
     component.getUsuario();
     let animalEsperado: AnimalEstimacao = {
       id: 2,
