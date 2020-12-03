@@ -9,7 +9,6 @@ import { PerfilComponent } from 'src/app/perfis/perfil/perfil.component';
 import { PrestadorComponent } from 'src/app/prestador/prestador.component';
 import { SucessoCadastroComponent } from './acesso/sucesso-cadastro/sucesso-cadastro.component';
 import { TokenAtivacaoComponent } from './acesso/token-ativacao/token-ativacao.component';
-import { PrestadorDetalheComponent } from './lista-servicos-detalhados/prestador-detalhe/prestador-detalhe.component';
 
 const routes: Routes = [
   {path: 'perfil', component: PerfilComponent},
