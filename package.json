@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "build": "ng build",
-    "test": "jest --config ./jest.config.js",
+    "test": "jest --config ./jest.config.js --coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "test:cy": "nyc npm run test:bdd",
@@ -19,12 +19,12 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~11.0.0-next.4",
-    "@angular/cdk": "^10.2.3",
+    "@angular/cdk": "^11.0.0",
     "@angular/common": "~11.0.0-next.4",
     "@angular/compiler": "~11.0.0-next.4",
     "@angular/core": "~11.0.0-next.4",
     "@angular/forms": "~11.0.0-next.4",
-    "@angular/material": "^9.2.1",
+    "@angular/material": "^11.0.0",
     "@angular/platform-browser": "~11.0.0-next.4",
     "@angular/platform-browser-dynamic": "~11.0.0-next.4",
     "@angular/router": "~11.0.0-next.4",

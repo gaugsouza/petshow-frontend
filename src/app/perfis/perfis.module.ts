@@ -24,7 +24,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list'; 
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ConfigModule } from '../config/config.module';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MensagemAtivacaoComponent } from './mensagem-ativacao/mensagem-ativacao.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -39,7 +41,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     EnderecoComponent, 
     EnderecoDialogComponent, 
     AnimalEstimacaoComponent, 
-    FormularioAnimalComponent
+    FormularioAnimalComponent, MensagemAtivacaoComponent
   ],
   imports: [
     CommonModule,
@@ -52,7 +54,9 @@ export function HttpLoaderFactory(http:HttpClient) {
     MatListModule,
     FormsModule,
     ReactiveFormsModule,
-    ConfigModule
+    ConfigModule,
+    MatPaginatorModule,
+    MatTooltipModule
   ],
   exports: [
     PerfilPrestadorComponent, 

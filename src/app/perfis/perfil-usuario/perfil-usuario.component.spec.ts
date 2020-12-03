@@ -28,7 +28,12 @@ import {EnderecoDialogComponent} from '../endereco-dialog/endereco-dialog.compon
 import {MatDialogModule} from '@angular/material/dialog'; 
 import {MatCardModule} from '@angular/material/card';
 import {NgxMaskModule} from 'ngx-mask';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { JwtHelper } from '../../util/jwt-helper';
+import { MensagemAtivacaoComponent } from '../mensagem-ativacao/mensagem-ativacao.component';
+import { Usuario } from '../../interfaces/usuario';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { NotificationService } from '../../servicos/notification.service';
 
 
 describe('FormularioAnimalComponent', () => {
@@ -47,13 +52,15 @@ describe('FormularioAnimalComponent', () => {
           FormularioAnimalComponent,
           InformacoesPessoaisComponent,
           EnderecoComponent,
-          EnderecoDialogComponent
+          EnderecoDialogComponent,
+          MensagemAtivacaoComponent
         ],
       providers: [
           {provide: UsuarioService, useClass: UsuarioServiceMock},
           LocalStorageService,
-          // UsuarioService,
-          {provide: Router, useValue: {navigate: () => true}}
+          {provide: Router, useValue: {navigate: () => true}},
+          JwtHelper,
+          { provide: 'AnimalNotificationService', useFactory: () => (new NotificationService<AnimalEstimacao>()) }
       ],
       imports: [
         MatListModule,
@@ -68,7 +75,9 @@ describe('FormularioAnimalComponent', () => {
         TranslateModule.forRoot(),
         MatDialogModule,
         MatCardModule,
-        NgxMaskModule.forRoot()
+        NgxMaskModule.forRoot(),
+        MatPaginatorModule,
+        MatTooltipModule
       ]
     })
     .compileComponents();
@@ -88,13 +97,13 @@ describe('FormularioAnimalComponent', () => {
   });
 
   it('Deve setar token igual ao de localStorage', () => {
-    localStorageService.setItem(USER_TOKEN, usuarioMock.id);
+    localStorageService.setItem(USER_TOKEN, (usuarioMock as Usuario).id);
     component.getUsuario();
-    expect(component.usuario.id).toEqual(usuarioMock.id);
+    expect(component.usuario.id).toEqual((usuarioMock as Usuario).id);
   });
 
   it('Deve adicionar um animal a lista de animais', () => {
-    localStorageService.setItem(USER_TOKEN, usuarioMock.id);
+    localStorageService.setItem(USER_TOKEN, (usuarioMock as Usuario).id);
     component.getUsuario();
     let animalEsperado: AnimalEstimacao = {
       id: 2,
@@ -161,22 +170,5 @@ describe('FormularioAnimalComponent', () => {
     component.selecionaAnimal(animal);
 
     expect(component.animal).toEqual(animal);
-  });
-
-  it('Deve renderizar com formulário ativo', () => {
-    component.animal = {
-      id: 2,
-      nome: "Floquinho",
-      tipo: {
-        id: 1,
-        nome: "CACHORRO"
-      },
-      donoId: 1
-    };
-
-    fixture.detectChanges();
-    const element: HTMLElement = fixture.nativeElement;
-    const form = element.getElementsByClassName('form');
-    expect(form).not.toBeNull();
   });
 });

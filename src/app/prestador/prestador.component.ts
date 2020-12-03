@@ -22,17 +22,17 @@ export class PrestadorComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      let idPrestador:number = +params.idPrestador;
+      let idPrestador:number = parseInt(params.idPrestador);
+      console.log(idPrestador)
       if(isNaN(idPrestador)) {
         this.router.navigate(['/']);
         return;
       }
-      this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
-        this.prestadorService.buscaPrestador(idPrestador, token).subscribe(prestador => {
-          this.carregado = true;
-          this.prestador = prestador;
-        });
-      })
+      this.prestadorService.buscaPrestador(idPrestador).subscribe(prestador => {
+        this.carregado = true;
+        this.prestador = JSON.parse(prestador);
+        console.log(this.prestador);
+      });
     })
   }
 
@@ -47,7 +47,7 @@ export class PrestadorComponent implements OnInit {
   }
 
   getMediaUsuario():number {
-    if(this.prestador.servicos.length === 0) {
+    if(!this.prestador.servicos || this.prestador.servicos.length === 0) {
       return 0;
     }
     let somaMedias = this.prestador.servicos.reduce((soma:number, servico:ServicoDetalhado) => soma += this.getMediaAvaliacoes(servico), 0);

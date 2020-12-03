@@ -1,39 +1,80 @@
-<mat-toolbar>
-  <div>
-    <button mat-icon-button (click)="drawer.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span><a href="/">Petshow</a></span>
-  </div>
+
+  <mat-toolbar>
+      <span>
+        <a href="/"><img src="../assets/icons/Logo.png" height=60 ></a>
+        
+      </span>
+      
+      <span class="spacer"></span>
+      <span class="menu_not_mobile">
+
+      <span >
+        <button mat-button (click)="changeLang()">
+          <mat-icon>language</mat-icon>{{'VER_TRADUZIDO' | translate}}
+        </button>
+      </span>
+      
+     
+      <span  *ngIf="!isLogged" >   
+        <a mat-button href="/cadastro" class="menu-item">
+          {{ 'CADASTRO' | translate}}
+        </a>
+
+        <a mat-button href="/login" class="menu-item">
+          Login
+        </a>
+      </span>
+    
+      <span *ngIf="isLogged">
+        <a mat-button href="/perfil" class="menu-item">
+          {{ 'PERFIL' | translate}}
+        </a>
+
+        <button mat-button (click)="deslogar()" class="menu-item">
+          Log out
+        </button>
+      </span>
+    </span>
+
+      <span class="menu_mobile">
+        <button mat-icon-button (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </span>
+
 </mat-toolbar>
 
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer mode="{{mode}}" opened="{{opened}}">
-    <div *ngIf="!isLogged">
+<mat-drawer-container class="example-container" autosize >
+  <mat-drawer #drawer position="end" mode="over">
+    <div class="sidebar_button">
+      <button mat-button (click)="changeLang()">
+        <mat-icon>language</mat-icon>{{'VER_TRADUZIDO' | translate}}
+      </button>
+    </div>
+    
+    <div *ngIf="!isLogged" class="sidebar_button">
       <a mat-button href="/login" class="menu-item">
         Login
       </a>
     </div>
-    <div *ngIf="!isLogged">
+    <div *ngIf="!isLogged" class="sidebar_button">
       <a mat-button href="/cadastro" class="menu-item">
         {{ 'CADASTRO' | translate}}
       </a>
     </div>
-    <div *ngIf="isLogged">
+
+    <div *ngIf="isLogged" class="sidebar_button">
       <a mat-button href="/perfil" class="menu-item">
         {{ 'PERFIL' | translate}}
       </a>
     </div>
-    <div>
-      <button mat-button (click)="changeLang()">
-        {{'VER_TRADUZIDO' | translate}}
-      </button>
-    </div>
-    <div *ngIf="isLogged">
+    
+    <div *ngIf="isLogged" class="sidebar_button">
       <button mat-button (click)="deslogar()" class="menu-item">
         Log out
       </button>
     </div>
+
   </mat-drawer>
   <mat-drawer-content>
     <div class="content">

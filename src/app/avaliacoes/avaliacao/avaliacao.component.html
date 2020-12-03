@@ -7,11 +7,11 @@
     <p>{{'CARREGANDO' | translate}}</p>
 </ng-template>
 
-<ng-template #avaliacoes>
+<ng-template #avaliacoes >
     <div *ngIf="isNotFound">
         <p>{{'SERVICO_NAO_ENCONTRADO' | translate}}</p>
     </div>
-    <div *ngIf="servicoAvaliado">
+    <div *ngIf="servicoAvaliado" class="avaliacoes">
         <h1>{{'AVALIACOES' | translate}}</h1>
 
         <div *ngIf="possuiAvaliacoes(); then avaliacoesBlock else vazioBlock">
@@ -46,6 +46,14 @@
                     <span>{{avaliacao.comentario}}</span>
                 </div>
             </div>
+
+            <mat-paginator #paginator
+                [length]="quantidadeTotal"
+                [pageIndex]="paginaAtual"
+                [pageSize]="quantidadeItens"
+                [pageSizeOptions]="[10, 15, 20, 25]"
+                (page)="pageEvent = eventoPagina($event)">
+            </mat-paginator>
         </ng-template>
         
         

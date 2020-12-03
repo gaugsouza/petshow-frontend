@@ -7,6 +7,7 @@ import { LocalStorageService } from './local-storage.service';
 import { Cliente } from '../interfaces/cliente';
 import { TipoPessoa } from '../enum/tipo-pessoa.enum';
 import { JwtHelper } from '../util/jwt-helper';
+import { CLIENTE_SERVICE_URL as USUARIO_SERVICE_URL } from '../util/url';
 
 describe('UsuarioService', () => {
   let service: UsuarioService;
@@ -56,7 +57,7 @@ describe('UsuarioService', () => {
       expect(usuario.id).toEqual(1);
     });
 
-    const requests = httpMock.match(`${service.USUARIO_SERVICE_URL}`);
+    const requests = httpMock.match(`${USUARIO_SERVICE_URL}`);
     requests.forEach(req => {
       expect(req.request.method).toBe('PUT');
       req.flush(usuarioMock);

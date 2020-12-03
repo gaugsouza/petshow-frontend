@@ -3,7 +3,7 @@ import {FormControl, Validators} from '@angular/forms';
 import { Login } from 'src/app/interfaces/login';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { LoginService } from 'src/app/servicos/login.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import {MyErrorStateMatcher} from '../../classes/my-error-state-matcher';
 import { USER_TOKEN } from 'src/app/util/constantes';
 import { DataSharingService } from 'src/app/servicos/data-sharing.service';
@@ -23,7 +23,8 @@ export class LoginComponent implements OnInit {
     Validators.email,
   ]);
 
-  errorMessage : string = ""
+  errorMessage : string = "";
+  foiAtivo:boolean = false;
   passwordFormControl = new FormControl('', [
     Validators.required
   ]);
@@ -32,7 +33,8 @@ export class LoginComponent implements OnInit {
   constructor(private loginService:LoginService,
               private localStorageService:LocalStorageService,
               private router:Router,
-              private dataSharing:DataSharingService) { }
+              private dataSharing:DataSharingService,
+              private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.localStorageService.getItem(USER_TOKEN)
@@ -41,6 +43,11 @@ export class LoginComponent implements OnInit {
         this.dataSharing.isUsuarioLogado.next(true);
         this.router.navigate(['/perfil'])
       }
+    });
+    this.route.queryParams.subscribe((params:Params) => {
+      let isAtivo:boolean = !!(params.ativo) || false;
+      this.foiAtivo = isAtivo;
+     
     });
   }
 
@@ -61,7 +68,7 @@ export class LoginComponent implements OnInit {
       });
     },
     (error) => {
-      this.errorMessage = typeof error === 'string' ? error: 'Erro durante operação';
+      this.errorMessage = typeof error === 'string' ? error: 'ERRO_REQUISICAO';
       this.login.senha = "";      
     });
   }

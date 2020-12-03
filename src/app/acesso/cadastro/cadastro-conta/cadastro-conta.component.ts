@@ -7,6 +7,8 @@ import { Cidade, ConsultaEstadosService, Estado } from 'src/app/servicos/consult
 import { LoginService } from 'src/app/servicos/login.service';
 import { cliente, prestador } from 'src/app/util/conta-model';
 import { cpfFormControl, emailFormControl, nomeFormControl, senhaFormControl, telefoneFormControl } from 'src/app/util/form-controls';
+import { MatDialog } from '@angular/material/dialog';
+import { PoliticaPrivacidadeComponent } from 'src/app/acesso/cadastro/politica-privacidade/politica-privacidade.component';
 
 @Component({
   selector: 'app-cadastro-conta',
@@ -16,7 +18,7 @@ import { cpfFormControl, emailFormControl, nomeFormControl, senhaFormControl, te
 export class CadastroContaComponent implements OnInit {
   @Input('tipo-conta') tipoConta:TipoPessoa;
   usuario:Usuario;
-
+  disableSend:boolean = false;
   telefoneFormControl = telefoneFormControl;
   cpfFormControl = cpfFormControl;
   nomeFormControl = nomeFormControl;
@@ -42,10 +44,13 @@ export class CadastroContaComponent implements OnInit {
   estados:Estado[] = [];
   cidades:Cidade[] = [];
 
+  isPoliticasAceitas:boolean=false;
 
   constructor(private loginService:LoginService,
               private consultaEstadoService:ConsultaEstadosService,
-              private router:Router) { }
+              private router:Router,
+              private politica: MatDialog
+              ) { }
 
   ngOnInit(): void {
     this.usuario = this.isPrestador() ? prestador : cliente;
@@ -65,7 +70,7 @@ export class CadastroContaComponent implements OnInit {
   }
 
   hasErrors() {
-    return this.telefoneFormControl.invalid || this.cpfFormControl.invalid || this.nomeFormControl.invalid || this.emailFormControl.invalid || this.senhaFormControl.invalid || this.confirmaSenhaFormControl.invalid || this.logradouroFormControl.invalid || this.numeroFormControl.invalid || this.bairroFormControl.invalid || this.cepFormControl.invalid
+    return this.telefoneFormControl.invalid || this.cpfFormControl.invalid || this.nomeFormControl.invalid || this.emailFormControl.invalid || this.senhaFormControl.invalid || this.confirmaSenhaFormControl.invalid || this.logradouroFormControl.invalid || this.numeroFormControl.invalid || this.bairroFormControl.invalid || this.cepFormControl.invalid || !this.isPoliticasAceitas;
    }
 
   isPrestador() {
@@ -75,14 +80,23 @@ export class CadastroContaComponent implements OnInit {
   isSenhasIguais() {
     return this.confirmarSenha === this.usuario.login.senha;
   }
-  redirect() {
-    this.router.navigate(['/login'])
+  redirect(token?:string) {
+    let tokenTrim = '';
+    if(token) {
+       tokenTrim = token.slice(0, token.length/2);
+    }
+    this.router.navigate(['/cadastro-sucesso'], {queryParams: {token: tokenTrim}});
+  }
+
+  disableButton() {
+    this.disableSend = true;
   }
 
   cadastrarUsuario(usuario:Usuario) {
+    this.disableButton();
     this.loginService.cadastrarUsuario(usuario)
     .subscribe(res => {
-        this.redirect();
+        this.redirect(res);
       }, (err) => {
         console.log(err);
         this.errorMessage = "";
@@ -95,4 +109,19 @@ export class CadastroContaComponent implements OnInit {
     }
     this.cadastrarUsuario(usuario);
   }
+
+  openDialog() {
+    const politicaRef = this.politica.open(PoliticaPrivacidadeComponent);
+
+    politicaRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  
+
+  toggleCheckBoxPoliticas() {
+      this.isPoliticasAceitas = !this.isPoliticasAceitas;
+  }
+  
 }

@@ -10,7 +10,11 @@ import { usuariosMock} from '../../mocks/usuarioMock';
 import {Cliente} from '../../interfaces/cliente';
 import { FormsModule } from '@angular/forms';
 import {TranslateModule} from '@ngx-translate/core';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { LoggerTestingModule } from 'ngx-logger/testing';
+import { JwtHelper } from '../../util/jwt-helper';
+import { NotificationService } from '../../servicos/notification.service';
 
 describe('AnimalEstimacaoComponent', () => {
   let component: AnimalEstimacaoComponent;
@@ -22,13 +26,20 @@ describe('AnimalEstimacaoComponent', () => {
       declarations: [ 
         AnimalEstimacaoComponent
       ],
+      providers: [
+        JwtHelper,
+        { provide: 'AnimalNotificationService', useFactory: () => (new NotificationService<AnimalEstimacao>()) }
+      ],
       imports: [
         MatListModule,
         MatInputModule,
         MatSelectModule,
         BrowserAnimationsModule,
         FormsModule,
-        TranslateModule.forRoot()
+        TranslateModule.forRoot(),
+        MatPaginatorModule,
+        HttpClientTestingModule,
+        LoggerTestingModule
       ]
     })
     .compileComponents();

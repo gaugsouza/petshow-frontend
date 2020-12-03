@@ -12,6 +12,9 @@ import { TipoPessoa } from 'src/app/enum/tipo-pessoa.enum';
 import { PrestadorService } from 'src/app/servicos/prestador.service';
 import { servicos } from 'src/app/mocks/servico-detalhado-mock';
 import { DataSharingService } from 'src/app/servicos/data-sharing.service';
+import { PageEvent } from '@angular/material/paginator';
+import { ObjetoPaginado } from 'src/app/interfaces/paginacao';
+import { ContaService } from 'src/app/servicos/conta.service';
 
 @Component({
   selector: 'app-avaliacao',
@@ -19,6 +22,7 @@ import { DataSharingService } from 'src/app/servicos/data-sharing.service';
   styleUrls: ['./avaliacao.component.scss']
 })
 export class AvaliacaoComponent implements OnInit {
+  avaliacoes: Avaliacao[];
   isLogado:boolean = false;
   isFormVisible:boolean = false;
   servicoAvaliado:ServicoDetalhado;
@@ -35,6 +39,10 @@ export class AvaliacaoComponent implements OnInit {
     comentario: null
   }
 
+  pageEvent: PageEvent;
+  quantidadeTotal:number;
+  quantidadeItens:number = 10;
+  paginaAtual:number = 0;
 
   constructor(private route:ActivatedRoute,
               private avaliacaoService:AvaliacaoService,
@@ -42,7 +50,8 @@ export class AvaliacaoComponent implements OnInit {
               private localStorageService:LocalStorageService,
               private usuarioService:UsuarioService,
               private prestadorService:PrestadorService,
-              private dataSharing: DataSharingService) {}
+              private dataSharing: DataSharingService,
+              private contaService: ContaService) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params:Params) => {
@@ -64,14 +73,15 @@ export class AvaliacaoComponent implements OnInit {
         if(!token) {
           return;
         }
-        this.usuarioService.getUsuario(token).subscribe(usuario => {
-          this.isCliente = usuario.tipo === TipoPessoa.CLIENTE || usuario.tipo == 1;
+        this.contaService.getConta(token).subscribe(conta => {
+          this.isCliente = conta.tipo === TipoPessoa.CLIENTE || conta.tipo == 1;
         }, err => {
-          console.log(err);
-          this.isCliente = false;
-        })
+          this.isLogado = false;
+        });
       });
     });
+
+    this.buscarAvaliacoesPorServicoDetalhado(this.idServico, this.paginaAtual, this.quantidadeItens);
   }
 
   parse(obj:any):any {
@@ -86,13 +96,9 @@ export class AvaliacaoComponent implements OnInit {
       }
 
       let servicoDetalhado = this.parse(servico);
-      this.prestadorService.buscaPrestador(servicoDetalhado.prestadorId).subscribe(prestador => {
+      console.log(servicoDetalhado);
+      this.prestadorService.buscaPrestador(servicoDetalhado.prestador.id).subscribe(prestador => {
         servicoDetalhado.prestador = JSON.parse(prestador);
-        servicoDetalhado.avaliacoes.forEach(avaliacao => {
-          this.usuarioService.buscarUsuario(avaliacao.clienteId).subscribe(cliente => {
-            avaliacao.cliente = JSON.parse(cliente);
-          })
-        })
         this.servicoAvaliado = servicoDetalhado;
       });
       
@@ -111,7 +117,7 @@ export class AvaliacaoComponent implements OnInit {
   }
 
   getAvaliacoes() {
-    return this.servicoAvaliado.avaliacoes;
+    return this.avaliacoes;
   }
 
   possuiAvaliacoes() {
@@ -131,14 +137,38 @@ export class AvaliacaoComponent implements OnInit {
     .subscribe((token:string) => {
       this.usuarioService.getUsuario(token)
       .subscribe((cliente:Cliente) => {
-        avaliacao.clienteId = cliente.id;
+        avaliacao.cliente = cliente;
         this.avaliacaoService.adicionarAvaliacao(avaliacao, this.idServico, this.idPrestador, token).subscribe(servico => {
           this.preencheServico(this.idServico, this.idPrestador);
           this.fechaFormulario();
           this.limpaAvaliacao();
+          this.buscarAvaliacoesPorServicoDetalhado(this.idServico, this.paginaAtual, this.quantidadeItens)
         });
       });
     }); 
+  }
+
+  buscarAvaliacoesPorServicoDetalhado(idServico:number, pagina:number, quantidadeItens:number){
+    this.avaliacaoService.buscarAvaliacoesPorServicoDetalhado(idServico, pagina, quantidadeItens)
+      .subscribe(paginaAvaliacoes => {
+        let objetoPaginado:ObjetoPaginado = JSON.parse(paginaAvaliacoes);
+        let avaliacoesPaginada = objetoPaginado.content;
+
+        this.avaliacoes = avaliacoesPaginada;
+
+        this.quantidadeTotal = objetoPaginado.totalElements
+        this.paginaAtual = objetoPaginado.pageable.pageNumber;
+        this.quantidadeItens = objetoPaginado.size;
+      });
+  }
+
+  eventoPagina(event: PageEvent){
+    let pagina = event.pageIndex;
+    let quantidadeItens = event.pageSize;
+    
+    this.buscarAvaliacoesPorServicoDetalhado(this.idServico, pagina, quantidadeItens);
+
+    return event;
   }
 
   abreFormulario() {

@@ -22,6 +22,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { NgxMaskModule } from 'ngx-mask';
 import { JwtHelper } from '../../util/jwt-helper';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MensagemAtivacaoComponent } from '../mensagem-ativacao/mensagem-ativacao.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { NotificationService } from '../../servicos/notification.service';
+import { ServicoDetalhado } from '../../interfaces/servico-detalhado';
 
 describe('PerfilPrestadorComponent', () => {
   let component: PerfilPrestadorComponent;
@@ -35,13 +40,15 @@ describe('PerfilPrestadorComponent', () => {
         FormularioServicoComponent,
         InformacoesPessoaisComponent,
         EnderecoComponent,
-        EnderecoDialogComponent
+        EnderecoDialogComponent,
+        MensagemAtivacaoComponent
        ],
        providers: [
          PrestadorService,
          LocalStorageService,
          {provide: Router, useValue: {navigate: () => true}},
-         JwtHelper
+         JwtHelper,
+         { provide: 'ServicoNotificationService', useFactory: () => (new NotificationService<ServicoDetalhado>()) }
        ],
        imports: [
         MatListModule,
@@ -56,7 +63,9 @@ describe('PerfilPrestadorComponent', () => {
         TranslateModule.forRoot(),
         MatDialogModule,
         MatCardModule,
-        NgxMaskModule.forRoot()
+        NgxMaskModule.forRoot(),
+        MatPaginatorModule,
+        MatTooltipModule
       ]
       
     })

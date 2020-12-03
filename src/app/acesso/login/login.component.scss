@@ -1,6 +1,10 @@
+@import '../../../global.scss';
+$green-bg:#45c145;
+$text-color: #FFF;
+
 .page-section-title {
     font-size: 38px;
-    padding: 22px 0px 0px 30px;
+    text-align:center !important;
 }
 
 form {
@@ -8,15 +12,43 @@ form {
     flex-direction: column;
 }
 
+.mensagem-ativo{
+    background: $green-bg;
+    color: $text-color;
+    text-align: center;
+    padding: 6px 5px;
+    border: 1px solid darken($color: $green-bg, $amount: 10);
+    border-radius: 5px;
+    & > p {
+        margin: 0;
+    }
+}
+
 .login-form {
-    width: 60%;
-    background: white;
+    width: 30%;
     margin: 0 auto;
     padding: 4% 2%;
     &__form {
         display: flex;
         flex-flow: column;
-        width: 50%;
         margin: 0 auto;
+        font-size:18px;
     }
+    @media screen and (max-width: $tablet-width){
+        width:100%;
+        padding: 10px 0px;
+        &__form {
+            width: 90%;
+            margin: 0 auto;
+            font-size:18px;
+        }
+    }
+}
+.form__button-container{
+    text-align:center;
+    
+}
+.mat-flat-button{
+    font-size:25px !important;
+    height: 45px !important;
 }

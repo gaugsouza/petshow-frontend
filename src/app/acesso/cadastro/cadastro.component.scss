@@ -1,5 +1,23 @@
+@import '../../../global.scss';
+
 .selecao-tipo {
+    padding: 5% 10%;
+    height: 60vh;
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    justify-content: space-around;
+    align-items: scenter;
+    @media screen and (max-width: $tablet-width){
+        flex-direction: column;
+        .mat-flat-button{
+            font-size: 19px !important;
+        }
+    }
+}
+
+::ng-deep .mat-flat-button{
+    font-size: 25px !important;
+    height: 55px !important;
+    background-color: #4CE0DE;
+    color: white; 
 }

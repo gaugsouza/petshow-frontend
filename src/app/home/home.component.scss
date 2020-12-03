@@ -1,20 +1,37 @@
 @import '../../global.scss';
+
+
+
 .selecao_servico{
     padding: 10% 20%;
     height:60vh;
-
+    background-image: url('../../assets/icons/cat_home.jpg');
+    background-size: 1000px;
     &__button-container{
         padding:10 0;
         display: flex;
         justify-content: space-around; 
         @media screen and (max-width: $tablet-width){
             flex-direction: column;
-            margin-bottom: 20px;
         }
 
     }
-    ::ng-deep .mat-raised-button {
-        font-size:25px
+    ::ng-deep .mat-flat-button {
+        color: white  !important;
+        font-size: 185% !important;
+        height: 45px !important;
+        //line-height: 30px;
+        background-color: #4CE0DE !important;
+        margin-bottom: 5%;
     }
+
+    
 }
 
+.attribution{
+    //float:right;
+    font-size:8px;
+    left: 0px;
+    position: absolute; 
+    bottom: 0px; 
+}
