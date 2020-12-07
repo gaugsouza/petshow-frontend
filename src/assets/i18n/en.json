@@ -133,5 +133,14 @@
     "MENSAGEM_CONTA_INATIVA": "This account has not yet been activated. Check your email to take advantage of all the platform's features or click in this notification to send a new activation request!",
     "ATIVE_CONTA": "Activate your account to add services",
     "SOLICITACAO_REENVIADA": "Request resent successfully. Check your e-mail",
-    "ERRO_REENVIO_SOLICITACAO": "An error occurred when sending a new activation request"
+    "ERRO_REENVIO_SOLICITACAO": "An error occurred when sending a new activation request",
+    "PEQUENO": "Small",
+    "MEDIO": "Medium",
+    "GRANDE": "Big",
+    "PORTE": "Size",
+    "PELAGEM": "Coat",
+    "CURTA": "Short",
+    "LONGA": "Long",
+    "Cachorro": "Dog",
+    "Gato": "Cat"
 }

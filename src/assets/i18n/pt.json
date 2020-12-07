@@ -133,5 +133,14 @@
     "MENSAGEM_CONTA_INATIVA": "Essa conta ainda não foi ativada. Verifique seu e-mail para usufruir de todas as funcionalidades da plataforma ou clique nessa notificação para enviar uma nova solicitação de ativação!",
     "ATIVE_CONTA": "Ative sua conta para poder adicionar serviços",
     "SOLICITACAO_REENVIADA": "Solicitação reenviada com sucesso. Verifique seu e-mail.",
-    "ERRO_REENVIO_SOLICITACAO": "Ocorreu um erro na solicitação de reenvio"
+    "ERRO_REENVIO_SOLICITACAO": "Ocorreu um erro na solicitação de reenvio",
+    "PEQUENO": "Pequeno",
+    "MEDIO": "Médio",
+    "GRANDE": "Grande",
+    "PORTE": "Porte",
+    "PELAGEM": "Pelagem",
+    "CURTA": "Curta",
+    "LONGA": "Longa",
+    "Cachorro": "Cachorro",
+    "Gato": "Gato"
 }
