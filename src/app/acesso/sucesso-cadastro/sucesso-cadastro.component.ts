@@ -4,10 +4,9 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 @Component({
   selector: 'app-sucesso-cadastro',
   templateUrl: './sucesso-cadastro.component.html',
-  styleUrls: ['./sucesso-cadastro.component.scss']
+  styleUrls: ['./sucesso-cadastro.component.scss'],
 })
 export class SucessoCadastroComponent implements OnInit {
-
   constructor(private route:ActivatedRoute,
               private router:Router) { }
 
@@ -17,9 +16,8 @@ export class SucessoCadastroComponent implements OnInit {
 
   validaRequisicao() {
     this.route.queryParams.subscribe((params:Params) => {
-      if(!params.token) {
+      if (!params.token) {
         this.redirect();
-        return;
       }
     });
   }
@@ -27,5 +25,4 @@ export class SucessoCadastroComponent implements OnInit {
   redirect() {
     this.router.navigate(['/cadastro']);
   }
-
 }

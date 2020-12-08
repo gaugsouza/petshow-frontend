@@ -1,34 +1,36 @@
-@import '../../../global.scss';
+@import "../../../global.scss";
 
 .form {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    width: 80%;
-    @media screen and (max-width: $tablet-width)  {
-        justify-content: center;
-        width:100%;
-     }
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  width: 80%;
 
-    &__button-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 10px;
-        align-items: center;
-        @media screen and (max-width: $tablet-width)  {
-            display: flex;
-            justify-content: center;
-        }
+  @media screen and (max-width: $tablet-width) {
+    justify-content: center;
+    width: 100%;
+  }
+
+  &__button-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    align-items: center;
+
+    @media screen and (max-width: $tablet-width) {
+      display: flex;
+      justify-content: center;
     }
+  }
 }
 
 .invisible {
-    display: block; 
-    visibility: hidden; 
-    height: 0;
-    width: 0;
+  display: block;
+  visibility: hidden;
+  height: 0;
+  width: 0;
 }
 
-.page-section-title{
-    margin: 15px;
+.page-section-title {
+  margin: 15px;
 }

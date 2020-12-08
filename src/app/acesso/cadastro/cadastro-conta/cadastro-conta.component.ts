@@ -6,7 +6,9 @@ import { Usuario } from 'src/app/interfaces/usuario';
 import { Cidade, ConsultaEstadosService, Estado } from 'src/app/servicos/consulta-estados.service';
 import { LoginService } from 'src/app/servicos/login.service';
 import { cliente, prestador } from 'src/app/util/conta-model';
-import { cpfFormControl, emailFormControl, nomeFormControl, senhaFormControl, telefoneFormControl } from 'src/app/util/form-controls';
+import {
+  emailFormControl, nomeFormControl, senhaFormControl, telefoneFormControl,
+} from 'src/app/util/form-controls';
 import { MatDialog } from '@angular/material/dialog';
 import { PoliticaPrivacidadeComponent } from 'src/app/acesso/cadastro/politica-privacidade/politica-privacidade.component';
 import { ValidateBrService } from 'angular-validate-br';
@@ -14,35 +16,53 @@ import { ValidateBrService } from 'angular-validate-br';
 @Component({
   selector: 'app-cadastro-conta',
   templateUrl: './cadastro-conta.component.html',
-  styleUrls: ['./cadastro-conta.component.scss']
+  styleUrls: ['./cadastro-conta.component.scss'],
 })
 export class CadastroContaComponent implements OnInit {
   @Input('tipo-conta') tipoConta:TipoPessoa;
+
   usuario:Usuario;
+
   disableSend:boolean = false;
+
   telefoneFormControl = telefoneFormControl;
+
   nomeFormControl = nomeFormControl;
+
   emailFormControl = emailFormControl;
+
   senhaFormControl = senhaFormControl;
+
   confirmaSenhaFormControl = new FormControl('', [
-    Validators.required
+    Validators.required,
   ]);
+
   logradouroFormControl = new FormControl('', [Validators.required]);
+
   numeroFormControl = new FormControl('', [Validators.required]);
+
   complementoFormControl = new FormControl('', [Validators.required]);
+
   bairroFormControl = new FormControl('', [Validators.required]);
+
   cepFormControl = new FormControl('', [Validators.required]);
+
   estadoFormControl = new FormControl('', [Validators.required]);
+
   cidadeFormControl = new FormControl('', [Validators.required]);
-  cpfFormControl;
-  
+
+  cpfFormControl:FormControl;
+
   erroRequisicao:string;
+
   submitted = false;
 
-  confirmarSenha:string = "";
-  errorMessage : string = "";
+  confirmarSenha:string = '';
+
+  errorMessage : string = '';
 
   estados:Estado[] = [];
+
   cidades:Cidade[] = [];
 
   isPoliticasAceitas:boolean=false;
@@ -51,25 +71,24 @@ export class CadastroContaComponent implements OnInit {
               private consultaEstadoService:ConsultaEstadosService,
               private router:Router,
               private politica: MatDialog,
-              private validateBrService:ValidateBrService
-              ) { 
+              private validateBrService:ValidateBrService) {
     this.cpfFormControl = new FormControl('', [
       Validators.required,
-      this.validateBrService.cpf
-    ])
+      this.validateBrService.cpf,
+    ]);
   }
 
   ngOnInit(): void {
     this.usuario = this.isPrestador() ? prestador : cliente;
-    this.consultaEstadoService.getEstados().subscribe(el => {
+    this.consultaEstadoService.getEstados().subscribe((el) => {
       this.estados = el;
     });
   }
 
   carregarCidades(uf:string) {
-    this.consultaEstadoService.getCidades(uf).subscribe(el => {
+    this.consultaEstadoService.getCidades(uf).subscribe((el) => {
       this.cidades = el;
-    })
+    });
   }
 
   repetirSenha(senha:string) {
@@ -77,8 +96,18 @@ export class CadastroContaComponent implements OnInit {
   }
 
   hasErrors() {
-    return this.telefoneFormControl.invalid || this.cpfFormControl.invalid || this.nomeFormControl.invalid || this.emailFormControl.invalid || this.senhaFormControl.invalid || this.confirmaSenhaFormControl.invalid || this.logradouroFormControl.invalid || this.numeroFormControl.invalid || this.bairroFormControl.invalid || this.cepFormControl.invalid || !this.isPoliticasAceitas;
-   }
+    return this.telefoneFormControl.invalid
+    || this.cpfFormControl.invalid
+    || this.nomeFormControl.invalid
+    || this.emailFormControl.invalid
+    || this.senhaFormControl.invalid
+    || this.confirmaSenhaFormControl.invalid
+    || this.logradouroFormControl.invalid
+    || this.numeroFormControl.invalid
+    || this.bairroFormControl.invalid
+    || this.cepFormControl.invalid
+    || !this.isPoliticasAceitas;
+  }
 
   isPrestador() {
     return this.tipoConta === TipoPessoa.PRESTADOR_AUTONOMO;
@@ -87,12 +116,13 @@ export class CadastroContaComponent implements OnInit {
   isSenhasIguais() {
     return this.confirmarSenha === this.usuario.login.senha;
   }
+
   redirect(token?:string) {
     let tokenTrim = '';
-    if(token) {
-       tokenTrim = token.slice(0, token.length/2);
+    if (token) {
+      tokenTrim = token.slice(0, token.length / 2);
     }
-    this.router.navigate(['/cadastro-sucesso'], {queryParams: {token: tokenTrim}});
+    this.router.navigate(['/cadastro-sucesso'], { queryParams: { token: tokenTrim } });
   }
 
   disableButton() {
@@ -102,33 +132,30 @@ export class CadastroContaComponent implements OnInit {
   cadastrarUsuario(usuario:Usuario) {
     this.disableButton();
     this.loginService.cadastrarUsuario(usuario)
-    .subscribe(res => {
+      .subscribe((res) => {
         this.redirect(res);
       }, (err) => {
-        console.log(err);
-        this.errorMessage = "";
-        this.erroRequisicao = typeof err === "string" ? err : "ERRO_REQUISICAO";
+        this.errorMessage = '';
+        this.erroRequisicao = typeof err === 'string' ? err : 'ERRO_REQUISICAO';
       });
   }
+
   cadastrarConta(usuario:Usuario) {
-    if(!this.isSenhasIguais()) { 
-      this.errorMessage = 'MENSAGEM_ERRO_SENHA'; return; 
+    if (!this.isSenhasIguais()) {
+      this.errorMessage = 'MENSAGEM_ERRO_SENHA';
+      return;
     }
     this.cadastrarUsuario(usuario);
   }
 
   openDialog() {
     const politicaRef = this.politica.open(PoliticaPrivacidadeComponent);
-
-    politicaRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    politicaRef.afterClosed().subscribe((result) => {
+      console.info(`Dialog result: ${result}`);
     });
   }
 
-  
-
   toggleCheckBoxPoliticas() {
-      this.isPoliticasAceitas = !this.isPoliticasAceitas;
+    this.isPoliticasAceitas = !this.isPoliticasAceitas;
   }
-  
 }

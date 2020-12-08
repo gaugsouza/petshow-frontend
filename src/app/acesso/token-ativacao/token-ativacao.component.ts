@@ -5,11 +5,12 @@ import { LoginService } from 'src/app/servicos/login.service';
 @Component({
   selector: 'app-token-ativacao',
   templateUrl: './token-ativacao.component.html',
-  styleUrls: ['./token-ativacao.component.scss']
+  styleUrls: ['./token-ativacao.component.scss'],
 })
 export class TokenAtivacaoComponent implements OnInit {
   possuiErros:boolean = false;
-  mensagemErro:string = "";
+
+  mensagemErro:string = '';
 
   constructor(private route:ActivatedRoute,
               private router:Router,
@@ -21,24 +22,22 @@ export class TokenAtivacaoComponent implements OnInit {
 
   ativaConta() {
     this.route.queryParams.subscribe((params:Params) => {
-      let token:string = params.token;
-      if(!token) {
+      const { token } = params;
+      if (!token) {
         this.possuiErros = true;
         return;
       }
-      this.service.ativaConta(token).subscribe(res => {
+      this.service.ativaConta(token).subscribe(() => {
         this.redirect();
       },
-      err => {
+      (err) => {
         this.possuiErros = true;
         this.mensagemErro = typeof err === 'string' ? err : 'ERRO_ATIVACAO_TOKEN';
       });
-      
     });
   }
 
   redirect() {
-    this.router.navigate(['/login'], {queryParams: {ativo: true}});
+    this.router.navigate(['/login'], { queryParams: { ativo: true } });
   }
-
 }

@@ -6,35 +6,35 @@ import { ConsultaEstadosService, Estado, Cidade } from 'src/app/servicos/consult
 @Component({
   selector: 'app-endereco-dialog',
   templateUrl: './endereco-dialog.component.html',
-  styleUrls: ['./endereco-dialog.component.scss']
+  styleUrls: ['./endereco-dialog.component.scss'],
 })
 export class EnderecoDialogComponent implements OnInit {
-
   logradouroFormControl = new FormControl('', [
-    Validators.required
+    Validators.required,
   ]);
 
   numeroFormControl = new FormControl('', [
-    Validators.required
+    Validators.required,
   ]);
 
   cepFormControl = new FormControl('', [
-    Validators.required
+    Validators.required,
   ]);
 
   bairroFormControl = new FormControl('', [
-    Validators.required
+    Validators.required,
   ]);
 
   cidadeFormControl = new FormControl('', [
-    Validators.required
+    Validators.required,
   ]);
 
   estadoFormControl = new FormControl('', [
-    Validators.required
+    Validators.required,
   ]);
 
   estados: Estado[];
+
   cidades: Cidade[];
 
   constructor(public dialogRef:MatDialogRef<EnderecoDialogComponent>,
@@ -42,26 +42,23 @@ export class EnderecoDialogComponent implements OnInit {
               private consultaEstadoService:ConsultaEstadosService) { }
 
   ngOnInit(): void {
-    this.consultaEstadoService.getEstados().subscribe(el => {
+    this.consultaEstadoService.getEstados().subscribe((el) => {
       this.estados = JSON.parse(el);
     });
     this.carregarCidades(this.data.estado);
   }
 
   carregarCidades(uf:string) {
-    console.log(uf);
-    this.consultaEstadoService.getCidades(uf).subscribe(el => {
+    this.consultaEstadoService.getCidades(uf).subscribe((el) => {
       this.cidades = JSON.parse(el);
-    })
+    });
   }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  
-
   hasErrors() {
     return this.logradouroFormControl.hasError('required') || this.numeroFormControl.hasError('required') || this.cepFormControl.hasError('required') || this.bairroFormControl.hasError('required');
   }
-
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit,Input, Output, EventEmitter, Inject } from '@angular/core';
+import {
+  Component, OnInit, Input, Output, EventEmitter, Inject,
+} from '@angular/core';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { PageEvent } from '@angular/material/paginator';
 import { ServicosService } from 'src/app/servicos/servicos.service';
@@ -10,17 +12,21 @@ import { NotificationService } from 'src/app/servicos/notification.service';
 @Component({
   selector: 'app-servicos',
   templateUrl: './servicos.component.html',
-  styleUrls: ['./servicos.component.scss']
+  styleUrls: ['./servicos.component.scss'],
 })
 export class ServicosComponent implements OnInit {
   @Input('prestador-id') prestadorId: number;
+
   @Output('remover-servico') removerServico = new EventEmitter<ServicoDetalhado>();
 
   servicosDetalhados: ServicoDetalhado[];
 
   pageEvent: PageEvent;
+
   quantidadeTotal:number;
+
   quantidadeItens:number = 5;
+
   paginaAtual:number = 0;
 
   constructor(private servicosService: ServicosService,
@@ -30,36 +36,33 @@ export class ServicosComponent implements OnInit {
   ngOnInit(): void {
     this.servicoNotification.notify({});
     this.servicoNotification.obs.subscribe(() => {
-      this.buscarServicosDetalhadosPorPrestador(this.prestadorId, this.paginaAtual, this.quantidadeItens);
+      this.buscarServicosDetalhadosPorPrestador(this.prestadorId, this.paginaAtual,
+        this.quantidadeItens);
     });
   }
 
   removeServico(servico:ServicoDetalhado) {
-    console.log(servico);
     this.removerServico.emit(servico);
   }
 
-  buscarServicosDetalhadosPorPrestador(prestadorId:number, pagina:number, quantidadeItens:number){
+  buscarServicosDetalhadosPorPrestador(prestadorId:number, pagina:number, quantidadeItens:number) {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
-      this.servicosService.buscarServicosDetalhadosPorPrestador(prestadorId, pagina, quantidadeItens, token)
-        .subscribe(paginaServicosDetalhados => {
-          let objetoPaginado:ObjetoPaginado = paginaServicosDetalhados;
-
+      this.servicosService.buscarServicosDetalhadosPorPrestador(prestadorId, pagina,
+        quantidadeItens, token)
+        .subscribe((paginaServicosDetalhados) => {
+          const objetoPaginado:ObjetoPaginado = paginaServicosDetalhados;
           this.servicosDetalhados = objetoPaginado.content;
-
-          this.quantidadeTotal = objetoPaginado.totalElements
+          this.quantidadeTotal = objetoPaginado.totalElements;
           this.paginaAtual = objetoPaginado.pageable.pageNumber;
           this.quantidadeItens = objetoPaginado.size;
         });
     });
   }
 
-  eventoPagina(event: PageEvent){
-    let pagina = event.pageIndex;
-    let quantidadeItens = event.pageSize;
-    
+  eventoPagina(event: PageEvent) {
+    const pagina = event.pageIndex;
+    const quantidadeItens = event.pageSize;
     this.buscarServicosDetalhadosPorPrestador(this.prestadorId, pagina, quantidadeItens);
-
     return event;
   }
 }

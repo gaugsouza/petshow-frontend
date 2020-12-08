@@ -19,3 +19,4 @@ app.post('/server/logger', (_, res) => {
 });
 
 app.listen(process.env.PORT || 4200);
+console.info(`Aplicação rodando na porta ${process.env.PORT || 4200}`);

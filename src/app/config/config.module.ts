@@ -7,8 +7,6 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NgxMaskModule } from 'ngx-mask';
 import { AngularValidateBrLibModule } from 'angular-validate-br';
 
-
-
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -21,7 +19,7 @@ export function HttpLoaderFactory(http:HttpClient) {
       serverLogLevel: NgxLoggerLevel.ERROR,
       disableConsoleLogging: true,
       httpResponseType: 'json',
-      timestampFormat: "shortDate",
+      timestampFormat: 'shortDate',
       serverLoggingUrl: '/server/logger',
     }),
     NgxMaskModule.forRoot(),
@@ -31,21 +29,17 @@ export function HttpLoaderFactory(http:HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
       },
-      defaultLanguage: 'pt'
+      defaultLanguage: 'pt',
     }),
-    AngularValidateBrLibModule
+    AngularValidateBrLibModule,
   ],
   exports: [
     TranslateModule,
     NgxMaskModule,
     LoggerModule,
-    AngularValidateBrLibModule
-  ]
+    AngularValidateBrLibModule,
+  ],
 })
+
 export class ConfigModule {
-  // static forRoot() {
-  //   return {
-  //     ngModule: ConfigModule
-  //   }
-  // }  
 }

@@ -1,4 +1,4 @@
 export interface TipoAnimal {
-    id: number, 
+    id: number,
     nome: string;
 }
