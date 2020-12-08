@@ -5,20 +5,17 @@ const bodyParser = require('body-parser');
 const app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
-// Serve only the static files form the dist directory
-app.use(express.static(__dirname + '/dist/petshow-frontend'));
+app.use(bodyParser.urlencoded({ extended:true }));
 
-app.get('/*', function(req,res) {
-    
-res.sendFile(path.join(__dirname+'/dist/petshow-frontend/index.html'));
+const pathName = `${__dirname}/dist/petshow-frontend`;
+app.use(express.static(pathName));
+
+app.get('/*', (_, res) => {
+    res.sendFile(path.join(`${pathName}/index.html`));
 });
 
-app.post('/server/logger', function(req, res) {
-    console.log('request', req.body);
+app.post('/server/logger', (_, res) => {
     res.status(200).send();
-    // console.log('respnse', res.body);
 });
-// Start the app by listening on the default Heroku port
+
 app.listen(process.env.PORT || 4200);
-console.info(`Aplicação rodando na porta ${process.env.PORT || 8080}`);
