@@ -31,6 +31,7 @@
     "@angular/service-worker": "~11.0.0-next.4",
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^6.0.0",
+    "angular-validate-br": "0.1.0-beta",
     "express": "^4.17.1",
     "http-server": "^0.12.3",
     "material-design-icons": "^3.0.1",

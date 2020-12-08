@@ -17,8 +17,7 @@ import { PoliticaPrivacidadeComponent } from './cadastro/politica-privacidade/po
 import { MatDialogModule } from '@angular/material/dialog';
 import { SucessoCadastroComponent } from './sucesso-cadastro/sucesso-cadastro.component';
 import { TokenAtivacaoComponent } from './token-ativacao/token-ativacao.component';
-
-
+import { BrowserModule } from '@angular/platform-browser';
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -35,6 +34,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserModule,
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,

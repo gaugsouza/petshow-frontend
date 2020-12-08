@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NgxMaskModule } from 'ngx-mask';
+import { AngularValidateBrLibModule } from 'angular-validate-br';
 
 
 
@@ -32,11 +33,13 @@ export function HttpLoaderFactory(http:HttpClient) {
       },
       defaultLanguage: 'pt'
     }),
+    AngularValidateBrLibModule
   ],
   exports: [
     TranslateModule,
     NgxMaskModule,
-    LoggerModule
+    LoggerModule,
+    AngularValidateBrLibModule
   ]
 })
 export class ConfigModule {

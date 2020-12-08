@@ -9,6 +9,7 @@ import { cliente, prestador } from 'src/app/util/conta-model';
 import { cpfFormControl, emailFormControl, nomeFormControl, senhaFormControl, telefoneFormControl } from 'src/app/util/form-controls';
 import { MatDialog } from '@angular/material/dialog';
 import { PoliticaPrivacidadeComponent } from 'src/app/acesso/cadastro/politica-privacidade/politica-privacidade.component';
+import { ValidateBrService } from 'angular-validate-br';
 
 @Component({
   selector: 'app-cadastro-conta',
@@ -20,7 +21,6 @@ export class CadastroContaComponent implements OnInit {
   usuario:Usuario;
   disableSend:boolean = false;
   telefoneFormControl = telefoneFormControl;
-  cpfFormControl = cpfFormControl;
   nomeFormControl = nomeFormControl;
   emailFormControl = emailFormControl;
   senhaFormControl = senhaFormControl;
@@ -34,7 +34,8 @@ export class CadastroContaComponent implements OnInit {
   cepFormControl = new FormControl('', [Validators.required]);
   estadoFormControl = new FormControl('', [Validators.required]);
   cidadeFormControl = new FormControl('', [Validators.required]);
-
+  cpfFormControl;
+  
   erroRequisicao:string;
   submitted = false;
 
@@ -49,8 +50,14 @@ export class CadastroContaComponent implements OnInit {
   constructor(private loginService:LoginService,
               private consultaEstadoService:ConsultaEstadosService,
               private router:Router,
-              private politica: MatDialog
-              ) { }
+              private politica: MatDialog,
+              private validateBrService:ValidateBrService
+              ) { 
+    this.cpfFormControl = new FormControl('', [
+      Validators.required,
+      this.validateBrService.cpf
+    ])
+  }
 
   ngOnInit(): void {
     this.usuario = this.isPrestador() ? prestador : cliente;
