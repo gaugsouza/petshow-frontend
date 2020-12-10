@@ -4,3 +4,6 @@
 /.nyc_output/
 /instrumented/
 /dist/
+*.json
+*.spec.ts
+/src/app/mocks/

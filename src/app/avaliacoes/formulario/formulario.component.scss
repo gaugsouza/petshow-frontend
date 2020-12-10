@@ -1,37 +1,38 @@
-@import '../../../global.scss';
+@import "../../../global.scss";
 
 .nova-avaliacao {
-    margin-top: 40px;
-    &__titulo {
-        @media screen and (max-width:$tablet-width) {
-            text-align: center;
-        }
-    }
-    &__cat {
-        display: grid;
-        grid-template-columns: 180px 1fr;
-        align-items: center;
+  margin-top: 40px;
 
-        @media screen and (max-width:$tablet-width) {
-            grid-template-columns: 1fr;
-            justify-items: center;
-        }
+  &__titulo {
+    @media screen and (max-width: $tablet-width) {
+      text-align: center;
     }
-  
-    & mat-icon {
-        cursor: pointer;
-        font-family: 'Material Icons' !important;
+  }
+
+  &__cat {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    align-items: center;
+
+    @media screen and (max-width: $tablet-width) {
+      grid-template-columns: 1fr;
+      justify-items: center;
     }
+  }
+
+  & mat-icon {
+    cursor: pointer;
+    font-family: "Material Icons" !important;
+  }
 }
 
-
-.mat-flat-button{
-    margin: 5px;
+.mat-flat-button {
+  margin: 5px;
 }
 
-.botoes{
-    @media screen and (max-width:$tablet-width) {
-        display: flex;
-        justify-content: center;
-    }
+.botoes {
+  @media screen and (max-width: $tablet-width) {
+    display: flex;
+    justify-content: center;
+  }
 }

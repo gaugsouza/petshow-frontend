@@ -1,31 +1,41 @@
-import { Component, OnInit, Input, ChangeDetectorRef, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+import {
+  Component, OnInit, Input, ChangeDetectorRef, ChangeDetectionStrategy, Output, EventEmitter,
+} from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Usuario } from 'src/app/interfaces/usuario';
-import { FormControl, Validators } from '@angular/forms';
-import {telefoneFormControl, cpfFormControl, nomeFormControl, emailFormControl, senhaFormControl} from '../../../util/form-controls';
+
 @Component({
   selector: 'app-info-pessoal-cadastro',
   templateUrl: './info-pessoal-cadastro.component.html',
   styleUrls: ['./info-pessoal-cadastro.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InfoPessoalCadastroComponent implements OnInit {
   @Input('usuario') usuario:Usuario;
+
   @Input('confirma-senha') senhaRepetida:string;
+
   @Output('repete-senha') repeteSenha = new EventEmitter<string>();
 
-  @Input('telefone-control') telefoneFormControl;
-  @Input('cpf-control') cpfFormControl;
-  @Input('nome-control') nomeFormControl;
-  @Input('email-control') emailFormControl;
-  @Input('senha-control') senhaFormControl;
-  @Input('confirma-senha-control') confirmaSenhaFormControl;
+  @Input('telefone-control') telefoneFormControl:FormControl;
+
+  @Input('cpf-control') cpfFormControl:FormControl;
+
+  @Input('nome-control') nomeFormControl:FormControl;
+
+  @Input('email-control') emailFormControl:FormControl;
+
+  @Input('senha-control') senhaFormControl:FormControl;
+
+  @Input('confirma-senha-control') confirmaSenhaFormControl:FormControl;
 
   constructor(private cdRef:ChangeDetectorRef) { }
 
   ngAfterViewInit() {
     this.cdRef.detectChanges();
   }
-  ngOnInit(): void {
+
+  ngOnInit =(): void => {
   }
 
   confirmarSenha(senha:string) {
@@ -35,5 +45,4 @@ export class InfoPessoalCadastroComponent implements OnInit {
   senhaPossuiErros():boolean {
     return this.senhaFormControl.hasError('required') || this.senhaFormControl.hasError('min');
   }
-
 }

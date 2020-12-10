@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LocalStorageService } from './local-storage.service';
-import { USER_TOKEN } from '../util/constantes';
-import { Login } from '../interfaces/login';
-import { Usuario } from '../interfaces/usuario';
-import { HttpHandlerService } from './http-handler.service';
+import { LocalStorageService } from 'src/app/servicos/local-storage.service';
+import { USER_TOKEN } from 'src/app/util/constantes';
+import { Login } from 'src/app/interfaces/login';
+import { Usuario } from 'src/app/interfaces/usuario';
+import { HttpHandlerService } from 'src/app/servicos/http-handler.service';
 import { ACESSO_SERVICE_URL } from 'src/app/util/url';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService {
-  // public ACESSO_BASE_URL = `${environment.API_URL}/acesso`;
   public isLogado:boolean = false;
 
   constructor(private httpHandler:HttpHandlerService,
-              private storageService:LocalStorageService){}
+              private storageService:LocalStorageService) {}
 
   realizaLogin(login:Login):Observable<string> {
     const URL = `${ACESSO_SERVICE_URL}/login`;

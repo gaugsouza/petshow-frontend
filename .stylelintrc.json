@@ -3,5 +3,13 @@
     "plugins": [
         "stylelint-scss",
         "stylelint-order"
-    ]
+    ],
+    "rules": {
+        "no-empty-source": null,
+        "length-zero-no-unit": null,
+        "selector-type-no-unknown": null,
+        "max-nesting-depth": null,
+        "font-family-no-missing-generic-family-keyword": null,
+        "selector-pseudo-element-no-unknown": null
+    }
 }

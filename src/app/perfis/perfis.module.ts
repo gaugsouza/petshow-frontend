@@ -1,47 +1,47 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { PerfilPrestadorComponent } from './perfil-prestador/perfil-prestador.component';
-import { PerfilComponent } from './perfil/perfil.component';
-import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
-import { ServicosComponent } from './servicos/servicos.component';
-import { FormularioServicoComponent } from './formulario-servico/formulario-servico.component';
-import { InformacoesPessoaisComponent } from './informacoes-pessoais/informacoes-pessoais.component';
-import { EnderecoComponent } from './endereco/endereco.component';
-import { EnderecoDialogComponent } from './endereco-dialog/endereco-dialog.component';
-import { AnimalEstimacaoComponent } from './animal-estimacao/animal-estimacao.component';
-import { FormularioAnimalComponent } from './formulario-animal/formulario-animal.component';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { PerfilPrestadorComponent } from 'src/app/perfis/perfil-prestador/perfil-prestador.component';
+import { PerfilComponent } from 'src/app/perfis/perfil/perfil.component';
+import { PerfilUsuarioComponent } from 'src/app/perfis/perfil-usuario/perfil-usuario.component';
+import { ServicosComponent } from 'src/app/perfis/servicos/servicos.component';
+import { FormularioServicoComponent } from 'src/app/perfis/formulario-servico/formulario-servico.component';
+import { InformacoesPessoaisComponent } from 'src/app/perfis/informacoes-pessoais/informacoes-pessoais.component';
+import { EnderecoComponent } from 'src/app/perfis/endereco/endereco.component';
+import { EnderecoDialogComponent } from 'src/app/perfis/endereco-dialog/endereco-dialog.component';
+import { AnimalEstimacaoComponent } from 'src/app/perfis/animal-estimacao/animal-estimacao.component';
+import { FormularioAnimalComponent } from 'src/app/perfis/formulario-animal/formulario-animal.component';
 import { HttpClient } from '@angular/common/http';
-import { NgxMaskModule } from 'ngx-mask';
-import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatListModule } from '@angular/material/list'; 
+import { MatListModule } from '@angular/material/list';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { ConfigModule } from '../config/config.module';
+import { ConfigModule } from 'src/app/config/config.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MensagemAtivacaoComponent } from './mensagem-ativacao/mensagem-ativacao.component';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MensagemAtivacaoComponent } from 'src/app/perfis/mensagem-ativacao/mensagem-ativacao.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
 }
+
 @NgModule({
   declarations: [
-    PerfilPrestadorComponent, 
-    PerfilComponent, 
-    PerfilUsuarioComponent, 
-    ServicosComponent, 
-    FormularioServicoComponent, 
-    InformacoesPessoaisComponent, 
-    EnderecoComponent, 
-    EnderecoDialogComponent, 
-    AnimalEstimacaoComponent, 
-    FormularioAnimalComponent, MensagemAtivacaoComponent
+    PerfilPrestadorComponent,
+    PerfilComponent,
+    PerfilUsuarioComponent,
+    ServicosComponent,
+    FormularioServicoComponent,
+    InformacoesPessoaisComponent,
+    EnderecoComponent,
+    EnderecoDialogComponent,
+    AnimalEstimacaoComponent,
+    FormularioAnimalComponent,
+    MensagemAtivacaoComponent,
   ],
   imports: [
     CommonModule,
@@ -56,19 +56,19 @@ export function HttpLoaderFactory(http:HttpClient) {
     ReactiveFormsModule,
     ConfigModule,
     MatPaginatorModule,
-    MatTooltipModule
+    MatTooltipModule,
   ],
   exports: [
-    PerfilPrestadorComponent, 
-    PerfilComponent, 
-    PerfilUsuarioComponent, 
-    ServicosComponent, 
-    FormularioServicoComponent, 
-    InformacoesPessoaisComponent, 
-    EnderecoComponent, 
-    EnderecoDialogComponent, 
-    AnimalEstimacaoComponent, 
-    FormularioAnimalComponent
-  ]
+    PerfilPrestadorComponent,
+    PerfilComponent,
+    PerfilUsuarioComponent,
+    ServicosComponent,
+    FormularioServicoComponent,
+    InformacoesPessoaisComponent,
+    EnderecoComponent,
+    EnderecoDialogComponent,
+    AnimalEstimacaoComponent,
+    FormularioAnimalComponent,
+  ],
 })
 export class PerfisModule { }
