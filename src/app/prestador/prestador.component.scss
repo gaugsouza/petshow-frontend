@@ -1,31 +1,30 @@
-@import '../../global.scss';
+@import "../../global.scss";
 
 .topo {
-    font-size: 28px;
-    display: flex;
-    align-items: center;
-    height: auto;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  height: auto;
 }
 
 .servico {
-    & * {
-        font-size: 20px!important;
-    }
 
-    & > * {
-        display: flex;
-        align-items: center;
-    }
+  & * {
+    font-size: 20px !important;
+  }
+
+  & > * {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .servico-lista {
-    // display: flex;
-    // flex-direction: row;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
 
-    @media screen and (max-width: $tablet-width){
-        grid-template-columns: 1fr;
-    }
+  @media screen and (max-width: $tablet-width) {
+    grid-template-columns: 1fr;
+  }
 }

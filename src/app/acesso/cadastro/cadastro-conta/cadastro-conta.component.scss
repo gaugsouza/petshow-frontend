@@ -1,26 +1,26 @@
-@import '../../../../global.scss';
+@import "../../../../global.scss";
 
 .cadastro-conta {
-    padding: 0 25%;
-    margin: 0 auto;
+  padding: 0 25%;
+  margin: 0 auto;
 
-    @media screen and (max-width: $tablet-width){
-        padding: 0% 10%;
-        width:90%;
-    }
+  @media screen and (max-width: $tablet-width) {
+    padding: 0% 10%;
+    width: 90%;
+  }
 }
 
-.form__button-container{
-    margin-top: 2%;
+.form__button-container {
+  margin-top: 2%;
 
-    .mat-flat-button{
-        @media screen and (max-width: $tablet-width){
-            font-size: 18px !important;
-            height: 35px !important;
-        }
+  .mat-flat-button {
+    @media screen and (max-width: $tablet-width) {
+      font-size: 18px !important;
+      height: 35px !important;
     }
+  }
 }
 
-*{
-    font-size: 16px;
+* {
+  font-size: 16px;
 }

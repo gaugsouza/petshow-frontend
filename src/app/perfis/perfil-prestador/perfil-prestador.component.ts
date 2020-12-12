@@ -11,14 +11,19 @@ import { NotificationService } from 'src/app/servicos/notification.service';
 @Component({
   selector: 'app-perfil-prestador',
   templateUrl: './perfil-prestador.component.html',
-  styleUrls: ['./perfil-prestador.component.scss']
+  styleUrls: ['./perfil-prestador.component.scss'],
 })
 export class PerfilPrestadorComponent implements OnInit {
   servico:ServicoDetalhado = {}
+
   usuario:Prestador;
+
   usuarioRequest:Prestador;
+
   isFormVisivel:Boolean = false;
+
   erroRequisicao:string;
+
   mensagemSucesso:string;
 
   constructor(private prestadorService:PrestadorService,
@@ -33,17 +38,17 @@ export class PerfilPrestadorComponent implements OnInit {
 
   getUsuario() {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
-      let id = this.jwtHelper.recuperaIdToken(token);
+      const id = this.jwtHelper.recuperaIdToken(token);
       this.prestadorService.buscaPrestador(id, token)
-      .subscribe((usuario:Prestador) => {
-        this.usuario = usuario;
-      },
-      err => {
-        this.handleError(err);
-      });
+        .subscribe((usuario:Prestador) => {
+          this.usuario = usuario;
+        },
+        (err) => {
+          this.handleError(err);
+        });
     },
-    err =>  {
-      this.handleError(err)
+    (err) => {
+      this.handleError(err);
     });
   }
 
@@ -55,17 +60,18 @@ export class PerfilPrestadorComponent implements OnInit {
 
   atualizaUsuario() {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
-      this.prestadorService.editaPrestador(this.usuarioRequest.id, this.usuarioRequest, token).subscribe(res => {
-        this.getUsuario();
-        this.limpaServico();
-        this.ocultaFormulario();
-        this.usuarioRequest = null;
-        this.mensagemSucesso = "Operação realizada com sucesso"
-      },
-      err => {
-        this.handleError(err);
-      })
-    })
+      this.prestadorService.editaPrestador(this.usuarioRequest.id, this.usuarioRequest, token)
+        .subscribe(() => {
+          this.getUsuario();
+          this.limpaServico();
+          this.ocultaFormulario();
+          this.usuarioRequest = null;
+          this.mensagemSucesso = 'Operação realizada com sucesso';
+        },
+        (err) => {
+          this.handleError(err);
+        });
+    });
   }
 
   ocultaFormulario() {
@@ -76,29 +82,30 @@ export class PerfilPrestadorComponent implements OnInit {
     this.erroRequisicao = typeof err === 'string' ? err : 'ERRO_REQUISICAO';
   }
 
-  adicionaServico({...servico}:ServicoDetalhado): void {
+  adicionaServico({ ...servico }:ServicoDetalhado): void {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
-      servico.prestador = this.usuario;
-      this.prestadorService.adicionarServico(this.usuario.id, servico, token).subscribe(el => {
-        this.limpaServico();
-        this.getUsuario();
-        this.isFormVisivel = false;
-        this.servicoNotification.notify(el);
-      },
-      err => {
-        this.handleError(err);
-      })
-    })
+      const novoServico = { ...servico, prestador: this.usuario };
+      this.prestadorService.adicionarServico(this.usuario.id, novoServico, token)
+        .subscribe((el) => {
+          this.limpaServico();
+          this.getUsuario();
+          this.isFormVisivel = false;
+          this.servicoNotification.notify(el);
+        },
+        (err) => {
+          this.handleError(err);
+        });
+    });
   }
 
   atualizaEndereco(endereco:Endereco):void {
-    this.usuarioRequest = {...this.usuario};
+    this.usuarioRequest = { ...this.usuario };
     this.usuarioRequest.endereco = endereco;
     this.atualizaUsuario();
   }
 
   alteraTelefone(telefone:string):void {
-    this.usuarioRequest = {...this.usuario};
+    this.usuarioRequest = { ...this.usuario };
     this.usuarioRequest.telefone = telefone;
     this.atualizaUsuario();
   }
@@ -109,17 +116,17 @@ export class PerfilPrestadorComponent implements OnInit {
   }
 
   limpaServico() {
-    this.servico = {}
+    this.servico = {};
   }
-  
+
   removeServico(servico:ServicoDetalhado) {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
-      this.prestadorService.removeServico(this.usuario.id, servico.id, token).subscribe(()=> {
+      this.prestadorService.removeServico(this.usuario.id, servico.id, token).subscribe(() => {
         this.getUsuario();
       });
     },
-    err => {
+    (err) => {
       this.handleError(err);
-    })
+    });
   }
 }

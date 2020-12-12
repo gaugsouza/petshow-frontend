@@ -1,11 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { Injectable } from '@angular/core';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LocalStorageService {
-
   constructor(private localStorage:LocalStorage) { }
 
   setItem(key, value) {
