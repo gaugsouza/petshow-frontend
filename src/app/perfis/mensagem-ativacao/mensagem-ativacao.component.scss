@@ -1,22 +1,20 @@
-@import 'src/global.scss';
+@import "src/global.scss";
 
 .mensagem-ativacao {
-    border: 2px solid aliceblue;
-    text-align: center;
-    width: 40%;
-    position: absolute;
-    background: white;
-    left: 0;
-    right: 0;
-    margin: auto;
-    z-index: 1;
-    top: 64px;
-    box-shadow: 1px 1px 1px aliceblue;
-    cursor: pointer;
-    
-    @media screen and (max-width: $tablet-width) {
-        margin-top: 5%;
-        width:100%;
-    }
-    
+  border: 2px solid aliceblue;
+  text-align: center;
+  width: 40%;
+  position: absolute;
+  background: white;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 1;
+  top: 64px;
+  box-shadow: 1px 1px 1px aliceblue;
+  cursor: pointer;
+
+  @media screen and (max-width: $tablet-width) {
+    width: 100%;
+  }
 }

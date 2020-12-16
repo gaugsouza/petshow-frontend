@@ -1,5 +1,5 @@
 export interface TipoAnimal {
-    id: number, 
+    id: number,
     nome: string;
     pelagem?:string,
     porte?:string,

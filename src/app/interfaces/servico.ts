@@ -1,4 +1,4 @@
 export interface Servico {
-    id?: number, 
+    id?: number,
     nome: string
 }

@@ -5,8 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NgxMaskModule } from 'ngx-mask';
-
-
+import { AngularValidateBrLibModule } from 'angular-validate-br';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -20,7 +19,7 @@ export function HttpLoaderFactory(http:HttpClient) {
       serverLogLevel: NgxLoggerLevel.ERROR,
       disableConsoleLogging: true,
       httpResponseType: 'json',
-      timestampFormat: "shortDate",
+      timestampFormat: 'shortDate',
       serverLoggingUrl: '/server/logger',
     }),
     NgxMaskModule.forRoot(),
@@ -30,19 +29,17 @@ export function HttpLoaderFactory(http:HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
       },
-      defaultLanguage: 'pt'
+      defaultLanguage: 'pt',
     }),
+    AngularValidateBrLibModule,
   ],
   exports: [
     TranslateModule,
     NgxMaskModule,
-    LoggerModule
-  ]
+    LoggerModule,
+    AngularValidateBrLibModule,
+  ],
 })
+
 export class ConfigModule {
-  // static forRoot() {
-  //   return {
-  //     ngModule: ConfigModule
-  //   }
-  // }  
 }

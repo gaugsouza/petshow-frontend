@@ -1,54 +1,59 @@
-@import '../../../global.scss';
+@import "../../../global.scss";
 $green-bg:#45c145;
-$text-color: #FFF;
+$text-color: #fff;
 
 .page-section-title {
-    font-size: 38px;
-    text-align:center !important;
+  font-size: 38px;
+  text-align: center !important;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
-.mensagem-ativo{
-    background: $green-bg;
-    color: $text-color;
-    text-align: center;
-    padding: 6px 5px;
-    border: 1px solid darken($color: $green-bg, $amount: 10);
-    border-radius: 5px;
-    & > p {
-        margin: 0;
-    }
+.mensagem-ativo {
+  background: $green-bg;
+  color: $text-color;
+  text-align: center;
+  padding: 6px 5px;
+  border: 1px solid darken($color: $green-bg, $amount: 10);
+  border-radius: 5px;
+
+  & > p {
+    margin: 0;
+  }
 }
 
 .login-form {
-    width: 30%;
-    margin: 0 auto;
-    padding: 4% 2%;
+  width: 30%;
+  margin: 0 auto;
+  padding: 4% 2%;
+
+  @media screen and (max-width: $tablet-width) {
+    width: 100%;
+    padding: 10px 0px;
+
     &__form {
-        display: flex;
-        flex-flow: column;
-        margin: 0 auto;
-        font-size:18px;
+      width: 90%;
+      margin: 0 auto;
+      font-size: 18px;
     }
-    @media screen and (max-width: $tablet-width){
-        width:100%;
-        padding: 10px 0px;
-        &__form {
-            width: 90%;
-            margin: 0 auto;
-            font-size:18px;
-        }
-    }
+  }
+
+  &__form {
+    display: flex;
+    flex-flow: column;
+    margin: 0 auto;
+    font-size: 18px;
+  }
 }
-.form__button-container{
-    text-align:center;
-    
+
+.form__button-container {
+  text-align: center;
 }
-.mat-flat-button{
-    font-size:25px !important;
-    height: 45px !important;
+
+.mat-flat-button {
+  font-size: 25px !important;
+  height: 45px !important;
 }
