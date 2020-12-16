@@ -24,7 +24,7 @@
 
         <mat-form-field *ngIf="animal.tipo.nome=='cachorro'" appearance="fill">
           <mat-label>{{'PORTE' | translate}}</mat-label>
-            <mat-select [(ngModel)]="animal.porte" [value]="animal.porte" class="form__animal-porte">
+            <mat-select [(ngModel)]="animal.tipo.porte" [value]="animal.tipo.porte" class="form__animal-porte">
               <mat-option value= "pequeno">{{'PEQUENO' | translate}}</mat-option>
               <mat-option value="médio">{{'MEDIO' | translate}}</mat-option>
               <mat-option value="grande">{{'GRANDE' | translate}}</mat-option>
@@ -33,7 +33,7 @@
 
         <mat-form-field *ngIf="animal.tipo.nome=='cachorro'" appearance="fill">
           <mat-label>{{'PELAGEM' | translate}}</mat-label>
-          <mat-select [(ngModel)]="animal.pelagem" [value]="animal.pelagem" class="form__animal-pelagem">
+          <mat-select [(ngModel)]="animal.tipo.pelagem" [value]="animal.tipo.pelagem" class="form__animal-pelagem">
             <mat-option value="curta">{{'CURTA' | translate}}</mat-option>
             <mat-option value = "média">{{'MEDIO' | translate}}</mat-option>
             <mat-option value ="longa">{{'LONGA' | translate}}</mat-option>
