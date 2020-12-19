@@ -17,8 +17,10 @@ export class FormularioServicoComponent implements OnInit {
   @Input() servico: ServicoDetalhado = {
     preco: 0.0,
     tipo: BANHO,
+    animaisAceitos: { id: 2, nome: 'GATO' },
   };
 
+  public animaisAceitosVetor = [];
   servicos:Servico[];
 
   @Output('adiciona-servico') adicionaServico = new EventEmitter<ServicoDetalhado>();
@@ -57,6 +59,10 @@ export class FormularioServicoComponent implements OnInit {
     return this.servicos;
   }
 
+  getTiposAnimal() {
+    return this.animaisAceitosVetor;
+  }
+
   constructor(private servicoService:ServicosService) { }
 
   ngOnInit(): void {
@@ -67,4 +73,6 @@ export class FormularioServicoComponent implements OnInit {
       this.servicos = SERVICOS;
     });
   }
+
+
 }

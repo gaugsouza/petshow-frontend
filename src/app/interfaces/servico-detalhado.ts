@@ -1,6 +1,7 @@
 import { Servico } from 'src/app/interfaces/servico';
 import { Avaliacao } from 'src/app/interfaces/avaliacao';
 import { Prestador } from 'src/app/interfaces/prestador';
+import { TipoAnimal } from 'src/app/enum/TipoAnimal';
 
 export interface ServicoDetalhado {
     id?:number,
@@ -9,4 +10,5 @@ export interface ServicoDetalhado {
     prestador?:Prestador,
     avaliacoes?:Avaliacao[]
     descricao?: string,
+    animaisAceitos?: TipoAnimal
 }

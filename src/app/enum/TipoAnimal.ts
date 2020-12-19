@@ -1,6 +1,6 @@
 export interface TipoAnimal {
     id: number,
-    nome: string;
+    nome: string,
     pelagem?:string,
-    porte?:string,
+    porte?:string
 }
