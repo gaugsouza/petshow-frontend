@@ -11,3 +11,4 @@ export const PRESTADOR_SERVICO_DETALHADO = `${PRESTADOR_SERVICE_URL}/idPrestador
 export const AVALIACAO_SERVICE_URL = `${PRESTADOR_SERVICO_DETALHADO}/idServico/avaliacoes`;
 export const SERVICO_AVALIADO_URL = `${SERVICO_DETALHADO_URL}/idServico/avaliacoes`;
 export const CONTA_SERVICE_URL = `${BASE_URL}/conta`;
+export const AGENDAMENTO_URL = `${BASE_URL}/agendamento`;

@@ -28,6 +28,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { NotificationService } from 'src/app/servicos/notification.service';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
+import { AgendamentoComponent } from './agendamento/agendamento.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
     HomeComponent,
     ListaServicosDetalhadosComponent,
     PrestadorComponent,
+    AgendamentoComponent,
   ],
   imports: [
     AcessoModule,
