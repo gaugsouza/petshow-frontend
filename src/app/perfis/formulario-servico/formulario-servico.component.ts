@@ -37,6 +37,8 @@ export class FormularioServicoComponent implements OnInit {
     Validators.required,
   ]);
 
+  constructor(private servicoService:ServicosService) { }
+
   hasErrors() {
     return this.precoFormControl.hasError('required') || this.descricaoFormControl.hasError('minLength');
   }
@@ -56,8 +58,6 @@ export class FormularioServicoComponent implements OnInit {
   getTiposServico() {
     return this.servicos;
   }
-
-  constructor(private servicoService:ServicosService) { }
 
   ngOnInit(): void {
     this.servicoService.getTipos().subscribe((servicos) => {

@@ -7,6 +7,7 @@ import { USER_TOKEN } from 'src/app/util/constantes';
 import { Endereco } from 'src/app/interfaces/endereco';
 import { JwtHelper } from 'src/app/util/jwt-helper';
 import { NotificationService } from 'src/app/servicos/notification.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-perfil-prestador',
@@ -20,7 +21,7 @@ export class PerfilPrestadorComponent implements OnInit {
 
   usuarioRequest:Prestador;
 
-  isFormVisivel:Boolean = false;
+  isFormVisivel:Boolean = true;
 
   erroRequisicao:string;
 
@@ -29,7 +30,8 @@ export class PerfilPrestadorComponent implements OnInit {
   constructor(private prestadorService:PrestadorService,
               private localStorageService:LocalStorageService,
               private jwtHelper: JwtHelper,
-              @Inject('ServicoNotificationService') private servicoNotification: NotificationService<ServicoDetalhado>) { }
+              @Inject('ServicoNotificationService') private servicoNotification: NotificationService<ServicoDetalhado>,
+              private dialog:MatDialog) { }
 
   ngOnInit(): void {
     this.getUsuario();

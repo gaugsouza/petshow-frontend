@@ -1,35 +1,71 @@
 @import "../../../global.scss";
 
 .form {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
+  display: grid;
+  grid-template-areas: 
+    "invisible invisible invisible"
+    "input-tipo input-preco ."
+    "button-container . .";
+  grid-template-columns: repeat(3, 1fr);
   width: 80%;
+  margin: 0 auto;
+  gap: 20px;
 
-  @media screen and (max-width: $tablet-width) {
-    justify-content: center;
-    width: 100%;
+  .invisible {
+    display: block;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+    grid-area: invisible;
+  }
+
+  &__input-tipo {
+    grid-area: input-tipo;
+  }
+
+  &__input-preco {
+    grid-area: input-preco;
   }
 
   &__button-container {
+    grid-area: button-container;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
     align-items: center;
-
-    @media screen and (max-width: $tablet-width) {
-      display: flex;
-      justify-content: center;
-    }
   }
 }
 
-.invisible {
-  display: block;
-  visibility: hidden;
-  height: 0;
-  width: 0;
-}
+// .form {
+//   display: flex;
+//   flex-flow: row wrap;
+//   justify-content: space-around;
+//   width: 80%;
+
+//   @media screen and (max-width: $tablet-width) {
+//     justify-content: center;
+//     width: 100%;
+//   }
+
+//   &__button-container {
+//     display: grid;
+//     grid-template-columns: 1fr 1fr;
+//     gap: 10px;
+//     align-items: center;
+
+//     @media screen and (max-width: $tablet-width) {
+//       display: flex;
+//       justify-content: center;
+//     }
+//   }
+// }
+
+// .invisible {
+//   display: block;
+//   visibility: hidden;
+//   height: 0;
+//   width: 0;
+// }
 
 .page-section-title {
   margin: 15px;
