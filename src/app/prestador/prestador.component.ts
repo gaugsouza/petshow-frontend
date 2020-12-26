@@ -20,17 +20,17 @@ export class PrestadorComponent implements OnInit {
     private prestadorService:PrestadorService) { }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      const idPrestador:number = parseInt(params.idPrestador, 10);
-      if (Number.isNaN(idPrestador)) {
-        this.router.navigate(['/']);
-        return;
-      }
-      this.prestadorService.buscaPrestador(idPrestador).subscribe((prestador) => {
+    const idPrestador:number = +this.route.snapshot.paramMap.get('id');
+    if (!idPrestador || Number.isNaN(idPrestador)) {
+      this.router.navigate(['/']);
+      return;
+    }
+
+    this.prestadorService.buscaPrestador(idPrestador)
+      .subscribe((prestador) => {
         this.carregado = true;
         this.prestador = JSON.parse(prestador);
       });
-    });
   }
 
   /* eslint-disable no-param-reassign */

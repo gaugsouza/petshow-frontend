@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AvaliacaoService } from 'src/app/servicos/avaliacao.service';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { Avaliacao } from 'src/app/interfaces/avaliacao';
@@ -13,6 +13,7 @@ import { DataSharingService } from 'src/app/servicos/data-sharing.service';
 import { PageEvent } from '@angular/material/paginator';
 import { ObjetoPaginado } from 'src/app/interfaces/paginacao';
 import { ContaService } from 'src/app/servicos/conta.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-avaliacao',
@@ -53,6 +54,8 @@ export class AvaliacaoComponent implements OnInit {
 
   paginaAtual:number = 0;
 
+  redirectTo:string = '';
+
   constructor(private route:ActivatedRoute,
               private avaliacaoService:AvaliacaoService,
               private router:Router,
@@ -60,21 +63,22 @@ export class AvaliacaoComponent implements OnInit {
               private usuarioService:UsuarioService,
               private prestadorService:PrestadorService,
               private dataSharing: DataSharingService,
-              private contaService: ContaService) {}
+              private contaService: ContaService,
+              private location:Location) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params:Params) => {
-      this.idServico = parseInt(params.servicoAvaliado, 10);
-      this.idPrestador = parseInt(params.prestador, 10);
-      if (Number.isNaN(this.idServico) || Number.isNaN(this.idPrestador)) {
-        this.router.navigate(['/']);
-        return;
-      }
-      this.preencheServico(this.idServico, this.idPrestador);
-    });
+    this.idServico = +this.route.snapshot.paramMap.get('idServico');
+    this.idPrestador = +this.route.snapshot.paramMap.get('idPrestador');
+    if (!this.idServico || !this.idPrestador
+      || Number.isNaN(this.idServico) || Number.isNaN(this.idPrestador)) {
+      this.router.navigate(['/']);
+      return;
+    }
+    this.preencheServico(this.idServico, this.idPrestador);
     this.dataSharing.isUsuarioLogado.subscribe((isLogado) => {
       this.isLogado = isLogado;
       if (!this.isLogado) {
+        this.redirectTo = `?redirectTo=${this.location.path()}`;
         return;
       }
 
@@ -164,11 +168,13 @@ export class AvaliacaoComponent implements OnInit {
     this.avaliacaoService.buscarAvaliacoesPorServicoDetalhado(idServico, pagina, quantidadeItens)
       .subscribe((paginaAvaliacoes) => {
         const objetoPaginado:ObjetoPaginado = JSON.parse(paginaAvaliacoes);
-        const avaliacoesPaginada = objetoPaginado.content;
-        this.avaliacoes = avaliacoesPaginada;
-        this.quantidadeTotal = objetoPaginado.totalElements;
-        this.paginaAtual = objetoPaginado.pageable.pageNumber;
-        this.quantidadeItens = objetoPaginado.size;
+        const {
+          content = [], totalElements = null, pageable, size = null,
+        } = objetoPaginado || {};
+        this.avaliacoes = content;
+        this.quantidadeTotal = totalElements;
+        this.paginaAtual = (pageable || {}).pageNumber;
+        this.quantidadeItens = size;
       });
   }
 
