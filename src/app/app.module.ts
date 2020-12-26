@@ -28,15 +28,14 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { NotificationService } from 'src/app/servicos/notification.service';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
-import { AgendamentoComponent } from './agendamento/agendamento.component';
+import { AgendamentosModule } from './agendamentos/agendamentos.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ListaServicosDetalhadosComponent,
-    PrestadorComponent,
-    AgendamentoComponent,
+    PrestadorComponent
   ],
   imports: [
     AcessoModule,
@@ -59,6 +58,7 @@ import { AgendamentoComponent } from './agendamento/agendamento.component';
     MatCardModule,
     ConfigModule,
     MatPaginatorModule,
+    AgendamentosModule,
   ],
   providers: [
     JwtHelper,

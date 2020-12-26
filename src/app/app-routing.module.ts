@@ -9,6 +9,7 @@ import { PerfilComponent } from 'src/app/perfis/perfil/perfil.component';
 import { PrestadorComponent } from 'src/app/prestador/prestador.component';
 import { SucessoCadastroComponent } from './acesso/sucesso-cadastro/sucesso-cadastro.component';
 import { TokenAtivacaoComponent } from './acesso/token-ativacao/token-ativacao.component';
+import { AgendamentoComponent } from './agendamento/agendamento.component';
 
 const routes: Routes = [
   { path: 'perfil', component: PerfilComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'prestador', component: PrestadorComponent },
   { path: 'cadastro-sucesso', component: SucessoCadastroComponent },
   { path: 'confirmacao-registro', component: TokenAtivacaoComponent },
+  { path: 'agendamento', component: AgendamentoComponent },
 ];
 
 @NgModule({
