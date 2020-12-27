@@ -60,6 +60,7 @@ export class FormularioServicoComponent implements OnInit {
   }
 
   cancelarOperacao() {
+    this.viewContainerRef.clear();
     this.cancelaOperacao.emit();
   }
 
