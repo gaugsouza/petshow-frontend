@@ -24,6 +24,9 @@ import { ConfigModule } from 'src/app/config/config.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MensagemAtivacaoComponent } from 'src/app/perfis/mensagem-ativacao/mensagem-ativacao.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { CadastroAdicionalComponent } from './cadastro-adicional/cadastro-adicional.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatChipsModule} from '@angular/material/chips';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -42,6 +45,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     AnimalEstimacaoComponent,
     FormularioAnimalComponent,
     MensagemAtivacaoComponent,
+    CadastroAdicionalComponent,
   ],
   imports: [
     CommonModule,
@@ -57,6 +61,8 @@ export function HttpLoaderFactory(http:HttpClient) {
     ConfigModule,
     MatPaginatorModule,
     MatTooltipModule,
+    MatExpansionModule,
+    MatChipsModule,
   ],
   exports: [
     PerfilPrestadorComponent,

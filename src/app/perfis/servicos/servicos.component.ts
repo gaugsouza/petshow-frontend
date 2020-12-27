@@ -34,6 +34,7 @@ export class ServicosComponent implements OnInit {
               @Inject('ServicoNotificationService') private servicoNotification: NotificationService<ServicoDetalhado>) { }
 
   ngOnInit(): void {
+    console.log('asdfgasdg');
     this.servicoNotification.notify({});
     this.servicoNotification.obs.subscribe(() => {
       this.buscarServicosDetalhadosPorPrestador(this.prestadorId, this.paginaAtual,
@@ -51,10 +52,11 @@ export class ServicosComponent implements OnInit {
         quantidadeItens, token)
         .subscribe((paginaServicosDetalhados) => {
           const objetoPaginado:ObjetoPaginado = paginaServicosDetalhados;
-          this.servicosDetalhados = objetoPaginado.content;
-          this.quantidadeTotal = objetoPaginado.totalElements;
-          this.paginaAtual = objetoPaginado.pageable.pageNumber;
-          this.quantidadeItens = objetoPaginado.size;
+          const {content, totalElements, pageable, size} = objetoPaginado || {};
+          this.servicosDetalhados = content;
+          this.quantidadeTotal = totalElements || this.quantidadeTotal;
+          this.paginaAtual = (pageable || {} ).pageNumber || this.paginaAtual;
+          this.quantidadeItens = size || this.quantidadeItens;
         });
     });
   }

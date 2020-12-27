@@ -55,10 +55,15 @@ export class AnimalEstimacaoComponent implements OnInit {
       this.usuarioService.buscarAnimaisEstimacaoPorDono(donoId, pagina, quantidadeItens, token)
         .subscribe((paginaAnimaisEstimacao) => {
           const objetoPaginado:ObjetoPaginado = paginaAnimaisEstimacao;
-          this.animaisEstimacao = objetoPaginado.content;
-          this.quantidadeTotal = objetoPaginado.totalElements;
-          this.paginaAtual = objetoPaginado.pageable.pageNumber;
-          this.quantidadeItens = objetoPaginado.size;
+          // this.animaisEstimacao = objetoPaginado.content;
+          // this.quantidadeTotal = objetoPaginado.totalElements;
+          // this.paginaAtual = objetoPaginado.pageable.pageNumber;
+          // this.quantidadeItens = objetoPaginado.size;
+          const {content, pageable, totalElements, size} = objetoPaginado;
+          this.animaisEstimacao = content;
+          this.quantidadeTotal = totalElements || this.quantidadeTotal;
+          this.paginaAtual = (pageable || {} ).pageNumber || this.paginaAtual;
+          this.quantidadeItens = size || this.quantidadeItens;
         });
     });
   }

@@ -28,6 +28,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { NotificationService } from 'src/app/servicos/notification.service';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
     MatCardModule,
     ConfigModule,
     MatPaginatorModule,
+    MatChipsModule,
   ],
   providers: [
     JwtHelper,

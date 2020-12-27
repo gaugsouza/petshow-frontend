@@ -1,0 +1,25 @@
+<strong>{{adicional.nome || 'Adicional'}}</strong>
+<div class="adicional-form">
+  <mat-form-field>
+    <mat-label>Nome</mat-label>
+    <input matInput [(ngModel)]="adicional.nome" />
+    <!-- <mat-error *ngIf="precoFormControl.hasError('required')">
+      {{'CAMPO_OBRIGATORIO' | translate}}
+    </mat-error> -->
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Descrição</mat-label>
+    <input matInput [(ngModel)]="adicional.descricao" />
+    <!-- <mat-error *ngIf="precoFormControl.hasError('required')">
+      {{'CAMPO_OBRIGATORIO' | translate}}
+    </mat-error> -->
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Preço</mat-label>
+    <input matInput [(ngModel)]="adicional.preco"placeholder="22,00" mask='separator.2'
+    [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ " />
+    <!-- <mat-error *ngIf="precoFormControl.hasError('required')">
+      {{'CAMPO_OBRIGATORIO' | translate}}
+    </mat-error> -->
+</mat-form-field>
+</div>

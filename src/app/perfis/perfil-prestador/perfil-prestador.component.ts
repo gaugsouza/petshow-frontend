@@ -21,7 +21,7 @@ export class PerfilPrestadorComponent implements OnInit {
 
   usuarioRequest:Prestador;
 
-  isFormVisivel:Boolean = true;
+  isFormVisivel:Boolean = false;
 
   erroRequisicao:string;
 
@@ -30,8 +30,7 @@ export class PerfilPrestadorComponent implements OnInit {
   constructor(private prestadorService:PrestadorService,
               private localStorageService:LocalStorageService,
               private jwtHelper: JwtHelper,
-              @Inject('ServicoNotificationService') private servicoNotification: NotificationService<ServicoDetalhado>,
-              private dialog:MatDialog) { }
+              @Inject('ServicoNotificationService') private servicoNotification: NotificationService<ServicoDetalhado>) { }
 
   ngOnInit(): void {
     this.getUsuario();
@@ -125,6 +124,7 @@ export class PerfilPrestadorComponent implements OnInit {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       this.prestadorService.removeServico(this.usuario.id, servico.id, token).subscribe(() => {
         this.getUsuario();
+        this.servicoNotification.notify({});
       });
     },
     (err) => {
