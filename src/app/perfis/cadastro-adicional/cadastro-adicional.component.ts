@@ -6,7 +6,7 @@ import { Adicional } from 'src/app/interfaces/adicional';
   styleUrls: ['./cadastro-adicional.component.scss']
 })
 export class CadastroAdicionalComponent implements OnInit {
-  @Input() adicional:Adicional;
+  @Input() adicional:Adicional = {nome: null, descricao: null, preco: 0.0};
   constructor() { }
 
   ngOnInit(): void {
