@@ -10,7 +10,7 @@ import { SERVICOS } from '../util/tipo-servico';
 })
 export class HomeComponent implements OnInit {
   servicos:Servico[];
-  
+
   constructor(private servicoService: ServicosService) {}
 
   ngOnInit(): void {

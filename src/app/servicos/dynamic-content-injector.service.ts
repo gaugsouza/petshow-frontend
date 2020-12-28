@@ -1,12 +1,13 @@
 import { ComponentFactoryResolver, Injectable, ViewContainerRef } from '@angular/core';
 import { CadastroAdicionalComponent } from 'src/app/perfis/cadastro-adicional/cadastro-adicional.component';
-import { Adicional } from '../interfaces/adicional';
+import { Adicional } from 'src/app/interfaces/adicional';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DynamicContentInjectorService {
   private rootViewComponent:ViewContainerRef;
+
   constructor(private resolver:ComponentFactoryResolver) { }
 
   setViewContainerRef(ref:ViewContainerRef) {

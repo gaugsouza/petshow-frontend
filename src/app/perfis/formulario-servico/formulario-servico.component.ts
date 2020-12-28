@@ -16,14 +16,14 @@ import { Adicional } from 'src/app/interfaces/adicional';
   styleUrls: ['./formulario-servico.component.scss'],
 })
 export class FormularioServicoComponent implements OnInit {
-  @ViewChild('adicionais', { 
-    read: ViewContainerRef 
+  @ViewChild('adicionais', {
+    read: ViewContainerRef,
   }) viewContainerRef: ViewContainerRef;
 
   @Input() servico: ServicoDetalhado = {
     preco: 0.0,
     tipo: null,
-    adicionais: []
+    adicionais: [],
   };
 
   servicos:Servico[];
@@ -44,8 +44,8 @@ export class FormularioServicoComponent implements OnInit {
     Validators.required,
   ]);
 
-  constructor(private servicoService:ServicosService, 
-              private dynamicLoader:DynamicContentInjectorService) { }
+  constructor(private servicoService:ServicosService,
+              private dynamicLoader:DynamicContentInjectorService) {}
 
   hasErrors() {
     return this.precoFormControl.hasError('required') || this.descricaoFormControl.hasError('minLength');
@@ -82,7 +82,9 @@ export class FormularioServicoComponent implements OnInit {
   }
 
   addAdicionalComponent() {
-    let adicional = this.dynamicLoader.addDynamicComponent(({id:null, preco: 0.0, descricao: '', nome: ''}) as Adicional);
+    const adicional = this.dynamicLoader.addDynamicComponent(({
+      id: null, preco: 0.0, descricao: '', nome: '',
+    }) as Adicional);
     this.servico.adicionais = [...(this.servico.adicionais || []), adicional];
   }
 }
