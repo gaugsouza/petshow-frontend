@@ -27,9 +27,11 @@ export class AvaliacaoService {
     return this.httpHandler.doGet<any>(URL);
   }
 
-  adicionarAvaliacao = (avaliacao:Avaliacao, idServico?:number, idPrestador?:number, token?:string):
-  Observable<ServicoDetalhado> => {
-    const URL = AVALIACAO_SERVICE_URL.replace('idPrestador', idPrestador.toString()).replace('idServico', idServico.toString());
-    return this.httpHandler.doPost<ServicoDetalhado>(URL, avaliacao, token);
+  adicionarAvaliacao = (avaliacao:Avaliacao, idServico?:number, idAgendamento?:number, token?:string):
+  Observable<Avaliacao> => {
+    const URL = AVALIACAO_SERVICE_URL.replace('idPrestador/', "")
+                                     .replace('idServico', idServico.toString())
+                                     .replace('idAgendamento', idAgendamento.toString());
+    return this.httpHandler.doPost<Avaliacao>(URL, avaliacao, token);
   }
 }

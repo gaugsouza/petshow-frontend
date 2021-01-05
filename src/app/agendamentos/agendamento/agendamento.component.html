@@ -1,1 +1,13 @@
-<p>agendamento works!</p>
+<ng-template #insercaoBlock></ng-template>
+
+<ng-template #visualizacaoBlock></ng-template>
+
+<app-animal-estimacao *ngIf="idCliente"
+                        [idCliente]="idCliente"
+                        [isVisualizacao]="isVisualizacao">    
+</app-animal-estimacao>
+<app-servico-detalhado [idServico]="idServico"
+                        [idPrestador]="idPrestador"
+                        [isVisualizacao]="isVisualizacao">    
+</app-servico-detalhado>
+<app-cliente></app-cliente>

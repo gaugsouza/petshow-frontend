@@ -1,1 +1,20 @@
-<p>servico-detalhado works!</p>
+<section>      
+    <div *ngIf="servicoDetalhado; then servicosBlock else vazioBlock"></div>
+    
+    <ng-template #vazioBlock>
+        <p class="no_registered">{{'SERVICO_NAO_ENCONTRADO' | translate}}</p>
+    </ng-template>
+
+    <ng-template #servicosBlock>
+        <div>
+            <span>{{servicoDetalhado.tipo.nome | translate}}</span> 
+            <span>{{servicoDetalhado.preco | currency: 'BRL'}}</span>
+            <span>{{servicoDetalhado.descricao | translate}}</span>
+        </div>
+        <div>
+            <span><strong>{{'NOME' | translate}}:</strong> {{servicoDetalhado.prestador.nome}}</span>
+            <span><strong>CPF:</strong> {{servicoDetalhado.prestador.cpf | mask: '000.000.000-00'}}</span>
+            <span><strong>E-mail:</strong> {{servicoDetalhado.prestador.login.email}}</span>
+        </div>        
+    </ng-template>
+</section>

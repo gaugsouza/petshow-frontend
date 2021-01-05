@@ -18,49 +18,26 @@ export class AgendamentoComponent implements OnInit {
   idServico: number;
   idPrestador: number;
   idCliente: number;
-  servicoDetalhado: ServicoDetalhado;
-  cliente: Cliente;
-  isLogado: boolean = false;
+  idAgendamento: number;
+  isVisualizacao: boolean = true;
 
   constructor(private route:ActivatedRoute,
-    private router:Router,
     private localStorageService:LocalStorageService,
-    private avaliacaoService:AvaliacaoService,
-    private prestadorService:PrestadorService,
-    private usuarioService: UsuarioService,
     private jwtHelper: JwtHelper) { }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params:Params) => {
-      this.idServico = parseInt(params.servicoDetalhado, 10);
-      this.idPrestador = parseInt(params.prestador, 10);
-      
-      if (Number.isNaN(this.idServico)) {
-        this.router.navigate(['/']);
-        return;
-      }
-      this.preencheServico(this.idServico, this.idPrestador);
-    });
-    
+    this.idPrestador =+ this.route.snapshot.paramMap.get('prestadorId');
+    this.idServico =+ this.route.snapshot.paramMap.get('servicoDetalhadoId');
+    this.idAgendamento =+ this.route.snapshot.paramMap.get('agendamentoId');
+
+    console.log(this.idAgendamento)
+
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       if (!token) {
         return;
       }
 
       this.idCliente = this.jwtHelper.recuperaIdToken(token);
-
-      this.usuarioService.buscarUsuario(this.idCliente).subscribe((cliente) => {
-        this.cliente = JSON.parse(cliente);
-      })});
-  }
-
-  preencheServico(idPrestador:any, idServico:any) {
-    this.avaliacaoService.buscaServicoAvaliadoPorId(idPrestador, idServico).subscribe((servico) => {
-      const servicoDetalhado = JSON.parse(servico);
-      this.prestadorService.buscaPrestador(servicoDetalhado.prestador.id).subscribe((prestador) => {
-        servicoDetalhado.prestador = JSON.parse(prestador);
-        this.servicoDetalhado = servicoDetalhado;
-      });
     });
   }
 }

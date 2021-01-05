@@ -1,1 +1,28 @@
-<p>animal-estimacao works!</p>
+<section>      
+    <div *ngIf="animaisEstimacao && animaisEstimacao.length; then animaisBlock else vazioBlock"></div>
+    
+    <ng-template #vazioBlock>
+        <p class="no_registered">{{'NENHUM_CADASTRADO' | translate}}</p>
+    </ng-template>
+
+    <ng-template #animaisBlock>
+        <mat-list>
+            <mat-list-item *ngFor="let animal of animaisEstimacao">
+                <div>
+                    <span>{{animal.nome}}</span> 
+                    <span>{{animal.tipo.nome}}</span>
+                    <span>{{animal.tipo.porte}}</span>
+                    <span>{{animal.tipo.pelagem}}</span>
+                </div>
+            </mat-list-item>
+        </mat-list>
+
+        <mat-paginator #paginator
+            [length]="quantidadeTotal"
+            [pageIndex]="paginaAtual"
+            [pageSize]="quantidadeItens"
+            [pageSizeOptions]="[5, 7, 10, 15]"
+            (page)="pageEvent = eventoPagina($event)">
+        </mat-paginator>
+    </ng-template>
+</section>

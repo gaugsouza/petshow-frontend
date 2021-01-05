@@ -1,1 +1,14 @@
-<p>cliente works!</p>
+
+<section>      
+    <div *ngIf="cliente; then clienteBlock else vazioBlock"></div>
+    
+    <ng-template #vazioBlock>
+        <p class="no_registered">{{'CLIENTE_NAO_ENCONTRADO' | translate}}</p>
+    </ng-template>
+
+    <ng-template #clienteBlock>
+        <span><strong>{{'NOME' | translate}}:</strong> {{cliente.nome}}</span>
+        <span><strong>CPF:</strong> {{cliente.cpf | mask: '000.000.000-00'}}</span>
+        <span><strong>E-mail:</strong> {{cliente.login.email}}</span>        
+    </ng-template>
+</section>
