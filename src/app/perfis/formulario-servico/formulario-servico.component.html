@@ -40,117 +40,128 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <!-- 
 
-          <div class ="grid-template-columns">
-            <label> PELAGEM </label> 
-            <label> CURTA </label> 
-            <label> MÉDIA </label> 
-            <label> LONGA </label>
-          </div> -->
-
-
+    
     <div>
       <input type="checkbox" (change)="toggleCheckBoxCachorro()" />{{'CACHORRO' | translate}}
       <div class="cachorro_preco" *ngIf="cachorro_checked">
-        <div><label> PELAGEM </label> <label> CURTA </label> <label> MÉDIA </label> <label> LONGA </label>
-        </div>
-        <div>
-          <label> PEQUENO </label>
-          <mat-form-field appearance="fill">
-            <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-            <input matInput [(ngModel)]="servico.preco" placeholder="22,00" class="form__servico-valor"
-              mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-              [formControl]="precoFormControl" [errorStateMatcher]="matcher" />
-            <mat-error *ngIf="precoFormControl.hasError('required')">
-              {{'CAMPO_OBRIGATORIO' | translate}}
-            </mat-error>
-          </mat-form-field>
+        <div class="grid-container">
+          <div class="item1"><label> PELAGEM </label> </div>
+          <div class="item2"><label> CURTA </label> </div>
+          <div class="item3"><label> MÉDIA </label> </div>
+          <div class="item4"><label> LONGA </label> </div>
 
-          <mat-form-field appearance="fill">
-            <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-            <input matInput [(ngModel)]="servico.preco" placeholder="22,00" class="form__servico-valor"
-              mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-              [formControl]="precoFormControl" [errorStateMatcher]="matcher" />
-            <mat-error *ngIf="precoFormControl.hasError('required')">
-              {{'CAMPO_OBRIGATORIO' | translate}}
-            </mat-error>
-          </mat-form-field>
+          <div class="item5">
+            <label> PORTE PEQUENO </label>
+          </div>
+          <div class="item6">
+            <mat-form-field appearance="fill">
+              <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
+              <input matInput [(ngModel)]="servico.preco" placeholder="22,00" class="form__servico-valor"
+                mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
+                [formControl]="precoFormControl" [errorStateMatcher]="matcher" />
+              <mat-error *ngIf="precoFormControl.hasError('required')">
+                {{'CAMPO_OBRIGATORIO' | translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="item7">
+            <mat-form-field appearance="fill">
+              <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
+              <input matInput [(ngModel)]="servico.preco" placeholder="22,00" class="form__servico-valor"
+                mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
+                [formControl]="precoFormControl" [errorStateMatcher]="matcher" />
+              <mat-error *ngIf="precoFormControl.hasError('required')">
+                {{'CAMPO_OBRIGATORIO' | translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="item8">
+            <mat-form-field appearance="fill">
+              <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
+              <input matInput [(ngModel)]="servico.preco" placeholder="22,00" class="form__servico-valor"
+                mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
+                [formControl]="precoFormControl" [errorStateMatcher]="matcher" />
+              <mat-error *ngIf="precoFormControl.hasError('required')">
+                {{'CAMPO_OBRIGATORIO' | translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
 
-          <mat-form-field appearance="fill">
-            <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-            <input matInput [(ngModel)]="servico.preco" placeholder="22,00" class="form__servico-valor"
-              mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-              [formControl]="precoFormControl" [errorStateMatcher]="matcher" />
-            <mat-error *ngIf="precoFormControl.hasError('required')">
-              {{'CAMPO_OBRIGATORIO' | translate}}
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div>
-          <label> MÉDIO </label>
-          <mat-form-field appearance="fill">
-            <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-            <input matInput [(ngModel)]="servico.preco" placeholder="22,00" class="form__servico-valor"
-              mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-              [formControl]="precoFormControl" [errorStateMatcher]="matcher" />
-            <mat-error *ngIf="precoFormControl.hasError('required')">
-              {{'CAMPO_OBRIGATORIO' | translate}}
-            </mat-error>
-          </mat-form-field>
+          <div class="item9">
+            <label> PORTE MÉDIO </label>
+          </div>
+          <div class="item10">
+            <mat-form-field appearance="fill">
+              <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
+              <input matInput [(ngModel)]="servico.preco" placeholder="22,00" class="form__servico-valor"
+                mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
+                [formControl]="precoFormControl" [errorStateMatcher]="matcher" />
+              <mat-error *ngIf="precoFormControl.hasError('required')">
+                {{'CAMPO_OBRIGATORIO' | translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="item11">
+            <mat-form-field appearance="fill">
+              <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
+              <input matInput [(ngModel)]="servico.preco" placeholder="22,00" class="form__servico-valor"
+                mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
+                [formControl]="precoFormControl" [errorStateMatcher]="matcher" />
+              <mat-error *ngIf="precoFormControl.hasError('required')">
+                {{'CAMPO_OBRIGATORIO' | translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="item12">
+            <mat-form-field appearance="fill">
+              <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
+              <input matInput [(ngModel)]="servico.preco" placeholder="22,00" class="form__servico-valor"
+                mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
+                [formControl]="precoFormControl" [errorStateMatcher]="matcher" />
+              <mat-error *ngIf="precoFormControl.hasError('required')">
+                {{'CAMPO_OBRIGATORIO' | translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
 
-          <mat-form-field appearance="fill">
-            <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-            <input matInput [(ngModel)]="servico.preco" placeholder="22,00" class="form__servico-valor"
-              mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-              [formControl]="precoFormControl" [errorStateMatcher]="matcher" />
-            <mat-error *ngIf="precoFormControl.hasError('required')">
-              {{'CAMPO_OBRIGATORIO' | translate}}
-            </mat-error>
-          </mat-form-field>
 
-          <mat-form-field appearance="fill">
-            <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-            <input matInput [(ngModel)]="servico.preco" placeholder="22,00" class="form__servico-valor"
-              mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-              [formControl]="precoFormControl" [errorStateMatcher]="matcher" />
-            <mat-error *ngIf="precoFormControl.hasError('required')">
-              {{'CAMPO_OBRIGATORIO' | translate}}
-            </mat-error>
-          </mat-form-field>
-        </div>
-
-        <div>
-          <label> GRANDE </label>
-          <mat-form-field appearance="fill">
-            <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-            <input matInput [(ngModel)]="servico.preco" placeholder="22,00" class="form__servico-valor"
-              mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-              [formControl]="precoFormControl" [errorStateMatcher]="matcher" />
-            <mat-error *ngIf="precoFormControl.hasError('required')">
-              {{'CAMPO_OBRIGATORIO' | translate}}
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field appearance="fill">
-            <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-            <input matInput [(ngModel)]="servico.preco" placeholder="22,00" class="form__servico-valor"
-              mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-              [formControl]="precoFormControl" [errorStateMatcher]="matcher" />
-            <mat-error *ngIf="precoFormControl.hasError('required')">
-              {{'CAMPO_OBRIGATORIO' | translate}}
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field appearance="fill">
-            <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-            <input matInput [(ngModel)]="servico.preco" placeholder="22,00" class="form__servico-valor"
-              mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-              [formControl]="precoFormControl" [errorStateMatcher]="matcher" />
-            <mat-error *ngIf="precoFormControl.hasError('required')">
-              {{'CAMPO_OBRIGATORIO' | translate}}
-            </mat-error>
-          </mat-form-field>
+          <div class="item13">
+            <label> PORTE GRANDE </label>
+          </div>
+          <div class="item14">
+            <mat-form-field appearance="fill">
+              <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
+              <input matInput [(ngModel)]="servico.preco" placeholder="22,00" class="form__servico-valor"
+                mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
+                [formControl]="precoFormControl" [errorStateMatcher]="matcher" />
+              <mat-error *ngIf="precoFormControl.hasError('required')">
+                {{'CAMPO_OBRIGATORIO' | translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="item15">
+            <mat-form-field appearance="fill">
+              <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
+              <input matInput [(ngModel)]="servico.preco" placeholder="22,00" class="form__servico-valor"
+                mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
+                [formControl]="precoFormControl" [errorStateMatcher]="matcher" />
+              <mat-error *ngIf="precoFormControl.hasError('required')">
+                {{'CAMPO_OBRIGATORIO' | translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="item16">
+            <mat-form-field appearance="fill">
+              <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
+              <input matInput [(ngModel)]="servico.preco" placeholder="22,00" class="form__servico-valor"
+                mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
+                [formControl]="precoFormControl" [errorStateMatcher]="matcher" />
+              <mat-error *ngIf="precoFormControl.hasError('required')">
+                {{'CAMPO_OBRIGATORIO' | translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
         </div>
       </div>
     </div>
