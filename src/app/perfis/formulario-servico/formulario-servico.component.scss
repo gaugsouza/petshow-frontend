@@ -1,9 +1,9 @@
 @import "../../../global.scss";
 
 .form {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
+  // display: flex;
+  // flex-flow: row wrap;
+  // justify-content: space-around;
   width: 80%;
 
   @media screen and (max-width: $tablet-width) {
@@ -33,4 +33,9 @@
 
 .page-section-title {
   margin: 15px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 8ch auto;
 }

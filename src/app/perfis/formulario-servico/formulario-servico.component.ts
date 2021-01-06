@@ -20,8 +20,12 @@ export class FormularioServicoComponent implements OnInit {
     animaisAceitos: { id: 2, nome: 'GATO' },
   };
 
-  public animaisAceitosVetor = [];
   servicos:Servico[];
+
+  gato_checked:Boolean;
+
+  cachorro_checked:Boolean;
+
 
   @Output('adiciona-servico') adicionaServico = new EventEmitter<ServicoDetalhado>();
 
@@ -59,9 +63,7 @@ export class FormularioServicoComponent implements OnInit {
     return this.servicos;
   }
 
-  getTiposAnimal() {
-    return this.animaisAceitosVetor;
-  }
+
 
   constructor(private servicoService:ServicosService) { }
 
@@ -74,7 +76,13 @@ export class FormularioServicoComponent implements OnInit {
     });
   }
 
+  toggleCheckBoxGato() {
+    this.gato_checked= !this.gato_checked;
+  }
 
+  toggleCheckBoxCachorro() {
+    this.cachorro_checked= !this.cachorro_checked;
+  }
 
 
 }
