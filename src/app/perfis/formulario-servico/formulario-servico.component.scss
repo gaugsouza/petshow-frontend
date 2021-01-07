@@ -37,5 +37,28 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: 100px auto auto auto;
+}
+
+.grid-sm {
+  display: none;
+}
+
+
+@media screen and (max-width: $tablet-width) {
+  .grid-container {
+    display: none;
+  }
+
+    
+  .grid-sm {
+    display: block;
+  }
+  .grid-container-sm {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+
+
+
 }
