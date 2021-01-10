@@ -15,10 +15,10 @@ import { Servico } from 'src/app/interfaces/servico';
 })
 export class FormularioServicoComponent implements OnInit {
   @Input() servico: ServicoDetalhado = {
-    preco: 0.0,
     tipo: BANHO,
-    animaisAceitos: { id: 2, nome: 'GATO' },
-  };
+    animaisAceitos: [{ id: 1, nome: 'Gato' }, {id:2, nome:'Cachorro', porte: 'Pequeno', pelagem: 'Curta'}],
+    precoPorTipo: [{id: 1, tipoAnimal: {id:1, nome: 'Gato'}, preco: 0},{id:2, tipoAnimal:{id:2, nome: 'Cachorro', porte: 'Pequeno', pelagem: 'Curta'}, preco: 0}]
+    };
 
   servicos:Servico[];
 
@@ -84,5 +84,9 @@ export class FormularioServicoComponent implements OnInit {
     this.cachorro_checked= !this.cachorro_checked;
   }
 
-
+  onSubmit(form){
+    console.log(form);
+    console.log(this.servico);
+  }
+  
 }
