@@ -7,6 +7,7 @@ import { USER_TOKEN } from 'src/app/util/constantes';
 import { Endereco } from 'src/app/interfaces/endereco';
 import { JwtHelper } from 'src/app/util/jwt-helper';
 import { NotificationService } from 'src/app/servicos/notification.service';
+import { BANHO } from 'src/app/util/tipo-servico';
 
 @Component({
   selector: 'app-perfil-prestador',
@@ -14,7 +15,13 @@ import { NotificationService } from 'src/app/servicos/notification.service';
   styleUrls: ['./perfil-prestador.component.scss'],
 })
 export class PerfilPrestadorComponent implements OnInit {
-  servico:ServicoDetalhado = {}
+  servico:ServicoDetalhado = {
+    tipo: BANHO,
+    animaisAceitos: [{ id: 1, nome: 'Gato' }, 
+    {id:2, nome:'Cachorro', porte: 'Pequeno', pelagem: 'Curta'}],
+    precoPorTipo: [{id: 1, tipoAnimal: {id:1, nome: 'Gato'}, preco: 0},
+    {id:2, tipoAnimal:{id:2, nome: 'Cachorro', porte: 'Pequeno', pelagem: 'Curta'}, preco: 0}]
+    };
 
   usuario:Prestador;
 
@@ -83,6 +90,7 @@ export class PerfilPrestadorComponent implements OnInit {
   }
 
   adicionaServico({ ...servico }:ServicoDetalhado): void {
+    console.log(servico);
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       const novoServico = { ...servico, prestador: this.usuario };
       this.prestadorService.adicionarServico(this.usuario.id, novoServico, token)
@@ -116,7 +124,13 @@ export class PerfilPrestadorComponent implements OnInit {
   }
 
   limpaServico() {
-    this.servico = {};
+    this.servico =  {
+      tipo: BANHO,
+      animaisAceitos: [{ id: 1, nome: 'Gato' }, 
+      {id:2, nome:'Cachorro', porte: 'Pequeno', pelagem: 'Curta'}],
+      precoPorTipo: [{id: 1, tipoAnimal: {id:1, nome: 'Gato'}, preco: 0},
+      {id:2, tipoAnimal:{id:2, nome: 'Cachorro', porte: 'Pequeno', pelagem: 'Curta'}, preco: 0}]
+      };
   }
 
   removeServico(servico:ServicoDetalhado) {

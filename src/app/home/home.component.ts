@@ -15,10 +15,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.servicoService.getTipos().subscribe((servicos) => {
-      this.servicos = JSON.parse(servicos) || SERVICOS;
-    },
-    () => {
-      this.servicos = SERVICOS;
+      this.servicos = JSON.parse(servicos);
     });
   }
 }

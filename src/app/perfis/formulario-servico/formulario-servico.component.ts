@@ -14,13 +14,11 @@ import { Servico } from 'src/app/interfaces/servico';
   styleUrls: ['./formulario-servico.component.scss'],
 })
 export class FormularioServicoComponent implements OnInit {
-  @Input() servico: ServicoDetalhado = {
-    tipo: BANHO,
-    animaisAceitos: [{ id: 1, nome: 'Gato' }, {id:2, nome:'Cachorro', porte: 'Pequeno', pelagem: 'Curta'}],
-    precoPorTipo: [{id: 1, tipoAnimal: {id:1, nome: 'Gato'}, preco: 0},{id:2, tipoAnimal:{id:2, nome: 'Cachorro', porte: 'Pequeno', pelagem: 'Curta'}, preco: 0}]
-    };
+  @Input() servico: ServicoDetalhado = {};
 
   servicos:Servico[];
+
+  public precosPorTipo:[];
 
   gato_checked:Boolean;
 
@@ -69,10 +67,8 @@ export class FormularioServicoComponent implements OnInit {
 
   ngOnInit(): void {
     this.servicoService.getTipos().subscribe((servicos) => {
-      this.servicos = JSON.parse(servicos) || SERVICOS;
-    },
-    () => {
-      this.servicos = SERVICOS;
+      this.servicos = JSON.parse(servicos);
+      console.log('servico', this.servico);
     });
   }
 

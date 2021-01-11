@@ -19,19 +19,21 @@
 
 
 
-    <div>
-      <input type="checkbox" (change)="toggleCheckBoxGato()" />{{'GATO' | translate}}
+    <section>
+      <!-- {{servicoprecoPorTipo.tipoAnimal.nome | translate}} -->
+      <input type="checkbox" (change)="toggleCheckBoxGato()" />{{servico.precoPorTipo[0].tipoAnimal.nome | translate}}
 
       <mat-form-field *ngIf="gato_checked" appearance="fill">
         <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-        <input matInput [(ngModel)]="servico.precoPorTipo[0].preco" placeholder="22,00" class="form__servico-valor" mask='separator.2'
+        <input matInput [(ngModel)]="servico.precoPorTipo[0].preco" 
+          placeholder="22,00" class="form__servico-valor" mask='separator.2'
           [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
           [errorStateMatcher]="matcher" />
         <!-- <mat-error *ngIf="precoFormControl.hasError('required')">
           {{'CAMPO_OBRIGATORIO' | translate}}
-        </mat-error> -->
+        </mat-error>  -->
       </mat-form-field>
-    </div>
+    </section>
 
 
     <!--     <div>
