@@ -27,7 +27,7 @@
         <input matInput [(ngModel)]="servico.precoPorTipo[0].preco" 
           placeholder="22,00" class="form__servico-valor" mask='separator.2'
           [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-          [errorStateMatcher]="matcher" />
+          [errorStateMatcher]="matcher" [ngModelOptions]="{standalone: true}"/>
       </mat-form-field>
     </section>
 
@@ -50,7 +50,7 @@
               <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
               <input matInput [(ngModel)]="servico.precoPorTipo[1].preco" placeholder="22,00" class="form__servico-valor"
                 mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-                [errorStateMatcher]="matcher" />
+                [errorStateMatcher]="matcher" [ngModelOptions]="{standalone: true}"/>
             </mat-form-field>
           </div>
           <div class="item7">
@@ -58,7 +58,7 @@
               <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
               <input matInput [(ngModel)]="servico.precoPorTipo[2].preco" placeholder="22,00" class="form__servico-valor"
                 mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-                [errorStateMatcher]="matcher" />
+                [errorStateMatcher]="matcher" [ngModelOptions]="{standalone: true}"/>
             </mat-form-field>
           </div>
           <div class="item8">
@@ -66,7 +66,7 @@
               <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
               <input matInput [(ngModel)]="servico.precoPorTipo[3].preco" placeholder="22,00" class="form__servico-valor"
                 mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-                [errorStateMatcher]="matcher" />
+                [errorStateMatcher]="matcher" [ngModelOptions]="{standalone: true}"/>
             </mat-form-field>
           </div>
 
@@ -78,7 +78,7 @@
               <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
               <input matInput [(ngModel)]="servico.precoPorTipo[4].preco" placeholder="22,00" class="form__servico-valor"
                 mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-                [errorStateMatcher]="matcher" />
+                [errorStateMatcher]="matcher" [ngModelOptions]="{standalone: true}"/>
             </mat-form-field>
           </div>
           <div class="item11">
@@ -86,7 +86,7 @@
               <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
               <input matInput [(ngModel)]="servico.precoPorTipo[5].preco" placeholder="22,00" class="form__servico-valor"
                 mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-                [errorStateMatcher]="matcher" />
+                [errorStateMatcher]="matcher" [ngModelOptions]="{standalone: true}"/>
             </mat-form-field>
           </div>
           <div class="item12">
@@ -94,7 +94,7 @@
               <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
               <input matInput [(ngModel)]="servico.precoPorTipo[6].preco" placeholder="22,00" class="form__servico-valor"
                 mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-                [errorStateMatcher]="matcher" />
+                [errorStateMatcher]="matcher" [ngModelOptions]="{standalone: true}"/>
             </mat-form-field>
           </div>
 
@@ -107,7 +107,7 @@
               <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
               <input matInput [(ngModel)]="servico.precoPorTipo[7].preco" placeholder="22,00" class="form__servico-valor"
                 mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-                [errorStateMatcher]="matcher" />
+                [errorStateMatcher]="matcher" [ngModelOptions]="{standalone: true}"/>
             </mat-form-field>
           </div>
 
@@ -116,7 +116,7 @@
               <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
               <input matInput [(ngModel)]="servico.precoPorTipo[8].preco" placeholder="22,00" class="form__servico-valor"
                 mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-                [errorStateMatcher]="matcher" />
+                [errorStateMatcher]="matcher" [ngModelOptions]="{standalone: true}"/>
             </mat-form-field>
           </div>
           <div class="item16">
@@ -124,7 +124,7 @@
               <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
               <input matInput [(ngModel)]="servico.precoPorTipo[9].preco" placeholder="22,00" class="form__servico-valor"
                 mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-                [errorStateMatcher]="matcher" />
+                [errorStateMatcher]="matcher" [ngModelOptions]="{standalone: true}"/>
             </mat-form-field>
           </div>
         </div>
@@ -141,7 +141,7 @@
                 <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
                 <input matInput [(ngModel)]="servico.precoPorTipo[1].preco" placeholder="22,00" class="form__servico-valor" mask='separator.2'
                   [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ " 
-                  [errorStateMatcher]="matcher" />
+                  [errorStateMatcher]="matcher" [ngModelOptions]="{standalone: true}"/>
               </mat-form-field>
             </div>
             <div class="item3">
@@ -152,7 +152,7 @@
                 <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
                 <input matInput [(ngModel)]="servico.precoPorTipo[2].preco" placeholder="22,00" class="form__servico-valor" mask='separator.2'
                   [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ " 
-                  [errorStateMatcher]="matcher" />
+                  [errorStateMatcher]="matcher" [ngModelOptions]="{standalone: true}"/>
               </mat-form-field>
             </div>
             <div class="item5">
@@ -163,7 +163,7 @@
                 <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
                 <input matInput [(ngModel)]="servico.precoPorTipo[3].preco" placeholder="22,00" class="form__servico-valor" mask='separator.2'
                   [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ " 
-                  [errorStateMatcher]="matcher" />
+                  [errorStateMatcher]="matcher" [ngModelOptions]="{standalone: true}"/>
               </mat-form-field>
             </div>
           </div>
@@ -178,7 +178,7 @@
                 <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
                 <input matInput [(ngModel)]="servico.precoPorTipo[4].preco" placeholder="22,00" class="form__servico-valor" mask='separator.2'
                   [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ " 
-                  [errorStateMatcher]="matcher" />
+                  [errorStateMatcher]="matcher" [ngModelOptions]="{standalone: true}"/>
               </mat-form-field>
             </div>
             <div class="item3">
@@ -189,7 +189,7 @@
                 <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
                 <input matInput [(ngModel)]="servico.precoPorTipo[5].preco" placeholder="22,00" class="form__servico-valor" mask='separator.2'
                   [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ " 
-                  [errorStateMatcher]="matcher" />
+                  [errorStateMatcher]="matcher" [ngModelOptions]="{standalone: true}"/>
               </mat-form-field>
             </div>
             <div class="item5">
@@ -200,7 +200,7 @@
                 <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
                 <input matInput [(ngModel)]="servico.precoPorTipo[6].preco" placeholder="22,00" class="form__servico-valor" mask='separator.2'
                   [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ " 
-                  [errorStateMatcher]="matcher" />
+                  [errorStateMatcher]="matcher" [ngModelOptions]="{standalone: true}"/>
               </mat-form-field>
             </div>
           </div>
@@ -215,7 +215,7 @@
                 <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
                 <input matInput [(ngModel)]="servico.precoPorTipo[7].preco" placeholder="22,00" class="form__servico-valor" mask='separator.2'
                   [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ " 
-                  [errorStateMatcher]="matcher" />
+                  [errorStateMatcher]="matcher" [ngModelOptions]="{standalone: true}"/>
               </mat-form-field>
             </div>
             <div class="item3">
@@ -226,7 +226,7 @@
                 <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
                 <input matInput [(ngModel)]="servico.precoPorTipo[8].preco" placeholder="22,00" class="form__servico-valor" mask='separator.2'
                   [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ " 
-                  [errorStateMatcher]="matcher" />
+                  [errorStateMatcher]="matcher" [ngModelOptions]="{standalone: true}"/>
               </mat-form-field>
             </div>
             <div class="item5">
@@ -237,7 +237,7 @@
                 <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
                 <input matInput [(ngModel)]="servico.precoPorTipo[9].preco" placeholder="22,00" class="form__servico-valor" mask='separator.2'
                   [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ " 
-                  [errorStateMatcher]="matcher" />
+                  [errorStateMatcher]="matcher" [ngModelOptions]="{standalone: true}"/>
               </mat-form-field>
             </div>
           </div>
