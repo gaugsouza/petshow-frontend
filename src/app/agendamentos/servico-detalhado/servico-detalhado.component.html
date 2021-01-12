@@ -1,20 +1,34 @@
-<section>      
-    <div *ngIf="servicoDetalhado; then servicosBlock else vazioBlock"></div>
-    
-    <ng-template #vazioBlock>
-        <p class="no_registered">{{'SERVICO_NAO_ENCONTRADO' | translate}}</p>
-    </ng-template>
+<div *ngIf="servicoDetalhado; then servicosBlock else vazioBlock"></div>
 
-    <ng-template #servicosBlock>
+<ng-template #vazioBlock>
+    <p class="no_registered">{{'SERVICO_NAO_ENCONTRADO' | translate}}</p>
+</ng-template>
+
+<ng-template #servicosBlock>
+    <mat-card class="servicos-card">
         <div>
-            <span>{{servicoDetalhado.tipo.nome | translate}}</span> 
-            <span>{{servicoDetalhado.preco | currency: 'BRL'}}</span>
-            <span>{{servicoDetalhado.descricao | translate}}</span>
+            <p><strong> Serviço selecionado </strong> </p>
+            <span>Nome: {{servicoDetalhado.tipo.nome | translate}}</span> 
+            <span>Preco: {{servicoDetalhado.preco | currency: 'BRL'}}</span>
+            <span>Descricao: {{servicoDetalhado.descricao | translate}}</span>
         </div>
+        <br>
         <div>
+            <p> <strong> Prestador </strong></p>
             <span><strong>{{'NOME' | translate}}:</strong> {{servicoDetalhado.prestador.nome}}</span>
             <span><strong>CPF:</strong> {{servicoDetalhado.prestador.cpf | mask: '000.000.000-00'}}</span>
             <span><strong>E-mail:</strong> {{servicoDetalhado.prestador.login.email}}</span>
-        </div>        
-    </ng-template>
-</section>
+        </div>
+        <br>
+        <div>
+            <p><strong> Endereço </strong></p>
+            <span>CEP: {{servicoDetalhado.prestador.endereco.cep}}</span> 
+            <span>Logradouro: {{servicoDetalhado.prestador.endereco.logradouro}}</span>
+            <span>Numero: {{servicoDetalhado.prestador.endereco.numero}}</span>
+            <span>Bairro: {{servicoDetalhado.prestador.endereco.bairro}}</span>
+            <span>Cidade: {{servicoDetalhado.prestador.endereco.cidade}}</span>
+            <span>Estado: {{servicoDetalhado.prestador.endereco.estado}}</span>            
+            <span>Complemento: {{servicoDetalhado.prestador.endereco.complemento}}</span>
+        </div>
+    </mat-card>     
+</ng-template>

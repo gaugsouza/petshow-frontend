@@ -9,6 +9,10 @@ import { HttpClient } from '@angular/common/http';
 import { ConfigModule } from '../config/config.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatListModule } from '@angular/material/list';
+import { MatCheckboxModule } from '@angular/material/checkbox'; 
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input'; 
+import { FormsModule } from '@angular/forms';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -26,6 +30,10 @@ export function HttpLoaderFactory(http:HttpClient) {
     ConfigModule,
     MatPaginatorModule,
     MatListModule,
+    MatCheckboxModule,
+    MatCardModule,
+    MatInputModule,
+    FormsModule,
   ],
   exports: [
     AgendamentoComponent,
