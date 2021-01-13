@@ -50,7 +50,7 @@
               <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
               <input matInput [(ngModel)]="servico.precoPorTipo[1].preco" placeholder="22,00" class="form__servico-valor"
                 mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-                [errorStateMatcher]="matcher" name="porteP_pelagemCurta"/>
+                [errorStateMatcher]="matcher" name="porteP_pelagemCurta" />
             </mat-form-field>
           </div>
           <div class="porteP_pelagemMedia">
