@@ -37,7 +37,8 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: 100px auto auto auto;
+  grid-template-columns: auto auto auto auto;
+  text-align: center
 }
 
 .grid-sm {
