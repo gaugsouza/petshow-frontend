@@ -31,19 +31,21 @@
       </mat-form-field>
     </section>
 
-
   <div>
       <input type="checkbox" (change)="toggleCheckBoxCachorro()" />{{servico.precoPorTipo[1].tipoAnimal.nome | translate}}
       <div class="cachorro_preco" *ngIf="cachorro_checked">
         
         <div class="grid-container">
-          <div class="titulo_pelagem"><label> PELAGEM </label> </div>
-          <div class="titulo_pelagemCurta"><label> CURTA </label> </div>
-          <div class="titulo_pelagemMedia"><label> MÉDIA </label> </div>
-          <div class="titulo_pelagemLonga"><label> LONGA </label> </div>
+          <div class="item logo">{{'PORTE' | translate}}</div>
+          <div class="item nav">{{'PELAGEM' | translate}}</div>
+
+          <div class="titulo_pelagem"><label> </label> </div>
+          <div class="titulo_pelagemCurta"><label> {{'CURTA' | translate}} </label> </div>
+          <div class="titulo_pelagemMedia"><label> {{'MEDIA' | translate}} </label> </div>
+          <div class="titulo_pelagemLonga"><label> {{'LONGA' | translate}} </label> </div>
 
           <div class="titulo_porteP">
-            <label> PORTE PEQUENO </label>
+            <label> {{'PEQUENO' | translate}} </label>
           </div>
           <div class="porteP_pelagemCurta">
             <mat-form-field appearance="fill">
@@ -71,7 +73,7 @@
           </div>
 
           <div class="titulo_porteM">
-            <label> PORTE MÉDIO </label>
+            <label> {{'MEDIO' | translate}} </label>
           </div>
           <div class="porteM_pelagemCurta">
             <mat-form-field appearance="fill">
@@ -100,7 +102,7 @@
 
 
           <div class="titulo_porteG">
-            <label> PORTE GRANDE </label>
+            <label> {{'GRANDE' | translate}} </label>
           </div>
           <div class="porteG_pelagemCurta">
             <mat-form-field appearance="fill">
@@ -132,12 +134,11 @@
         <!-- @Media -------------------------------------------------------------------->
 
         <div class="grid-sm">
-          <div class="titulo_pelagemCurta">
-            <p>PELAGEM CURTA</p>
-          </div>
+          <div class="item logo"></div>
+          <div class="item nav">{{'PELAGEM' | translate}} {{'CURTA' | translate}}</div>
           <div class="grid-container-sm">
             <div class="titulo_porteP">
-              <label> PORTE PEQUENO </label>
+              <label>{{'PORTE' | translate}} {{'PEQUENO' | translate}}</label>
             </div>
             <div class="porteP_pelagemCurta">
               <mat-form-field appearance="fill">
@@ -148,7 +149,7 @@
               </mat-form-field>
             </div>
             <div class="titulo_porteM">
-              <label> PORTE MÉDIO </label>
+              <label>{{'PORTE' | translate}} {{'MEDIO' | translate}}</label>
             </div>
             <div class="porteM_pelagemCurta">
               <mat-form-field appearance="fill">
@@ -159,7 +160,7 @@
               </mat-form-field>
             </div>
             <div class="titulo_porteG">
-              <label> PORTE GRANDE </label>
+              <label>{{'PORTE' | translate}} {{'GRANDE' | translate}}</label>
             </div>
             <div class="porteG_pelagemCurta">
               <mat-form-field appearance="fill">
@@ -171,10 +172,12 @@
             </div>
           </div>
       
-          <p>PELAGEM MEDIA</p>
+
+          <div class="item logo"></div>
+          <div class="item nav">{{'PELAGEM' | translate}} {{'MEDIA' | translate}}</div>
           <div class="grid-container-sm">
             <div class="titulo_porteP">
-              <label> PORTE PEQUENO </label>
+              <label>{{'PORTE' | translate}} {{'PEQUENO' | translate}}</label>
             </div>
             <div class="porteP_pelagemMedia">
               <mat-form-field appearance="fill">
@@ -185,7 +188,7 @@
               </mat-form-field>
             </div>
             <div class="titulo_porteM">
-              <label> PORTE MÉDIO </label>
+              <label>{{'PORTE' | translate}} {{'MEDIO' | translate}}</label>
             </div>
             <div class="porteM_pelagemMedia">
               <mat-form-field appearance="fill">
@@ -196,7 +199,7 @@
               </mat-form-field>
             </div>
             <div class="titulo_porteG">
-              <label> PORTE GRANDE </label>
+              <label>{{'PORTE' | translate}} {{'GRANDE' | translate}}</label>
             </div>
             <div class="porteG_pelagemMedia">
               <mat-form-field appearance="fill">
@@ -208,10 +211,12 @@
             </div>
           </div>
       
-          <p>PELAGEM LONGA</p>
+      
+          <div class="item logo"></div>
+          <div class="item nav">{{'PELAGEM' | translate}} {{'LONGA' | translate}}</div>
           <div class="grid-container-sm">
             <div class="titulo_porteP">
-              <label> PORTE PEQUENO </label>
+              <label>{{'PORTE' | translate}} {{'PEQUENO' | translate}}</label>
             </div>
             <div class="porteP_pelagemLonga">
               <mat-form-field appearance="fill">
@@ -222,7 +227,7 @@
               </mat-form-field>
             </div>
             <div class="titulo_porteM">
-              <label> PORTE MÉDIO </label>
+              <label>{{'PORTE' | translate}} {{'MEDIO' | translate}}</label>
             </div>
             <div class="porteM_pelagemLonga">
               <mat-form-field appearance="fill">
@@ -233,7 +238,7 @@
               </mat-form-field>
             </div>
             <div class="titulo_porteG">
-              <label> PORTE GRANDE </label>
+              <label>{{'PORTE' | translate}} {{'GRANDE' | translate}}</label>
             </div>
             <div class="porteG_pelagemLonga">
               <mat-form-field appearance="fill">
