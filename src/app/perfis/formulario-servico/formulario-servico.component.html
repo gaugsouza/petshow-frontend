@@ -17,19 +17,19 @@
     </div>
 
 
-
-
     <section>
       <input type="checkbox" (change)="toggleCheckBoxGato()" />{{servico.precoPorTipo[0].tipoAnimal.nome | translate}}
 
       <mat-form-field *ngIf="gato_checked" appearance="fill">
         <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
         <input matInput [(ngModel)]="servico.precoPorTipo[0].preco" 
-          placeholder="22,00" class="form__servico-valor" mask='separator.2'
+           class="form__servico-valor" mask='separator.2'
           [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
           [errorStateMatcher]="matcher" [ngModelOptions]="{standalone: true}"/>
       </mat-form-field>
     </section>
+
+
 
   <div>
       <input type="checkbox" (change)="toggleCheckBoxCachorro()" />{{servico.precoPorTipo[1].tipoAnimal.nome | translate}}
@@ -50,25 +50,25 @@
           <div class="porteP_pelagemCurta">
             <mat-form-field appearance="fill">
               <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-              <input matInput [(ngModel)]="servico.precoPorTipo[1].preco" placeholder="22,00" class="form__servico-valor"
+              <input matInput [(ngModel)]="servico.precoPorTipo[1].preco"  class="form__servico-valor"
                 mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-                [errorStateMatcher]="matcher" name="porteP_pelagemCurta" />
+                [errorStateMatcher]="matcher" name="porteP_pelagemCurta" [ngModelOptions]="{standalone: true}"/>
             </mat-form-field>
           </div>
           <div class="porteP_pelagemMedia">
             <mat-form-field appearance="fill">
               <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-              <input matInput [(ngModel)]="servico.precoPorTipo[2].preco" placeholder="22,00" class="form__servico-valor"
+              <input matInput [(ngModel)]="servico.precoPorTipo[2].preco" class="form__servico-valor"
                 mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-                [errorStateMatcher]="matcher" name="porteP_pelagemMedia"/>
+                [errorStateMatcher]="matcher" name="porteP_pelagemMedia" [ngModelOptions]="{standalone: true}"/>
             </mat-form-field>
           </div>
           <div class="item8">
             <mat-form-field appearance="fill">
               <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-              <input matInput [(ngModel)]="servico.precoPorTipo[3].preco" placeholder="22,00" class="form__servico-valor"
+              <input matInput [(ngModel)]="servico.precoPorTipo[3].preco" class="form__servico-valor"
                 mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-                [errorStateMatcher]="matcher" name="porteP_pelagemLonga"/>
+                [errorStateMatcher]="matcher" name="porteP_pelagemLonga" [ngModelOptions]="{standalone: true}"/>
             </mat-form-field>
           </div>
 
@@ -78,25 +78,25 @@
           <div class="porteM_pelagemCurta">
             <mat-form-field appearance="fill">
               <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-              <input matInput [(ngModel)]="servico.precoPorTipo[4].preco" placeholder="22,00" class="form__servico-valor"
+              <input matInput [(ngModel)]="servico.precoPorTipo[4].preco" class="form__servico-valor"
                 mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-                [errorStateMatcher]="matcher" name="porteM_pelagemCurta"/>
+                [errorStateMatcher]="matcher" name="porteM_pelagemCurta" [ngModelOptions]="{standalone: true}"/>
             </mat-form-field>
           </div>
           <div class="porteM_pelagemMedia">
             <mat-form-field appearance="fill">
               <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-              <input matInput [(ngModel)]="servico.precoPorTipo[5].preco" placeholder="22,00" class="form__servico-valor"
+              <input matInput [(ngModel)]="servico.precoPorTipo[5].preco" class="form__servico-valor"
                 mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-                [errorStateMatcher]="matcher" name="porteM_pelagemMedia"/>
+                [errorStateMatcher]="matcher" name="porteM_pelagemMedia" [ngModelOptions]="{standalone: true}"/>
             </mat-form-field>
           </div>
           <div class="porteM_pelagemLonga">
             <mat-form-field appearance="fill">
               <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-              <input matInput [(ngModel)]="servico.precoPorTipo[6].preco" placeholder="22,00" class="form__servico-valor"
+              <input matInput [(ngModel)]="servico.precoPorTipo[6].preco" class="form__servico-valor"
                 mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-                [errorStateMatcher]="matcher" name="porteM_pelagemLonga"/>
+                [errorStateMatcher]="matcher" name="porteM_pelagemLonga" [ngModelOptions]="{standalone: true}"/>
             </mat-form-field>
           </div>
 
@@ -107,26 +107,26 @@
           <div class="porteG_pelagemCurta">
             <mat-form-field appearance="fill">
               <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-              <input matInput [(ngModel)]="servico.precoPorTipo[7].preco" placeholder="22,00" class="form__servico-valor"
+              <input matInput [(ngModel)]="servico.precoPorTipo[7].preco"  class="form__servico-valor"
                 mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-                [errorStateMatcher]="matcher" name="porteG_pelagemCurta"/>
+                [errorStateMatcher]="matcher" name="porteG_pelagemCurta" [ngModelOptions]="{standalone: true}"/>
             </mat-form-field>
           </div>
 
           <div class="porteG_pelagemMedia">
             <mat-form-field appearance="fill">
               <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-              <input matInput [(ngModel)]="servico.precoPorTipo[8].preco" placeholder="22,00" class="form__servico-valor"
+              <input matInput [(ngModel)]="servico.precoPorTipo[8].preco" class="form__servico-valor"
                 mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-                [errorStateMatcher]="matcher" name="porteG_pelagemMedia"/>
+                [errorStateMatcher]="matcher" name="porteG_pelagemMedia" [ngModelOptions]="{standalone: true}"/>
             </mat-form-field>
           </div>
           <div class="porteG_pelagemLonga">
             <mat-form-field appearance="fill">
               <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-              <input matInput [(ngModel)]="servico.precoPorTipo[9].preco" placeholder="22,00" class="form__servico-valor"
+              <input matInput [(ngModel)]="servico.precoPorTipo[9].preco" class="form__servico-valor"
                 mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-                [errorStateMatcher]="matcher" name="porteG_pelagemLonga"/>
+                [errorStateMatcher]="matcher" name="porteG_pelagemLonga" [ngModelOptions]="{standalone: true}"/>
             </mat-form-field>
           </div>
         </div>
@@ -143,9 +143,9 @@
             <div class="porteP_pelagemCurta">
               <mat-form-field appearance="fill">
                 <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-                <input matInput [(ngModel)]="servico.precoPorTipo[1].preco" placeholder="22,00" class="form__servico-valor" mask='separator.2'
+                <input matInput [(ngModel)]="servico.precoPorTipo[1].preco" class="form__servico-valor" mask='separator.2'
                   [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ " 
-                  [errorStateMatcher]="matcher" name="porteP_pelagemCurta"/>
+                  [errorStateMatcher]="matcher" name="porteP_pelagemCurta" [ngModelOptions]="{standalone: true}"/>
               </mat-form-field>
             </div>
             <div class="titulo_porteM">
@@ -154,9 +154,9 @@
             <div class="porteM_pelagemCurta">
               <mat-form-field appearance="fill">
                 <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-                <input matInput [(ngModel)]="servico.precoPorTipo[4].preco" placeholder="22,00" class="form__servico-valor" mask='separator.2'
+                <input matInput [(ngModel)]="servico.precoPorTipo[4].preco" class="form__servico-valor" mask='separator.2'
                   [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ " 
-                  [errorStateMatcher]="matcher" name="porteM_pelagemCurta"/>
+                  [errorStateMatcher]="matcher" name="porteM_pelagemCurta" [ngModelOptions]="{standalone: true}"/>
               </mat-form-field>
             </div>
             <div class="titulo_porteG">
@@ -165,9 +165,9 @@
             <div class="porteG_pelagemCurta">
               <mat-form-field appearance="fill">
                 <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-                <input matInput [(ngModel)]="servico.precoPorTipo[7].preco" placeholder="22,00" class="form__servico-valor" mask='separator.2'
+                <input matInput [(ngModel)]="servico.precoPorTipo[7].preco" class="form__servico-valor" mask='separator.2'
                   [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ " 
-                  [errorStateMatcher]="matcher" name="porteG_pelagemCurta"/>
+                  [errorStateMatcher]="matcher" name="porteG_pelagemCurta" [ngModelOptions]="{standalone: true}"/>
               </mat-form-field>
             </div>
           </div>
@@ -182,9 +182,9 @@
             <div class="porteP_pelagemMedia">
               <mat-form-field appearance="fill">
                 <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-                <input matInput [(ngModel)]="servico.precoPorTipo[2].preco" placeholder="22,00" class="form__servico-valor" mask='separator.2'
+                <input matInput [(ngModel)]="servico.precoPorTipo[2].preco" class="form__servico-valor" mask='separator.2'
                   [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ " 
-                  [errorStateMatcher]="matcher" name="porteP_pelagemMedia"/>
+                  [errorStateMatcher]="matcher" name="porteP_pelagemMedia" [ngModelOptions]="{standalone: true}"/>
               </mat-form-field>
             </div>
             <div class="titulo_porteM">
@@ -193,9 +193,9 @@
             <div class="porteM_pelagemMedia">
               <mat-form-field appearance="fill">
                 <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-                <input matInput [(ngModel)]="servico.precoPorTipo[5].preco" placeholder="22,00" class="form__servico-valor" mask='separator.2'
+                <input matInput [(ngModel)]="servico.precoPorTipo[5].preco" class="form__servico-valor" mask='separator.2'
                   [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ " 
-                  [errorStateMatcher]="matcher" name="porteM_pelagemMedia"/>
+                  [errorStateMatcher]="matcher" name="porteM_pelagemMedia" [ngModelOptions]="{standalone: true}"/>
               </mat-form-field>
             </div>
             <div class="titulo_porteG">
@@ -204,9 +204,9 @@
             <div class="porteG_pelagemMedia">
               <mat-form-field appearance="fill">
                 <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-                <input matInput [(ngModel)]="servico.precoPorTipo[8].preco" placeholder="22,00" class="form__servico-valor" mask='separator.2'
+                <input matInput [(ngModel)]="servico.precoPorTipo[8].preco" class="form__servico-valor" mask='separator.2'
                   [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ " 
-                  [errorStateMatcher]="matcher" name="porteG_pelagemMedia"/>
+                  [errorStateMatcher]="matcher" name="porteG_pelagemMedia" [ngModelOptions]="{standalone: true}"/>
               </mat-form-field>
             </div>
           </div>
@@ -221,9 +221,9 @@
             <div class="porteP_pelagemLonga">
               <mat-form-field appearance="fill">
                 <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-                <input matInput [(ngModel)]="servico.precoPorTipo[3].preco" placeholder="22,00" class="form__servico-valor" mask='separator.2'
+                <input matInput [(ngModel)]="servico.precoPorTipo[3].preco" class="form__servico-valor" mask='separator.2'
                   [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ " 
-                  [errorStateMatcher]="matcher" name="porteP_pelagemLonga"/>
+                  [errorStateMatcher]="matcher" name="porteP_pelagemLonga" [ngModelOptions]="{standalone: true}"/>
               </mat-form-field>
             </div>
             <div class="titulo_porteM">
@@ -232,9 +232,9 @@
             <div class="porteM_pelagemLonga">
               <mat-form-field appearance="fill">
                 <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-                <input matInput [(ngModel)]="servico.precoPorTipo[6].preco" placeholder="22,00" class="form__servico-valor" mask='separator.2'
+                <input matInput [(ngModel)]="servico.precoPorTipo[6].preco" class="form__servico-valor" mask='separator.2'
                   [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ " 
-                  [errorStateMatcher]="matcher" name="porteM_pelagemLonga"/>
+                  [errorStateMatcher]="matcher" name="porteM_pelagemLonga" [ngModelOptions]="{standalone: true}"/>
               </mat-form-field>
             </div>
             <div class="titulo_porteG">
@@ -243,15 +243,13 @@
             <div class="porteG_pelagemLonga">
               <mat-form-field appearance="fill">
                 <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-                <input matInput [(ngModel)]="servico.precoPorTipo[9].preco" placeholder="22,00" class="form__servico-valor" mask='separator.2'
+                <input matInput [(ngModel)]="servico.precoPorTipo[9].preco" class="form__servico-valor" mask='separator.2'
                   [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ " 
-                  [errorStateMatcher]="matcher" name="porteG_pelagemLonga"/>
+                  [errorStateMatcher]="matcher" name="porteG_pelagemLonga" [ngModelOptions]="{standalone: true}"/>
               </mat-form-field>
             </div>
           </div>
         </div>
-
-
       </div>
     </div>
 
