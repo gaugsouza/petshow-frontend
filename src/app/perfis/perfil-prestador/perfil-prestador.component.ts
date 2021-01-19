@@ -53,6 +53,7 @@ export class PerfilPrestadorComponent implements OnInit {
   }
 
   exibeFormulario() {
+    console.log(this.servico);
     this.erroRequisicao = null;
     this.mensagemSucesso = null;
     this.isFormVisivel = true;

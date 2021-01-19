@@ -56,7 +56,13 @@ export class FormularioServicoComponent implements OnInit {
   }
 
   insereServico() {
-    this.adicionaServico.emit(this.servico);
+    this.adicionaServico.emit(this.trataServico(this.servico));
+    this.viewContainerRef.clear();
+  }
+
+  private trataServico(servico:ServicoDetalhado): ServicoDetalhado {
+    let adicionais = [...(servico.adicionais || []).filter(adicional => adicional.nome !== null && adicional.nome !== '')]
+    return {...servico, adicionais}
   }
 
   cancelarOperacao() {
