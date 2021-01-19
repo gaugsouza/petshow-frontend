@@ -1,0 +1,27 @@
+<div *ngIf="cliente; then clienteBlock else vazioBlock"></div>
+
+<ng-template #vazioBlock>
+    <p class="no_registered">{{'CLIENTE_NAO_ENCONTRADO' | translate}}</p>
+</ng-template>
+
+<ng-template #clienteBlock>
+    <mat-card class="cliente-card">
+        <div>
+            <p><strong> Cliente </strong> </p>
+            <span><strong>{{'NOME' | translate}}:</strong> {{cliente.nome}}</span>
+            <span><strong>CPF:</strong> {{cliente.cpf | mask: '000.000.000-00'}}</span>
+            <span><strong>E-mail:</strong> {{cliente.login.email}}</span>        
+        </div>
+        <br>        
+        <div>
+            <p><strong> Endereço </strong></p>
+            <span>CEP: {{cliente.endereco.cep}}</span> 
+            <span>Logradouro: {{cliente.endereco.logradouro}}</span>
+            <span>Numero: {{cliente.endereco.numero}}</span>
+            <span>Bairro: {{cliente.endereco.bairro}}</span>
+            <span>Cidade: {{cliente.endereco.cidade}}</span>
+            <span>Estado: {{cliente.endereco.estado}}</span>            
+            <span>Complemento: {{cliente.endereco.complemento}}</span>
+        </div>
+    </mat-card>
+</ng-template>

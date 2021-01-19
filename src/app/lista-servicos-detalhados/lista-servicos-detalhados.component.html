@@ -14,12 +14,12 @@
                         {{servicoDetalhado.tipo.nome}} 
                     </div>
                     <span>{{servicoDetalhado.preco | currency: 'BRL'}}</span>
-                    <span><a mat-button color="primary" href="/prestador?idPrestador={{servicoDetalhado.prestadorId}}">{{servicoDetalhado.prestador.nome}}</a>
+                    <span>
+                        <a mat-button color="primary" href="/prestador?idPrestador={{servicoDetalhado.prestadorId}}">{{servicoDetalhado.prestador.nome}}</a>
                         <a mat-button color="primary" href="/avaliacao?servicoAvaliado={{servicoDetalhado.id}}&prestador={{servicoDetalhado.prestador.id}}">{{'AVALIACOES' | translate}}</a>
                     </span>  
                     <div class="lista-servicos-detalhados__button-container">
-                        <button mat-flat-button color="accent" >{{'AGENDAR' | translate}}</button>
-                        
+                        <a mat-button color="primary" href="/agendamento/null/prestador/{{servicoDetalhado.prestador.id}}/servicoDetalhado/{{servicoDetalhado.id}}">{{'AGENDAR' | translate}}</a>
                     </div>
                 </div>
             </mat-list-item>

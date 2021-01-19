@@ -25,4 +25,9 @@ export class ServicosService {
     const URL = `${PRESTADOR_SERVICE_URL}/${prestadorId}/servico-detalhado?pagina=${pagina}&quantidadeItens=${quantidadeItens}`;
     return this.httpHandler.doGet<any>(URL, token);
   }
+
+  buscarPorPrestadorIdEServicoId(prestadorId:number, servicoDetalhadoId:number, token:string) : Observable<any> {
+    const URL = `${PRESTADOR_SERVICE_URL}/${prestadorId}/servico-detalhado/${servicoDetalhadoId}`;
+    return this.httpHandler.doGet<any>(URL, token);
+  }
 }

@@ -1,0 +1,26 @@
+<div class="agendamento-block">
+    <app-animal-estimacao *ngIf="idCliente"
+                            [idCliente]="idCliente"
+                            [isVisualizacao]="isVisualizacao"
+                            (recupera-animais-estimacao)="recuperaAnimaisEstimacaoSelecionados($event)">    
+    </app-animal-estimacao>
+    <app-servico-detalhado [idServico]="idServico"
+                            [idPrestador]="idPrestador"
+                            [isVisualizacao]="isVisualizacao"
+                            (recupera-servico-detalhado)="recuperaServicoDetalhado($event)">    
+    </app-servico-detalhado>
+    <app-cliente (recupera-cliente)="recuperaCliente($event)">
+    </app-cliente>
+</div>
+<div class="agendamento-send">
+    <mat-form-field>
+        <mat-label>Comentário</mat-label>
+        <textarea matInput></textarea>
+    </mat-form-field>
+    <mat-card>
+        <p><strong> Preço final: </strong> </p>
+    </mat-card>    
+    <span>
+        <button mat-button (click)="adicionarAgendamento()">Agendar</button>
+    </span>    
+</div>

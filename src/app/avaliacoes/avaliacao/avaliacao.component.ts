@@ -148,6 +148,7 @@ export class AvaliacaoComponent implements OnInit {
         this.usuarioService.getUsuario(token)
           .subscribe((cliente:Cliente) => {
             const novaAvaliacao = { ...avaliacao, servicoAvaliado: this.servicoAvaliado, cliente };
+            /*TODO: TROCAR PRESTADOR POR AGENDAMENTO*/
             this.avaliacaoService.adicionarAvaliacao(novaAvaliacao,
               this.idServico, this.idPrestador, token).subscribe(() => {
               this.preencheServico(this.idServico, this.idPrestador);
