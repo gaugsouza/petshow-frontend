@@ -60,9 +60,9 @@ export class FormularioServicoComponent implements OnInit {
     this.viewContainerRef.clear();
   }
 
-  private trataServico(servico:ServicoDetalhado): ServicoDetalhado {
-    let adicionais = [...(servico.adicionais || []).filter(adicional => adicional.nome !== null && adicional.nome !== '')]
-    return {...servico, adicionais}
+  private trataServico = (servico:ServicoDetalhado): ServicoDetalhado => {
+    const adicionais = [...(servico.adicionais || []).filter((adicional) => adicional.nome !== null && adicional.nome !== '')];
+    return { ...servico, adicionais };
   }
 
   cancelarOperacao() {
