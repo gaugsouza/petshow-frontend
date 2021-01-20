@@ -11,8 +11,6 @@ import { Cliente } from 'src/app/interfaces/cliente';
   styleUrls: ['./cliente.component.scss']
 })
 export class ClienteComponent implements OnInit {
-  @Output() recuperaCliente = new EventEmitter<Cliente>();
-
   idCliente: number;
   cliente: Cliente;
 
@@ -30,12 +28,7 @@ export class ClienteComponent implements OnInit {
 
       this.usuarioService.buscarUsuario(this.idCliente).subscribe((cliente) => {
         this.cliente = JSON.parse(cliente);
-        this.emiteCliente(JSON.parse(cliente));
       })
     });
-  }
-
-  emiteCliente(cliente: Cliente){
-    this.recuperaCliente.emit(cliente);
   }
 }

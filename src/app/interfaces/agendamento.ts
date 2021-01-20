@@ -11,9 +11,10 @@ export interface Agendamento {
     mediaAvaliacao?: number,
     data?: string,
     comentario?: string,
-    endereco: Endereco,
+    endereco?: Endereco,
     animaisAtendidos: AnimalEstimacao[],
-    servicosDetalhados: ServicoDetalhado[],
+    servicoDetalhado?: ServicoDetalhado,
+    servicoDetalhadoId: number;
     status?: StatusAgendamento,
     clienteId: number,
     cliente?: Cliente,

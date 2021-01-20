@@ -6,19 +6,17 @@
     </app-animal-estimacao>
     <app-servico-detalhado [idServico]="idServico"
                             [idPrestador]="idPrestador"
-                            [isVisualizacao]="isVisualizacao"
-                            (recupera-servico-detalhado)="recuperaServicoDetalhado($event)">    
+                            [isVisualizacao]="isVisualizacao">    
     </app-servico-detalhado>
-    <app-cliente (recupera-cliente)="recuperaCliente($event)">
-    </app-cliente>
+    <app-cliente></app-cliente>
 </div>
 <div class="agendamento-send">
     <mat-form-field>
         <mat-label>Comentário</mat-label>
-        <textarea matInput></textarea>
+        <textarea matInput [(ngModel)]="comentario"></textarea>
     </mat-form-field>
     <mat-card>
-        <p><strong> Preço final: </strong> </p>
+        <p><strong> Preço final: {{precoFinal}} </strong> </p>
     </mat-card>    
     <span>
         <button mat-button (click)="adicionarAgendamento()">Agendar</button>

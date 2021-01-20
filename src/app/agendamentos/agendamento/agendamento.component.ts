@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
+import { AgendamentoService } from 'src/app/servicos/agendamento.service';
 import { JwtHelper } from 'src/app/util/jwt-helper';
 import { USER_TOKEN } from 'src/app/util/constantes';
 import { Agendamento } from 'src/app/interfaces/agendamento';
@@ -18,13 +19,19 @@ export class AgendamentoComponent implements OnInit {
   idPrestador: number;
   idCliente: number;
   idAgendamento: number;
-  isVisualizacao: boolean;
+
   cliente: Cliente;
   animaisEstimacao: AnimalEstimacao[];
   servicoDetalhado: ServicoDetalhado;
+  agendamento: Agendamento;
+
+  isVisualizacao: boolean;  
+  comentario: string;
+  precoFinal: number;
 
   constructor(private route:ActivatedRoute,
     private localStorageService:LocalStorageService,
+    private agendamentoService: AgendamentoService,
     private jwtHelper: JwtHelper) { 
       this.isVisualizacao = this.route.snapshot.params.isVisualizacao;
     }
@@ -47,17 +54,21 @@ export class AgendamentoComponent implements OnInit {
     this.animaisEstimacao = animaisEstimacao;
   }
 
-  recuperaCliente(cliente){
-    this.cliente = cliente;
-  }
-
-  recuperaServicoDetalhado(servicoDetalhado){
-    this.servicoDetalhado = servicoDetalhado;
-  }
-
   adicionarAgendamento(){
-    console.log(this.animaisEstimacao)
-    console.log(this.cliente)
-    console.log(this.servicoDetalhado)
+    this.agendamento = {
+      clienteId: this.idCliente,
+      prestadorId: this.idPrestador,
+      comentario: this.comentario,
+      animaisAtendidos: this.animaisEstimacao,
+      precoFinal: this.precoFinal,
+      servicoDetalhadoId: this.idServico      
+    };
+    
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
+      this.agendamentoService.adicionarAgendamento(this.agendamento, token).subscribe(agendamento => {
+        console.log(agendamento)
+      });
+      
+    });    
   }
 }
