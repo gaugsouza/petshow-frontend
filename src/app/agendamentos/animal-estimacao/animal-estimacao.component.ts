@@ -15,7 +15,7 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 export class AnimalEstimacaoComponent implements OnInit {
   @Input() isVisualizacao: Boolean;
   @Input() idCliente: number;
-  @Output() recuperaAnimaisEstimacao = new EventEmitter<AnimalEstimacao[]>();
+  @Output('recupera-animais-estimacao') recuperaAnimaisEstimacao = new EventEmitter<AnimalEstimacao[]>();
 
   pageEvent: PageEvent;
   quantidadeTotal:number;
