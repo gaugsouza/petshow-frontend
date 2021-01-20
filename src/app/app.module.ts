@@ -30,6 +30,7 @@ import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
 import { AgendamentosModule } from './agendamentos/agendamentos.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,

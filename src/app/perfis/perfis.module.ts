@@ -24,6 +24,8 @@ import { ConfigModule } from 'src/app/config/config.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MensagemAtivacaoComponent } from 'src/app/perfis/mensagem-ativacao/mensagem-ativacao.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { AgendaPrestadorComponent } from './agenda-prestador/agenda-prestador.component';
+import { AgendamentoService } from '../servicos/agendamento.service';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -42,6 +44,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     AnimalEstimacaoComponent,
     FormularioAnimalComponent,
     MensagemAtivacaoComponent,
+    AgendaPrestadorComponent,
   ],
   imports: [
     CommonModule,
@@ -70,5 +73,6 @@ export function HttpLoaderFactory(http:HttpClient) {
     AnimalEstimacaoComponent,
     FormularioAnimalComponent,
   ],
+  providers: [AgendamentoService]
 })
 export class PerfisModule { }
