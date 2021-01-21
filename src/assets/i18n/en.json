@@ -134,5 +134,7 @@
   "ATIVE_CONTA": "Activate your account to add services",
   "SOLICITACAO_REENVIADA": "Request resent successfully. Check your e-mail",
   "ERRO_REENVIO_SOLICITACAO": "An error occurred when sending a new activation request",
-  "CPF_INVALIDO": "Invalid CPF"
+  "CPF_INVALIDO": "Invalid CPF",
+  "NENHUM_AGENDAMENTO": "No bookings",
+  "CONCLUIDO": "Done"
 }
