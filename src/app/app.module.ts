@@ -29,6 +29,7 @@ import { NotificationService } from 'src/app/servicos/notification.service';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
 import { AgendamentosModule } from './agendamentos/agendamentos.module';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { AgendamentosModule } from './agendamentos/agendamentos.module';
     ConfigModule,
     MatPaginatorModule,
     AgendamentosModule,
+    MatCheckboxModule,
   ],
   providers: [
     JwtHelper,

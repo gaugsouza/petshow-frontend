@@ -15,7 +15,6 @@ export class ServicoDetalhadoComponent implements OnInit {
   @Input() isVisualizacao: Boolean;
   @Input() idServico: number;
   @Input() idPrestador: number;
-  @Output() recuperaServicoDetalhado = new EventEmitter<ServicoDetalhado>();
 
   servicoDetalhado: ServicoDetalhado;
   pageEvent: PageEvent;
@@ -35,12 +34,7 @@ export class ServicoDetalhadoComponent implements OnInit {
       this.servicosService.buscarPorPrestadorIdEServicoId(prestadorId, servicoDetalhadoId, token)
         .subscribe((servicoDetalhado) => {
           this.servicoDetalhado = servicoDetalhado;
-          this.emiteServicoDetalhado(servicoDetalhado);
         });
     });
-  }
-
-  emiteServicoDetalhado(servicoDetalhado: ServicoDetalhado){
-    this.recuperaServicoDetalhado.emit(servicoDetalhado);
   }
 }
