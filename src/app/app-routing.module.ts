@@ -15,9 +15,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'cadastro', component: CadastroComponent },
   { path: '', component: HomeComponent },
-  { path: 'avaliacao', component: AvaliacaoComponent },
+  { path: 'prestador/:idPrestador/servico/:idServico/avaliacao', component: AvaliacaoComponent },
   { path: 'servico-detalhado/tipo-servico/:id', component: ListaServicosDetalhadosComponent },
-  { path: 'prestador', component: PrestadorComponent },
+  { path: 'prestador/:id', component: PrestadorComponent },
   { path: 'cadastro-sucesso', component: SucessoCadastroComponent },
   { path: 'confirmacao-registro', component: TokenAtivacaoComponent },
 ];

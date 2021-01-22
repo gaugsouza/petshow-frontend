@@ -134,5 +134,7 @@
   "ATIVE_CONTA": "Ative sua conta para poder adicionar serviços",
   "SOLICITACAO_REENVIADA": "Solicitação reenviada com sucesso. Verifique seu e-mail.",
   "ERRO_REENVIO_SOLICITACAO": "Ocorreu um erro na solicitação de reenvio",
-  "CPF_INVALIDO": "CPF informado é inválido"
+  "CPF_INVALIDO": "CPF informado é inválido",
+  "ADICIONAL": "Adicional",
+  "NENHUM_ADICIONAL": "Nenhum adicional informado"
 }

@@ -123,6 +123,7 @@ export class PerfilPrestadorComponent implements OnInit {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       this.prestadorService.removeServico(this.usuario.id, servico.id, token).subscribe(() => {
         this.getUsuario();
+        this.servicoNotification.notify({});
       });
     },
     (err) => {
