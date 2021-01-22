@@ -43,7 +43,9 @@ export class AgendaPrestadorComponent implements OnInit {
           .subscribe((paginaAgendamentos) => {
             const objetoPaginado:ObjetoPaginado = paginaAgendamentos;
             console.log(objetoPaginado.content);
-            this.agendamentos = objetoPaginado.content;
+            this.agendamentos = objetoPaginado.content.sort(function(a,b){
+              return a.data - b.data;
+            });
             this.quantidadeTotal = objetoPaginado.totalElements;
             this.paginaAtual = objetoPaginado.pageable.pageNumber;
             this.quantidadeItens = objetoPaginado.size;
