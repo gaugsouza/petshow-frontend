@@ -30,6 +30,7 @@ import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
 import { AgendamentosModule } from './agendamentos/agendamentos.module';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { Agendamento } from './interfaces/agendamento';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     DataSharingService,
     { provide: 'ServicoNotificationService', useFactory: () => (new NotificationService<ServicoDetalhado>()) },
     { provide: 'AnimalNotificationService', useFactory: () => (new NotificationService<AnimalEstimacao>()) },
+    { provide: 'AgendamentoNotificationService', useFactory: () => (new NotificationService<Agendamento>()) }
   ],
   bootstrap: [AppComponent],
 })

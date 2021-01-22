@@ -27,6 +27,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { AgendaPrestadorComponent } from './agenda-prestador/agenda-prestador.component';
 import { AgendamentoService } from '../servicos/agendamento.service';
 
+
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
 }
