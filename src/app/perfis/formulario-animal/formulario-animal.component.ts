@@ -78,7 +78,7 @@ export class FormularioAnimalComponent implements OnInit {
   limpa() {
     this.animal = {
       nome: '',
-      tipo: this.tiposAnimal[0]
+      tipo: this.tiposAnimal[0],
     };
   }
 }

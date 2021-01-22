@@ -2,7 +2,7 @@ import {
   Component, OnInit, Input, Output, EventEmitter,
 } from '@angular/core';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
-import { BANHO, SERVICOS } from 'src/app/util/tipo-servico';
+import { BANHO } from 'src/app/util/tipo-servico';
 import { MyErrorStateMatcher } from 'src/app/classes/my-error-state-matcher';
 import { ServicosService } from 'src/app/servicos/servicos.service';
 import { FormControl, Validators } from '@angular/forms';
@@ -61,8 +61,6 @@ export class FormularioServicoComponent implements OnInit {
     return this.servicos;
   }
 
-
-
   constructor(private servicoService:ServicosService) { }
 
   ngOnInit(): void {
@@ -80,9 +78,9 @@ export class FormularioServicoComponent implements OnInit {
     this.cachorro_checked= !this.cachorro_checked;
   }
 
-  onSubmit(form){
-    console.log(form);
-    console.log(this.servico);
-  }
+  // onSubmit(form:any){
+  //   console.log(form);
+  //   console.log(this.servico);
+  // }
   
 }
