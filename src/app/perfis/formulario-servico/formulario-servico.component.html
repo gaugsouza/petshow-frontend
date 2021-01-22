@@ -9,6 +9,17 @@
         <mat-label>{{'TIPO_SERVICO' | translate}}</mat-label>
         <mat-select name="tipo_servico" class="form__servico-tipo" [(ngModel)]="servico.tipo"
         required>
+<section [hidden]="!exibeFormulario">
+  <h3 class="page-section-title">{{'ADD_SERVICO_FORM' | translate}}</h3>
+  <!-- <form class="form"> -->
+  <div class="form">
+    <div class="form__servico">
+      <mat-form-field class="invisible">
+        <input matInput [(ngModel)]="servico.id" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="form__input-tipo">
+        <mat-label>{{'TIPO_SERVICO' | translate}}</mat-label>
+        <mat-select [(ngModel)]="servico.tipo" class="form__animal-tipo">
           <mat-option *ngFor="let tipo of getTiposServico()" [value]="tipo">
             {{tipo.nome | translate}}
           </mat-option>
@@ -261,4 +272,29 @@
 
   </div>
 </form>
+</section>
+      <mat-form-field class="form__input-preco">
+        <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
+        <input matInput [(ngModel)]="servico.preco" placeholder="22,00" class="form__animal-nome" mask='separator.2'
+          [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ " [formControl]="precoFormControl"
+          [errorStateMatcher]="matcher" />
+        <mat-error *ngIf="precoFormControl.hasError('required')">
+          {{'CAMPO_OBRIGATORIO' | translate}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form__adicionais">
+      <ng-template #adicionais></ng-template>
+    </div>
+    <div class="form__button-container">
+      <button mat-stroked-button (click)="addAdicionalComponent()">
+        {{'ADICIONAL' | translate}}
+      </button>
+      <button mat-stroked-button color="primary" (click)="insereServico()"
+        [disabled]="hasErrors()">{{'SALVAR' | translate}}</button>
+      <button mat-stroked-button color="warn" (click)="cancelarOperacao()">{{'CANCELAR'|translate}}</button>
+    </div>
+  </div>
+  <!-- </form> -->
+  <!-- <input type="file" name="" id="" placeholder="Foto do animal"> -->
 </section>

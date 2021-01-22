@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { PrestadorComponent } from './prestador.component';
 import { PrestadorService } from '../servicos/prestador.service';
 import { LocalStorageService } from '../servicos/local-storage.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, convertToParamMap } from '@angular/router';
 import { of } from 'rxjs';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
@@ -35,7 +35,12 @@ describe('PrestadorComponent', () => {
             servicoAvaliado: 1,
             prestador: 1,
             idPrestador: 1
-          })
+          }),
+          snapshot: {
+            paramMap: convertToParamMap({
+              id: '1'
+            })
+          }
         }},
         JwtHelper
       ],

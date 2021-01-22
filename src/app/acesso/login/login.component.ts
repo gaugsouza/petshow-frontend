@@ -28,6 +28,8 @@ export class LoginComponent implements OnInit {
 
   foiAtivo:boolean = false;
 
+  redirectTo:string = '';
+
   passwordFormControl = new FormControl('', [
     Validators.required,
   ]);
@@ -51,6 +53,7 @@ export class LoginComponent implements OnInit {
     this.route.queryParams.subscribe((params:Params) => {
       const isAtivo:boolean = !!(params.ativo) || false;
       this.foiAtivo = isAtivo;
+      this.redirectTo = params.redirectTo || '/perfil';
     });
   }
 
@@ -59,7 +62,7 @@ export class LoginComponent implements OnInit {
   }
 
   redirect() {
-    this.router.navigate(['/perfil']);
+    this.router.navigate([this.redirectTo]);
   }
 
   realizaLogin() {

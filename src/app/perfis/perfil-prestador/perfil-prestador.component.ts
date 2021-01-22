@@ -17,6 +17,7 @@ import { BANHO } from 'src/app/util/tipo-servico';
 export class PerfilPrestadorComponent implements OnInit {
   servico:ServicoDetalhado = {
     tipo: BANHO,
+    adicionais: [],
     animaisAceitos: [
       { id: 1, nome: 'Gato' },
       {
@@ -192,6 +193,7 @@ export class PerfilPrestadorComponent implements OnInit {
   limpaServico() {
     this.servico = {
       tipo: BANHO,
+      adicionais: [],
       animaisAceitos: [
         { id: 1, nome: 'Gato' },
         {
@@ -270,6 +272,7 @@ export class PerfilPrestadorComponent implements OnInit {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       this.prestadorService.removeServico(this.usuario.id, servico.id, token).subscribe(() => {
         this.getUsuario();
+        this.servicoNotification.notify({});
       });
     },
     (err) => {
