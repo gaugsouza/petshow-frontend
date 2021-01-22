@@ -1,43 +1,47 @@
 <section>
-      
-    <div class="conteiner-agendamento-list" *ngIf="agendamentos && agendamentos.length; then agendamentosBlock else vazioBlock"></div>
-    
-    <ng-template #vazioBlock>
-        <p class="no_registered">{{'NENHUM_AGENDAMENTO' | translate}}</p>
-    </ng-template>
 
-    <ng-template #agendamentosBlock>
-        <mat-list class="agendamentos-list">
-            <mat-list-item *ngFor="let agendamento of agendamentos">
-                <div class="agendamento-list__item">
-                    <span *ngFor="let servicoDetalhado of agendamento.servicoDetalhado">
-                        {{servicoDetalhado.nome}}
-                    </span>
-                    
-                    <span>{{agendamento.data}}</span> 
-                    <span *ngFor="let animal of agendamento.animaisAtendidos">
-                        {{animal.nome}}
-                        {{animal.tipo.nome}}
-                    </span>
-                    <span>{{agendamento.precoFinal}}</span>
-                    <span>{{agendamento.status.nome}}</span>
-                    <div class="animal-list__button-container">
-                        <button mat-flat-button color="accent">{{'CONCLUIDO' | translate}}</button>
-                        <button mat-flat-button color="warn">{{'CANCELAR' | translate}}</button>
-                        <!-- <button mat-flat-button color="accent" (click)="concluiAgendamento(agendamento)">{{'CONCLUIDO' | translate}}</button>
+  <div class="conteiner-agendamento-list"
+    *ngIf="agendamentos && agendamentos.length; then agendamentosBlock else vazioBlock"></div>
+
+  <ng-template #vazioBlock>
+    <p class="no_registered">{{'NENHUM_AGENDAMENTO' | translate}}</p>
+  </ng-template>
+
+  <ng-template #agendamentosBlock>
+    <mat-list class="agendamentos-list">
+      <mat-list-item *ngFor="let agendamento of agendamentos">
+        <div class="agendamento-list__item">
+          <div *ngFor="let servicoDet of agendamento.servicoDetalhado">
+            {{servicoDet.tipo.nome}}
+          </div>
+          <span>{{agendamento.data}}</span>
+          <ng-container *ngFor="let animal of agendamento.animaisAtendidos">
+            <span *ngIf="animal.tipo.nome == 'cachorro'; else infosGato">
+              <p>Animal a ser atendido: {{animal.nome}}</p>
+              <p>Cachorro de porte {{animal.tipo.porte}} e pelagem {{animal.tipo.pelagem}}</p>
+            </span>
+            <ng-template #infosGato>
+              <p>Animal a ser atendido: {{animal.nome}}</p>
+              <p>Gato</p>
+            </ng-template>
+          </ng-container>
+
+          <span>Preço final: {{agendamento.precoFinal}}</span>
+          <span>Seu agendamento está {{agendamento.status.nome}}</span>
+          <p></p>
+          <div class="animal-list__button-container">
+            <button mat-flat-button color="accent">{{'CONCLUIDO' | translate}}</button>
+            <button mat-flat-button color="warn">{{'CANCELAR' | translate}}</button>
+            <!-- <button mat-flat-button color="accent" (click)="concluiAgendamento(agendamento)">{{'CONCLUIDO' | translate}}</button>
                         <button mat-flat-button color="warn" (click)="cancelaAgendamento(agendamento)">{{'CANCELAR' | translate}}</button> -->
-                    </div>
-                </div>
-            </mat-list-item>
-        </mat-list>
+          </div>
+        </div>
+      </mat-list-item>
+    </mat-list>
 
-        <mat-paginator #paginator
-            [length]="quantidadeTotal"
-            [pageIndex]="paginaAtual"
-            [pageSize]="quantidadeItens"
-            [pageSizeOptions]="[5, 7, 10, 15]"
-            >
-        </mat-paginator>
-    </ng-template>
-   
+    <mat-paginator #paginator [length]="quantidadeTotal" [pageIndex]="paginaAtual" [pageSize]="quantidadeItens"
+      [pageSizeOptions]="[5, 7, 10, 15]">
+    </mat-paginator>
+  </ng-template>
+
 </section>
