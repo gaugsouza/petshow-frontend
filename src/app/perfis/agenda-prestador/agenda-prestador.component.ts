@@ -16,6 +16,8 @@ import { USER_TOKEN } from 'src/app/util/constantes';
 export class AgendaPrestadorComponent implements OnInit {
   @Input('prestador-id') prestadorId: number;
   agendamentos: Agendamento[];
+
+
   animaisAtendidos: AnimalEstimacao[];
   pageEvent: PageEvent;
   quantidadeTotal:number;
@@ -44,6 +46,15 @@ export class AgendaPrestadorComponent implements OnInit {
             const objetoPaginado:ObjetoPaginado = paginaAgendamentos;
             console.log(objetoPaginado.content);
             this.agendamentos = objetoPaginado.content;
+            this.agendamentos.sort(function(a,b){
+              if (a.data > b.data) {
+                return 1;
+              }
+              if (a.data < b.data) {
+                return -1;
+              }
+              return 0;
+            })
             this.quantidadeTotal = objetoPaginado.totalElements;
             this.paginaAtual = objetoPaginado.pageable.pageNumber;
             this.quantidadeItens = objetoPaginado.size;
