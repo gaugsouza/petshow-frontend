@@ -9,6 +9,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { Servico } from 'src/app/interfaces/servico';
 import { DynamicContentInjectorService } from 'src/app/servicos/dynamic-content-injector.service';
 import { Adicional } from 'src/app/interfaces/adicional';
+import { UsuarioService } from 'src/app/servicos/usuario.service';
+import { TipoAnimal } from 'src/app/enum/TipoAnimal';
 
 @Component({
   selector: 'app-formulario-servico',
@@ -26,14 +28,19 @@ export class FormularioServicoComponent implements OnInit {
     adicionais: [],
   };
 
-  servicos:Servico[];
 
-  public precosPorTipo:[];
+
+  servicos:Servico[];
 
   gato_checked:Boolean;
 
   cachorro_checked:Boolean;
 
+  tiposAnimais:TipoAnimal[];
+  tiposInputModel:any;
+  tipoChecked:any;
+
+  // precosPorTipo:ServicoDetalhadoTipoAnimal[];
 
   @Output('adiciona-servico') adicionaServico = new EventEmitter<ServicoDetalhado>();
 
@@ -52,7 +59,53 @@ export class FormularioServicoComponent implements OnInit {
   ]);
 
   constructor(private servicoService:ServicosService,
+              private usuarioService:UsuarioService,
               private dynamicLoader:DynamicContentInjectorService) {}
+
+  ngOnInit(): void {
+    this.servicoService.getTipos().subscribe((servicos) => {
+        this.servicos = JSON.parse(servicos);
+      },
+      () => {
+        this.servicos = [];
+      });
+    
+      this.usuarioService.buscarTiposAnimalEstimacao().subscribe((tipos) => {
+        this.tiposAnimais = JSON.parse(tipos);
+        this.tiposInputModel = this.criaInputModel(this.tiposAnimais);
+        this.tipoChecked = this.criaChecked();
+      },
+      () => {
+        this.tiposAnimais = [];
+      })
+  }
+
+
+//////////////////////
+  criaInputModel(tiposAnimal:TipoAnimal[]) {
+    const tiposComPrecos = tiposAnimal.map(el => ({tipo:{...el}, preco: 0}));
+    
+    return tiposComPrecos.map(el => el.tipo.nome)
+    .reduce((acc, chave) => {
+      const elementos = tiposComPrecos.filter(el => el.tipo.nome === chave);
+      if(elementos.length === 1) {
+        return ({...acc, [chave]: {...elementos[0]}});
+      }
+      return ({...acc, [chave]:[...elementos]});
+    }, {})
+  }
+
+  getInputModelKeys() {
+    return Object.keys(this.tiposInputModel) || [];
+  }
+  criaChecked() {
+    return this.getInputModelKeys().reduce((acc, chave) => ({...acc, [chave]:false}), {})
+  }
+
+  toggleChecked(chave:string) {
+    this.tipoChecked[chave] = !this.tipoChecked[chave];
+  }
+////////////////////
 
   hasErrors() {
     return this.precoFormControl.hasError('required') || this.descricaoFormControl.hasError('minLength');
@@ -74,20 +127,12 @@ export class FormularioServicoComponent implements OnInit {
 
   cancelarOperacao() {
     this.viewContainerRef.clear();
+    this.tipoChecked = Object.keys(this.tipoChecked).map(el => this.tipoChecked[el] = false);
     this.cancelaOperacao.emit();
   }
 
   getTiposServico() {
     return this.servicos;
-  }
-
-  ngOnInit(): void {
-    this.servicoService.getTipos().subscribe((servicos) => {
-      this.servicos = JSON.parse(servicos);
-    },
-    () => {
-      this.servicos = [];
-    });
   }
 
   toggleCheckBoxGato() {
