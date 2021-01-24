@@ -7,6 +7,7 @@ import { USER_TOKEN } from 'src/app/util/constantes';
 import { Endereco } from 'src/app/interfaces/endereco';
 import { JwtHelper } from 'src/app/util/jwt-helper';
 import { NotificationService } from 'src/app/servicos/notification.service';
+import { BANHO } from 'src/app/util/tipo-servico';
 
 @Component({
   selector: 'app-perfil-prestador',
@@ -14,7 +15,81 @@ import { NotificationService } from 'src/app/servicos/notification.service';
   styleUrls: ['./perfil-prestador.component.scss'],
 })
 export class PerfilPrestadorComponent implements OnInit {
-  servico:ServicoDetalhado = {}
+  servico:ServicoDetalhado = {
+    tipo: BANHO,
+    // adicionais: [],
+    // animaisAceitos: [
+    //   { id: 1, nome: 'Gato' },
+    //   {
+    //     id: 2, nome: 'Cachorro', porte: 'Pequeno', pelagem: 'Curta',
+    //   },
+    // ],
+    // precoPorTipo: [{ id: 1, tipoAnimal: { id: 1, nome: 'Gato' }, preco: 0 },
+    //   {
+    //     id: 2,
+    //     tipoAnimal: {
+    //       id: 2, nome: 'Cachorro', porte: 'Pequeno', pelagem: 'Curta',
+    //     },
+    //     preco: 0,
+    //   },
+    //   {
+    //     id: 3,
+    //     tipoAnimal: {
+    //       id: 3, nome: 'Cachorro', porte: 'Pequeno', pelagem: 'Média',
+    //     },
+    //     preco: 0,
+    //   },
+    //   {
+    //     id: 4,
+    //     tipoAnimal: {
+    //       id: 4, nome: 'Cachorro', porte: 'Pequeno', pelagem: 'Longa',
+    //     },
+    //     preco: 0,
+    //   },
+    //   {
+    //     id: 5,
+    //     tipoAnimal: {
+    //       id: 5, nome: 'Cachorro', porte: 'Médio', pelagem: 'Curta',
+    //     },
+    //     preco: 0,
+    //   },
+    //   {
+    //     id: 6,
+    //     tipoAnimal: {
+    //       id: 6, nome: 'Cachorro', porte: 'Médio', pelagem: 'Média',
+    //     },
+    //     preco: 0,
+    //   },
+    //   {
+    //     id: 7,
+    //     tipoAnimal: {
+    //       id: 7, nome: 'Cachorro', porte: 'Médio', pelagem: 'Longa',
+    //     },
+    //     preco: 0,
+    //   },
+    //   {
+    //     id: 8,
+    //     tipoAnimal: {
+    //       id: 8, nome: 'Cachorro', porte: 'Grande', pelagem: 'Curta',
+    //     },
+    //     preco: 0,
+    //   },
+    //   {
+    //     id: 9,
+    //     tipoAnimal: {
+    //       id: 9, nome: 'Cachorro', porte: 'Grande', pelagem: 'Média',
+    //     },
+    //     preco: 0,
+    //   },
+    //   {
+    //     id: 10,
+    //     tipoAnimal: {
+    //       id: 10, nome: 'Cachorro', porte: 'Grande', pelagem: 'Longa',
+    //     },
+    //     preco: 0,
+    //   },
+    // ],
+  };
 
   usuario:Prestador;
 
@@ -116,7 +191,81 @@ export class PerfilPrestadorComponent implements OnInit {
   }
 
   limpaServico() {
-    this.servico = {};
+    this.servico = {
+      tipo: BANHO,
+      // adicionais: [],
+      // animaisAceitos: [
+      //   { id: 1, nome: 'Gato' },
+      //   {
+      //     id: 2, nome: 'Cachorro', porte: 'Pequeno', pelagem: 'Curta',
+      //   },
+      // ],
+      // precoPorTipo: [{ id: 1, tipoAnimal: { id: 1, nome: 'Gato' }, preco: 0 },
+      //   {
+      //     id: 2,
+      //     tipoAnimal: {
+      //       id: 2, nome: 'Cachorro', porte: 'Pequeno', pelagem: 'Curta',
+      //     },
+      //     preco: 0,
+      //   },
+      //   {
+      //     id: 3,
+      //     tipoAnimal: {
+      //       id: 3, nome: 'Cachorro', porte: 'Pequeno', pelagem: 'Média',
+      //     },
+      //     preco: 0,
+      //   },
+      //   {
+      //     id: 4,
+      //     tipoAnimal: {
+      //       id: 4, nome: 'Cachorro', porte: 'Pequeno', pelagem: 'Longa',
+      //     },
+      //     preco: 0,
+      //   },
+      //   {
+      //     id: 5,
+      //     tipoAnimal: {
+      //       id: 5, nome: 'Cachorro', porte: 'Médio', pelagem: 'Curta',
+      //     },
+      //     preco: 0,
+      //   },
+      //   {
+      //     id: 6,
+      //     tipoAnimal: {
+      //       id: 6, nome: 'Cachorro', porte: 'Médio', pelagem: 'Média',
+      //     },
+      //     preco: 0,
+      //   },
+      //   {
+      //     id: 7,
+      //     tipoAnimal: {
+      //       id: 7, nome: 'Cachorro', porte: 'Médio', pelagem: 'Longa',
+      //     },
+      //     preco: 0,
+      //   },
+      //   {
+      //     id: 8,
+      //     tipoAnimal: {
+      //       id: 8, nome: 'Cachorro', porte: 'Grande', pelagem: 'Curta',
+      //     },
+      //     preco: 0,
+      //   },
+      //   {
+      //     id: 9,
+      //     tipoAnimal: {
+      //       id: 9, nome: 'Cachorro', porte: 'Grande', pelagem: 'Média',
+      //     },
+      //     preco: 0,
+      //   },
+      //   {
+      //     id: 10,
+      //     tipoAnimal: {
+      //       id: 10, nome: 'Cachorro', porte: 'Grande', pelagem: 'Longa',
+      //     },
+      //     preco: 0,
+      //   },
+      // ],
+    };
   }
 
   removeServico(servico:ServicoDetalhado) {

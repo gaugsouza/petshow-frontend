@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicosService } from '../servicos/servicos.service';
 import { Servico } from '../interfaces/servico';
-import { SERVICOS } from '../util/tipo-servico';
 
 @Component({
   selector: 'app-home',
@@ -15,10 +14,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.servicoService.getTipos().subscribe((servicos) => {
-      this.servicos = JSON.parse(servicos) || SERVICOS;
-    },
-    () => {
-      this.servicos = SERVICOS;
+      this.servicos = JSON.parse(servicos);
     });
   }
 }

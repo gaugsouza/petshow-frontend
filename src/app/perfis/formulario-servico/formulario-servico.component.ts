@@ -1,5 +1,5 @@
 import {
-  Component, OnInit, Input, Output, EventEmitter, ViewChild, ViewContainerRef,
+  Component, OnInit, Input, Output, EventEmitter, ViewChild, ViewContainerRef, ViewChildren, AfterViewInit,
 } from '@angular/core';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { BANHO } from 'src/app/util/tipo-servico';
@@ -9,24 +9,41 @@ import { FormControl, Validators } from '@angular/forms';
 import { Servico } from 'src/app/interfaces/servico';
 import { DynamicContentInjectorService } from 'src/app/servicos/dynamic-content-injector.service';
 import { Adicional } from 'src/app/interfaces/adicional';
-
+import { UsuarioService } from 'src/app/servicos/usuario.service';
+import { TipoAnimal } from 'src/app/enum/TipoAnimal';
+import { filter } from 'rxjs/operators';
+import { ServicoDetalhadoTipoAnimal } from 'src/app/interfaces/servico-detalhado-tipo-animal';
 @Component({
   selector: 'app-formulario-servico',
   templateUrl: './formulario-servico.component.html',
   styleUrls: ['./formulario-servico.component.scss'],
 })
 export class FormularioServicoComponent implements OnInit {
-  @ViewChild('adicionais', {
-    read: ViewContainerRef,
-  }) viewContainerRef: ViewContainerRef;
+  private viewContainerRef:ViewContainerRef;
+
+  @ViewChild('adicionais', {read:ViewContainerRef, static: false}) set reference(reference:ViewContainerRef) {
+    if(reference) {
+      this.viewContainerRef = reference;
+      this.dynamicLoader.setViewContainerRef(this.viewContainerRef);
+    }
+  }
 
   @Input() servico: ServicoDetalhado = {
-    preco: 0.0,
+    precoPorTipo:[],
     tipo: null,
     adicionais: [],
   };
-
   servicos:Servico[];
+
+  gato_checked:Boolean;
+
+  cachorro_checked:Boolean;
+
+  tiposAnimais:TipoAnimal[];
+  tiposInputModel:any;
+  tipoChecked:any;
+
+  // precosPorTipo:ServicoDetalhadoTipoAnimal[];
 
   @Output('adiciona-servico') adicionaServico = new EventEmitter<ServicoDetalhado>();
 
@@ -45,10 +62,112 @@ export class FormularioServicoComponent implements OnInit {
   ]);
 
   constructor(private servicoService:ServicosService,
+              private usuarioService:UsuarioService,
               private dynamicLoader:DynamicContentInjectorService) {}
 
+  ngOnInit(): void {
+    this.servicoService.getTipos().subscribe((servicos) => {
+        this.servicos = JSON.parse(servicos);
+      },
+      () => {
+        this.servicos = [];
+      });
+
+      this.usuarioService.buscarTiposAnimalEstimacao().subscribe((tipos) => {
+        this.tiposAnimais = JSON.parse(tipos);
+        this.limpaCampos(this.tiposAnimais);
+        // this.tiposInputModel = this.criaInputModel(this.tiposAnimais);
+        // this.tipoChecked = this.criaChecked();
+      },
+      () => {
+        this.tiposAnimais = [];
+      })
+  }
+
+
+//////////////////////
+  criaInputModel(tiposAnimal:TipoAnimal[]) {
+    const tiposComPrecos = tiposAnimal.map(el => ({tipo:{...el}, preco: 0}));
+
+    return tiposComPrecos.map(el => el.tipo.nome)
+    .reduce((acc, chave) => {
+      const elementos = tiposComPrecos.filter(el => el.tipo.nome === chave);
+      if(elementos.length === 1) {
+        return ({...acc, [chave]: {...elementos[0]}});
+      }
+
+      const pelagens = [...new Set(elementos.map(el => el.tipo.pelagem))];
+
+      return {
+        ...acc,
+        [chave]: [
+          ...pelagens.map(pelagem => {
+            const portes = elementos.filter(el => el.tipo.pelagem === pelagem && el.tipo.nome === chave);
+            return {
+              pelagem: pelagem,
+              portes: [
+                ...portes.map(porte => {
+                  return {
+                    porte: porte.tipo.porte,
+                    id: porte.tipo.id,
+                    preco: null
+                  }
+                })
+              ]
+            }
+          })
+        ]
+      }
+    }, {})
+  }
+
+  limpaCampos(tipoAnimais:TipoAnimal[]) {
+    this.tiposInputModel = this.criaInputModel(this.tiposAnimais);
+    this.tipoChecked = this.criaChecked();
+  }
+
+  getInputModelKeys() {
+    return Object.keys(this.tiposInputModel) || [];
+  }
+  criaChecked() {
+    return this.getInputModelKeys().reduce((acc, chave) => ({...acc, [chave]:false}), {})
+  }
+
+  toggleChecked(chave:string) {
+    this.tipoChecked[chave] = !this.tipoChecked[chave];
+  }
+
+  validaChecked():boolean {
+    return Object.keys(this.tipoChecked).filter(label => this.tipoChecked[label] === true).length > 0;
+  }
+
+
+  private getPrecoServicoPreenchido() {
+    const precos = this.getInputModelKeys()
+    .reduce((precos, item) => {
+      if(!this.tiposInputModel[item].length){
+        return [...precos, {preco: this.tiposInputModel[item].preco || 0, id: this.tiposInputModel[item].tipo.id}];
+      }
+      const portes = this.tiposInputModel[item].reduce((acc, item) => {
+        return [...acc, ...item.portes]
+      }, []);
+
+      return [...precos, ...portes.map(porte => ({id: porte.id, preco: porte.preco || 0}))]
+    }, [])
+
+    return precos;
+  }
+
+  validaPrecos() {
+    const precos = this.getPrecoServicoPreenchido()
+    .map(item => item.preco);
+    return precos.filter(preco => preco > 0).length
+  }
+////////////////////
+
   hasErrors() {
-    return this.precoFormControl.hasError('required') || this.descricaoFormControl.hasError('minLength');
+    //return this.precoFormControl.hasError('required') || this.descricaoFormControl.hasError('minLength') || !this.validaChecked();
+    return !this.validaChecked() || !this.validaPrecos();
   }
 
   getTipoServico() {
@@ -56,17 +175,44 @@ export class FormularioServicoComponent implements OnInit {
   }
 
   insereServico() {
+    console.log(this.trataServico(this.servico));
     this.adicionaServico.emit(this.trataServico(this.servico));
     this.viewContainerRef.clear();
+    this.limpaCampos(this.tiposAnimais);
   }
 
   private trataServico = (servico:ServicoDetalhado): ServicoDetalhado => {
     const adicionais = [...(servico.adicionais || []).filter((adicional) => adicional.nome !== null && adicional.nome !== '')];
-    return { ...servico, adicionais };
+
+    const animaisChecados = Object.keys(this.tipoChecked).filter(chave => this.tipoChecked[chave] === true);
+    const animaisPreenchidos = this.getPrecoServicoPreenchido()
+    .filter(el => el.preco > 0);
+    const animaisAceitos = this.tiposAnimais
+    .filter(tipo => animaisChecados.indexOf(tipo.nome) !== -1 && animaisPreenchidos.map(el => el.id).indexOf(tipo.id) !== -1);
+
+    const precoPorTipo: ServicoDetalhadoTipoAnimal[] = animaisAceitos
+    .reduce((acc, tipo, index) => {
+      const tipoAnimal = this.tiposInputModel[tipo.nome];
+      if(!tipoAnimal.length && tipoAnimal.preco && tipoAnimal.preco > 0) {
+        return [...acc, {id: index + 1, tipoAnimal: tipo, preco: tipoAnimal.preco}]
+      }
+
+      const pelagem = tipoAnimal.find((el:any) => el.pelagem === tipo.pelagem);
+      const pelagemMapeada = pelagem.portes.filter((el:any) => el.porte === tipo.porte && el.preco && el.preco > 0)
+      .map((porte:any) => {
+        return {id: index + 1, tipoAnimal: tipo, preco: porte.preco}
+      })
+
+      return [...acc, ...pelagemMapeada];
+    }, []);
+
+    return { ...servico, adicionais, animaisAceitos, precoPorTipo };
   }
+
 
   cancelarOperacao() {
     this.viewContainerRef.clear();
+    this.tipoChecked = Object.keys(this.tipoChecked).map(el => this.tipoChecked[el] = false);
     this.cancelaOperacao.emit();
   }
 
@@ -74,17 +220,12 @@ export class FormularioServicoComponent implements OnInit {
     return this.servicos;
   }
 
-  ngOnInit(): void {
-    this.servicoService.getTipos().subscribe((servicos) => {
-      this.servicos = JSON.parse(servicos);
-    },
-    () => {
-      this.servicos = [];
-    });
+  toggleCheckBoxGato() {
+    this.gato_checked= !this.gato_checked;
   }
 
-  ngAfterViewInit() {
-    this.dynamicLoader.setViewContainerRef(this.viewContainerRef);
+  toggleCheckBoxCachorro() {
+    this.cachorro_checked= !this.cachorro_checked;
   }
 
   addAdicionalComponent() {

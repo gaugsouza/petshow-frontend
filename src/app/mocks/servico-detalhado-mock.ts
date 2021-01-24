@@ -4,7 +4,7 @@ import { monica, cebolinha } from './usuarioMock';
 
 let servicoDetalhado:ServicoDetalhado = {
     id: 1,
-    preco: 30.0,
+    precoPorTipo:[],
     tipo: {
         id: 1,
         nome: "Banho e tosa"
@@ -59,7 +59,7 @@ let servicoDetalhado:ServicoDetalhado = {
 
 let servicoDetalhadoSemAvaliacao:ServicoDetalhado = {
     id: 2,
-    preco: 30.0,
+    precoPorTipo:[],
     tipo: {
         id: 1,
         nome: "Banho e tosa"
