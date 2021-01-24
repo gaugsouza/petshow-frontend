@@ -1,0 +1,10 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.adicional-form {
+  display: flex;
+  justify-content: space-around;
+  width: 70%;
+}
