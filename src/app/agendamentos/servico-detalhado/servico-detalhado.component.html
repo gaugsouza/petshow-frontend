@@ -8,27 +8,33 @@
     <mat-card class="servicos-card">
         <div>
             <p><strong> Serviço selecionado </strong> </p>
-            <span>Nome: {{servicoDetalhado.tipo.nome | translate}}</span> 
-            <span>Preco: {{servicoDetalhado.preco | currency: 'BRL'}}</span>
-            <span>Descricao: {{servicoDetalhado.descricao | translate}}</span>
+            <p>Nome: {{servicoDetalhado.tipo.nome | translate}}</p> 
+            <!-- <p>Preco: {{servicoDetalhado.preco | currency: 'BRL'}}</p> -->
+            <p *ngIf="servicoDetalhado.descricao && servicoDetalhado.descricao !== ''">Descricao: {{servicoDetalhado.descricao | translate}}</p>
         </div>
         <br>
         <div>
             <p> <strong> Prestador </strong></p>
-            <span><strong>{{'NOME' | translate}}:</strong> {{servicoDetalhado.prestador.nome}}</span>
-            <span><strong>CPF:</strong> {{servicoDetalhado.prestador.cpf | mask: '000.000.000-00'}}</span>
-            <span><strong>E-mail:</strong> {{servicoDetalhado.prestador.login.email}}</span>
+            <p><strong>{{'NOME' | translate}}:</strong> {{servicoDetalhado.prestador.nome}}</p>
+            <p><strong>CPF:</strong> {{servicoDetalhado.prestador.cpf | mask: '000.000.000-00'}}</p>
+            <p><strong>E-mail:</strong> {{servicoDetalhado.prestador.login.email}}</p>
         </div>
         <br>
         <div>
             <p><strong> Endereço </strong></p>
-            <span>CEP: {{servicoDetalhado.prestador.endereco.cep}}</span> 
-            <span>Logradouro: {{servicoDetalhado.prestador.endereco.logradouro}}</span>
-            <span>Numero: {{servicoDetalhado.prestador.endereco.numero}}</span>
-            <span>Bairro: {{servicoDetalhado.prestador.endereco.bairro}}</span>
-            <span>Cidade: {{servicoDetalhado.prestador.endereco.cidade}}</span>
-            <span>Estado: {{servicoDetalhado.prestador.endereco.estado}}</span>            
-            <span>Complemento: {{servicoDetalhado.prestador.endereco.complemento}}</span>
+            <p>CEP: {{servicoDetalhado.prestador.endereco.cep}}</p> 
+            <p>{{servicoDetalhado.prestador.endereco.logradouro}} - Numero: {{servicoDetalhado.prestador.endereco.numero}}</p>
+            <p *ngIf="servicoDetalhado.prestador.endereco.complemento && servicoDetalhado.prestador.endereco.complemento !== ''">Complemento: {{servicoDetalhado.prestador.endereco.complemento}}</p>
+            <p>Bairro: {{servicoDetalhado.prestador.endereco.bairro}}</p>
+            <p>{{servicoDetalhado.prestador.endereco.cidade}} - {{servicoDetalhado.prestador.endereco.estado}}</p>
         </div>
-    </mat-card>     
+    </mat-card>    
+    
+    <div *ngIf="animaisSelecionados && animaisSelecionados.length">
+        <div *ngFor="let preco of getInformacoesTipoServico()">
+            {{preco.tipoAnimal.nome}}
+        </div>
+    </div>
 </ng-template>
+
+{{animaisSelecionados | json}}

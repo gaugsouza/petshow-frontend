@@ -6,6 +6,7 @@ import { ObjetoPaginado } from 'src/app/interfaces/paginacao';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
 import { PageEvent } from '@angular/material/paginator';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 
 @Component({
   selector: 'app-animal-estimacao',
@@ -13,6 +14,7 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
   styleUrls: ['./animal-estimacao.component.scss']
 })
 export class AnimalEstimacaoComponent implements OnInit {
+  @Input('servico') servico:ServicoDetalhado;
   @Input() isVisualizacao: Boolean;
   @Input() idCliente: number;
   @Output('recupera-animais-estimacao') recuperaAnimaisEstimacao = new EventEmitter<AnimalEstimacao[]>();
@@ -22,6 +24,7 @@ export class AnimalEstimacaoComponent implements OnInit {
   quantidadeItens:number = 5;
   paginaAtual:number = 0;
   animaisEstimacao: AnimalEstimacao[];
+  animaisSelecionados:AnimalEstimacao[] = [];
   
   constructor(private usuarioService: UsuarioService,
               private localStorageService: LocalStorageService) { }
@@ -49,6 +52,13 @@ export class AnimalEstimacaoComponent implements OnInit {
     });
   }
 
+  getAnimaisElegiveis():AnimalEstimacao[] {
+    const { precoPorTipo } = this.servico;
+    const tiposElegiveis = precoPorTipo.map(preco => preco.tipoAnimal);
+
+    return this.animaisEstimacao.filter(animal => tiposElegiveis.filter(tipo => tipo.id === animal.tipo.id).length > 0);
+  }
+
   buscarAnimaisEstimacaoPorDono(donoId:number) {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
       this.usuarioService.buscarAnimaisEstimacaoPorDono(donoId, 0, 1000, token)
@@ -66,21 +76,27 @@ export class AnimalEstimacaoComponent implements OnInit {
     return event;
   }
 
-  selecionaAnimal(){
-    let animaisSelecionados:AnimalEstimacao[] = [];
+  selecionaAnimal(selecionados){
+    this.animaisSelecionados = selecionados.map(el => el.value);
+    this.recuperaAnimaisEstimacao.emit(this.animaisSelecionados);
+    console.log(this.animaisSelecionados)
+    // console.log(animalSelecionado);
+    // this.recuperaAnimaisEstimacao.emit(animalSelecionado)
+    // const animais = event
+    // let animaisSelecionados:AnimalEstimacao[] = [];
 
-    let promise = new Promise((resolve, reject) => {      
-      this.animaisEstimacao.forEach(animalEstimacao => {
-        if(animalEstimacao.checked) {
-          animaisSelecionados.push(animalEstimacao);
-          resolve();
-        } else {
-          reject();
-        }});
-    });
+    // let promise = new Promise((resolve, reject) => {      
+    //   this.animaisEstimacao.forEach(animalEstimacao => {
+    //     if(animalEstimacao.checked) {
+    //       animaisSelecionados.push(animalEstimacao);
+    //       resolve(animaisSelecionados);
+    //     } else {
+    //       reject();
+    //     }});
+    // });
   
-    promise.then(() => {
-      this.recuperaAnimaisEstimacao.emit(animaisSelecionados);
-    });    
+    // promise.then(() => {
+    //   this.recuperaAnimaisEstimacao.emit(animaisSelecionados);
+    // });    
   }
 }

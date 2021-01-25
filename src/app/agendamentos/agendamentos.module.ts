@@ -13,6 +13,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input'; 
 import { FormsModule } from '@angular/forms';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatButtonModule } from '@angular/material/button';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -34,6 +37,9 @@ export function HttpLoaderFactory(http:HttpClient) {
     MatCardModule,
     MatInputModule,
     FormsModule,
+    MatTabsModule,
+    MatStepperModule,
+    MatButtonModule,
   ],
   exports: [
     AgendamentoComponent,

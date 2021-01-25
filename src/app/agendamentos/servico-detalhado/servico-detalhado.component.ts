@@ -5,6 +5,7 @@ import { ServicosService } from 'src/app/servicos/servicos.service';
 import { ObjetoPaginado } from 'src/app/interfaces/paginacao';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { PageEvent } from '@angular/material/paginator';
+import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
 
 @Component({
   selector: 'app-servico-detalhado',
@@ -15,6 +16,7 @@ export class ServicoDetalhadoComponent implements OnInit {
   @Input() isVisualizacao: Boolean;
   @Input() idServico: number;
   @Input() idPrestador: number;
+  @Input('animais') animaisSelecionados:AnimalEstimacao[];
 
   servicoDetalhado: ServicoDetalhado;
   pageEvent: PageEvent;
@@ -36,5 +38,10 @@ export class ServicoDetalhadoComponent implements OnInit {
           this.servicoDetalhado = servicoDetalhado;
         });
     });
+  }
+
+  getInformacoesTipoServico() {
+    const {precoPorTipo} = this.servicoDetalhado;
+    return precoPorTipo.filter(preco => this.animaisSelecionados.filter(animal => animal.tipo.id === preco.tipoAnimal.id).length > 0);
   }
 }

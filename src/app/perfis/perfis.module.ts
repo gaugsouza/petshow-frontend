@@ -27,6 +27,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { CadastroAdicionalComponent } from 'src/app/perfis/cadastro-adicional/cadastro-adicional.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatTableModule } from '@angular/material/table'; 
+
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -63,6 +65,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     MatTooltipModule,
     MatExpansionModule,
     MatChipsModule,
+    MatTableModule,
   ],
   exports: [
     PerfilPrestadorComponent,

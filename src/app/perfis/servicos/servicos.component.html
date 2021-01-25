@@ -11,10 +11,15 @@
                 <mat-card-title>
                     {{servico.tipo.nome | translate}}
                 </mat-card-title>
-                <mat-card-subtitle>
-                    {{servico.preco | currency: 'BRL'}}
-                </mat-card-subtitle>
                 <mat-card-content>
+                    <div class="servico-precos">
+                        <p *ngFor="let preco of servico.precoPorTipo">
+                            <span>{{ preco.tipoAnimal.nome }}</span>
+                            <span>{{ preco.tipoAnimal.porte ? " Porte: "+preco.tipoAnimal.porte : ""}}</span>
+                            <span>{{ preco.tipoAnimal.pelagem ? " Pelagem: "+preco.tipoAnimal.pelagem : ""}}</span>
+                            <span>{{preco.preco | currency: 'BRL'}}</span>
+                        </p>
+                    </div>
                     <div *ngIf="servico.adicionais && servico.adicionais.length; else adicionaisVazios">
                         <mat-chip-list>
                             <mat-chip *ngFor="let adicional of servico.adicionais">

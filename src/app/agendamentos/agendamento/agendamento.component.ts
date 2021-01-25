@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { AgendamentoService } from 'src/app/servicos/agendamento.service';
 import { JwtHelper } from 'src/app/util/jwt-helper';
@@ -8,6 +8,8 @@ import { Agendamento } from 'src/app/interfaces/agendamento';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
 import { Cliente } from 'src/app/interfaces/cliente';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
+import { Location } from '@angular/common';
+import { ServicosService } from 'src/app/servicos/servicos.service';
 
 @Component({
   selector: 'app-agendamento',
@@ -15,6 +17,8 @@ import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
   styleUrls: ['./agendamento.component.scss']
 })
 export class AgendamentoComponent implements OnInit {
+  token:string;
+
   idServico: number;
   idPrestador: number;
   idCliente: number;
@@ -29,25 +33,38 @@ export class AgendamentoComponent implements OnInit {
   comentario: string;
   precoFinal: number;
 
+  servicoSelecionado:ServicoDetalhado;
+
   constructor(private route:ActivatedRoute,
     private localStorageService:LocalStorageService,
     private agendamentoService: AgendamentoService,
-    private jwtHelper: JwtHelper) { 
-      this.isVisualizacao = this.route.snapshot.params.isVisualizacao;
-    }
+    private router:Router,
+    private location: Location,
+    private jwtHelper: JwtHelper,
+    private servicoService:ServicosService) {}
 
   ngOnInit(): void {
-    this.idPrestador =+ this.route.snapshot.paramMap.get('prestadorId');
-    this.idServico =+ this.route.snapshot.paramMap.get('servicoDetalhadoId');
-    this.idAgendamento =+ this.route.snapshot.paramMap.get('agendamentoId');
-
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       if (!token) {
+        this.router.navigate(['/login'], {queryParams: {redirectTo: this.location.path().split('?')[0]}})
         return;
       }
-
-      this.idCliente = this.jwtHelper.recuperaIdToken(token);
+      this.token = token;
+      this.idCliente = this.jwtHelper.recuperaIdToken(this.token );
     });
+
+    this.route.queryParams.subscribe((params) => {
+      this.isVisualizacao = JSON.parse(params.isVisualizacao) || false;
+      this.idAgendamento = this.isVisualizacao ? +this.route.snapshot.paramMap.get('agendamentoId') :null;
+    });
+
+    this.idPrestador =+ this.route.snapshot.paramMap.get('prestadorId');
+    this.idServico =+ this.route.snapshot.paramMap.get('servicoDetalhadoId');
+    
+    this.servicoService.buscarPorPrestadorIdEServicoId(this.idPrestador, this.idServico).subscribe(servico => {
+      this.servicoSelecionado = JSON.parse(servico);
+    })
+
   }
 
   recuperaAnimaisEstimacaoSelecionados(animaisEstimacao){
