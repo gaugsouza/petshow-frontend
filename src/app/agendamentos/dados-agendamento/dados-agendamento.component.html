@@ -1,0 +1,43 @@
+<div *ngIf="cliente">
+    <p>Dados do cliente: </p>
+    <p>Nome: {{cliente.nome}}</p>
+    <p>CPF: {{cliente.cpf}}</p>
+
+    <div *ngIf="animaisEstimacao">
+        <p>Dado do(s) animal(is) escolhido(s)</p>
+
+        <div *ngFor="let animal of animaisEstimacao">
+            <p>Nome: {{animal.nome}}</p>
+            <p>{{animal.tipo.nome}}</p>
+            <p *ngIf="animal.tipo.porte">Porte: {{animal.tipo.porte}}</p>
+            <p *ngIf="animal.tipo.pelagem">Pelagem: {{animal.tipo.pelagem}}</p>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="prestador">
+    <p>Dados do prestador: </p>
+    <p>Nome: {{prestador.nome}}</p>
+    <div *ngIf="servicoDetalhado">
+        <p>Detalhes do serviço escolhido: </p>
+        <p>{{servicoDetalhado.tipo.nome}}</p>
+        <p *ngIf="servicoDetalhado.descricao">Descrição: {{servicoDetalhado.descricao}}</p>
+
+
+        <div *ngIf="adicionais && adicionais.length">
+            <p>Adicionais: </p>
+            <div *ngFor="let adicional of adicionais">
+                <p>{{adicional.nome}}</p>
+                <p *ngIf="adicional.descricao"> Descrição: {{adicional.descricao}}</p>
+                <p>{{adicional.preco | currency: 'BRL'}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div *ngFor="let preco of precoPorTipo">
+        <p>Animal: {{preco.tipoAnimal.nome}}</p>
+        <p>Preço: {{preco.preco | currency: 'BRL'}}</p>
+    </div>
+
+    <p>Valor total: {{getValorTotal() | currency: 'BRL'}}</p>
+</div>

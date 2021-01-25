@@ -6,6 +6,8 @@ import { ObjetoPaginado } from 'src/app/interfaces/paginacao';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { PageEvent } from '@angular/material/paginator';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
+import { ServicoDetalhadoTipoAnimal } from 'src/app/interfaces/servico-detalhado-tipo-animal';
+import { Adicional } from 'src/app/interfaces/adicional';
 
 @Component({
   selector: 'app-servico-detalhado',
@@ -16,14 +18,18 @@ export class ServicoDetalhadoComponent implements OnInit {
   @Input() isVisualizacao: Boolean;
   @Input() idServico: number;
   @Input() idPrestador: number;
-  @Input('animais') animaisSelecionados:AnimalEstimacao[];
+  @Input('animais') animaisSelecionados:AnimalEstimacao[] = [];
+  @Output('retorna-tipos') retornaTipos = new EventEmitter<ServicoDetalhadoTipoAnimal[]>();
+  @Output('retorna-adicionais') retornaAdicionais = new EventEmitter<Adicional[]>();
 
   servicoDetalhado: ServicoDetalhado;
   pageEvent: PageEvent;
   quantidadeTotal:number;
   quantidadeItens:number = 5;
   paginaAtual:number = 0;
-  
+  precoPorTipo:ServicoDetalhadoTipoAnimal[] = [];
+  adicionais:Adicional[] = [];
+
   constructor(private localStorageService: LocalStorageService,
     private servicosService: ServicosService) { }
 
@@ -42,6 +48,26 @@ export class ServicoDetalhadoComponent implements OnInit {
 
   getInformacoesTipoServico() {
     const {precoPorTipo} = this.servicoDetalhado;
-    return precoPorTipo.filter(preco => this.animaisSelecionados.filter(animal => animal.tipo.id === preco.tipoAnimal.id).length > 0);
+    this.precoPorTipo = precoPorTipo.filter(preco => (this.animaisSelecionados || []).filter(animal => animal.tipo.id === preco.tipoAnimal.id).length > 0);
+    this.retornaTipos.emit(this.precoPorTipo);
+    return this.precoPorTipo;
+  }
+
+  selecionaTipo(selecionados) {
+    this.precoPorTipo = selecionados.map(el => el.value);
+    this.retornaTipos.emit(this.precoPorTipo);
+  }
+
+  getDescricaoServico(preco:ServicoDetalhadoTipoAnimal):string {
+    if(!preco.tipoAnimal.porte && !preco.tipoAnimal.pelagem) {
+      return '';
+    }
+
+    return `(${preco.tipoAnimal.porte ? `Porte: ${preco.tipoAnimal.porte}` : ''} | ${preco.tipoAnimal.pelagem ? `Pelagem: ${preco.tipoAnimal.pelagem}` : ''})`;
+  }
+
+  selecionaAdicional(selecionados) {
+    this.adicionais = selecionados.map(el => el.value);
+    this.retornaAdicionais.emit(this.adicionais);
   }
 }

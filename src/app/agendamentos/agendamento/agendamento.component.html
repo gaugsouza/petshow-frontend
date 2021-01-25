@@ -9,44 +9,39 @@
             (recupera-animais-estimacao)="recuperaAnimaisEstimacaoSelecionados($event)">
       </app-animal-estimacao>
     </div>
-    <button mat-flat-button color="primary" matStepperNext>Próximo</button>
+    <div class="button-container">
+      <button mat-flat-button color="primary" matStepperNext [disabled]="!animaisEstimacao || !animaisEstimacao.length">Próximo</button>
+    </div>
   </mat-step>
   <mat-step label="Informações do serviço">
     <app-servico-detalhado 
         [idServico]="idServico" 
         [idPrestador]="idPrestador" 
         [animais]="animaisEstimacao"
-        [isVisualizacao]="isVisualizacao">
+        [isVisualizacao]="isVisualizacao"
+        (retorna-tipos)="recuperaPrecoPorTipo($event)"
+        (retorna-adicionais)="recuperaAdicionais($event)">
     </app-servico-detalhado>
-    <div>
-      <button mat-flat-button color="primary">Anterior</button>
-      <button mat-flat-button color="primary">Próximo</button>
+    <div class="button-container">
+      <button mat-flat-button color="primary" matStepperPrevious>Anterior</button>
+      <button mat-flat-button color="primary" matStepperNext>Próximo</button>
     </div>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Agendar</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-flat-button color="primary">Próximo</button>
+    <app-dados-agendamento
+      [idPrestador]="idPrestador"
+      [animais]="animaisEstimacao"
+      [precoPorTipo]="precoPorTipo"
+      [isVisualizacao]="isVisualizacao"
+      [adicionais]="adicionais"
+      [servicoDetalhado]="servicoSelecionado"
+      [cliente]="cliente"
+    >
+    </app-dados-agendamento>
+    <div class="button-container">
+      <button mat-flat-button color="primary">Agendar</button>
       <button mat-flat-button color="primary" (click)="stepper.reset()">Reiniciar</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>
-<!-- 
-<div class="agendamento-block">
-    
-  
-    
-</div>
-<div class="agendamento-send">
-    <mat-form-field>
-        <mat-label>Comentário</mat-label>
-        <textarea matInput [(ngModel)]="comentario"></textarea>
-    </mat-form-field>
-    <mat-card>
-        <p><strong> Preço final: {{precoFinal}} </strong> </p>
-    </mat-card>    
-    <span>
-        <button mat-button (click)="adicionarAgendamento()">Agendar</button>
-    </span>    
-</div> -->

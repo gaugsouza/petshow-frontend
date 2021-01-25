@@ -16,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
+import { DadosAgendamentoComponent } from './dados-agendamento/dados-agendamento.component';
+import { ConfirmacaoAgendamentoComponent } from './confirmacao-agendamento/confirmacao-agendamento.component';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -27,6 +29,8 @@ export function HttpLoaderFactory(http:HttpClient) {
     AnimalEstimacaoComponent,
     ServicoDetalhadoComponent,
     ClienteComponent,
+    DadosAgendamentoComponent,
+    ConfirmacaoAgendamentoComponent,
   ],
   imports: [
     CommonModule,

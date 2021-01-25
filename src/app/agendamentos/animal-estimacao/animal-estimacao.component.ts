@@ -80,23 +80,5 @@ export class AnimalEstimacaoComponent implements OnInit {
     this.animaisSelecionados = selecionados.map(el => el.value);
     this.recuperaAnimaisEstimacao.emit(this.animaisSelecionados);
     console.log(this.animaisSelecionados)
-    // console.log(animalSelecionado);
-    // this.recuperaAnimaisEstimacao.emit(animalSelecionado)
-    // const animais = event
-    // let animaisSelecionados:AnimalEstimacao[] = [];
-
-    // let promise = new Promise((resolve, reject) => {      
-    //   this.animaisEstimacao.forEach(animalEstimacao => {
-    //     if(animalEstimacao.checked) {
-    //       animaisSelecionados.push(animalEstimacao);
-    //       resolve(animaisSelecionados);
-    //     } else {
-    //       reject();
-    //     }});
-    // });
-  
-    // promise.then(() => {
-    //   this.recuperaAnimaisEstimacao.emit(animaisSelecionados);
-    // });    
   }
 }

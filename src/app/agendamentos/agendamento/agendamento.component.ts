@@ -10,6 +10,8 @@ import { Cliente } from 'src/app/interfaces/cliente';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { Location } from '@angular/common';
 import { ServicosService } from 'src/app/servicos/servicos.service';
+import { ServicoDetalhadoTipoAnimal } from 'src/app/interfaces/servico-detalhado-tipo-animal';
+import { Adicional } from 'src/app/interfaces/adicional';
 
 @Component({
   selector: 'app-agendamento',
@@ -34,6 +36,9 @@ export class AgendamentoComponent implements OnInit {
   precoFinal: number;
 
   servicoSelecionado:ServicoDetalhado;
+
+  precoPorTipo:ServicoDetalhadoTipoAnimal[];
+  adicionais:Adicional[];
 
   constructor(private route:ActivatedRoute,
     private localStorageService:LocalStorageService,
@@ -69,6 +74,14 @@ export class AgendamentoComponent implements OnInit {
 
   recuperaAnimaisEstimacaoSelecionados(animaisEstimacao){
     this.animaisEstimacao = animaisEstimacao;
+  }
+
+  recuperaPrecoPorTipo(precoPorTipo) {
+    this.precoPorTipo = precoPorTipo;
+  }
+
+  recuperaAdicionais(adicionais) {
+    this.adicionais = adicionais;
   }
 
   adicionarAgendamento(){
