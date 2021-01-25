@@ -18,6 +18,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { DadosAgendamentoComponent } from './dados-agendamento/dados-agendamento.component';
 import { ConfirmacaoAgendamentoComponent } from './confirmacao-agendamento/confirmacao-agendamento.component';
+import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import { MatNativeDateModule } from '@angular/material/core/';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -44,12 +46,17 @@ export function HttpLoaderFactory(http:HttpClient) {
     MatTabsModule,
     MatStepperModule,
     MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   exports: [
     AgendamentoComponent,
     AnimalEstimacaoComponent,
     ServicoDetalhadoComponent,
     ClienteComponent,
+  ],
+  providers: [
+    MatNativeDateModule,
   ]
 })
 

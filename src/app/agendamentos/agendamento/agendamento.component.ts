@@ -39,6 +39,7 @@ export class AgendamentoComponent implements OnInit {
 
   precoPorTipo:ServicoDetalhadoTipoAnimal[];
   adicionais:Adicional[];
+  dataAgendamento:Date;
 
   constructor(private route:ActivatedRoute,
     private localStorageService:LocalStorageService,
@@ -84,21 +85,51 @@ export class AgendamentoComponent implements OnInit {
     this.adicionais = adicionais;
   }
 
-  adicionarAgendamento(){
+//   {
+//     "comentario": "TESTE2",
+//     "clienteId": 21,
+//     "prestadorId": 22,
+//     "servicoDetalhadoId": 21,
+//     "animaisAtendidosIds": [31, 32],
+//     "adicionaisIds": [7, 8]    
+// }
+  criarAgendamento() {
     this.agendamento = {
-      clienteId: this.idCliente,
-      prestadorId: this.idPrestador,
-      comentario: this.comentario,
-      animaisAtendidos: this.animaisEstimacao,
-      precoFinal: this.precoFinal,
-      servicoDetalhadoId: this.idServico      
-    };
-    
+      clienteId: this.idCliente, 
+      prestadorId: this.idPrestador, 
+      servicoDetalhadoId: this.servicoSelecionado.id, 
+      animaisAtendidosIds: [...(this.animaisEstimacao || []).map(el => el.id)],
+      adicionaisIds: [...(this.adicionais || []).map(el => el.id)]
+    }
+        
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       this.agendamentoService.adicionarAgendamento(this.agendamento, token).subscribe(agendamento => {
-        console.log(agendamento)
+        console.log('Deu bom')
       });
       
-    });    
+    }); 
   }
+
+  recuperaDataAtendimento(data:Date) {
+    this.dataAgendamento = data;
+  }
+
+  
+  // adicionarAgendamento(){
+  //   this.agendamento = {
+  //     clienteId: this.idCliente,
+  //     prestadorId: this.idPrestador,
+  //     comentario: this.comentario,
+  //     animaisAtendidos: this.animaisEstimacao,
+  //     precoFinal: this.precoFinal,
+  //     servicoDetalhadoId: this.idServico      
+  //   };
+    
+  //   this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
+  //     this.agendamentoService.adicionarAgendamento(this.agendamento, token).subscribe(agendamento => {
+  //       console.log(agendamento)
+  //     });
+      
+  //   });    
+  // }
 }

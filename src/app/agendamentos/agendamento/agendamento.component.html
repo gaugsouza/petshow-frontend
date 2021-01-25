@@ -20,27 +20,30 @@
         [animais]="animaisEstimacao"
         [isVisualizacao]="isVisualizacao"
         (retorna-tipos)="recuperaPrecoPorTipo($event)"
-        (retorna-adicionais)="recuperaAdicionais($event)">
+        (retorna-adicionais)="recuperaAdicionais($event)"
+        (recupera-data)="recuperaDataAtendimento($event)">
     </app-servico-detalhado>
     <div class="button-container">
       <button mat-flat-button color="primary" matStepperPrevious>Anterior</button>
-      <button mat-flat-button color="primary" matStepperNext>Próximo</button>
+      <button mat-flat-button color="primary" matStepperNext [disabled]="!dataAgendamento">Próximo</button>
     </div>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Agendar</ng-template>
-    <app-dados-agendamento
+    <app-dados-agendamento *ngIf="idCliente"
       [idPrestador]="idPrestador"
       [animais]="animaisEstimacao"
       [precoPorTipo]="precoPorTipo"
       [isVisualizacao]="isVisualizacao"
       [adicionais]="adicionais"
       [servicoDetalhado]="servicoSelecionado"
-      [cliente]="cliente"
+      [idCliente]="idCliente"
+      [dataAgendamento]="dataAgendamento"
     >
     </app-dados-agendamento>
     <div class="button-container">
-      <button mat-flat-button color="primary">Agendar</button>
+      <button mat-flat-button color="primary" matStepperPrevious>Anterior</button>
+      <button mat-flat-button color="primary" (click)="criarAgendamento()">Agendar</button>
       <button mat-flat-button color="primary" (click)="stepper.reset()">Reiniciar</button>
     </div>
   </mat-step>

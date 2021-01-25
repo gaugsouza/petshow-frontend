@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { USER_TOKEN } from 'src/app/util/constantes';
 import { ServicosService } from 'src/app/servicos/servicos.service';
-import { ObjetoPaginado } from 'src/app/interfaces/paginacao';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { PageEvent } from '@angular/material/paginator';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
@@ -21,6 +20,7 @@ export class ServicoDetalhadoComponent implements OnInit {
   @Input('animais') animaisSelecionados:AnimalEstimacao[] = [];
   @Output('retorna-tipos') retornaTipos = new EventEmitter<ServicoDetalhadoTipoAnimal[]>();
   @Output('retorna-adicionais') retornaAdicionais = new EventEmitter<Adicional[]>();
+  @Output('recupera-data') recuperaData = new EventEmitter<Date>();
 
   servicoDetalhado: ServicoDetalhado;
   pageEvent: PageEvent;
@@ -29,11 +29,14 @@ export class ServicoDetalhadoComponent implements OnInit {
   paginaAtual:number = 0;
   precoPorTipo:ServicoDetalhadoTipoAnimal[] = [];
   adicionais:Adicional[] = [];
+  dataAgendamento:Date;
+  dataMinima:Date;
 
   constructor(private localStorageService: LocalStorageService,
     private servicosService: ServicosService) { }
 
   ngOnInit(): void {
+    this.dataMinima = new Date();
     this.buscarPorPrestadorIdEServicoId(this.idPrestador, this.idServico);
   }
 
@@ -69,5 +72,10 @@ export class ServicoDetalhadoComponent implements OnInit {
   selecionaAdicional(selecionados) {
     this.adicionais = selecionados.map(el => el.value);
     this.retornaAdicionais.emit(this.adicionais);
+  }
+
+  selecionaData(data) {
+    this.dataAgendamento = data.value;
+    this.recuperaData.emit(this.dataAgendamento);
   }
 }
