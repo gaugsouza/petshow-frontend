@@ -3,6 +3,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { Agendamento } from 'src/app/interfaces/agendamento';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
 import { ObjetoPaginado } from 'src/app/interfaces/paginacao';
+import { StatusAgendamento } from 'src/app/interfaces/statusAgendamento';
 import {AgendamentoService} from 'src/app/servicos/agendamento.service';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { NotificationService } from 'src/app/servicos/notification.service';
@@ -16,13 +17,12 @@ import { USER_TOKEN } from 'src/app/util/constantes';
 export class AgendaPrestadorComponent implements OnInit {
   @Input('prestador-id') prestadorId: number;
   agendamentos: Agendamento[];
-
-
   animaisAtendidos: AnimalEstimacao[];
   pageEvent: PageEvent;
   quantidadeTotal:number;
   quantidadeItens:number = 5;
   paginaAtual:number = 0;
+  statusAgendamento: StatusAgendamento[];
   
   constructor(private agendamentoService:AgendamentoService,
     private localStorageService:LocalStorageService,
@@ -36,6 +36,14 @@ export class AgendaPrestadorComponent implements OnInit {
     this.agendamentoNotification.obs.subscribe(() => {
       this.buscarAgendamentosPorPrestador(this.prestadorId, this.paginaAtual, this.quantidadeItens);
     });
+
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+      this.agendamentoService.buscarStatusAgendamento(token).subscribe(status => {
+        this.statusAgendamento = status;
+        console.log(status)
+        console.log(this.statusAgendamento)
+      });
+    })
   }
 
     buscarAgendamentosPorPrestador(prestadorId:number, pagina:number, quantidadeItens:number) {
@@ -46,15 +54,6 @@ export class AgendaPrestadorComponent implements OnInit {
             const objetoPaginado:ObjetoPaginado = paginaAgendamentos;
             console.log(objetoPaginado.content);
             this.agendamentos = objetoPaginado.content;
-            this.agendamentos.sort(function(a,b){
-              if (a.data > b.data) {
-                return 1;
-              }
-              if (a.data < b.data) {
-                return -1;
-              }
-              return 0;
-            })
             this.quantidadeTotal = objetoPaginado.totalElements;
             this.paginaAtual = objetoPaginado.pageable.pageNumber;
             this.quantidadeItens = objetoPaginado.size;
@@ -66,5 +65,30 @@ export class AgendaPrestadorComponent implements OnInit {
     //   this.agendamentos=JSON.parse(el);
     //   })
     // };
+
+    concluiAgendamento(agendamento){
+      const concluidoId = this.statusAgendamento.find(status => status.nome.toLowerCase().indexOf("concluído")!==-1)
+      this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+        this.agendamentoService.alterarStatusAgendamento(agendamento.prestadorId, concluidoId.id, agendamento.id, token)
+        .subscribe(() => {
+          this.buscarAgendamentosPorPrestador(this.prestadorId, this.paginaAtual, this.quantidadeItens);
+        })
+      });
+    }
+
+    cancelaAgendamento(agendamento){
+      const cancelaId = this.statusAgendamento.find(status => status.nome.toLowerCase().indexOf("cancelado")!==-1)
+      this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+        this.agendamentoService.alterarStatusAgendamento(agendamento.prestadorId, cancelaId.id, agendamento.id, token)
+        .subscribe(() => {
+          this.buscarAgendamentosPorPrestador(this.prestadorId, this.paginaAtual, this.quantidadeItens);
+        })
+      });
+    }
+
+
+    isAtivo(agendamento){
+      return agendamento.status.nome.toLowerCase().indexOf("cancelado")===-1 &&  agendamento.status.nome.toLowerCase().indexOf("concluído")===-1;
+    }
   
   }

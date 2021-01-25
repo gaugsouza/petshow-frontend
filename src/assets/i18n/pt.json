@@ -137,5 +137,6 @@
   "CPF_INVALIDO": "CPF informado é inválido",
   "CLIENTE_NAO_ENCONTRADO": "Não foi encontrado o cliente informado",
   "NENHUM_AGENDAMENTO": "Nenhum agendamento.",
-  "CONCLUIDO": "Concluído"
+  "CONCLUIDO": "Concluído",
+  "AGENDAMENTOS": "Agendamentos"
 }

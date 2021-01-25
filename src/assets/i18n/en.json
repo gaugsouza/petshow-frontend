@@ -136,5 +136,6 @@
   "ERRO_REENVIO_SOLICITACAO": "An error occurred when sending a new activation request",
   "CPF_INVALIDO": "Invalid CPF",
   "NENHUM_AGENDAMENTO": "No bookings",
-  "CONCLUIDO": "Done"
+  "CONCLUIDO": "Done",
+  "AGENDAMENTOS": "Scheduled Bookings"
 }

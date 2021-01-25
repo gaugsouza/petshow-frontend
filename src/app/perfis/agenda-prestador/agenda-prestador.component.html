@@ -1,5 +1,5 @@
 <section>
-
+  <h3 class="page-section-title">{{'AGENDAMENTOS' | translate}}</h3>
   <div class="conteiner-agendamento-list"
     *ngIf="agendamentos && agendamentos.length; then agendamentosBlock else vazioBlock"></div>
 
@@ -11,29 +11,29 @@
     <mat-list class="agendamentos-list">
       <mat-list-item *ngFor="let agendamento of agendamentos">
         <div class="agendamento-list__item">
-          <div *ngFor="let servicoDet of agendamento.servicoDetalhado">
-            {{servicoDet.tipo.nome}}
+          <div>
+            <span>{{agendamento.servicoDetalhado.tipo.nome}}</span>
+            <span>{{agendamento.data | date:'dd/MM/yyyy hh:mm'}}</span>
+            <span>Preço final: {{agendamento.precoFinal | currency: 'BRL'}}</span>
+            <span>Seu agendamento está {{agendamento.status.nome}}</span>
           </div>
-          <span>{{agendamento.data}}</span>
-          <ng-container *ngFor="let animal of agendamento.animaisAtendidos">
-            <span *ngIf="animal.tipo.nome == 'cachorro'; else infosGato">
-              <p>Animal a ser atendido: {{animal.nome}}</p>
-              <p>Cachorro de porte {{animal.tipo.porte}} e pelagem {{animal.tipo.pelagem}}</p>
-            </span>
-            <ng-template #infosGato>
-              <p>Animal a ser atendido: {{animal.nome}}</p>
-              <p>Gato</p>
-            </ng-template>
-          </ng-container>
-
-          <span>Preço final: {{agendamento.precoFinal}}</span>
-          <span>Seu agendamento está {{agendamento.status.nome}}</span>
-          <p></p>
-          <div class="animal-list__button-container">
-            <button mat-flat-button color="accent">{{'CONCLUIDO' | translate}}</button>
-            <button mat-flat-button color="warn">{{'CANCELAR' | translate}}</button>
-            <!-- <button mat-flat-button color="accent" (click)="concluiAgendamento(agendamento)">{{'CONCLUIDO' | translate}}</button>
-                        <button mat-flat-button color="warn" (click)="cancelaAgendamento(agendamento)">{{'CANCELAR' | translate}}</button> -->
+          <div>
+            <ng-container *ngFor="let animal of agendamento.animaisAtendidos">
+              <span *ngIf="animal.tipo.nome == 'cachorro'; else infosGato">
+                <p>Animal a ser atendido: {{animal.nome}}</p>
+                <p>Cachorro de porte {{animal.tipo.porte}} e pelagem {{animal.tipo.pelagem}}</p>
+              </span>
+              <ng-template #infosGato>
+                <span>
+                  <p>Animal a ser atendido: {{animal.nome}}</p>
+                  <p>Gato</p>
+                </span>
+              </ng-template>
+            </ng-container>
+          </div>
+          <div class="agendamento-list__button-container" *ngIf = "isAtivo(agendamento)">
+            <button mat-flat-button color="accent" (click)="concluiAgendamento(agendamento)">{{'CONCLUIDO' | translate}}</button>
+            <button mat-flat-button color="warn" (click)="cancelaAgendamento(agendamento)">{{'CANCELAR' | translate}}</button>
           </div>
         </div>
       </mat-list-item>
