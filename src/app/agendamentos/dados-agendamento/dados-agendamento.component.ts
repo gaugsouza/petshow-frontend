@@ -33,13 +33,11 @@ export class DadosAgendamentoComponent implements OnInit {
               private ref:ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    this.ref.checkNoChanges();
     
     this.prestadorService.buscaPrestador(this.idPrestador).subscribe(prestador => {
       this.prestador = JSON.parse(prestador);
     });
 
-    console.log(this.idCliente);
 
     this.clienteService.buscarUsuario(this.idCliente).subscribe(cliente => {
       this.cliente = JSON.parse(cliente);
@@ -57,4 +55,9 @@ export class DadosAgendamentoComponent implements OnInit {
     return valorTipos + valorAdicionais;
     
   }
+
+  ngAfterContentChecked() {
+    this.ref.detectChanges();
+  }
+
 }
