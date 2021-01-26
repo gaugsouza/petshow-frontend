@@ -25,4 +25,10 @@ export class AgendamentoService {
     const URL = `${this.AGENDAMENTO_SERVICE_URL}/prestador/${idPrestador}?pagina=${pagina}&quantidadeItens=${quantidadeItens}`;
     return this.httpHandler.doGet<any>(URL, token);
   }
+
+  buscarAgendamento = (idAgendamento:number, idUsuario:number, token?:string):Observable<any> => {
+    const URL = `${this.AGENDAMENTO_SERVICE_URL}/${idAgendamento}/usuario/${idUsuario}`;
+
+    return this.httpHandler.doGet<any>(URL, token);
+  }
 }

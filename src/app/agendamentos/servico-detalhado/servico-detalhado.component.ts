@@ -51,7 +51,10 @@ export class ServicoDetalhadoComponent implements OnInit {
 
   getInformacoesTipoServico() {
     const {precoPorTipo} = this.servicoDetalhado;
-    this.precoPorTipo = precoPorTipo.filter(preco => (this.animaisSelecionados || []).filter(animal => animal.tipo.id === preco.tipoAnimal.id).length > 0);
+    this.precoPorTipo = (this.animaisSelecionados || [])
+    .map(animal => animal.tipo)
+    .map(tipoAnimal => precoPorTipo.find(tipo => tipo.tipoAnimal.id === tipoAnimal.id));
+    
     this.retornaTipos.emit(this.precoPorTipo);
     return this.precoPorTipo;
   }

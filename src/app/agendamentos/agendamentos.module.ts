@@ -20,6 +20,7 @@ import { DadosAgendamentoComponent } from './dados-agendamento/dados-agendamento
 import { ConfirmacaoAgendamentoComponent } from './confirmacao-agendamento/confirmacao-agendamento.component';
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import { MatNativeDateModule } from '@angular/material/core/';
+import { VisualizacaoAgendamentoComponent } from './visualizacao-agendamento/visualizacao-agendamento.component';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -33,6 +34,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     ClienteComponent,
     DadosAgendamentoComponent,
     ConfirmacaoAgendamentoComponent,
+    VisualizacaoAgendamentoComponent,
   ],
   imports: [
     CommonModule,

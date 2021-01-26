@@ -79,6 +79,5 @@ export class AnimalEstimacaoComponent implements OnInit {
   selecionaAnimal(selecionados){
     this.animaisSelecionados = selecionados.map(el => el.value);
     this.recuperaAnimaisEstimacao.emit(this.animaisSelecionados);
-    console.log(this.animaisSelecionados)
   }
 }
