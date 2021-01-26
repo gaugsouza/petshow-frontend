@@ -21,7 +21,7 @@ mat-list-item {
 
   &__item {
     display: grid;
-    grid-template-columns: 40% 40% 20%;
+    grid-template-columns: 25% 1fr 15%;
     background: $item-bg;
     border: 1px solid $item-border;
     border-radius: 10px;

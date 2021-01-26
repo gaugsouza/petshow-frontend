@@ -12,28 +12,34 @@
       <mat-list-item *ngFor="let agendamento of agendamentos">
         <div class="agendamento-list__item">
           <div>
-            <span>{{agendamento.servicoDetalhado.tipo.nome}}</span>
-            <span>{{agendamento.data | date:'dd/MM/yyyy hh:mm'}}</span>
-            <span>Preço final: {{agendamento.precoFinal | currency: 'BRL'}}</span>
-            <span>Seu agendamento está {{agendamento.status.nome}}</span>
+            <span>
+              <p>{{agendamento.servicoDetalhado.tipo.nome}}</p>
+              <p>{{agendamento.data | date:'dd/MM/yyyy hh:mm'}}</p>
+              <p>Preço final: {{agendamento.precoFinal | currency: 'BRL'}}</p>
+              
+            </span>
           </div>
           <div>
             <ng-container *ngFor="let animal of agendamento.animaisAtendidos">
               <span *ngIf="animal.tipo.nome == 'cachorro'; else infosGato">
-                <p>Animal a ser atendido: {{animal.nome}}</p>
+                <p>{{animal.nome}} {{'DE' | translate}} {{agendamento.cliente.nome}}</p>
                 <p>Cachorro de porte {{animal.tipo.porte}} e pelagem {{animal.tipo.pelagem}}</p>
               </span>
               <ng-template #infosGato>
                 <span>
-                  <p>Animal a ser atendido: {{animal.nome}}</p>
-                  <p>Gato</p>
+                  <p>{{animal.nome}} {{'DE' | translate}} {{agendamento.cliente.nome}}</p>
+                  <p>{{animal.tipo.nome}}</p>
                 </span>
               </ng-template>
+              <span>Status: {{agendamento.status.nome}}</span>
             </ng-container>
+            
           </div>
-          <div class="agendamento-list__button-container" *ngIf = "isAtivo(agendamento)">
-            <button mat-flat-button color="accent" (click)="concluiAgendamento(agendamento)">{{'CONCLUIDO' | translate}}</button>
-            <button mat-flat-button color="warn" (click)="cancelaAgendamento(agendamento)">{{'CANCELAR' | translate}}</button>
+          <div class="agendamento-list__button-container" *ngIf="isAtivo(agendamento)">
+            <button mat-flat-button color="accent"
+              (click)="concluiAgendamento(agendamento)">{{'CONCLUIDO' | translate}}</button>
+            <button mat-flat-button color="warn"
+              (click)="cancelaAgendamento(agendamento)">{{'CANCELAR' | translate}}</button>
           </div>
         </div>
       </mat-list-item>

@@ -137,5 +137,6 @@
   "CPF_INVALIDO": "Invalid CPF",
   "NENHUM_AGENDAMENTO": "No bookings",
   "CONCLUIDO": "Done",
-  "AGENDAMENTOS": "Scheduled Bookings"
+  "AGENDAMENTOS": "Scheduled Bookings",
+  "DE": "of"
 }

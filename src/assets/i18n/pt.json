@@ -138,5 +138,6 @@
   "CLIENTE_NAO_ENCONTRADO": "Não foi encontrado o cliente informado",
   "NENHUM_AGENDAMENTO": "Nenhum agendamento.",
   "CONCLUIDO": "Concluído",
-  "AGENDAMENTOS": "Agendamentos"
+  "AGENDAMENTOS": "Agendamentos",
+  "DE": "de"
 }
