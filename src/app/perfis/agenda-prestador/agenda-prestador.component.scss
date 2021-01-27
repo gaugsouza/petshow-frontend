@@ -19,7 +19,7 @@ mat-list-item {
 
 .agendamento-list {
 
-  &__item {
+    &__item {
     display: grid;
     grid-template-columns: 25% 1fr 15%;
     background: $item-bg;
@@ -34,20 +34,28 @@ mat-list-item {
       width: 100%;
     }
 
-    & span {
-      align-self: center;
-      font-size: 20px;
-      padding: 10px 0;
-      text-align: center;
-    }
   }
 
+
+  
   &__button-container {
     display: flex;
-    flex-direction: column;
+    // flex-direction: column;
     justify-content: space-around;
   }
 }
+
+button {
+    width: 95px ;
+    align-self: center;
+}
+
+span {
+    align-self: center;
+    font-size: 20px ;
+    padding: 10px 0;
+    text-align: center;
+  }
 
 .mat-list-item {
   height: auto !important;

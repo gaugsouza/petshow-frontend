@@ -1,1 +1,13 @@
+<<<<<<< HEAD
 <p>agenda-cliente works!</p>
+=======
+<section>
+    <h3 class="page-section-title">{{'AGENDAMENTOS' | translate}}</h3>
+    <div class="conteiner-agendamento-list"
+        *ngif="agendamentos && agendamentos.length; then agendamentosBlock else vazioBlock"></div>
+    
+    <ng-template>
+        <p class="no_registered">{{'NENHUM_AGENDAMENTO' | translate}}</p>
+    </ng-template>
+</section>
+>>>>>>> 1de9ad13f53f994019f4b449cf22445a505df232
