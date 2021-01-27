@@ -1,8 +1,15 @@
 <div *ngIf="agendamento">
-  <app-dados-agendamento [idPrestador]="agendamento.prestadorId" [animais]="agendamento.animaisAtendidos"
-    [precoPorTipo]="getPrecosPorTipo(agendamento)" [isVisualizacao]="true" [adicionais]="agendamento.adicionais"
-    [servicoDetalhado]="agendamento.servicoDetalhado" [idCliente]="agendamento.clienteId"
-    [dataAgendamento]="agendamento.data"></app-dados-agendamento>
+  <app-dados-agendamento 
+    [idPrestador]="agendamento.prestadorId" 
+    [animais]="agendamento.animaisAtendidos"
+    [precoPorTipo]="getPrecosPorTipo(agendamento)" 
+    [isVisualizacao]="true" 
+    [adicionais]="agendamento.adicionais"
+    [servicoDetalhado]="agendamento.servicoDetalhado" 
+    [idCliente]="agendamento.clienteId"
+    [dataAgendamento]="agendamento.data"
+    [status]="agendamento.status.nome">
+  </app-dados-agendamento>
 
 
   <div *ngIf="isAgendamentoConcluido(agendamento) && !isAgendamentoAvaliado()">
