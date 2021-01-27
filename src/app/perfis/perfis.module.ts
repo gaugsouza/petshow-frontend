@@ -28,7 +28,7 @@ import { CadastroAdicionalComponent } from 'src/app/perfis/cadastro-adicional/ca
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTableModule } from '@angular/material/table'; 
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -66,6 +66,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     MatExpansionModule,
     MatChipsModule,
     MatTableModule,
+    MatCheckboxModule,
   ],
   exports: [
     PerfilPrestadorComponent,

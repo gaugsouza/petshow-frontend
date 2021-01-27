@@ -12,6 +12,7 @@ export interface Avaliacao {
     media?:number,
     cliente?:Cliente,
     servicoAvaliado?:ServicoDetalhado
-    servicoAvaliadoId?:number
+    servicoAvaliadoId?:number,
+    agendamentoId?:number,
 
 }
