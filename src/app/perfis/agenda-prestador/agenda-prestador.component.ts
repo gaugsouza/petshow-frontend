@@ -24,7 +24,8 @@ export class AgendaPrestadorComponent implements OnInit {
   paginaAtual:number = 0;
   statusAgendamento: StatusAgendamento[];
   
-  constructor(private agendamentoService:AgendamentoService,
+  constructor(
+    private agendamentoService:AgendamentoService,
     private localStorageService:LocalStorageService,
     @Inject('AgendamentoNotificationService') private agendamentoNotification: NotificationService<Agendamento>
     ) { }
