@@ -18,7 +18,7 @@
                     <div class ="nome_servico">
                         {{servicoDetalhado.tipo.nome}} 
                     </div>
-                    <span>{{servicoDetalhado.preco | currency: 'BRL'}}</span>
+                    <span>A partir de: {{getPrecoMinimo(servicoDetalhado) | currency: 'BRL'}}</span>
                     <span><a mat-button color="primary" href="/prestador/{{servicoDetalhado.prestadorId}}">{{servicoDetalhado.prestador.nome}}</a>
                         <a mat-button color="primary" href="/prestador/{{servicoDetalhado.prestadorId}}/servico/{{servicoDetalhado.id}}/avaliacao">{{'AVALIACOES' | translate}}</a>
                     </span>  
