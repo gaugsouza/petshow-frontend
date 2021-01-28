@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
-=======
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { LocalStorage } from '@ngx-pwa/local-storage';
@@ -11,7 +8,6 @@ import { AgendamentoService } from 'src/app/servicos/agendamento.service';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { NotificationService } from 'src/app/servicos/notification.service';
 import { USER_TOKEN } from 'src/app/util/constantes';
->>>>>>> 1de9ad13f53f994019f4b449cf22445a505df232
 
 @Component({
   selector: 'app-agenda-cliente',
@@ -19,12 +15,6 @@ import { USER_TOKEN } from 'src/app/util/constantes';
   styleUrls: ['./agenda-cliente.component.scss']
 })
 export class AgendaClienteComponent implements OnInit {
-<<<<<<< HEAD
-
-  constructor() { }
-
-  ngOnInit(): void {
-=======
   @Input('cliente-id') clienteId: number;
   agendamentos: Agendamento[];
   animaisAtendidos: AnimalEstimacao[];
@@ -46,7 +36,6 @@ export class AgendaClienteComponent implements OnInit {
 
     
 
->>>>>>> 1de9ad13f53f994019f4b449cf22445a505df232
   }
 
 }

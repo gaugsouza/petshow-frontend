@@ -16,10 +16,6 @@
               <p>{{agendamento.servicoDetalhado.tipo.nome}}</p>
               <p>{{agendamento.data | date:'dd/MM/yyyy hh:mm'}}</p>
               <p>Preço final: {{agendamento.precoFinal | currency: 'BRL'}}</p>
-<<<<<<< HEAD
-              
-=======
->>>>>>> 1de9ad13f53f994019f4b449cf22445a505df232
             </span>
           </div>
           <div>
@@ -36,11 +32,7 @@
               </ng-template>
               <span>Status: {{agendamento.status.nome}}</span>
             </ng-container>
-<<<<<<< HEAD
-            
-=======
             <span><p>Seu agendamento está {{agendamento.status.nome}}</p></span>
->>>>>>> 1de9ad13f53f994019f4b449cf22445a505df232
           </div>
           <div class="agendamento-list__button-container" *ngIf="isAtivo(agendamento)">
             <button mat-flat-button color="accent"
