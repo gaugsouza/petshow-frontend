@@ -4,22 +4,42 @@
       <div class="form">
       <mat-form-field class="invisible">
           <input matInput [(ngModel)]="animal.id" />
-        </mat-form-field>
-        <mat-form-field>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
             <mat-label>{{'NOME_ANIMAL' | translate}}</mat-label>
             <input matInput [(ngModel)]="animal.nome" placeholder="Ex. Bidu" class="form__animal-nome" [formControl]="nomeFormControl" [errorStateMatcher]="matcher"/>
             <mat-error *ngIf="nomeFormControl.hasError('required')">
               {{'CAMPO_OBRIGATORIO' | translate}}
             </mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
             <mat-label>{{'TIPO_ANIMAL' | translate}}</mat-label>
             <mat-select [(ngModel)]="animal.tipo" [value]="animal.tipo" class="form__animal-tipo">
               <mat-option *ngFor="let tipo of tiposAnimal" [value]="tipo">
-                  {{tipo.nome}}
+                  {{tipo.nome | translate}}
               </mat-option>
             </mat-select>
-          </mat-form-field>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="animal.tipo.nome=='cachorro'" appearance="fill">
+          <mat-label>{{'PORTE' | translate}}</mat-label>
+            <mat-select [(ngModel)]="animal.tipo.porte" [value]="animal.tipo.porte" class="form__animal-porte">
+              <mat-option value= "pequeno">{{'PEQUENO' | translate}}</mat-option>
+              <mat-option value="médio">{{'MEDIO' | translate}}</mat-option>
+              <mat-option value="grande">{{'GRANDE' | translate}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="animal.tipo.nome=='cachorro'" appearance="fill">
+          <mat-label>{{'PELAGEM' | translate}}</mat-label>
+          <mat-select [(ngModel)]="animal.tipo.pelagem" [value]="animal.tipo.pelagem" class="form__animal-pelagem">
+            <mat-option value="curta">{{'CURTA' | translate}}</mat-option>
+            <mat-option value = "média">{{'MEDIO' | translate}}</mat-option>
+            <mat-option value ="longa">{{'LONGA' | translate}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+          
           <div class="form__button-container">
             <button *ngIf="!animal.id" mat-flat-button color="primary" (click)="insereAnimal()" [disabled]="hasErrors()">{{'SALVAR' | translate}}</button>
             <button *ngIf="animal.id" mat-flat-button color="primary" (click)="atualizaAnimal()" [disabled]="hasErrors()">{{'SALVAR_ALTERACOES' | translate}}</button>

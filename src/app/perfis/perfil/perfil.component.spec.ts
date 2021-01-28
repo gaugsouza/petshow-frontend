@@ -31,6 +31,8 @@ import { JwtHelper } from '../../util/jwt-helper';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MensagemAtivacaoComponent } from '../mensagem-ativacao/mensagem-ativacao.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatChipsModule } from '@angular/material/chips';
+
 describe('PerfilComponent', () => {
   let component: PerfilComponent;
   let fixture: ComponentFixture<PerfilComponent>;
@@ -72,7 +74,8 @@ describe('PerfilComponent', () => {
         MatCardModule,
         NgxMaskModule.forRoot(),
         MatPaginatorModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatChipsModule
        ]
     })
     .compileComponents();

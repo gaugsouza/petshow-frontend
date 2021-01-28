@@ -90,7 +90,7 @@ export const tina:Prestador = {
     servicos:[
         {
             id: 1,
-            preco: 30.0,
+            precoPorTipo:[],
             tipo: BANHO
         }
     ],
