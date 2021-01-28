@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PrestadorService } from 'src/app/servicos/prestador.service';
 import { PageEvent } from '@angular/material/paginator';
 import { ObjetoPaginado } from 'src/app/interfaces/paginacao';
+import { FiltroServicos } from '../interfaces/filtro-servicos';
 
 @Component({
   selector: 'app-lista-servicos-detalhados',
@@ -23,6 +24,25 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   quantidadePagina:number = 6;
 
   paginaAtual:number = 0;
+
+  ordenacao:any = {
+    precoMin: "Menor preço",
+    precoMax: "Maior Preço",
+    nomePrestador: "Nome Prestador",
+    avaliacao: "Avaliação"
+  }
+
+  private NOTA_MAXIMA = 5;
+
+  mediaAvaliacao:number = 0;
+  
+  filtroAdicional:boolean = false;
+
+  filtro:FiltroServicos;
+
+  precoMin:number;
+
+  precoMax:number;
 
   constructor(private servicosService:ServicosService,
               private route: ActivatedRoute,
@@ -56,5 +76,45 @@ export class ListaServicosDetalhadosComponent implements OnInit {
     console.log(servico);
     const menorPreco = Math.min(...servico.precoPorTipo.map(preco => preco.preco))
     return menorPreco;
+  }
+
+  getOrdenacaoKeys() {
+    return Object.keys(this.ordenacao);
+  }
+
+  atualizaMediaAvaliacao(valor:number) {
+    this.mediaAvaliacao = valor;
+    this.filtro = { ...this.filtro, notaMedia: this.mediaAvaliacao }
+    this.atualizaFiltro(this.filtro);
+  }
+
+  atualizaFiltro(filtro:FiltroServicos) {
+    console.log(this.servicosService.geraFiltroString(filtro));
+  }
+
+  getEstrelas(): any[] {
+    const estrelasEmBranco = this.NOTA_MAXIMA - this.mediaAvaliacao;
+    const estrelas:any[string] = [
+      [...Array(this.mediaAvaliacao).keys()].map(() => 'star'),
+      [...Array(estrelasEmBranco).keys()].map(() => 'star_border')
+    ]
+
+    return estrelas.flatMap((el:string) => el);
+  }
+
+  toggleFiltroAdicional() {
+    this.filtroAdicional = !this.filtroAdicional;
+    this.filtro = { ... this.filtro, possuiAdicionais: this.filtroAdicional};
+    this.atualizaFiltro(this.filtro);
+  }
+
+  alteraOrdenacao(chave:string) {
+    this.filtro = {...this.filtro, ordenacao: chave};
+    this.atualizaFiltro(this.filtro);
+  }
+
+  blurInputs(campo, valor) {
+    this.filtro[campo] = valor;
+    this.atualizaFiltro(this.filtro);
   }
 }

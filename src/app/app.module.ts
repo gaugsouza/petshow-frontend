@@ -31,6 +31,8 @@ import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
 import { AgendamentosModule } from './agendamentos/agendamentos.module';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
+import {MatSelectModule} from '@angular/material/select'; 
+import {MatDividerModule} from '@angular/material/divider'; 
 
 @NgModule({
   declarations: [
@@ -63,6 +65,8 @@ import { MatChipsModule } from '@angular/material/chips';
     AgendamentosModule,
     MatCheckboxModule,
     MatChipsModule,
+    MatSelectModule,
+    MatDividerModule,
   ],
   providers: [
     JwtHelper,
