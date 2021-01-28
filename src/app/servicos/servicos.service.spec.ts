@@ -27,4 +27,18 @@ describe('ServicosService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('Deve trazer filtro vazio', () => {
+    expect(service.geraFiltroString(null)).toBe('');
+  });
+
+  it('Deve retornar filtro com preco minimo', () => {
+    const filtro = service.geraFiltroString({precoMin: 200});
+    expect(filtro).toBe('&precoMin=200');
+  });
+
+  it('Deve retornar filtro com dois elementos', () => {
+    const filtro = service.geraFiltroString({precoMin: 200, notaMedia: 3});
+    expect(filtro).toBe('&precoMin=200&notaMedia=3');
+  })
 });

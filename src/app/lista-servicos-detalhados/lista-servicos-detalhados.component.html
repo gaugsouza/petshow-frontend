@@ -1,5 +1,10 @@
 <section>
     <h3 class="page-section-title">{{'SERVICOS_DISPONIVEIS' | translate}}</h3>
+    <div>
+        <mat-toolbar>
+            Teste
+        </mat-toolbar>
+    </div>
     <div class="conteiner-lista-servicos-detalhados" *ngIf="servicosDetalhados; then servicosDetalhadosBlock else vazioBlock"></div>
     
     <ng-template #vazioBlock>
