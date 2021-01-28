@@ -13,7 +13,7 @@ export interface Agendamento {
     comentario?: string,
     endereco?: Endereco,
     animaisAtendidos: AnimalEstimacao[],
-    servicoDetalhado?: ServicoDetalhado[],
+    servicoDetalhado?: ServicoDetalhado,
     servicoDetalhadoId: number;
     status?: StatusAgendamento,
     clienteId: number,

@@ -148,6 +148,6 @@
   "NENHUM_AGENDAMENTO": "No bookings",
   "CONCLUIDO": "Done",
   "ADICIONAL": "Extra",
-  "NENHUM_ADICIONAL": "No extras found",
-
+  "AGENDAMENTOS": "Scheduled Bookings",
+  "NENHUM_ADICIONAL": "No extras found"
 }

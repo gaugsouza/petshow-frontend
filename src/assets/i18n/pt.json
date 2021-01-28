@@ -146,8 +146,9 @@
   "ERRO_REENVIO_SOLICITACAO": "Ocorreu um erro na solicitação de reenvio",
   "CPF_INVALIDO": "CPF informado é inválido",
   "CLIENTE_NAO_ENCONTRADO": "Não foi encontrado o cliente informado",
-  "NENHUM_AGENDAMENTO": "Nenhum agendamento",
+  "NENHUM_AGENDAMENTO": "Nenhum agendamento.",
   "CONCLUIDO": "Concluído",
+  "AGENDAMENTOS": "Agendamentos",
   "ADICIONAL": "Adicional",
   "NENHUM_ADICIONAL": "Nenhum adicional informado"
 }
