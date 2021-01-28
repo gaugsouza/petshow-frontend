@@ -27,6 +27,7 @@ import { MensagemAtivacaoComponent } from '../mensagem-ativacao/mensagem-ativaca
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NotificationService } from '../../servicos/notification.service';
 import { ServicoDetalhado } from '../../interfaces/servico-detalhado';
+import { AgendaPrestadorComponent } from '../agenda-prestador/agenda-prestador.component';
 
 describe('PerfilPrestadorComponent', () => {
   let component: PerfilPrestadorComponent;
@@ -41,7 +42,8 @@ describe('PerfilPrestadorComponent', () => {
         InformacoesPessoaisComponent,
         EnderecoComponent,
         EnderecoDialogComponent,
-        MensagemAtivacaoComponent
+        MensagemAtivacaoComponent,
+        AgendaPrestadorComponent
        ],
        providers: [
          PrestadorService,
