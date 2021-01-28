@@ -17,7 +17,7 @@
             <mat-label>{{'TIPO_ANIMAL' | translate}}</mat-label>
             <mat-select [(ngModel)]="animal.tipo" [value]="animal.tipo" class="form__animal-tipo">
               <mat-option *ngFor="let tipo of tiposAnimal" [value]="tipo">
-                  {{tipo.nome | translate}}
+                  {{tipo.nome | translate}} {{ tipo.porte ? "Porte: " + tipo.porte: ""}} {{ tipo.pelagem ? "Pelagem: "+tipo.pelagem : "" }}
               </mat-option>
             </mat-select>
         </mat-form-field>

@@ -9,6 +9,7 @@ import { InformacoesPessoaisComponent } from '../informacoes-pessoais/informacoe
 import { EnderecoComponent } from '../endereco/endereco.component';
 import { EnderecoDialogComponent } from '../endereco-dialog/endereco-dialog.component';
 import { AnimalEstimacaoComponent } from '../animal-estimacao/animal-estimacao.component';
+import { AgendaPrestadorComponent } from '../agenda-prestador/agenda-prestador.component';
 import { PrestadorService } from '../../servicos/prestador.service';
 import { LocalStorageService } from '../../servicos/local-storage.service';
 import { Router } from '@angular/router';
@@ -50,7 +51,8 @@ describe('PerfilComponent', () => {
         EnderecoDialogComponent,
         AnimalEstimacaoComponent,
         FormularioAnimalComponent,
-        MensagemAtivacaoComponent
+        MensagemAtivacaoComponent,
+        AgendaPrestadorComponent
        ],
        providers: [
         PrestadorService,

@@ -28,6 +28,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { NotificationService } from 'src/app/servicos/notification.service';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
+import { AgendamentosModule } from './agendamentos/agendamentos.module';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { Agendamento } from './interfaces/agendamento';
+
 import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
@@ -35,7 +39,7 @@ import { MatChipsModule } from '@angular/material/chips';
     AppComponent,
     HomeComponent,
     ListaServicosDetalhadosComponent,
-    PrestadorComponent,
+    PrestadorComponent
   ],
   imports: [
     AcessoModule,
@@ -58,6 +62,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatCardModule,
     ConfigModule,
     MatPaginatorModule,
+    AgendamentosModule,
+    MatCheckboxModule,
     MatChipsModule,
   ],
   providers: [
@@ -65,6 +71,7 @@ import { MatChipsModule } from '@angular/material/chips';
     DataSharingService,
     { provide: 'ServicoNotificationService', useFactory: () => (new NotificationService<ServicoDetalhado>()) },
     { provide: 'AnimalNotificationService', useFactory: () => (new NotificationService<AnimalEstimacao>()) },
+    { provide: 'AgendamentoNotificationService', useFactory: () => (new NotificationService<Agendamento>()) }
   ],
   bootstrap: [AppComponent],
 })
