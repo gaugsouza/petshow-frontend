@@ -1,4 +1,14 @@
 {
+  "PEQUENO": "Pequeno",
+  "MEDIO": "Médio",
+  "GRANDE": "Grande",
+  "PORTE": "Porte",
+  "PELAGEM": "Pelagem",
+  "CURTA": "Curta",
+  "MEDIA": "Média",
+  "LONGA": "Longa",
+  "Cachorro": "Cachorro",
+  "Gato": "Gato",
   "VER_TRADUZIDO": "EN",
   "PERFIL": "Perfil",
   "LOGIN": "Login",
@@ -135,7 +145,12 @@
   "SOLICITACAO_REENVIADA": "Solicitação reenviada com sucesso. Verifique seu e-mail.",
   "ERRO_REENVIO_SOLICITACAO": "Ocorreu um erro na solicitação de reenvio",
   "CPF_INVALIDO": "CPF informado é inválido",
+<<<<<<< HEAD
   "CLIENTE_NAO_ENCONTRADO": "Não foi encontrado o cliente informado",
   "NENHUM_AGENDAMENTO": "Nenhum agendamento.",
   "CONCLUIDO": "Concluído"
+=======
+  "ADICIONAL": "Adicional",
+  "NENHUM_ADICIONAL": "Nenhum adicional informado"
+>>>>>>> fdbcf5199f5e80972332d43b98698c82effb1f44
 }
