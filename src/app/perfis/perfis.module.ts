@@ -50,7 +50,6 @@ export function HttpLoaderFactory(http:HttpClient) {
     MensagemAtivacaoComponent,
     AgendaPrestadorComponent,
     CadastroAdicionalComponent,
-    CadastroAdicionalComponent,
   ],
   imports: [
     CommonModule,
