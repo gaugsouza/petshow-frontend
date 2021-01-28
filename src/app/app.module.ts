@@ -32,6 +32,7 @@ import { AgendamentosModule } from './agendamentos/agendamentos.module';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Agendamento } from './interfaces/agendamento';
 
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { Agendamento } from './interfaces/agendamento';
     MatPaginatorModule,
     AgendamentosModule,
     MatCheckboxModule,
+    MatChipsModule,
   ],
   providers: [
     JwtHelper,

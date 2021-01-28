@@ -145,11 +145,9 @@
   "SOLICITACAO_REENVIADA": "Request resent successfully. Check your e-mail",
   "ERRO_REENVIO_SOLICITACAO": "An error occurred when sending a new activation request",
   "CPF_INVALIDO": "Invalid CPF",
-<<<<<<< HEAD
   "NENHUM_AGENDAMENTO": "No bookings",
-  "CONCLUIDO": "Done"
-=======
+  "CONCLUIDO": "Done",
   "ADICIONAL": "Extra",
-  "NENHUM_ADICIONAL": "No extras found"
->>>>>>> fdbcf5199f5e80972332d43b98698c82effb1f44
+  "NENHUM_ADICIONAL": "No extras found",
+
 }
