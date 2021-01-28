@@ -18,6 +18,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
+import { NotificationService } from '../../servicos/notification.service';
+import { Agendamento } from '../../interfaces/agendamento';
 
 describe('AgendaPrestadorComponent', () => {
   let component: AgendaPrestadorComponent;
@@ -27,7 +29,9 @@ describe('AgendaPrestadorComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ AgendaPrestadorComponent ],
       providers: [
-        JwtHelper
+        JwtHelper,
+        { provide: 'AgendamentoNotificationService', useFactory: () => (new NotificationService<Agendamento>()) }
+
       ],
       imports: [
         MatListModule,
