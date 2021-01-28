@@ -14,20 +14,36 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import { ConfigModule } from '../../config/config.module';
+
+import { VisualizacaoAgendamentoComponent } from './visualizacao-agendamento.component';
+import { DadosAgendamentoComponent } from '../dados-agendamento/dados-agendamento.component';
+import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
+import { of } from 'rxjs';
 import { JwtHelper } from '../../util/jwt-helper';
-
-import { ClienteComponent } from './cliente.component';
-
-describe('ClienteComponent', () => {
-  let component: ClienteComponent;
-  let fixture: ComponentFixture<ClienteComponent>;
+describe('VisualizacaoAgendamentoComponent', () => {
+  let component: VisualizacaoAgendamentoComponent;
+  let fixture: ComponentFixture<VisualizacaoAgendamentoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ClienteComponent ],
-      providers: [
+      declarations: [ 
+        VisualizacaoAgendamentoComponent,
+        DadosAgendamentoComponent
+       ],
+       providers: [
+        {provide: Router, useValue: {navigate: () => true}},
+        {provide: ActivatedRoute, useValue: {
+          queryParams: of({
+            ativo: false
+          }),
+          snapshot: {
+            paramMap: convertToParamMap({
+              idAgendamento: '1'
+            })
+          }
+        }},
         JwtHelper
-      ],
+       ],
       imports: [
         CommonModule,
         ConfigModule,
@@ -44,13 +60,14 @@ describe('ClienteComponent', () => {
         MatNativeDateModule,
         HttpClientTestingModule,
         LoggerTestingModule,
+        
       ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ClienteComponent);
+    fixture = TestBed.createComponent(VisualizacaoAgendamentoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

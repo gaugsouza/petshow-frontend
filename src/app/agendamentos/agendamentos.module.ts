@@ -13,6 +13,14 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input'; 
 import { FormsModule } from '@angular/forms';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatButtonModule } from '@angular/material/button';
+import { DadosAgendamentoComponent } from './dados-agendamento/dados-agendamento.component';
+import { ConfirmacaoAgendamentoComponent } from './confirmacao-agendamento/confirmacao-agendamento.component';
+import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import { MatNativeDateModule } from '@angular/material/core/';
+import { VisualizacaoAgendamentoComponent } from './visualizacao-agendamento/visualizacao-agendamento.component';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -24,6 +32,9 @@ export function HttpLoaderFactory(http:HttpClient) {
     AnimalEstimacaoComponent,
     ServicoDetalhadoComponent,
     ClienteComponent,
+    DadosAgendamentoComponent,
+    ConfirmacaoAgendamentoComponent,
+    VisualizacaoAgendamentoComponent,
   ],
   imports: [
     CommonModule,
@@ -34,12 +45,20 @@ export function HttpLoaderFactory(http:HttpClient) {
     MatCardModule,
     MatInputModule,
     FormsModule,
+    MatTabsModule,
+    MatStepperModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   exports: [
     AgendamentoComponent,
     AnimalEstimacaoComponent,
     ServicoDetalhadoComponent,
     ClienteComponent,
+  ],
+  providers: [
+    MatNativeDateModule,
   ]
 })
 

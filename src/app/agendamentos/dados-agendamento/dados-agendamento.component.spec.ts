@@ -16,15 +16,15 @@ import { LoggerTestingModule } from 'ngx-logger/testing';
 import { ConfigModule } from '../../config/config.module';
 import { JwtHelper } from '../../util/jwt-helper';
 
-import { ClienteComponent } from './cliente.component';
+import { DadosAgendamentoComponent } from './dados-agendamento.component';
 
-describe('ClienteComponent', () => {
-  let component: ClienteComponent;
-  let fixture: ComponentFixture<ClienteComponent>;
+describe('DadosAgendamentoComponent', () => {
+  let component: DadosAgendamentoComponent;
+  let fixture: ComponentFixture<DadosAgendamentoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ClienteComponent ],
+      declarations: [ DadosAgendamentoComponent ],
       providers: [
         JwtHelper
       ],
@@ -50,7 +50,7 @@ describe('ClienteComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ClienteComponent);
+    fixture = TestBed.createComponent(DadosAgendamentoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

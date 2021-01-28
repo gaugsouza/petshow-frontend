@@ -10,6 +10,8 @@ import { PrestadorComponent } from 'src/app/prestador/prestador.component';
 import { SucessoCadastroComponent } from './acesso/sucesso-cadastro/sucesso-cadastro.component';
 import { TokenAtivacaoComponent } from './acesso/token-ativacao/token-ativacao.component';
 import { AgendamentoComponent } from './agendamentos/agendamento/agendamento.component';
+import { ConfirmacaoAgendamentoComponent } from './agendamentos/confirmacao-agendamento/confirmacao-agendamento.component';
+import { VisualizacaoAgendamentoComponent } from './agendamentos/visualizacao-agendamento/visualizacao-agendamento.component';
 
 const routes: Routes = [
   { path: 'perfil', component: PerfilComponent },
@@ -21,7 +23,9 @@ const routes: Routes = [
   { path: 'prestador/:id', component: PrestadorComponent },
   { path: 'cadastro-sucesso', component: SucessoCadastroComponent },
   { path: 'confirmacao-registro', component: TokenAtivacaoComponent },
-  { path: 'agendamento/:agendamentoId/prestador/:prestadorId/servicoDetalhado/:servicoDetalhadoId', component: AgendamentoComponent },
+  { path: 'prestador/:prestadorId/servicoDetalhado/:servicoDetalhadoId/agendamento', component: AgendamentoComponent },
+  { path: 'agendamento/:idAgendamento', component: VisualizacaoAgendamentoComponent },
+  { path: 'agendamento-sucesso', component: ConfirmacaoAgendamentoComponent },
 ];
 
 @NgModule({

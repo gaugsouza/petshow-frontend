@@ -1,0 +1,85 @@
+<div class="grid">
+    <div *ngIf="cliente">
+        <mat-card>
+            <mat-card-title>
+                <p>{{cliente.nome}}</p>
+            </mat-card-title>
+            <mat-card-subtitle>
+                Dados do cliente:
+            </mat-card-subtitle>
+            <mat-card-content>
+                <p>Dados do cliente: </p>
+                <p>Nome: {{cliente.nome}}</p>
+                <p>CPF: {{cliente.cpf}}</p>
+
+                <div *ngIf="animaisEstimacao">
+                    <mat-card *ngFor="let animal of animaisEstimacao">
+                        <mat-card-subtitle>
+                            {{animal.nome}}
+                        </mat-card-subtitle>
+                        <mat-card-content>
+                            <p>{{animal.tipo.nome}}</p>
+                            <p *ngIf="animal.tipo.porte">Porte: {{animal.tipo.porte}}</p>
+                            <p *ngIf="animal.tipo.pelagem">Pelagem: {{animal.tipo.pelagem}}</p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                
+            </mat-card-content>
+        </mat-card>
+    </div>
+    
+
+    <div *ngIf="prestador">
+        <mat-card>
+            <mat-card-title>
+                <p>{{prestador.nome}}</p>
+            </mat-card-title>
+            <mat-card-subtitle>
+                Dados do prestador:
+            </mat-card-subtitle>
+            <mat-card-content>
+                <p>Nome: {{prestador.nome}}</p>
+                <div *ngIf="servicoDetalhado">
+                    <mat-card>
+                        <mat-card-subtitle>
+                            {{servicoDetalhado.tipo.nome}}
+                        </mat-card-subtitle>
+                        <mat-card-content>
+                            <p>Detalhes do serviço escolhido: </p>
+                            <p>{{servicoDetalhado.tipo.nome}}</p>
+                            <p *ngIf="servicoDetalhado.descricao">Descrição: {{servicoDetalhado.descricao}}</p>
+                            <p>Data do agendamento: {{dataAgendamento | date: 'dd/MM/yyyy'}}</p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+
+                <div *ngIf="adicionais && adicionais.length">
+                    <p>Adicionais: </p>
+                    <mat-card *ngFor="let adicional of adicionais">
+                        <mat-card-content>
+                            <p>{{adicional.nome}}</p>
+                            <p *ngIf="adicional.descricao"> Descrição: {{adicional.descricao}}</p>
+                            <p>{{adicional.preco | currency: 'BRL'}}</p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div>
+                    <hr>
+                    Valores dos serviços por animal:
+                    <mat-card *ngFor="let preco of precoPorTipo">
+                        <mat-card-content>
+                            <p>Animal: {{preco.tipoAnimal.nome}}</p>
+                            <p>Preço: {{preco.preco | currency: 'BRL'}}</p>
+                        </mat-card-content>
+                    </mat-card>
+                    <hr>
+                </div>
+               
+                <p>Valor total: <span class="preco-final">{{getValorTotal() | currency: 'BRL'}}</span></p>
+
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+</div>
