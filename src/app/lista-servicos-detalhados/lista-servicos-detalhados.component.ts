@@ -51,4 +51,10 @@ export class ListaServicosDetalhadosComponent implements OnInit {
         this.quantidadePagina = objetoPaginado.size;
       });
   }
+
+  getPrecoMinimo(servico:ServicoDetalhado):number {
+    console.log(servico);
+    const menorPreco = Math.min(...servico.precoPorTipo.map(preco => preco.preco))
+    return menorPreco;
+  }
 }
