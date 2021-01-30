@@ -18,7 +18,8 @@
                         <a mat-button color="primary" href="/prestador/{{servicoDetalhado.prestadorId}}/servico/{{servicoDetalhado.id}}/avaliacao">{{'AVALIACOES' | translate}}</a>
                     </span>  
                     <div class="lista-servicos-detalhados__button-container">
-                        <a mat-button color="primary" href="prestador/{{servicoDetalhado.prestador.id}}/servicoDetalhado/{{servicoDetalhado.id}}/agendamento?isVisualizacao=false">{{'AGENDAR' | translate}}</a>
+                        <mat-checkbox>Comparar</mat-checkbox>
+                        <a mat-flat-button color="primary" href="prestador/{{servicoDetalhado.prestador.id}}/servicoDetalhado/{{servicoDetalhado.id}}/agendamento?isVisualizacao=false">{{'AGENDAR' | translate}}</a>
                     </div>
                 </div>
             </mat-list-item>

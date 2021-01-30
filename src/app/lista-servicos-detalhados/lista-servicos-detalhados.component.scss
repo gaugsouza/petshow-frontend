@@ -20,7 +20,7 @@ mat-list-item {
 
   &__item {
     display: grid;
-    grid-template-columns: 1fr 30%;
+    grid-template-columns: 1fr 20%;
     background: $item-bg;
     border: 1px solid $item-border;
     border-radius: 10px;
@@ -43,6 +43,8 @@ mat-list-item {
   &__button-container {
     display: flex;
     justify-content: space-around;
+    flex-direction: column;
+    width: 50%;
   }
 }
 
