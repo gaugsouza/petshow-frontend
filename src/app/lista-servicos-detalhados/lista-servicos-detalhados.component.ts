@@ -5,6 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import { PrestadorService } from 'src/app/servicos/prestador.service';
 import { PageEvent } from '@angular/material/paginator';
 import { ObjetoPaginado } from 'src/app/interfaces/paginacao';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComparacaoComponent } from './dialog-comparacao/dialog-comparacao.component';
+import { ComparacaoWrapper } from '../interfaces/comparacao-wrapper';
 
 @Component({
   selector: 'app-lista-servicos-detalhados',
@@ -24,9 +27,12 @@ export class ListaServicosDetalhadosComponent implements OnInit {
 
   paginaAtual:number = 0;
 
+  idsAComparar:number[] = []
+
   constructor(private servicosService:ServicosService,
               private route: ActivatedRoute,
-              private prestadorService: PrestadorService) {}
+              private prestadorService: PrestadorService,
+              private dialog:MatDialog) {}
 
   ngOnInit(): void {
     this.tipoId = +this.route.snapshot.paramMap.get('id');
@@ -53,8 +59,36 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   }
 
   getPrecoMinimo(servico:ServicoDetalhado):number {
-    console.log(servico);
     const menorPreco = Math.min(...servico.precoPorTipo.map(preco => preco.preco))
     return menorPreco;
+  }
+
+  selecionaIds(checked:boolean, id:number) {
+    if(!checked) {
+      this.idsAComparar = this.idsAComparar.filter(el => el !== id);
+    } else {
+      this.idsAComparar = [...this.idsAComparar, id];
+    }
+  }
+
+  deveDesabilitar(id:number):boolean {
+    return this.idsAComparar.length === 2 && !this.idsAComparar.includes(id);
+  }
+
+  compararServicos() {
+    this.servicosService.buscarServicosComparacao(this.idsAComparar).subscribe(el => {
+      this.openDialog(JSON.parse(el));
+    });
+  }
+
+  openDialog(comparacao:ComparacaoWrapper) {
+    const ref = this.dialog.open(DialogComparacaoComponent, {
+      width: '1200px',
+      data: {...comparacao}
+    });
+
+    ref.afterClosed().subscribe(() => {
+      this.idsAComparar = [];
+    })
   }
 }

@@ -1,5 +1,12 @@
 <section>
-    <h3 class="page-section-title">{{'SERVICOS_DISPONIVEIS' | translate}}</h3>
+    <div class="topo-listagem">
+        <h3 class="page-section-title">{{'SERVICOS_DISPONIVEIS' | translate}}</h3>
+        <div>
+            <button mat-flat-button color="primary" 
+                    [disabled]="idsAComparar.length < 2"
+                    (click)="compararServicos()">Comparar servicos</button>
+        </div>
+    </div>
     <div class="conteiner-lista-servicos-detalhados" *ngIf="servicosDetalhados; then servicosDetalhadosBlock else vazioBlock"></div>
     
     <ng-template #vazioBlock>
@@ -13,12 +20,15 @@
                     <div class ="nome_servico">
                         {{servicoDetalhado.tipo.nome}} 
                     </div>
-                    <span>A partir de: {{getPrecoMinimo(servicoDetalhado) | currency: 'BRL'}}</span>
+                    <span class="preco-servico">A partir de: {{getPrecoMinimo(servicoDetalhado) | currency: 'BRL'}}</span>
                     <span><a mat-button color="primary" href="/prestador/{{servicoDetalhado.prestadorId}}">{{servicoDetalhado.prestador.nome}}</a>
                         <a mat-button color="primary" href="/prestador/{{servicoDetalhado.prestadorId}}/servico/{{servicoDetalhado.id}}/avaliacao">{{'AVALIACOES' | translate}}</a>
                     </span>  
                     <div class="lista-servicos-detalhados__button-container">
-                        <a mat-button color="primary" href="prestador/{{servicoDetalhado.prestador.id}}/servicoDetalhado/{{servicoDetalhado.id}}/agendamento?isVisualizacao=false">{{'AGENDAR' | translate}}</a>
+                        <mat-checkbox 
+                            [disabled]="deveDesabilitar(servicoDetalhado.id)"
+                            (change)="selecionaIds($event.checked, servicoDetalhado.id)">Comparar</mat-checkbox>
+                        <a mat-flat-button color="primary" href="prestador/{{servicoDetalhado.prestador.id}}/servicoDetalhado/{{servicoDetalhado.id}}/agendamento?isVisualizacao=false">{{'AGENDAR' | translate}}</a>
                     </div>
                 </div>
             </mat-list-item>
