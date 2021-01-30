@@ -30,16 +30,21 @@ import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
 import { AgendamentosModule } from './agendamentos/agendamentos.module';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { Agendamento } from './interfaces/agendamento';
+import { MatDividerModule } from '@angular/material/divider'; 
 import { MatChipsModule } from '@angular/material/chips';
-import {MatSelectModule} from '@angular/material/select'; 
-import {MatDividerModule} from '@angular/material/divider'; 
+import { MatSelectModule } from '@angular/material/select'; 
+import { DialogComparacaoComponent } from './lista-servicos-detalhados/dialog-comparacao/dialog-comparacao.component';
+import { MatTableModule } from '@angular/material/table'; 
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ListaServicosDetalhadosComponent,
-    PrestadorComponent
+    PrestadorComponent,
+    DialogComparacaoComponent
   ],
   imports: [
     AcessoModule,
@@ -67,12 +72,15 @@ import {MatDividerModule} from '@angular/material/divider';
     MatChipsModule,
     MatSelectModule,
     MatDividerModule,
+    MatDialogModule,
+    MatTableModule,
   ],
   providers: [
     JwtHelper,
     DataSharingService,
     { provide: 'ServicoNotificationService', useFactory: () => (new NotificationService<ServicoDetalhado>()) },
     { provide: 'AnimalNotificationService', useFactory: () => (new NotificationService<AnimalEstimacao>()) },
+    { provide: 'AgendamentoNotificationService', useFactory: () => (new NotificationService<Agendamento>()) }
   ],
   bootstrap: [AppComponent],
 })

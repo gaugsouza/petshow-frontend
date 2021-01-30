@@ -24,10 +24,13 @@ import { ConfigModule } from 'src/app/config/config.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MensagemAtivacaoComponent } from 'src/app/perfis/mensagem-ativacao/mensagem-ativacao.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { AgendaPrestadorComponent } from './agenda-prestador/agenda-prestador.component';
+import { AgendamentoService } from '../servicos/agendamento.service';
 import { CadastroAdicionalComponent } from 'src/app/perfis/cadastro-adicional/cadastro-adicional.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTableModule } from '@angular/material/table'; 
+
 
 
 export function HttpLoaderFactory(http:HttpClient) {
@@ -47,6 +50,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     AnimalEstimacaoComponent,
     FormularioAnimalComponent,
     MensagemAtivacaoComponent,
+    AgendaPrestadorComponent,
     CadastroAdicionalComponent,
   ],
   imports: [
@@ -79,5 +83,6 @@ export function HttpLoaderFactory(http:HttpClient) {
     AnimalEstimacaoComponent,
     FormularioAnimalComponent,
   ],
+  providers: [AgendamentoService]
 })
 export class PerfisModule { }

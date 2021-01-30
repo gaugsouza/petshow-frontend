@@ -23,6 +23,17 @@ export class AgendamentoService {
 
   buscarAgendamentosPorPrestador = (idPrestador:number, pagina:number, quantidadeItens:number, token:string): Observable<any> => {
     const URL = `${this.AGENDAMENTO_SERVICE_URL}/prestador/${idPrestador}?pagina=${pagina}&quantidadeItens=${quantidadeItens}`;
+    console.log(URL, token);
+    return this.httpHandler.doGet<any>(URL, token);
+  }
+
+  alterarStatusAgendamento = (idPrestador:number, idStatus:number, idAgendamento:number, token?:string): Observable<any> => {
+    const URL = `${this.AGENDAMENTO_SERVICE_URL}/${idAgendamento}/prestador/${idPrestador}/status/${idStatus}`;
+    return this.httpHandler.doPatch<any>(URL, token);
+  }
+
+  buscarStatusAgendamento = (token?:string): Observable<any> => {
+    const URL = `${this.AGENDAMENTO_SERVICE_URL}/statuses`;
     return this.httpHandler.doGet<any>(URL, token);
   }
 

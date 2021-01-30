@@ -41,4 +41,9 @@ export class ServicosService {
     const URL = `${PRESTADOR_SERVICE_URL}/${prestadorId}/servico-detalhado/${servicoDetalhadoId}`;
     return this.httpHandler.doGet<any>(URL, token);
   }
+
+  buscarServicosComparacao(ids:number[], token?:string) {
+    const URL = `${SERVICO_DETALHADO_URL}?ids=${ids.join()}`;
+    return this.httpHandler.doGet<any>(URL, token);
+  }
 }

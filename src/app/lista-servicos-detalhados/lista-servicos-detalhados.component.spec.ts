@@ -16,6 +16,8 @@ import { of } from 'rxjs';
 import { JwtHelper } from '../util/jwt-helper';
 import { servicos } from '../mocks/servico-detalhado-mock';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
 
 describe('ListaServicosDetalhadosComponent', () => {
   let component: ListaServicosDetalhadosComponent;
@@ -53,7 +55,9 @@ describe('ListaServicosDetalhadosComponent', () => {
         RouterTestingModule,
         ReactiveFormsModule,
         TranslateModule.forRoot(),
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatCheckboxModule,
+        MatDialogModule,
       ]
     })
     .compileComponents();
