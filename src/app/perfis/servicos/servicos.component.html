@@ -16,8 +16,8 @@
                         <mat-card *ngFor="let preco of servico.precoPorTipo">
                             <mat-card-subtitle>{{preco.tipoAnimal.nome}}</mat-card-subtitle>
                             <mat-card-content>
-                                <span *ngIf="preco.tipoAnimal.porte">Porte: {{preco.tipoAnimal.porte}}</span>
-                                <span *ngIf="preco.tipoAnimal.pelagem">Pelagem: {{preco.tipoAnimal.pelagem}}</span>
+                                <span *ngIf="preco.tipoAnimal.porte">Porte: {{preco.tipoAnimal.porte}}</span><br *ngIf="preco.tipoAnimal.porte">
+                                <span *ngIf="preco.tipoAnimal.pelagem">Pelagem: {{preco.tipoAnimal.pelagem}}</span><br *ngIf="preco.tipoAnimal.porte"> 
                                 <span>{{preco.preco | currency: 'BRL'}}</span>
                                 <hr>
                             </mat-card-content>
