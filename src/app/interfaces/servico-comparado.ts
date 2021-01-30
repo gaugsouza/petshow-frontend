@@ -8,6 +8,6 @@ export interface ServicoComparado {
     mediaAvaliacao?:number,
     tabelaPrecos?:ServicoDetalhadoTipoAnimal,
     tiposAtendidos?:object,
-    adicionais?:Adicional[]
-
+    adicionais?:Adicional[],
+    nome?:string
 }
