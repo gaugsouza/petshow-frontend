@@ -36,7 +36,10 @@ export class AgendaClienteComponent implements OnInit {
 
     this.agendamentoNotification.notify({precoFinal:null, animaisAtendidos:[{nome:null, tipo:{id:null, nome:null}}], servicoDetalhadoId:null,clienteId:null,prestadorId:null});
     
+
+
     this.agendamentoNotification.obs.subscribe(() => {
+      console.log(this.agendamentos)
       this.buscarAgendamentosPorCliente(this.clienteId, this.paginaAtual, this.quantidadeItens);
     });
 
