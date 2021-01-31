@@ -1,8 +1,8 @@
 export interface FiltroServicos {
-    precoMin?:number,
-    precoMax?:number,
-    notaMedia?:number,
+    tipoServicoId: number,
+    menorPreco?:number,
+    maiorPreco?:number,
+    mediaAvaliacao?:number,
     possuiAdicionais?:boolean,
-    prestador?:string,
     ordenacao?:string
 }

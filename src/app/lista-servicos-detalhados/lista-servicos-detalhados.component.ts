@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ServicosService } from 'src/app/servicos/servicos.service';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { ActivatedRoute } from '@angular/router';
-import { PrestadorService } from 'src/app/servicos/prestador.service';
 import { PageEvent } from '@angular/material/paginator';
 import { ObjetoPaginado } from 'src/app/interfaces/paginacao';
 import { FiltroServicos } from '../interfaces/filtro-servicos';
@@ -29,10 +28,9 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   paginaAtual:number = 0;
 
   ordenacao:any = {
-    precoMin: "Menor preço",
-    precoMax: "Maior Preço",
-    nomePrestador: "Nome Prestador",
-    avaliacao: "Avaliação"
+    menorPreco: "Preço Crescente",
+    maiorPreco: "Preço Decrescente",
+    mediaAvaliacao: "Melhor Avaliado"
   }
 
   private NOTA_MAXIMA = 5;
@@ -41,32 +39,33 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   
   filtroAdicional:boolean = false;
 
-  filtro:FiltroServicos;
+  filtro:FiltroServicos = {tipoServicoId: null};
 
-  precoMin:number;
+  menorPreco:number;
+  maiorPreco:number;
 
-  precoMax:number;
   idsAComparar:number[] = []
 
   constructor(private servicosService:ServicosService,
               private route: ActivatedRoute,
-              private prestadorService: PrestadorService,
               private dialog:MatDialog) {}
 
   ngOnInit(): void {
     this.tipoId = +this.route.snapshot.paramMap.get('id');
-    this.buscarServicosDetalhadosPorTipo(this.tipoId, this.paginaAtual, this.quantidadePagina);
+    this.filtro.tipoServicoId = this.tipoId;
+    this.buscarServicosDetalhadosPorTipo(this.filtro, this.paginaAtual, this.quantidadePagina);
   }
 
   eventoPagina(event: PageEvent) {
     const pagina = event.pageIndex;
     const quantidadePagina = event.pageSize;
-    this.buscarServicosDetalhadosPorTipo(this.tipoId, pagina, quantidadePagina);
+    this.buscarServicosDetalhadosPorTipo(this.filtro, pagina, quantidadePagina);
+
     return event;
   }
 
-  buscarServicosDetalhadosPorTipo(id:number, pagina?:number, quantidadeItens?:number) {
-    this.servicosService.buscarServicosDetalhadosPorTipo(id, pagina, quantidadeItens)
+  buscarServicosDetalhadosPorTipo(filtro:FiltroServicos, pagina?:number, quantidadeItens?:number) {
+    this.servicosService.buscarServicosDetalhadosPorTipo(filtro, pagina, quantidadeItens)
       .subscribe((paginaServicosDetalhados) => {
         const objetoPaginado:ObjetoPaginado = JSON.parse(paginaServicosDetalhados);
         const servicos = objetoPaginado.content;
@@ -88,12 +87,12 @@ export class ListaServicosDetalhadosComponent implements OnInit {
 
   atualizaMediaAvaliacao(valor:number) {
     this.mediaAvaliacao = valor;
-    this.filtro = { ...this.filtro, notaMedia: this.mediaAvaliacao }
+    this.filtro = { ...this.filtro, mediaAvaliacao: this.mediaAvaliacao }
     this.atualizaFiltro(this.filtro);
   }
 
   atualizaFiltro(filtro:FiltroServicos) {
-    console.log(this.servicosService.geraFiltroString(filtro));
+    this.buscarServicosDetalhadosPorTipo(filtro, this.paginaAtual, this.quantidadePagina);
   }
 
   getEstrelas(): any[] {

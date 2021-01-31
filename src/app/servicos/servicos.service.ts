@@ -9,28 +9,18 @@ import { FiltroServicos } from '../interfaces/filtro-servicos';
 })
 export class ServicosService {
   constructor(private httpHandler:HttpHandlerService) {}
-
-  buscarServicosDetalhadosPorTipo = (id:number, pagina:number,
-    quantidadeItens:number, filtro?:FiltroServicos): Observable<any> => {
-    const filtroStr = this.geraFiltroString(filtro);
-    const URL = `${SERVICO_DETALHADO_URL}/tipo-servico/${id}?pagina=${pagina}&quantidadeItens=${quantidadeItens}${filtroStr}`;
-    return this.httpHandler.doGet<any>(URL);
-  }
-
-  geraFiltroString(filtro:FiltroServicos) {
-    if(!filtro) {
-      return '';
-    }
-    return Object.keys(filtro)
-            .filter(key => filtro[key] != null)
-            .reduce((filtroStr, key) => `${filtroStr}&${key}=${filtro[key]}`, '');
-  }
-
+  
   getTipos(): Observable<any> {
     const URL = TIPO_SERVICO_URL;
     return this.httpHandler.doGet<any>(URL);
   }
-
+  
+  buscarServicosDetalhadosPorTipo = (filtro:FiltroServicos, pagina:number, quantidadeItens:number): Observable<any> => {
+    const URL = `${SERVICO_DETALHADO_URL}/filtro?pagina=${pagina}&quantidadeItens=${quantidadeItens}`;
+    console.log(URL);
+    return this.httpHandler.doPost<any>(URL, filtro);
+  } 
+  
   buscarServicosDetalhadosPorPrestador(prestadorId:number, pagina:number,
     quantidadeItens:number, token:string) : Observable<any> {
     const URL = `${PRESTADOR_SERVICE_URL}/${prestadorId}/servico-detalhado?pagina=${pagina}&quantidadeItens=${quantidadeItens}`;

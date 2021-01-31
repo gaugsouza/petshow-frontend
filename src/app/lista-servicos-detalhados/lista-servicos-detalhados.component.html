@@ -47,11 +47,11 @@
                 <mat-divider></mat-divider>
                 <mat-toolbar-row>
                     <mat-form-field>
-                        <mat-label>Menor preço</mat-label>
+                        <mat-label>Preço Mínimo</mat-label>
                         <input 
                             matInput 
-                            (blur)="blurInputs('precoMin', precoMin)"
-                            [(ngModel)]="precoMin"
+                            (blur)="blurInputs('menorPreco', menorPreco)"
+                            [(ngModel)]="menorPreco"
                             mask='separator.2' 
                             [thousandSeparator]="'.'" 
                             [decimalMarker]="','" 
@@ -60,11 +60,11 @@
                 </mat-toolbar-row>
                 <mat-toolbar-row>
                     <mat-form-field>
-                        <mat-label>Maior preço</mat-label>
+                        <mat-label>Preço Máximo</mat-label>
                         <input 
-                            (blur)="blurInputs('precoMax', precoMax)"
+                            (blur)="blurInputs('maiorPreco', maiorPreco)"
                             matInput 
-                            [(ngModel)]="precoMax"
+                            [(ngModel)]="maiorPreco"
                             mask='separator.2' 
                             [thousandSeparator]="'.'" 
                             [decimalMarker]="','" 
