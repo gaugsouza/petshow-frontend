@@ -33,6 +33,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MensagemAtivacaoComponent } from '../mensagem-ativacao/mensagem-ativacao.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatChipsModule } from '@angular/material/chips';
+import { AgendaClienteComponent } from '../agenda-cliente/agenda-cliente.component';
 
 describe('PerfilComponent', () => {
   let component: PerfilComponent;
@@ -52,7 +53,8 @@ describe('PerfilComponent', () => {
         AnimalEstimacaoComponent,
         FormularioAnimalComponent,
         MensagemAtivacaoComponent,
-        AgendaPrestadorComponent
+        AgendaPrestadorComponent,
+        AgendaClienteComponent
        ],
        providers: [
         PrestadorService,

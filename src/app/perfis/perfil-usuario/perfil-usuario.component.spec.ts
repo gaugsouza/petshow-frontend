@@ -34,9 +34,11 @@ import { MensagemAtivacaoComponent } from '../mensagem-ativacao/mensagem-ativaca
 import { Usuario } from '../../interfaces/usuario';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NotificationService } from '../../servicos/notification.service';
+import { AgendaClienteComponent } from '../agenda-cliente/agenda-cliente.component';
+import { ConfigModule } from '../../config/config.module';
 
 
-describe('FormularioAnimalComponent', () => {
+describe('PerfilUsuarioComponent', () => {
   let component: PerfilUsuarioComponent;
   let fixture: ComponentFixture<PerfilUsuarioComponent>;
   const route = ({ data: of({ label: 'hello' }) } as any) as ActivatedRoute;
@@ -53,7 +55,8 @@ describe('FormularioAnimalComponent', () => {
           InformacoesPessoaisComponent,
           EnderecoComponent,
           EnderecoDialogComponent,
-          MensagemAtivacaoComponent
+          MensagemAtivacaoComponent,
+          AgendaClienteComponent
         ],
       providers: [
           {provide: UsuarioService, useClass: UsuarioServiceMock},
@@ -77,7 +80,8 @@ describe('FormularioAnimalComponent', () => {
         MatCardModule,
         NgxMaskModule.forRoot(),
         MatPaginatorModule,
-        MatTooltipModule
+        MatTooltipModule,
+        ConfigModule
       ]
     })
     .compileComponents();
