@@ -36,6 +36,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NotificationService } from '../../servicos/notification.service';
 import { AgendaClienteComponent } from '../agenda-cliente/agenda-cliente.component';
 import { ConfigModule } from '../../config/config.module';
+import { Agendamento } from '../../interfaces/agendamento';
 
 
 describe('PerfilUsuarioComponent', () => {
@@ -63,8 +64,9 @@ describe('PerfilUsuarioComponent', () => {
           LocalStorageService,
           {provide: Router, useValue: {navigate: () => true}},
           JwtHelper,
-          { provide: 'AnimalNotificationService', useFactory: () => (new NotificationService<AnimalEstimacao>()) }
-      ],
+          { provide: 'AnimalNotificationService', useFactory: () => (new NotificationService<AnimalEstimacao>()) },
+          { provide: 'AgendamentoNotificationService', useFactory: () => (new NotificationService<Agendamento>()) }
+        ],
       imports: [
         MatListModule,
         MatInputModule,
