@@ -26,6 +26,11 @@ import { MensagemAtivacaoComponent } from 'src/app/perfis/mensagem-ativacao/mens
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AgendaPrestadorComponent } from './agenda-prestador/agenda-prestador.component';
 import { AgendamentoService } from '../servicos/agendamento.service';
+import { CadastroAdicionalComponent } from 'src/app/perfis/cadastro-adicional/cadastro-adicional.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatTableModule } from '@angular/material/table'; 
+
 
 
 export function HttpLoaderFactory(http:HttpClient) {
@@ -46,6 +51,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     FormularioAnimalComponent,
     MensagemAtivacaoComponent,
     AgendaPrestadorComponent,
+    CadastroAdicionalComponent,
   ],
   imports: [
     CommonModule,
@@ -61,6 +67,9 @@ export function HttpLoaderFactory(http:HttpClient) {
     ConfigModule,
     MatPaginatorModule,
     MatTooltipModule,
+    MatExpansionModule,
+    MatChipsModule,
+    MatTableModule,
   ],
   exports: [
     PerfilPrestadorComponent,

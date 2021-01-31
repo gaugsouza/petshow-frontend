@@ -26,8 +26,13 @@ export class ServicosService {
     return this.httpHandler.doGet<any>(URL, token);
   }
 
-  buscarPorPrestadorIdEServicoId(prestadorId:number, servicoDetalhadoId:number, token:string) : Observable<any> {
+  buscarPorPrestadorIdEServicoId(prestadorId:number, servicoDetalhadoId:number, token?:string) : Observable<any> {
     const URL = `${PRESTADOR_SERVICE_URL}/${prestadorId}/servico-detalhado/${servicoDetalhadoId}`;
+    return this.httpHandler.doGet<any>(URL, token);
+  }
+
+  buscarServicosComparacao(ids:number[], token?:string) {
+    const URL = `${SERVICO_DETALHADO_URL}?ids=${ids.join()}`;
     return this.httpHandler.doGet<any>(URL, token);
   }
 }

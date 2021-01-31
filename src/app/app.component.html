@@ -20,7 +20,7 @@
           {{ 'CADASTRO' | translate}}
         </a>
 
-        <a mat-button href="/login" class="menu-item">
+        <a mat-button href="/login{{redirectTo}}" class="menu-item">
           Login
         </a>
       </span>
@@ -53,7 +53,7 @@
     </div>
     
     <div *ngIf="!isLogged" class="sidebar_button">
-      <a mat-button href="/login" class="menu-item">
+      <a mat-button href="/login{{redirectTo}}" class="menu-item">
         Login
       </a>
     </div>

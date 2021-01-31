@@ -31,14 +31,19 @@ import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
 import { AgendamentosModule } from './agendamentos/agendamentos.module';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Agendamento } from './interfaces/agendamento';
-
+import {MatDividerModule} from '@angular/material/divider'; 
+import { MatChipsModule } from '@angular/material/chips';
+import { DialogComparacaoComponent } from './lista-servicos-detalhados/dialog-comparacao/dialog-comparacao.component';
+import {MatTableModule} from '@angular/material/table'; 
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ListaServicosDetalhadosComponent,
-    PrestadorComponent
+    PrestadorComponent,
+    DialogComparacaoComponent
   ],
   imports: [
     AcessoModule,
@@ -63,6 +68,10 @@ import { Agendamento } from './interfaces/agendamento';
     MatPaginatorModule,
     AgendamentosModule,
     MatCheckboxModule,
+    MatChipsModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatTableModule,
   ],
   providers: [
     JwtHelper,

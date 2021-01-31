@@ -5,17 +5,13 @@
 </ng-template>
 
 <ng-template #animaisEstimacaoBlock>
-    <div *ngIf="isVisualizacao">
-        <mat-list>
-            <mat-list-item *ngFor="let animal of animaisEstimacao">
-                <div>
-                    <span>{{animal.nome}}</span> 
-                    <span>{{animal.tipo.nome}}</span>
-                    <span>{{animal.tipo.porte}}</span>
-                    <span>{{animal.tipo.pelagem}}</span>
-                </div>
-            </mat-list-item>
-        </mat-list>
+    <div *ngIf="!isVisualizacao">
+        Animais de estimação elegíveis para esse serviço
+        <mat-selection-list #animaisSelecionados (selectionChange)="selecionaAnimal(animaisSelecionados.selectedOptions.selected)">
+            <mat-list-option *ngFor="let animal of getAnimaisElegiveis()" [value]="animal">
+                {{animal.nome}}
+            </mat-list-option>
+        </mat-selection-list>
         <mat-paginator #paginator
             [length]="quantidadeTotal"
             [pageIndex]="paginaAtual"
@@ -24,21 +20,4 @@
             (page)="pageEvent = eventoPagina($event)">
         </mat-paginator>
     </div>
-    
-    <div *ngIf="!isVisualizacao">
-        <mat-card class="animais-card">
-            <p> <strong> Selecione os animais que serão atendidos: </strong> </p>
-            <mat-list>
-                <mat-list-item class="animal-card" *ngFor="let animalEstimacao of animaisEstimacao">
-                    <mat-checkbox [(ngModel)]="animalEstimacao.checked" (change)="selecionaAnimal()">
-                        <div>
-                        {{animalEstimacao.checked}}
-                            <span>Nome: {{animalEstimacao.nome}} Tipo: {{animalEstimacao.tipo.nome}}</span>
-                            <p>Porte: {{animalEstimacao.tipo.porte}} Pelagem: {{animalEstimacao.tipo.pelagem}}</p>
-                        </div>
-                    </mat-checkbox>
-                </mat-list-item>
-            </mat-list>
-        </mat-card>
-    </div>    
 </ng-template>

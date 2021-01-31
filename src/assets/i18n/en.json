@@ -1,4 +1,14 @@
 {
+  "PEQUENO": "Small",
+  "MEDIO": "Medium",
+  "GRANDE": "Big",
+  "PORTE": "Size",
+  "PELAGEM": "Coat",
+  "CURTA": "Short",
+  "MEDIA": "Medium",
+  "LONGA": "Long",
+  "Cachorro": "Dog",
+  "Gato": "Cat",
   "VER_TRADUZIDO": "PT",
   "PERFIL": "Profile",
   "LOGIN": "Login",
@@ -137,6 +147,8 @@
   "CPF_INVALIDO": "Invalid CPF",
   "NENHUM_AGENDAMENTO": "No bookings",
   "CONCLUIDO": "Done",
+  "DE": "of",
+  "ADICIONAL": "Extra",
   "AGENDAMENTOS": "Scheduled Bookings",
-  "DE": "of"
+  "NENHUM_ADICIONAL": "No extras found"
 }
