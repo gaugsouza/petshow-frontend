@@ -6,7 +6,7 @@ import {FormularioComponent} from '../formulario/formulario.component';
 import { AvaliacaoService } from '../../servicos/avaliacao.service';
 import {AvaliacaoServiceMock} from '../../mocks/avaliacao-service-mock';
 import { LocalStorageService } from '../../servicos/local-storage.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, convertToParamMap } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -44,7 +44,13 @@ describe('AvaliacaoComponent', () => {
           queryParams: of({
             servicoAvaliado: 1,
             prestador: 1
-          })
+          }),
+          snapshot: {
+            paramMap: convertToParamMap({
+              idPrestador: '1',
+              idServico: '1'
+            })
+          }
         }},
         JwtHelper,
         PrestadorService

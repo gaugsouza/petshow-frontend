@@ -7,6 +7,7 @@ import { USER_TOKEN } from 'src/app/util/constantes';
 import { Endereco } from 'src/app/interfaces/endereco';
 import { JwtHelper } from 'src/app/util/jwt-helper';
 import { NotificationService } from 'src/app/servicos/notification.service';
+import { BANHO } from 'src/app/util/tipo-servico';
 
 @Component({
   selector: 'app-perfil-prestador',
@@ -14,7 +15,9 @@ import { NotificationService } from 'src/app/servicos/notification.service';
   styleUrls: ['./perfil-prestador.component.scss'],
 })
 export class PerfilPrestadorComponent implements OnInit {
-  servico:ServicoDetalhado = {}
+  servico:ServicoDetalhado = {
+    tipo: BANHO,
+  };
 
   usuario:Prestador;
 
@@ -116,13 +119,16 @@ export class PerfilPrestadorComponent implements OnInit {
   }
 
   limpaServico() {
-    this.servico = {};
+    this.servico = {
+      tipo: BANHO,
+    };
   }
 
   removeServico(servico:ServicoDetalhado) {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       this.prestadorService.removeServico(this.usuario.id, servico.id, token).subscribe(() => {
         this.getUsuario();
+        this.servicoNotification.notify({});
       });
     },
     (err) => {

@@ -1,4 +1,14 @@
 {
+  "PEQUENO": "Pequeno",
+  "MEDIO": "Médio",
+  "GRANDE": "Grande",
+  "PORTE": "Porte",
+  "PELAGEM": "Pelagem",
+  "CURTA": "Curta",
+  "MEDIA": "Média",
+  "LONGA": "Longa",
+  "Cachorro": "Cachorro",
+  "Gato": "Gato",
   "VER_TRADUZIDO": "EN",
   "PERFIL": "Perfil",
   "LOGIN": "Login",
@@ -139,5 +149,7 @@
   "NENHUM_AGENDAMENTO": "Nenhum agendamento.",
   "CONCLUIDO": "Concluído",
   "AGENDAMENTOS": "Agendamentos",
-  "DE": "de"
+  "DE": "de",
+  "ADICIONAL": "Adicional",
+  "NENHUM_ADICIONAL": "Nenhum adicional informado"
 }

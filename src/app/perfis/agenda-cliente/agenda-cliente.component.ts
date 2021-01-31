@@ -3,6 +3,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 import { Agendamento } from 'src/app/interfaces/agendamento';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
+import { Cliente } from 'src/app/interfaces/cliente';
 import { StatusAgendamento } from 'src/app/interfaces/statusAgendamento';
 import { AgendamentoService } from 'src/app/servicos/agendamento.service';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
@@ -38,4 +39,5 @@ export class AgendaClienteComponent implements OnInit {
 
   }
 
+  
 }

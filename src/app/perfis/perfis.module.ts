@@ -1,3 +1,4 @@
+import { AgendaClienteComponent } from './agenda-cliente/agenda-cliente.component';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -26,6 +27,11 @@ import { MensagemAtivacaoComponent } from 'src/app/perfis/mensagem-ativacao/mens
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AgendaPrestadorComponent } from './agenda-prestador/agenda-prestador.component';
 import { AgendamentoService } from '../servicos/agendamento.service';
+import { CadastroAdicionalComponent } from 'src/app/perfis/cadastro-adicional/cadastro-adicional.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatTableModule } from '@angular/material/table'; 
+
 
 
 export function HttpLoaderFactory(http:HttpClient) {
@@ -46,6 +52,8 @@ export function HttpLoaderFactory(http:HttpClient) {
     FormularioAnimalComponent,
     MensagemAtivacaoComponent,
     AgendaPrestadorComponent,
+    CadastroAdicionalComponent,
+    AgendaClienteComponent
   ],
   imports: [
     CommonModule,
@@ -61,6 +69,9 @@ export function HttpLoaderFactory(http:HttpClient) {
     ConfigModule,
     MatPaginatorModule,
     MatTooltipModule,
+    MatExpansionModule,
+    MatChipsModule,
+    MatTableModule,
   ],
   exports: [
     PerfilPrestadorComponent,
