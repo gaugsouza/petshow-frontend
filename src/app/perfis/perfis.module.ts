@@ -1,3 +1,4 @@
+import { AgendaClienteComponent } from './agenda-cliente/agenda-cliente.component';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -52,6 +53,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     MensagemAtivacaoComponent,
     AgendaPrestadorComponent,
     CadastroAdicionalComponent,
+    AgendaClienteComponent
   ],
   imports: [
     CommonModule,
