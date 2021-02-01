@@ -3,6 +3,7 @@ import { HttpHandlerService } from './http-handler.service';
 import { AGENDAMENTO_URL } from '../util/url';
 import { Agendamento } from '../interfaces/agendamento';
 import { Observable } from 'rxjs';
+import { Avaliacao } from '../interfaces/avaliacao';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,18 @@ export class AgendamentoService {
 
   buscarAgendamento = (idAgendamento:number, idUsuario:number, token?:string):Observable<any> => {
     const URL = `${this.AGENDAMENTO_SERVICE_URL}/${idAgendamento}/usuario/${idUsuario}`;
+
+    return this.httpHandler.doGet<any>(URL, token);
+  }
+
+  adicionarAvaliacao = (idAgendamento: number, avaliacao: Avaliacao, token:string): Observable<any> => {
+    const URL = `${this.AGENDAMENTO_SERVICE_URL}/${idAgendamento}/avaliacao`;
+
+    return this.httpHandler.doPost<any>(URL, avaliacao,token);
+  }
+
+  buscarAvaliacaoPorAgendamento = (idAgendamento: number, token:string): Observable<any> => {
+    const URL = `${this.AGENDAMENTO_SERVICE_URL}/${idAgendamento}/avaliacao`;
 
     return this.httpHandler.doGet<any>(URL, token);
   }

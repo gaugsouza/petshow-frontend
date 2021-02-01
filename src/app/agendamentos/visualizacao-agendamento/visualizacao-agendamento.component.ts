@@ -32,6 +32,8 @@ export class VisualizacaoAgendamentoComponent implements OnInit {
     comentario: null
   }
 
+  avaliacao: Avaliacao;
+
   constructor(private route:ActivatedRoute,
               private localStorageService:LocalStorageService,
               private agendamentoService:AgendamentoService,
@@ -53,6 +55,8 @@ export class VisualizacaoAgendamentoComponent implements OnInit {
         this.isCliente = false;
       })
     });
+
+    this.buscaAvaliacao(this.idAgendamento);
   }
 
   abreFormulario() {
@@ -74,10 +78,34 @@ export class VisualizacaoAgendamentoComponent implements OnInit {
 
   //TODO: Validar se agendamento possui avaliações relacionadas a ela
   isAgendamentoAvaliado():boolean {
-    return false;
+    return !! this.avaliacao;
   }
+
+  buscaAvaliacao(agendamentoId:number) {
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
+      this.agendamentoService.buscarAvaliacaoPorAgendamento(agendamentoId, token).subscribe((avaliacao:Avaliacao) =>{
+        this.avaliacao = avaliacao;
+      })
+    });
+  }
+
   adicionaAvaliacao(avaliacao:Avaliacao) {
-    console.log({...avaliacao, servicoAvaliadoId: this.agendamento.servicoDetalhadoId, agendamentoId: this.agendamento.id});
+    this.avaliacao = {
+      atencao: avaliacao.atencao,
+      custoBeneficio: avaliacao.custoBeneficio,
+      infraestrutura: avaliacao.infraestrutura,
+      qualidadeProdutos: avaliacao.qualidadeProdutos,
+      qualidadeServico: avaliacao.qualidadeServico,
+      comentario: avaliacao.comentario,
+      cliente: {id: this.idUsuario},
+      servicoAvaliadoId: this.agendamento.servicoDetalhadoId
+    }    
+
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
+      this.agendamentoService.adicionarAvaliacao(this.idAgendamento, this.avaliacao, token).subscribe((avaliacao:Avaliacao) =>{
+        this.avaliacao = avaliacao;
+      })
+    });
   }
 
   fechaFormulario() {
