@@ -50,6 +50,7 @@
                             <p>{{servicoDetalhado.tipo.nome}}</p>
                             <p *ngIf="servicoDetalhado.descricao">Descrição: {{servicoDetalhado.descricao}}</p>
                             <p>Data do agendamento: {{dataAgendamento | date: 'dd/MM/yyyy'}}</p>
+                            <p *ngIf="status">Status do agendamento: <span class="{{getStatusClassColor()}}">{{status}}</span></p>
                         </mat-card-content>
                     </mat-card>
                 </div>

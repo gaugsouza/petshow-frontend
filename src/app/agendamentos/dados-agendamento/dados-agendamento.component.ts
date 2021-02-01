@@ -24,6 +24,7 @@ export class DadosAgendamentoComponent implements OnInit {
   @Input() servicoDetalhado:ServicoDetalhado;
   @Input() idCliente:number;
   @Input() dataAgendamento:Date;
+  @Input('status') status:string;
   cliente:Cliente;
   prestador:Prestador;
 
@@ -60,4 +61,15 @@ export class DadosAgendamentoComponent implements OnInit {
     this.ref.detectChanges();
   }
 
+  getStatusLower(status) {
+    return status.toLowerCase();
+  }
+
+  getIndexOfWord(status, palavra) {
+    return this.getStatusLower(status).indexOf(palavra);
+  }
+  getStatusClassColor():string {
+    return this.getIndexOfWord(this.status, 'concluido') !== -1 || 
+    this.getIndexOfWord(this.status, 'concluído') !== -1 ? 'concluido' : this.getIndexOfWord(this.status, 'cancelado') !== -1 ? 'cancelado' : 'nao-realizado';
+  }
 }

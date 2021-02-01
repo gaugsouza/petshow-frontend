@@ -21,6 +21,8 @@ import { ConfirmacaoAgendamentoComponent } from './confirmacao-agendamento/confi
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import { MatNativeDateModule } from '@angular/material/core/';
 import { VisualizacaoAgendamentoComponent } from './visualizacao-agendamento/visualizacao-agendamento.component';
+import { AvaliacoesModule } from 'src/app/avaliacoes/avaliacoes.module';
+
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -50,6 +52,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    AvaliacoesModule,
   ],
   exports: [
     AgendamentoComponent,
