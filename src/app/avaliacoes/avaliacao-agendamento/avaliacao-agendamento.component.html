@@ -1,0 +1,41 @@
+<mat-card class="avaliacao">
+  <mat-card-title>Avaliação</mat-card-title>
+  <mat-card-subtitle class="media-avaliacao">
+    <p>
+      <span>Média:</span>
+      <span>{{avaliacao.media | number: '1.1'}}</span>
+      <mat-icon>star</mat-icon>
+    </p>
+  </mat-card-subtitle>
+    <mat-card-content class="criterios-avaliacao">
+      <h4>Critérios: </h4>
+      <p *ngFor="let criterio of getCriterios()">{{criterio.valor}}: 
+        <span>
+          <mat-icon *ngFor="let estrela of getEstrelasAvaliacao(criterio.campo)">{{estrela}}</mat-icon>
+        </span>
+      </p>
+
+      <mat-card *ngIf="avaliacao.comentario">
+        <mat-card-subtitle>
+          Comentário do cliente
+        </mat-card-subtitle>
+        <mat-card-content>
+          {{avaliacao.comentario}}
+        </mat-card-content>
+      </mat-card>
+    </mat-card-content>
+  
+</mat-card>
+<!-- 
+
+<h2>Avaliação</h2>
+<div class="media-avaliacao">
+  
+</div>
+<hr>
+<div class="criterios-avaliacao">
+ 
+</div>
+<div *ngIf="avaliacao.comentario">
+  <p>: </p>
+</div> -->

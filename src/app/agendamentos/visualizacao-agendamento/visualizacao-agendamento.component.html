@@ -8,7 +8,8 @@
     [servicoDetalhado]="agendamento.servicoDetalhado" 
     [idCliente]="agendamento.clienteId"
     [dataAgendamento]="agendamento.data"
-    [status]="agendamento.status.nome">
+    [status]="agendamento.status.nome"
+    >
   </app-dados-agendamento>
 
 
@@ -20,4 +21,7 @@
     <app-formulario [avaliacao]='avaliacaoBase' *ngIf='isFormVisible'
       (adiciona-avaliacao)="adicionaAvaliacao($event)" (fecha-formulario)="fechaFormulario()"></app-formulario>
   </div>
+
+  <app-avaliacao-agendamento *ngIf="isAgendamentoAvaliado() && isCliente" 
+    [avaliacao]="avaliacao"></app-avaliacao-agendamento>
 </div>
