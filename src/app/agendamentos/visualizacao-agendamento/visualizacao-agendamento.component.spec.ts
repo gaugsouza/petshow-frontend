@@ -13,13 +13,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import { LoggerTestingModule } from 'ngx-logger/testing';
+import { FormularioComponent} from '../../avaliacoes/formulario/formulario.component';
 import { ConfigModule } from '../../config/config.module';
-
+import { AvaliacaoAgendamentoComponent } from '../../avaliacoes/avaliacao-agendamento/avaliacao-agendamento.component'
 import { VisualizacaoAgendamentoComponent } from './visualizacao-agendamento.component';
 import { DadosAgendamentoComponent } from '../dados-agendamento/dados-agendamento.component';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 import { of } from 'rxjs';
 import { JwtHelper } from '../../util/jwt-helper';
+import { MatIconModule } from '@angular/material/icon';
 describe('VisualizacaoAgendamentoComponent', () => {
   let component: VisualizacaoAgendamentoComponent;
   let fixture: ComponentFixture<VisualizacaoAgendamentoComponent>;
@@ -28,7 +30,9 @@ describe('VisualizacaoAgendamentoComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ 
         VisualizacaoAgendamentoComponent,
-        DadosAgendamentoComponent
+        DadosAgendamentoComponent,
+        FormularioComponent,
+        AvaliacaoAgendamentoComponent
        ],
        providers: [
         {provide: Router, useValue: {navigate: () => true}},
@@ -60,6 +64,7 @@ describe('VisualizacaoAgendamentoComponent', () => {
         MatNativeDateModule,
         HttpClientTestingModule,
         LoggerTestingModule,
+        MatIconModule
         
       ]
     })
