@@ -27,6 +27,10 @@ export class ConfirmacaoCancelamentoComponent implements OnInit {
     this.confirmacaoCancelamento = !this.confirmacaoCancelamento;
   }
 
+  isAtivo(agendamento){
+    return agendamento.status.nome.toLowerCase().indexOf("cancelado")===-1 &&  agendamento.status.nome.toLowerCase().indexOf("concluído")===-1;
+  }
+
   // cancelaAgendamento(agendamento){
   //   const cancelaId = this.statusAgendamento.find(status => status.nome.toLowerCase().indexOf("cancelado")!==-1)
   //   this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {

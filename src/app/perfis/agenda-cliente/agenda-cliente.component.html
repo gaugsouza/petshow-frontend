@@ -46,10 +46,9 @@
 
 
             <div>
-              <button mat-stroked-button color="link"
-                (click)="openDialog()" [agendamento]="agendamento" (change)="botaoConfirmaCancelamento()">{{'CANCELAR' | translate}}</button>
+              <button mat-stroked-button color="link" (click)="openDialog()" [agendamento]="agendamento"
+                (change)="botaoConfirmaCancelamento()">{{'CANCELAR' | translate}}</button>
             </div>
-
 
 
 
@@ -57,6 +56,15 @@
               <button mat-flat-button color="warn"
                 (click)="cancelaAgendamento(agendamento)">{{'CANCELAR' | translate}}</button>
             </div>
+
+
+
+            <a mat-flat-button href="/agendamento/{{agendamento.id}}">
+              <span>
+                Ver Detalhes
+              </span>
+            </a>
+
           </div>
 
         </div>
