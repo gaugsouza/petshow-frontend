@@ -1,0 +1,26 @@
+.criterios-avaliacao {
+    p {
+        margin-bottom: 4px;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    h4 { 
+        font-size: 18px;
+    }
+}
+
+.media-avaliacao {
+    p {
+        display: flex;
+        align-items: center;
+    }
+    span {
+        font-size: 16px;
+    }
+}
+
+.avaliacao {
+    width: 40%;
+    min-width: 320px;
+}

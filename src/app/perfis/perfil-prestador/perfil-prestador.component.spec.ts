@@ -30,6 +30,7 @@ import { ServicoDetalhado } from '../../interfaces/servico-detalhado';
 import { AgendaPrestadorComponent } from '../agenda-prestador/agenda-prestador.component';
 import { CadastroAdicionalComponent } from '../cadastro-adicional/cadastro-adicional.component';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 describe('PerfilPrestadorComponent', () => {
   let component: PerfilPrestadorComponent;
@@ -72,6 +73,7 @@ describe('PerfilPrestadorComponent', () => {
         MatPaginatorModule,
         MatTooltipModule,
         MatChipsModule,
+        MatCheckboxModule,
       ]
       
     })

@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
+import { JwtHelper } from '../../util/jwt-helper';
 
 describe('FormularioComponent', () => {
   let component: FormularioComponent;
@@ -31,6 +32,9 @@ describe('FormularioComponent', () => {
         ReactiveFormsModule,
         TranslateModule.forRoot(),
         MatIconModule
+      ],
+      providers: [
+        JwtHelper
       ]
     })
     .compileComponents();

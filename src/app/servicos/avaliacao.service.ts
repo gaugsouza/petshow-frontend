@@ -10,6 +10,7 @@ import { AVALIACAO_SERVICE_URL, PRESTADOR_SERVICO_DETALHADO, SERVICO_AVALIADO_UR
 })
 export class AvaliacaoService {
   private AVALIACOES_SERVICE_URLS = `${SERVICO_AVALIADO_URL}?pagina=valorPagina&quantidadeItens=valorQuantidadeItens`;
+  private NOTA_MAXIMA = 5;
 
   constructor(private httpHandler:HttpHandlerService) {}
 
@@ -33,5 +34,18 @@ export class AvaliacaoService {
                                      .replace('idServico', idServico.toString())
                                      .replace('idAgendamento', idAgendamento.toString());
     return this.httpHandler.doPost<Avaliacao>(URL, avaliacao, token);
+  }
+
+  getEstrelasAvaliacao = (avaliacao:Avaliacao, campo:string):string[] => {
+    if (!avaliacao) {
+      return [];
+    }
+    const nota = avaliacao[campo];
+    const estrelasEmBranco = this.NOTA_MAXIMA - nota;
+    const estrelas:any[string] = [
+      [...Array(nota).keys()].map(() => 'star'),
+      [...Array(estrelasEmBranco).keys()].map(() => 'star_border'),
+    ];
+    return estrelas.flatMap((el:any) => el);
   }
 }

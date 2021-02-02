@@ -6,7 +6,6 @@ import { AgendamentoService } from 'src/app/servicos/agendamento.service';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { USER_TOKEN } from 'src/app/util/constantes';
 import { JwtHelper } from 'src/app/util/jwt-helper';
-import { Location } from '@angular/common';
 import { UsuarioService } from 'src/app/servicos/usuario.service';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { TipoPessoa } from 'src/app/enum/tipo-pessoa.enum';

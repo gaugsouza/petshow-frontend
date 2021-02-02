@@ -40,8 +40,6 @@ export class AgendaPrestadorComponent implements OnInit {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
       this.agendamentoService.buscarStatusAgendamento(token).subscribe(status => {
         this.statusAgendamento = status;
-        console.log(status)
-        console.log(this.statusAgendamento)
       });
     })
   }
