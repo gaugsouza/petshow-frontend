@@ -1,1 +1,7 @@
 <p>confirmacao-cancelamento works!</p>
+
+
+<div class="agendamento-list__button-container" *ngIf="isAtivo(agendamento)">
+    <button mat-flat-button color="warn"
+      (click)="cancelaAgendamento(agendamento)">{{'CANCELAR' | translate}}</button>
+</div>
