@@ -19,12 +19,13 @@
             </span>
           </div>
           <div>
-            <div
-              *ngIf="agendamento.animaisAtendidos.length > 1; then animaisBlock else animalBlock">
+            <div *ngIf="agendamento.animaisAtendidos.length > 1; then animaisBlock else animalBlock">
             </div>
 
             <ng-template #animaisBlock>
-            <span><p>Animais a serem atendidos: </p></span>
+              <span>
+                <p>Animais a serem atendidos: </p>
+              </span>
               <ng-container *ngFor="let animal of agendamento.animaisAtendidos">
                 <span>
                   <p>{{animal.nome}}</p>
@@ -33,19 +34,28 @@
             </ng-template>
 
             <ng-template #animalBlock>
-                <span>
-                  <p>Animal a ser atendido: {{agendamento.animaisAtendidos[0].nome}}</p>
-                </span>
+              <span>
+                <p>Animal a ser atendido: {{agendamento.animaisAtendidos[0].nome}}</p>
+              </span>
             </ng-template>
             <span>
               <p>Status: {{agendamento.status.nome}}</p>
             </span>
           </div>
+          <div>
 
-          <div class="agendamento-list__button-container" *ngIf="isAtivo(agendamento)">
-            <button mat-flat-button color="warn"
-              (click)="cancelaAgendamento(agendamento)">{{'CANCELAR' | translate}}</button>
+
+            <div>
+              <button mat-stroked-button color="link"
+                (click)="openDialog()">{{'CANCELAR' | translate}}</button>
+            </div>
+
+            <div class="agendamento-list__button-container" *ngIf="isAtivo(agendamento)">
+              <button mat-flat-button color="warn"
+                (click)="cancelaAgendamento(agendamento)">{{'CANCELAR' | translate}}</button>
+            </div>
           </div>
+
         </div>
       </mat-list-item>
     </mat-list>

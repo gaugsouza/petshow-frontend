@@ -1,6 +1,8 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { LocalStorage } from '@ngx-pwa/local-storage';
+import { PoliticaPrivacidadeComponent } from 'src/app/acesso/cadastro/politica-privacidade/politica-privacidade.component';
 import { Agendamento } from 'src/app/interfaces/agendamento';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
 import { Cliente } from 'src/app/interfaces/cliente';
@@ -10,6 +12,7 @@ import { AgendamentoService } from 'src/app/servicos/agendamento.service';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { NotificationService } from 'src/app/servicos/notification.service';
 import { USER_TOKEN } from 'src/app/util/constantes';
+import { ConfirmacaoCancelamentoComponent } from '../confirmacao-cancelamento/confirmacao-cancelamento.component';
 
 @Component({
   selector: 'app-agenda-cliente',
@@ -26,7 +29,8 @@ export class AgendaClienteComponent implements OnInit {
   paginaAtual:number = 0;
   statusAgendamento: StatusAgendamento[];
   
-  constructor(
+
+  constructor(private cancelamento: MatDialog,
     private agendamentoService:AgendamentoService,
     private localStorageService:LocalStorageService,
     @Inject('AgendamentoNotificationService') private agendamentoNotification: NotificationService<Agendamento>
@@ -83,12 +87,19 @@ export class AgendaClienteComponent implements OnInit {
       return agendamento.status.nome.toLowerCase().indexOf("cancelado")===-1 &&  agendamento.status.nome.toLowerCase().indexOf("concluído")===-1;
     }
   
-  
+
+
 
 
   
 
-
+    openDialog() {
+      const cancelRef = this.cancelamento.open(ConfirmacaoCancelamentoComponent);
+      cancelRef.afterClosed().subscribe((result) => {
+        console.info(`Dialog result: ${result}`);
+      });
+    }
+  
 
   
 
