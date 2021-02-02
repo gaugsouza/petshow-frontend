@@ -1,7 +1,9 @@
-<p>confirmacao-cancelamento works!</p>
+<mat-dialog-content class = "confirma-cancelamento">
+  <p>Deseja confirmar cancelamento?</p>
+</mat-dialog-content>
 
-
-<div class="agendamento-list__button-container" *ngIf="isAtivo(agendamento)">
-    <button mat-flat-button color="warn"
-      (click)="cancelaAgendamento(agendamento)">{{'CANCELAR' | translate}}</button>
-</div>
+<mat-dialog-actions align="center">
+      <button mat-flat-button color="warn"
+        (click)="confirmaCancelamento()">{{'SIM' | translate}}</button>
+        <button mat-flat-button color="primary" mat-dialog-close>{{'NAO' | translate}}</button>
+</mat-dialog-actions>

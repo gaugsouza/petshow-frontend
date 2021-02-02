@@ -21,6 +21,7 @@ import { ConfirmacaoCancelamentoComponent } from '../confirmacao-cancelamento/co
 })
 export class AgendaClienteComponent implements OnInit {
   @Input('cliente-id') clienteId: number;
+  @Input('confirmaCancelamento') confirmaCancelamento: Boolean;
   agendamentos: Agendamento[];
   animaisAtendidos: AnimalEstimacao[];
   pageEvent: PageEvent;
@@ -28,6 +29,7 @@ export class AgendaClienteComponent implements OnInit {
   quantidadeItens:number = 5;
   paginaAtual:number = 0;
   statusAgendamento: StatusAgendamento[];
+  
   
 
   constructor(private cancelamento: MatDialog,
@@ -86,12 +88,7 @@ export class AgendaClienteComponent implements OnInit {
     isAtivo(agendamento){
       return agendamento.status.nome.toLowerCase().indexOf("cancelado")===-1 &&  agendamento.status.nome.toLowerCase().indexOf("concluído")===-1;
     }
-  
-
-
-
-
-  
+    
 
     openDialog() {
       const cancelRef = this.cancelamento.open(ConfirmacaoCancelamentoComponent);
