@@ -8,6 +8,11 @@ import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { USER_TOKEN } from 'src/app/util/constantes';
 import { ObjetoPaginado } from 'src/app/interfaces/paginacao';
 import { NotificationService } from 'src/app/servicos/notification.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AdicionalDialogComponent } from '../adicional-dialog/adicional-dialog.component';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { JwtHelper } from 'src/app/util/jwt-helper';
+import { Adicional } from 'src/app/interfaces/adicional';
 
 @Component({
   selector: 'app-servicos',
@@ -31,7 +36,9 @@ export class ServicosComponent implements OnInit {
 
   constructor(private servicosService: ServicosService,
               private localStorageService: LocalStorageService,
-              @Inject('ServicoNotificationService') private servicoNotification: NotificationService<ServicoDetalhado>) { }
+              @Inject('ServicoNotificationService') private servicoNotification: NotificationService<ServicoDetalhado>,
+              public dialog:MatDialog,
+              public jwtHelper:JwtHelper) { }
 
   ngOnInit(): void {
     this.servicoNotification.notify({});
@@ -67,5 +74,91 @@ export class ServicosComponent implements OnInit {
     const quantidadeItens = event.pageSize;
     this.buscarServicosDetalhadosPorPrestador(this.prestadorId, pagina, quantidadeItens);
     return event;
+  }
+  
+  openDialogAtualizacao(adicional){
+    let data = {
+      titulo: 'ALTERAR_ADICIONAL',
+      textoBotao: 'ALTERAR',
+      adicional: adicional
+    }
+
+    const dialogRef = this.dialog.open(AdicionalDialogComponent, {
+      width: '600px',
+      data: { ...data},
+    });
+
+    dialogRef.afterClosed().subscribe((adicional:Adicional) => {
+      if (adicional) {
+        this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+          let prestadorId = this.jwtHelper.recuperaIdToken(token)
+
+          this.servicosService.atualizarAdicional(prestadorId, adicional.servicoDetalhadoId, adicional.id, adicional, token)
+            .subscribe((response:Adicional) => {              
+              /* JEITO MALUCO E LEGAL QUE O GUIZAO FEZ PRA ATUALIZAR O ADICIONAL SEM CHAMAR O BANCO DNV
+
+              let servicoDetalhado = this.servicosDetalhados.filter(servicoDetalhado => servicoDetalhado.id === response.servicoDetalhadoId)[0]
+              let indice = this.servicosDetalhados.indexOf(servicoDetalhado);
+              let adicional = servicoDetalhado.adicionais.filter(adicional => adicional.id === response.id)[0];
+              
+              servicoDetalhado.adicionais[servicoDetalhado.adicionais.indexOf(adicional)] = response;
+              
+              this.servicosDetalhados[indice] = servicoDetalhado*/
+
+              this.buscarServicosDetalhadosPorPrestador(this.prestadorId, this.paginaAtual, this.quantidadeItens);
+          })
+        });
+      }
+    });
+  }
+
+  openConfirmationDialog(adicional){
+    const data = {mensagem: "Deseja prosseguir com a deleção deste adicional?",
+                  response: true}
+
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '400px',
+      data: { ...data},
+    });
+
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data) {
+        this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+          let prestadorId = this.jwtHelper.recuperaIdToken(token)
+
+          this.servicosService.desativarAdicional(prestadorId, adicional.servicoDetalhadoId, adicional.id, token)
+            .subscribe((response) => {              
+              this.buscarServicosDetalhadosPorPrestador(this.prestadorId, this.paginaAtual, this.quantidadeItens);
+          })
+        });
+      }
+    });
+  }
+
+  openDialogInsercao(servico:ServicoDetalhado){
+    let data = {
+      titulo: 'NOVO_ADICIONAL',
+      textoBotao: 'SALVAR',
+      adicional: {nome: '', descricao: '', preco: 0, servicoDetalhadoId: servico.id}
+    }
+
+    const dialogRef = this.dialog.open(AdicionalDialogComponent, {
+      width: '600px',
+      data: { ...data},
+    });
+
+    dialogRef.afterClosed().subscribe((adicional:Adicional) => {
+      if (adicional) {
+        console.log(adicional)
+        this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+          let prestadorId = this.jwtHelper.recuperaIdToken(token)
+
+          this.servicosService.adicionarAdicional(prestadorId, adicional.servicoDetalhadoId, adicional, token)
+            .subscribe((response:Adicional) => {              
+              this.buscarServicosDetalhadosPorPrestador(this.prestadorId, this.paginaAtual, this.quantidadeItens);
+          })
+        });
+      }
+    });
   }
 }

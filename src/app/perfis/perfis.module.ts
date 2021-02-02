@@ -32,6 +32,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatTableModule } from '@angular/material/table'; 
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatIconModule} from '@angular/material/icon';
+import { AdicionalDialogComponent } from './adicional-dialog/adicional-dialog.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -52,6 +54,8 @@ export function HttpLoaderFactory(http:HttpClient) {
     MensagemAtivacaoComponent,
     AgendaPrestadorComponent,
     CadastroAdicionalComponent,
+    AdicionalDialogComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     CommonModule,
