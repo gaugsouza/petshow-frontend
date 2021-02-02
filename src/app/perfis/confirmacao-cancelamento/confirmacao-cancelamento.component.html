@@ -3,7 +3,6 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="center">
-      <button mat-flat-button color="warn"
-        (click)="confirmaCancelamento()">{{'SIM' | translate}}</button>
-        <button mat-flat-button color="primary" mat-dialog-close>{{'NAO' | translate}}</button>
+      <button mat-flat-button [mat-dialog-close]="confirmacaoCancelamento" color="warn">{{'SIM' | translate}}</button>
+        <button mat-flat-button (click)="onNoClick()" color="primary">{{'NAO' | translate}}</button>
 </mat-dialog-actions>

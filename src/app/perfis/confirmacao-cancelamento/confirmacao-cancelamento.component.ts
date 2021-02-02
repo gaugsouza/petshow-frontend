@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-confirmacao-cancelamento',
@@ -7,16 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfirmacaoCancelamentoComponent implements OnInit {
 
-  confirmacaoCancelamento: Boolean;
-
   constructor(
+    public dialogRef: MatDialogRef<ConfirmacaoCancelamentoComponent>,
+    @Inject(MAT_DIALOG_DATA) public confirmacaoCancelamento: Boolean
   ) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 
   ngOnInit(): void {
   }
 
-  confirmaCancelamento() {
-    this.confirmacaoCancelamento = true;
-  }
+  // confirmaCancelamento() {
+  //   this.confirmacaoCancelamento = true;
+  // }
 
 }

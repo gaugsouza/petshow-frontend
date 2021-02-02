@@ -21,7 +21,7 @@ import { ConfirmacaoCancelamentoComponent } from '../confirmacao-cancelamento/co
 })
 export class AgendaClienteComponent implements OnInit {
   @Input('cliente-id') clienteId: number;
-  @Input('confirmaCancelamento') confirmaCancelamento: Boolean;
+  // @Input('confirmaCancelamento') confirmacaoCancelamento: Boolean;
   agendamentos: Agendamento[];
   animaisAtendidos: AnimalEstimacao[];
   pageEvent: PageEvent;
@@ -29,10 +29,9 @@ export class AgendaClienteComponent implements OnInit {
   quantidadeItens:number = 5;
   paginaAtual:number = 0;
   statusAgendamento: StatusAgendamento[];
+  confirmacaoCancelamento: Boolean;
   
-  
-
-  constructor(private cancelamento: MatDialog,
+  constructor(private dialog: MatDialog,
     private agendamentoService:AgendamentoService,
     private localStorageService:LocalStorageService,
     @Inject('AgendamentoNotificationService') private agendamentoNotification: NotificationService<Agendamento>
@@ -91,9 +90,17 @@ export class AgendaClienteComponent implements OnInit {
     
 
     openDialog() {
-      const cancelRef = this.cancelamento.open(ConfirmacaoCancelamentoComponent);
-      cancelRef.afterClosed().subscribe((result) => {
-        console.info(`Dialog result: ${result}`);
+      // const cancelRef = this.cancelamento.open(ConfirmacaoCancelamentoComponent);
+      // cancelRef.afterClosed().subscribe((result) => {
+      //   console.info(`Dialog result: ${result}`);
+      // });
+
+      const dialogRef = this.dialog.open(ConfirmacaoCancelamentoComponent);
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+        this.confirmacaoCancelamento = result;
+        console.log(this.confirmacaoCancelamento);
       });
     }
   
