@@ -18,6 +18,7 @@ export class AgendamentoService {
 
   buscarAgendamentosPorCliente = (idCliente:number, pagina:number, quantidadeItens:number, token:string): Observable<any> => {
     const URL = `${this.AGENDAMENTO_SERVICE_URL}/cliente/${idCliente}?pagina=${pagina}&quantidadeItens=${quantidadeItens}`;
+    console.log(URL);
     return this.httpHandler.doGet<any>(URL, token);
   }
 

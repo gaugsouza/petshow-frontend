@@ -21,7 +21,7 @@ import { ConfirmacaoCancelamentoComponent } from '../confirmacao-cancelamento/co
 })
 export class AgendaClienteComponent implements OnInit {
   @Input('cliente-id') clienteId: number;
-  // @Input('confirmaCancelamento') confirmacaoCancelamento: Boolean;
+  @Input('confirmaCancelamento') confirmaCancelamento: Boolean;
   agendamentos: Agendamento[];
   animaisAtendidos: AnimalEstimacao[];
   pageEvent: PageEvent;
@@ -29,9 +29,10 @@ export class AgendaClienteComponent implements OnInit {
   quantidadeItens:number = 5;
   paginaAtual:number = 0;
   statusAgendamento: StatusAgendamento[];
-  confirmacaoCancelamento: Boolean;
   
-  constructor(private dialog: MatDialog,
+  
+
+  constructor(private cancelamento: MatDialog,
     private agendamentoService:AgendamentoService,
     private localStorageService:LocalStorageService,
     @Inject('AgendamentoNotificationService') private agendamentoNotification: NotificationService<Agendamento>
@@ -40,19 +41,15 @@ export class AgendaClienteComponent implements OnInit {
   ngOnInit(): void {
 
     this.agendamentoNotification.notify({precoFinal:null, animaisAtendidos:[{nome:null, tipo:{id:null, nome:null}}], servicoDetalhadoId:null,clienteId:null,prestadorId:null});
-    
-
 
     this.agendamentoNotification.obs.subscribe(() => {
-      console.log(this.agendamentos)
       this.buscarAgendamentosPorCliente(this.clienteId, this.paginaAtual, this.quantidadeItens);
+      console.log(this.agendamentos);
     });
 
     this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
       this.agendamentoService.buscarStatusAgendamento(token).subscribe(status => {
         this.statusAgendamento = status;
-        console.log(status)
-        console.log(this.statusAgendamento)
       });
     })
   }
@@ -74,13 +71,20 @@ export class AgendaClienteComponent implements OnInit {
 
 
     cancelaAgendamento(agendamento){
-      const cancelaId = this.statusAgendamento.find(status => status.nome.toLowerCase().indexOf("cancelado")!==-1)
-      this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
-        this.agendamentoService.alterarStatusAgendamento(agendamento.prestadorId, cancelaId.id, agendamento.id, token)
-        .subscribe(() => {
-          this.buscarAgendamentosPorCliente(this.clienteId, this.paginaAtual, this.quantidadeItens);
-        })
+      const cancelRef = this.cancelamento.open(ConfirmacaoCancelamentoComponent);
+      cancelRef.afterClosed().subscribe((result) => {
+        console.log(result);
+        if (result == true){
+          const cancelaId = this.statusAgendamento.find(status => status.nome.toLowerCase().indexOf("cancelado")!==-1)
+        this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+          this.agendamentoService.alterarStatusAgendamento(agendamento.prestadorId, cancelaId.id, agendamento.id, token)
+          .subscribe(() => {
+            this.buscarAgendamentosPorCliente(this.clienteId, this.paginaAtual, this.quantidadeItens);
+          })
+        });
+        }
       });
+      
     }
 
 
@@ -89,20 +93,9 @@ export class AgendaClienteComponent implements OnInit {
     }
     
 
-    openDialog() {
-      // const cancelRef = this.cancelamento.open(ConfirmacaoCancelamentoComponent);
-      // cancelRef.afterClosed().subscribe((result) => {
-      //   console.info(`Dialog result: ${result}`);
-      // });
-
-      const dialogRef = this.dialog.open(ConfirmacaoCancelamentoComponent);
-
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-        this.confirmacaoCancelamento = result;
-        console.log(this.confirmacaoCancelamento);
-      });
-    }
+    // openDialog() {
+      
+    // }
   
 
   
