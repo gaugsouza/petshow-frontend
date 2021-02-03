@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -27,6 +27,9 @@ describe('ConfirmacaoCancelamentoComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ConfirmacaoCancelamentoComponent ],
+      providers: [
+        { provide: MatDialogRef, useValue:{}}, 
+      ],
       imports: [
         MatListModule,
         MatInputModule,
