@@ -34,9 +34,12 @@ import { MensagemAtivacaoComponent } from '../mensagem-ativacao/mensagem-ativaca
 import { Usuario } from '../../interfaces/usuario';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NotificationService } from '../../servicos/notification.service';
+import { AgendaClienteComponent } from '../agenda-cliente/agenda-cliente.component';
+import { ConfigModule } from '../../config/config.module';
+import { Agendamento } from '../../interfaces/agendamento';
 
 
-describe('FormularioAnimalComponent', () => {
+describe('PerfilUsuarioComponent', () => {
   let component: PerfilUsuarioComponent;
   let fixture: ComponentFixture<PerfilUsuarioComponent>;
   const route = ({ data: of({ label: 'hello' }) } as any) as ActivatedRoute;
@@ -53,15 +56,17 @@ describe('FormularioAnimalComponent', () => {
           InformacoesPessoaisComponent,
           EnderecoComponent,
           EnderecoDialogComponent,
-          MensagemAtivacaoComponent
+          MensagemAtivacaoComponent,
+          AgendaClienteComponent
         ],
       providers: [
           {provide: UsuarioService, useClass: UsuarioServiceMock},
           LocalStorageService,
           {provide: Router, useValue: {navigate: () => true}},
           JwtHelper,
-          { provide: 'AnimalNotificationService', useFactory: () => (new NotificationService<AnimalEstimacao>()) }
-      ],
+          { provide: 'AnimalNotificationService', useFactory: () => (new NotificationService<AnimalEstimacao>()) },
+          { provide: 'AgendamentoNotificationService', useFactory: () => (new NotificationService<Agendamento>()) }
+        ],
       imports: [
         MatListModule,
         MatInputModule,
@@ -77,7 +82,8 @@ describe('FormularioAnimalComponent', () => {
         MatCardModule,
         NgxMaskModule.forRoot(),
         MatPaginatorModule,
-        MatTooltipModule
+        MatTooltipModule,
+        ConfigModule
       ]
     })
     .compileComponents();
