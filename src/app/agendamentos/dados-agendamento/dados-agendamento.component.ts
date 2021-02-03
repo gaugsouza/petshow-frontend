@@ -8,7 +8,7 @@ import { ServicoDetalhadoTipoAnimal } from 'src/app/interfaces/servico-detalhado
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { PrestadorService } from 'src/app/servicos/prestador.service';
 import { UsuarioService } from 'src/app/servicos/usuario.service';
-import { USER_TOKEN } from 'src/app/util/constantes';
+import { STATUS_AGENDAMENTO, USER_TOKEN } from 'src/app/util/constantes';
 
 @Component({
   selector: 'app-dados-agendamento',
@@ -61,15 +61,8 @@ export class DadosAgendamentoComponent implements OnInit {
     this.ref.detectChanges();
   }
 
-  getStatusLower(status) {
-    return status.toLowerCase();
-  }
-
-  getIndexOfWord(status, palavra) {
-    return this.getStatusLower(status).indexOf(palavra);
-  }
   getStatusClassColor():string {
-    return this.getIndexOfWord(this.status, 'concluido') !== -1 || 
-    this.getIndexOfWord(this.status, 'concluído') !== -1 ? 'concluido' : this.getIndexOfWord(this.status, 'cancelado') !== -1 ? 'cancelado' : 'nao-realizado';
+    return STATUS_AGENDAMENTO.concluido.includes(this.status.toUpperCase()) ? 'concluido' :
+    STATUS_AGENDAMENTO.cancelado.includes(this.status.toUpperCase()) ? 'cancelado' : 'nao-realizado';
   }
 }

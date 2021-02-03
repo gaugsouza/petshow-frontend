@@ -4,7 +4,7 @@ import { Agendamento } from 'src/app/interfaces/agendamento';
 import { Avaliacao } from 'src/app/interfaces/avaliacao';
 import { AgendamentoService } from 'src/app/servicos/agendamento.service';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
-import { USER_TOKEN } from 'src/app/util/constantes';
+import { STATUS_AGENDAMENTO, USER_TOKEN } from 'src/app/util/constantes';
 import { JwtHelper } from 'src/app/util/jwt-helper';
 import { UsuarioService } from 'src/app/servicos/usuario.service';
 import { Usuario } from 'src/app/interfaces/usuario';
@@ -70,8 +70,7 @@ export class VisualizacaoAgendamentoComponent implements OnInit {
 
   // TODO: Arrumar isso de acordo com o padrão de status agendamento
   isAgendamentoConcluido(agendamento:Agendamento) :boolean {
-    return agendamento.status.nome.toLowerCase().indexOf('concluido') !== -1 
-    || agendamento.status.nome.toLowerCase().indexOf('concluído') !== -1;
+    return STATUS_AGENDAMENTO.concluido.includes(agendamento.status.nome.toUpperCase());
   }
 
 

@@ -34,6 +34,7 @@ import { MensagemAtivacaoComponent } from '../mensagem-ativacao/mensagem-ativaca
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('PerfilComponent', () => {
   let component: PerfilComponent;
@@ -79,7 +80,8 @@ describe('PerfilComponent', () => {
         MatPaginatorModule,
         MatTooltipModule,
         MatChipsModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatIconModule,
        ]
     })
     .compileComponents();

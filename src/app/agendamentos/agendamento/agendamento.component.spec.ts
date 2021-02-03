@@ -25,6 +25,8 @@ import { DadosAgendamentoComponent } from '../dados-agendamento/dados-agendament
 import { ServicoDetalhadoComponent } from '../servico-detalhado/servico-detalhado.component';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 import { of } from 'rxjs';
+import { VisualizacaoAgendamentoComponent } from '../visualizacao-agendamento/visualizacao-agendamento.component';
+import { AvaliacoesModule } from '../../avaliacoes/avaliacoes.module';
 describe('AgendamentoComponent', () => {
   let component: AgendamentoComponent;
   let fixture: ComponentFixture<AgendamentoComponent>;
@@ -37,7 +39,8 @@ describe('AgendamentoComponent', () => {
         AnimalEstimacaoComponent,
         ConfirmacaoAgendamentoComponent,
         DadosAgendamentoComponent,
-        ServicoDetalhadoComponent
+        ServicoDetalhadoComponent,
+        VisualizacaoAgendamentoComponent
       ],
       providers: [
         JwtHelper,
@@ -71,6 +74,7 @@ describe('AgendamentoComponent', () => {
         HttpClientTestingModule,
         LoggerTestingModule,
         BrowserAnimationsModule,  
+        AvaliacoesModule,
       ]
     })
     .compileComponents();

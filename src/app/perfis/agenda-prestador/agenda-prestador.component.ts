@@ -7,7 +7,7 @@ import { StatusAgendamento } from 'src/app/interfaces/statusAgendamento';
 import {AgendamentoService} from 'src/app/servicos/agendamento.service';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { NotificationService } from 'src/app/servicos/notification.service';
-import { USER_TOKEN } from 'src/app/util/constantes';
+import { STATUS_AGENDAMENTO, USER_TOKEN } from 'src/app/util/constantes';
 
 @Component({
   selector: 'app-agenda-prestador',
@@ -59,13 +59,8 @@ export class AgendaPrestadorComponent implements OnInit {
       });
     }
 
-    // this.agendamentoService.buscarAgendamentosPorPrestador(this.prestadorId, 5,5,USER_TOKEN).subscribe((el)=>{
-    //   this.agendamentos=JSON.parse(el);
-    //   })
-    // };
-
     concluiAgendamento(agendamento){
-      const concluidoId = this.statusAgendamento.find(status => status.nome.toLowerCase().indexOf("concluído")!==-1)
+      const concluidoId = this.statusAgendamento.find(status => STATUS_AGENDAMENTO.concluido.includes(status.nome.toUpperCase()));
       this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
         this.agendamentoService.alterarStatusAgendamento(agendamento.prestadorId, concluidoId.id, agendamento.id, token)
         .subscribe(() => {

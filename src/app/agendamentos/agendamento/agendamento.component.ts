@@ -97,8 +97,8 @@ export class AgendamentoComponent implements OnInit {
     }
         
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
-      this.agendamentoService.adicionarAgendamento(this.agendamento, token).subscribe(() => {
-        this.router.navigate(['/agendamento-sucesso'])
+      this.agendamentoService.adicionarAgendamento(this.agendamento, token).subscribe((agendamento:Agendamento) => {
+        this.router.navigate([`/agendamento-sucesso/${agendamento.id}`])
       }, ({error}) => {
         this.erroAgendamento = error;
       });
