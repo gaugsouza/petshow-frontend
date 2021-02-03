@@ -43,22 +43,10 @@
             </span>
           </div>
           <div>
-
-
-            <!-- <div>
-              <button mat-stroked-button color="link"
-                (click)="openDialog()">{{'CANCELAR' | translate}}</button>
-            </div> -->
-
-
-
             <div class="agendamento-list__button-container" *ngIf="isAtivo(agendamento)">
               <button mat-flat-button color="warn"
                 (click)="cancelaAgendamento(agendamento)">{{'CANCELAR' | translate}}</button>
             </div>
-
-
-
             <a mat-flat-button href="/agendamento/{{agendamento.id}}">
               <span>
                 Ver Detalhes

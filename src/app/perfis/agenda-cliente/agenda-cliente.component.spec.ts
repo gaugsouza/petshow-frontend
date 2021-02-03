@@ -20,6 +20,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { NotificationService } from '../../servicos/notification.service';
 import { Agendamento } from '../../interfaces/agendamento';
 import { AgendaClienteComponent } from './agenda-cliente.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 describe('AgendaClienteComponent', () => {
   let component: AgendaClienteComponent;
@@ -37,6 +38,7 @@ describe('AgendaClienteComponent', () => {
         MatListModule,
         MatInputModule,
         MatSelectModule,
+        MatDialogModule,
         BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,

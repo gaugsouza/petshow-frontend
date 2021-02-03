@@ -20,6 +20,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NotificationService } from '../../servicos/notification.service';
 import { Agendamento } from '../../interfaces/agendamento';
+import { MatDialogModule } from '@angular/material/dialog';
 
 describe('AgendaPrestadorComponent', () => {
   let component: AgendaPrestadorComponent;
@@ -37,6 +38,7 @@ describe('AgendaPrestadorComponent', () => {
         MatListModule,
         MatInputModule,
         MatSelectModule,
+        MatDialogModule,
         BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,

@@ -55,7 +55,8 @@ export function HttpLoaderFactory(http:HttpClient) {
     AgendaPrestadorComponent,
     CadastroAdicionalComponent,
     AgendaClienteComponent,
-    ConfirmacaoCancelamentoComponent
+    ConfirmacaoCancelamentoComponent,    
+    MatDialogModule
   ],
   imports: [
     CommonModule,

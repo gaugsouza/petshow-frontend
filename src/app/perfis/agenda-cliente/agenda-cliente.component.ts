@@ -73,7 +73,6 @@ export class AgendaClienteComponent implements OnInit {
     cancelaAgendamento(agendamento){
       const cancelRef = this.cancelamento.open(ConfirmacaoCancelamentoComponent);
       cancelRef.afterClosed().subscribe((result) => {
-        console.log(result);
         if (result == true){
           const cancelaId = this.statusAgendamento.find(status => status.nome.toLowerCase().indexOf("cancelado")!==-1)
         this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
