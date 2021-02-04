@@ -7,19 +7,19 @@
 <ng-template #clienteBlock>
     <mat-card class="cliente-card">
         <div>
-            <p><strong> Cliente </strong> </p>
+            <p><strong> {{'CLIENTE' | translate}} </strong> </p>
             <p><strong>{{'NOME' | translate}}:</strong> {{cliente.nome}}</p>
-            <p><strong>CPF:</strong> {{cliente.cpf | mask: '000.000.000-00'}}</p>
+            <p><strong>{{'CPF' | translate}}:</strong> {{cliente.cpf | mask: '000.000.000-00'}}</p>
             <p><strong>E-mail:</strong> {{cliente.login.email}}</p>        
         </div>
         <br>        
         <div>
-            <p><strong> Endereço </strong></p>
-            <p>CEP: {{cliente.endereco.cep}}</p> 
-            <p> {{cliente.endereco.logradouro}} - Numero: {{cliente.endereco.numero}}</p>
-            <p *ngIf="cliente.endereco.complemento && cliente.endereco.complemento !== ''">Complemento: {{cliente.endereco.complemento}}</p>
-            <p>Bairro: {{cliente.endereco.bairro}}</p>
-            <p><span>{{cliente.endereco.cidade}}</span> | <span>{{cliente.endereco.estado}}</span></p> 
+            <p><strong> {{'ENDERECO' | translate}} </strong></p>
+            <p>{{'CEP' | translate}}: {{cliente.endereco.cep}}</p> 
+            <p> {{cliente.endereco.logradouro}} - {{'NUMERO' | translate}}: {{cliente.endereco.numero}}</p>
+            <p *ngIf="cliente.endereco.complemento && cliente.endereco.complemento !== ''">{{'COMPLEMENTO' | translate}}: {{cliente.endereco.complemento}}</p>
+            <p>{{'BAIRRO' | translate}}: {{cliente.endereco.bairro}}</p>
+            <p><span>{{'CIDADE_ESTADO' | translate}}: {{cliente.endereco.cidade}}</span> | <span>{{cliente.endereco.estado}}</span></p> 
         </div>
     </mat-card>
 </ng-template>

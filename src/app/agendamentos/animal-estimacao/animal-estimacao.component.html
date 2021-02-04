@@ -6,7 +6,7 @@
 
 <ng-template #animaisEstimacaoBlock>
     <div *ngIf="!isVisualizacao">
-        Animais de estimação elegíveis para esse serviço
+        {{'ANIMAIS_ELEGIVEIS' | translate}}
         <mat-selection-list #animaisSelecionados (selectionChange)="selecionaAnimal(animaisSelecionados.selectedOptions.selected)">
             <mat-list-option *ngFor="let animal of getAnimaisElegiveis()" [value]="animal">
                 {{animal.nome}}

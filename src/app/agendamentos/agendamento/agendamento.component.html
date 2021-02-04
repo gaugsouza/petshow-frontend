@@ -1,5 +1,5 @@
 <mat-horizontal-stepper #stepper>
-  <mat-step label="Informações do cliente">
+  <mat-step label="{{'INFORMACOES_CLIENTE' | translate}}">
     <div class="content">
       <app-cliente></app-cliente>
       <app-animal-estimacao *ngIf="idCliente && servicoSelecionado" 
@@ -10,10 +10,10 @@
       </app-animal-estimacao>
     </div>
     <div class="button-container">
-      <button mat-flat-button color="primary" matStepperNext [disabled]="!animaisEstimacao || !animaisEstimacao.length">Próximo</button>
+      <button mat-flat-button color="primary" matStepperNext [disabled]="!animaisEstimacao || !animaisEstimacao.length">{{'PROXIMO' | translate}}</button>
     </div>
   </mat-step>
-  <mat-step label="Informações do serviço">
+  <mat-step label="{{'INFORMACOES_SERVICO' | translate}}">
     <app-servico-detalhado 
         [idServico]="idServico" 
         [idPrestador]="idPrestador" 
@@ -24,12 +24,12 @@
         (recupera-data)="recuperaDataAtendimento($event)">
     </app-servico-detalhado>
     <div class="button-container">
-      <button mat-flat-button color="primary" matStepperPrevious>Anterior</button>
-      <button mat-flat-button color="primary" matStepperNext [disabled]="!dataAgendamento">Próximo</button>
+      <button mat-flat-button color="primary" matStepperPrevious>{{'VOLTAR' | translate}}</button>
+      <button mat-flat-button color="primary" matStepperNext [disabled]="!dataAgendamento">{{'PROXIMO' | translate}}</button>
     </div>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Agendar</ng-template>
+    <ng-template matStepLabel>{{'AGENDAR' | translate}}</ng-template>
     <app-dados-agendamento *ngIf="idCliente"
       [idPrestador]="idPrestador"
       [animais]="animaisEstimacao"
@@ -42,9 +42,9 @@
     >
     </app-dados-agendamento>
     <div class="button-container">
-      <button mat-flat-button color="primary" matStepperPrevious>Anterior</button>
-      <button mat-flat-button color="success" (click)="criarAgendamento()">Agendar</button>
-      <button mat-flat-button color="warn" (click)="stepper.reset()">Cancelar</button>
+      <button mat-flat-button color="warn" (click)="stepper.reset()">{{'CANCELAR' | translate}}</button>
+      <button mat-flat-button color="success" (click)="criarAgendamento()">{{'AGENDAR' | translate}}</button>
+      <button mat-flat-button color="primary" matStepperPrevious>{{'VOLTAR' | translate}}</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>
