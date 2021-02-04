@@ -68,7 +68,9 @@ export class ListaServicosDetalhadosComponent implements OnInit {
     this.servicosService.buscarServicosDetalhadosPorTipo(filtro, pagina, quantidadeItens)
       .subscribe((paginaServicosDetalhados) => {
         const objetoPaginado:ObjetoPaginado = JSON.parse(paginaServicosDetalhados);
-        const servicos = objetoPaginado.content;
+        console.log(objetoPaginado);
+        const servicos = objetoPaginado.content;       
+
         this.servicosDetalhados = servicos;
         this.quantidadeTotal = objetoPaginado.totalElements;
         this.paginaAtual = objetoPaginado.pageable.pageNumber;
