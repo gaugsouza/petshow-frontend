@@ -149,5 +149,8 @@
   "CONCLUIDO": "Done",
   "ADICIONAL": "Extra",
   "AGENDAMENTOS": "Scheduled Bookings",
-  "NENHUM_ADICIONAL": "No extras found"
+  "NENHUM_ADICIONAL": "No extras found",
+  "ALTERAR_ADICIONAL": "Change Extra",
+  "CONFIRMAR": "Continue",
+  "NOVO_ADICIONAL": "Add Extra"
 }

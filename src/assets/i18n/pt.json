@@ -150,5 +150,8 @@
   "CONCLUIDO": "Concluído",
   "AGENDAMENTOS": "Agendamentos",
   "ADICIONAL": "Adicional",
-  "NENHUM_ADICIONAL": "Nenhum adicional informado"
+  "NENHUM_ADICIONAL": "Nenhum adicional informado",
+  "ALTERAR_ADICIONAL": "Alterar Adicional",
+  "CONFIRMAR": "Sim",
+  "NOVO_ADICIONAL": "Novo Adicional"
 }

@@ -44,7 +44,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     HomeComponent,
     ListaServicosDetalhadosComponent,
     PrestadorComponent,
-    DialogComparacaoComponent
+    DialogComparacaoComponent,
   ],
   imports: [
     AcessoModule,
