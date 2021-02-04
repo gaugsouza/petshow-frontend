@@ -1,4 +1,4 @@
-<div mat-dialog-content class="dialog">
+<div mat-dialog-content class="dialog" *ngIf="data && data.adicional">
     <p>{{data.titulo | translate}}</p>
     <mat-form-field>
         <mat-label>{{'NOME' | translate}}</mat-label>

@@ -5,7 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-adicional-dialog',
   templateUrl: './adicional-dialog.component.html',
-  styleUrls: ['./adicional-dialog.component.scss']
+  styleUrls: ['./adicional-dialog.component.scss'],
 })
 export class AdicionalDialogComponent implements OnInit {
   nomeFormControl = new FormControl('', [
@@ -19,7 +19,7 @@ export class AdicionalDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<AdicionalDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data:any) { }
 
-  ngOnInit(): void {
+  ngOnInit = () => {
   }
 
   onNoClick(): void {
@@ -28,5 +28,5 @@ export class AdicionalDialogComponent implements OnInit {
 
   hasErrors() {
     return this.nomeFormControl.hasError('required') || this.precoFormControl.hasError('required');
-  }  
+  }
 }

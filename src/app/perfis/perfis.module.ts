@@ -30,11 +30,11 @@ import { AgendamentoService } from 'src/app/servicos/agendamento.service';
 import { CadastroAdicionalComponent } from 'src/app/perfis/cadastro-adicional/cadastro-adicional.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
-import { AdicionalDialogComponent } from './adicional-dialog/adicional-dialog.component';
-import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { AdicionalDialogComponent } from './adicional-dialog/adicional-dialog.component';
 import { ConfirmacaoCancelamentoComponent } from './confirmacao-cancelamento/confirmacao-cancelamento.component';
 
 export function HttpLoaderFactory(http:HttpClient) {
