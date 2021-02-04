@@ -14,8 +14,12 @@ import { ServicosService } from '../servicos/servicos.service';
 import { Router, ActivatedRoute, convertToParamMap } from '@angular/router';
 import { of } from 'rxjs';
 import { JwtHelper } from '../util/jwt-helper';
-import { servicos } from '../mocks/servico-detalhado-mock';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatToolbarModule} from '@angular/material/toolbar'; 
+import {MatIconModule} from '@angular/material/icon'; 
+import { ConfigModule } from '../config/config.module';
 
 describe('ListaServicosDetalhadosComponent', () => {
   let component: ListaServicosDetalhadosComponent;
@@ -53,7 +57,12 @@ describe('ListaServicosDetalhadosComponent', () => {
         RouterTestingModule,
         ReactiveFormsModule,
         TranslateModule.forRoot(),
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatCheckboxModule,
+        MatDialogModule,
+        MatToolbarModule,
+        MatIconModule,
+        ConfigModule
       ]
     })
     .compileComponents();

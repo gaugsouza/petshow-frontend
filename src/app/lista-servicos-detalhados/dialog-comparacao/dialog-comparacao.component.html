@@ -1,0 +1,70 @@
+<mat-dialog-content>
+    <h3>Informações básicas</h3>
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef>Campo</th>
+      <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="servico1">
+      <th mat-header-cell *matHeaderCellDef> Serviço 1 </th>
+      <td mat-cell *matCellDef="let element">
+        <span *ngIf="element.chave === 'menorPreco'" class="{{element.servico1.melhor ? 'melhor': ''}}"> A partir de {{element.servico1.valor | currency: 'BRL'}}</span>
+        <span *ngIf="element.chave === 'tipoAnimal'">
+            <mat-icon>{{element.servico1}}</mat-icon>
+        </span>
+        <span *ngIf="element.chave === 'mediaAvaliacao'" class="{{element.servico1.melhor ? 'melhor': ''}}"> {{element.servico1.valor | number: '1.1'}}</span>
+        <span *ngIf="element.chave === 'nome'"> {{element.servico1.valor }}</span></td>
+    </ng-container>
+
+    <ng-container matColumnDef="servico2">
+      <th mat-header-cell *matHeaderCellDef> Serviço 2 </th>
+      <td mat-cell *matCellDef="let element">
+        <span *ngIf="element.chave === 'menorPreco'" class="{{element.servico2.melhor ? 'melhor': ''}}"> A partir de {{element.servico2.valor | currency: 'BRL'}}</span>
+        <span *ngIf="element.chave === 'tipoAnimal'">
+          <mat-icon>{{element.servico2}}</mat-icon>
+        </span>
+        <span *ngIf="element.chave === 'mediaAvaliacao'" class="{{element.servico2.melhor ? 'melhor': ''}}"> {{element.servico2.valor | number: '1.1'}}</span>
+        <span *ngIf="element.chave === 'nome'"> {{element.servico2.valor }}</span></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+    <div class="lista-precos-servicos">
+        <h3>Preços por tipo de animal: </h3>
+        <div *ngFor="let servico of data.servicosComparados" class="precos-servico">
+            <h4>{{servico.nome}}</h4>
+            <mat-list>
+                <mat-list-item *ngFor="let preco of servico.tabelaPrecos">
+                    <span>{{preco.tipoAnimal.nome}} -</span>
+                    <span *ngIf="preco.tipoAnimal.porte"> Porte: {{preco.tipoAnimal.porte}} - </span>
+                    <span *ngIf="preco.tipoAnimal.pelagem">Tam. Pelo: {{preco.tipoAnimal.pelagem}} - </span>
+                    <span class="preco-destacado">{{preco.preco | currency: 'BRL'}}</span>
+                </mat-list-item>
+            </mat-list>
+        </div>
+    </div>
+
+    <div class="lista-precos-servicos">
+        <h3>Adicionais: </h3>
+        <div *ngFor="let servico of data.servicosComparados" class="precos-servico">
+            <h4>{{servico.nome}}</h4>
+            <mat-list *ngIf="servico.adicionais && servico.adicionais.length; else semAdicionais">
+                <mat-list-item *ngFor="let adicional of servico.adicionais">
+                    <span>{{adicional.nome}} -</span>
+                    <span *ngIf="adicional.descricao"> Descrição: {{adicional.descricao}} - </span>
+                    <span class="preco-destacado">{{adicional.preco | currency: 'BRL'}}</span>
+                </mat-list-item>
+            </mat-list>
+
+            <ng-template #semAdicionais>
+                <p>Nenhum adicional informado</p>
+            </ng-template>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-flat-button color="primary" (click)="onNoClick()">Fechar</button>
+</mat-dialog-actions>

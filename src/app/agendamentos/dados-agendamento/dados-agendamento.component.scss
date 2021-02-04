@@ -1,0 +1,21 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, [col-start] minmax(250px, 1fr) [col-end]);
+  gap: 20px;
+}
+
+.preco-final {
+  color: red;
+}
+
+.concluido {
+  color: green;
+}
+
+.nao-realizado {
+  color: blue;
+}
+
+.cancelado {
+  color: red;
+}

@@ -18,7 +18,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { JwtHelper } from '../../util/jwt-helper';
 import { NotificationService } from '../../servicos/notification.service';
 import { ServicoDetalhado } from '../../interfaces/servico-detalhado';
-
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('ServicosComponent', () => {
   let component: ServicosComponent;
@@ -45,7 +46,9 @@ describe('ServicosComponent', () => {
        MatDialogModule,
        MatCardModule,
        NgxMaskModule.forRoot(),
-       MatPaginatorModule
+       MatPaginatorModule,
+       MatChipsModule,
+       MatIconModule,
      ]
     })
     .compileComponents();

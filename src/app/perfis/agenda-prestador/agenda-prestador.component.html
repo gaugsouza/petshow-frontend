@@ -1,0 +1,51 @@
+<section>
+  <h3 class="page-section-title">{{'AGENDAMENTOS' | translate}}</h3>
+  <div class="conteiner-agendamento-list"
+    *ngIf="agendamentos && agendamentos.length; then agendamentosBlock else vazioBlock"></div>
+
+  <ng-template #vazioBlock>
+    <p class="no_registered">{{'NENHUM_AGENDAMENTO' | translate}}</p>
+  </ng-template>
+
+  <ng-template #agendamentosBlock>
+    <mat-list class="agendamentos-list">
+      <mat-list-item *ngFor="let agendamento of agendamentos">
+        <div class="agendamento-list__item">
+          <div>
+            <span>
+              <p>{{agendamento.servicoDetalhado.tipo.nome}}</p>
+              <p>{{agendamento.data | date:'dd/MM/yyyy hh:mm'}}</p>
+              <p>Preço final: {{agendamento.precoFinal | currency: 'BRL'}}</p>
+            </span>
+          </div>
+          <div>
+            <ng-container *ngFor="let animal of agendamento.animaisAtendidos">
+              <span *ngIf="animal.tipo.nome.toLowerCase() === 'cachorro'; else infosGato">
+                <p>Animal a ser atendido: {{animal.nome}} {{'DE' | translate}} {{agendamento.cliente.nome}}</p>
+                <p>Cachorro de porte {{animal.tipo.porte}} e pelagem {{animal.tipo.pelagem}}</p>
+              </span>
+              <ng-template #infosGato>
+                <span>
+                  <p>{{animal.nome}} {{'DE' | translate}} {{agendamento.cliente.nome}}</p>
+                  <p>{{animal.tipo.nome}}</p>
+                </span>
+              </ng-template>
+            </ng-container>
+            <span><p>Status: {{agendamento.status.nome}}</p></span>
+          </div>
+          <div class="agendamento-list__button-container" *ngIf="isAtivo(agendamento)">
+            <button mat-flat-button color="accent"
+              (click)="concluiAgendamento(agendamento)">{{'CONCLUIDO' | translate}}</button>
+            <button mat-flat-button color="warn"
+              (click)="cancelaAgendamento(agendamento)">{{'CANCELAR' | translate}}</button>
+          </div>
+        </div>
+      </mat-list-item>
+    </mat-list>
+
+    <mat-paginator #paginator [length]="quantidadeTotal" [pageIndex]="paginaAtual" [pageSize]="quantidadeItens"
+      [pageSizeOptions]="[5, 7, 10, 15]">
+    </mat-paginator>
+  </ng-template>
+
+</section>

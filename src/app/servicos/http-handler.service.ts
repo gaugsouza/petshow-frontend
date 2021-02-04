@@ -67,6 +67,18 @@ export class HttpHandlerService {
       );
   }
 
+  doPatch<T>(url:string, accessToken?:string):Observable<T> {
+    const headers = this.montaHeader(accessToken);
+    return this.http.patch<T>(url, null, headers)
+      .pipe(
+        tap(() => this.logger.info(`Request feito a ${url}`)),
+        catchError(({ error }) => {
+          this.handleError<T>(`Falha em requisição a ${url}`);
+          return throwError(error);
+        }),
+      );
+  }
+
   private montaHeader(accessToken?:string) {
     if (!accessToken) {
       return this.httpOptions;

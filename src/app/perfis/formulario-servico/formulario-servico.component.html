@@ -1,35 +1,68 @@
 <section *ngIf="exibeFormulario">
-    <h3 class="page-section-title">{{'ADD_SERVICO_FORM' | translate}}</h3>
-    <!-- <form class="form"> -->
-      <div class="form">
-      <mat-form-field class="invisible">
-          <input matInput [(ngModel)]="servico.id" />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>{{'TIPO_SERVICO' | translate}}</mat-label>
-            <mat-select [(ngModel)]="servico.tipo" class="form__animal-tipo" >
-              <mat-option *ngFor="let tipo of getTiposServico()" [value]="tipo">
-                  {{tipo.nome | translate}}
-              </mat-option>
-            </mat-select>
+  <h3 class="page-section-title">{{'ADD_SERVICO_FORM' | translate}}</h3>
+
+  <form #f="ngForm">
+  <div class="form" >
+    
+    <div class = "form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>{{'TIPO_SERVICO' | translate}}</mat-label>
+        <mat-select name="tipo_servico" class="form__servico-tipo" [(ngModel)]="servico.tipo"
+        required>
+          <mat-option *ngFor="let tipo of getTiposServico()" [value]="tipo">
+            {{tipo.nome | translate}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+    <section *ngFor="let chave of getInputModelKeys()">
+      <mat-checkbox  (change)="toggleChecked(chave)">{{chave | translate}}</mat-checkbox>
+      <div *ngIf="tipoChecked[chave]">
+        <ng-container 
+          [ngTemplateOutlet]="tiposInputModel[chave].length ? listBlock : objectBlock"
+          [ngTemplateOutletContext]="{chave:chave}"></ng-container>
+      </div>
+    </section>
+
+    <ng-template #listBlock let-chave='chave'>
+      <h4>Tabela de preços por tamanho de pelos e porte do animal</h4>
+      <div *ngFor="let tipo of tiposInputModel[chave]" class="grid-porte-pelagem">
+        <label class="label">Pelagem: {{tipo.pelagem}}</label>
+        <div *ngFor="let porte of tipo.portes">
+          <mat-form-field appearance="fill">
+            <mat-label>Porte: {{porte.porte}}</mat-label>
+            <input matInput [(ngModel)]="porte.preco"  class="form__servico-valor"
+              mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
+              [errorStateMatcher]="matcher" name="porteP_pelagemCurta" [ngModelOptions]="{standalone: true}"/>
           </mat-form-field>
-          <mat-form-field>
-            <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-            <input matInput [(ngModel)]="servico.preco" placeholder="22,00" class="form__animal-nome" 
-            mask='separator.2'
-            [thousandSeparator]="'.'"
-            [decimalMarker]="','"
-            prefix="R$ "
-            [formControl]="precoFormControl" [errorStateMatcher]="matcher"/>
-            <mat-error *ngIf="precoFormControl.hasError('required')">
-              {{'CAMPO_OBRIGATORIO' | translate}}
-            </mat-error>
-        </mat-form-field>
-          <div class="form__button-container">
-            <button mat-flat-button color="primary" (click)="insereServico()" [disabled]="hasErrors()">{{'SALVAR' | translate}}</button>
-            <button mat-stroked-button color="warn" (click)="cancelarOperacao()">{{'CANCELAR'|translate}}</button>
-          </div>
         </div>
-        <!-- </form> -->
-    <!-- <input type="file" name="" id="" placeholder="Foto do animal"> -->
+      </div>
+    </ng-template>
+
+    <ng-template #objectBlock let-chave='chave'>
+      <mat-form-field appearance="fill">
+        <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
+        <input matInput [(ngModel)]="tiposInputModel[chave].preco" 
+            class="form__servico-valor" mask='separator.2'
+          [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
+          [errorStateMatcher]="matcher" [ngModelOptions]="{standalone: true}"/>
+      </mat-form-field> 
+    </ng-template>
+
+
+    <div class="form__adicionais">
+      <ng-template #adicionais></ng-template>
+    </div>
+    <div class="form__button-container">
+      <button mat-stroked-button (click)="addAdicionalComponent()">
+        {{'ADICIONAL' | translate}}
+      </button>
+      <button mat-flat-button color="primary" type = "submit" [disabled]="!f.valid || hasErrors()" (click)="insereServico()">{{'SALVAR' | translate}}</button>
+      <button mat-stroked-button color="warn" (click)="cancelarOperacao()">{{'CANCELAR'|translate}}</button>
+    </div>
+
+  </div>
+</form>
 </section>

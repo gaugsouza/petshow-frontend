@@ -1,0 +1,28 @@
+@import "../../../global.scss";
+
+.content {
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, [col-start] minmax(250px, 1fr) [col-end]);
+  gap: 20px;
+}
+
+.agendamento-block {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+
+.agendamento-send {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.button-container {
+  display: grid;
+  width: 30%;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 20px;
+}

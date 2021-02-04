@@ -1,0 +1,67 @@
+<section>
+  <h3 class="page-section-title">{{'AGENDAMENTOS' | translate}}</h3>
+  <div class="conteiner-agendamento-list"
+    *ngIf="agendamentos && agendamentos.length; then agendamentosBlock else vazioBlock"></div>
+
+  <ng-template #vazioBlock>
+    <p class="no_registered">{{'NENHUM_AGENDAMENTO' | translate}}</p>
+  </ng-template>
+
+  <ng-template #agendamentosBlock>
+    <mat-list class="agendamentos-list">
+      <mat-list-item *ngFor="let agendamento of agendamentos">
+        <div class="agendamento-list__item">
+          <div>
+            <span>
+              <p>{{agendamento.servicoDetalhado.tipo.nome}}</p>
+              <p>{{agendamento.data | date:'dd/MM/yyyy hh:mm'}}</p>
+              <p>Preço final: {{agendamento.precoFinal | currency: 'BRL'}}</p>
+            </span>
+          </div>
+          <div>
+            <div *ngIf="agendamento.animaisAtendidos.length > 1; then animaisBlock else animalBlock">
+            </div>
+
+            <ng-template #animaisBlock>
+              <span>
+                <p>Animais a serem atendidos: </p>
+              </span>
+              <ng-container *ngFor="let animal of agendamento.animaisAtendidos">
+                <span>
+                  <p>{{animal.nome}}</p>
+                </span>
+              </ng-container>
+            </ng-template>
+
+            <ng-template #animalBlock>
+              <span>
+                <p>Animal a ser atendido: {{agendamento.animaisAtendidos[0].nome}}</p>
+              </span>
+            </ng-template>
+            <span>
+              <p>Status: {{agendamento.status.nome}}</p>
+            </span>
+          </div>
+          <div>
+            <div class="agendamento-list__button-container" *ngIf="isAtivo(agendamento)">
+              <button mat-flat-button color="warn"
+                (click)="cancelaAgendamento(agendamento)">{{'CANCELAR' | translate}}</button>
+            </div>
+            <a mat-flat-button href="/agendamento/{{agendamento.id}}">
+              <span>
+                Ver Detalhes
+              </span>
+            </a>
+
+          </div>
+
+        </div>
+      </mat-list-item>
+    </mat-list>
+
+    <mat-paginator #paginator [length]="quantidadeTotal" [pageIndex]="paginaAtual" [pageSize]="quantidadeItens"
+      [pageSizeOptions]="[5, 7, 10, 15]">
+    </mat-paginator>
+  </ng-template>
+
+</section>

@@ -55,20 +55,6 @@
                 (page)="pageEvent = eventoPagina($event)">
             </mat-paginator>
         </ng-template>
-        
-        
-        <button mat-flat-button
-                color="primary"
-                (click)='abreFormulario()'
-                *ngIf='!isFormVisible && isLogado && isCliente' class="botao-formulario">{{'ADD_COMENTARIO' | translate}}</button>
-        
-        <a href='/login' mat-flat-button color="warn" *ngIf='!isLogado && !isCliente' class="botao-formulario">{{'AVISO_LOGADO_COMENTARIO' | translate}}</a> 
-    
-    
-        
-        <app-formulario [avaliacao]='avaliacaoBase' *ngIf='isFormVisible' 
-                        (adiciona-avaliacao)="adicionaAvaliacao($event)"
-                        (fecha-formulario)="fechaFormulario()"></app-formulario>
     </div>
     
 </ng-template>

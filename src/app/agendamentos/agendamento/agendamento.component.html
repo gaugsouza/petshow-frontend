@@ -1,0 +1,53 @@
+<mat-horizontal-stepper #stepper>
+  <mat-step label="Informações do cliente">
+    <div class="content">
+      <app-cliente></app-cliente>
+      <app-animal-estimacao *ngIf="idCliente && servicoSelecionado" 
+            [idCliente]="idCliente" 
+            [isVisualizacao]="isVisualizacao"
+            [servico]="servicoSelecionado"
+            (recupera-animais-estimacao)="recuperaAnimaisEstimacaoSelecionados($event)">
+      </app-animal-estimacao>
+    </div>
+    <div class="button-container">
+      <button mat-flat-button color="primary" matStepperNext [disabled]="!animaisEstimacao || !animaisEstimacao.length">Próximo</button>
+    </div>
+  </mat-step>
+  <mat-step label="Informações do serviço">
+    <app-servico-detalhado 
+        [idServico]="idServico" 
+        [idPrestador]="idPrestador" 
+        [animais]="animaisEstimacao"
+        [isVisualizacao]="isVisualizacao"
+        (retorna-tipos)="recuperaPrecoPorTipo($event)"
+        (retorna-adicionais)="recuperaAdicionais($event)"
+        (recupera-data)="recuperaDataAtendimento($event)">
+    </app-servico-detalhado>
+    <div class="button-container">
+      <button mat-flat-button color="primary" matStepperPrevious>Anterior</button>
+      <button mat-flat-button color="primary" matStepperNext [disabled]="!dataAgendamento">Próximo</button>
+    </div>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Agendar</ng-template>
+    <app-dados-agendamento *ngIf="idCliente"
+      [idPrestador]="idPrestador"
+      [animais]="animaisEstimacao"
+      [precoPorTipo]="precoPorTipo"
+      [isVisualizacao]="isVisualizacao"
+      [adicionais]="adicionais"
+      [servicoDetalhado]="servicoSelecionado"
+      [idCliente]="idCliente"
+      [dataAgendamento]="dataAgendamento"
+      [status]=""
+    >
+    </app-dados-agendamento>
+    <div class="button-container">
+      <button mat-flat-button color="primary" matStepperPrevious>Anterior</button>
+      <button mat-flat-button color="primary" (click)="criarAgendamento()">Agendar</button>
+      <button mat-flat-button color="primary" (click)="stepper.reset()">Reiniciar</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+
+<p *ngIf="erroAgendamento">{{erroAgendamento}}</p>

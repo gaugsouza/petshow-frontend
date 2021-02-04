@@ -1,0 +1,23 @@
+<div *ngIf="animaisEstimacao && animaisEstimacao.length; then animaisEstimacaoBlock else vazioBlock"></div>
+
+<ng-template #vazioBlock>
+    <p class="no_registered">{{'NENHUM_CADASTRADO' | translate}}</p>
+</ng-template>
+
+<ng-template #animaisEstimacaoBlock>
+    <div *ngIf="!isVisualizacao">
+        Animais de estimação elegíveis para esse serviço
+        <mat-selection-list #animaisSelecionados (selectionChange)="selecionaAnimal(animaisSelecionados.selectedOptions.selected)">
+            <mat-list-option *ngFor="let animal of getAnimaisElegiveis()" [value]="animal">
+                {{animal.nome}}
+            </mat-list-option>
+        </mat-selection-list>
+        <mat-paginator #paginator
+            [length]="quantidadeTotal"
+            [pageIndex]="paginaAtual"
+            [pageSize]="quantidadeItens"
+            [pageSizeOptions]="[5, 7, 10, 15]"
+            (page)="pageEvent = eventoPagina($event)">
+        </mat-paginator>
+    </div>
+</ng-template>

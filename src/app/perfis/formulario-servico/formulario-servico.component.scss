@@ -1,26 +1,32 @@
 @import "../../../global.scss";
 
+.grid-porte-pelagem {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+
+  .label {
+    align-self: center;
+  }
+}
+
 .form {
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
+  flex-flow: column;
   width: 80%;
+  margin: 0 auto;
 
-  @media screen and (max-width: $tablet-width) {
-    justify-content: center;
-    width: 100%;
+  &__servico {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 40%;
   }
 
   &__button-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    align-items: center;
-
-    @media screen and (max-width: $tablet-width) {
-      display: flex;
-      justify-content: center;
-    }
+    width: 35%;
+    display: flex;
+    justify-content: space-between;
   }
 }
 
@@ -29,8 +35,84 @@
   visibility: hidden;
   height: 0;
   width: 0;
+  position: absolute;
 }
 
 .page-section-title {
   margin: 15px;
+}
+
+.grid-container {
+  grid-template-areas: "logo nav nav nav";
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  text-align: center;
+}
+
+.grid-sm {
+  display: none;
+}
+
+/* Grid */
+.logo {
+  grid-area: logo;
+  font-weight: bold;
+}
+
+.nav {
+  grid-area: nav;
+  font-weight: bold;
+}
+
+/* Grid Item */
+.item {
+  margin: 5px;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.grid {
+  display: grid;
+  max-width: 400px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+}
+
+@media screen and (max-width: $tablet-width) {
+
+  .grid-container {
+    grid-template-areas: "logo nav";
+    display: none;
+  }
+
+  .grid-sm {
+    display: block;
+  }
+
+  .grid-container-sm {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+
+  /* Grid */
+  .grid {
+    display: grid;
+  }
+
+  .logo {
+    grid-area: logo;
+    font-weight: bold;
+  }
+
+  .nav {
+    grid-area: nav;
+    font-weight: bold;
+  }
+
+  /* Grid Item */
+  .item {
+    margin: 5px;
+    text-align: center;
+    font-size: 1.2em;
+  }
 }

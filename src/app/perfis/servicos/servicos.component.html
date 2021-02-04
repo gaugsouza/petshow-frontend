@@ -1,6 +1,4 @@
-<section>
-    <!-- <h3 class="page-section-title">{{'SERVICOS' | translate}}</h3> -->
-    
+<section>    
     <div class="conteiner-servicos-list" *ngIf="servicosDetalhados && servicosDetalhados.length; then servicosBlock else vazioBlock"></div>
     
     <ng-template #vazioBlock>
@@ -8,17 +6,40 @@
     </ng-template>
 
     <ng-template #servicosBlock>
-        <mat-list class="servico-list">
-            <mat-list-item *ngFor="let servico of servicosDetalhados">
-                <div class="servico-list__item">
-                    <span>{{servico.tipo.nome | translate}}</span> 
-                    <span>{{servico.preco | currency: 'BRL'}}</span>
-                    <div class="servico-list__button-container">
-                        <button mat-flat-button color="warn" (click)="removeServico(servico)">{{'REMOVER' | translate}}</button>
+        <div class="servico-list">
+            <mat-card *ngFor="let servico of servicosDetalhados">
+                <mat-card-title>
+                    {{servico.tipo.nome | translate}}
+                </mat-card-title>
+                <mat-card-content>
+                    <div class="servico-precos">
+                        <mat-card *ngFor="let preco of servico.precoPorTipo">
+                            <mat-card-subtitle>{{preco.tipoAnimal.nome}}</mat-card-subtitle>
+                            <mat-card-content>
+                                <span *ngIf="preco.tipoAnimal.porte">Porte: {{preco.tipoAnimal.porte}}</span><br *ngIf="preco.tipoAnimal.porte">
+                                <span *ngIf="preco.tipoAnimal.pelagem">Pelagem: {{preco.tipoAnimal.pelagem}}</span><br *ngIf="preco.tipoAnimal.porte"> 
+                                <span>{{preco.preco | currency: 'BRL'}}</span>
+                                <hr>
+                            </mat-card-content>
+                        </mat-card>
                     </div>
-                </div>
-                </mat-list-item>
-        </mat-list>
+                    <div *ngIf="servico.adicionais && servico.adicionais.length; else adicionaisVazios">
+                        <mat-chip-list>
+                            <mat-chip *ngFor="let adicional of servico.adicionais">
+                                <span>{{adicional.nome}}</span> | <span>{{adicional.preco | currency: 'BRL'}}</span>
+                                <mat-icon class="icone"> edit </mat-icon>
+                                <mat-icon class="icone"> delete </mat-icon>
+                            </mat-chip>
+                        </mat-chip-list>
+                    </div>
+
+                    <ng-template #adicionaisVazios>{{'NENHUM_ADICIONAL' | translate}}</ng-template>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-flat-button color="warn" (click)="removeServico(servico)">{{'REMOVER' | translate}}</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>       
 
         <mat-paginator #paginator
             [length]="quantidadeTotal"

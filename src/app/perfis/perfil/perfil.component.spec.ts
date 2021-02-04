@@ -9,6 +9,7 @@ import { InformacoesPessoaisComponent } from '../informacoes-pessoais/informacoe
 import { EnderecoComponent } from '../endereco/endereco.component';
 import { EnderecoDialogComponent } from '../endereco-dialog/endereco-dialog.component';
 import { AnimalEstimacaoComponent } from '../animal-estimacao/animal-estimacao.component';
+import { AgendaPrestadorComponent } from '../agenda-prestador/agenda-prestador.component';
 import { PrestadorService } from '../../servicos/prestador.service';
 import { LocalStorageService } from '../../servicos/local-storage.service';
 import { Router } from '@angular/router';
@@ -31,6 +32,11 @@ import { JwtHelper } from '../../util/jwt-helper';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MensagemAtivacaoComponent } from '../mensagem-ativacao/mensagem-ativacao.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { AgendaClienteComponent } from '../agenda-cliente/agenda-cliente.component';
+
 describe('PerfilComponent', () => {
   let component: PerfilComponent;
   let fixture: ComponentFixture<PerfilComponent>;
@@ -48,7 +54,9 @@ describe('PerfilComponent', () => {
         EnderecoDialogComponent,
         AnimalEstimacaoComponent,
         FormularioAnimalComponent,
-        MensagemAtivacaoComponent
+        MensagemAtivacaoComponent,
+        AgendaPrestadorComponent,
+        AgendaClienteComponent
        ],
        providers: [
         PrestadorService,
@@ -72,7 +80,10 @@ describe('PerfilComponent', () => {
         MatCardModule,
         NgxMaskModule.forRoot(),
         MatPaginatorModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatChipsModule,
+        MatCheckboxModule,
+        MatIconModule,
        ]
     })
     .compileComponents();

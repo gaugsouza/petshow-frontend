@@ -1,0 +1,27 @@
+<div *ngIf="agendamento">
+  <app-dados-agendamento 
+    [idPrestador]="agendamento.prestadorId" 
+    [animais]="agendamento.animaisAtendidos"
+    [precoPorTipo]="getPrecosPorTipo(agendamento)" 
+    [isVisualizacao]="true" 
+    [adicionais]="agendamento.adicionais"
+    [servicoDetalhado]="agendamento.servicoDetalhado" 
+    [idCliente]="agendamento.clienteId"
+    [dataAgendamento]="agendamento.data"
+    [status]="agendamento.status.nome"
+    >
+  </app-dados-agendamento>
+
+
+  <div *ngIf="isAgendamentoConcluido(agendamento) && !isAgendamentoAvaliado()">
+    <button mat-flat-button color="primary" (click)='abreFormulario()' *ngIf='!isFormVisible && isCliente'
+      class="botao-formulario">{{'ADD_COMENTARIO' | translate}}</button>
+
+
+    <app-formulario [avaliacao]='avaliacaoBase' *ngIf='isFormVisible'
+      (adiciona-avaliacao)="adicionaAvaliacao($event)" (fecha-formulario)="fechaFormulario()"></app-formulario>
+  </div>
+
+  <app-avaliacao-agendamento *ngIf="isAgendamentoAvaliado() && isCliente" 
+    [avaliacao]="avaliacao"></app-avaliacao-agendamento>
+</div>

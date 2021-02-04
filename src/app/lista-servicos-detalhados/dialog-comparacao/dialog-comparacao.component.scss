@@ -1,0 +1,40 @@
+h3 {
+  font-size: 24px;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+table {
+  width: 100%;
+}
+
+.melhor {
+  color: green;
+}
+
+.lista-precos-servicos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "topo topo" "conteudo conteudo";
+  margin-top: 20px;
+
+  h3 {
+    grid-area: topo;
+    text-align: center;
+  }
+}
+
+.precos-servico {
+
+  .preco-destacado {
+    color: green;
+  }
+}
+
+.mat-list-item {
+  background: #fff;
+  border-bottom: 1px solid #e6e6e6;
+}

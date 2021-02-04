@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { USER_TOKEN } from 'src/app/util/constantes';
 import { LoginService } from 'src/app/servicos/login.service';
 import { DataSharingService } from 'src/app/servicos/data-sharing.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ import { DataSharingService } from 'src/app/servicos/data-sharing.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'petshow-frontend';
+  title = 'Petshow';
 
   public mode: string = '';
 
@@ -23,11 +24,14 @@ export class AppComponent implements OnInit {
 
   public isPortugues:boolean = true;
 
+  public redirectTo:string = '';
+
   constructor(private translate: TranslateService,
               private localStorageService: LocalStorageService,
               private router:Router,
               private loginService:LoginService,
-              private dataSharingService: DataSharingService) {
+              private dataSharingService: DataSharingService,
+              private location: Location) {
     this.defineLangSettings(this.translate);
     this.localStorageService.getItem(USER_TOKEN)
       .subscribe((token) => {
@@ -36,6 +40,7 @@ export class AppComponent implements OnInit {
           this.isLogged = isLogado;
         });
       });
+    this.redirectTo = !this.location.path() || this.location.path() === '/login' ? '' : `?redirectTo=${this.location.path()}`;
   }
 
   defineLangSettings(translate:TranslateService):void {
@@ -47,6 +52,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.redirectTo = '';
     if (environment.production) {
       if (window.location.protocol === 'http:') {
         window.location.href = window.location.href.replace('http', 'https');

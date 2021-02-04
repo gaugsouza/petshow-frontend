@@ -47,7 +47,7 @@ export class UsuarioService {
     return this.httpHandler.doDelete<any>(URL, token);
   }
 
-  buscarTiposAnimalEstimacao(token:string) : Observable<any> {
+  buscarTiposAnimalEstimacao(token?:string) : Observable<any> {
     const URL = `${CLIENTE_SERVICE_URL}/animal-estimacao/tipos`;
     return this.httpHandler.doGet<any>(URL, token);
   }
