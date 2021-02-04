@@ -10,7 +10,7 @@ import { Adicional } from 'src/app/interfaces/adicional';
 
 
 import {FormControl} from '@angular/forms';
-import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
+import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 // Depending on whether rollup is used, moment needs to be imported differently.
 // Since Moment.js doesn't have a default export, we normally need to import using the `* as`
@@ -40,12 +40,14 @@ export const MY_FORMATS = {
   templateUrl: './servico-detalhado.component.html',
   styleUrls: ['./servico-detalhado.component.scss'],
   providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'ja-JP'},
     {
       provide: DateAdapter,
       useClass: MomentDateAdapter,
       deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
     },
-    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+    // {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
   ],
 })
 export class ServicoDetalhadoComponent implements OnInit {
@@ -68,8 +70,16 @@ export class ServicoDetalhadoComponent implements OnInit {
   dataMinima:Date;
   date = new FormControl(moment());
 
-  constructor(private localStorageService: LocalStorageService,
+  constructor(private _adapter: DateAdapter<any>,
+    private localStorageService: LocalStorageService,
     private servicosService: ServicosService) { }
+
+    english() {
+      this._adapter.setLocale('en');
+    }
+    portuguese() {
+      this._adapter.setLocale('pt');
+    }
 
   ngOnInit(): void {
     this.dataMinima = new Date();
