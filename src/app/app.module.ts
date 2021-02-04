@@ -28,15 +28,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { NotificationService } from 'src/app/servicos/notification.service';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
-import { AgendamentosModule } from './agendamentos/agendamentos.module';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { Agendamento } from './interfaces/agendamento';
-import { MatDividerModule } from '@angular/material/divider'; 
+import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatSelectModule } from '@angular/material/select'; 
-import { DialogComparacaoComponent } from './lista-servicos-detalhados/dialog-comparacao/dialog-comparacao.component';
-import { MatTableModule } from '@angular/material/table'; 
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DialogComparacaoComponent } from './lista-servicos-detalhados/dialog-comparacao/dialog-comparacao.component';
+import { Agendamento } from './interfaces/agendamento';
+import { AgendamentosModule } from './agendamentos/agendamentos.module';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     HomeComponent,
     ListaServicosDetalhadosComponent,
     PrestadorComponent,
-    DialogComparacaoComponent
+    DialogComparacaoComponent,
   ],
   imports: [
     AcessoModule,
@@ -80,7 +80,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     DataSharingService,
     { provide: 'ServicoNotificationService', useFactory: () => (new NotificationService<ServicoDetalhado>()) },
     { provide: 'AnimalNotificationService', useFactory: () => (new NotificationService<AnimalEstimacao>()) },
-    { provide: 'AgendamentoNotificationService', useFactory: () => (new NotificationService<Agendamento>()) }
+    { provide: 'AgendamentoNotificationService', useFactory: () => (new NotificationService<Agendamento>()) },
   ],
   bootstrap: [AppComponent],
 })

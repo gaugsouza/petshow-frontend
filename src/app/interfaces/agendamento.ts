@@ -1,12 +1,11 @@
-import { Endereco } from './endereco';
-import { AnimalEstimacao } from './animalEstimacao';
-import { ServicoDetalhado } from './servico-detalhado';
-import { StatusAgendamento } from './statusAgendamento';
-import { Cliente } from './cliente';
-import { Prestador } from './prestador';
-import { Usuario } from './usuario';
-import { Avaliacao } from './avaliacao';
-import { Adicional } from './adicional';
+import { Endereco } from 'src/app/interfaces/endereco';
+import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
+import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
+import { StatusAgendamento } from 'src/app/interfaces/statusAgendamento';
+import { Prestador } from 'src/app/interfaces/prestador';
+import { Usuario } from 'src/app/interfaces/usuario';
+import { Avaliacao } from 'src/app/interfaces/avaliacao';
+import { Adicional } from 'src/app/interfaces/adicional';
 
 export interface Agendamento {
     id?:number;

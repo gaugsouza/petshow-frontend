@@ -1,38 +1,34 @@
+import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSelectModule } from '@angular/material/select';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {TranslateModule} from '@ngx-translate/core';
-import { LoggerTestingModule } from 'ngx-logger/testing';
-import { JwtHelper } from '../../util/jwt-helper';
-import { ConfigModule } from '../../config/config.module';
-import { AgendaPrestadorComponent } from './agenda-prestador.component';
-import { MatListModule } from '@angular/material/list';
-import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatStepperModule } from '@angular/material/stepper';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
-import { NotificationService } from '../../servicos/notification.service';
-import { Agendamento } from '../../interfaces/agendamento';
-import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateModule } from '@ngx-translate/core';
+import { LoggerTestingModule } from 'ngx-logger/testing';
+import { ConfigModule } from '../../config/config.module';
 
-describe('AgendaPrestadorComponent', () => {
-  let component: AgendaPrestadorComponent;
-  let fixture: ComponentFixture<AgendaPrestadorComponent>;
+import { ConfirmacaoCancelamentoComponent } from './confirmacao-cancelamento.component';
+
+describe('ConfirmacaoCancelamentoComponent', () => {
+  let component: ConfirmacaoCancelamentoComponent;
+  let fixture: ComponentFixture<ConfirmacaoCancelamentoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AgendaPrestadorComponent ],
+      declarations: [ ConfirmacaoCancelamentoComponent ],
       providers: [
-        JwtHelper,
-        { provide: 'AgendamentoNotificationService', useFactory: () => (new NotificationService<Agendamento>()) }
-
+        { provide: MatDialogRef, useValue:{}}, 
       ],
       imports: [
         MatListModule,
@@ -60,7 +56,7 @@ describe('AgendaPrestadorComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AgendaPrestadorComponent);
+    fixture = TestBed.createComponent(ConfirmacaoCancelamentoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -9,25 +9,26 @@ import { FiltroServicos } from '../interfaces/filtro-servicos';
 })
 export class ServicosService {
   constructor(private httpHandler:HttpHandlerService) {}
-  
+
   getTipos(): Observable<any> {
     const URL = TIPO_SERVICO_URL;
     return this.httpHandler.doGet<any>(URL);
   }
-  
-  buscarServicosDetalhadosPorTipo = (filtro:FiltroServicos, pagina:number, quantidadeItens:number): Observable<any> => {
+
+  buscarServicosDetalhadosPorTipo = (filtro:FiltroServicos, pagina:number, quantidadeItens:number)
+  : Observable<any> => {
     const URL = `${SERVICO_DETALHADO_URL}/filtro?pagina=${pagina}&quantidadeItens=${quantidadeItens}`;
-    console.log(URL);
     return this.httpHandler.doPost<any>(URL, filtro);
-  } 
-  
+  }
+
   buscarServicosDetalhadosPorPrestador(prestadorId:number, pagina:number,
     quantidadeItens:number, token:string) : Observable<any> {
     const URL = `${PRESTADOR_SERVICE_URL}/${prestadorId}/servico-detalhado?pagina=${pagina}&quantidadeItens=${quantidadeItens}`;
     return this.httpHandler.doGet<any>(URL, token);
   }
 
-  buscarPorPrestadorIdEServicoId(prestadorId:number, servicoDetalhadoId:number, token?:string) : Observable<any> {
+  buscarPorPrestadorIdEServicoId = (prestadorId:number, servicoDetalhadoId:number, token?:string)
+    : Observable<any> => {
     const URL = `${PRESTADOR_SERVICE_URL}/${prestadorId}/servico-detalhado/${servicoDetalhadoId}`;
     return this.httpHandler.doGet<any>(URL, token);
   }

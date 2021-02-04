@@ -35,6 +35,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
+import { AgendaClienteComponent } from '../agenda-cliente/agenda-cliente.component';
 
 describe('PerfilComponent', () => {
   let component: PerfilComponent;
@@ -54,7 +55,8 @@ describe('PerfilComponent', () => {
         AnimalEstimacaoComponent,
         FormularioAnimalComponent,
         MensagemAtivacaoComponent,
-        AgendaPrestadorComponent
+        AgendaPrestadorComponent,
+        AgendaClienteComponent
        ],
        providers: [
         PrestadorService,

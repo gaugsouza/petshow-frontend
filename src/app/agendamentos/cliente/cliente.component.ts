@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { UsuarioService } from 'src/app/servicos/usuario.service';
 import { JwtHelper } from 'src/app/util/jwt-helper';
@@ -8,10 +8,11 @@ import { Cliente } from 'src/app/interfaces/cliente';
 @Component({
   selector: 'app-cliente',
   templateUrl: './cliente.component.html',
-  styleUrls: ['./cliente.component.scss']
+  styleUrls: ['./cliente.component.scss'],
 })
 export class ClienteComponent implements OnInit {
   idCliente: number;
+
   cliente: Cliente;
 
   constructor(private localStorageService:LocalStorageService,
@@ -28,7 +29,7 @@ export class ClienteComponent implements OnInit {
 
       this.usuarioService.buscarUsuario(this.idCliente).subscribe((cliente) => {
         this.cliente = JSON.parse(cliente);
-      })
+      });
     });
   }
 }
