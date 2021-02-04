@@ -150,5 +150,6 @@
   "DE": "of",
   "ADICIONAL": "Extra",
   "AGENDAMENTOS": "Scheduled Bookings",
-  "NENHUM_ADICIONAL": "No extras found"
+  "NENHUM_ADICIONAL": "No extras found",
+  "ESCOLHA_DATA": "Pick the date"
 }

@@ -49,7 +49,7 @@
                             <p>Detalhes do serviço escolhido: </p>
                             <p>{{servicoDetalhado.tipo.nome}}</p>
                             <p *ngIf="servicoDetalhado.descricao">Descrição: {{servicoDetalhado.descricao}}</p>
-                            <p>Data do agendamento: {{dataAgendamento | date: 'dd/MM/yyyy'}}</p>
+                            <p>Data do agendamento: {{dataAgendamento | date:'dd/MMM/yyyy'}}</p>
                         </mat-card-content>
                     </mat-card>
                 </div>
