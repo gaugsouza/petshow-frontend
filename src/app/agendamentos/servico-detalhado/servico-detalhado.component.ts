@@ -1,4 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component, OnInit, Input, Output, EventEmitter,
+} from '@angular/core';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { USER_TOKEN } from 'src/app/util/constantes';
 import { ServicosService } from 'src/app/servicos/servicos.service';
@@ -11,25 +13,39 @@ import { Adicional } from 'src/app/interfaces/adicional';
 @Component({
   selector: 'app-servico-detalhado',
   templateUrl: './servico-detalhado.component.html',
-  styleUrls: ['./servico-detalhado.component.scss']
+  styleUrls: ['./servico-detalhado.component.scss'],
 })
 export class ServicoDetalhadoComponent implements OnInit {
   @Input() isVisualizacao: Boolean;
+
   @Input() idServico: number;
+
   @Input() idPrestador: number;
+
   @Input('animais') animaisSelecionados:AnimalEstimacao[] = [];
+
   @Output('retorna-tipos') retornaTipos = new EventEmitter<ServicoDetalhadoTipoAnimal[]>();
+
   @Output('retorna-adicionais') retornaAdicionais = new EventEmitter<Adicional[]>();
+
   @Output('recupera-data') recuperaData = new EventEmitter<Date>();
 
   servicoDetalhado: ServicoDetalhado;
+
   pageEvent: PageEvent;
+
   quantidadeTotal:number;
+
   quantidadeItens:number = 5;
+
   paginaAtual:number = 0;
+
   precoPorTipo:ServicoDetalhadoTipoAnimal[] = [];
+
   adicionais:Adicional[] = [];
+
   dataAgendamento:Date;
+
   dataMinima:Date;
 
   constructor(private localStorageService: LocalStorageService,
@@ -50,22 +66,22 @@ export class ServicoDetalhadoComponent implements OnInit {
   }
 
   getInformacoesTipoServico() {
-    const {precoPorTipo} = this.servicoDetalhado;
+    const { precoPorTipo } = this.servicoDetalhado;
     this.precoPorTipo = (this.animaisSelecionados || [])
-    .map(animal => animal.tipo)
-    .map(tipoAnimal => precoPorTipo.find(tipo => tipo.tipoAnimal.id === tipoAnimal.id));
-    
+      .map((animal) => animal.tipo)
+      .map((tipoAnimal) => precoPorTipo.find((tipo) => tipo.tipoAnimal.id === tipoAnimal.id));
+
     this.retornaTipos.emit(this.precoPorTipo);
     return this.precoPorTipo;
   }
 
   selecionaTipo(selecionados) {
-    this.precoPorTipo = selecionados.map(el => el.value);
+    this.precoPorTipo = selecionados.map((el) => el.value);
     this.retornaTipos.emit(this.precoPorTipo);
   }
 
-  getDescricaoServico(preco:ServicoDetalhadoTipoAnimal):string {
-    if(!preco.tipoAnimal.porte && !preco.tipoAnimal.pelagem) {
+  getDescricaoServico = (preco:ServicoDetalhadoTipoAnimal):string => {
+    if (!preco.tipoAnimal.porte && !preco.tipoAnimal.pelagem) {
       return '';
     }
 
@@ -73,7 +89,7 @@ export class ServicoDetalhadoComponent implements OnInit {
   }
 
   selecionaAdicional(selecionados) {
-    this.adicionais = selecionados.map(el => el.value);
+    this.adicionais = selecionados.map((el) => el.value);
     this.retornaAdicionais.emit(this.adicionais);
   }
 

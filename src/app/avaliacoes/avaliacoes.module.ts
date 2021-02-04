@@ -12,8 +12,8 @@ import { MatInputModule } from '@angular/material/input';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ConfigModule } from 'src/app/config/config.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { AvaliacaoAgendamentoComponent } from './avaliacao-agendamento/avaliacao-agendamento.component';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
+import { AvaliacaoAgendamentoComponent } from 'src/app/avaliacoes/avaliacao-agendamento/avaliacao-agendamento.component';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -41,7 +41,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     AvaliacaoComponent,
     EstrelasComponent,
     FormularioComponent,
-    AvaliacaoAgendamentoComponent
+    AvaliacaoAgendamentoComponent,
   ],
 })
 export class AvaliacoesModule { }

@@ -1,3 +1,4 @@
+import { AgendaClienteComponent } from 'src/app/perfis/agenda-cliente/agenda-cliente.component';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -24,16 +25,23 @@ import { ConfigModule } from 'src/app/config/config.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MensagemAtivacaoComponent } from 'src/app/perfis/mensagem-ativacao/mensagem-ativacao.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { AgendaPrestadorComponent } from './agenda-prestador/agenda-prestador.component';
-import { AgendamentoService } from '../servicos/agendamento.service';
+import { AgendaPrestadorComponent } from 'src/app/perfis/agenda-prestador/agenda-prestador.component';
+import { AgendamentoService } from 'src/app/servicos/agendamento.service';
 import { CadastroAdicionalComponent } from 'src/app/perfis/cadastro-adicional/cadastro-adicional.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
+<<<<<<< HEAD
 import { MatTableModule } from '@angular/material/table'; 
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatIconModule} from '@angular/material/icon';
 import { AdicionalDialogComponent } from './adicional-dialog/adicional-dialog.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+=======
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { ConfirmacaoCancelamentoComponent } from './confirmacao-cancelamento/confirmacao-cancelamento.component';
+>>>>>>> 82e73e456da3dd5b2a510731f80ac660f2ca7739
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -56,6 +64,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     CadastroAdicionalComponent,
     AdicionalDialogComponent,
     ConfirmationDialogComponent,
+    AgendaClienteComponent,
   ],
   imports: [
     CommonModule,
@@ -75,7 +84,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     MatChipsModule,
     MatTableModule,
     MatCheckboxModule,
-    MatIconModule
+    MatIconModule,
   ],
   exports: [
     PerfilPrestadorComponent,
@@ -89,6 +98,6 @@ export function HttpLoaderFactory(http:HttpClient) {
     AnimalEstimacaoComponent,
     FormularioAnimalComponent,
   ],
-  providers: [AgendamentoService]
+  providers: [AgendamentoService],
 })
 export class PerfisModule { }

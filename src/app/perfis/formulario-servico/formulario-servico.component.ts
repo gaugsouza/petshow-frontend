@@ -1,5 +1,5 @@
 import {
-  Component, OnInit, Input, Output, EventEmitter, ViewChild, ViewContainerRef, ViewChildren, AfterViewInit,
+  Component, OnInit, Input, Output, EventEmitter, ViewChild, ViewContainerRef,
 } from '@angular/core';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { BANHO } from 'src/app/util/tipo-servico';
@@ -11,7 +11,6 @@ import { DynamicContentInjectorService } from 'src/app/servicos/dynamic-content-
 import { Adicional } from 'src/app/interfaces/adicional';
 import { UsuarioService } from 'src/app/servicos/usuario.service';
 import { TipoAnimal } from 'src/app/enum/TipoAnimal';
-import { filter } from 'rxjs/operators';
 import { ServicoDetalhadoTipoAnimal } from 'src/app/interfaces/servico-detalhado-tipo-animal';
 @Component({
   selector: 'app-formulario-servico',
@@ -21,29 +20,30 @@ import { ServicoDetalhadoTipoAnimal } from 'src/app/interfaces/servico-detalhado
 export class FormularioServicoComponent implements OnInit {
   private viewContainerRef:ViewContainerRef;
 
-  @ViewChild('adicionais', {read:ViewContainerRef, static: false}) set reference(reference:ViewContainerRef) {
-    if(reference) {
+  @ViewChild('adicionais', { read: ViewContainerRef, static: false }) set reference(reference:ViewContainerRef) {
+    if (reference) {
       this.viewContainerRef = reference;
       this.dynamicLoader.setViewContainerRef(this.viewContainerRef);
     }
   }
 
   @Input() servico: ServicoDetalhado = {
-    precoPorTipo:[],
+    precoPorTipo: [],
     tipo: null,
     adicionais: [],
   };
+
   servicos:Servico[];
 
-  gato_checked:Boolean;
+  gatoChecked:Boolean;
 
-  cachorro_checked:Boolean;
+  cachorroChecked:Boolean;
 
   tiposAnimais:TipoAnimal[];
-  tiposInputModel:any;
-  tipoChecked:any;
 
-  // precosPorTipo:ServicoDetalhadoTipoAnimal[];
+  tiposInputModel:any;
+
+  tipoChecked:any;
 
   @Output('adiciona-servico') adicionaServico = new EventEmitter<ServicoDetalhado>();
 
@@ -67,70 +67,67 @@ export class FormularioServicoComponent implements OnInit {
 
   ngOnInit(): void {
     this.servicoService.getTipos().subscribe((servicos) => {
-        this.servicos = JSON.parse(servicos);
-      },
-      () => {
-        this.servicos = [];
-      });
+      this.servicos = JSON.parse(servicos);
+    },
+    () => {
+      this.servicos = [];
+    });
 
-      this.usuarioService.buscarTiposAnimalEstimacao().subscribe((tipos) => {
-        this.tiposAnimais = JSON.parse(tipos);
-        this.limpaCampos(this.tiposAnimais);
-        // this.tiposInputModel = this.criaInputModel(this.tiposAnimais);
-        // this.tipoChecked = this.criaChecked();
-      },
-      () => {
-        this.tiposAnimais = [];
-      })
+    this.usuarioService.buscarTiposAnimalEstimacao().subscribe((tipos) => {
+      this.tiposAnimais = JSON.parse(tipos);
+      this.limpaCampos(this.tiposAnimais);
+    },
+    () => {
+      this.tiposAnimais = [];
+    });
   }
 
+  criaInputModel = (tiposAnimal:TipoAnimal[]) => {
+    const tiposComPrecos = tiposAnimal.map((el) => ({ tipo: { ...el }, preco: 0 }));
 
-//////////////////////
-  criaInputModel(tiposAnimal:TipoAnimal[]) {
-    const tiposComPrecos = tiposAnimal.map(el => ({tipo:{...el}, preco: 0}));
+    return tiposComPrecos.map((el) => el.tipo.nome)
+      .reduce((acc, chave) => {
+        const elementos = tiposComPrecos.filter((el) => el.tipo.nome === chave);
+        if (elementos.length === 1) {
+          return ({ ...acc, [chave]: { ...elementos[0] } });
+        }
 
-    return tiposComPrecos.map(el => el.tipo.nome)
-    .reduce((acc, chave) => {
-      const elementos = tiposComPrecos.filter(el => el.tipo.nome === chave);
-      if(elementos.length === 1) {
-        return ({...acc, [chave]: {...elementos[0]}});
-      }
+        const pelagens = [...new Set(elementos.map((el) => el.tipo.pelagem))];
 
-      const pelagens = [...new Set(elementos.map(el => el.tipo.pelagem))];
-
-      return {
-        ...acc,
-        [chave]: [
-          ...pelagens.map(pelagem => {
-            const portes = elementos.filter(el => el.tipo.pelagem === pelagem && el.tipo.nome === chave);
-            return {
-              pelagem: pelagem,
-              portes: [
-                ...portes.map(porte => {
-                  return {
+        return {
+          ...acc,
+          [chave]: [
+            ...pelagens.map((pelagem) => {
+              const portes = elementos
+                .filter((el) => el.tipo.pelagem === pelagem && el.tipo.nome === chave);
+              return {
+                pelagem,
+                portes: [
+                  ...portes.map((porte) => ({
                     porte: porte.tipo.porte,
                     id: porte.tipo.id,
-                    preco: null
-                  }
-                })
-              ]
-            }
-          })
-        ]
-      }
-    }, {})
+                    preco: null,
+                  })),
+                ],
+              };
+            }),
+          ],
+        };
+      }, {});
   }
 
   limpaCampos(tipoAnimais:TipoAnimal[]) {
-    this.tiposInputModel = this.criaInputModel(this.tiposAnimais);
+    this.tiposInputModel = this.criaInputModel(tipoAnimais);
     this.tipoChecked = this.criaChecked();
   }
 
   getInputModelKeys() {
     return Object.keys(this.tiposInputModel) || [];
   }
+
   criaChecked() {
-    return this.getInputModelKeys().reduce((acc, chave) => ({...acc, [chave]:false}), {})
+    return this.getInputModelKeys()
+      .reduce((acc, chave) => ({ ...acc, [chave]: false }), {});
   }
 
   toggleChecked(chave:string) {
@@ -138,35 +135,39 @@ export class FormularioServicoComponent implements OnInit {
   }
 
   validaChecked():boolean {
-    return Object.keys(this.tipoChecked).filter(label => this.tipoChecked[label] === true).length > 0;
+    return Object.keys(this.tipoChecked)
+      .filter((label) => this.tipoChecked[label] === true).length > 0;
   }
-
 
   private getPrecoServicoPreenchido() {
     const precos = this.getInputModelKeys()
-    .reduce((precos, item) => {
-      if(!this.tiposInputModel[item].length){
-        return [...precos, {preco: this.tiposInputModel[item].preco || 0, id: this.tiposInputModel[item].tipo.id}];
-      }
-      const portes = this.tiposInputModel[item].reduce((acc, item) => {
-        return [...acc, ...item.portes]
-      }, []);
+      .reduce((precosServico, item) => {
+        if (!this.tiposInputModel[item].length) {
+          return [
+            ...precosServico,
+            {
+              preco: this.tiposInputModel[item].preco || 0,
+              id: this.tiposInputModel[item].tipo.id,
+            },
+          ];
+        }
+        const portes = this.tiposInputModel[item]
+          .reduce((acc, el) => [...acc, ...el.portes], []);
 
-      return [...precos, ...portes.map(porte => ({id: porte.id, preco: porte.preco || 0}))]
-    }, [])
+        return [...precosServico, ...portes
+          .map((porte) => ({ id: porte.id, preco: porte.preco || 0 }))];
+      }, []);
 
     return precos;
   }
 
   validaPrecos() {
     const precos = this.getPrecoServicoPreenchido()
-    .map(item => item.preco);
-    return precos.filter(preco => preco > 0).length
+      .map((item) => item.preco);
+    return precos.filter((preco) => preco > 0).length;
   }
-////////////////////
 
   hasErrors() {
-    //return this.precoFormControl.hasError('required') || this.descricaoFormControl.hasError('minLength') || !this.validaChecked();
     return !this.validaChecked() || !this.validaPrecos();
   }
 
@@ -175,44 +176,58 @@ export class FormularioServicoComponent implements OnInit {
   }
 
   insereServico() {
-    console.log(this.trataServico(this.servico));
     this.adicionaServico.emit(this.trataServico(this.servico));
     this.viewContainerRef.clear();
     this.limpaCampos(this.tiposAnimais);
   }
 
   private trataServico = (servico:ServicoDetalhado): ServicoDetalhado => {
-    const adicionais = [...(servico.adicionais || []).filter((adicional) => adicional.nome !== null && adicional.nome !== '')];
+    const adicionais = [...(servico.adicionais || [])
+      .filter((adicional) => adicional.nome !== null && adicional.nome !== '')];
 
-    const animaisChecados = Object.keys(this.tipoChecked).filter(chave => this.tipoChecked[chave] === true);
+    const animaisChecados = Object.keys(this.tipoChecked)
+      .filter((chave) => this.tipoChecked[chave] === true);
+
     const animaisPreenchidos = this.getPrecoServicoPreenchido()
-    .filter(el => el.preco > 0);
+      .filter((el) => el.preco > 0);
+
     const animaisAceitos = this.tiposAnimais
-    .filter(tipo => animaisChecados.indexOf(tipo.nome) !== -1 && animaisPreenchidos.map(el => el.id).indexOf(tipo.id) !== -1);
+      .filter((tipo) => animaisChecados.indexOf(tipo.nome) !== -1
+    && animaisPreenchidos.map((el) => el.id).indexOf(tipo.id) !== -1);
 
     const precoPorTipo: ServicoDetalhadoTipoAnimal[] = animaisAceitos
-    .reduce((acc, tipo, index) => {
-      const tipoAnimal = this.tiposInputModel[tipo.nome];
-      if(!tipoAnimal.length && tipoAnimal.preco && tipoAnimal.preco > 0) {
-        return [...acc, {id: index + 1, tipoAnimal: tipo, preco: tipoAnimal.preco}]
-      }
+      .reduce((acc, tipo, index) => {
+        const tipoAnimal = this.tiposInputModel[tipo.nome];
+        if (!tipoAnimal.length && tipoAnimal.preco && tipoAnimal.preco > 0) {
+          return [...acc, { id: index + 1, tipoAnimal: tipo, preco: tipoAnimal.preco }];
+        }
 
-      const pelagem = tipoAnimal.find((el:any) => el.pelagem === tipo.pelagem);
-      const pelagemMapeada = pelagem.portes.filter((el:any) => el.porte === tipo.porte && el.preco && el.preco > 0)
-      .map((porte:any) => {
-        return {id: index + 1, tipoAnimal: tipo, preco: porte.preco}
-      })
+        const pelagem = tipoAnimal.find((el:any) => el.pelagem === tipo.pelagem);
+        const pelagemMapeada = pelagem.portes.filter((el:any) => el.porte === tipo.porte
+        && el.preco && el.preco > 0)
+          .map((porte:any) => ({
+            id: index + 1,
+            tipoAnimal: tipo,
+            preco: porte.preco,
+          }));
 
-      return [...acc, ...pelagemMapeada];
-    }, []);
+        return [...acc, ...pelagemMapeada];
+      }, []);
 
-    return { ...servico, adicionais, animaisAceitos, precoPorTipo };
+    return {
+      ...servico,
+      adicionais,
+      animaisAceitos,
+      precoPorTipo,
+    };
   }
-
 
   cancelarOperacao() {
     this.viewContainerRef.clear();
-    this.tipoChecked = Object.keys(this.tipoChecked).map(el => this.tipoChecked[el] = false);
+    this.tipoChecked = Object.keys(this.tipoChecked).map((el) => {
+      this.tipoChecked[el] = false;
+      return this.tipoChecked[el];
+    });
     this.cancelaOperacao.emit();
   }
 
@@ -221,11 +236,11 @@ export class FormularioServicoComponent implements OnInit {
   }
 
   toggleCheckBoxGato() {
-    this.gato_checked= !this.gato_checked;
+    this.gatoChecked = !this.gatoChecked;
   }
 
   toggleCheckBoxCachorro() {
-    this.cachorro_checked= !this.cachorro_checked;
+    this.cachorroChecked = !this.cachorroChecked;
   }
 
   addAdicionalComponent() {

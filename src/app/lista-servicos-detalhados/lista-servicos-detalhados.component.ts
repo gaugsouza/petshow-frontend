@@ -4,10 +4,10 @@ import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { ActivatedRoute } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
 import { ObjetoPaginado } from 'src/app/interfaces/paginacao';
-import { FiltroServicos } from '../interfaces/filtro-servicos';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComparacaoComponent } from './dialog-comparacao/dialog-comparacao.component';
-import { ComparacaoWrapper } from '../interfaces/comparacao-wrapper';
+import { DialogComparacaoComponent } from 'src/app/lista-servicos-detalhados/dialog-comparacao/dialog-comparacao.component';
+import { ComparacaoWrapper } from 'src/app/interfaces/comparacao-wrapper';
+import { FiltroServicos } from 'src/app/interfaces/filtro-servicos';
 
 @Component({
   selector: 'app-lista-servicos-detalhados',
@@ -28,20 +28,21 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   paginaAtual:number = 0;
 
   ordenacao:any = {
-    menorPreco: "Preço Crescente",
-    maiorPreco: "Preço Decrescente",
-    mediaAvaliacao: "Melhor Avaliado"
+    menorPreco: 'Preço Crescente',
+    maiorPreco: 'Preço Decrescente',
+    mediaAvaliacao: 'Melhor Avaliado',
   }
 
   private NOTA_MAXIMA = 5;
 
   mediaAvaliacao:number = 0;
-  
+
   filtroAdicional:boolean = false;
 
-  filtro:FiltroServicos = {tipoServicoId: null};
+  filtro:FiltroServicos = { tipoServicoId: null };
 
   menorPreco:number;
+
   maiorPreco:number;
 
   idsAComparar:number[] = []
@@ -78,8 +79,8 @@ export class ListaServicosDetalhadosComponent implements OnInit {
       });
   }
 
-  getPrecoMinimo(servico:ServicoDetalhado):number {
-    const menorPreco = Math.min(...servico.precoPorTipo.map(preco => preco.preco))
+  getPrecoMinimo = (servico:ServicoDetalhado):number => {
+    const menorPreco = Math.min(...servico.precoPorTipo.map((preco) => preco.preco));
     return menorPreco;
   }
 
@@ -89,7 +90,7 @@ export class ListaServicosDetalhadosComponent implements OnInit {
 
   atualizaMediaAvaliacao(valor:number) {
     this.mediaAvaliacao = valor;
-    this.filtro = { ...this.filtro, mediaAvaliacao: this.mediaAvaliacao }
+    this.filtro = { ...this.filtro, mediaAvaliacao: this.mediaAvaliacao };
     this.atualizaFiltro(this.filtro);
   }
 
@@ -101,20 +102,20 @@ export class ListaServicosDetalhadosComponent implements OnInit {
     const estrelasEmBranco = this.NOTA_MAXIMA - this.mediaAvaliacao;
     const estrelas:any[string] = [
       [...Array(this.mediaAvaliacao).keys()].map(() => 'star'),
-      [...Array(estrelasEmBranco).keys()].map(() => 'star_border')
-    ]
+      [...Array(estrelasEmBranco).keys()].map(() => 'star_border'),
+    ];
 
     return estrelas.flatMap((el:string) => el);
   }
 
   toggleFiltroAdicional() {
     this.filtroAdicional = !this.filtroAdicional;
-    this.filtro = { ... this.filtro, possuiAdicionais: this.filtroAdicional};
+    this.filtro = { ...this.filtro, possuiAdicionais: this.filtroAdicional };
     this.atualizaFiltro(this.filtro);
   }
 
   alteraOrdenacao(chave:string) {
-    this.filtro = {...this.filtro, ordenacao: chave};
+    this.filtro = { ...this.filtro, ordenacao: chave };
     this.atualizaFiltro(this.filtro);
   }
 
@@ -122,10 +123,10 @@ export class ListaServicosDetalhadosComponent implements OnInit {
     this.filtro[campo] = valor;
     this.atualizaFiltro(this.filtro);
   }
-  
+
   selecionaIds(checked:boolean, id:number) {
-    if(!checked) {
-      this.idsAComparar = this.idsAComparar.filter(el => el !== id);
+    if (!checked) {
+      this.idsAComparar = this.idsAComparar.filter((el) => el !== id);
     } else {
       this.idsAComparar = [...this.idsAComparar, id];
     }
@@ -136,7 +137,7 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   }
 
   compararServicos() {
-    this.servicosService.buscarServicosComparacao(this.idsAComparar).subscribe(el => {
+    this.servicosService.buscarServicosComparacao(this.idsAComparar).subscribe((el) => {
       this.openDialog(JSON.parse(el));
     });
   }
@@ -144,11 +145,11 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   openDialog(comparacao:ComparacaoWrapper) {
     const ref = this.dialog.open(DialogComparacaoComponent, {
       width: '1200px',
-      data: {...comparacao}
+      data: { ...comparacao },
     });
 
     ref.afterClosed().subscribe(() => {
       this.idsAComparar = [];
-    })
+    });
   }
 }

@@ -15,6 +15,12 @@ import { MatNativeDateModule } from '@angular/material/core/';
 import { ConfirmacaoAgendamentoComponent } from './confirmacao-agendamento.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
+import { VisualizacaoAgendamentoComponent } from '../visualizacao-agendamento/visualizacao-agendamento.component';
+import { DadosAgendamentoComponent } from '../dados-agendamento/dados-agendamento.component';
+import {AvaliacoesModule} from '../../avaliacoes/avaliacoes.module';
+import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
+import { of } from 'rxjs';
+import { JwtHelper } from '../../util/jwt-helper';
 
 describe('ConfirmacaoAgendamentoComponent', () => {
   let component: ConfirmacaoAgendamentoComponent;
@@ -22,7 +28,11 @@ describe('ConfirmacaoAgendamentoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConfirmacaoAgendamentoComponent ],
+      declarations: [
+        ConfirmacaoAgendamentoComponent,
+        VisualizacaoAgendamentoComponent,
+        DadosAgendamentoComponent
+      ],
       imports: [
         CommonModule,
         ConfigModule,
@@ -39,6 +49,22 @@ describe('ConfirmacaoAgendamentoComponent', () => {
         MatNativeDateModule,
         HttpClientTestingModule,
         LoggerTestingModule,
+        AvaliacoesModule,
+      ],
+      providers: [
+        {provide: Router, useValue: {navigate: () => true}},
+        {provide: ActivatedRoute, useValue: {
+          queryParams: of({
+            ativo: false
+          }),
+          snapshot: {
+            paramMap: convertToParamMap({
+              prestadorId: '1',
+              servicoDetalhadoId: '1'
+            })
+          }
+        }},
+        JwtHelper
       ]
     })
     .compileComponents();
