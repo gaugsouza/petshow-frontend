@@ -74,7 +74,7 @@
                 <mat-divider></mat-divider>
             </mat-toolbar>
         </div>
-        <div class="conteiner-lista-servicos-detalhados" *ngIf="servicosDetalhados; then servicosDetalhadosBlock else vazioBlock"></div>
+        <div class="conteiner-lista-servicos-detalhados" *ngIf="servicosDetalhados && servicosDetalhados.length; then servicosDetalhadosBlock else vazioBlock"></div>
         
     </div>    
     

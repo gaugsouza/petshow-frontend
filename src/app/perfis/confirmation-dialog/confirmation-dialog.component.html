@@ -1,0 +1,8 @@
+<div mat-dialog-content class="dialog">
+    <p class="mensagem">{{data.mensagem}}</p>
+
+    <div class="dialog__button-container">
+        <button mat-flat-button color="warn" (click)="onNoClick()">{{'CANCELAR' | translate}}</button>
+        <button mat-flat-button [mat-dialog-close]="data" cdkFocusInitial color="primary">{{'CONFIRMAR' | translate}}</button>
+    </div>
+</div>

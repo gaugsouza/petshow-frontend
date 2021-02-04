@@ -8,6 +8,11 @@ import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { USER_TOKEN } from 'src/app/util/constantes';
 import { ObjetoPaginado } from 'src/app/interfaces/paginacao';
 import { NotificationService } from 'src/app/servicos/notification.service';
+import { MatDialog } from '@angular/material/dialog';
+import { JwtHelper } from 'src/app/util/jwt-helper';
+import { Adicional } from 'src/app/interfaces/adicional';
+import { AdicionalDialogComponent } from '../adicional-dialog/adicional-dialog.component';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-servicos',
@@ -31,7 +36,9 @@ export class ServicosComponent implements OnInit {
 
   constructor(private servicosService: ServicosService,
               private localStorageService: LocalStorageService,
-              @Inject('ServicoNotificationService') private servicoNotification: NotificationService<ServicoDetalhado>) { }
+              @Inject('ServicoNotificationService') private servicoNotification: NotificationService<ServicoDetalhado>,
+              public dialog:MatDialog,
+              public jwtHelper:JwtHelper) { }
 
   ngOnInit(): void {
     this.servicoNotification.notify({});
@@ -67,5 +74,89 @@ export class ServicosComponent implements OnInit {
     const quantidadeItens = event.pageSize;
     this.buscarServicosDetalhadosPorPrestador(this.prestadorId, pagina, quantidadeItens);
     return event;
+  }
+
+  openDialogAtualizacao(adicional) {
+    const data = {
+      titulo: 'ALTERAR_ADICIONAL',
+      textoBotao: 'ALTERAR',
+      adicional,
+    };
+
+    const dialogRef = this.dialog.open(AdicionalDialogComponent, {
+      width: '600px',
+      data: { ...data },
+    });
+
+    dialogRef.afterClosed().subscribe((el:Adicional) => {
+      if (el) {
+        this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+          const prestadorId = this.jwtHelper.recuperaIdToken(token);
+
+          this.servicosService.atualizarAdicional(prestadorId, el.servicoDetalhadoId,
+            el.id, el, token)
+            .subscribe(() => {
+              this.buscarServicosDetalhadosPorPrestador(this.prestadorId, this.paginaAtual,
+                this.quantidadeItens);
+            });
+        });
+      }
+    });
+  }
+
+  openConfirmationDialog(adicional) {
+    const data = {
+      mensagem: 'Deseja prosseguir com a deleção deste adicional?',
+      response: true,
+    };
+
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '400px',
+      data: { ...data },
+    });
+
+    dialogRef.afterClosed().subscribe((dado) => {
+      if (dado) {
+        this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+          const prestadorId = this.jwtHelper.recuperaIdToken(token);
+
+          this.servicosService.desativarAdicional(prestadorId, adicional.servicoDetalhadoId,
+            adicional.id, token)
+            .subscribe(() => {
+              this.buscarServicosDetalhadosPorPrestador(this.prestadorId, this.paginaAtual,
+                this.quantidadeItens);
+            });
+        });
+      }
+    });
+  }
+
+  openDialogInsercao(servico:ServicoDetalhado) {
+    const data = {
+      titulo: 'NOVO_ADICIONAL',
+      textoBotao: 'SALVAR',
+      adicional: {
+        nome: '', descricao: '', preco: 0, servicoDetalhadoId: servico.id,
+      },
+    };
+
+    const dialogRef = this.dialog.open(AdicionalDialogComponent, {
+      width: '600px',
+      data: { ...data },
+    });
+
+    dialogRef.afterClosed().subscribe((adicional:Adicional) => {
+      if (adicional) {
+        this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+          const prestadorId = this.jwtHelper.recuperaIdToken(token);
+
+          this.servicosService.adicionarAdicional(prestadorId,
+            adicional.servicoDetalhadoId, adicional, token).subscribe(() => {
+            this.buscarServicosDetalhadosPorPrestador(this.prestadorId, this.paginaAtual,
+              this.quantidadeItens);
+          });
+        });
+      }
+    });
   }
 }
