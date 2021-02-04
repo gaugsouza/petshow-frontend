@@ -53,7 +53,7 @@
   "WALKING": "PASSEIO",
   "SELECIONE_SERVICO":"Selecione o serviço desejado:",
   "SERVICOS_DISPONIVEIS": "Serviços disponíveis: ",
-  "NENHUM_SERVICO_CADASTRADO": "Não há prestadores registrados para o serviço selecionado :(",
+  "NENHUM_SERVICO_CADASTRADO": "Não foram encontrados prestadores para a busca :(",
   "AGENDAR": "AGENDAR",
   "NOME_COMPLETO": "Nome Completo",
   "NOME_OBRIGATORIO": "Nome é obrigatório.",
@@ -151,5 +151,8 @@
   "AGENDAMENTOS": "Agendamentos",
   "DE": "de",
   "ADICIONAL": "Adicional",
-  "NENHUM_ADICIONAL": "Nenhum adicional informado"
+  "NENHUM_ADICIONAL": "Nenhum adicional informado",
+  "ALTERAR_ADICIONAL": "Alterar Adicional",
+  "CONFIRMAR": "Sim",
+  "NOVO_ADICIONAL": "Novo Adicional"
 }
