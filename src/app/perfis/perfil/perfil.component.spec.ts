@@ -33,6 +33,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MensagemAtivacaoComponent } from '../mensagem-ativacao/mensagem-ativacao.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
 import { AgendaClienteComponent } from '../agenda-cliente/agenda-cliente.component';
 
 describe('PerfilComponent', () => {
@@ -79,7 +81,9 @@ describe('PerfilComponent', () => {
         NgxMaskModule.forRoot(),
         MatPaginatorModule,
         MatTooltipModule,
-        MatChipsModule
+        MatChipsModule,
+        MatCheckboxModule,
+        MatIconModule,
        ]
     })
     .compileComponents();

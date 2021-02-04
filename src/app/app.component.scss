@@ -51,6 +51,7 @@ mat-drawer {
 
 // @media only screen and (max-width: 320px), only screen and (max-device-width: 320px) {
 @media screen and (max-width: $tablet-width) {
+
   .menu_mobile {
     display: flex !important;
   }

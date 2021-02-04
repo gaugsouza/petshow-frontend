@@ -27,6 +27,8 @@
                         <mat-chip-list>
                             <mat-chip *ngFor="let adicional of servico.adicionais">
                                 <span>{{adicional.nome}}</span> | <span>{{adicional.preco | currency: 'BRL'}}</span>
+                                <mat-icon class="icone"> edit </mat-icon>
+                                <mat-icon class="icone"> delete </mat-icon>
                             </mat-chip>
                         </mat-chip-list>
                     </div>
@@ -37,9 +39,7 @@
                     <button mat-flat-button color="warn" (click)="removeServico(servico)">{{'REMOVER' | translate}}</button>
                 </mat-card-actions>
             </mat-card>
-        </div>
-
-        
+        </div>       
 
         <mat-paginator #paginator
             [length]="quantidadeTotal"

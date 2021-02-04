@@ -2,6 +2,7 @@ import {
   Component, OnInit, Output, EventEmitter, Input,
 } from '@angular/core';
 import { Avaliacao } from 'src/app/interfaces/avaliacao';
+import { AvaliacaoService } from 'src/app/servicos/avaliacao.service';
 
 @Component({
   selector: 'app-formulario',
@@ -26,7 +27,7 @@ export class FormularioComponent implements OnInit {
 
   private NOTA_MAXIMA = 5;
 
-  constructor() { }
+  constructor(private avaliacaoService:AvaliacaoService) { }
 
   ngOnInit = (): void => {
   }
@@ -45,15 +46,17 @@ export class FormularioComponent implements OnInit {
   }
 
   getEstrelas(campo:string): any[] {
-    if (!this.avaliacao) {
-      return [];
-    }
-    const nota = this.avaliacao[campo];
-    const estrelasEmBranco = this.NOTA_MAXIMA - nota;
-    const estrelas:any[string] = [
-      [...Array(nota).keys()].map(() => 'star'),
-      [...Array(estrelasEmBranco).keys()].map(() => 'star_border'),
-    ];
-    return estrelas.flatMap((el:any) => el);
+    // if (!this.avaliacao) {
+    //   return [];
+    // }
+    // const nota = this.avaliacao[campo];
+    // const estrelasEmBranco = this.NOTA_MAXIMA - nota;
+    // const estrelas:any[string] = [
+    //   [...Array(nota).keys()].map(() => 'star'),
+    //   [...Array(estrelasEmBranco).keys()].map(() => 'star_border'),
+    // ];
+    // return estrelas.flatMap((el:any) => el);
+
+    return this.avaliacaoService.getEstrelasAvaliacao(this.avaliacao, campo);
   }
 }

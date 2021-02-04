@@ -1,42 +1,52 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component, OnInit, Input, Output, EventEmitter,
+} from '@angular/core';
 import { UsuarioService } from 'src/app/servicos/usuario.service';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { USER_TOKEN } from 'src/app/util/constantes';
 import { ObjetoPaginado } from 'src/app/interfaces/paginacao';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
 import { PageEvent } from '@angular/material/paginator';
-import { MatCheckboxChange } from '@angular/material/checkbox';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 
 @Component({
   selector: 'app-animal-estimacao',
   templateUrl: './animal-estimacao.component.html',
-  styleUrls: ['./animal-estimacao.component.scss']
+  styleUrls: ['./animal-estimacao.component.scss'],
 })
 export class AnimalEstimacaoComponent implements OnInit {
   @Input('servico') servico:ServicoDetalhado;
+
   @Input() isVisualizacao: Boolean;
+
   @Input() idCliente: number;
+
   @Output('recupera-animais-estimacao') recuperaAnimaisEstimacao = new EventEmitter<AnimalEstimacao[]>();
 
   pageEvent: PageEvent;
+
   quantidadeTotal:number;
+
   quantidadeItens:number = 5;
+
   paginaAtual:number = 0;
+
   animaisEstimacao: AnimalEstimacao[];
+
   animaisSelecionados:AnimalEstimacao[] = [];
-  
+
   constructor(private usuarioService: UsuarioService,
               private localStorageService: LocalStorageService) { }
 
   ngOnInit() {
-    if(this.idCliente){
-      if(this.isVisualizacao){
-        this.buscarAnimaisEstimacaoPorDonoPaginados(this.idCliente, this.paginaAtual, this.quantidadeItens);
+    if (this.idCliente) {
+      if (this.isVisualizacao) {
+        this.buscarAnimaisEstimacaoPorDonoPaginados(this.idCliente, this.paginaAtual,
+          this.quantidadeItens);
       } else {
         this.buscarAnimaisEstimacaoPorDono(this.idCliente);
-      }      
-    }    
+      }
+    }
   }
 
   buscarAnimaisEstimacaoPorDonoPaginados(donoId:number, pagina:number, quantidadeItens:number) {
@@ -54,9 +64,10 @@ export class AnimalEstimacaoComponent implements OnInit {
 
   getAnimaisElegiveis():AnimalEstimacao[] {
     const { precoPorTipo } = this.servico;
-    const tiposElegiveis = precoPorTipo.map(preco => preco.tipoAnimal);
+    const tiposElegiveis = precoPorTipo.map((preco) => preco.tipoAnimal);
 
-    return this.animaisEstimacao.filter(animal => tiposElegiveis.filter(tipo => tipo.id === animal.tipo.id).length > 0);
+    return this.animaisEstimacao.filter((animal) => tiposElegiveis
+      .filter((tipo) => tipo.id === animal.tipo.id).length > 0);
   }
 
   buscarAnimaisEstimacaoPorDono(donoId:number) {
@@ -76,8 +87,8 @@ export class AnimalEstimacaoComponent implements OnInit {
     return event;
   }
 
-  selecionaAnimal(selecionados){
-    this.animaisSelecionados = selecionados.map(el => el.value);
+  selecionaAnimal(selecionados) {
+    this.animaisSelecionados = selecionados.map((el) => el.value);
     this.recuperaAnimaisEstimacao.emit(this.animaisSelecionados);
   }
 }

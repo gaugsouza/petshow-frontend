@@ -4,11 +4,12 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
-  
+
   .label {
     align-self: center;
   }
 }
+
 .form {
   display: flex;
   flex-flow: column;
@@ -42,23 +43,17 @@
 }
 
 .grid-container {
-  grid-template-areas:
-  "logo nav nav nav";
+  grid-template-areas: "logo nav nav nav";
   display: grid;
   grid-template-columns: auto auto auto auto;
-  text-align: center
+  text-align: center;
 }
 
 .grid-sm {
   display: none;
 }
- 
 
 /* Grid */
-.grid {
-	display: grid;
-}
-
 .logo {
   grid-area: logo;
   font-weight: bold;
@@ -69,31 +64,31 @@
   font-weight: bold;
 }
 
-
 /* Grid Item */
 .item {
-	margin: 5px;
-	text-align: center;
-	font-size: 1.2em;
+  margin: 5px;
+  text-align: center;
+  font-size: 1.2em;
 }
 
 .grid {
-	max-width: 400px;
-	margin: 0 auto;
-	border: 1px solid #ccc;
+  display: grid;
+  max-width: 400px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
 }
 
-
 @media screen and (max-width: $tablet-width) {
+
   .grid-container {
-    grid-template-areas:
-    "logo nav";
+    grid-template-areas: "logo nav";
     display: none;
   }
-    
+
   .grid-sm {
     display: block;
   }
+
   .grid-container-sm {
     display: grid;
     grid-template-columns: auto auto;
@@ -107,7 +102,6 @@
   .logo {
     grid-area: logo;
     font-weight: bold;
-
   }
 
   .nav {
@@ -115,19 +109,10 @@
     font-weight: bold;
   }
 
-
   /* Grid Item */
   .item {
     margin: 5px;
     text-align: center;
     font-size: 1.2em;
   }
-
-  .grid {
-    max-width: 400px;
-    margin: 0 auto;
-    border: 1px solid #ccc;
-  }
-
-
 }

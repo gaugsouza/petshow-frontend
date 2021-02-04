@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'confirmacao-registro', component: TokenAtivacaoComponent },
   { path: 'prestador/:prestadorId/servicoDetalhado/:servicoDetalhadoId/agendamento', component: AgendamentoComponent },
   { path: 'agendamento/:idAgendamento', component: VisualizacaoAgendamentoComponent },
-  { path: 'agendamento-sucesso', component: ConfirmacaoAgendamentoComponent },
+  { path: 'agendamento-sucesso/:idAgendamento', component: ConfirmacaoAgendamentoComponent },
 ];
 
 @NgModule({

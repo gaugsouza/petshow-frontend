@@ -15,6 +15,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { NgxMaskModule } from 'ngx-mask';
 import { JwtHelper } from '../../util/jwt-helper';
+import {MatCheckboxModule} from '@angular/material/checkbox'; 
 
 describe('FormularioServicoComponent', () => {
   let component: FormularioServicoComponent;
@@ -40,7 +41,8 @@ describe('FormularioServicoComponent', () => {
         TranslateModule.forRoot(),
         MatDialogModule,
         MatCardModule,
-        NgxMaskModule.forRoot()
+        NgxMaskModule.forRoot(),
+        MatCheckboxModule,
       ]
     })
     .compileComponents();

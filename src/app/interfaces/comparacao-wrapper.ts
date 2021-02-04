@@ -1,5 +1,5 @@
-import { Comparacoes } from "./comparacoes";
-import { ServicoComparado } from "./servico-comparado";
+import { Comparacoes } from 'src/app/interfaces/comparacoes';
+import { ServicoComparado } from 'src/app/interfaces/servico-comparado';
 
 export interface ComparacaoWrapper {
     servicosComparados:ServicoComparado[],

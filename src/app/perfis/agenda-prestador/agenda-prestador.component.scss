@@ -1,13 +1,11 @@
 @import "../../../global.scss";
 
-
 .page-section-title {
   font-size: 42px;
   margin: 15px;
   color: $title-color;
   margin-bottom: 4%;
 }
-
 
 mat-list-item {
   margin-bottom: 15px;
@@ -19,7 +17,7 @@ mat-list-item {
 
 .agendamento-list {
 
-    &__item {
+  &__item {
     display: grid;
     grid-template-columns: 25% 1fr 15%;
     background: $item-bg;
@@ -33,11 +31,8 @@ mat-list-item {
       grid-template-columns: 100%;
       width: 100%;
     }
-
   }
 
-
-  
   &__button-container {
     display: flex;
     // flex-direction: column;
@@ -46,16 +41,16 @@ mat-list-item {
 }
 
 button {
-    width: 95px ;
-    align-self: center;
+  width: 95px;
+  align-self: center;
 }
 
 span {
-    align-self: center;
-    font-size: 20px ;
-    padding: 10px 0;
-    text-align: center;
-  }
+  align-self: center;
+  font-size: 20px;
+  padding: 10px 0;
+  text-align: center;
+}
 
 .mat-list-item {
   height: auto !important;
