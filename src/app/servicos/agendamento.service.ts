@@ -61,12 +61,12 @@ export class AgendamentoService {
 
   buscaHorariosIndisponiveis = (idPrestador:number, data:Date, token: string) :Observable<any> => {
     const URL = `${this.AGENDAMENTO_SERVICE_URL}/prestador/${idPrestador}/horarios?dataAgendamento=${data.toISOString().split('T')[0]}`;
-    console.log(URL);
-    return this.httpHandler.doGet<any>(URL, token);;
+    return this.httpHandler.doGet<any>(URL, token);
   }
 
   getHorariosDisponiveis = (horarios: string[], dataAgendamento:Date): string[] => {
-    const horariosElegiveis = dataAgendamento.getDay() === 0 ? HORARIOS_AGENDAMENTO_DOMINGO : HORARIOS_AGENDAMENTO;
-    return horariosElegiveis.filter(el => !horarios.includes(el));
+    const horariosElegiveis = dataAgendamento.getDay() === 0 ? HORARIOS_AGENDAMENTO_DOMINGO
+      : HORARIOS_AGENDAMENTO;
+    return horariosElegiveis.filter((el) => !horarios.includes(el));
   }
 }

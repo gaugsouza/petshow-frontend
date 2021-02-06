@@ -99,21 +99,20 @@ export class ServicoDetalhadoComponent implements OnInit {
 
   selecionaData(data) {
     this.dataAgendamento = data.value;
-    this.buscaHorariosAgendamento(this.dataAgendamento)
+    this.buscaHorariosAgendamento(this.dataAgendamento);
   }
 
   buscaHorariosAgendamento(data:Date) {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
-      this.agendamentoService.buscaHorariosIndisponiveis(this.idPrestador, data, token).subscribe((horarios) => {
-        this.horariosAgendamento = this.agendamentoService.getHorariosDisponiveis(horarios, data);
-        console.log('Horarios', this.horariosAgendamento);
-      })
-    })
+      this.agendamentoService.buscaHorariosIndisponiveis(this.idPrestador, data, token)
+        .subscribe((horarios) => {
+          this.horariosAgendamento = this.agendamentoService.getHorariosDisponiveis(horarios, data);
+        });
+    });
   }
 
   geraDataAtendimento(horario:string) {
-    this.dataAgendamento.setHours(Number.parseInt(horario.split(':')[0]));
-    console.log('DataAgendamento', this.dataAgendamento);
+    this.dataAgendamento.setHours(Number.parseInt(horario.split(':')[0], 10));
     this.recuperaData.emit(this.dataAgendamento);
   }
 }

@@ -59,11 +59,7 @@ export class UsuarioService {
     return this.httpHandler.doGet<any>(URL, token);
   }
 
-  isCliente = (usuario:Usuario) => {
-    return (usuario || {}).tipo === TipoPessoa.CLIENTE || false;
-  } 
+  isCliente = (usuario:Usuario) => (usuario || {}).tipo === TipoPessoa.CLIENTE || false
 
-  isAtivo = (usuario:Usuario) => {
-    return (usuario || {}).isAtivo || false;
-  }
+  isAtivo = (usuario:Usuario) => (usuario || {}).isAtivo || false
 }

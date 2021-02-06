@@ -75,7 +75,7 @@ export class ListaServicosDetalhadosComponent implements OnInit {
       }, () => {
         this.isCliente = false;
       });
-    })
+    });
   }
 
   eventoPagina(event: PageEvent) {

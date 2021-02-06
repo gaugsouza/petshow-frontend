@@ -146,7 +146,6 @@ export class ServicosComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((adicional:Adicional) => {
-      console.log(adicional);
       if (adicional) {
         this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
           const prestadorId = this.jwtHelper.recuperaIdToken(token);
