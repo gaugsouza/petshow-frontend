@@ -9,6 +9,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
 import { ServicoDetalhadoTipoAnimal } from 'src/app/interfaces/servico-detalhado-tipo-animal';
 import { Adicional } from 'src/app/interfaces/adicional';
+import { AgendamentoService } from 'src/app/servicos/agendamento.service';
 
 @Component({
   selector: 'app-servico-detalhado',
@@ -48,8 +49,11 @@ export class ServicoDetalhadoComponent implements OnInit {
 
   dataMinima:Date;
 
+  horariosAgendamento:string[] = [];
+
   constructor(private localStorageService: LocalStorageService,
-    private servicosService: ServicosService) { }
+    private servicosService: ServicosService,
+    private agendamentoService: AgendamentoService) { }
 
   ngOnInit(): void {
     this.dataMinima = new Date();
@@ -95,6 +99,21 @@ export class ServicoDetalhadoComponent implements OnInit {
 
   selecionaData(data) {
     this.dataAgendamento = data.value;
+    this.buscaHorariosAgendamento(this.dataAgendamento)
+  }
+
+  buscaHorariosAgendamento(data:Date) {
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
+      this.agendamentoService.buscaHorariosIndisponiveis(this.idPrestador, data, token).subscribe((horarios) => {
+        this.horariosAgendamento = this.agendamentoService.getHorariosDisponiveis(horarios, data);
+        console.log('Horarios', this.horariosAgendamento);
+      })
+    })
+  }
+
+  geraDataAtendimento(horario:string) {
+    this.dataAgendamento.setHours(Number.parseInt(horario.split(':')[0]));
+    console.log('DataAgendamento', this.dataAgendamento);
     this.recuperaData.emit(this.dataAgendamento);
   }
 }

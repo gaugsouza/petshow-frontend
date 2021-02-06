@@ -17,6 +17,7 @@ import { ConfigModule } from '../../config/config.module';
 
 import { ServicoDetalhadoComponent } from './servico-detalhado.component';
 import {JwtHelper } from '../../util/jwt-helper';
+import { MatSelectModule } from '@angular/material/select';
 describe('ServicoDetalhadoComponent', () => {
   let component: ServicoDetalhadoComponent;
   let fixture: ComponentFixture<ServicoDetalhadoComponent>;
@@ -43,6 +44,8 @@ describe('ServicoDetalhadoComponent', () => {
         MatNativeDateModule,
         HttpClientTestingModule,
         LoggerTestingModule,
+        MatListModule,
+        MatSelectModule
       ]
     })
     .compileComponents();
