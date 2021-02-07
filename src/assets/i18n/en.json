@@ -183,5 +183,8 @@
   "INFORMACOES_CLIENTE": "Client informations",
   "COMPARAR_SERVICOS": "Compare services",
   "COMPARAR": "Compare",
-  "A_PARTIR_DE": "From"
+  "A_PARTIR_DE": "From",
+  "ALTERAR_ADICIONAL": "Change Extra",
+  "CONFIRMAR": "Continue",
+  "NOVO_ADICIONAL": "Add Extra"
 }

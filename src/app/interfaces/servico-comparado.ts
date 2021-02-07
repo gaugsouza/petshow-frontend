@@ -1,5 +1,5 @@
-import { Adicional } from "./adicional";
-import { ServicoDetalhadoTipoAnimal } from "./servico-detalhado-tipo-animal";
+import { Adicional } from 'src/app/interfaces/adicional';
+import { ServicoDetalhadoTipoAnimal } from 'src/app/interfaces/servico-detalhado-tipo-animal';
 
 export interface ServicoComparado {
     id?:number,

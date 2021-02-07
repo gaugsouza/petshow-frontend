@@ -27,19 +27,20 @@
                         <mat-chip-list>
                             <mat-chip *ngFor="let adicional of servico.adicionais">
                                 <span>{{adicional.nome}}</span> | <span>{{adicional.preco | currency: 'BRL'}}</span>
+                                <mat-icon class="icone" (click)="openDialogAtualizacao(adicional)"> edit </mat-icon>
+                                <mat-icon class="icone" (click)="openConfirmationDialog(adicional)"> delete </mat-icon>
                             </mat-chip>
                         </mat-chip-list>
                     </div>
 
                     <ng-template #adicionaisVazios>{{'NENHUM_ADICIONAL' | translate}}</ng-template>
                 </mat-card-content>
-                <mat-card-actions>
+                <mat-card-actions class="footer-buttons">
                     <button mat-flat-button color="warn" (click)="removeServico(servico)">{{'REMOVER' | translate}}</button>
+                    <button mat-flat-button color="primary" (click)="openDialogInsercao(servico)">{{'NOVO_ADICIONAL' | translate}}</button>
                 </mat-card-actions>
             </mat-card>
-        </div>
-
-        
+        </div>       
 
         <mat-paginator #paginator
             [length]="quantidadeTotal"

@@ -7,13 +7,83 @@
                     (click)="compararServicos()">{{'COMPARAR_SERVICOS' | translate}}</button>
         </div>
     </div>
-    <div class="conteiner-lista-servicos-detalhados" *ngIf="servicosDetalhados; then servicosDetalhadosBlock else vazioBlock"></div>
+    <div class="grid-content">
+        <div class="menu-servicos">
+            <mat-toolbar>
+                <mat-toolbar-row>
+                    Filtros:
+                </mat-toolbar-row>
+                <!-- <mat-toolbar-row>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Nome do prestador</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+                </mat-toolbar-row> -->
+                <mat-toolbar-row>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Ordenação</mat-label>
+                        <mat-select (selectionChange)="alteraOrdenacao($event.value)">
+                          <mat-option *ngFor="let key of getOrdenacaoKeys()" [value]="key">
+                            {{ordenacao[key]}}
+                        </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-toolbar-row>
+                <mat-divider></mat-divider>
+                <mat-toolbar-row>
+                    <mat-checkbox (change)="toggleFiltroAdicional()">Possui adicionais</mat-checkbox>
+                </mat-toolbar-row>
+                <mat-divider></mat-divider>
+                <mat-toolbar-row>
+                    <div class="avaliacoes-filtro">
+                        <span>Média de avaliações</span>
+                        <span>
+                            <mat-icon *ngFor="let estrela of getEstrelas(); let i = index" (click)="atualizaMediaAvaliacao(i+1)">
+                                {{estrela}}
+                            </mat-icon>
+                        </span>
+                    </div>
+                </mat-toolbar-row>
+                <mat-divider></mat-divider>
+                <mat-toolbar-row>
+                    <mat-form-field>
+                        <mat-label>Preço Mínimo</mat-label>
+                        <input 
+                            matInput 
+                            (blur)="blurInputs('menorPreco', menorPreco)"
+                            [(ngModel)]="menorPreco"
+                            mask='separator.2' 
+                            [thousandSeparator]="'.'" 
+                            [decimalMarker]="','" 
+                            prefix="R$">
+                    </mat-form-field>
+                </mat-toolbar-row>
+                <mat-toolbar-row>
+                    <mat-form-field>
+                        <mat-label>Preço Máximo</mat-label>
+                        <input 
+                            (blur)="blurInputs('maiorPreco', maiorPreco)"
+                            matInput 
+                            [(ngModel)]="maiorPreco"
+                            mask='separator.2' 
+                            [thousandSeparator]="'.'" 
+                            [decimalMarker]="','" 
+                            prefix="R$">
+                    </mat-form-field>
+                </mat-toolbar-row>
+                <mat-divider></mat-divider>
+            </mat-toolbar>
+        </div>
+        <div class="conteiner-lista-servicos-detalhados" *ngIf="servicosDetalhados && servicosDetalhados.length; then servicosDetalhadosBlock else vazioBlock"></div>
+        
+    </div>    
     
     <ng-template #vazioBlock>
         <p>{{'NENHUM_SERVICO_CADASTRADO' | translate}}</p>
     </ng-template>
 <!-- TODO: Exibir menor preço do serviço detalhado-->
     <ng-template #servicosDetalhadosBlock>
+        <div>
         <mat-list class="lista-servicos-detalhados">
             <mat-list-item *ngFor="let servicoDetalhado of servicosDetalhados">
                 <div class="lista-servicos-detalhados__item">
@@ -41,5 +111,6 @@
             [pageSizeOptions]="[3, 6, 9, 12]"
             (page)="pageEvent = eventoPagina($event)">
         </mat-paginator>
+    </div>
     </ng-template>
 </section>

@@ -28,16 +28,17 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { NotificationService } from 'src/app/servicos/notification.service';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
-import { AgendamentosModule } from './agendamentos/agendamentos.module';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { Agendamento } from './interfaces/agendamento';
-import {MatDividerModule} from '@angular/material/divider'; 
+import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
-import { DialogComparacaoComponent } from './lista-servicos-detalhados/dialog-comparacao/dialog-comparacao.component';
-import {MatTableModule} from '@angular/material/table'; 
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DATE_FORMATS, NativeDateModule, MAT_NATIVE_DATE_FORMATS } from '@angular/material/core';
+import { DialogComparacaoComponent } from './lista-servicos-detalhados/dialog-comparacao/dialog-comparacao.component';
+import { Agendamento } from './interfaces/agendamento';
+import { AgendamentosModule } from './agendamentos/agendamentos.module';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { MAT_DATE_FORMATS, NativeDateModule, MAT_NATIVE_DATE_FORMATS } from '@an
     HomeComponent,
     ListaServicosDetalhadosComponent,
     PrestadorComponent,
-    DialogComparacaoComponent
+    DialogComparacaoComponent,
   ],
   imports: [
     AcessoModule,
@@ -71,8 +72,9 @@ import { MAT_DATE_FORMATS, NativeDateModule, MAT_NATIVE_DATE_FORMATS } from '@an
     AgendamentosModule,
     MatCheckboxModule,
     MatChipsModule,
-    MatDialogModule,
+    MatSelectModule,
     MatDividerModule,
+    MatDialogModule,
     MatTableModule,
     MatDatepickerModule, 
     NativeDateModule,
@@ -83,7 +85,7 @@ import { MAT_DATE_FORMATS, NativeDateModule, MAT_NATIVE_DATE_FORMATS } from '@an
     { provide: 'ServicoNotificationService', useFactory: () => (new NotificationService<ServicoDetalhado>()) },
     { provide: 'AnimalNotificationService', useFactory: () => (new NotificationService<AnimalEstimacao>()) },
     { provide: 'AgendamentoNotificationService', useFactory: () => (new NotificationService<Agendamento>()) },
-    {provide: MAT_DATE_FORMATS, useValue: MAT_NATIVE_DATE_FORMATS},
+    { provide: MAT_DATE_FORMATS, useValue: MAT_NATIVE_DATE_FORMATS},
   ],
   bootstrap: [AppComponent],
 })

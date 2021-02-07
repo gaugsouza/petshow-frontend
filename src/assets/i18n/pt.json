@@ -51,8 +51,8 @@
   "PLACEHOLDER_AVALIACAO": "Ex. O atendimento foi ótimo...",
   "SELECIONE_SERVICO":"Selecione o serviço desejado:",
   "SERVICOS_DISPONIVEIS": "Serviços disponíveis: ",
-  "NENHUM_SERVICO_CADASTRADO": "Não há prestadores registrados para o serviço selecionado :(",
-  "AGENDAR": "Agendar",
+  "NENHUM_SERVICO_CADASTRADO": "Não foram encontrados prestadores para a busca :(",
+  "AGENDAR": "AGENDAR",
   "NOME_COMPLETO": "Nome Completo",
   "NOME_OBRIGATORIO": "Nome é obrigatório.",
   "NOME_MIN_CARACT": "O nome deve possuir no mínimo 3 caracteres.",
@@ -184,5 +184,8 @@
   "INFORMACOES_CLIENTE": "Informações do cliente",
   "COMPARAR_SERVICOS": "Comparar serviços",
   "COMPARAR": "Comparar",
-  "A_PARTIR_DE": "A partir de"
+  "A_PARTIR_DE": "A partir de",
+  "ALTERAR_ADICIONAL": "Alterar Adicional",
+  "CONFIRMAR": "Sim",
+  "NOVO_ADICIONAL": "Novo Adicional"
 }

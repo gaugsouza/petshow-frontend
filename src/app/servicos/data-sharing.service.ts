@@ -7,6 +7,9 @@ import { AnimalEstimacao } from '../interfaces/animalEstimacao';
 })
 export class DataSharingService {
   public isUsuarioLogado:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public animaisSelecionadosList:BehaviorSubject<AnimalEstimacao[]> = new BehaviorSubject<AnimalEstimacao[]>([]);
+
+  public animaisSelecionadosList:BehaviorSubject<AnimalEstimacao[]> =
+  new BehaviorSubject<AnimalEstimacao[]>([]);
+
   constructor() { }
 }
