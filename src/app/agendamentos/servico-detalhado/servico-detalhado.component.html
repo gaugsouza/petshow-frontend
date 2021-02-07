@@ -46,14 +46,10 @@
             <mat-form-field appearance="fill">
                 <mat-label>{{'ESCOLHA_DATA' | translate}}
                 </mat-label>
-                <input matInput [min]="dataMinima" [matDatepicker]="picker" (dateChange)="selecionaData($event)">
+                <input matInput [min]="dataMinima" [matDatepicker]="picker" (dateChange)="selecionaData($event)" >
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
-
-            <button mat-button (click)="english()">Dynamically switch to english</button>
-
-            <button mat-button (click)="portuguese()">Dynamically switch to portuguese</button>
 
         </div>
     </div>    
