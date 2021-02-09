@@ -13,12 +13,6 @@
                 <mat-toolbar-row>
                     Filtros:
                 </mat-toolbar-row>
-                <!-- <mat-toolbar-row>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Nome do prestador</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </mat-toolbar-row> -->
                 <mat-toolbar-row>
                     <mat-form-field appearance="fill">
                         <mat-label>Ordenação</mat-label>
@@ -41,6 +35,7 @@
                             <mat-icon *ngFor="let estrela of getEstrelas(); let i = index" (click)="atualizaMediaAvaliacao(i+1)">
                                 {{estrela}}
                             </mat-icon>
+                            <button mat-button (click)="resetaAvaliacoes()" *ngIf="mediaAvaliacao > 0"><mat-icon>close</mat-icon></button>
                         </span>
                     </div>
                 </mat-toolbar-row>

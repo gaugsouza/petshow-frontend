@@ -15,9 +15,7 @@ import { BANHO } from 'src/app/util/tipo-servico';
   styleUrls: ['./perfil-prestador.component.scss'],
 })
 export class PerfilPrestadorComponent implements OnInit {
-  servico:ServicoDetalhado = {
-    tipo: BANHO,
-  };
+  servico:ServicoDetalhado = {};
 
   usuario:Prestador;
 
@@ -119,9 +117,7 @@ export class PerfilPrestadorComponent implements OnInit {
   }
 
   limpaServico() {
-    this.servico = {
-      tipo: BANHO,
-    };
+    this.servico = {};
   }
 
   removeServico(servico:ServicoDetalhado) {
