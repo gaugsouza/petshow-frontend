@@ -5,6 +5,7 @@ import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
 import { JwtHelper } from 'src/app/util/jwt-helper';
 import { HttpHandlerService } from 'src/app/servicos/http-handler.service';
 import { CLIENTE_SERVICE_URL, ANIMAL_SERVICE_URL } from 'src/app/util/url';
+import { TipoPessoa } from 'src/app/enum/tipo-pessoa.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -57,4 +58,8 @@ export class UsuarioService {
     const URL = `${CLIENTE_SERVICE_URL}/${donoId}/animal-estimacao?pagina=${pagina}&quantidadeItens=${quantidadeItens}`;
     return this.httpHandler.doGet<any>(URL, token);
   }
+
+  isCliente = (usuario:Usuario) => (usuario || {}).tipo === TipoPessoa.CLIENTE || false
+
+  isAtivo = (usuario:Usuario) => (usuario || {}).isAtivo || false
 }

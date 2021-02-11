@@ -51,6 +51,14 @@
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
 
+            <mat-form-field *ngIf="horariosAgendamento.length">
+                <mat-label>Selecione o horário para agendamento</mat-label>
+                <mat-select (selectionChange)="geraDataAtendimento($event.value)">
+                    <mat-option *ngFor="let horario of horariosAgendamento" [value]="horario">
+                        {{horario}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
     </div>    
 </ng-template>

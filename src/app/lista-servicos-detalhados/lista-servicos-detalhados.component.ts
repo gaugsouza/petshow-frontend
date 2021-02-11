@@ -8,6 +8,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogComparacaoComponent } from 'src/app/lista-servicos-detalhados/dialog-comparacao/dialog-comparacao.component';
 import { ComparacaoWrapper } from 'src/app/interfaces/comparacao-wrapper';
 import { FiltroServicos } from 'src/app/interfaces/filtro-servicos';
+import { UsuarioService } from 'src/app/servicos/usuario.service';
+import { LocalStorageService } from 'src/app/servicos/local-storage.service';
+import { USER_TOKEN } from '../util/constantes';
 
 @Component({
   selector: 'app-lista-servicos-detalhados',
@@ -45,16 +48,34 @@ export class ListaServicosDetalhadosComponent implements OnInit {
 
   maiorPreco:number;
 
-  idsAComparar:number[] = []
+  idsAComparar:number[] = [];
+
+  isCliente:boolean;
+
+  isAtivo:boolean;
 
   constructor(private servicosService:ServicosService,
               private route: ActivatedRoute,
-              private dialog:MatDialog) {}
+              private dialog:MatDialog,
+              private usuarioService:UsuarioService,
+              private localStorageService:LocalStorageService) {}
 
   ngOnInit(): void {
     this.tipoId = +this.route.snapshot.paramMap.get('id');
     this.filtro.tipoServicoId = this.tipoId;
     this.buscarServicosDetalhadosPorTipo(this.filtro, this.paginaAtual, this.quantidadePagina);
+    this.buscaUsuario();
+  }
+
+  buscaUsuario() {
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
+      this.usuarioService.getUsuario(token).subscribe((usuario) => {
+        this.isCliente = this.usuarioService.isCliente(usuario);
+        this.isAtivo = this.usuarioService.isAtivo(usuario);
+      }, () => {
+        this.isCliente = false;
+      });
+    });
   }
 
   eventoPagina(event: PageEvent) {
