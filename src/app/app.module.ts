@@ -34,6 +34,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MAT_DATE_FORMATS, NativeDateModule, MAT_NATIVE_DATE_FORMATS } from '@angular/material/core';
 import { DialogComparacaoComponent } from './lista-servicos-detalhados/dialog-comparacao/dialog-comparacao.component';
 import { Agendamento } from './interfaces/agendamento';
 import { AgendamentosModule } from './agendamentos/agendamentos.module';
@@ -74,6 +76,8 @@ import { AgendamentosModule } from './agendamentos/agendamentos.module';
     MatDividerModule,
     MatDialogModule,
     MatTableModule,
+    MatDatepickerModule, 
+    NativeDateModule,
   ],
   providers: [
     JwtHelper,
@@ -81,6 +85,7 @@ import { AgendamentosModule } from './agendamentos/agendamentos.module';
     { provide: 'ServicoNotificationService', useFactory: () => (new NotificationService<ServicoDetalhado>()) },
     { provide: 'AnimalNotificationService', useFactory: () => (new NotificationService<AnimalEstimacao>()) },
     { provide: 'AgendamentoNotificationService', useFactory: () => (new NotificationService<Agendamento>()) },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_NATIVE_DATE_FORMATS},
   ],
   bootstrap: [AppComponent],
 })
