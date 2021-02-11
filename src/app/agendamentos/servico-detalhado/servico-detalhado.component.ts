@@ -10,10 +10,24 @@ import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
 import { ServicoDetalhadoTipoAnimal } from 'src/app/interfaces/servico-detalhado-tipo-animal';
 import { Adicional } from 'src/app/interfaces/adicional';
 
+
+import {FormControl} from '@angular/forms';
+import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+
 @Component({
   selector: 'app-servico-detalhado',
   templateUrl: './servico-detalhado.component.html',
   styleUrls: ['./servico-detalhado.component.scss'],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+    },
+    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+  ],
 })
 export class ServicoDetalhadoComponent implements OnInit {
   @Input() isVisualizacao: Boolean;
@@ -48,8 +62,11 @@ export class ServicoDetalhadoComponent implements OnInit {
 
   dataMinima:Date;
 
-  constructor(private localStorageService: LocalStorageService,
-    private servicosService: ServicosService) { }
+
+  constructor(
+    private localStorageService: LocalStorageService,
+    private servicosService: ServicosService,
+    private _adapter: DateAdapter<any>) { }
 
   ngOnInit(): void {
     this.dataMinima = new Date();

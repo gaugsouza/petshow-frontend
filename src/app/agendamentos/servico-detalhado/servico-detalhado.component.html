@@ -9,25 +9,25 @@
         <div class="servico-container__card">
             <mat-card class="servicos-card">
                 <div>
-                    <p><strong> Serviço selecionado </strong> </p>
-                    <p>Nome: {{servicoDetalhado.tipo.nome | translate}}</p> 
-                    <p *ngIf="servicoDetalhado.descricao && servicoDetalhado.descricao !== ''">Descricao: {{servicoDetalhado.descricao | translate}}</p>
+                    <p><strong> {{'SERVICO_SELECIONADO' | translate}} </strong> </p>
+                    <p>{{'NOME' | translate}}: {{servicoDetalhado.tipo.nome | translate}}</p> 
+                    <p *ngIf="servicoDetalhado.descricao && servicoDetalhado.descricao !== ''">{{'DESC_SERVICO' | translate}}: {{servicoDetalhado.descricao | translate}}</p>
                 </div>
                 <br>
                 <div>
-                    <p> <strong> Prestador </strong></p>
+                    <p> <strong> {{'PRESTADOR' | translate}} </strong></p>
                     <p><strong>{{'NOME' | translate}}:</strong> {{servicoDetalhado.prestador.nome}}</p>
-                    <p><strong>CPF:</strong> {{servicoDetalhado.prestador.cpf | mask: '000.000.000-00'}}</p>
+                    <p><strong>{{'CPF' | translate}}:</strong> {{servicoDetalhado.prestador.cpf | mask: '000.000.000-00'}}</p>
                     <p><strong>E-mail:</strong> {{servicoDetalhado.prestador.login.email}}</p>
                 </div>
                 <br>
                 <div>
-                    <p><strong> Endereço </strong></p>
-                    <p>CEP: {{servicoDetalhado.prestador.endereco.cep}}</p> 
-                    <p>{{servicoDetalhado.prestador.endereco.logradouro}} - Numero: {{servicoDetalhado.prestador.endereco.numero}}</p>
-                    <p *ngIf="servicoDetalhado.prestador.endereco.complemento && servicoDetalhado.prestador.endereco.complemento !== ''">Complemento: {{servicoDetalhado.prestador.endereco.complemento}}</p>
-                    <p>Bairro: {{servicoDetalhado.prestador.endereco.bairro}}</p>
-                    <p>{{servicoDetalhado.prestador.endereco.cidade}} - {{servicoDetalhado.prestador.endereco.estado}}</p>
+                    <p><strong> {{'ENDERECO' | translate}} </strong></p>
+                    <p>{{'CEP' | translate}}: {{servicoDetalhado.prestador.endereco.cep}}</p> 
+                    <p>{{servicoDetalhado.prestador.endereco.logradouro}} - {{'NUMERO' | translate}}: {{servicoDetalhado.prestador.endereco.numero}}</p>
+                    <p *ngIf="servicoDetalhado.prestador.endereco.complemento && servicoDetalhado.prestador.endereco.complemento !== ''">{{'COMPLEMENTO' | translate}}: {{servicoDetalhado.prestador.endereco.complemento}}</p>
+                    <p>{{'BAIRRO' | translate}}: {{servicoDetalhado.prestador.endereco.bairro}}</p>
+                    <p>{{'CIDADE_ESTADO' | translate}}: {{servicoDetalhado.prestador.endereco.cidade}} - {{servicoDetalhado.prestador.endereco.estado}}</p>
                 </div>
             </mat-card>    
         </div>
@@ -44,31 +44,33 @@
 
         <div>
             <mat-form-field appearance="fill">
-                <mat-label>Escolha a data</mat-label>
-                <input matInput [min]="dataMinima" [matDatepicker]="picker" (dateChange)="selecionaData($event)">
+                <mat-label>{{'ESCOLHA_DATA' | translate}}
+                </mat-label>
+                <input matInput [min]="dataMinima" [matDatepicker]="picker" (dateChange)="selecionaData($event)" >
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
+
         </div>
     </div>    
 </ng-template>
 
 <ng-template #adicionaisBlock>
-    <p>Adicionais: </p>
+    <p>{{'ADICIONAIS' | translate}}: </p>
     <mat-selection-list #adicionalList (selectionChange)="selecionaAdicional(adicionalList.selectedOptions.selected)">
         <mat-list-option *ngFor="let adicional of servicoDetalhado.adicionais" [value]="adicional">
-            <p><strong>{{adicional.nome}}</strong> - <span *ngIf="adicional.descricao">Descrição: {{adicional.descricao }}</span> -  <span class="preco">{{adicional.preco | currency: 'BRL'}}</span></p>
+            <p><strong>{{adicional.nome}}</strong> - <span *ngIf="adicional.descricao">{{'DESC_SERVICO' | translate}}: {{adicional.descricao }}</span> -  <span class="preco">{{adicional.preco | currency: 'BRL'}}</span></p>
         </mat-list-option>
     </mat-selection-list>
 </ng-template>
 
 <ng-template #adicionaisVazioBlock>
-    Nenhum adicional disponível para esse serviço
+    {{'NENHUM_ADICIONAL_DISP' | translate}}
 </ng-template>
 
 
 <ng-template #tipoSelecionadoBlock>
-    <p>Tipo selecionado com base na escolha do animal:</p>
+    <p>{{'TIPO_SELECT_BASE_ANIMAL' | translate}}:</p>
     <mat-card *ngFor="let preco of getInformacoesTipoServico()">
         <mat-card-title>
             {{preco.tipoAnimal.nome}} - <span class="preco">{{ preco.preco | currency: 'BRL'}}</span>
@@ -82,7 +84,7 @@
 
 <ng-template #tipoListaBlock>
     <div class="lista-precos">
-        <p>Selecione um dos serviços a ser prestado de acordo com o animal a ser atendido</p>
+        <p>{{'SELECT_SERVICO_ANIMAL' | translate}}</p>
         <mat-selection-list #tipoServicoList (selectionChange)="selecionaTipo(tipoServicoList.selectedOptions.selected)">
             <mat-list-option *ngFor="let preco of servicoDetalhado.precoPorTipo" [value]="preco">
                 <p class="lista-precos__informacoes"><span>{{preco.tipoAnimal.nome}}</span> <span>{{getDescricaoServico(preco)}}</span> - <span class="preco">{{preco.preco | currency: 'BRL'}}</span></p>
