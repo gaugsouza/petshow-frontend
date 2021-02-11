@@ -45,7 +45,7 @@ export class CadastroContaComponent implements OnInit {
 
   bairroFormControl = new FormControl('', [Validators.required]);
 
-  cepFormControl = new FormControl('', [Validators.required]);
+  cepFormControl = new FormControl('', [Validators.required, Validators.minLength(8)]);
 
   estadoFormControl = new FormControl('', [Validators.required]);
 
@@ -126,7 +126,7 @@ export class CadastroContaComponent implements OnInit {
   }
 
   disableButton() {
-    this.disableSend = true;
+    this.disableSend = !this.disableSend;
   }
 
   cadastrarUsuario(usuario:Usuario) {
@@ -137,6 +137,7 @@ export class CadastroContaComponent implements OnInit {
       }, (err) => {
         this.errorMessage = '';
         this.erroRequisicao = typeof err === 'string' ? err : 'ERRO_REQUISICAO';
+        this.disableButton();
       });
   }
 

@@ -154,5 +154,7 @@
   "NENHUM_ADICIONAL": "Nenhum adicional informado",
   "ALTERAR_ADICIONAL": "Alterar Adicional",
   "CONFIRMAR": "Sim",
-  "NOVO_ADICIONAL": "Novo Adicional"
+  "NOVO_ADICIONAL": "Novo Adicional",
+  "TELEFONE_INVALIDO": "Telefone não está respeitando o formato solicitado",
+  "CEP_INVALIDO": "CEP não está respeitando o formato solicitado"
 }
