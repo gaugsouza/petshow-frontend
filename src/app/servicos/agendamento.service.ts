@@ -4,6 +4,7 @@ import { AGENDAMENTO_URL } from 'src/app/util/url';
 import { Agendamento } from 'src/app/interfaces/agendamento';
 import { Observable } from 'rxjs';
 import { Avaliacao } from 'src/app/interfaces/avaliacao';
+import { HORARIOS_AGENDAMENTO, HORARIOS_AGENDAMENTO_DOMINGO } from '../util/constantes';
 
 @Injectable({
   providedIn: 'root',
@@ -56,5 +57,16 @@ export class AgendamentoService {
     const URL = `${this.AGENDAMENTO_SERVICE_URL}/${idAgendamento}/avaliacao`;
 
     return this.httpHandler.doGet<any>(URL, token);
+  }
+
+  buscaHorariosIndisponiveis = (idPrestador:number, data:Date, token: string) :Observable<any> => {
+    const URL = `${this.AGENDAMENTO_SERVICE_URL}/prestador/${idPrestador}/horarios?dataAgendamento=${data.toISOString().split('T')[0]}`;
+    return this.httpHandler.doGet<any>(URL, token);
+  }
+
+  getHorariosDisponiveis = (horarios: string[], dataAgendamento:Date): string[] => {
+    const horariosElegiveis = dataAgendamento.getDay() === 0 ? HORARIOS_AGENDAMENTO_DOMINGO
+      : HORARIOS_AGENDAMENTO;
+    return horariosElegiveis.filter((el) => !horarios.includes(el));
   }
 }
