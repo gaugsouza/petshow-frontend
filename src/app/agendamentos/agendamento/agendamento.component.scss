@@ -21,8 +21,16 @@
 }
 
 .button-container {
+  padding: 10 0;
   display: grid;
   width: 30%;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  // grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fit, [col-start] minmax(100px, 1fr) [col-end]);
   gap: 20px;
+  justify-content: space-around;
+}
+
+.mat-success {
+  background-color: green;
+  color: #fff;
 }
