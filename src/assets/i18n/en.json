@@ -153,5 +153,6 @@
   "NENHUM_ADICIONAL": "No extras found",
   "ALTERAR_ADICIONAL": "Change Extra",
   "CONFIRMAR": "Continue",
-  "NOVO_ADICIONAL": "Add Extra"
+  "NOVO_ADICIONAL": "Add Extra",
+  "SERVICO_DESTE_TIPO_JA_ADICIONADO": "There's already a service registered with this type for this provider."
 }

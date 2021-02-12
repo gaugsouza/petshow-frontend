@@ -154,5 +154,6 @@
   "NENHUM_ADICIONAL": "Nenhum adicional informado",
   "ALTERAR_ADICIONAL": "Alterar Adicional",
   "CONFIRMAR": "Sim",
-  "NOVO_ADICIONAL": "Novo Adicional"
+  "NOVO_ADICIONAL": "Novo Adicional",
+  "SERVICO_DESTE_TIPO_JA_ADICIONADO": "Já existe um serviço deste tipo cadastrado para este prestador."
 }
