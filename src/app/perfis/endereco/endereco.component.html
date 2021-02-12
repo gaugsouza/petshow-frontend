@@ -6,9 +6,9 @@
             <p>{{'ENDERECO' | translate}}</p>
             <span>{{endereco.logradouro}}, {{endereco.numero}}</span>
             <span>{{endereco.complemento}}</span>
-            <span>{{endereco.cep}}</span>
+            <span>{{endereco.cep | mask: '00000-000'}}</span>
             <span>{{endereco.bairro}}</span>
-            <span>{{endereco.cidade}} - {{endereco.estado}}</span>
+            <span *ngIf="endereco.cidade && endereco.estado">{{endereco.cidade}} - {{endereco.estado}}</span>
         </div>
         <button mat-flat-button color="primary" (click)="openDialog()">{{'ALTERAR_ENDERECO' | translate}}</button>
     </mat-card>

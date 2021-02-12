@@ -32,7 +32,7 @@
             </mat-error>
         </mat-form-field>
     </div>
-    <div>
+    <div *ngIf="estados && estados.length">
         <mat-form-field>
             <mat-label>{{'ESTADO' | translate}}</mat-label>
             <mat-select [(ngModel)]="endereco.estado" (selectionChange)="carregarCidades($event.value)">
