@@ -5,12 +5,12 @@
                 <p>{{cliente.nome}}</p>
             </mat-card-title>
             <mat-card-subtitle>
-                Dados do cliente:
+                {{'DADOS_DO' | translate}} {{'CLIENTE' | translate}}
             </mat-card-subtitle>
             <mat-card-content>
-                <p>Dados do cliente: </p>
-                <p>Nome: {{cliente.nome}}</p>
-                <p>CPF: {{cliente.cpf}}</p>
+                <p>{{'DADOS_DO' | translate}} {{'CLIENTE' | translate}}: </p>
+                <p>{{'NOME' | translate}}: {{cliente.nome}}</p>
+                <p>{{'CPF' | translate}}: {{cliente.cpf}}</p>
 
                 <div *ngIf="animaisEstimacao">
                     <mat-card *ngFor="let animal of animaisEstimacao">
@@ -19,8 +19,8 @@
                         </mat-card-subtitle>
                         <mat-card-content>
                             <p>{{animal.tipo.nome}}</p>
-                            <p *ngIf="animal.tipo.porte">Porte: {{animal.tipo.porte}}</p>
-                            <p *ngIf="animal.tipo.pelagem">Pelagem: {{animal.tipo.pelagem}}</p>
+                            <p *ngIf="animal.tipo.porte">{{'PORTE' | translate}}: {{animal.tipo.porte}}</p>
+                            <p *ngIf="animal.tipo.pelagem">{{'PELAGEM' | translate}}: {{animal.tipo.pelagem}}</p>
                         </mat-card-content>
                     </mat-card>
                 </div>
@@ -36,48 +36,48 @@
                 <p>{{prestador.nome}}</p>
             </mat-card-title>
             <mat-card-subtitle>
-                Dados do prestador:
+                {{'DADOS_DO' | translate}} {{'PRESTADOR' | translate}}
             </mat-card-subtitle>
             <mat-card-content>
-                <p>Nome: {{prestador.nome}}</p>
+                <p>{{'NOME' | translate}}: {{prestador.nome}}</p>
                 <div *ngIf="servicoDetalhado">
                     <mat-card>
                         <mat-card-subtitle>
                             {{servicoDetalhado.tipo.nome}}
                         </mat-card-subtitle>
                         <mat-card-content>
-                            <p>Detalhes do serviço escolhido: </p>
+                            <p>{{'DETALHES_SERVICO' | translate}}: </p>
                             <p>{{servicoDetalhado.tipo.nome}}</p>
                             <p *ngIf="servicoDetalhado.descricao">Descrição: {{servicoDetalhado.descricao}}</p>
-                            <p>Data do agendamento: {{dataAgendamento | date: 'dd/MM/yyyy'}}</p>
+                            <p>Data do agendamento: {{dataAgendamento | date: 'dd/MM/yyyy HH:mm'}}</p>
                             <p *ngIf="status">Status do agendamento: <span class="{{getStatusClassColor()}}">{{status}}</span></p>
                         </mat-card-content>
                     </mat-card>
                 </div>
 
                 <div *ngIf="adicionais && adicionais.length">
-                    <p>Adicionais: </p>
+                    <p>{{'ADICIONAIS' | translate}}: </p>
                     <mat-card *ngFor="let adicional of adicionais">
                         <mat-card-content>
                             <p>{{adicional.nome}}</p>
-                            <p *ngIf="adicional.descricao"> Descrição: {{adicional.descricao}}</p>
+                            <p *ngIf="adicional.descricao"> {{'DESC_SERVICO' | translate}}: {{adicional.descricao}}</p>
                             <p>{{adicional.preco | currency: 'BRL'}}</p>
                         </mat-card-content>
                     </mat-card>
                 </div>
                 <div>
                     <hr>
-                    Valores dos serviços por animal:
+                    {{'VALORES_SERVICOS_POR_ANIMAL' | translate}}:
                     <mat-card *ngFor="let preco of precoPorTipo">
                         <mat-card-content>
-                            <p>Animal: {{preco.tipoAnimal.nome}}</p>
-                            <p>Preço: {{preco.preco | currency: 'BRL'}}</p>
+                            <p>{{'ANIMAL' | translate}}: {{preco.tipoAnimal.nome}}</p>
+                            <p>{{'VALOR_SERVICO' | translate}}: {{preco.preco | currency: 'BRL'}}</p>
                         </mat-card-content>
                     </mat-card>
                     <hr>
                 </div>
                
-                <p>Valor total: <span class="preco-final">{{getValorTotal() | currency: 'BRL'}}</span></p>
+                <p>{{'VALOR_TOTAL' | translate}}: <span class="preco-final">{{getValorTotal() | currency: 'BRL'}}</span></p>
 
             </mat-card-content>
         </mat-card>

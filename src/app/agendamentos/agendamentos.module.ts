@@ -22,6 +22,7 @@ import { ClienteComponent } from 'src/app/agendamentos/cliente/cliente.component
 import { ServicoDetalhadoComponent } from 'src/app/agendamentos/servico-detalhado/servico-detalhado.component';
 import { AnimalEstimacaoComponent } from 'src/app/agendamentos/animal-estimacao/animal-estimacao.component';
 import { AgendamentoComponent } from 'src/app/agendamentos/agendamento/agendamento.component';
+import { MatSelectModule } from '@angular/material/select';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -52,6 +53,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     MatDatepickerModule,
     MatNativeDateModule,
     AvaliacoesModule,
+    MatSelectModule,
   ],
   exports: [
     AgendamentoComponent,

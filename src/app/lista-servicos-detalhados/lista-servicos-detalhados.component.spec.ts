@@ -20,6 +20,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {MatToolbarModule} from '@angular/material/toolbar'; 
 import {MatIconModule} from '@angular/material/icon'; 
 import { ConfigModule } from '../config/config.module';
+import { MatButtonModule } from '@angular/material/button';
 
 describe('ListaServicosDetalhadosComponent', () => {
   let component: ListaServicosDetalhadosComponent;
@@ -62,7 +63,8 @@ describe('ListaServicosDetalhadosComponent', () => {
         MatDialogModule,
         MatToolbarModule,
         MatIconModule,
-        ConfigModule
+        ConfigModule,
+        MatButtonModule,
       ]
     })
     .compileComponents();
