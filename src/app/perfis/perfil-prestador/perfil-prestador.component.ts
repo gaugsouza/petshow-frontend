@@ -7,7 +7,6 @@ import { USER_TOKEN } from 'src/app/util/constantes';
 import { Endereco } from 'src/app/interfaces/endereco';
 import { JwtHelper } from 'src/app/util/jwt-helper';
 import { NotificationService } from 'src/app/servicos/notification.service';
-import { BANHO } from 'src/app/util/tipo-servico';
 
 @Component({
   selector: 'app-perfil-prestador',

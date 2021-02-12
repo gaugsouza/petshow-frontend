@@ -60,6 +60,7 @@ export class EnderecoDialogComponent implements OnInit {
   }
 
   hasErrors() {
-    return this.logradouroFormControl.invalid|| this.numeroFormControl.invalid || this.cepFormControl.invalid || this.bairroFormControl.invalid;
+    return this.logradouroFormControl.invalid || this.numeroFormControl.invalid
+    || this.cepFormControl.invalid || this.bairroFormControl.invalid;
   }
 }
