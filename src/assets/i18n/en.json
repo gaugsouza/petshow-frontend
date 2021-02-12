@@ -154,5 +154,5 @@
   "ALTERAR_ADICIONAL": "Change Extra",
   "CONFIRMAR": "Continue",
   "NOVO_ADICIONAL": "Add Extra",
-  "SERVICO_DESTE_TIPO_JA_ADICIONADO": "There's already a service registered with this type for this provider."
+  "SERVICO_DESTE_TIPO_JA_ADICIONADO": "There's already a service of this type registered for this provider."
 }
