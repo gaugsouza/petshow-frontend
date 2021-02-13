@@ -3,10 +3,12 @@
     <mat-form-field>
         <mat-label>{{'LOGRADOURO' | translate}}</mat-label>
         <input matInput [formControl]="logradouroFormControl" [(ngModel)]="data.logradouro" />
+        <mat-error *ngIf="logradouroFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
     </mat-form-field>
     <mat-form-field>
         <mat-label>{{'NUMERO' | translate}}</mat-label>
-        <input type="number" [formControl]="numeroFormControl" matInput [(ngModel)]="data.numero" />
+        <input [formControl]="numeroFormControl" matInput mask="0*" [(ngModel)]="data.numero" />
+        <mat-error *ngIf="numeroFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
     </mat-form-field>
     <mat-form-field>
         <mat-label>{{'COMPLEMENTO' | translate}}</mat-label>
@@ -14,11 +16,14 @@
     </mat-form-field>
     <mat-form-field>
         <mat-label>CEP</mat-label>
-        <input [formControl]="cepFormControl" matInput [(ngModel)]="data.cep" />
+        <input [formControl]="cepFormControl" matInput [(ngModel)]="data.cep" mask="00000-000" minlength="8" />
+        <mat-error *ngIf="cepFormControl.hasError('minlength')">{{'CEP_INVALIDO' | translate}}</mat-error>
+        <mat-error *ngIf="cepFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
     </mat-form-field>
     <mat-form-field>
         <mat-label>{{'BAIRRO' | translate}}</mat-label>
         <input [formControl]="bairroFormControl" matInput [(ngModel)]="data.bairro" />
+        <mat-error *ngIf="bairroFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
     </mat-form-field>
     <mat-form-field>
         <mat-label>{{'ESTADO' | translate}}</mat-label>

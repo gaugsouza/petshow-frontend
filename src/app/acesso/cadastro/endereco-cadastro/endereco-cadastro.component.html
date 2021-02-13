@@ -27,6 +27,9 @@
             <mat-label>{{'CEP' | translate}}</mat-label>
             <input matInput [formControl]="cepFormControl" mask="00000-000" minlength="8" [(ngModel)]="endereco.cep">
             <mat-error *ngIf="cepFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
+            <mat-error *ngIf="cepFormControl.hasError('minlength')">
+                {{'CEP_INVALIDO' | translate}}
+            </mat-error>
         </mat-form-field>
     </div>
     <div>

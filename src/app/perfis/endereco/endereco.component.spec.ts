@@ -13,6 +13,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import {JwtHelper} from '../../util/jwt-helper';
+import { ConfigModule } from '../../config/config.module';
+
 describe('EnderecoComponent', () => {
   let component: EnderecoComponent;
   let fixture: ComponentFixture<EnderecoComponent>;
@@ -32,7 +34,8 @@ describe('EnderecoComponent', () => {
         ReactiveFormsModule,
         TranslateModule.forRoot(),
         MatDialogModule,
-        MatCardModule
+        MatCardModule,
+        ConfigModule
       ],
       providers: [
         JwtHelper
