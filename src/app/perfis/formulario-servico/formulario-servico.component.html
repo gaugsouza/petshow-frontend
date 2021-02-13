@@ -33,9 +33,9 @@
         <div *ngFor="let porte of tipo.portes">
           <mat-form-field appearance="fill">
             <mat-label>Porte: {{porte.porte}}</mat-label>
-            <input matInput [(ngModel)]="porte.preco"  class="form__servico-valor"
+            <input matInput [formControl]="precoFormControl" required [(ngModel)]="porte.preco" class="form__servico-valor"
               mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
-              [errorStateMatcher]="matcher" name="porteP_pelagemCurta" [ngModelOptions]="{standalone: true}"/>
+              [errorStateMatcher]="matcher" name="porteP_pelagemCurta"/>
           </mat-form-field>
         </div>
       </div>

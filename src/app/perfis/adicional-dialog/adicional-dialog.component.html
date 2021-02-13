@@ -2,7 +2,7 @@
     <p>{{data.titulo | translate}}</p>
     <mat-form-field>
         <mat-label>{{'NOME' | translate}}</mat-label>
-        <input matInput [formControl]="nomeFormControl" [(ngModel)]="data.adicional.nome" />
+        <input matInput [formControl]="nomeFormControl" required [(ngModel)]="data.adicional.nome" />
     </mat-form-field>
     <mat-form-field>
         <mat-label>{{'DESC_SERVICO' | translate}}</mat-label>
@@ -10,7 +10,7 @@
     </mat-form-field>
     <mat-form-field>
         <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-        <input matInput [formControl]="precoFormControl" [(ngModel)]="data.adicional.preco" 
+        <input matInput [formControl]="precoFormControl" required [(ngModel)]="data.adicional.preco" 
             mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$" />
     </mat-form-field>
     <div class="dialog__button-container">
