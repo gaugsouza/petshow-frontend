@@ -12,6 +12,7 @@ import { TokenAtivacaoComponent } from './acesso/token-ativacao/token-ativacao.c
 import { AgendamentoComponent } from './agendamentos/agendamento/agendamento.component';
 import { ConfirmacaoAgendamentoComponent } from './agendamentos/confirmacao-agendamento/confirmacao-agendamento.component';
 import { VisualizacaoAgendamentoComponent } from './agendamentos/visualizacao-agendamento/visualizacao-agendamento.component';
+import { GeolocalizacaoComponent } from './geolocalizacao/geolocalizacao/geolocalizacao.component';
 
 const routes: Routes = [
   { path: 'perfil', component: PerfilComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'prestador/:prestadorId/servicoDetalhado/:servicoDetalhadoId/agendamento', component: AgendamentoComponent },
   { path: 'agendamento/:idAgendamento', component: VisualizacaoAgendamentoComponent },
   { path: 'agendamento-sucesso/:idAgendamento', component: ConfirmacaoAgendamentoComponent },
+  { path: 'mapa', component: GeolocalizacaoComponent }
 ];
 
 @NgModule({
