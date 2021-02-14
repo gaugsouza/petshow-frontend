@@ -27,12 +27,12 @@
     </section>
 
     <ng-template #listBlock let-chave='chave'>
-      <h4>Tabela de preços por tamanho de pelos e porte do animal</h4>
+      <h4>{{'TABELA_PRECOS_PORTE_PELAGEM' | translate}}</h4>
       <div *ngFor="let tipo of tiposInputModel[chave]" class="grid-porte-pelagem">
-        <label class="label">Pelagem: {{tipo.pelagem}}</label>
+        <label class="label">{{'PELAGEM' | translate}}: {{tipo.pelagem}}</label>
         <div *ngFor="let porte of tipo.portes">
           <mat-form-field appearance="fill">
-            <mat-label>Porte: {{porte.porte}}</mat-label>
+            <mat-label>{{'PORTE' | translate}}: {{porte.porte}}</mat-label>
             <input matInput [formControl]="precoFormControl" required [(ngModel)]="porte.preco" class="form__servico-valor"
               mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
               [errorStateMatcher]="matcher" name="porteP_pelagemCurta"/>
