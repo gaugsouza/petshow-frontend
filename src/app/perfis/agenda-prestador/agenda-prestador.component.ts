@@ -96,7 +96,7 @@ export class AgendaPrestadorComponent implements OnInit {
   cancelaAgendamento(agendamento) {
     const cancelRef = this.cancelamento.open(ConfirmacaoCancelamentoComponent,
       {
-        data: "DESEJA_CONFIRMAR_AGENDAMENTO"
+        data: "DESEJA_CONFIRMAR_CANCELAMENTO"
       });
     cancelRef.afterClosed().subscribe((result) => {
       if (result) {
