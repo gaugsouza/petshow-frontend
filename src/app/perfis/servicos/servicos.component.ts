@@ -66,18 +66,6 @@ export class ServicosComponent implements OnInit {
     });
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
   buscarServicosDetalhadosPorPrestador(prestadorId:number, pagina:number, quantidadeItens:number) {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
       this.servicosService.buscarServicosDetalhadosPorPrestador(prestadorId, pagina,
