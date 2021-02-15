@@ -13,6 +13,7 @@ import { JwtHelper } from 'src/app/util/jwt-helper';
 import { Adicional } from 'src/app/interfaces/adicional';
 import { AdicionalDialogComponent } from '../adicional-dialog/adicional-dialog.component';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { ConfirmacaoCancelamentoComponent } from 'src/app/perfis/confirmacao-cancelamento/confirmacao-cancelamento.component';
 
 @Component({
   selector: 'app-servicos',
@@ -34,7 +35,8 @@ export class ServicosComponent implements OnInit {
 
   paginaAtual:number = 0;
 
-  constructor(private servicosService: ServicosService,
+  constructor(private cancelamento: MatDialog,
+              private servicosService: ServicosService,
               private localStorageService: LocalStorageService,
               @Inject('ServicoNotificationService') private servicoNotification: NotificationService<ServicoDetalhado>,
               public dialog:MatDialog,
@@ -48,9 +50,33 @@ export class ServicosComponent implements OnInit {
     });
   }
 
+  // removeServico(servico:ServicoDetalhado) {
+  //   this.removerServico.emit(servico);
+  // }
+
   removeServico(servico:ServicoDetalhado) {
-    this.removerServico.emit(servico);
+    const cancelRef = this.cancelamento.open(ConfirmacaoCancelamentoComponent,
+      {
+        data: "DESEJA_CONFIRMAR_REMOCAO"
+      });
+    cancelRef.afterClosed().subscribe((result) => {
+      if (result) {
+        const cancelaId = this.removerServico.emit(servico);
+      }
+    });
   }
+
+
+
+
+
+
+
+
+
+
+
+
 
   buscarServicosDetalhadosPorPrestador(prestadorId:number, pagina:number, quantidadeItens:number) {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
