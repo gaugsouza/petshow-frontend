@@ -27,13 +27,14 @@ mat-list-item {
   margin-bottom: 25px;
 
   &__item {
+    align-self: center;
     display: grid;
     grid-template-columns: 1fr 20%;
     background: $item-bg;
     border: 1px solid $item-border;
     border-radius: 10px;
     padding: 6px 0px;
-    width: 90%;
+    width: 98%;
     margin: 0 auto;
 
     @media screen and (max-width: $tablet-width) {
@@ -52,7 +53,12 @@ mat-list-item {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
-    width: 50%;
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    max-width: 150px;
+    // width: 50%;
   }
 
   .preco-servico {
@@ -97,4 +103,9 @@ mat-list-item {
   .mat-icon {
     cursor: pointer;
   }
+}
+
+.mat-success {
+  background-color: green;
+  color: #fff;
 }

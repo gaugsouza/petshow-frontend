@@ -21,13 +21,13 @@
 }
 
 .button-container {
-  padding: 10 0;
+  padding: 25px 50px 25px;
+  justify-content: space-around;
   display: grid;
-  width: 30%;
-  // grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  max-width: 150px;
+  // width: 25%;
   grid-template-columns: repeat(auto-fit, [col-start] minmax(100px, 1fr) [col-end]);
   gap: 20px;
-  justify-content: space-around;
 }
 
 .mat-success {

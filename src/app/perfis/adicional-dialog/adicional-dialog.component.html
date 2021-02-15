@@ -6,7 +6,7 @@
     </mat-form-field>
     <mat-form-field>
         <mat-label>{{'DESC_SERVICO' | translate}}</mat-label>
-        <input matInput [(ngModel)]="data.adicional.descricao" />
+        <textarea matInput [(ngModel)]="data.adicional.descricao" matInput placeholder="Your Message" formControlName="message" cdkTextareaAutosize></textarea>
     </mat-form-field>
     <mat-form-field>
         <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>

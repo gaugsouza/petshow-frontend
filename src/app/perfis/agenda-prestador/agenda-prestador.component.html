@@ -34,7 +34,7 @@
             <span><p>{{'STATUS' | translate}}: {{agendamento.status.nome}}</p></span>
           </div>
           <div class="agendamento-list__button-container" *ngIf="isAtivo(agendamento)">
-            <button mat-flat-button color="accent"
+            <button mat-flat-button color="success"
               (click)="concluiAgendamento(agendamento)">{{'CONCLUIDO' | translate}}</button>
             <button mat-flat-button color="warn"
               (click)="cancelaAgendamento(agendamento)">{{'CANCELAR' | translate}}</button>
