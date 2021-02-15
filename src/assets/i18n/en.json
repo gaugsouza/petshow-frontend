@@ -154,5 +154,8 @@
   "ALTERAR_ADICIONAL": "Change Extra",
   "CONFIRMAR": "Continue",
   "NOVO_ADICIONAL": "Add Extra",
-  "SERVICO_DESTE_TIPO_JA_ADICIONADO": "There's already a service of this type registered for this provider."
+  "SERVICO_DESTE_TIPO_JA_ADICIONADO": "There's already a service of this type registered for this provider.",
+  "ATIVO": "Enabled",
+  "ATIVAR_PRECO_POR_TIPO": "Are you sure that you want to enable this category?",
+  "DESATIVAR_PRECO_POR_TIPO": "Are you sure that you want to disable this category?"
 }
