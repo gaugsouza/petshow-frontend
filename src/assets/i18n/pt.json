@@ -195,5 +195,6 @@
   "DESATIVAR_PRECO_POR_TIPO": "Deseja prosseguir com a desativação desta categoria?",
   "ESTETICA": "Salão de Beleza",
   "ACOMODACAO": "Hospedagem",
-  "CUIDADO": "Cuidados Diversos"
+  "CUIDADO": "Cuidados Diversos",
+  "CONFIRMAR_DELECAO_ADICIONAL":"Deseja prosseguir com a deleção deste adicional?"
 }

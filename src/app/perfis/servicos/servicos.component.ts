@@ -107,7 +107,7 @@ export class ServicosComponent implements OnInit {
   }
 
   openConfirmationDialogAdicional(adicional){
-    const data = {mensagem: "Deseja prosseguir com a deleção deste adicional?",
+    const data = {mensagem: "CONFIRMAR_DELECAO_ADICIONAL",
                   response: true}
 
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {

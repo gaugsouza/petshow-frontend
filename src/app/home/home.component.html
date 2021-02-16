@@ -4,7 +4,7 @@
         {{'SELECIONE_SERVICO'| translate}}
     </h1> -->
     <mat-tab-group mat-align-tabs="center">
-        <mat-tab *ngFor="let grupo of grupos" label="{{grupo | translate}}">
+        <mat-tab *ngFor="let grupo of grupos" class="menu-title" label="{{grupo | translate}}">
             <div class=selecao_servico__button-container>
                 <a mat-flat-button *ngFor="let servico of exibirServicosPorGrupo(grupo)" href="/servico-detalhado/tipo-servico/{{servico.id}}">{{servico.nome | translate}}</a>
             </div>

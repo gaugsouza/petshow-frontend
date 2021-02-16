@@ -8,6 +8,9 @@ import { Endereco } from 'src/app/interfaces/endereco';
 import { JwtHelper } from 'src/app/util/jwt-helper';
 import { NotificationService } from 'src/app/servicos/notification.service';
 import { BANHO } from 'src/app/util/tipo-servico';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { ErrorDialogComponent } from 'src/app/confirmation-dialog/error-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-perfil-prestador',
@@ -25,12 +28,11 @@ export class PerfilPrestadorComponent implements OnInit {
 
   isFormVisivel:Boolean = false;
 
-  erroRequisicao:string;
-
   mensagemSucesso:string;
 
   constructor(private prestadorService:PrestadorService,
               private localStorageService:LocalStorageService,
+              public dialog:MatDialog,
               private jwtHelper: JwtHelper,
               @Inject('ServicoNotificationService') private servicoNotification: NotificationService<ServicoDetalhado>) { }
 
@@ -56,7 +58,6 @@ export class PerfilPrestadorComponent implements OnInit {
   }
 
   exibeFormulario() {
-    this.erroRequisicao = null;
     this.mensagemSucesso = null;
     this.isFormVisivel = true;
   }
@@ -82,7 +83,13 @@ export class PerfilPrestadorComponent implements OnInit {
   }
 
   handleError(err) {
-    this.erroRequisicao = typeof err === 'string' ? err : 'ERRO_REQUISICAO';
+    const data = {mensagem: typeof err === 'string' ? err : 'ERRO_REQUISICAO',
+                  textoBotao: 'Ok'}
+  
+    const dialogRef = this.dialog.open(ErrorDialogComponent, {
+      width: '400px',
+      data: { ...data },
+    });
   }
 
   adicionaServico({ ...servico }:ServicoDetalhado): void {

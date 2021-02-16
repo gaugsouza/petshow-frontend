@@ -40,6 +40,7 @@ import { DialogComparacaoComponent } from './lista-servicos-detalhados/dialog-co
 import { Agendamento } from './interfaces/agendamento';
 import { AgendamentosModule } from './agendamentos/agendamentos.module';
 import { MatTabsModule } from '@angular/material/tabs';
+import { ErrorDialogComponent } from './confirmation-dialog/error-dialog.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     ListaServicosDetalhadosComponent,
     PrestadorComponent,
     DialogComparacaoComponent,
+    ErrorDialogComponent,
   ],
   imports: [
     AcessoModule,
