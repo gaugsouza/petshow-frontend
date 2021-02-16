@@ -12,7 +12,9 @@ import { UsuarioService } from 'src/app/servicos/usuario.service';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { USER_TOKEN } from '../util/constantes';
 import { Usuario } from '../interfaces/usuario';
-
+import { GeolocalizacaoService } from '../servicos/geolocalizacao.service';
+import ol from 'openlayers';
+import { DataSharingService } from '../servicos/data-sharing.service';
 @Component({
   selector: 'app-lista-servicos-detalhados',
   templateUrl: './lista-servicos-detalhados.component.html',
@@ -59,7 +61,8 @@ export class ListaServicosDetalhadosComponent implements OnInit {
               private route: ActivatedRoute,
               private dialog:MatDialog,
               private usuarioService:UsuarioService,
-              private localStorageService:LocalStorageService) {}
+              private localStorageService:LocalStorageService,
+              private dataSharingService:DataSharingService) {}
 
   ngOnInit(): void {
     this.tipoId = +this.route.snapshot.paramMap.get('id');
@@ -70,21 +73,27 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   buscaUsuario() {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       this.usuarioService.getUsuario(token).subscribe((usuario:Usuario) => {
+
         this.isCliente = this.usuarioService.isCliente(usuario);
         this.isAtivo = this.usuarioService.isAtivo(usuario);
         if(this.isCliente) {
           this.filtro = {...this.filtro, metrosGeoloc: 600, posicaoAtual: { ...(usuario || {}).geolocalizacao } }
         }
+        console
       }, () => {
         this.isCliente = false;
       },
       () => {
         this.buscarServicosDetalhadosPorTipo(this.filtro, this.paginaAtual, this.quantidadePagina);
       });
+    },
+    () => {
+      this.isCliente = false;
+    },
+    () => {
+      this.buscarServicosDetalhadosPorTipo(this.filtro, this.paginaAtual, this.quantidadePagina);
     });
   }
-
-  // /servico-detalhado/geoloc
 
   eventoPagina(event: PageEvent) {
     const pagina = event.pageIndex;
@@ -95,11 +104,11 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   }
 
   buscarServicosDetalhadosPorTipo(filtro:FiltroServicos, pagina?:number, quantidadeItens?:number) {
+    this.dataSharingService.filtroShared.next(filtro);
     this.servicosService.buscarServicosDetalhadosPorTipo(filtro, pagina, quantidadeItens)
       .subscribe((paginaServicosDetalhados) => {
         const objetoPaginado:ObjetoPaginado = JSON.parse(paginaServicosDetalhados);
         const servicos = objetoPaginado.content;
-
         this.servicosDetalhados = servicos;
         this.quantidadeTotal = objetoPaginado.totalElements;
         this.paginaAtual = objetoPaginado.pageable.pageNumber;
@@ -185,5 +194,23 @@ export class ListaServicosDetalhadosComponent implements OnInit {
     ref.afterClosed().subscribe(() => {
       this.idsAComparar = [];
     });
+  }
+
+  alteraFiltro(filtro) {
+    this.filtro = {...this.filtro, ...filtro};
+    this.atualizaFiltro(this.filtro);
+  }
+
+  alteraValorSlider(valor){
+    // console.log(e);
+    this.alteraFiltro({...this.filtro, metrosGeoloc: valor});
+  }
+
+  formatLabel(value: number) {
+    if (value >= 1000) {
+      return Math.round(value / 1000) + 'km';
+    }
+
+    return value + 'm';
   }
 }

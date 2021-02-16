@@ -5,7 +5,7 @@ import ol from 'openlayers';
 import { FiltroServicos } from 'src/app/interfaces/filtro-servicos';
 import { Geolocalizacao } from 'src/app/interfaces/geolocalizacao';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
-import { GeolocalizacaoService } from 'src/app/servicos/geolocalizacao.service';
+import { DataSharingService } from 'src/app/servicos/data-sharing.service';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { ServicosService } from 'src/app/servicos/servicos.service';
 import { UsuarioService } from 'src/app/servicos/usuario.service';
@@ -18,7 +18,13 @@ import { DialogServicoSelecionadoComponent } from '../dialog-servico-selecionado
   styleUrls: ['./mapa.component.scss']
 })
 export class MapaComponent implements OnInit {
-  @Input('filtro') filtro: FiltroServicos;
+  @Input() isAtivo:boolean;
+  @Input() isCliente:boolean;
+
+  private PRACA_DA_REPUBLICA_LAT = '-23.543171200000003';
+  private PRACA_DA_REPUBLICA_LON = '-46.64252052009493';
+
+  filtro:FiltroServicos;
   servicos:ServicoDetalhado[];
   geolocalizacao:Geolocalizacao;
   source:ol.source.Vector;
@@ -30,27 +36,30 @@ export class MapaComponent implements OnInit {
   constructor(private localStorage:LocalStorageService,
     private usuarioService:UsuarioService,
     private dialog:MatDialog,
-    private service:GeolocalizacaoService,
-    private servicoService:ServicosService) { }
+    private servicoService:ServicosService,
+    private dataSharingService:DataSharingService) { }
 
   ngOnInit(): void {
-    this.preencheDadosGeoloc();
+    // this.preencheDadosGeoloc();
+    this.dataSharingService.filtroShared.subscribe(filtro => {
+      this.filtro = filtro;
+      this.preencheDadosGeoloc();
+    })
   }
 
   preencheDadosGeoloc() {
+    this.geolocalizacao = null;
     this.servicoService.buscarServicosGeoloc(this.filtro).subscribe((servicos) => {
       this.servicos = JSON.parse(servicos);
       this.localStorage.getItem(USER_TOKEN).subscribe((token:string) => {
+        this.geolocalizacao = this.filtro.posicaoAtual;
+        
         if(!token) {
           this.geraMapa(this.geolocalizacao, this.servicos);
           return;
         }
 
         this.usuarioService.getUsuario(token).subscribe((usuario) => {
-          if(this.usuarioService.isCliente(usuario)) {
-            this.geolocalizacao = usuario.geolocalizacao;
-          }
-
           this.geraMapa(this.geolocalizacao, this.servicos, usuario.nome);
         })
       });
@@ -58,13 +67,16 @@ export class MapaComponent implements OnInit {
   }
 
   geraMapa(geolocalizacao: Geolocalizacao, servicos:ServicoDetalhado[], name?:string) {
-    this.latitude = Number.parseFloat((geolocalizacao || {} ).geolocLatitude || '0');
-    this.longitude = Number.parseFloat((geolocalizacao || {}).geolocLongitude || '0');
-    this.zoom = this.geolocalizacao ? 15 : 3;
+    this.latitude = Number.parseFloat((geolocalizacao || {} ).geolocLatitude || this.PRACA_DA_REPUBLICA_LAT);
+    this.longitude = Number.parseFloat((geolocalizacao || {}).geolocLongitude || this.PRACA_DA_REPUBLICA_LON);
+    this.zoom = this.geolocalizacao ? 15 : 10;
     this.criaMapa([this.longitude, this.latitude], this.zoom, servicos, name);
   }
 
   criaMapa = (mapCenter:ol.Coordinate = [0,0], mapZoom = 3, servicos = [], name?:string) => {
+    // this.map = null;
+    document.getElementById('map').innerHTML = null;
+
     const cliente = this.criaPontoCliente(mapCenter, name);
     const pontosServicos = this.criaPontosServico(servicos);
     const source = new ol.source.Vector({
@@ -128,8 +140,9 @@ export class MapaComponent implements OnInit {
   }
 
   private openDialog(servico:ServicoDetalhado) {
+    console.log(this.isCliente, this.isAtivo);
     this.dialog.open(DialogServicoSelecionadoComponent, {
-      data: servico,
+      data: { servico: servico, isAtivo: this.isAtivo, isCliente: this.isCliente },
       width: '1200px'
     })
   }

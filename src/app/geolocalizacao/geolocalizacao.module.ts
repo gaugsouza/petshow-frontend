@@ -10,7 +10,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [GeolocalizacaoComponent, MapaComponent, BuscaComponent, DialogServicoSelecionadoComponent],
@@ -22,6 +23,9 @@ import { MatIconModule } from '@angular/material/icon';
     MatCardModule,
     MatListModule,
     MatIconModule,
+    MatInputModule,
+    FormsModule, 
+    ReactiveFormsModule,
   ],
   exports: [
     GeolocalizacaoComponent,

@@ -40,7 +40,7 @@ import { DialogComparacaoComponent } from './lista-servicos-detalhados/dialog-co
 import { Agendamento } from 'src/app/interfaces/agendamento';
 import { AgendamentosModule } from 'src/app/agendamentos/agendamentos.module';
 import { GeolocalizacaoModule } from 'src/app/geolocalizacao/geolocalizacao.module';
-
+import {MatSliderModule} from '@angular/material/slider'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,6 +80,7 @@ import { GeolocalizacaoModule } from 'src/app/geolocalizacao/geolocalizacao.modu
     MatDatepickerModule,
     NativeDateModule,
     GeolocalizacaoModule,
+    MatSliderModule,
   ],
   providers: [
     JwtHelper,

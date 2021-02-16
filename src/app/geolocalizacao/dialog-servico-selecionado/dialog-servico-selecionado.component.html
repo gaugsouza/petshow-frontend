@@ -1,7 +1,7 @@
 <mat-dialog-content>
     <mat-card>
         <mat-card-title>
-            {{ getPrestador().nome }} - {{ data.tipo.nome | translate }}
+            {{ getPrestador().nome }} - {{ getServico().tipo.nome | translate }}
         </mat-card-title>
         <mat-card-subtitle>
             <p *ngIf="getAvaliacoes() && getAvaliacoes().length; else semAvaliacoes">
@@ -26,7 +26,7 @@
             <mat-card-subtitle><h2>{{'VALOR_SERVICO' | translate }}</h2></mat-card-subtitle>
             <hr>
             <mat-list>
-                <mat-list-item *ngFor="let preco of data.precoPorTipo">
+                <mat-list-item *ngFor="let preco of getServico().precoPorTipo">
                     <span>
                         {{ preco.tipoAnimal.nome | translate }} - 
                     </span>
@@ -40,8 +40,8 @@
             </mat-list>
             <hr>
             <mat-card-subtitle><h2>{{'ADICIONAIS' | translate}}</h2></mat-card-subtitle>
-            <mat-list *ngIf="data.adicionais && data.adicionais.length; else semAdicionais">
-                <mat-list-item *ngFor="let adicional of data.adicionais">
+            <mat-list *ngIf="getServico().adicionais && getServico().adicionais.length; else semAdicionais">
+                <mat-list-item *ngFor="let adicional of getServico().adicionais">
                     <span>
                         {{ adicional.nome | translate }} - 
                     </span>
@@ -62,5 +62,5 @@
     </mat-card>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <a mat-flat-button color="primary" href="{{getUrl()}}">{{'AGENDAR' | translate}}</a>
+    <a mat-flat-button color="primary" href="{{getUrl()}}" [disabled]="!getIsAtivo() || !getIsCliente()">{{'AGENDAR' | translate}}</a>
 </mat-dialog-actions>

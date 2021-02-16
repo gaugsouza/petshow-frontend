@@ -12,22 +12,34 @@ import { AvaliacaoService } from 'src/app/servicos/avaliacao.service';
 export class DialogServicoSelecionadoComponent implements OnInit {
   
   constructor(public ref:MatDialogRef<DialogServicoSelecionadoComponent>,
-    @Inject(MAT_DIALOG_DATA) public data:ServicoDetalhado,
+    @Inject(MAT_DIALOG_DATA) public data:any,
     private avaliacaoService:AvaliacaoService) { }
 
   ngOnInit = (): void => {
   }
 
+  getIsAtivo() {
+    return this.data.isAtivo;
+  }
+
+  getIsCliente() {
+    return this.data.isCliente;
+  }
+
   getPrestador():Prestador {
-    return this.data.prestador;
+    return this.getServico().prestador;
+  }
+
+  getServico() {
+    return this.data.servico;
   }
 
   getAvaliacoes() {
-    return this.data.avaliacoes;
+    return this.getServico().avaliacoes;
   }
 
   getMediaAvaliacoes() {
-    return this.data.mediaAvaliacao || this.avaliacaoService.getMediaAvaliacao(this.getAvaliacoes());
+    return this.getServico().mediaAvaliacao || this.avaliacaoService.getMediaAvaliacao(this.getAvaliacoes());
   }
 
   getEndereco() {

@@ -68,8 +68,31 @@
                 </mat-toolbar-row>
                 <mat-divider></mat-divider>
             </mat-toolbar>
+            <mat-toolbar-row>
+                <div class="distancia-filtro">
+                    <span>Distância máxima</span>
+                    <mat-slider
+                        thumbLabel
+                        [displayWith]="formatLabel"
+                        min="100"
+                        max="50000"
+                        [(ngModel)]="filtro.metrosGeoloc"
+                        tickInterval="100"
+                        (change)="alteraValorSlider($event.value)"
+                    ></mat-slider>
+                </div>
+            </mat-toolbar-row>
         </div>
-        <div class="conteiner-lista-servicos-detalhados" *ngIf="servicosDetalhados && servicosDetalhados.length; then servicosDetalhadosBlock else vazioBlock"></div>
+        <div>
+            <div class="conteiner-lista-servicos-detalhados" *ngIf="servicosDetalhados && servicosDetalhados.length; then servicosDetalhadosBlock else vazioBlock"></div>
+            <app-geolocalizacao
+            [filtro]="filtro"
+            [isCliente]="isCliente"
+            [isAtivo]="isAtivo"
+            (altera-filtro)="alteraFiltro($event)"
+            ></app-geolocalizacao>
+        </div>
+        
         
     </div>    
     
@@ -106,11 +129,6 @@
             [pageSizeOptions]="[3, 6, 9, 12]"
             (page)="pageEvent = eventoPagina($event)">
         </mat-paginator>
-
-
-        <app-mapa *ngIf="servicosDetalhados"
-            [filtro]="filtro"
-        ></app-mapa>
     </div>
     </ng-template>
 </section>

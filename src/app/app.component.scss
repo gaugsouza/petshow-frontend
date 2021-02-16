@@ -60,3 +60,7 @@ mat-drawer {
     display: none !important;
   }
 }
+
+.mat-drawer-content {
+  overflow: hidden;
+}
