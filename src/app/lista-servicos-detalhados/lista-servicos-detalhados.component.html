@@ -98,11 +98,7 @@
                         <mat-checkbox 
                             [disabled]="deveDesabilitar(servicoDetalhado.id)"
                             (change)="selecionaIds($event.checked, servicoDetalhado.id)">{{'COMPARAR' | translate}}</mat-checkbox>
-<<<<<<< HEAD
-                        <a mat-flat-button color="success" href="prestador/{{servicoDetalhado.prestador.id}}/servicoDetalhado/{{servicoDetalhado.id}}/agendamento?isVisualizacao=false">{{'AGENDAR' | translate}}</a>
-=======
                         <a mat-flat-button color="primary" href="prestador/{{servicoDetalhado.prestador.id}}/servicoDetalhado/{{servicoDetalhado.id}}/agendamento?isVisualizacao=false" [disabled]="!isCliente || !isAtivo">{{'AGENDAR' | translate}}</a>
->>>>>>> a1fd0b9ad1f437eae41b5adc036f131763b177f9
                     </div>
                 </div>
             </mat-list-item>
