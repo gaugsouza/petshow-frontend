@@ -11,6 +11,7 @@ import { FiltroServicos } from 'src/app/interfaces/filtro-servicos';
 import { UsuarioService } from 'src/app/servicos/usuario.service';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { USER_TOKEN } from '../util/constantes';
+import { Usuario } from '../interfaces/usuario';
 
 @Component({
   selector: 'app-lista-servicos-detalhados',
@@ -63,20 +64,27 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   ngOnInit(): void {
     this.tipoId = +this.route.snapshot.paramMap.get('id');
     this.filtro.tipoServicoId = this.tipoId;
-    this.buscarServicosDetalhadosPorTipo(this.filtro, this.paginaAtual, this.quantidadePagina);
     this.buscaUsuario();
   }
 
   buscaUsuario() {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
-      this.usuarioService.getUsuario(token).subscribe((usuario) => {
+      this.usuarioService.getUsuario(token).subscribe((usuario:Usuario) => {
         this.isCliente = this.usuarioService.isCliente(usuario);
         this.isAtivo = this.usuarioService.isAtivo(usuario);
+        if(this.isCliente) {
+          this.filtro = {...this.filtro, metrosGeoloc: 600, posicaoAtual: { ...(usuario || {}).geolocalizacao } }
+        }
       }, () => {
         this.isCliente = false;
+      },
+      () => {
+        this.buscarServicosDetalhadosPorTipo(this.filtro, this.paginaAtual, this.quantidadePagina);
       });
     });
   }
+
+  // /servico-detalhado/geoloc
 
   eventoPagina(event: PageEvent) {
     const pagina = event.pageIndex;

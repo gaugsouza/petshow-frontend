@@ -3,18 +3,30 @@ import { CommonModule } from '@angular/common';
 import { GeolocalizacaoComponent } from './geolocalizacao/geolocalizacao.component';
 import { MapaComponent } from './mapa/mapa.component';
 import { BuscaComponent } from './busca/busca.component';
-
+import { DialogServicoSelecionadoComponent } from './dialog-servico-selecionado/dialog-servico-selecionado.component';
+import { ConfigModule } from '../config/config.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
-  declarations: [GeolocalizacaoComponent, MapaComponent, BuscaComponent],
+  declarations: [GeolocalizacaoComponent, MapaComponent, BuscaComponent, DialogServicoSelecionadoComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    ConfigModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatCardModule,
+    MatListModule,
+    MatIconModule,
   ],
   exports: [
     GeolocalizacaoComponent,
     MapaComponent,
-    BuscaComponent
+    BuscaComponent,
   ]
 })
 export class GeolocalizacaoModule { }

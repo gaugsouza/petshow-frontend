@@ -49,4 +49,11 @@ export class AvaliacaoService {
     ];
     return estrelas.flatMap((el:any) => el);
   }
+
+  getMediaAvaliacao = (avaliacoes:Avaliacao[]) => {
+    return avaliacoes.reduce((acc, avaliacao) => {
+      acc += avaliacao.media;
+      return acc;
+    }, 0)
+  }
 }

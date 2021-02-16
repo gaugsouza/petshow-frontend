@@ -56,4 +56,9 @@ export class ServicosService {
     const URL = `${PRESTADOR_SERVICE_URL}/${prestadorId}/servico-detalhado/${servicoDetalhadoId}/adicional/${adicionalId}`;
     return this.httpHandler.doDelete<any>(URL, token);
   }
+
+  buscarServicosGeoloc = (filtro:FiltroServicos) : Observable<any> => {
+    const URL = `${SERVICO_DETALHADO_URL}/geoloc`;
+    return this.httpHandler.doPost<any>(URL, filtro);
+  }
 }
