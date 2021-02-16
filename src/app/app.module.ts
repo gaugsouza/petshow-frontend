@@ -76,7 +76,7 @@ import { AgendamentosModule } from './agendamentos/agendamentos.module';
     MatDividerModule,
     MatDialogModule,
     MatTableModule,
-    MatDatepickerModule, 
+    MatDatepickerModule,
     NativeDateModule,
   ],
   providers: [
@@ -85,7 +85,7 @@ import { AgendamentosModule } from './agendamentos/agendamentos.module';
     { provide: 'ServicoNotificationService', useFactory: () => (new NotificationService<ServicoDetalhado>()) },
     { provide: 'AnimalNotificationService', useFactory: () => (new NotificationService<AnimalEstimacao>()) },
     { provide: 'AgendamentoNotificationService', useFactory: () => (new NotificationService<Agendamento>()) },
-    { provide: MAT_DATE_FORMATS, useValue: MAT_NATIVE_DATE_FORMATS},
+    { provide: MAT_DATE_FORMATS, useValue: MAT_NATIVE_DATE_FORMATS },
   ],
   bootstrap: [AppComponent],
 })
