@@ -3,11 +3,15 @@
     <!-- <h1>
         {{'SELECIONE_SERVICO'| translate}}
     </h1> -->
-    <div class=selecao_servico__button-container>
-        <a mat-flat-button *ngFor="let servico of servicos" href="/servico-detalhado/tipo-servico/{{servico.id}}">{{servico.nome | translate}}</a>
-    </div>
+    <mat-tab-group mat-align-tabs="center">
+        <mat-tab *ngFor="let grupo of grupos" label="{{grupo | translate}}">
+            <div class=selecao_servico__button-container>
+                <a mat-flat-button *ngFor="let servico of exibirServicosPorGrupo(grupo)" href="/servico-detalhado/tipo-servico/{{servico.id}}">{{servico.nome | translate}}</a>
+            </div>
+        </mat-tab>
+    </mat-tab-group>      
+    
     <div class=attribution>
         <a href='https://www.freepik.com/photos/love'>Love photo created by efe_madrid - www.freepik.com</a>
     </div>
-
 </div>

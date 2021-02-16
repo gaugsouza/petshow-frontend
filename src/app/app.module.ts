@@ -39,6 +39,7 @@ import { MAT_DATE_FORMATS, NativeDateModule, MAT_NATIVE_DATE_FORMATS } from '@an
 import { DialogComparacaoComponent } from './lista-servicos-detalhados/dialog-comparacao/dialog-comparacao.component';
 import { Agendamento } from './interfaces/agendamento';
 import { AgendamentosModule } from './agendamentos/agendamentos.module';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { AgendamentosModule } from './agendamentos/agendamentos.module';
     MatTableModule,
     MatDatepickerModule,
     NativeDateModule,
+    MatTabsModule,
   ],
   providers: [
     JwtHelper,
