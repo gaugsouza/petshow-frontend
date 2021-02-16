@@ -64,15 +64,7 @@ export class PerfilUsuarioComponent implements OnInit {
       }, (err) => this.handleError(err));
     }, (err) => this.handleError(err));
   }
-
-  removeAnimal(animalEstimacao : AnimalEstimacao):void {
-    this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
-      this.usuarioService.removerAnimalEstimacao(animalEstimacao.id, token).subscribe(() => {
-        this.getUsuario();
-      }, (err) => this.handleError(err));
-    }, (err) => this.handleError(err));
-  }
-
+  
   exibeFormulario() {
     this.erroRequisicao = null;
     this.mensagemSucesso = null;

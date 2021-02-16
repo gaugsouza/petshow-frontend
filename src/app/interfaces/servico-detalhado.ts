@@ -9,6 +9,7 @@ export interface ServicoDetalhado {
     id?:number,
     tipo?:Servico,
     prestador?:Prestador,
+    mediaAvaliacao?: number,
     avaliacoes?:Avaliacao[]
     descricao?: string,
     animaisAceitos?: TipoAnimal[],
