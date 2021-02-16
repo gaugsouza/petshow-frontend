@@ -9,11 +9,23 @@ import { PageEvent } from '@angular/material/paginator';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
 import { ServicoDetalhadoTipoAnimal } from 'src/app/interfaces/servico-detalhado-tipo-animal';
 import { Adicional } from 'src/app/interfaces/adicional';
+import { AgendamentoService } from 'src/app/servicos/agendamento.service';
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
 @Component({
   selector: 'app-servico-detalhado',
   templateUrl: './servico-detalhado.component.html',
   styleUrls: ['./servico-detalhado.component.scss'],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
+    },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
+  ],
 })
 export class ServicoDetalhadoComponent implements OnInit {
   @Input() isVisualizacao: Boolean;
@@ -48,8 +60,12 @@ export class ServicoDetalhadoComponent implements OnInit {
 
   dataMinima:Date;
 
+  horariosAgendamento:string[] = [];
+
   constructor(private localStorageService: LocalStorageService,
-    private servicosService: ServicosService) { }
+    private servicosService: ServicosService,
+    private agendamentoService: AgendamentoService,
+    private _adapter: DateAdapter<any>) { }
 
   ngOnInit(): void {
     this.dataMinima = new Date();
@@ -94,7 +110,21 @@ export class ServicoDetalhadoComponent implements OnInit {
   }
 
   selecionaData(data) {
-    this.dataAgendamento = data.value;
+    this.dataAgendamento = data.value._d;
+    this.buscaHorariosAgendamento(this.dataAgendamento);
+  }
+
+  buscaHorariosAgendamento(data:Date) {
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
+      this.agendamentoService.buscaHorariosIndisponiveis(this.idPrestador, data, token)
+        .subscribe((horarios) => {
+          this.horariosAgendamento = this.agendamentoService.getHorariosDisponiveis(horarios, data);
+        });
+    });
+  }
+
+  geraDataAtendimento(horario:string) {
+    this.dataAgendamento.setHours(Number.parseInt(horario.split(':')[0], 10));
     this.recuperaData.emit(this.dataAgendamento);
   }
 }

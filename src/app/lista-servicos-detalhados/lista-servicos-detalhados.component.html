@@ -4,7 +4,7 @@
         <div>
             <button mat-flat-button color="primary" 
                     [disabled]="idsAComparar.length < 2"
-                    (click)="compararServicos()">Comparar servicos</button>
+                    (click)="compararServicos()">{{'COMPARAR_SERVICOS' | translate}}</button>
         </div>
     </div>
     <div class="grid-content">
@@ -88,17 +88,17 @@
             <mat-list-item *ngFor="let servicoDetalhado of servicosDetalhados">
                 <div class="lista-servicos-detalhados__item">
                     <div class ="nome_servico">
-                        {{servicoDetalhado.tipo.nome}} 
+                        {{servicoDetalhado.tipo.nome | translate}} 
                     </div>
-                    <span class="preco-servico">A partir de: {{getPrecoMinimo(servicoDetalhado) | currency: 'BRL'}}</span>
+                    <span class="preco-servico">{{'A_PARTIR_DE' | translate}}: {{getPrecoMinimo(servicoDetalhado) | currency: 'BRL'}}</span>
                     <span><a mat-button color="primary" href="/prestador/{{servicoDetalhado.prestadorId}}">{{servicoDetalhado.prestador.nome}}</a>
                         <a mat-button color="primary" href="/prestador/{{servicoDetalhado.prestadorId}}/servico/{{servicoDetalhado.id}}/avaliacao">{{'AVALIACOES' | translate}}</a>
                     </span>  
                     <div class="lista-servicos-detalhados__button-container">
                         <mat-checkbox 
                             [disabled]="deveDesabilitar(servicoDetalhado.id)"
-                            (change)="selecionaIds($event.checked, servicoDetalhado.id)">Comparar</mat-checkbox>
-                        <a mat-flat-button color="primary" href="prestador/{{servicoDetalhado.prestador.id}}/servicoDetalhado/{{servicoDetalhado.id}}/agendamento?isVisualizacao=false">{{'AGENDAR' | translate}}</a>
+                            (change)="selecionaIds($event.checked, servicoDetalhado.id)">{{'COMPARAR' | translate}}</mat-checkbox>
+                        <a mat-flat-button color="primary" href="prestador/{{servicoDetalhado.prestador.id}}/servicoDetalhado/{{servicoDetalhado.id}}/agendamento?isVisualizacao=false" [disabled]="!isCliente || !isAtivo">{{'AGENDAR' | translate}}</a>
                     </div>
                 </div>
             </mat-list-item>

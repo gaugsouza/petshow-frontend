@@ -40,17 +40,20 @@ export class ServicosService {
     return this.httpHandler.doGet<any>(URL, token);
   }
 
-  adicionarAdicional(prestadorId:number, servicoDetalhadoId:number, adicional:Adicional, token:string){
+  adicionarAdicional(prestadorId:number, servicoDetalhadoId:number, adicional:Adicional,
+    token:string) {
     const URL = `${PRESTADOR_SERVICE_URL}/${prestadorId}/servico-detalhado/${servicoDetalhadoId}/adicional`;
     return this.httpHandler.doPost<any>(URL, adicional, token);
   }
 
-  atualizarAdicional(prestadorId:number, servicoDetalhadoId:number, adicionalId:number, adicional:Adicional, token:string) : Observable<any> {
+  atualizarAdicional(prestadorId:number, servicoDetalhadoId:number,
+    adicionalId:number, adicional:Adicional, token:string) : Observable<any> {
     const URL = `${PRESTADOR_SERVICE_URL}/${prestadorId}/servico-detalhado/${servicoDetalhadoId}/adicional/${adicionalId}`;
     return this.httpHandler.doPut<any>(URL, adicional, token);
   }
 
-  desativarAdicional(prestadorId:number, servicoDetalhadoId:number, adicionalId:number, token:string){
+  desativarAdicional(prestadorId:number, servicoDetalhadoId:number,
+    adicionalId:number, token:string) {
     const URL = `${PRESTADOR_SERVICE_URL}/${prestadorId}/servico-detalhado/${servicoDetalhadoId}/adicional/${adicionalId}`;
     return this.httpHandler.doDelete<any>(URL, token);
   }
