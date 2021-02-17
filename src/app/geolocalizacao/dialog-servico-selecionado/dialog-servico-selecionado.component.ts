@@ -19,11 +19,11 @@ export class DialogServicoSelecionadoComponent implements OnInit {
   }
 
   getIsAtivo() {
-    return this.data.isAtivo;
+    return (this.data || {}).isAtivo;
   }
 
   getIsCliente() {
-    return this.data.isCliente;
+    return (this.data || {}).isCliente;
   }
 
   getPrestador():Prestador {
@@ -31,7 +31,7 @@ export class DialogServicoSelecionadoComponent implements OnInit {
   }
 
   getServico() {
-    return this.data.servico;
+    return (this.data || {}).servico;
   }
 
   getAvaliacoes() {
@@ -47,7 +47,7 @@ export class DialogServicoSelecionadoComponent implements OnInit {
   }
 
   getUrl() {
-    return `prestador/${this.getPrestador().id}/servicoDetalhado/${this.data.id}/agendamento`;
+    return `prestador/${this.getPrestador().id}/servicoDetalhado/${this.getServico().id}/agendamento`;
   }
 
   

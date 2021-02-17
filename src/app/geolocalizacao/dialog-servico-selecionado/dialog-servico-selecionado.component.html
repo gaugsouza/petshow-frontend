@@ -1,6 +1,6 @@
 <mat-dialog-content>
-    <mat-card>
-        <mat-card-title>
+    <mat-card *ngIf="getServico()">
+        <mat-card-title *ngIf="getPrestador()">
             {{ getPrestador().nome }} - {{ getServico().tipo.nome | translate }}
         </mat-card-title>
         <mat-card-subtitle>
@@ -61,6 +61,6 @@
         </mat-card-content>
     </mat-card>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
+<mat-dialog-actions align="end" *ngIf="getServico() && getPrestador()">
     <a mat-flat-button color="primary" href="{{getUrl()}}" [disabled]="!getIsAtivo() || !getIsCliente()">{{'AGENDAR' | translate}}</a>
 </mat-dialog-actions>

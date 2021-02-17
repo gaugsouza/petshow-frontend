@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GeolocalizacaoComponent } from './geolocalizacao/geolocalizacao.component';
-import { MapaComponent } from './mapa/mapa.component';
-import { BuscaComponent } from './busca/busca.component';
-import { DialogServicoSelecionadoComponent } from './dialog-servico-selecionado/dialog-servico-selecionado.component';
-import { ConfigModule } from '../config/config.module';
+import { GeolocalizacaoComponent } from 'src/app/geolocalizacao/geolocalizacao/geolocalizacao.component';
+import { MapaComponent } from 'src/app/geolocalizacao/mapa/mapa.component';
+import { BuscaComponent } from 'src/app/geolocalizacao/busca/busca.component';
+import { DialogServicoSelecionadoComponent } from 'src/app/geolocalizacao/dialog-servico-selecionado/dialog-servico-selecionado.component';
+import { ConfigModule } from 'src/app/config/config.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
