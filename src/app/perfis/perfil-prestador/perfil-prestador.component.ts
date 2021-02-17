@@ -7,7 +7,6 @@ import { USER_TOKEN } from 'src/app/util/constantes';
 import { Endereco } from 'src/app/interfaces/endereco';
 import { JwtHelper } from 'src/app/util/jwt-helper';
 import { NotificationService } from 'src/app/servicos/notification.service';
-import { BANHO } from 'src/app/util/tipo-servico';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { ErrorDialogComponent } from 'src/app/confirmation-dialog/error-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -18,9 +17,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./perfil-prestador.component.scss'],
 })
 export class PerfilPrestadorComponent implements OnInit {
-  servico:ServicoDetalhado = {
-    tipo: BANHO,
-  };
+  servico:ServicoDetalhado = {};
 
   usuario:Prestador;
 
@@ -126,9 +123,7 @@ export class PerfilPrestadorComponent implements OnInit {
   }
 
   limpaServico() {
-    this.servico = {
-      tipo: BANHO,
-    };
+    this.servico = {};
   }
 
   removeServico(servico:ServicoDetalhado) {

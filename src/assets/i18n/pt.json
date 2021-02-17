@@ -196,5 +196,7 @@
   "ESTETICA": "Salão de Beleza",
   "ACOMODACAO": "Hospedagem",
   "CUIDADO": "Cuidados Diversos",
-  "CONFIRMAR_DELECAO_ADICIONAL":"Deseja prosseguir com a deleção deste adicional?"
+  "CONFIRMAR_DELECAO_ADICIONAL":"Deseja prosseguir com a deleção deste adicional?",
+  "TELEFONE_INVALIDO": "Telefone não está respeitando o formato solicitado",
+  "CEP_INVALIDO": "CEP não está respeitando o formato solicitado"
 }

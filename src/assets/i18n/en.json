@@ -194,5 +194,7 @@
   "ESTETICA": "Beauty Saloon",
   "ACOMODACAO": "Accommodation",
   "CUIDADO": "Take Care",
-  "CONFIRMAR_DELECAO_ADICIONAL":"Are you sure that you want to delete this extra?"
+  "CONFIRMAR_DELECAO_ADICIONAL":"Are you sure that you want to delete this extra?",
+  "TELEFONE_INVALIDO": "Telephone is not respecting the requested format",
+  "CEP_INVALIDO": "CEP is not respecting the requested format"
 }

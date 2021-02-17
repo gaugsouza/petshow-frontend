@@ -8,7 +8,7 @@
       <mat-form-field appearance="fill">
         <mat-label>{{'TIPO_SERVICO' | translate}}</mat-label>
         <mat-select name="tipo_servico" class="form__servico-tipo" [(ngModel)]="servico.tipo"
-        required>
+        required empty="true">
           <mat-option *ngFor="let tipo of getTiposServico()" [value]="tipo">
             {{tipo.nome | translate}}
           </mat-option>

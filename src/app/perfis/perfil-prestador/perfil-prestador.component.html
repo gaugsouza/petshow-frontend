@@ -24,7 +24,7 @@
     <app-servicos [prestador-id]="usuario.id" 
                     (remover-servico)="removeServico($event)"></app-servicos>   
 
-    <p class="sucesso" *ngIf="mensagemSucesso">{{'MENSAGEM_SUCESSO' | translate}}</p>
+    <!-- <p class="sucesso" *ngIf="mensagemSucesso">{{'MENSAGEM_SUCESSO' | translate}}</p> -->
 
     <app-agenda-prestador [prestador-id]="usuario.id"></app-agenda-prestador> 
     

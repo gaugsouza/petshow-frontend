@@ -42,7 +42,7 @@ export class ListaServicosDetalhadosComponent implements OnInit {
 
   filtroAdicional:boolean = false;
 
-  filtro:FiltroServicos = { tipoServicoId: null };
+  filtro:FiltroServicos = { };
 
   menorPreco:number;
 
@@ -126,6 +126,12 @@ export class ListaServicosDetalhadosComponent implements OnInit {
     ];
 
     return estrelas.flatMap((el:string) => el);
+  }
+
+  resetaAvaliacoes() {
+    this.mediaAvaliacao = 0;
+    this.filtro.mediaAvaliacao = null;
+    this.atualizaFiltro(this.filtro);
   }
 
   toggleFiltroAdicional() {
