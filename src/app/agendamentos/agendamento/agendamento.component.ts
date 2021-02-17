@@ -8,7 +8,7 @@ import { Agendamento } from 'src/app/interfaces/agendamento';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
 import { Cliente } from 'src/app/interfaces/cliente';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
-import { Location } from '@angular/common';
+import { Location, DatePipe } from '@angular/common';
 import { ServicosService } from 'src/app/servicos/servicos.service';
 import { ServicoDetalhadoTipoAnimal } from 'src/app/interfaces/servico-detalhado-tipo-animal';
 import { Adicional } from 'src/app/interfaces/adicional';
@@ -59,7 +59,8 @@ export class AgendamentoComponent implements OnInit {
     private router:Router,
     private location: Location,
     private jwtHelper: JwtHelper,
-    private servicoService:ServicosService) {}
+    private servicoService:ServicosService,
+    private datePipe: DatePipe) {}
 
   ngOnInit(): void {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
@@ -104,7 +105,7 @@ export class AgendamentoComponent implements OnInit {
       servicoDetalhadoId: this.servicoSelecionado.id,
       animaisAtendidosIds: [...(this.animaisEstimacao || []).map((el) => el.id)],
       adicionaisIds: [...(this.adicionais || []).map((el) => el.id)],
-      data: this.dataAgendamento,
+      data: this.datePipe.transform(this.dataAgendamento, 'dd/MM/yyyy HH:mm'),
     };
 
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {

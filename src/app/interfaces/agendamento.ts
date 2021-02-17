@@ -9,7 +9,7 @@ import { Adicional } from 'src/app/interfaces/adicional';
 
 export interface Agendamento {
     id?:number;
-    data?:Date;
+    data?:string;
     comentario?:string;
     endereco?:Endereco;
     precoFinal?:number;

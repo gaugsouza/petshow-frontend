@@ -1,0 +1,6 @@
+<h1 mat-dialog-title> {{data.mensagem | translate}} </h1>
+<div mat-dialog-content class="dialog">
+    <div class="dialog__button-container">
+        <button mat-flat-button cdkFocusInitial color="warn" (click)="closeDialog()">{{data.textoBotao | translate}}</button>
+    </div>
+</div>

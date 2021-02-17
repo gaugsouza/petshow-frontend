@@ -8,13 +8,27 @@
     <ng-template #servicosBlock>
         <div class="servico-list">
             <mat-card *ngFor="let servico of servicosDetalhados">
-                <mat-card-title>
-                    {{servico.tipo.nome | translate}}
-                </mat-card-title>
+                <div class="titulo-botao-servico">
+                    <mat-card-title>
+                        {{servico.tipo.nome | translate}}
+                    </mat-card-title>
+                    <mat-icon class="icone" (click)="openDialogServicoPreco('INSERIR', servico)"> add </mat-icon>
+                </div>
                 <mat-card-content>
                     <div class="servico-precos">
                         <mat-card *ngFor="let preco of servico.precoPorTipo">
-                            <mat-card-subtitle>{{preco.tipoAnimal.nome}}</mat-card-subtitle>
+                            <div class="titulo-botao-servico">
+                                <mat-card-subtitle>{{preco.tipoAnimal.nome}}</mat-card-subtitle>
+                                <div class="acoes-preco-por-tipo">
+                                    <button mat-icon-button class="button-editar-preco-por-tipo" [disabled]="! preco.ativo" (click)="openDialogServicoPreco('ATUALIZAR', servico, preco)">
+                                        <mat-icon class="icone"> edit </mat-icon>
+                                    </button>
+                                    <div class="toggle-preco-por-tipo">
+                                        <mat-label>{{'ATIVO' | translate}}</mat-label>
+                                        <mat-slide-toggle [(ngModel)]="preco.ativo" (change)="openConfirmationDialogPrecoPorTipo(servico, preco)"></mat-slide-toggle>                                    
+                                    </div>                                    
+                                </div>
+                            </div>                            
                             <mat-card-content>
                                 <span *ngIf="preco.tipoAnimal.porte">Porte: {{preco.tipoAnimal.porte}}</span><br *ngIf="preco.tipoAnimal.porte">
                                 <span *ngIf="preco.tipoAnimal.pelagem">Pelagem: {{preco.tipoAnimal.pelagem}}</span><br *ngIf="preco.tipoAnimal.porte"> 
@@ -28,7 +42,7 @@
                             <mat-chip *ngFor="let adicional of servico.adicionais">
                                 <span>{{adicional.nome}}</span> | <span>{{adicional.preco | currency: 'BRL'}}</span>
                                 <mat-icon class="icone" (click)="openDialogAtualizacao(adicional)"> edit </mat-icon>
-                                <mat-icon class="icone" (click)="openConfirmationDialog(adicional)"> delete </mat-icon>
+                                <mat-icon class="icone" (click)="openConfirmationDialogAdicional(adicional)"> delete </mat-icon>
                             </mat-chip>
                         </mat-chip-list>
                     </div>

@@ -100,4 +100,11 @@ export class AgendaClienteComponent implements OnInit {
   isAtivo = (agendamento:Agendamento) => !STATUS_AGENDAMENTO.cancelado
     .includes(agendamento.status.nome.toUpperCase()) && !STATUS_AGENDAMENTO.concluido
     .includes(agendamento.status.nome.toUpperCase());
+
+  eventoPagina(event: PageEvent) {
+    const pagina = event.pageIndex;
+    const quantidadeItens = event.pageSize;
+    this.buscarAgendamentosPorCliente(this.clienteId, pagina, quantidadeItens);
+    return event;
+  }
 }

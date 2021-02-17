@@ -1,0 +1,39 @@
+<div mat-dialog-content class="dialog">
+    <p>{{data.titulo | translate}}</p>
+    <mat-form-field>
+        <mat-label>{{'TIPO_ANIMAL' | translate}}</mat-label>
+        <mat-select [(ngModel)]="tipoSelecionado" [formControl]="tipoAnimalFormControl" 
+            [disabled]="data.acao == 'ATUALIZAR'" (selectionChange)="carregarPorte($event.value)" [(value)]="tipoSelecionado">
+            <mat-option *ngFor="let tipo of tiposString" value="{{tipo}}">
+                {{tipo}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="isPortePelagemVisible">
+        <mat-label>{{'PORTE' | translate}}</mat-label>
+        <mat-select [(ngModel)]="porteSelecionado" [formControl]="porteFormControl"
+            [disabled]="!tipoSelecionado || data.acao == 'ATUALIZAR'" (selectionChange)="carregarPelagem($event.value)">
+            <mat-option *ngFor="let porte of portesTipo.portes" value="{{porte}}">
+                {{porte}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="isPortePelagemVisible">
+        <mat-label>{{'PELAGEM' | translate}}</mat-label>
+        <mat-select [(ngModel)]="pelagemSelecionada" [formControl]="pelagemFormControl" 
+            [disabled]="!porteSelecionado || data.acao == 'ATUALIZAR'">
+            <mat-option *ngFor="let pelagem of pelagensString" value="{{pelagem}}">
+                {{pelagem}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
+        <input matInput [(ngModel)]="preco" mask='separator.2' [formControl]="precoFormControl"
+            [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$" />
+    </mat-form-field>
+    <div class="dialog__button-container">
+        <button mat-flat-button color="warn" (click)="onNoClick()">{{'CANCELAR' | translate}}</button>
+        <button mat-flat-button [mat-dialog-close]="constroiPrecoPorTipo()" [disabled]="hasErrors()" cdkFocusInitial color="primary">{{(data.acao === 'INSERIR' ? 'SALVAR' : 'ALTERAR') | translate}}</button>
+    </div>
+</div>

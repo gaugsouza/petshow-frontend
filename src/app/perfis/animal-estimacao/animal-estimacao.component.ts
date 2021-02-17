@@ -19,8 +19,6 @@ import { ConfirmacaoCancelamentoComponent } from '../confirmacao-cancelamento/co
 export class AnimalEstimacaoComponent implements OnInit {
   @Input('dono-id') donoId: number;
 
-  @Output('remover-animal') removerAnimal = new EventEmitter<AnimalEstimacao>();
-
   @Output('seleciona-animal') animalEmitter = new EventEmitter<AnimalEstimacao>();
 
   animaisEstimacao: AnimalEstimacao[];
@@ -60,7 +58,11 @@ export class AnimalEstimacaoComponent implements OnInit {
       });
     cancelRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.removerAnimal.emit(animalEstimacao);
+        this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+          this.usuarioService.removerAnimalEstimacao(animalEstimacao.id, token).subscribe(() => {
+            this.buscarAnimaisEstimacaoPorDono(this.donoId, this.paginaAtual, this.quantidadeItens);
+          });
+        });
       }
     });
   }

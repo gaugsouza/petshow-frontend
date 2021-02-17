@@ -4,4 +4,5 @@ export interface ServicoDetalhadoTipoAnimal {
     id?:number,
     preco:number,
     tipoAnimal: TipoAnimal,
+    ativo?:boolean
 }

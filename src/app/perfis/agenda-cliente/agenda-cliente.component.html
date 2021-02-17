@@ -14,7 +14,7 @@
           <div>
             <span>
               <p>{{agendamento.servicoDetalhado.tipo.nome}}</p>
-              <p>{{agendamento.data | date:'dd/MM/yyyy hh:mm'}}</p>
+              <p>{{agendamento.data}}</p>
               <p>{{'PRECO_FINAL' | translate}}: {{agendamento.precoFinal | currency: 'BRL'}}</p>
             </span>
           </div>
@@ -59,8 +59,12 @@
       </mat-list-item>
     </mat-list>
 
-    <mat-paginator #paginator [length]="quantidadeTotal" [pageIndex]="paginaAtual" [pageSize]="quantidadeItens"
-      [pageSizeOptions]="[5, 7, 10, 15]">
+    <mat-paginator #paginator 
+        [length]="quantidadeTotal"
+        [pageIndex]="paginaAtual"
+        [pageSize]="quantidadeItens"
+        [pageSizeOptions]="[5, 7, 10, 15]"
+        (page)="pageEvent = eventoPagina($event)">
     </mat-paginator>
   </ng-template>
 

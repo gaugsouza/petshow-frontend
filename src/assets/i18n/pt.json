@@ -188,6 +188,15 @@
   "ALTERAR_ADICIONAL": "Alterar Adicional",
   "CONFIRMAR": "Sim",
   "NOVO_ADICIONAL": "Novo Adicional",
+  "SERVICO_DESTE_TIPO_JA_ADICIONADO": "Já existe um serviço deste tipo cadastrado para este prestador.",
+  "ENVIAR": "Enviar",
+  "ATIVO": "Ativo",
+  "ATIVAR_PRECO_POR_TIPO": "Deseja prosseguir com a ativação desta categoria?",
+  "DESATIVAR_PRECO_POR_TIPO": "Deseja prosseguir com a desativação desta categoria?",
+  "ESTETICA": "Salão de Beleza",
+  "ACOMODACAO": "Hospedagem",
+  "CUIDADO": "Cuidados Diversos",
+  "CONFIRMAR_DELECAO_ADICIONAL":"Deseja prosseguir com a deleção deste adicional?",
   "STATUS_AGENDAMENTO": "Status do agendamento",
   "AVALIACAO": "Avaliação",
   "CRITERIOS": "Critérios",
@@ -336,5 +345,4 @@
   "POLITICA-LINHA144": "9. Como entrar em contato conosco",
   "POLITICA-LINHA145": "Para esclarecer quaisquer dúvidas sobre esta Política de Privacidade ou sobre os dados pessoais que tratamos, entre em contato conosco, por algum dos canais mencionados abaixo:",
   "POLITICA-LINHA147": "Assunto: Política de Privacidade"
-  
 }
