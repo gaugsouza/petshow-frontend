@@ -6,8 +6,8 @@
         <mat-error *ngIf="nomeFormControl.hasError('minlength')">{{'NOME_INVALIDO' | translate}}</mat-error>
     </mat-form-field>
     <mat-form-field>
-        <mat-label>CPF</mat-label>
-        <input matInput placeholder="123.456.789.10" minlength="11" mask="000.000.000-00" [formControl]="cpfFormControl"  [(ngModel)]="usuario.cpf"/>
+        <mat-label>{{'CPF' | translate}}</mat-label>
+        <input matInput placeholder="123.456.789.09" minlength="11" mask="000.000.000-00" [formControl]="cpfFormControl"  [(ngModel)]="usuario.cpf"/>
         <mat-error *ngIf="cpfFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
         <mat-error *ngIf="cpfFormControl.errors && cpfFormControl.errors.cpfvalidator">{{'CPF_INVALIDO' | translate}}</mat-error>
     </mat-form-field>

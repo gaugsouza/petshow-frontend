@@ -1,14 +1,14 @@
 <mat-card class="avaliacao" *ngIf="avaliacao">
-  <mat-card-title>Avaliação</mat-card-title>
+  <mat-card-title>{{'AVALIACAO' | translate}}</mat-card-title>
   <mat-card-subtitle class="media-avaliacao">
     <p>
-      <span>Média:</span>
+      <span>{{'MEDIA' | translate}}:</span>
       <span>{{avaliacao.media | number: '1.1'}}</span>
       <mat-icon>star</mat-icon>
     </p>
   </mat-card-subtitle>
     <mat-card-content class="criterios-avaliacao">
-      <h4>Critérios: </h4>
+      <h4>{{'CRITERIOS' | translate}}: </h4>
       <p *ngFor="let criterio of getCriterios()">{{criterio.valor}}: 
         <span>
           <mat-icon *ngFor="let estrela of getEstrelasAvaliacao(criterio.campo)">{{estrela}}</mat-icon>
@@ -17,7 +17,7 @@
 
       <mat-card *ngIf="avaliacao.comentario">
         <mat-card-subtitle>
-          Comentário do cliente
+          {{'COMENTARIO_CLIENTE' | translate}}
         </mat-card-subtitle>
         <mat-card-content>
           {{avaliacao.comentario}}

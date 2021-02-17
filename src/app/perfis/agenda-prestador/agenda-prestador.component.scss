@@ -37,13 +37,19 @@ mat-list-item {
     display: flex;
     // flex-direction: column;
     justify-content: space-around;
+    flex-direction: column;
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    max-width: 150px;
   }
 }
 
-button {
-  width: 95px;
-  align-self: center;
-}
+// button {
+//   width: 95px;
+//   align-self: center;
+// }
 
 span {
   align-self: center;
@@ -58,4 +64,9 @@ span {
 
 .no-registered {
   margin: 15px;
+}
+
+.mat-success {
+  background-color: green;
+  color: #fff;
 }
