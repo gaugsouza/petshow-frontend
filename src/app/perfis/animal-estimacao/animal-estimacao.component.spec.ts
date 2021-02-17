@@ -37,9 +37,12 @@ describe('AnimalEstimacaoComponent', () => {
   let fixture: ComponentFixture<AnimalEstimacaoComponent>;
 
   let animaisMock : AnimalEstimacao[] = (usuariosMock[0] as Cliente).animaisEstimacao;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AnimalEstimacaoComponent, ConfirmacaoCancelamentoComponent ],
+      declarations: [ 
+        AnimalEstimacaoComponent
+      ],
       imports: [
         CommonModule,
         MatButtonModule,
@@ -59,6 +62,8 @@ describe('AnimalEstimacaoComponent', () => {
         MatTableModule,
         MatCheckboxModule,
         MatIconModule,
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
       ],
       providers: [
         { provide: 'AnimalNotificationService', useFactory: () => (new NotificationService<AnimalEstimacao>()) },
@@ -87,46 +92,5 @@ describe('AnimalEstimacaoComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('Deve não trazer nenhum animal', () => {
-    const element: HTMLElement = fixture.nativeElement;
-    const matListArr = element.getElementsByTagName('mat-list-item');
-    expect(matListArr.length).toEqual(0);
-    expect(element.textContent).not.toContain((usuariosMock[0] as Cliente).animaisEstimacao[0].nome)
-  });
-
-  it('Deve trazer uma lista de animais', () => {
-    component.animaisEstimacao = animaisMock;
-    fixture.detectChanges();
-    const element: HTMLElement = fixture.nativeElement;
-    const matListArr = element.getElementsByTagName('mat-list-item');
-    console.log(element.textContent);
-    expect(matListArr.length).toEqual(animaisMock.length);
-  });
-
-  it('Deve selecionar um animal', () => {
-    let animal: AnimalEstimacao = null;
-    component.animaisEstimacao = animaisMock;
-    component.selecionaAnimal = (animalSel: AnimalEstimacao) => {
-      animal = animalSel;
-    }
-    component.selecionaAnimal(component.animaisEstimacao[0]);
-    expect(animal).toEqual(component.animaisEstimacao[0]);
-  });
-
-  it('Deve remover um animal', () => {
-    component.animaisEstimacao = animaisMock;
-    let animal = animaisMock[0];
-
-    let spy = jest.spyOn(component.removerAnimal, 'emit');
-
-    spy.mockImplementation(animal => {
-      component.animaisEstimacao = component.animaisEstimacao.filter((el:AnimalEstimacao) => el.id !== animal.id);
-    });
-
-    component.removeAnimal(animal);
-
-    expect(component.animaisEstimacao).not.toContain(animal);
   });
 });
