@@ -8,6 +8,10 @@ mat-list-item {
   }
 }
 
+mat-slider {
+  width: 100%;
+}
+
 .topo-listagem {
   display: flex;
   justify-content: space-between;
@@ -89,9 +93,14 @@ mat-list-item {
     grid-template-columns: 1fr;
   }
 
-  .avaliacoes-filtro {
+  .avaliacoes-filtro,
+  .distancia-filtro {
     display: flex;
     flex-direction: column;
+  }
+
+  .distancia-filtro {
+    width: 100%;
   }
 
   .mat-icon {
