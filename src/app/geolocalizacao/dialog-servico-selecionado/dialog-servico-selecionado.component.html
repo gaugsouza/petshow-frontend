@@ -1,0 +1,66 @@
+<mat-dialog-content>
+    <mat-card>
+        <mat-card-title>
+            {{ getPrestador().nome }} - {{ getServico().tipo.nome | translate }}
+        </mat-card-title>
+        <mat-card-subtitle>
+            <p *ngIf="getAvaliacoes() && getAvaliacoes().length; else semAvaliacoes">
+                {{ getMediaAvaliacoes() }} <mat-icon>star</mat-icon>
+            </p>
+            <ng-template #semAvaliacoes>
+                <p>{{ 'SEM_AVALIACOES' | translate }}</p>
+            </ng-template>
+        </mat-card-subtitle>
+        <mat-card *ngIf="getEndereco()">
+            <mat-card-subtitle><h2>{{'ENDERECO' | translate }}</h2></mat-card-subtitle>
+            <mat-card-content>
+                <p>{{getEndereco().logradouro}}, {{getEndereco().numero}}</p>
+                <p *ngIf="getEndereco().complemento">{{getEndereco().complemento}}</p>
+                <p>{{getEndereco().bairro}}, {{getEndereco().cep | mask: '00000-000'}}</p>
+                <p *ngIf="getEndereco().cidade && getEndereco().estado"> {{getEndereco().cidade}} - {{getEndereco().bairro}}</p>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card-subtitle><h2>{{'INFORMACOES_SERVICO' | translate}}</h2></mat-card-subtitle>
+        <mat-card-content>
+            <mat-card-subtitle><h2>{{'VALOR_SERVICO' | translate }}</h2></mat-card-subtitle>
+            <hr>
+            <mat-list>
+                <mat-list-item *ngFor="let preco of getServico().precoPorTipo">
+                    <span>
+                        {{ preco.tipoAnimal.nome | translate }} - 
+                    </span>
+                    <span *ngIf="preco.tipoAnimal.porte && preco.tipoAnimal.pelagem">
+                        Porte: {{preco.tipoAnimal.porte | translate }} - Pelagem: {{preco.tipoAnimal.pelagem | translate}} -
+                    </span>
+                    <span>
+                        {{preco.preco | currency:'BRL'}}
+                    </span>
+                </mat-list-item>
+            </mat-list>
+            <hr>
+            <mat-card-subtitle><h2>{{'ADICIONAIS' | translate}}</h2></mat-card-subtitle>
+            <mat-list *ngIf="getServico().adicionais && getServico().adicionais.length; else semAdicionais">
+                <mat-list-item *ngFor="let adicional of getServico().adicionais">
+                    <span>
+                        {{ adicional.nome | translate }} - 
+                    </span>
+                    <span *ngIf="adicional.descricao">
+                        Descrição: {{adicional.descricao }} -
+                    </span>
+                    <span>
+                        {{adicional.preco | currency:'BRL'}}
+                    </span>
+                </mat-list-item>
+            </mat-list>
+
+            <ng-template #semAdicionais>
+                <p>{{'NENHUM_ADICIONAL_DISP' | translate}}</p>
+            </ng-template>
+            <hr>
+        </mat-card-content>
+    </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <a mat-flat-button color="primary" href="{{getUrl()}}" [disabled]="!getIsAtivo() || !getIsCliente()">{{'AGENDAR' | translate}}</a>
+</mat-dialog-actions>

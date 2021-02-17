@@ -41,6 +41,8 @@ import { Agendamento } from './interfaces/agendamento';
 import { AgendamentosModule } from './agendamentos/agendamentos.module';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ErrorDialogComponent } from './confirmation-dialog/error-dialog.component';
+import { GeolocalizacaoModule } from 'src/app/geolocalizacao/geolocalizacao.module';
+import { MatSliderModule } from '@angular/material/slider'; 
 
 @NgModule({
   declarations: [
@@ -82,6 +84,8 @@ import { ErrorDialogComponent } from './confirmation-dialog/error-dialog.compone
     MatDatepickerModule,
     NativeDateModule,
     MatTabsModule,
+    GeolocalizacaoModule,
+    MatSliderModule,
   ],
   providers: [
     JwtHelper,

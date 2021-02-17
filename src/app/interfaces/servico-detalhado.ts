@@ -14,5 +14,6 @@ export interface ServicoDetalhado {
     descricao?: string,
     animaisAceitos?: TipoAnimal[],
     precoPorTipo?: ServicoDetalhadoTipoAnimal[]
-    adicionais?:Adicional[]
+    adicionais?:Adicional[],
+    mediaAvaliacao?:number,
 }

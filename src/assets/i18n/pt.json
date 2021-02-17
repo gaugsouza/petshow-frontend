@@ -52,7 +52,7 @@
   "SELECIONE_SERVICO":"Selecione o serviço desejado:",
   "SERVICOS_DISPONIVEIS": "Serviços disponíveis: ",
   "NENHUM_SERVICO_CADASTRADO": "Não foram encontrados prestadores para a busca :(",
-  "AGENDAR": "AGENDAR",
+  "AGENDAR": "Agendar",
   "NOME_COMPLETO": "Nome Completo",
   "NOME_OBRIGATORIO": "Nome é obrigatório.",
   "NOME_MIN_CARACT": "O nome deve possuir no mínimo 3 caracteres.",

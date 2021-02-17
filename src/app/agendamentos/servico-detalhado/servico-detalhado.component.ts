@@ -69,6 +69,7 @@ export class ServicoDetalhadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataMinima = new Date();
+    this.dataMinima.setDate(this.dataMinima.getDate() + 1);
     this.buscarPorPrestadorIdEServicoId(this.idPrestador, this.idServico);
   }
 

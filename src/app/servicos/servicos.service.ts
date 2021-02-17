@@ -67,4 +67,9 @@ export class ServicosService {
     const URL = `${PRESTADOR_SERVICE_URL}/${prestadorId}/servico-detalhado/${servicoDetalhadoId}/tipoAnimalAceito/tipoAnimal/${tipoAnimalId}`;
     return this.httpHandler.doPut<any>(URL, servicoDetalhadoTipoAnimal, token);
   }
+  
+  buscarServicosGeoloc = (filtro:FiltroServicos) : Observable<any> => {
+    const URL = `${SERVICO_DETALHADO_URL}/geoloc`;
+    return this.httpHandler.doPost<any>(URL, filtro);
+  }
 }

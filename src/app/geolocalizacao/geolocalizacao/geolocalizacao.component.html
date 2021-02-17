@@ -1,0 +1,11 @@
+<div class="geolocalizacao-items">
+    <app-mapa
+        [isAtivo]="isAtivo"
+        [isCliente]="isCliente"
+    ></app-mapa>
+    <app-busca
+        [filtro]="filtro"
+        (altera-filtro)="alterarFiltro($event)"
+    ></app-busca>
+</div>
+
