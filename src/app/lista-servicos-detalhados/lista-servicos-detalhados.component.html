@@ -11,11 +11,11 @@
         <div class="menu-servicos">
             <mat-toolbar>
                 <mat-toolbar-row>
-                    Filtros:
+                    {{'FILTROS' | translate}}:
                 </mat-toolbar-row>
                 <mat-toolbar-row>
                     <mat-form-field appearance="fill">
-                        <mat-label>Ordenação</mat-label>
+                        <mat-label>{{'ORDENACAO' | translate}}</mat-label>
                         <mat-select (selectionChange)="alteraOrdenacao($event.value)">
                           <mat-option *ngFor="let key of getOrdenacaoKeys()" [value]="key">
                             {{ordenacao[key]}}
@@ -25,12 +25,12 @@
                 </mat-toolbar-row>
                 <mat-divider></mat-divider>
                 <mat-toolbar-row>
-                    <mat-checkbox (change)="toggleFiltroAdicional()">Possui adicionais</mat-checkbox>
+                    <mat-checkbox (change)="toggleFiltroAdicional()">{{'POSSUI_ADICIONAIS' | translate}}</mat-checkbox>
                 </mat-toolbar-row>
                 <mat-divider></mat-divider>
                 <mat-toolbar-row>
                     <div class="avaliacoes-filtro">
-                        <span>Média de avaliações</span>
+                        <span>{{'MEDIA_AVALIACOES' | translate}}</span>
                         <span>
                             <mat-icon *ngFor="let estrela of getEstrelas(); let i = index" (click)="atualizaMediaAvaliacao(i+1)">
                                 {{estrela}}
@@ -42,7 +42,7 @@
                 <mat-divider></mat-divider>
                 <mat-toolbar-row>
                     <mat-form-field>
-                        <mat-label>Preço Mínimo</mat-label>
+                        <mat-label>{{'PRECO_MIN' | translate}}</mat-label>
                         <input 
                             matInput 
                             (blur)="blurInputs('menorPreco', menorPreco)"
@@ -55,7 +55,7 @@
                 </mat-toolbar-row>
                 <mat-toolbar-row>
                     <mat-form-field>
-                        <mat-label>Preço Máximo</mat-label>
+                        <mat-label>{{'PRECO_MAX' | translate}}</mat-label>
                         <input 
                             (blur)="blurInputs('maiorPreco', maiorPreco)"
                             matInput 

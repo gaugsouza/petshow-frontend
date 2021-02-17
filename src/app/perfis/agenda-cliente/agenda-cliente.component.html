@@ -15,7 +15,7 @@
             <span>
               <p>{{agendamento.servicoDetalhado.tipo.nome}}</p>
               <p>{{agendamento.data | date:'dd/MM/yyyy hh:mm'}}</p>
-              <p>Preço final: {{agendamento.precoFinal | currency: 'BRL'}}</p>
+              <p>{{'PRECO_FINAL' | translate}}: {{agendamento.precoFinal | currency: 'BRL'}}</p>
             </span>
           </div>
           <div>
@@ -24,7 +24,7 @@
 
             <ng-template #animaisBlock>
               <span>
-                <p>Animais a serem atendidos: </p>
+                <p>{{'ANIMAIS_SEREM_ATENDIDOS' | translate}}: </p>
               </span>
               <ng-container *ngFor="let animal of agendamento.animaisAtendidos">
                 <span>
@@ -35,11 +35,11 @@
 
             <ng-template #animalBlock>
               <span>
-                <p>Animal a ser atendido: {{agendamento.animaisAtendidos[0].nome}}</p>
+                <p>{{'ANIMAL_SER_ATENDIDO' | translate}}: {{agendamento.animaisAtendidos[0].nome}}</p>
               </span>
             </ng-template>
             <span>
-              <p>Status: {{agendamento.status.nome}}</p>
+              <p>{{'STATUS' | translate}}: {{agendamento.status.nome}}</p>
             </span>
           </div>
           <div>
@@ -49,7 +49,7 @@
             </div>
             <a mat-flat-button href="/agendamento/{{agendamento.id}}">
               <span>
-                Ver Detalhes
+                {{'VER_DETALHES' | translate}}
               </span>
             </a>
 
