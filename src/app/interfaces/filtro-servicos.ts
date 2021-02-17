@@ -1,5 +1,5 @@
 export interface FiltroServicos {
-    tipoServicoId: number,
+    tipoServicoId?: number,
     menorPreco?:number,
     maiorPreco?:number,
     mediaAvaliacao?:number,

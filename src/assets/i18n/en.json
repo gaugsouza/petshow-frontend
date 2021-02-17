@@ -186,5 +186,7 @@
   "A_PARTIR_DE": "From",
   "ALTERAR_ADICIONAL": "Change Extra",
   "CONFIRMAR": "Continue",
-  "NOVO_ADICIONAL": "Add Extra"
+  "NOVO_ADICIONAL": "Add Extra",
+  "TELEFONE_INVALIDO": "Telephone is not respecting the requested format",
+  "CEP_INVALIDO": "CEP is not respecting the requested format"
 }
