@@ -4,39 +4,7 @@ $button-bg: #304b76;
 $button-color: white;
 
 .selecao_servico {
-  padding: 10% 5%;
-  height: 70vh;
-  background-image: url("../../assets/icons/cat_home_2.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center bottom;
-  background-color: white;
-  background-size: 100%;
-
-  @media screen and (max-width: $tablet-width) {
-    height: auto;
-  }
-
-  /* Media Query for Mobile Devices */ 
-  @media (max-width: 480px) { 
-    height: auto;
-  } 
-        
-  /* Media Query for low resolution  Tablets, Ipads */ 
-  @media (min-width: 598px) and (max-width: 767px) { 
-    height: 90vh;
-  } 
-    
-  /* Media Query for Tablets Ipads portrait mode */ 
-  @media (min-width: 768px) and (max-width: 1024px){ 
-    height: 80vh;
-  } 
-    
-  /* Media Query for Laptops and Desktops */ 
-  @media (min-width: 1025px){ 
-    height: 70vh;
-  } 
-
+  padding: 5% 5%;
 
   &__button-container {
     display: flex;
@@ -61,10 +29,23 @@ $button-color: white;
 }
 
 .attribution {
-  font-size: 8px;
-  left: 15px;
-  // position: absolute;
-  bottom: 0px;
+  position: absolute;
+  font-size: 8px;  
+  bottom: 0;
+}
+
+.background {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  height: 100%; 
+  width: 100%;
+  background-image: url("../../assets/icons/cat_home_2.jpg");
+  background-repeat: no-repeat;
+  /*background-attachment: fixed;*/
+  background-position: center bottom;
+  background-color: white;
+  background-size: cover;
 }
 
 ::ng-deep .mat-tab-label-content {
