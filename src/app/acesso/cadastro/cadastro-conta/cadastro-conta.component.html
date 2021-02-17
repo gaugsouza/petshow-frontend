@@ -16,11 +16,10 @@
   </mat-form-field>
 
   <app-endereco-cadastro [endereco]="usuario.endereco"
-                        [logradouro-control]="logradouroFormControl"
                         [numero-control]="numeroFormControl"
-                        [complemento-control]="complementoFormControl"
-                        [bairro-control]="bairroFormControl"
-                        [cep-control]="cepFormControl"></app-endereco-cadastro>
+                        [cep-control]="cepFormControl"
+                        (altera-endereco)="setaEndereco($event)"
+                        ></app-endereco-cadastro>
 
   <p *ngIf="errorMessage">{{errorMessage | translate}}</p>
   <p *ngIf="erroRequisicao">{{erroRequisicao | translate}}</p>

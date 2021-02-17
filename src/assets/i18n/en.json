@@ -226,7 +226,7 @@
   "DESEJA_CONFIRMAR_REMOCAO_ANIMAL": "Do you really want to remove this animal?",
   "TELEFONE_INVALIDO": "Telephone is not respecting the requested format",
   "CEP_INVALIDO": "CEP is not respecting the requested format",
-
+  "ERRO_BUSCA_CEP": "ZIP code entered did not return any addresses ",
 
 
 

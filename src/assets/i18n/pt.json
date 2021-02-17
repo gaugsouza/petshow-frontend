@@ -228,7 +228,7 @@
   "DESEJA_CONFIRMAR_REMOCAO_ANIMAL": "Deseja confirmar a remoção do animal?",
   "TELEFONE_INVALIDO": "Telefone não está respeitando o formato solicitado",
   "CEP_INVALIDO": "CEP não está respeitando o formato solicitado",
-
+  "ERRO_BUSCA_CEP": "CEP informado não retornou nenhum endereço",
 
 
 

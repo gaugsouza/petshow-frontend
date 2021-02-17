@@ -18,6 +18,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { SucessoCadastroComponent } from 'src/app/acesso/sucesso-cadastro/sucesso-cadastro.component';
 import { TokenAtivacaoComponent } from 'src/app/acesso/token-ativacao/token-ativacao.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatIconModule } from '@angular/material/icon';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -44,6 +45,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     MatSelectModule,
     ConfigModule,
     MatDialogModule,
+    MatIconModule,
   ],
   exports: [
     LoginComponent,

@@ -71,7 +71,6 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   buscaUsuario() {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       this.usuarioService.getUsuario(token).subscribe((usuario:Usuario) => {
-        console.log(usuario);
         this.isCliente = this.usuarioService.isCliente(usuario);
         this.isAtivo = this.usuarioService.isAtivo(usuario);
         if (this.isCliente) {

@@ -12,6 +12,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { PoliticaPrivacidadeComponent } from 'src/app/acesso/cadastro/politica-privacidade/politica-privacidade.component';
 import { ValidateBrService } from 'angular-validate-br';
+import { Endereco } from 'src/app/interfaces/endereco';
 
 @Component({
   selector: 'app-cadastro-conta',
@@ -37,19 +38,9 @@ export class CadastroContaComponent implements OnInit {
     Validators.required,
   ]);
 
-  logradouroFormControl = new FormControl('', [Validators.required]);
-
   numeroFormControl = new FormControl('', [Validators.required]);
 
-  complementoFormControl = new FormControl('', [Validators.required]);
-
-  bairroFormControl = new FormControl('', [Validators.required]);
-
   cepFormControl = new FormControl('', [Validators.required, Validators.minLength(8)]);
-
-  estadoFormControl = new FormControl('', [Validators.required]);
-
-  cidadeFormControl = new FormControl('', [Validators.required]);
 
   cpfFormControl:FormControl;
 
@@ -102,9 +93,7 @@ export class CadastroContaComponent implements OnInit {
     || this.emailFormControl.invalid
     || this.senhaFormControl.invalid
     || this.confirmaSenhaFormControl.invalid
-    || this.logradouroFormControl.invalid
     || this.numeroFormControl.invalid
-    || this.bairroFormControl.invalid
     || this.cepFormControl.invalid
     || !this.isPoliticasAceitas;
   }
@@ -139,6 +128,11 @@ export class CadastroContaComponent implements OnInit {
         this.erroRequisicao = typeof err === 'string' ? err : 'ERRO_REQUISICAO';
         this.disableButton();
       });
+  }
+
+  setaEndereco(endereco:Endereco) {
+    console.log(endereco);
+    this.usuario.endereco = endereco;
   }
 
   cadastrarConta(usuario:Usuario) {
