@@ -1,16 +1,14 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Prestador } from 'src/app/interfaces/prestador';
-import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { AvaliacaoService } from 'src/app/servicos/avaliacao.service';
 
 @Component({
   selector: 'app-dialog-servico-selecionado',
   templateUrl: './dialog-servico-selecionado.component.html',
-  styleUrls: ['./dialog-servico-selecionado.component.scss']
+  styleUrls: ['./dialog-servico-selecionado.component.scss'],
 })
 export class DialogServicoSelecionadoComponent implements OnInit {
-  
   constructor(public ref:MatDialogRef<DialogServicoSelecionadoComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,
     private avaliacaoService:AvaliacaoService) { }
@@ -39,7 +37,8 @@ export class DialogServicoSelecionadoComponent implements OnInit {
   }
 
   getMediaAvaliacoes() {
-    return this.getServico().mediaAvaliacao || this.avaliacaoService.getMediaAvaliacao(this.getAvaliacoes());
+    return this.getServico().mediaAvaliacao
+    || this.avaliacaoService.getMediaAvaliacao(this.getAvaliacoes());
   }
 
   getEndereco() {
@@ -49,9 +48,4 @@ export class DialogServicoSelecionadoComponent implements OnInit {
   getUrl() {
     return `prestador/${this.getPrestador().id}/servicoDetalhado/${this.getServico().id}/agendamento`;
   }
-
-  
-
-
-
 }

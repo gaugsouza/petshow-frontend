@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'prestador/:prestadorId/servicoDetalhado/:servicoDetalhadoId/agendamento', component: AgendamentoComponent },
   { path: 'agendamento/:idAgendamento', component: VisualizacaoAgendamentoComponent },
   { path: 'agendamento-sucesso/:idAgendamento', component: ConfirmacaoAgendamentoComponent },
-  { path: 'mapa', component: GeolocalizacaoComponent }
+  { path: 'mapa', component: GeolocalizacaoComponent },
 ];
 
 @NgModule({

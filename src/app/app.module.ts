@@ -36,11 +36,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DATE_FORMATS, NativeDateModule, MAT_NATIVE_DATE_FORMATS } from '@angular/material/core';
-import { DialogComparacaoComponent } from './lista-servicos-detalhados/dialog-comparacao/dialog-comparacao.component';
 import { Agendamento } from 'src/app/interfaces/agendamento';
 import { AgendamentosModule } from 'src/app/agendamentos/agendamentos.module';
 import { GeolocalizacaoModule } from 'src/app/geolocalizacao/geolocalizacao.module';
-import {MatSliderModule} from '@angular/material/slider'; 
+import { MatSliderModule } from '@angular/material/slider';
+import { DialogComparacaoComponent } from './lista-servicos-detalhados/dialog-comparacao/dialog-comparacao.component';
 @NgModule({
   declarations: [
     AppComponent,
