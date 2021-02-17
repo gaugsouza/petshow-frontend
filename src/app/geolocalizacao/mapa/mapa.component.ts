@@ -68,7 +68,7 @@ export class MapaComponent implements OnInit {
         }
 
         this.usuarioService.getUsuario(token).subscribe((usuario) => {
-          this.geraMapa(this.geolocalizacao, this.servicos, usuario.nome);
+          this.geraMapa(this.geolocalizacao, this.servicos, (usuario || {}).nome);
         });
       });
     });
@@ -90,7 +90,7 @@ export class MapaComponent implements OnInit {
     const cliente = this.criaPontoCliente(mapCenter, name);
     const pontosServicos = this.criaPontosServico(servicos);
     const source = new ol.source.Vector({
-      features: [cliente, ...pontosServicos],
+      features: [cliente, ...pontosServicos.filter(el => el !== null)],
     });
 
     const vectorLayer = new ol.layer.Vector({
@@ -137,6 +137,9 @@ export class MapaComponent implements OnInit {
   criaPontosServico(servicos:ServicoDetalhado[]) {
     return servicos.map((servico) => {
       const { prestador } = servico;
+      if(!prestador.geolocalizacao) {
+        return null;
+      }
       const posicao:ol.Coordinate = [
         Number.parseFloat(prestador.geolocalizacao.geolocLongitude),
         Number.parseFloat(prestador.geolocalizacao.geolocLatitude),
