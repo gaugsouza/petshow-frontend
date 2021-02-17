@@ -11,9 +11,9 @@ import { NotificationService } from 'src/app/servicos/notification.service';
 import { MatDialog } from '@angular/material/dialog';
 import { JwtHelper } from 'src/app/util/jwt-helper';
 import { Adicional } from 'src/app/interfaces/adicional';
+import { ConfirmacaoCancelamentoComponent } from 'src/app/perfis/confirmacao-cancelamento/confirmacao-cancelamento.component';
 import { AdicionalDialogComponent } from '../adicional-dialog/adicional-dialog.component';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
-import { ConfirmacaoCancelamentoComponent } from 'src/app/perfis/confirmacao-cancelamento/confirmacao-cancelamento.component';
 
 @Component({
   selector: 'app-servicos',
@@ -57,11 +57,11 @@ export class ServicosComponent implements OnInit {
   removeServico(servico:ServicoDetalhado) {
     const cancelRef = this.cancelamento.open(ConfirmacaoCancelamentoComponent,
       {
-        data: "DESEJA_CONFIRMAR_REMOCAO"
+        data: 'DESEJA_CONFIRMAR_REMOCAO',
       });
     cancelRef.afterClosed().subscribe((result) => {
       if (result) {
-        const cancelaId = this.removerServico.emit(servico);
+        this.removerServico.emit(servico);
       }
     });
   }

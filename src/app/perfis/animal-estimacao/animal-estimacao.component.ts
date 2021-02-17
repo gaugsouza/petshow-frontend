@@ -56,11 +56,11 @@ export class AnimalEstimacaoComponent implements OnInit {
   removeAnimal(animalEstimacao:AnimalEstimacao) {
     const cancelRef = this.cancelamento.open(ConfirmacaoCancelamentoComponent,
       {
-        data: "DESEJA_CONFIRMAR_REMOCAO_ANIMAL"
+        data: 'DESEJA_CONFIRMAR_REMOCAO_ANIMAL',
       });
     cancelRef.afterClosed().subscribe((result) => {
       if (result) {
-        const cancelaId = this.removerAnimal.emit(animalEstimacao);
+        this.removerAnimal.emit(animalEstimacao);
       }
     });
   }
