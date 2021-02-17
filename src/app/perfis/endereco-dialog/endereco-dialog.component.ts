@@ -19,6 +19,7 @@ export class EnderecoDialogComponent implements OnInit {
 
   cepFormControl = new FormControl('', [
     Validators.required,
+    Validators.minLength(8),
   ]);
 
   bairroFormControl = new FormControl('', [
@@ -59,6 +60,7 @@ export class EnderecoDialogComponent implements OnInit {
   }
 
   hasErrors() {
-    return this.logradouroFormControl.hasError('required') || this.numeroFormControl.hasError('required') || this.cepFormControl.hasError('required') || this.bairroFormControl.hasError('required');
+    return this.logradouroFormControl.invalid || this.numeroFormControl.invalid
+    || this.cepFormControl.invalid || this.bairroFormControl.invalid;
   }
 }

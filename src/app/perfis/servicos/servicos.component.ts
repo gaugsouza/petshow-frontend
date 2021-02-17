@@ -11,6 +11,9 @@ import { NotificationService } from 'src/app/servicos/notification.service';
 import { MatDialog } from '@angular/material/dialog';
 import { JwtHelper } from 'src/app/util/jwt-helper';
 import { Adicional } from 'src/app/interfaces/adicional';
+import { ServicoDetalhadoTipoAnimal } from 'src/app/interfaces/servico-detalhado-tipo-animal';
+import { ServicoPrecoDialogComponent } from '../servico-preco-dialog/servico-preco-dialog.component';
+import { ConfirmacaoCancelamentoComponent } from 'src/app/perfis/confirmacao-cancelamento/confirmacao-cancelamento.component';
 import { AdicionalDialogComponent } from '../adicional-dialog/adicional-dialog.component';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
@@ -34,7 +37,8 @@ export class ServicosComponent implements OnInit {
 
   paginaAtual:number = 0;
 
-  constructor(private servicosService: ServicosService,
+  constructor(private cancelamento: MatDialog,
+              private servicosService: ServicosService,
               private localStorageService: LocalStorageService,
               @Inject('ServicoNotificationService') private servicoNotification: NotificationService<ServicoDetalhado>,
               public dialog:MatDialog,
@@ -48,8 +52,20 @@ export class ServicosComponent implements OnInit {
     });
   }
 
+  // removeServico(servico:ServicoDetalhado) {
+  //   this.removerServico.emit(servico);
+  // }
+
   removeServico(servico:ServicoDetalhado) {
-    this.removerServico.emit(servico);
+    const cancelRef = this.cancelamento.open(ConfirmacaoCancelamentoComponent,
+      {
+        data: 'DESEJA_CONFIRMAR_REMOCAO',
+      });
+    cancelRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.removerServico.emit(servico);
+      }
+    });
   }
 
   buscarServicosDetalhadosPorPrestador(prestadorId:number, pagina:number, quantidadeItens:number) {
@@ -104,35 +120,61 @@ export class ServicosComponent implements OnInit {
     });
   }
 
-  openConfirmationDialog(adicional) {
-    const data = {
-      mensagem: 'Deseja prosseguir com a deleção deste adicional?',
-      response: true,
-    };
+  openConfirmationDialogAdicional(adicional){
+    const data = {mensagem: "CONFIRMAR_DELECAO_ADICIONAL",
+                  response: true}
 
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '400px',
       data: { ...data },
     });
 
-    dialogRef.afterClosed().subscribe((dado) => {
-      if (dado) {
-        this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
-          const prestadorId = this.jwtHelper.recuperaIdToken(token);
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data) {
+        if(data.response){
+          this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+            let prestadorId = this.jwtHelper.recuperaIdToken(token)
 
-          this.servicosService.desativarAdicional(prestadorId, adicional.servicoDetalhadoId,
-            adicional.id, token)
-            .subscribe(() => {
-              this.buscarServicosDetalhadosPorPrestador(this.prestadorId, this.paginaAtual,
-                this.quantidadeItens);
-            });
-        });
+            this.servicosService.desativarAdicional(prestadorId, adicional.servicoDetalhadoId, adicional.id, token)
+              .subscribe((response) => {              
+                this.buscarServicosDetalhadosPorPrestador(this.prestadorId, this.paginaAtual, this.quantidadeItens);
+            })
+          });
+        }
       }
     });
   }
 
-  openDialogInsercao(servico:ServicoDetalhado) {
-    const data = {
+  openConfirmationDialogPrecoPorTipo(servico:ServicoDetalhado, precoPorTipo:ServicoDetalhadoTipoAnimal){
+    const data = {mensagem: precoPorTipo.ativo ? 'ATIVAR_PRECO_POR_TIPO' : 'DESATIVAR_PRECO_POR_TIPO',
+                  response: true}
+    const estadoInicial = ! precoPorTipo.ativo;
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '400px',
+      data: { ...data},
+    });
+
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data) {
+        if(data.response){
+          this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+            this.servicosService.atualizarTipoAnimalAceito(this.prestadorId, servico.id, precoPorTipo.tipoAnimal.id, precoPorTipo, token)
+                .subscribe(() => this.buscarServicosDetalhadosPorPrestador(this.prestadorId, this.paginaAtual,this.quantidadeItens));
+          });
+        } else {
+          precoPorTipo.ativo = estadoInicial;   
+        }        
+      }
+    });
+
+    dialogRef.backdropClick().subscribe(() => {
+      precoPorTipo.ativo = estadoInicial; 
+    });
+  }
+
+
+  openDialogInsercao(servico:ServicoDetalhado){
+    let data = {
       titulo: 'NOVO_ADICIONAL',
       textoBotao: 'SALVAR',
       adicional: {
@@ -155,6 +197,36 @@ export class ServicosComponent implements OnInit {
             this.buscarServicosDetalhadosPorPrestador(this.prestadorId, this.paginaAtual,
               this.quantidadeItens);
           });
+        });
+      }
+    });
+  }
+
+  openDialogServicoPreco(acao:string, servico:ServicoDetalhado, precoPorTipo?:ServicoDetalhadoTipoAnimal){
+    let data = {
+      titulo: servico.tipo.nome,
+      servico: servico,
+      precoPorTipo: precoPorTipo,
+      acao: acao
+    }
+
+    const dialogRef = this.dialog.open(ServicoPrecoDialogComponent, {
+      width: '600px',
+      data: { ...data},
+    });
+
+    dialogRef.afterClosed().subscribe((precoPorTipo:ServicoDetalhadoTipoAnimal) => {
+      if (precoPorTipo) {
+        this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+          if(acao === 'INSERIR'){
+            this.servicosService.adicionarTipoAnimalAceito(this.prestadorId, servico.id, precoPorTipo.tipoAnimal.id, precoPorTipo, token)
+              .subscribe(() => this.buscarServicosDetalhadosPorPrestador(this.prestadorId, this.paginaAtual,this.quantidadeItens));
+          }
+
+          if(acao === 'ATUALIZAR'){
+            this.servicosService.atualizarTipoAnimalAceito(this.prestadorId, servico.id, precoPorTipo.tipoAnimal.id, precoPorTipo, token)
+              .subscribe(() => this.buscarServicosDetalhadosPorPrestador(this.prestadorId, this.paginaAtual,this.quantidadeItens));
+          }
         });
       }
     });

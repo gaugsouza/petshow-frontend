@@ -33,31 +33,15 @@ export class PrestadorComponent implements OnInit {
       });
   }
 
-  /* eslint-disable no-param-reassign */
-  getMediaAvaliacoes = (servicoDetalhado:ServicoDetalhado):number => {
-    if (!servicoDetalhado.avaliacoes || servicoDetalhado.avaliacoes.length === 0) {
-      return 0;
-    }
-
-    const soma = servicoDetalhado.avaliacoes.reduce(
-      (somaAvaliacoes:number, avaliacao:Avaliacao) => {
-        somaAvaliacoes += avaliacao.media;
-        return somaAvaliacoes;
-      }, 0,
-    );
-
-    return soma / servicoDetalhado.avaliacoes.length;
-  }
-
-  getMediaUsuario():number {
+  getMediaUsuario():string {
     if (!this.prestador.servicos || this.prestador.servicos.length === 0) {
-      return 0;
+      return (0).toFixed(2);
     }
     const somaMedias = this.prestador.servicos.reduce((soma:number, servico:ServicoDetalhado) => {
-      soma += this.getMediaAvaliacoes(servico);
+      soma += servico.mediaAvaliacao;
       return soma;
     }, 0);
-    return somaMedias / this.prestador.servicos.length;
+    return (somaMedias / this.prestador.servicos.length).toFixed(2);
   }
 /* eslint-enable no-param-reassign */
 }

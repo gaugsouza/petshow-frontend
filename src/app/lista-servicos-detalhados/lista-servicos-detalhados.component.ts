@@ -11,7 +11,8 @@ import { FiltroServicos } from 'src/app/interfaces/filtro-servicos';
 import { UsuarioService } from 'src/app/servicos/usuario.service';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { USER_TOKEN } from '../util/constantes';
-
+import { Usuario } from '../interfaces/usuario';
+import { DataSharingService } from '../servicos/data-sharing.service';
 @Component({
   selector: 'app-lista-servicos-detalhados',
   templateUrl: './lista-servicos-detalhados.component.html',
@@ -42,7 +43,7 @@ export class ListaServicosDetalhadosComponent implements OnInit {
 
   filtroAdicional:boolean = false;
 
-  filtro:FiltroServicos = { tipoServicoId: null };
+  filtro:FiltroServicos = { };
 
   menorPreco:number;
 
@@ -58,23 +59,39 @@ export class ListaServicosDetalhadosComponent implements OnInit {
               private route: ActivatedRoute,
               private dialog:MatDialog,
               private usuarioService:UsuarioService,
-              private localStorageService:LocalStorageService) {}
+              private localStorageService:LocalStorageService,
+              private dataSharingService:DataSharingService) {}
 
   ngOnInit(): void {
     this.tipoId = +this.route.snapshot.paramMap.get('id');
     this.filtro.tipoServicoId = this.tipoId;
-    this.buscarServicosDetalhadosPorTipo(this.filtro, this.paginaAtual, this.quantidadePagina);
     this.buscaUsuario();
   }
 
   buscaUsuario() {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
-      this.usuarioService.getUsuario(token).subscribe((usuario) => {
+      this.usuarioService.getUsuario(token).subscribe((usuario:Usuario) => {
         this.isCliente = this.usuarioService.isCliente(usuario);
         this.isAtivo = this.usuarioService.isAtivo(usuario);
+        if (this.isCliente) {
+          this.filtro = {
+            ...this.filtro,
+            metrosGeoloc: 600,
+            posicaoAtual: { ...(usuario || {}).geolocalizacao },
+          };
+        }
       }, () => {
         this.isCliente = false;
+      },
+      () => {
+        this.buscarServicosDetalhadosPorTipo(this.filtro, this.paginaAtual, this.quantidadePagina);
       });
+    },
+    () => {
+      this.isCliente = false;
+    },
+    () => {
+      this.buscarServicosDetalhadosPorTipo(this.filtro, this.paginaAtual, this.quantidadePagina);
     });
   }
 
@@ -87,11 +104,11 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   }
 
   buscarServicosDetalhadosPorTipo(filtro:FiltroServicos, pagina?:number, quantidadeItens?:number) {
+    this.dataSharingService.filtroShared.next(filtro);
     this.servicosService.buscarServicosDetalhadosPorTipo(filtro, pagina, quantidadeItens)
       .subscribe((paginaServicosDetalhados) => {
         const objetoPaginado:ObjetoPaginado = JSON.parse(paginaServicosDetalhados);
         const servicos = objetoPaginado.content;
-
         this.servicosDetalhados = servicos;
         this.quantidadeTotal = objetoPaginado.totalElements;
         this.paginaAtual = objetoPaginado.pageable.pageNumber;
@@ -126,6 +143,12 @@ export class ListaServicosDetalhadosComponent implements OnInit {
     ];
 
     return estrelas.flatMap((el:string) => el);
+  }
+
+  resetaAvaliacoes() {
+    this.mediaAvaliacao = 0;
+    this.filtro.mediaAvaliacao = null;
+    this.atualizaFiltro(this.filtro);
   }
 
   toggleFiltroAdicional() {
@@ -171,5 +194,22 @@ export class ListaServicosDetalhadosComponent implements OnInit {
     ref.afterClosed().subscribe(() => {
       this.idsAComparar = [];
     });
+  }
+
+  alteraFiltro(filtro) {
+    this.filtro = { ...this.filtro, ...filtro };
+    this.atualizaFiltro(this.filtro);
+  }
+
+  alteraValorSlider(valor) {
+    this.alteraFiltro({ ...this.filtro, metrosGeoloc: valor });
+  }
+
+  formatLabel = (value: number) => {
+    if (value >= 1000) {
+      return `${Math.round(value / 1000)}km`;
+    }
+
+    return `${value}m`;
   }
 }

@@ -8,6 +8,8 @@ import { USER_TOKEN } from 'src/app/util/constantes';
 import { ObjetoPaginado } from 'src/app/interfaces/paginacao';
 import { PageEvent } from '@angular/material/paginator';
 import { NotificationService } from 'src/app/servicos/notification.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmacaoCancelamentoComponent } from '../confirmacao-cancelamento/confirmacao-cancelamento.component';
 
 @Component({
   selector: 'app-animal-estimacao',
@@ -16,8 +18,6 @@ import { NotificationService } from 'src/app/servicos/notification.service';
 })
 export class AnimalEstimacaoComponent implements OnInit {
   @Input('dono-id') donoId: number;
-
-  @Output('remover-animal') removerAnimal = new EventEmitter<AnimalEstimacao>();
 
   @Output('seleciona-animal') animalEmitter = new EventEmitter<AnimalEstimacao>();
 
@@ -31,7 +31,8 @@ export class AnimalEstimacaoComponent implements OnInit {
 
   paginaAtual:number = 0;
 
-  constructor(private usuarioService: UsuarioService,
+  constructor(private cancelamento: MatDialog,
+              private usuarioService: UsuarioService,
               private localStorageService: LocalStorageService,
               @Inject('AnimalNotificationService') private animalNotification: NotificationService<AnimalEstimacao>) { }
 
@@ -46,8 +47,24 @@ export class AnimalEstimacaoComponent implements OnInit {
     this.animalEmitter.emit(animalEstimacao);
   }
 
+  // removeAnimal(animalEstimacao:AnimalEstimacao) {
+  //   this.removerAnimal.emit(animalEstimacao);
+  // }
+
   removeAnimal(animalEstimacao:AnimalEstimacao) {
-    this.removerAnimal.emit(animalEstimacao);
+    const cancelRef = this.cancelamento.open(ConfirmacaoCancelamentoComponent,
+      {
+        data: 'DESEJA_CONFIRMAR_REMOCAO_ANIMAL',
+      });
+    cancelRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+          this.usuarioService.removerAnimalEstimacao(animalEstimacao.id, token).subscribe(() => {
+            this.buscarAnimaisEstimacaoPorDono(this.donoId, this.paginaAtual, this.quantidadeItens);
+          });
+        });
+      }
+    });
   }
 
   buscarAnimaisEstimacaoPorDono(donoId:number, pagina:number, quantidadeItens:number) {

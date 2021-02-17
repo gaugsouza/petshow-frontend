@@ -71,21 +71,4 @@ describe('PrestadorComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('Deve retornar média de avaliaçoes', () => {
-    let servico = servicos[0];
-    let avaliacoes = servico.avaliacoes;
-    const esperado = avaliacoes.reduce((total, avaliacao) => total += avaliacao.media, 0) / avaliacoes.length;
-
-    expect(component.getMediaAvaliacoes(servico)).toEqual(esperado);
-  });
-
-  it('Deve retornar média de prestador', () => {
-    let prestador = prestadores[0];
-    let esperado = prestador.servicos.reduce((soma, servico) => {
-      return soma += component.getMediaAvaliacoes(servico);
-    }, 0) / prestador.servicos.length;
-
-    component.prestador = prestador;
-  })
 });

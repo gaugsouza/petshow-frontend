@@ -1,4 +1,5 @@
 export interface Servico {
     id?: number,
-    nome: string
+    nome: string,
+    grupo: string
 }

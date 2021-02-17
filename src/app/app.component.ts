@@ -40,7 +40,6 @@ export class AppComponent implements OnInit {
           this.isLogged = isLogado;
         });
       });
-    this.redirectTo = !this.location.path() || this.location.path() === '/login' ? '' : `?redirectTo=${this.location.path()}`;
   }
 
   defineLangSettings(translate:TranslateService):void {
@@ -52,7 +51,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.redirectTo = '';
     if (environment.production) {
       if (window.location.protocol === 'http:') {
         window.location.href = window.location.href.replace('http', 'https');
@@ -65,6 +63,7 @@ export class AppComponent implements OnInit {
         }
       });
     this.updateMenu(window.innerWidth);
+    this.redirectTo = !this.location.path() || this.location.path() === '/login' ? '' : `?redirectTo=${this.location.path()}`;
   }
 
   updateMenu(innerWidth: number):void {

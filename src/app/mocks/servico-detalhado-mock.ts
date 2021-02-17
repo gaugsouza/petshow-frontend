@@ -7,7 +7,8 @@ let servicoDetalhado:ServicoDetalhado = {
     precoPorTipo:[],
     tipo: {
         id: 1,
-        nome: "Banho e tosa"
+        nome: "Banho e tosa",
+        grupo: ''
     },
     prestador: {
         id: 2,
@@ -62,7 +63,8 @@ let servicoDetalhadoSemAvaliacao:ServicoDetalhado = {
     precoPorTipo:[],
     tipo: {
         id: 1,
-        nome: "Banho e tosa"
+        nome: "Banho e tosa",
+        grupo: ''
     },
     prestador: {
         id: 2,

@@ -125,24 +125,6 @@ describe('PerfilUsuarioComponent', () => {
     expect(animalAdicionado).toBeTruthy();
   });
 
-  it('Deve remover um animal da lista de animais', () => {
-    component.usuario = usuarioMock;
-    let animalARemover: AnimalEstimacao = {
-      id: 2,
-      nome: "Floquinho", 
-      tipo: {
-        id: 1,
-        nome: "CACHORRO"
-      },
-      donoId: 1
-    };
-    component.adicionaAnimal(animalARemover);
-
-    component.removeAnimal(animalARemover);
-
-    expect(component.usuario.animaisEstimacao).not.toContain(animalARemover);
-  });
-
   it('Deve retornar um animal editado', () => {
     component.usuario = usuarioMock;
     let nomeEsperado = "Mingau";

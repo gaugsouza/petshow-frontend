@@ -36,6 +36,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { AgendaClienteComponent } from '../agenda-cliente/agenda-cliente.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'; 
 
 describe('PerfilComponent', () => {
   let component: PerfilComponent;
@@ -56,7 +57,7 @@ describe('PerfilComponent', () => {
         FormularioAnimalComponent,
         MensagemAtivacaoComponent,
         AgendaPrestadorComponent,
-        AgendaClienteComponent
+        AgendaClienteComponent,
        ],
        providers: [
         PrestadorService,
@@ -84,6 +85,7 @@ describe('PerfilComponent', () => {
         MatChipsModule,
         MatCheckboxModule,
         MatIconModule,
+        MatSlideToggleModule,
        ]
     })
     .compileComponents();

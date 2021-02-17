@@ -77,7 +77,10 @@ export class AgendaClienteComponent implements OnInit {
   }
 
   cancelaAgendamento(agendamento:Agendamento) {
-    const cancelRef = this.cancelamento.open(ConfirmacaoCancelamentoComponent);
+    const cancelRef = this.cancelamento.open(ConfirmacaoCancelamentoComponent,
+      {
+        data: 'DESEJA_CONFIRMAR_CANCELAMENTO',
+      });
     cancelRef.afterClosed().subscribe((result) => {
       if (result) {
         const cancelaId = this.statusAgendamento.find((status) => STATUS_AGENDAMENTO.cancelado
@@ -97,4 +100,11 @@ export class AgendaClienteComponent implements OnInit {
   isAtivo = (agendamento:Agendamento) => !STATUS_AGENDAMENTO.cancelado
     .includes(agendamento.status.nome.toUpperCase()) && !STATUS_AGENDAMENTO.concluido
     .includes(agendamento.status.nome.toUpperCase());
+
+  eventoPagina(event: PageEvent) {
+    const pagina = event.pageIndex;
+    const quantidadeItens = event.pageSize;
+    this.buscarAgendamentosPorCliente(this.clienteId, pagina, quantidadeItens);
+    return event;
+  }
 }

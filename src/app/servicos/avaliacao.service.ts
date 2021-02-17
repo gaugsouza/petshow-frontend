@@ -49,4 +49,11 @@ export class AvaliacaoService {
     ];
     return estrelas.flatMap((el:any) => el);
   }
+
+  /* eslint-disable no-param-reassign */
+  getMediaAvaliacao = (avaliacoes:Avaliacao[]) => avaliacoes.reduce((acc, avaliacao) => {
+    acc += avaliacao.media;
+    return acc;
+  }, 0);
+  /* eslint-enable no-param-reassign */
 }

@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpHandlerService } from 'src/app/servicos/http-handler.service';
 import { SERVICO_DETALHADO_URL, TIPO_SERVICO_URL, PRESTADOR_SERVICE_URL } from 'src/app/util/url';
-import { FiltroServicos } from 'src/app/interfaces/filtro-servicos';
-import { Adicional } from 'src/app/interfaces/adicional';
+import { FiltroServicos } from '../interfaces/filtro-servicos';
+import { Adicional } from '../interfaces/adicional';
+import { ServicoDetalhadoTipoAnimal } from '../interfaces/servico-detalhado-tipo-animal';
 
 @Injectable({
   providedIn: 'root',
@@ -55,5 +56,20 @@ export class ServicosService {
     adicionalId:number, token:string) {
     const URL = `${PRESTADOR_SERVICE_URL}/${prestadorId}/servico-detalhado/${servicoDetalhadoId}/adicional/${adicionalId}`;
     return this.httpHandler.doDelete<any>(URL, token);
+  }
+
+  adicionarTipoAnimalAceito(prestadorId:number, servicoDetalhadoId:number, tipoAnimalId:number, servicoDetalhadoTipoAnimal: ServicoDetalhadoTipoAnimal, token:string) : Observable<any> {
+    const URL = `${PRESTADOR_SERVICE_URL}/${prestadorId}/servico-detalhado/${servicoDetalhadoId}/tipoAnimalAceito/tipoAnimal/${tipoAnimalId}`;
+    return this.httpHandler.doPost<any>(URL, servicoDetalhadoTipoAnimal, token);
+  }
+
+  atualizarTipoAnimalAceito(prestadorId:number, servicoDetalhadoId:number, tipoAnimalId:number, servicoDetalhadoTipoAnimal: ServicoDetalhadoTipoAnimal, token:string) : Observable<any> {
+    const URL = `${PRESTADOR_SERVICE_URL}/${prestadorId}/servico-detalhado/${servicoDetalhadoId}/tipoAnimalAceito/tipoAnimal/${tipoAnimalId}`;
+    return this.httpHandler.doPut<any>(URL, servicoDetalhadoTipoAnimal, token);
+  }
+  
+  buscarServicosGeoloc = (filtro:FiltroServicos) : Observable<any> => {
+    const URL = `${SERVICO_DETALHADO_URL}/geoloc`;
+    return this.httpHandler.doPost<any>(URL, filtro);
   }
 }

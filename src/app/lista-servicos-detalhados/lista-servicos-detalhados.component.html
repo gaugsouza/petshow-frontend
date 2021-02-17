@@ -11,17 +11,11 @@
         <div class="menu-servicos">
             <mat-toolbar>
                 <mat-toolbar-row>
-                    Filtros:
+                    {{'FILTROS' | translate}}:
                 </mat-toolbar-row>
-                <!-- <mat-toolbar-row>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Nome do prestador</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </mat-toolbar-row> -->
                 <mat-toolbar-row>
                     <mat-form-field appearance="fill">
-                        <mat-label>Ordenação</mat-label>
+                        <mat-label>{{'ORDENACAO' | translate}}</mat-label>
                         <mat-select (selectionChange)="alteraOrdenacao($event.value)">
                           <mat-option *ngFor="let key of getOrdenacaoKeys()" [value]="key">
                             {{ordenacao[key]}}
@@ -31,23 +25,24 @@
                 </mat-toolbar-row>
                 <mat-divider></mat-divider>
                 <mat-toolbar-row>
-                    <mat-checkbox (change)="toggleFiltroAdicional()">Possui adicionais</mat-checkbox>
+                    <mat-checkbox (change)="toggleFiltroAdicional()">{{'POSSUI_ADICIONAIS' | translate}}</mat-checkbox>
                 </mat-toolbar-row>
                 <mat-divider></mat-divider>
                 <mat-toolbar-row>
                     <div class="avaliacoes-filtro">
-                        <span>Média de avaliações</span>
+                        <span>{{'MEDIA_AVALIACOES' | translate}}</span>
                         <span>
                             <mat-icon *ngFor="let estrela of getEstrelas(); let i = index" (click)="atualizaMediaAvaliacao(i+1)">
                                 {{estrela}}
                             </mat-icon>
+                            <button mat-button (click)="resetaAvaliacoes()" *ngIf="mediaAvaliacao > 0"><mat-icon>close</mat-icon></button>
                         </span>
                     </div>
                 </mat-toolbar-row>
                 <mat-divider></mat-divider>
                 <mat-toolbar-row>
                     <mat-form-field>
-                        <mat-label>Preço Mínimo</mat-label>
+                        <mat-label>{{'PRECO_MIN' | translate}}</mat-label>
                         <input 
                             matInput 
                             (blur)="blurInputs('menorPreco', menorPreco)"
@@ -60,7 +55,7 @@
                 </mat-toolbar-row>
                 <mat-toolbar-row>
                     <mat-form-field>
-                        <mat-label>Preço Máximo</mat-label>
+                        <mat-label>{{'PRECO_MAX' | translate}}</mat-label>
                         <input 
                             (blur)="blurInputs('maiorPreco', maiorPreco)"
                             matInput 
@@ -73,15 +68,38 @@
                 </mat-toolbar-row>
                 <mat-divider></mat-divider>
             </mat-toolbar>
+            <mat-toolbar-row>
+                <div class="distancia-filtro">
+                    <span>Distância máxima</span>
+                    <mat-slider
+                        thumbLabel
+                        [displayWith]="formatLabel"
+                        min="100"
+                        max="50000"
+                        [(ngModel)]="filtro.metrosGeoloc"
+                        tickInterval="100"
+                        (change)="alteraValorSlider($event.value)"
+                    ></mat-slider>
+                </div>
+            </mat-toolbar-row>
         </div>
-        <div class="conteiner-lista-servicos-detalhados" *ngIf="servicosDetalhados && servicosDetalhados.length; then servicosDetalhadosBlock else vazioBlock"></div>
+        <div>
+            <div class="conteiner-lista-servicos-detalhados" *ngIf="servicosDetalhados && servicosDetalhados.length; then servicosDetalhadosBlock else vazioBlock"></div>
+            <app-geolocalizacao
+            [filtro]="filtro"
+            [isCliente]="isCliente"
+            [isAtivo]="isAtivo"
+            (altera-filtro)="alteraFiltro($event)"
+            ></app-geolocalizacao>
+        </div>
+        
         
     </div>    
     
     <ng-template #vazioBlock>
         <p>{{'NENHUM_SERVICO_CADASTRADO' | translate}}</p>
     </ng-template>
-<!-- TODO: Exibir menor preço do serviço detalhado-->
+
     <ng-template #servicosDetalhadosBlock>
         <div>
         <mat-list class="lista-servicos-detalhados">

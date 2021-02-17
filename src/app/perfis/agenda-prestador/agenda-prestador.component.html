@@ -14,15 +14,15 @@
           <div>
             <span>
               <p>{{agendamento.servicoDetalhado.tipo.nome}}</p>
-              <p>{{agendamento.data | date:'dd/MM/yyyy hh:mm'}}</p>
-              <p>Preço final: {{agendamento.precoFinal | currency: 'BRL'}}</p>
+              <p>{{agendamento.data}}</p>
+              <p>{{'PRECO_FINAL' | translate}}: {{agendamento.precoFinal | currency: 'BRL'}}</p>
             </span>
           </div>
           <div>
             <ng-container *ngFor="let animal of agendamento.animaisAtendidos">
               <span *ngIf="animal.tipo.nome.toLowerCase() === 'cachorro'; else infosGato">
-                <p>Animal a ser atendido: {{animal.nome}} {{'DE' | translate}} {{agendamento.cliente.nome}}</p>
-                <p>Cachorro de porte {{animal.tipo.porte}} e pelagem {{animal.tipo.pelagem}}</p>
+                <p>{{'ANIMAL_SER_ATENDIDO' | translate}}: {{animal.nome}} {{'DE' | translate}} {{agendamento.cliente.nome}}</p>
+                <p>{{'CACHORRO' | translate}} {{'DE' | translate}} {{'PORTE' | translate}}: {{animal.tipo.porte}} {{'E' | translate}} {{'PELAGEM' | translate}}: {{animal.tipo.pelagem}}</p>
               </span>
               <ng-template #infosGato>
                 <span>
@@ -31,10 +31,10 @@
                 </span>
               </ng-template>
             </ng-container>
-            <span><p>Status: {{agendamento.status.nome}}</p></span>
+            <span><p>{{'STATUS' | translate}}: {{agendamento.status.nome | translate}}</p></span>
           </div>
           <div class="agendamento-list__button-container" *ngIf="isAtivo(agendamento)">
-            <button mat-flat-button color="accent"
+            <button mat-flat-button color="success"
               (click)="concluiAgendamento(agendamento)">{{'CONCLUIDO' | translate}}</button>
             <button mat-flat-button color="warn"
               (click)="cancelaAgendamento(agendamento)">{{'CANCELAR' | translate}}</button>
@@ -43,8 +43,12 @@
       </mat-list-item>
     </mat-list>
 
-    <mat-paginator #paginator [length]="quantidadeTotal" [pageIndex]="paginaAtual" [pageSize]="quantidadeItens"
-      [pageSizeOptions]="[5, 7, 10, 15]">
+    <mat-paginator #paginator 
+      [length]="quantidadeTotal"
+      [pageIndex]="paginaAtual"
+      [pageSize]="quantidadeItens"
+      [pageSizeOptions]="[5, 7, 10, 15]"
+      (page)="pageEvent = eventoPagina($event)">
     </mat-paginator>
   </ng-template>
 
