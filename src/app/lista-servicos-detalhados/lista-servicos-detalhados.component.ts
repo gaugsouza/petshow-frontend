@@ -12,8 +12,6 @@ import { UsuarioService } from 'src/app/servicos/usuario.service';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { USER_TOKEN } from '../util/constantes';
 import { Usuario } from '../interfaces/usuario';
-import { GeolocalizacaoService } from '../servicos/geolocalizacao.service';
-import ol from 'openlayers';
 import { DataSharingService } from '../servicos/data-sharing.service';
 @Component({
   selector: 'app-lista-servicos-detalhados',
@@ -73,13 +71,15 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   buscaUsuario() {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       this.usuarioService.getUsuario(token).subscribe((usuario:Usuario) => {
-
         this.isCliente = this.usuarioService.isCliente(usuario);
         this.isAtivo = this.usuarioService.isAtivo(usuario);
-        if(this.isCliente) {
-          this.filtro = {...this.filtro, metrosGeoloc: 600, posicaoAtual: { ...(usuario || {}).geolocalizacao } }
+        if (this.isCliente) {
+          this.filtro = {
+            ...this.filtro,
+            metrosGeoloc: 600,
+            posicaoAtual: { ...(usuario || {}).geolocalizacao },
+          };
         }
-        console
       }, () => {
         this.isCliente = false;
       },
@@ -197,20 +197,19 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   }
 
   alteraFiltro(filtro) {
-    this.filtro = {...this.filtro, ...filtro};
+    this.filtro = { ...this.filtro, ...filtro };
     this.atualizaFiltro(this.filtro);
   }
 
-  alteraValorSlider(valor){
-    // console.log(e);
-    this.alteraFiltro({...this.filtro, metrosGeoloc: valor});
+  alteraValorSlider(valor) {
+    this.alteraFiltro({ ...this.filtro, metrosGeoloc: valor });
   }
 
-  formatLabel(value: number) {
+  formatLabel = (value: number) => {
     if (value >= 1000) {
-      return Math.round(value / 1000) + 'km';
+      return `${Math.round(value / 1000)}km`;
     }
 
-    return value + 'm';
+    return `${value}m`;
   }
 }

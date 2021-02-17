@@ -195,8 +195,6 @@
   "ACOMODACAO": "Accommodation",
   "CUIDADO": "Take Care",
   "CONFIRMAR_DELECAO_ADICIONAL":"Are you sure that you want to delete this extra?",
-  "TELEFONE_INVALIDO": "Telephone is not respecting the requested format",
-  "CEP_INVALIDO": "CEP is not respecting the requested format",
   "STATUS_AGENDAMENTO": "Bokking Status",
   "AVALIACAO": "Review",
   "CRITERIOS": "Criteria",
@@ -226,7 +224,8 @@
   "LOGOUT": "Log out",
   "DESEJA_CONFIRMAR_REMOCAO": "Do you really want to remove this service?",
   "DESEJA_CONFIRMAR_REMOCAO_ANIMAL": "Do you really want to remove this animal?",
-
+  "TELEFONE_INVALIDO": "Telephone is not respecting the requested format",
+  "CEP_INVALIDO": "CEP is not respecting the requested format",
 
 
 

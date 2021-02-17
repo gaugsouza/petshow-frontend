@@ -21,6 +21,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon'; 
 import { ConfigModule } from '../config/config.module';
 import { MatButtonModule } from '@angular/material/button';
+import { GeolocalizacaoModule } from '../geolocalizacao/geolocalizacao.module';
+import {MatSliderModule} from '@angular/material/slider'; 
 
 describe('ListaServicosDetalhadosComponent', () => {
   let component: ListaServicosDetalhadosComponent;
@@ -65,6 +67,8 @@ describe('ListaServicosDetalhadosComponent', () => {
         MatIconModule,
         ConfigModule,
         MatButtonModule,
+        GeolocalizacaoModule,
+        MatSliderModule,
       ]
     })
     .compileComponents();

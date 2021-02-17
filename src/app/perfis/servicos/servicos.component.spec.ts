@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'; 
 import { ServicosComponent } from './servicos.component';
-import { Router } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -49,6 +48,7 @@ describe('ServicosComponent', () => {
        MatPaginatorModule,
        MatChipsModule,
        MatIconModule,
+       MatSlideToggleModule,
      ]
     })
     .compileComponents();

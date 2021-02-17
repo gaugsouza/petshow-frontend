@@ -1,4 +1,4 @@
-import { Geolocalizacao } from "src/app/interfaces/geolocalizacao";
+import { Geolocalizacao } from 'src/app/interfaces/geolocalizacao';
 
 export interface FiltroServicos {
     tipoServicoId?: number,
@@ -9,5 +9,4 @@ export interface FiltroServicos {
     ordenacao?:string,
     posicaoAtual?:Geolocalizacao,
     metrosGeoloc?:number
-
 }

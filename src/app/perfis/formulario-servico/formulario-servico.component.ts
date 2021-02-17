@@ -168,7 +168,7 @@ export class FormularioServicoComponent implements OnInit {
   }
 
   hasErrors() {
-    return !this.validaChecked() || !this.validaPrecos() || this.precoFormControl.hasError('required') || !(this.servico.tipo);
+    return !this.validaChecked() || !this.validaPrecos() || !(this.servico.tipo) || this.precoFormControl.hasError('required');
   }
 
   getTipoServico() {

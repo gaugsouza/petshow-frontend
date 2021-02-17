@@ -197,8 +197,6 @@
   "ACOMODACAO": "Hospedagem",
   "CUIDADO": "Cuidados Diversos",
   "CONFIRMAR_DELECAO_ADICIONAL":"Deseja prosseguir com a deleção deste adicional?",
-  "TELEFONE_INVALIDO": "Telefone não está respeitando o formato solicitado",
-  "CEP_INVALIDO": "CEP não está respeitando o formato solicitado",
   "STATUS_AGENDAMENTO": "Status do agendamento",
   "AVALIACAO": "Avaliação",
   "CRITERIOS": "Critérios",
@@ -228,7 +226,8 @@
   "LOGOUT": "Sair",
   "DESEJA_CONFIRMAR_REMOCAO": "Deseja confirmar a remoção do serviço?",
   "DESEJA_CONFIRMAR_REMOCAO_ANIMAL": "Deseja confirmar a remoção do animal?",
-
+  "TELEFONE_INVALIDO": "Telefone não está respeitando o formato solicitado",
+  "CEP_INVALIDO": "CEP não está respeitando o formato solicitado",
 
 
 
