@@ -2,6 +2,7 @@ import { FormControl, Validators } from '@angular/forms';
 
 export const telefoneFormControl = new FormControl('', [
   Validators.required,
+  Validators.minLength(3),
 ]);
 export const cpfFormControl = new FormControl('', [
   Validators.required,

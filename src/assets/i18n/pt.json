@@ -52,7 +52,7 @@
   "SELECIONE_SERVICO":"Selecione o serviço desejado:",
   "SERVICOS_DISPONIVEIS": "Serviços disponíveis: ",
   "NENHUM_SERVICO_CADASTRADO": "Não foram encontrados prestadores para a busca :(",
-  "AGENDAR": "AGENDAR",
+  "AGENDAR": "Agendar",
   "NOME_COMPLETO": "Nome Completo",
   "NOME_OBRIGATORIO": "Nome é obrigatório.",
   "NOME_MIN_CARACT": "O nome deve possuir no mínimo 3 caracteres.",
@@ -217,7 +217,8 @@
   "LOGOUT": "Sair",
   "DESEJA_CONFIRMAR_REMOCAO": "Deseja confirmar a remoção do serviço?",
   "DESEJA_CONFIRMAR_REMOCAO_ANIMAL": "Deseja confirmar a remoção do animal?",
-
+  "TELEFONE_INVALIDO": "Telefone não está respeitando o formato solicitado",
+  "CEP_INVALIDO": "CEP não está respeitando o formato solicitado",
 
 
 
@@ -335,4 +336,5 @@
   "POLITICA-LINHA144": "9. Como entrar em contato conosco",
   "POLITICA-LINHA145": "Para esclarecer quaisquer dúvidas sobre esta Política de Privacidade ou sobre os dados pessoais que tratamos, entre em contato conosco, por algum dos canais mencionados abaixo:",
   "POLITICA-LINHA147": "Assunto: Política de Privacidade"
+  
 }

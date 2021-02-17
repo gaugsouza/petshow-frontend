@@ -1,0 +1,11 @@
+@import "../../../global.scss";
+
+.geolocalizacao-items {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 20px;
+
+  @media screen and (max-width: $tablet-width) {
+    grid-template-columns: 1fr;
+  }
+}
