@@ -72,4 +72,9 @@ export class ServicosService {
     const URL = `${SERVICO_DETALHADO_URL}/geoloc`;
     return this.httpHandler.doPost<any>(URL, filtro);
   }
+
+  atualizarServicoDetalhado = (prestadorId: number, servicoDetalhadoId:number, ativo:boolean, token:string) : Observable<any> => {
+    const URL = `${PRESTADOR_SERVICE_URL}/${prestadorId}/servico-detalhado/${servicoDetalhadoId}?ativo=${ativo}`;
+    return this.httpHandler.doPatch<any>(URL, token);
+  }
 }

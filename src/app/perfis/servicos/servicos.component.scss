@@ -10,6 +10,7 @@ mat-list-item {
 
 .servico-list {
   display: grid;
+  margin-top: 15px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 20px;
 
@@ -58,13 +59,13 @@ mat-list-item {
 }
 
 .icone {
-  padding-left: 8px;
+  padding-right: 8px;
   cursor: pointer;
 }
 
 .footer-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
 }
 
 .titulo-botao-servico {
@@ -74,6 +75,7 @@ mat-list-item {
 
 .acoes-preco-por-tipo {
   display:flex;
+  align-items: center;
 }
 
 .button-editar-preco-por-tipo {
@@ -82,4 +84,17 @@ mat-list-item {
 
 .toggle-preco-por-tipo{
   display: grid;
+}
+
+.ativo-toggle{
+  display: flex;
+  flex-direction: column;
+}
+
+.card-preco-por-tipo{
+  margin-top: 5px;
+}
+
+.chips-adicional{
+  margin-top: 10px
 }
