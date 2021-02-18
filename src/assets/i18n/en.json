@@ -230,7 +230,7 @@
   "CEP_INVALIDO": "CEP is not respecting the requested format",
   "ERRO_BUSCA_CEP": "ZIP code entered did not return any addresses ",
   "SOMENTE_CLIENTES": "Only clients can make this operation",
-
+  "NECESSARIO_LOGAR": "You must be logged in to perform the operation ",
 
   "POLITICA-LINHA4": "This website is maintained and operated by Pet Show LTDA.",
   "POLITICA-LINHA5": "We collect and use some personal data that belongs to those who use our website. In doing so, we act as the controller of such data and are subject to the provisions of Federal Law no. 13,709 / 2018 (General Law on Protection of Personal Data - LGPD).",

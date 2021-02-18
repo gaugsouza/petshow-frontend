@@ -54,7 +54,11 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   isCliente:boolean;
 
   isAtivo:boolean;
+
   tooltipText:string;
+
+  isLogado:boolean = false;
+
   constructor(private servicosService:ServicosService,
               private route: ActivatedRoute,
               private dialog:MatDialog,
@@ -71,6 +75,7 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   buscaUsuario() {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       this.usuarioService.getUsuario(token).subscribe((usuario:Usuario) => {
+        this.isLogado = true;
         this.isCliente = this.usuarioService.isCliente(usuario);
         this.isAtivo = this.usuarioService.isAtivo(usuario);
 
@@ -99,7 +104,7 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   }
 
   geraTooltip() {
-    return !this.isCliente ? 'SOMENTE_CLIENTES' : !this.isAtivo ? 'ATIVE_CONTA_AGENDAMENTO' : '';
+    return !this.isLogado ? 'NECESSARIO_LOGAR' : !this.isCliente ? 'SOMENTE_CLIENTES' : !this.isAtivo ? 'ATIVE_CONTA_AGENDAMENTO' : '';
   }
 
   eventoPagina(event: PageEvent) {

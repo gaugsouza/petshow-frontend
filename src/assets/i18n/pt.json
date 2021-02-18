@@ -232,7 +232,7 @@
   "CEP_INVALIDO": "CEP não está respeitando o formato solicitado",
   "ERRO_BUSCA_CEP": "CEP informado não retornou nenhum endereço",
   "SOMENTE_CLIENTES": "Somente clientes podem realizar essa operação",
-
+  "NECESSARIO_LOGAR": "É necessário estar logado para realizar a operação",
 
   "POLITICA-LINHA4": "Este site é mantido e operado por Pet Show LTDA.",
   "POLITICA-LINHA5": "Nós coletamos e utilizamos alguns dados pessoais que pertencem àqueles que utilizam nosso site. Ao fazê-lo, agimos na qualidade de controlador desses dados e estamos sujeitos às disposições da Lei Federal n. 13.709/2018 (Lei Geral de Proteção de Dados Pessoais – LGPD).",
