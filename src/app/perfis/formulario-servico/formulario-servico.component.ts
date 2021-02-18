@@ -83,7 +83,7 @@ export class FormularioServicoComponent implements OnInit {
   }
 
   criaInputModel = (tiposAnimal:TipoAnimal[]) => {
-    const tiposComPrecos = tiposAnimal.map((el) => ({ tipo: { ...el }, preco: 0 }));
+    const tiposComPrecos = tiposAnimal.map((el) => ({ tipo: { ...el }, preco: null }));
 
     return tiposComPrecos.map((el) => el.tipo.nome)
       .reduce((acc, chave) => {
@@ -162,13 +162,31 @@ export class FormularioServicoComponent implements OnInit {
   }
 
   validaPrecos() {
-    const precos = this.getPrecoServicoPreenchido()
-      .map((item) => item.preco);
-    return precos.filter((preco) => preco > 0).length;
+    const tiposSelecionados = Object.keys(this.tipoChecked)
+    .filter(key => this.tipoChecked[key])
+    .map(key => key);
+
+    const inputs = tiposSelecionados.map(tipo => this.tiposInputModel[tipo]);
+
+    const isValid = inputs.map(el => {
+      if(!el.length) {
+        return !!el.preco;
+      }
+
+      const returnPortes = el.map(e => e.portes
+        .map(porte => !!porte.preco)
+        .reduce((acc, preco) => acc && preco, true)
+        ).reduce((acc, valor) => acc && valor, true);
+
+      return returnPortes;
+    }).reduce((acc, el) => {
+      return acc && el
+    }, true);
+    return isValid;
   }
 
   hasErrors() {
-    return !this.validaChecked() || !this.validaPrecos() || !(this.servico.tipo) || this.precoFormControl.hasError('required');
+    return !this.validaChecked() || !this.validaPrecos() || !(this.servico.tipo);
   }
 
   getTipoServico() {
@@ -229,6 +247,8 @@ export class FormularioServicoComponent implements OnInit {
       return this.tipoChecked[el];
     });
     this.cancelaOperacao.emit();
+
+    this.limpaCampos(this.tiposAnimais);
   }
 
   getTiposServico() {
