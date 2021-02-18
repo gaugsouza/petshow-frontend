@@ -3,7 +3,7 @@
   <!-- <p>{{'DESEJA_CONFIRMAR_AGENDAMENTO' | translate}}</p> -->
 </mat-dialog-content>
 
-<mat-dialog-actions align="center">
+<mat-dialog-actions>
+      <button mat-flat-button (click)="onNoClick()" color="primary">{{'NAO' | translate}}</button>
       <button mat-flat-button [mat-dialog-close]="true"  color="warn">{{'SIM' | translate}}</button>
-        <button mat-flat-button (click)="onNoClick()" color="primary">{{'NAO' | translate}}</button>
 </mat-dialog-actions>
