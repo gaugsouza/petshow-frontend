@@ -43,7 +43,7 @@ import { AgendamentosModule } from 'src/app/agendamentos/agendamentos.module';
 import { GeolocalizacaoModule } from 'src/app/geolocalizacao/geolocalizacao.module';
 import { MatSliderModule } from '@angular/material/slider';
 import { DialogComparacaoComponent } from './lista-servicos-detalhados/dialog-comparacao/dialog-comparacao.component';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,6 +86,7 @@ import { DialogComparacaoComponent } from './lista-servicos-detalhados/dialog-co
     MatTabsModule,
     GeolocalizacaoModule,
     MatSliderModule,
+    MatTooltipModule,
   ],
   providers: [
     JwtHelper,

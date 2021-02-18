@@ -54,7 +54,7 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   isCliente:boolean;
 
   isAtivo:boolean;
-
+  tooltipText:string;
   constructor(private servicosService:ServicosService,
               private route: ActivatedRoute,
               private dialog:MatDialog,
@@ -73,6 +73,7 @@ export class ListaServicosDetalhadosComponent implements OnInit {
       this.usuarioService.getUsuario(token).subscribe((usuario:Usuario) => {
         this.isCliente = this.usuarioService.isCliente(usuario);
         this.isAtivo = this.usuarioService.isAtivo(usuario);
+
         if (this.isCliente) {
           this.filtro = {
             ...this.filtro,
@@ -82,17 +83,23 @@ export class ListaServicosDetalhadosComponent implements OnInit {
         }
       }, () => {
         this.isCliente = false;
+        this.isAtivo = false;
       },
       () => {
+        this.tooltipText = this.geraTooltip();
         this.buscarServicosDetalhadosPorTipo(this.filtro, this.paginaAtual, this.quantidadePagina);
       });
     },
     () => {
-      this.isCliente = false;
     },
     () => {
+      this.tooltipText = this.geraTooltip();
       this.buscarServicosDetalhadosPorTipo(this.filtro, this.paginaAtual, this.quantidadePagina);
     });
+  }
+
+  geraTooltip() {
+    return !this.isCliente ? 'SOMENTE_CLIENTES' : !this.isAtivo ? 'ATIVE_CONTA_AGENDAMENTO' : '';
   }
 
   eventoPagina(event: PageEvent) {
