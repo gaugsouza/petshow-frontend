@@ -208,6 +208,10 @@ export class ListaServicosDetalhadosComponent implements OnInit {
     });
   }
 
+  deveSelecionar(id:number) {
+    return this.idsAComparar.includes(id);
+  }
+
   alteraFiltro(filtro) {
     this.filtro = { ...this.filtro, ...filtro };
     this.atualizaFiltro(this.filtro);

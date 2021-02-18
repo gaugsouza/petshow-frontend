@@ -116,6 +116,7 @@
                     <div class="lista-servicos-detalhados__button-container">
                         <mat-checkbox 
                             [disabled]="deveDesabilitar(servicoDetalhado.id)"
+                            [checked]="deveSelecionar(servicoDetalhado.id)"
                             (change)="selecionaIds($event.checked, servicoDetalhado.id)">{{'COMPARAR' | translate}}</mat-checkbox>
                         <a mat-flat-button color="primary" href="prestador/{{servicoDetalhado.prestador.id}}/servicoDetalhado/{{servicoDetalhado.id}}/agendamento?isVisualizacao=false" [disabled]="!isCliente || !isAtivo"
                         matTooltip="{{tooltipText | translate}}"
