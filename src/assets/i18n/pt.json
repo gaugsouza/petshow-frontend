@@ -228,9 +228,8 @@
   "DESEJA_CONFIRMAR_REMOCAO_ANIMAL": "Deseja confirmar a remoção do animal?",
   "TELEFONE_INVALIDO": "Telefone não está respeitando o formato solicitado",
   "CEP_INVALIDO": "CEP não está respeitando o formato solicitado",
-
-
-
+  "ATIVAR_SERVICO_DETALHADO": "Deseja prosseguir com a ativação deste serviço?",
+  "DESATIVAR_SERVICO_DETALHADO": "Deseja prosseguir com a desativação deste serviço?",
 
   "POLITICA-LINHA4": "Este site é mantido e operado por Pet Show LTDA.",
   "POLITICA-LINHA5": "Nós coletamos e utilizamos alguns dados pessoais que pertencem àqueles que utilizam nosso site. Ao fazê-lo, agimos na qualidade de controlador desses dados e estamos sujeitos às disposições da Lei Federal n. 13.709/2018 (Lei Geral de Proteção de Dados Pessoais – LGPD).",

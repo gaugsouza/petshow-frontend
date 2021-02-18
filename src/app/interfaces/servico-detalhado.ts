@@ -15,4 +15,5 @@ export interface ServicoDetalhado {
     animaisAceitos?: TipoAnimal[],
     precoPorTipo?: ServicoDetalhadoTipoAnimal[]
     adicionais?:Adicional[],
+    ativo?:boolean,
 }
