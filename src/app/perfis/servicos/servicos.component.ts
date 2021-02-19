@@ -52,22 +52,6 @@ export class ServicosComponent implements OnInit {
     });
   }
 
-  // removeServico(servico:ServicoDetalhado) {
-  //   this.removerServico.emit(servico);
-  // }
-
-  removeServico(servico:ServicoDetalhado) {
-    const cancelRef = this.cancelamento.open(ConfirmacaoCancelamentoComponent,
-      {
-        data: 'DESEJA_CONFIRMAR_REMOCAO',
-      });
-    cancelRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.removerServico.emit(servico);
-      }
-    });
-  }
-
   buscarServicosDetalhadosPorPrestador(prestadorId:number, pagina:number, quantidadeItens:number) {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
       this.servicosService.buscarServicosDetalhadosPorPrestador(prestadorId, pagina,
@@ -172,6 +156,32 @@ export class ServicosComponent implements OnInit {
     });
   }
 
+  openConfirmationDialogServicoDetalhado(servico:ServicoDetalhado){
+    const data = {mensagem: servico.ativo ? 'ATIVAR_SERVICO_DETALHADO' : 'DESATIVAR_SERVICO_DETALHADO',
+                  response: true}
+    const estadoInicial = ! servico.ativo;
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '400px',
+      data: { ...data},
+    });
+
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data) {
+        if(data.response){
+          this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+            this.servicosService.atualizarServicoDetalhado(this.prestadorId, servico.id, servico.ativo, token)
+                .subscribe(() => this.buscarServicosDetalhadosPorPrestador(this.prestadorId, this.paginaAtual,this.quantidadeItens));
+          });
+        } else {
+          servico.ativo = estadoInicial;   
+        }        
+      }
+    });
+
+    dialogRef.backdropClick().subscribe(() => {
+      servico.ativo = estadoInicial; 
+    });
+  }
 
   openDialogInsercao(servico:ServicoDetalhado){
     let data = {

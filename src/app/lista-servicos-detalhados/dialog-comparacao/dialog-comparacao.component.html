@@ -1,38 +1,41 @@
 <mat-dialog-content>
-    <h3>{{'INFORMACOES_BASICAS' | translate}}</h3>
-  <table mat-table [dataSource]="dataSource">
-    <ng-container matColumnDef="nome">
-      <th mat-header-cell *matHeaderCellDef>{{'CAMPO' | translate}}</th>
-      <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="servico1">
-      <th mat-header-cell *matHeaderCellDef> {{'SERVICO' | translate}} 1 </th>
-      <td mat-cell *matCellDef="let element">
-        <span *ngIf="element.chave === 'menorPreco'" class="{{element.servico1.melhor ? 'melhor': ''}}"> {{'A_PARTIR_DE' | translate}} {{element.servico1.valor | currency: 'BRL'}}</span>
-        <span *ngIf="element.chave === 'tipoAnimal'">
-            <mat-icon>{{element.servico1}}</mat-icon>
-        </span>
-        <span *ngIf="element.chave === 'mediaAvaliacao'" class="{{element.servico1.melhor ? 'melhor': ''}}"> {{element.servico1.valor | number: '1.1'}}</span>
-        <span *ngIf="element.chave === 'nome'"> {{element.servico1.valor }}</span></td>
-    </ng-container>
-
-    <ng-container matColumnDef="servico2">
-      <th mat-header-cell *matHeaderCellDef> {{'SERVICO' | translate}} 2 </th>
-      <td mat-cell *matCellDef="let element">
-        <span *ngIf="element.chave === 'menorPreco'" class="{{element.servico2.melhor ? 'melhor': ''}}"> {{'A_PARTIR_DE' | translate}} {{element.servico2.valor | currency: 'BRL'}}</span>
-        <span *ngIf="element.chave === 'tipoAnimal'">
-          <mat-icon>{{element.servico2}}</mat-icon>
-        </span>
-        <span *ngIf="element.chave === 'mediaAvaliacao'" class="{{element.servico2.melhor ? 'melhor': ''}}"> {{element.servico2.valor | number: '1.1'}}</span>
-        <span *ngIf="element.chave === 'nome'"> {{element.servico2.valor }}</span></td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-
-    <div class="lista-precos-servicos">
+  <mat-tab-group>
+    <mat-tab label="{{'INFORMACOES_BASICAS' | translate}}">
+      <h3>{{'INFORMACOES_BASICAS' | translate}}</h3>
+      <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef>{{'CAMPO' | translate}}</th>
+          <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="servico1">
+          <th mat-header-cell *matHeaderCellDef> {{'SERVICO' | translate}} 1 </th>
+          <td mat-cell *matCellDef="let element">
+            <span *ngIf="element.chave === 'menorPreco'" class="{{element.servico1.melhor ? 'melhor': ''}}"> {{'A_PARTIR_DE' | translate}} {{element.servico1.valor | currency: 'BRL'}}</span>
+            <span *ngIf="element.chave === 'tipoAnimal'">
+                <mat-icon>{{element.servico1}}</mat-icon>
+            </span>
+            <span *ngIf="element.chave === 'mediaAvaliacao'" class="{{element.servico1.melhor ? 'melhor': ''}}"> {{element.servico1.valor | number: '1.1'}}</span>
+            <span *ngIf="element.chave === 'nome'"> {{element.servico1.valor }}</span></td>
+        </ng-container>
+    
+        <ng-container matColumnDef="servico2">
+          <th mat-header-cell *matHeaderCellDef> {{'SERVICO' | translate}} 2 </th>
+          <td mat-cell *matCellDef="let element">
+            <span *ngIf="element.chave === 'menorPreco'" class="{{element.servico2.melhor ? 'melhor': ''}}"> {{'A_PARTIR_DE' | translate}} {{element.servico2.valor | currency: 'BRL'}}</span>
+            <span *ngIf="element.chave === 'tipoAnimal'">
+              <mat-icon>{{element.servico2}}</mat-icon>
+            </span>
+            <span *ngIf="element.chave === 'mediaAvaliacao'" class="{{element.servico2.melhor ? 'melhor': ''}}"> {{element.servico2.valor | number: '1.1'}}</span>
+            <span *ngIf="element.chave === 'nome'"> {{element.servico2.valor }}</span></td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-tab>
+    <mat-tab label="{{'PRECO_TIPO_ANIMAL' | translate}}">
+      <div class="lista-precos-servicos">
         <h3>{{'PRECO_TIPO_ANIMAL' | translate}}: </h3>
         <div *ngFor="let servico of data.servicosComparados" class="precos-servico">
             <h4>{{servico.nome}}</h4>
@@ -45,9 +48,10 @@
                 </mat-list-item>
             </mat-list>
         </div>
-    </div>
-
-    <div class="lista-precos-servicos">
+      </div>
+    </mat-tab>
+    <mat-tab label="{{'ADICIONAIS' | translate}}">
+      <div class="lista-precos-servicos">
         <h3>{{'ADICIONAIS' | translate}}: </h3>
         <div *ngFor="let servico of data.servicosComparados" class="precos-servico">
             <h4>{{servico.nome}}</h4>
@@ -64,6 +68,8 @@
             </ng-template>
         </div>
     </div>
+    </mat-tab>
+  </mat-tab-group>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-flat-button color="primary" (click)="onNoClick()">{{'FECHAR' | translate}}</button>

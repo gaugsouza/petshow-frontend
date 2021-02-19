@@ -62,5 +62,8 @@
     </mat-card>
 </mat-dialog-content>
 <mat-dialog-actions align="end" *ngIf="getServico() && getPrestador()">
-    <a mat-flat-button color="primary" href="{{getUrl()}}" [disabled]="!getIsAtivo() || !getIsCliente()">{{'AGENDAR' | translate}}</a>
+    <button mat-flat-button color="primary" (click)="fechaModal()">{{'FECHAR' | translate}}</button>
+    <a mat-flat-button color="primary" href="{{getUrl()}}" 
+    matTooltip="{{geraTooltip() | translate}}"
+    [disabled]="!getIsAtivo() || !getIsCliente()">{{'AGENDAR' | translate}}</a>
 </mat-dialog-actions>

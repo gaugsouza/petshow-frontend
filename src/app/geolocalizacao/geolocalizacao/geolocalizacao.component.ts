@@ -16,6 +16,8 @@ export class GeolocalizacaoComponent implements OnInit {
 
   @Input() isCliente:boolean;
 
+  @Input() isLogado:boolean;
+
   @Output('altera-filtro') alteraFiltro = new EventEmitter<FiltroServicos>()
 
   geolocalizacao:Geolocalizacao;

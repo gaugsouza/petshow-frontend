@@ -21,6 +21,8 @@ export class MapaComponent implements OnInit {
 
   @Input() isCliente:boolean;
 
+  @Input() isLogado:boolean;
+
   private PRACA_DA_REPUBLICA_LAT = '-23.543171200000003';
 
   private PRACA_DA_REPUBLICA_LON = '-46.64252052009493';
@@ -154,7 +156,7 @@ export class MapaComponent implements OnInit {
 
   private openDialog(servico:ServicoDetalhado) {
     this.dialog.open(DialogServicoSelecionadoComponent, {
-      data: { servico, isAtivo: this.isAtivo, isCliente: this.isCliente },
+      data: { servico, isAtivo: this.isAtivo, isCliente: this.isCliente, isLogado: this.isLogado },
       width: '1200px',
     });
   }

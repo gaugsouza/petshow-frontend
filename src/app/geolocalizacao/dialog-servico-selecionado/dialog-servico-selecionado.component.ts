@@ -9,11 +9,17 @@ import { AvaliacaoService } from 'src/app/servicos/avaliacao.service';
   styleUrls: ['./dialog-servico-selecionado.component.scss'],
 })
 export class DialogServicoSelecionadoComponent implements OnInit {
+  tooltipText:string;
+
+
   constructor(public ref:MatDialogRef<DialogServicoSelecionadoComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,
     private avaliacaoService:AvaliacaoService) { }
 
-  ngOnInit = (): void => {
+  ngOnInit = (): void => {}
+
+  geraTooltip() {
+    return !this.getIsLogado() ? 'NECESSARIO_LOGAR' : !this.getIsCliente() ? 'SOMENTE_CLIENTES' : !this.getIsAtivo() ? 'ATIVE_CONTA_AGENDAMENTO' : '';
   }
 
   getIsAtivo() {
@@ -22,6 +28,10 @@ export class DialogServicoSelecionadoComponent implements OnInit {
 
   getIsCliente() {
     return (this.data || {}).isCliente;
+  }
+
+  getIsLogado() {
+    return (this.data || {}).isLogado;
   }
 
   getPrestador():Prestador {
@@ -47,5 +57,9 @@ export class DialogServicoSelecionadoComponent implements OnInit {
 
   getUrl() {
     return `prestador/${this.getPrestador().id}/servicoDetalhado/${this.getServico().id}/agendamento`;
+  }
+
+  fechaModal() {
+    this.ref.close();
   }
 }
