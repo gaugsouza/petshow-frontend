@@ -58,22 +58,27 @@ export class ServicosService {
     return this.httpHandler.doDelete<any>(URL, token);
   }
 
-  adicionarTipoAnimalAceito(prestadorId:number, servicoDetalhadoId:number, tipoAnimalId:number, servicoDetalhadoTipoAnimal: ServicoDetalhadoTipoAnimal, token:string) : Observable<any> {
+  adicionarTipoAnimalAceito(prestadorId:number, servicoDetalhadoId:number,
+    tipoAnimalId:number, servicoDetalhadoTipoAnimal: ServicoDetalhadoTipoAnimal,
+    token:string) : Observable<any> {
     const URL = `${PRESTADOR_SERVICE_URL}/${prestadorId}/servico-detalhado/${servicoDetalhadoId}/tipoAnimalAceito/tipoAnimal/${tipoAnimalId}`;
     return this.httpHandler.doPost<any>(URL, servicoDetalhadoTipoAnimal, token);
   }
 
-  atualizarTipoAnimalAceito(prestadorId:number, servicoDetalhadoId:number, tipoAnimalId:number, servicoDetalhadoTipoAnimal: ServicoDetalhadoTipoAnimal, token:string) : Observable<any> {
+  atualizarTipoAnimalAceito(prestadorId:number, servicoDetalhadoId:number,
+    tipoAnimalId:number, servicoDetalhadoTipoAnimal:
+    ServicoDetalhadoTipoAnimal, token:string) : Observable<any> {
     const URL = `${PRESTADOR_SERVICE_URL}/${prestadorId}/servico-detalhado/${servicoDetalhadoId}/tipoAnimalAceito/tipoAnimal/${tipoAnimalId}`;
     return this.httpHandler.doPut<any>(URL, servicoDetalhadoTipoAnimal, token);
   }
-  
+
   buscarServicosGeoloc = (filtro:FiltroServicos) : Observable<any> => {
     const URL = `${SERVICO_DETALHADO_URL}/geoloc`;
     return this.httpHandler.doPost<any>(URL, filtro);
   }
 
-  atualizarServicoDetalhado = (prestadorId: number, servicoDetalhadoId:number, ativo:boolean, token:string) : Observable<any> => {
+  atualizarServicoDetalhado = (prestadorId: number,
+    servicoDetalhadoId:number, ativo:boolean, token:string) : Observable<any> => {
     const URL = `${PRESTADOR_SERVICE_URL}/${prestadorId}/servico-detalhado/${servicoDetalhadoId}?ativo=${ativo}`;
     return this.httpHandler.doPatch<any>(URL, token);
   }

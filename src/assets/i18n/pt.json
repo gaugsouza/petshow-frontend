@@ -152,6 +152,8 @@
   "ERRO_ATIVACAO_TOKEN": "Ocorreu um erro durante a ativação",
   "MENSAGEM_CONTA_INATIVA": "Essa conta ainda não foi ativada. Verifique seu e-mail para usufruir de todas as funcionalidades da plataforma ou clique nessa notificação para enviar uma nova solicitação de ativação!",
   "ATIVE_CONTA": "Ative sua conta para poder adicionar serviços",
+  "ATIVE_CONTA_AGENDAMENTO": "É necessário ativar a conta para continuar a operação",
+  "ATIVE_CONTA_CLIENTE": "Ative sua conta para poder adicionar animais",
   "SOLICITACAO_REENVIADA": "Solicitação reenviada com sucesso. Verifique seu e-mail.",
   "ERRO_REENVIO_SOLICITACAO": "Ocorreu um erro na solicitação de reenvio",
   "CPF_INVALIDO": "CPF informado é inválido",
@@ -228,6 +230,9 @@
   "DESEJA_CONFIRMAR_REMOCAO_ANIMAL": "Deseja confirmar a remoção do animal?",
   "TELEFONE_INVALIDO": "Telefone não está respeitando o formato solicitado",
   "CEP_INVALIDO": "CEP não está respeitando o formato solicitado",
+  "ERRO_BUSCA_CEP": "CEP informado não retornou nenhum endereço",
+  "SOMENTE_CLIENTES": "Somente clientes podem realizar essa operação",
+  "NECESSARIO_LOGAR": "É necessário estar logado para realizar a operação",
   "ATIVAR_SERVICO_DETALHADO": "Deseja prosseguir com a ativação deste serviço?",
   "DESATIVAR_SERVICO_DETALHADO": "Deseja prosseguir com a desativação deste serviço?",
 

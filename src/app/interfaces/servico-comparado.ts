@@ -6,7 +6,7 @@ export interface ServicoComparado {
     maiorPreco?:number,
     menorPreco?:number,
     mediaAvaliacao?:number,
-    tabelaPrecos?:ServicoDetalhadoTipoAnimal,
+    tabelaPrecos?:ServicoDetalhadoTipoAnimal[],
     tiposAtendidos?:object,
     adicionais?:Adicional[],
     nome?:string

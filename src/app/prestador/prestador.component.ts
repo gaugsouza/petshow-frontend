@@ -3,7 +3,6 @@ import { PrestadorService } from 'src/app/servicos/prestador.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Prestador } from 'src/app/interfaces/prestador';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
-import { Avaliacao } from 'src/app/interfaces/avaliacao';
 
 @Component({
   selector: 'app-prestador',
@@ -33,6 +32,7 @@ export class PrestadorComponent implements OnInit {
       });
   }
 
+  /* eslint-disable no-param-reassign */
   getMediaUsuario():string {
     if (!this.prestador.servicos || this.prestador.servicos.length === 0) {
       return (0).toFixed(2);

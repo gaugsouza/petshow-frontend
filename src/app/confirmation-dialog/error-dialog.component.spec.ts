@@ -36,6 +36,7 @@ import { ListaServicosDetalhadosComponent } from '../lista-servicos-detalhados/l
 import { PrestadorComponent } from '../prestador/prestador.component';
 import { JwtHelper } from '../util/jwt-helper';
 import {APP_BASE_HREF} from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 describe('ConfirmationDialogComponent', () => {
   let component: ErrorDialogComponent;
@@ -76,6 +77,7 @@ describe('ConfirmationDialogComponent', () => {
         GeolocalizacaoModule,
         MatSliderModule,
         HttpClientTestingModule,
+        MatTooltipModule,
       ],
       providers: [
         {

@@ -35,6 +35,7 @@ import { Router } from '@angular/router';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ListaServicosDetalhadosComponent } from '../lista-servicos-detalhados/lista-servicos-detalhados.component';
 import { PrestadorComponent } from '../prestador/prestador.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
@@ -78,6 +79,7 @@ describe('HomeComponent', () => {
         MatTabsModule,
         GeolocalizacaoModule,
         MatSliderModule,
+        MatTooltipModule,
       ]
     })
     .compileComponents();

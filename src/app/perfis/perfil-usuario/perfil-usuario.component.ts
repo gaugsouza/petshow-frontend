@@ -67,7 +67,7 @@ export class PerfilUsuarioComponent implements OnInit {
       }, (err) => this.handleError(err));
     }, (err) => this.handleError(err));
   }
-  
+
   exibeFormulario() {
     this.erroRequisicao = null;
     this.mensagemSucesso = null;
@@ -131,10 +131,12 @@ export class PerfilUsuarioComponent implements OnInit {
   }
 
   handleError(err) {
-    const data = {mensagem: typeof err === 'string' ? err : 'ERRO_REQUISICAO',
-                  textoBotao: 'Ok'}
-  
-    const dialogRef = this.dialog.open(ErrorDialogComponent, {
+    const data = {
+      mensagem: typeof err === 'string' ? err : 'ERRO_REQUISICAO',
+      textoBotao: 'Ok',
+    };
+
+    this.dialog.open(ErrorDialogComponent, {
       width: '400px',
       data: { ...data },
     });
