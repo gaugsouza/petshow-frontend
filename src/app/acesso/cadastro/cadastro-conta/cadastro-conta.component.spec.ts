@@ -20,7 +20,7 @@ import { LoginService } from '../../../servicos/login.service';
 import { of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { MatIconModule } from '@angular/material/icon';
 
 describe('CadastroContaComponent', () => {
   let component: CadastroContaComponent;
@@ -49,7 +49,8 @@ describe('CadastroContaComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule,
         BrowserAnimationsModule,
-        MatDialogModule
+        MatDialogModule,
+        MatIconModule,
       ]
     })
     .compileComponents();

@@ -37,6 +37,7 @@ import { NotificationService } from '../../servicos/notification.service';
 import { AgendaClienteComponent } from '../agenda-cliente/agenda-cliente.component';
 import { ConfigModule } from '../../config/config.module';
 import { Agendamento } from '../../interfaces/agendamento';
+import { MatIconModule } from '@angular/material/icon';
 
 
 describe('PerfilUsuarioComponent', () => {
@@ -83,7 +84,8 @@ describe('PerfilUsuarioComponent', () => {
         NgxMaskModule.forRoot(),
         MatPaginatorModule,
         MatTooltipModule,
-        ConfigModule
+        ConfigModule,
+        MatIconModule,
       ]
     })
     .compileComponents();

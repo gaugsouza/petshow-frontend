@@ -11,6 +11,7 @@ import { ConfigModule } from '../../config/config.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtHelper } from '../../util/jwt-helper';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 describe('DialogServicoSelecionadoComponent', () => {
   let component: DialogServicoSelecionadoComponent;
@@ -29,7 +30,8 @@ describe('DialogServicoSelecionadoComponent', () => {
         MatInputModule,
         FormsModule, 
         ReactiveFormsModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        MatTooltipModule,
       ],
       providers: [
         {

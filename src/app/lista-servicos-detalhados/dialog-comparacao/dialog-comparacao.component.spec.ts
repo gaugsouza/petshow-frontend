@@ -19,6 +19,8 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materia
 import { DialogComparacaoComponent } from './dialog-comparacao.component';
 import { JwtHelper } from '../../util/jwt-helper';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatTabsModule } from '@angular/material/tabs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('DialogComparacaoComponent', () => {
   let component: DialogComparacaoComponent;
@@ -48,6 +50,8 @@ describe('DialogComparacaoComponent', () => {
         MatDividerModule,
         MatTableModule,
         HttpClientTestingModule,
+        MatTabsModule,
+        BrowserAnimationsModule,
       ],
       providers: [
         {

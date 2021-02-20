@@ -17,6 +17,7 @@ import {InfoPessoalCadastroComponent} from './info-pessoal-cadastro/info-pessoal
 import {CadastroContaComponent} from './cadastro-conta/cadastro-conta.component';
 import {TipoPessoa} from '../../enum/tipo-pessoa.enum';
 import { JwtHelper } from '../../util/jwt-helper';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('CadastroComponent', () => {
   let component: CadastroComponent;
@@ -45,7 +46,8 @@ describe('CadastroComponent', () => {
         ReactiveFormsModule,
         TranslateModule.forRoot(),
         MatDialogModule,
-        MatCardModule
+        MatCardModule,
+        MatIconModule
       ]
     })
     .compileComponents();
