@@ -45,6 +45,7 @@
         "no-console": ["error", { "allow": ["warn", "error", "info"] }],
         "no-useless-constructor": "off",
         "no-empty-function": "off",
-        "no-underscore-dangle": "off"
+        "no-underscore-dangle": "off",
+        "no-nested-ternary": "off"
     }
 }

@@ -131,7 +131,6 @@ export class CadastroContaComponent implements OnInit {
   }
 
   setaEndereco(endereco:Endereco) {
-    console.log(endereco);
     this.usuario.endereco = endereco;
   }
 

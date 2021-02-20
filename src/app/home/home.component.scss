@@ -42,7 +42,7 @@ $button-color: white;
     display: flex;
     justify-content: center;
     gap: 20px;
-    padding: 5px;   
+    padding: 5px;
 
     @media screen and (max-width: $tablet-width) {
       display: flex;
@@ -62,19 +62,20 @@ $button-color: white;
 
 .attribution {
   position: absolute;
-  font-size: 8px;  
+  font-size: 8px;
   bottom: 0;
 }
 
 .background {
-  position: absolute; 
-  top: 0; 
-  left: 0; 
-  height: 100%; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
   width: 100%;
   background-image: url("../../assets/icons/cat_home_2.jpg");
   background-repeat: no-repeat;
-  /*background-attachment: fixed;*/
+
+  /* background-attachment: fixed; */
   background-position: center bottom;
   background-color: white;
   background-size: cover;

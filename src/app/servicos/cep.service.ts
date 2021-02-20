@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpHandlerService } from './http-handler.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CepService {
   private API_URL = 'https://viacep.com.br/ws/{cep}/json';

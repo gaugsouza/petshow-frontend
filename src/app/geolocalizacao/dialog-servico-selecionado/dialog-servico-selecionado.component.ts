@@ -11,7 +11,6 @@ import { AvaliacaoService } from 'src/app/servicos/avaliacao.service';
 export class DialogServicoSelecionadoComponent implements OnInit {
   tooltipText:string;
 
-
   constructor(public ref:MatDialogRef<DialogServicoSelecionadoComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,
     private avaliacaoService:AvaliacaoService) { }

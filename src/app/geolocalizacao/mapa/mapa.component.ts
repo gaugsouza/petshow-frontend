@@ -92,7 +92,7 @@ export class MapaComponent implements OnInit {
     const cliente = this.criaPontoCliente(mapCenter, name);
     const pontosServicos = this.criaPontosServico(servicos);
     const source = new ol.source.Vector({
-      features: [cliente, ...pontosServicos.filter(el => el !== null)],
+      features: [cliente, ...pontosServicos.filter((el) => el !== null)],
     });
 
     const vectorLayer = new ol.layer.Vector({
@@ -139,7 +139,7 @@ export class MapaComponent implements OnInit {
   criaPontosServico(servicos:ServicoDetalhado[]) {
     return servicos.map((servico) => {
       const { prestador } = servico;
-      if(!prestador.geolocalizacao) {
+      if (!prestador.geolocalizacao) {
         return null;
       }
       const posicao:ol.Coordinate = [
@@ -156,7 +156,9 @@ export class MapaComponent implements OnInit {
 
   private openDialog(servico:ServicoDetalhado) {
     this.dialog.open(DialogServicoSelecionadoComponent, {
-      data: { servico, isAtivo: this.isAtivo, isCliente: this.isCliente, isLogado: this.isLogado },
+      data: {
+        servico, isAtivo: this.isAtivo, isCliente: this.isCliente, isLogado: this.isLogado,
+      },
       width: '1200px',
     });
   }

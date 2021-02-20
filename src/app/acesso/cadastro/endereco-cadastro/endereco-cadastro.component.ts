@@ -1,4 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component, OnInit, Input, Output, EventEmitter,
+} from '@angular/core';
 import { ConsultaEstadosService, Estado, Cidade } from 'src/app/servicos/consulta-estados.service';
 import { Endereco } from 'src/app/interfaces/endereco';
 import { FormControl } from '@angular/forms';
@@ -18,13 +20,12 @@ export class EnderecoCadastroComponent implements OnInit {
 
   cidades:Cidade[];
 
-
   @Input('numero-control') numeroFormControl:FormControl;
 
   @Input('cep-control') cepFormControl:FormControl;
 
-
   erroBuscaCep:string;
+
   constructor(private consultaEstadosService:ConsultaEstadosService,
               private cepService:CepService) { }
 
@@ -41,25 +42,29 @@ export class EnderecoCadastroComponent implements OnInit {
   }
 
   buscarCep() {
-    this.cepService.buscaCep(this.endereco.cep).subscribe(busca => {
+    this.cepService.buscaCep(this.endereco.cep).subscribe((busca) => {
       this.erroBuscaCep = '';
       const endereco = JSON.parse(busca);
-      if(endereco.erro) {        
+      if (endereco.erro) {
         this.erroBuscaCep = 'ERRO_BUSCA_CEP';
         this.cepFormControl.setErrors({
-          erroBusca:true
+          erroBusca: true,
         });
         return;
       }
-      const { bairro, localidade:cidade, uf:estado, logradouro } = (endereco || {});
+      const {
+        bairro, localidade: cidade, uf: estado, logradouro,
+      } = (endereco || {});
 
-      this.endereco = { ...this.endereco, bairro, cidade, estado, logradouro };
+      this.endereco = {
+        ...this.endereco, bairro, cidade, estado, logradouro,
+      };
       this.alteraEndereco.emit(this.endereco);
     });
   }
 
   alteraCampo(campo:string, valor:string) {
-    this.endereco = {...this.endereco, [campo]:valor};
+    this.endereco = { ...this.endereco, [campo]: valor };
     this.alteraEndereco.emit(this.endereco);
   }
 }

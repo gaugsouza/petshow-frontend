@@ -69,19 +69,23 @@ export class EnderecoDialogComponent implements OnInit {
   }
 
   buscarCep() {
-    this.cepService.buscaCep(this.data.cep).subscribe(busca => {
+    this.cepService.buscaCep(this.data.cep).subscribe((busca) => {
       this.erroBuscaCep = '';
       const endereco = JSON.parse(busca);
-      if(endereco.erro) {        
+      if (endereco.erro) {
         this.erroBuscaCep = 'ERRO_BUSCA_CEP';
         this.cepFormControl.setErrors({
-          erroBusca:true
+          erroBusca: true,
         });
         return;
       }
-      const { bairro, localidade:cidade, uf:estado, logradouro } = (endereco || {});
+      const {
+        bairro, localidade: cidade, uf: estado, logradouro,
+      } = (endereco || {});
 
-      this.data = { ...this.data, bairro, cidade, estado, logradouro };
+      this.data = {
+        ...this.data, bairro, cidade, estado, logradouro,
+      };
     });
   }
 }

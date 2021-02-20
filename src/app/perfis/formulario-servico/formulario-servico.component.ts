@@ -163,25 +163,22 @@ export class FormularioServicoComponent implements OnInit {
 
   validaPrecos() {
     const tiposSelecionados = Object.keys(this.tipoChecked)
-    .filter(key => this.tipoChecked[key])
-    .map(key => key);
+      .filter((key) => this.tipoChecked[key])
+      .map((key) => key);
 
-    const inputs = tiposSelecionados.map(tipo => this.tiposInputModel[tipo]);
+    const inputs = tiposSelecionados.map((tipo) => this.tiposInputModel[tipo]);
 
-    const isValid = inputs.map(el => {
-      if(!el.length) {
+    const isValid = inputs.map((el) => {
+      if (!el.length) {
         return !!el.preco;
       }
 
-      const returnPortes = el.map(e => e.portes
-        .map(porte => !!porte.preco)
-        .reduce((acc, preco) => acc && preco, true)
-        ).reduce((acc, valor) => acc && valor, true);
+      const returnPortes = el.map((e) => e.portes
+        .map((porte) => !!porte.preco)
+        .reduce((acc, preco) => acc && preco, true)).reduce((acc, valor) => acc && valor, true);
 
       return returnPortes;
-    }).reduce((acc, el) => {
-      return acc && el
-    }, true);
+    }).reduce((acc, el) => acc && el, true);
     return isValid;
   }
 
