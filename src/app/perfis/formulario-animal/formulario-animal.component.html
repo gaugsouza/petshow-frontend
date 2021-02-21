@@ -7,7 +7,7 @@
       </mat-form-field>
       <mat-form-field appearance="fill">
             <mat-label>{{'NOME_ANIMAL' | translate}}</mat-label>
-            <input matInput [(ngModel)]="animal.nome" placeholder="Ex. Bidu" class="form__animal-nome" [formControl]="nomeFormControl" [errorStateMatcher]="matcher"/>
+            <input matInput [(ngModel)]="animal.nome" placeholder="Ex. Bidu" class="form__animal-nome" maxlength="20" [formControl]="nomeFormControl" [errorStateMatcher]="matcher"/>
             <mat-error *ngIf="nomeFormControl.hasError('required')">
               {{'CAMPO_OBRIGATORIO' | translate}}
             </mat-error>

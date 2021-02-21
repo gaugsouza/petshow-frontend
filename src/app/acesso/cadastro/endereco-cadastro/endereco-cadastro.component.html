@@ -4,7 +4,7 @@
     <div>
         <mat-form-field>
             <mat-label>{{'CEP' | translate}}</mat-label>
-            <input matInput mask="00000-000" minlength="8" [(ngModel)]="endereco.cep" [formControl]="cepFormControl">
+            <input matInput mask="00000-000" minlength="8" maxlength="8" [(ngModel)]="endereco.cep" [formControl]="cepFormControl">
             <mat-error *ngIf="cepFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
             <mat-error *ngIf="cepFormControl.hasError('minlength')">
                 {{'CEP_INVALIDO' | translate}}
@@ -16,32 +16,32 @@
     <div>
         <mat-form-field>
             <mat-label>{{'LOGRADOURO' | translate}}</mat-label>
-            <input matInput [(ngModel)]="endereco.logradouro" [disabled]="true">
+            <input matInput maxlength="80" [(ngModel)]="endereco.logradouro" [disabled]="true">
         </mat-form-field>
         <mat-form-field>
             <mat-label>{{'NUMERO' | translate}}</mat-label>
-            <input matInput [formControl]="numeroFormControl" mask="0*" [(ngModel)]="endereco.numero" (change)="alteraCampo('numero', $event.target.value)">
+            <input matInput maxlength="5" [formControl]="numeroFormControl" mask="0*" [(ngModel)]="endereco.numero" (change)="alteraCampo('numero', $event.target.value)">
             <mat-error *ngIf="numeroFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
         </mat-form-field>
     </div>
     <div>
         <mat-form-field>
             <mat-label>{{'COMPLEMENTO' | translate}}</mat-label>
-            <input matInput [(ngModel)]="endereco.complemento" (change)="alteraCampo('complemento', $event.target.value)">
+            <input matInput maxlength="30" [(ngModel)]="endereco.complemento" (change)="alteraCampo('complemento', $event.target.value)">
         </mat-form-field>
         <mat-form-field>
             <mat-label>{{'BAIRRO' | translate}}</mat-label>
-            <input matInput [(ngModel)]="endereco.bairro" [disabled]="true">
+            <input matInput maxlength="30" [(ngModel)]="endereco.bairro" [disabled]="true">
         </mat-form-field>
     </div>
     <div>
         <mat-form-field>
             <mat-label>{{'ESTADO' | translate}}</mat-label>
-            <input matInput [(ngModel)]="endereco.estado" [disabled]="true">
+            <input matInput maxlength="2" [(ngModel)]="endereco.estado" [disabled]="true">
         </mat-form-field>
         <mat-form-field>
             <mat-label>{{'CIDADE' | translate}}</mat-label>
-            <input matInput [(ngModel)]="endereco.cidade" [disabled]="true" >
+            <input matInput maxlength="30" [(ngModel)]="endereco.cidade" [disabled]="true" >
         </mat-form-field>
     </div>
     </div>

@@ -2,15 +2,15 @@
     <p>{{data.titulo | translate}}</p>
     <mat-form-field>
         <mat-label>{{'NOME' | translate}}</mat-label>
-        <input matInput [formControl]="nomeFormControl" required [(ngModel)]="data.adicional.nome" />
+        <input matInput [formControl]="nomeFormControl" maxlength="80" required [(ngModel)]="data.adicional.nome" />
     </mat-form-field>
     <mat-form-field>
         <mat-label>{{'DESC_SERVICO' | translate}}</mat-label>
-        <textarea matInput [(ngModel)]="data.adicional.descricao" matInput placeholder="Your Message" formControlName="message" cdkTextareaAutosize></textarea>
+        <textarea matInput [(ngModel)]="data.adicional.descricao" matInput placeholder="Your Message" maxlength="280" formControlName="message" cdkTextareaAutosize></textarea>
     </mat-form-field>
     <mat-form-field>
         <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-        <input matInput [formControl]="precoFormControl" required [(ngModel)]="data.adicional.preco" 
+        <input matInput maxlength="12" [formControl]="precoFormControl" required [(ngModel)]="data.adicional.preco" 
             mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$" />
     </mat-form-field>
     <div class="dialog__button-container">

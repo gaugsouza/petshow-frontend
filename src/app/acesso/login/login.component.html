@@ -10,7 +10,7 @@
                 </mat-error>
                 <mat-form-field>
                     <mat-label>Email</mat-label>
-                    <input matInput [(ngModel)]="login.email" placeholder="exemplo@exemplo.com" class="login-form__email" [formControl]="emailFormControl" [errorStateMatcher]="matcher"/>
+                    <input matInput [(ngModel)]="login.email" maxlength="256" placeholder="exemplo@exemplo.com" class="login-form__email" [formControl]="emailFormControl" [errorStateMatcher]="matcher"/>
                     <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                         {{'EMAIL_INVALIDO' | translate}}
                     </mat-error>
@@ -20,7 +20,7 @@
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>{{'SENHA' | translate}}</mat-label>
-                    <input matInput [(ngModel)]="login.senha" class="login-form__senha"  type="password" placeholder="senha" [formControl]="passwordFormControl" [errorStateMatcher]="matcher"/>
+                    <input matInput [(ngModel)]="login.senha" class="login-form__senha"  type="password" maxlength="72" placeholder="senha" [formControl]="passwordFormControl" [errorStateMatcher]="matcher"/>
                     <mat-error *ngIf="passwordFormControl.hasError('required')">
                         {{'SENHA_NULA' | translate}}
                     </mat-error>

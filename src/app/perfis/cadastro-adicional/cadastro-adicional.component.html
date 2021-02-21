@@ -2,15 +2,15 @@
 <div class="adicional-form">
   <mat-form-field>
     <mat-label>{{'NOME' | translate}}</mat-label>
-    <input matInput [(ngModel)]="adicional.nome" />
+    <input matInput maxlength="80" [(ngModel)]="adicional.nome" />
 </mat-form-field>
 <mat-form-field>
     <mat-label>{{'DESC_SERVICO' | translate}}</mat-label>
-    <input matInput [(ngModel)]="adicional.descricao" />
+    <input matInput maxlength="280" [(ngModel)]="adicional.descricao" />
 </mat-form-field>
 <mat-form-field>
     <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-    <input matInput [(ngModel)]="adicional.preco"placeholder="22,00" mask='separator.2'
+    <input matInput [(ngModel)]="adicional.preco"placeholder="22,00" maxlength="12" mask='separator.2'
     [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ " />
 </mat-form-field>
 </div>

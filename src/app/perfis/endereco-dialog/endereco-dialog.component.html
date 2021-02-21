@@ -2,7 +2,7 @@
     <p>{{'ALTERA_ENDERECO' | translate}}</p>
     <mat-form-field>
         <mat-label>CEP</mat-label>
-        <input [formControl]="cepFormControl" matInput [(ngModel)]="data.cep" mask="00000-000" minlength="8" />
+        <input [formControl]="cepFormControl" matInput [(ngModel)]="data.cep" mask="00000-000" minlength="8" maxlength="8"/>
         <mat-error *ngIf="cepFormControl.hasError('minlength')">{{'CEP_INVALIDO' | translate}}</mat-error>
         <mat-error *ngIf="cepFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
         <mat-error *ngIf="cepFormControl.hasError('erroBusca')">{{erroBuscaCep | translate}}</mat-error>
@@ -10,33 +10,33 @@
     <button mat-flat-button color="primary" (click)="buscarCep()" [disabled]="cepFormControl.invalid"><mat-icon>search</mat-icon></button><br>
     <mat-form-field>
         <mat-label>{{'LOGRADOURO' | translate}}</mat-label>
-        <input matInput [(ngModel)]="data.logradouro" [disabled]="true"/>
+        <input matInput [(ngModel)]="data.logradouro" maxlength="80" [disabled]="true"/>
         <mat-error *ngIf="logradouroFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
     </mat-form-field>
     <mat-form-field>
         <mat-label>{{'NUMERO' | translate}}</mat-label>
-        <input [formControl]="numeroFormControl" matInput mask="0*" [(ngModel)]="data.numero" />
+        <input [formControl]="numeroFormControl" matInput mask="0*" maxlength="5" [(ngModel)]="data.numero" />
         <mat-error *ngIf="numeroFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
     </mat-form-field>
     <mat-form-field>
         <mat-label>{{'COMPLEMENTO' | translate}}</mat-label>
-        <input matInput [(ngModel)]="data.complemento" />
+        <input matInput maxlength="30" [(ngModel)]="data.complemento" />
     </mat-form-field>
     <mat-form-field>
         <mat-label>{{'BAIRRO' | translate}}</mat-label>
-        <input matInput [(ngModel)]="data.bairro" [disabled]="true"/>
+        <input matInput maxlength="30" [(ngModel)]="data.bairro" [disabled]="true"/>
         <mat-error *ngIf="bairroFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
     </mat-form-field>
     <mat-form-field>
         <mat-label>{{'ESTADO' | translate}}</mat-label>
-        <input matInput [(ngModel)]="data.estado" [disabled]="true"/>
+        <input matInput maxlength="2" [(ngModel)]="data.estado" [disabled]="true"/>
         <!-- <mat-select [(ngModel)]="data.estado" [value]="data.estado" (selectionChange)="carregarCidades($event.value)">
             <mat-option *ngFor="let estado of estados" value="{{estado.sigla}}">{{estado.nome}}</mat-option>
         </mat-select> -->
     </mat-form-field>
     <mat-form-field>
         <mat-label>{{'CIDADE' | translate}}</mat-label>
-        <input matInput [(ngModel)]="data.cidade" [disabled]="true"/>
+        <input matInput maxlength="30" [(ngModel)]="data.cidade" [disabled]="true"/>
         <!-- <mat-select [(ngModel)]="data.cidade" [value]="data.cidade">
             <mat-option *ngFor="let cidade of cidades" value="{{cidade.nome}}">{{cidade.nome}}</mat-option>
         </mat-select> -->
