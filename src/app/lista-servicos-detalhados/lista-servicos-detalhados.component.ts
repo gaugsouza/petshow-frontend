@@ -55,6 +55,10 @@ export class ListaServicosDetalhadosComponent implements OnInit {
 
   isAtivo:boolean;
 
+  tooltipText:string;
+
+  isLogado:boolean = false;
+
   constructor(private servicosService:ServicosService,
               private route: ActivatedRoute,
               private dialog:MatDialog,
@@ -71,9 +75,10 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   buscaUsuario() {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       this.usuarioService.getUsuario(token).subscribe((usuario:Usuario) => {
-        console.log(usuario);
+        this.isLogado = true;
         this.isCliente = this.usuarioService.isCliente(usuario);
         this.isAtivo = this.usuarioService.isAtivo(usuario);
+
         if (this.isCliente) {
           this.filtro = {
             ...this.filtro,
@@ -83,17 +88,23 @@ export class ListaServicosDetalhadosComponent implements OnInit {
         }
       }, () => {
         this.isCliente = false;
+        this.isAtivo = false;
       },
       () => {
+        this.tooltipText = this.geraTooltip();
         this.buscarServicosDetalhadosPorTipo(this.filtro, this.paginaAtual, this.quantidadePagina);
       });
     },
     () => {
-      this.isCliente = false;
     },
     () => {
+      this.tooltipText = this.geraTooltip();
       this.buscarServicosDetalhadosPorTipo(this.filtro, this.paginaAtual, this.quantidadePagina);
     });
+  }
+
+  geraTooltip() {
+    return !this.isLogado ? 'NECESSARIO_LOGAR' : !this.isCliente ? 'SOMENTE_CLIENTES' : !this.isAtivo ? 'ATIVE_CONTA_AGENDAMENTO' : '';
   }
 
   eventoPagina(event: PageEvent) {
@@ -195,6 +206,10 @@ export class ListaServicosDetalhadosComponent implements OnInit {
     ref.afterClosed().subscribe(() => {
       this.idsAComparar = [];
     });
+  }
+
+  deveSelecionar(id:number) {
+    return this.idsAComparar.includes(id);
   }
 
   alteraFiltro(filtro) {

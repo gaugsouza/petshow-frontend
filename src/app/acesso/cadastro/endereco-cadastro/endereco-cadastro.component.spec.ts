@@ -14,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { ConsultaEstadosService, Estado, Cidade } from '../../../servicos/consulta-estados.service';
 import { JwtHelper } from '../../..//util/jwt-helper';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('EnderecoCadastroComponent', () => {
   let component: EnderecoCadastroComponent;
@@ -38,7 +39,8 @@ describe('EnderecoCadastroComponent', () => {
         ReactiveFormsModule,
         TranslateModule.forRoot(),
         MatDialogModule,
-        MatCardModule
+        MatCardModule,
+        MatIconModule,
       ]
     })
     .compileComponents();

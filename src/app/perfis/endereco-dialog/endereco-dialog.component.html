@@ -1,8 +1,16 @@
 <div mat-dialog-content class="dialog">
     <p>{{'ALTERA_ENDERECO' | translate}}</p>
     <mat-form-field>
+        <mat-label>CEP</mat-label>
+        <input [formControl]="cepFormControl" matInput [(ngModel)]="data.cep" mask="00000-000" minlength="8" />
+        <mat-error *ngIf="cepFormControl.hasError('minlength')">{{'CEP_INVALIDO' | translate}}</mat-error>
+        <mat-error *ngIf="cepFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
+        <mat-error *ngIf="cepFormControl.hasError('erroBusca')">{{erroBuscaCep | translate}}</mat-error>
+    </mat-form-field>
+    <button mat-flat-button color="primary" (click)="buscarCep()" [disabled]="cepFormControl.invalid"><mat-icon>search</mat-icon></button><br>
+    <mat-form-field>
         <mat-label>{{'LOGRADOURO' | translate}}</mat-label>
-        <input matInput [formControl]="logradouroFormControl" [(ngModel)]="data.logradouro" />
+        <input matInput [(ngModel)]="data.logradouro" [disabled]="true"/>
         <mat-error *ngIf="logradouroFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
     </mat-form-field>
     <mat-form-field>
@@ -15,29 +23,23 @@
         <input matInput [(ngModel)]="data.complemento" />
     </mat-form-field>
     <mat-form-field>
-        <mat-label>CEP</mat-label>
-        <input [formControl]="cepFormControl" matInput [(ngModel)]="data.cep" mask="00000-000" minlength="8" />
-        <mat-error *ngIf="cepFormControl.hasError('minlength')">{{'CEP_INVALIDO' | translate}}</mat-error>
-        <mat-error *ngIf="cepFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
-    </mat-form-field>
-    <mat-form-field>
         <mat-label>{{'BAIRRO' | translate}}</mat-label>
-        <input [formControl]="bairroFormControl" matInput [(ngModel)]="data.bairro" />
+        <input matInput [(ngModel)]="data.bairro" [disabled]="true"/>
         <mat-error *ngIf="bairroFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
     </mat-form-field>
     <mat-form-field>
         <mat-label>{{'ESTADO' | translate}}</mat-label>
-        <!-- <input [formControl]="estadoFormControl" matInput [(ngModel)]="data.estado" /> -->
-        <mat-select [(ngModel)]="data.estado" [value]="data.estado" (selectionChange)="carregarCidades($event.value)">
+        <input matInput [(ngModel)]="data.estado" [disabled]="true"/>
+        <!-- <mat-select [(ngModel)]="data.estado" [value]="data.estado" (selectionChange)="carregarCidades($event.value)">
             <mat-option *ngFor="let estado of estados" value="{{estado.sigla}}">{{estado.nome}}</mat-option>
-        </mat-select>
+        </mat-select> -->
     </mat-form-field>
     <mat-form-field>
         <mat-label>{{'CIDADE' | translate}}</mat-label>
-        <!-- <input [formControl]="cidadeFormControl" matInput [(ngModel)]="data.cidade" /> -->
-        <mat-select [(ngModel)]="data.cidade" [value]="data.cidade">
+        <input matInput [(ngModel)]="data.cidade" [disabled]="true"/>
+        <!-- <mat-select [(ngModel)]="data.cidade" [value]="data.cidade">
             <mat-option *ngFor="let cidade of cidades" value="{{cidade.nome}}">{{cidade.nome}}</mat-option>
-        </mat-select>
+        </mat-select> -->
     </mat-form-field>
     <div class="dialog__button-container">
         <button mat-flat-button color="warn" (click)="onNoClick()">{{'CANCELAR' | translate}}</button>

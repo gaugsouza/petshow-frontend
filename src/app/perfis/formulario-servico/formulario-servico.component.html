@@ -18,7 +18,7 @@
 
 
     <section *ngFor="let chave of getInputModelKeys()">
-      <mat-checkbox  (change)="toggleChecked(chave)">{{chave | translate}}</mat-checkbox>
+      <mat-checkbox  (change)="toggleChecked(chave)" [checked]="tipoChecked[chave]">{{chave | translate}}</mat-checkbox>
       <div *ngIf="tipoChecked[chave]">
         <ng-container 
           [ngTemplateOutlet]="tiposInputModel[chave].length ? listBlock : objectBlock"

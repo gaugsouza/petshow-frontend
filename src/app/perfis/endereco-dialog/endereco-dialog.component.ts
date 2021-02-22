@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Endereco } from 'src/app/interfaces/endereco';
 import { FormControl, Validators } from '@angular/forms';
 import { ConsultaEstadosService, Estado, Cidade } from 'src/app/servicos/consulta-estados.service';
+import { CepService } from 'src/app/servicos/cep.service';
 @Component({
   selector: 'app-endereco-dialog',
   templateUrl: './endereco-dialog.component.html',
@@ -38,9 +39,12 @@ export class EnderecoDialogComponent implements OnInit {
 
   cidades: Cidade[];
 
+  erroBuscaCep:string;
+
   constructor(public dialogRef:MatDialogRef<EnderecoDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data:Endereco,
-              private consultaEstadoService:ConsultaEstadosService) { }
+              private consultaEstadoService:ConsultaEstadosService,
+              private cepService:CepService) { }
 
   ngOnInit(): void {
     this.consultaEstadoService.getEstados().subscribe((el) => {
@@ -60,7 +64,28 @@ export class EnderecoDialogComponent implements OnInit {
   }
 
   hasErrors() {
-    return this.logradouroFormControl.invalid || this.numeroFormControl.invalid
-    || this.cepFormControl.invalid || this.bairroFormControl.invalid;
+    return this.numeroFormControl.invalid
+    || this.cepFormControl.invalid;
+  }
+
+  buscarCep() {
+    this.cepService.buscaCep(this.data.cep).subscribe((busca) => {
+      this.erroBuscaCep = '';
+      const endereco = JSON.parse(busca);
+      if (endereco.erro) {
+        this.erroBuscaCep = 'ERRO_BUSCA_CEP';
+        this.cepFormControl.setErrors({
+          erroBusca: true,
+        });
+        return;
+      }
+      const {
+        bairro, localidade: cidade, uf: estado, logradouro,
+      } = (endereco || {});
+
+      this.data = {
+        ...this.data, bairro, cidade, estado, logradouro,
+      };
+    });
   }
 }

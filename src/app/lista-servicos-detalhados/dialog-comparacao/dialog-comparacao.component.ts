@@ -12,9 +12,9 @@ import { UsuarioService } from 'src/app/servicos/usuario.service';
   styleUrls: ['./dialog-comparacao.component.scss'],
 })
 export class DialogComparacaoComponent implements OnInit {
-  animais:TipoAnimal[]
+  animais:TipoAnimal[];
 
-  displayedColumns:string[] = ['nome', 'servico1', 'servico2']
+  displayedColumns:string[] = ['nome', 'servico1', 'servico2'];
 
   dataSource:any;
 

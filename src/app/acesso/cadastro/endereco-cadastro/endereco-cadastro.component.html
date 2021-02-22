@@ -3,51 +3,45 @@
     
     <div>
         <mat-form-field>
-            <mat-label>{{'LOGRADOURO' | translate}}</mat-label>
-            <input matInput [formControl]="logradouroFormControl" [(ngModel)]="endereco.logradouro">
-            <mat-error *ngIf="logradouroFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>{{'NUMERO' | translate}}</mat-label>
-            <input matInput [formControl]="numeroFormControl" mask="0*" [(ngModel)]="endereco.numero">
-            <mat-error *ngIf="numeroFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>{{'COMPLEMENTO' | translate}}</mat-label>
-            <input matInput [(ngModel)]="endereco.complemento">
-        </mat-form-field>
-    </div>
-    <div>
-        <mat-form-field>
-            <mat-label>{{'BAIRRO' | translate}}</mat-label>
-            <input matInput [formControl]="bairroFormControl" [(ngModel)]="endereco.bairro">
-            <mat-error *ngIf="bairroFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
-        </mat-form-field>
-        <mat-form-field>
             <mat-label>{{'CEP' | translate}}</mat-label>
-            <input matInput [formControl]="cepFormControl" mask="00000-000" minlength="8" [(ngModel)]="endereco.cep">
+            <input matInput mask="00000-000" minlength="8" [(ngModel)]="endereco.cep" [formControl]="cepFormControl">
             <mat-error *ngIf="cepFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
             <mat-error *ngIf="cepFormControl.hasError('minlength')">
                 {{'CEP_INVALIDO' | translate}}
             </mat-error>
+            <mat-error *ngIf="cepFormControl.hasError('erroBusca')">{{erroBuscaCep | translate}}</mat-error>
+        </mat-form-field>
+        <button mat-flat-button (click)="buscarCep()" color="primary" [disabled]="cepFormControl.invalid"><mat-icon>search</mat-icon></button>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-label>{{'LOGRADOURO' | translate}}</mat-label>
+            <input matInput [(ngModel)]="endereco.logradouro" [disabled]="true">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{'NUMERO' | translate}}</mat-label>
+            <input matInput [formControl]="numeroFormControl" mask="0*" [(ngModel)]="endereco.numero" (change)="alteraCampo('numero', $event.target.value)">
+            <mat-error *ngIf="numeroFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-label>{{'COMPLEMENTO' | translate}}</mat-label>
+            <input matInput [(ngModel)]="endereco.complemento" (change)="alteraCampo('complemento', $event.target.value)">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{'BAIRRO' | translate}}</mat-label>
+            <input matInput [(ngModel)]="endereco.bairro" [disabled]="true">
         </mat-form-field>
     </div>
     <div>
         <mat-form-field>
             <mat-label>{{'ESTADO' | translate}}</mat-label>
-            <mat-select [(ngModel)]="endereco.estado" (selectionChange)="carregarCidades($event.value)">
-                <mat-option *ngFor="let estado of estados" value="{{estado.sigla}}">
-                    {{estado.nome}}
-                </mat-option>
-            </mat-select>
+            <input matInput [(ngModel)]="endereco.estado" [disabled]="true">
         </mat-form-field>
         <mat-form-field>
             <mat-label>{{'CIDADE' | translate}}</mat-label>
-            <mat-select [(ngModel)]="endereco.cidade">
-                <mat-option *ngFor="let cidade of cidades" value="{{cidade.nome}}">
-                    {{cidade.nome}}
-                </mat-option>
-            </mat-select>
+            <input matInput [(ngModel)]="endereco.cidade" [disabled]="true" >
         </mat-form-field>
     </div>
     </div>

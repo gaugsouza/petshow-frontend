@@ -23,6 +23,7 @@ import { ConfigModule } from '../config/config.module';
 import { MatButtonModule } from '@angular/material/button';
 import { GeolocalizacaoModule } from '../geolocalizacao/geolocalizacao.module';
 import {MatSliderModule} from '@angular/material/slider'; 
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 describe('ListaServicosDetalhadosComponent', () => {
   let component: ListaServicosDetalhadosComponent;
@@ -69,6 +70,7 @@ describe('ListaServicosDetalhadosComponent', () => {
         MatButtonModule,
         GeolocalizacaoModule,
         MatSliderModule,
+        MatTooltipModule,
       ]
     })
     .compileComponents();

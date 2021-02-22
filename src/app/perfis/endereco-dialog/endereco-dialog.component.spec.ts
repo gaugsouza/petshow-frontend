@@ -12,6 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { JwtHelper } from '../../util/jwt-helper';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('EnderecoDialogComponent', () => {
   let component: EnderecoDialogComponent;
@@ -31,7 +32,8 @@ describe('EnderecoDialogComponent', () => {
         ReactiveFormsModule,
         TranslateModule.forRoot(),
         MatDialogModule,
-        MatCardModule
+        MatCardModule,
+        MatIconModule,
       ],
       providers: [
         {

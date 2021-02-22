@@ -7,7 +7,6 @@ import { USER_TOKEN } from 'src/app/util/constantes';
 import { Endereco } from 'src/app/interfaces/endereco';
 import { JwtHelper } from 'src/app/util/jwt-helper';
 import { NotificationService } from 'src/app/servicos/notification.service';
-import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { ErrorDialogComponent } from 'src/app/confirmation-dialog/error-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -80,10 +79,12 @@ export class PerfilPrestadorComponent implements OnInit {
   }
 
   handleError(err) {
-    const data = {mensagem: typeof err === 'string' ? err : 'ERRO_REQUISICAO',
-                  textoBotao: 'Ok'}
-  
-    const dialogRef = this.dialog.open(ErrorDialogComponent, {
+    const data = {
+      mensagem: typeof err === 'string' ? err : 'ERRO_REQUISICAO',
+      textoBotao: 'Ok',
+    };
+
+    this.dialog.open(ErrorDialogComponent, {
       width: '400px',
       data: { ...data },
     });

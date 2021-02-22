@@ -19,37 +19,6 @@ mat-list-item {
   }
 }
 
-// .servico-list {
-
-//   &__item {
-//     display: grid;
-//     grid-template-columns: 1fr 1fr 30%;
-//     background: $item-bg;
-//     border: 1px solid $item-border;
-//     border-radius: 10px;
-//     padding: 6px 0px;
-//     width: 100%;
-//     margin: 0;
-
-//     @media screen and (max-width: $tablet-width) {
-//       grid-template-columns: 100%;
-//       width: 100%;
-//     }
-
-//     & span {
-//       align-self: center;
-//       font-size: 20px;
-//       padding: 10px 0;
-//       text-align: center;
-//     }
-//   }
-
-//   &__button-container {
-//     display: flex;
-//     justify-content: space-around;
-//   }
-// }
-
 .mat-list-item {
   height: auto !important;
 }
@@ -74,7 +43,7 @@ mat-list-item {
 }
 
 .acoes-preco-por-tipo {
-  display:flex;
+  display: flex;
   align-items: center;
 }
 
@@ -82,19 +51,19 @@ mat-list-item {
   display: flex;
 }
 
-.toggle-preco-por-tipo{
+.toggle-preco-por-tipo {
   display: grid;
 }
 
-.ativo-toggle{
+.ativo-toggle {
   display: flex;
   flex-direction: column;
 }
 
-.card-preco-por-tipo{
+.card-preco-por-tipo {
   margin-top: 5px;
 }
 
-.chips-adicional{
-  margin-top: 10px
+.chips-adicional {
+  margin-top: 10px;
 }
