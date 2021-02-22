@@ -12,6 +12,7 @@ import { Location, DatePipe } from '@angular/common';
 import { ServicosService } from 'src/app/servicos/servicos.service';
 import { ServicoDetalhadoTipoAnimal } from 'src/app/interfaces/servico-detalhado-tipo-animal';
 import { Adicional } from 'src/app/interfaces/adicional';
+import { PagamentoService } from 'src/app/servicos/pagamento.service'
 
 @Component({
   selector: 'app-agendamento',
@@ -60,7 +61,8 @@ export class AgendamentoComponent implements OnInit {
     private location: Location,
     private jwtHelper: JwtHelper,
     private servicoService:ServicosService,
-    private datePipe: DatePipe) {}
+    private datePipe: DatePipe,
+    private pagamentoService: PagamentoService) {}
 
   ngOnInit(): void {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
@@ -70,6 +72,7 @@ export class AgendamentoComponent implements OnInit {
       }
       this.token = token;
       this.idCliente = this.jwtHelper.recuperaIdToken(this.token);
+      this.efetuarPagamento();
     });
 
     this.route.queryParams.subscribe((params) => {
@@ -84,6 +87,8 @@ export class AgendamentoComponent implements OnInit {
       .subscribe((servico) => {
         this.servicoSelecionado = JSON.parse(servico);
       });
+    
+   
   }
 
   recuperaAnimaisEstimacaoSelecionados(animaisEstimacao) {
@@ -120,5 +125,19 @@ export class AgendamentoComponent implements OnInit {
 
   recuperaDataAtendimento(data:Date) {
     this.dataAgendamento = data;
+  }
+  
+  efetuarPagamento(){
+    this.pagamentoService.geraPreference(21, 63, this.token).subscribe(response => {
+      console.log(response)
+      let script = document.createElement("script");
+  
+      script.src = "https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js";
+      script.type = "text/javascript";
+      script.dataset.preferenceId = response.preferenceId;
+      
+      document.getElementById("button-checkout").innerHTML = "";
+      document.querySelector("#button-checkout").appendChild(script);
+    })
   }
 }
