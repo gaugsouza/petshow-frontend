@@ -1,0 +1,60 @@
+<div *ngIf="!servicoAvaliado && !isNotFound; then carregando else avaliacoes">
+</div>
+
+
+
+<ng-template #carregando>
+    <p>{{'CARREGANDO' | translate}}</p>
+</ng-template>
+
+<ng-template #avaliacoes >
+    <div *ngIf="isNotFound">
+        <p>{{'SERVICO_NAO_ENCONTRADO' | translate}}</p>
+    </div>
+    <div *ngIf="servicoAvaliado" class="avaliacoes">
+        <h1>{{'AVALIACOES' | translate}}</h1>
+
+        <div *ngIf="possuiAvaliacoes(); then avaliacoesBlock else vazioBlock">
+        </div>
+        
+        <ng-template #vazioBlock>
+            <h3 class="servico-topo">{{getNomeServico()}} - {{getNomePrestador()}}</h3>
+            <hr>
+            <p>{{'SEM_AVALIACOES' | translate}}</p>
+        </ng-template>
+        
+        <ng-template #avaliacoesBlock>
+            <h3 class="servico-topo">{{getNomeServico()}} - {{getNomePrestador()}} - {{getMediaAvaliacoes()}} <mat-icon>star</mat-icon></h3>
+            <hr>
+            
+            <div class="card-avaliacao" *ngFor="let avaliacao of getAvaliacoes()">
+                <div *ngIf="avaliacao.cliente" class="card-avaliacao__cliente">
+                    <div>
+                        <mat-icon>face</mat-icon>
+                    </div>
+                    <div class="card-avaliacao__infos-cliente">
+                        <div >
+                            <div><strong>{{avaliacao.cliente.nome}}</strong></div>
+                            <div class="card-avaliacao__nota">
+                                <strong>{{avaliacao.media | number: '1.1'}}</strong>
+                                <app-estrelas [media]="avaliacao.media"></app-estrelas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-avaliacao__comentario">
+                    <span>{{avaliacao.comentario}}</span>
+                </div>
+            </div>
+
+            <mat-paginator #paginator
+                [length]="quantidadeTotal"
+                [pageIndex]="paginaAtual"
+                [pageSize]="quantidadeItens"
+                [pageSizeOptions]="[10, 15, 20, 25]"
+                (page)="pageEvent = eventoPagina($event)">
+            </mat-paginator>
+        </ng-template>
+    </div>
+    
+</ng-template>

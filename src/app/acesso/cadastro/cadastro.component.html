@@ -1,0 +1,11 @@
+<div *ngIf="!isCliente && !isPrestador" class="selecao-tipo">
+    <button mat-flat-button color="#039493" (click) = "exibirFormPrestador()">{{'ADD_PRESTADOR' | translate}}</button>
+
+    <button mat-flat-button color="prim" (click) = "exibirFormCliente()">{{'ADD_Cliente' | translate}}</button>
+
+</div>
+
+<app-cadastro-conta *ngIf="isCliente || isPrestador"
+                    [tipo-conta]="tipoConta"></app-cadastro-conta>
+
+                    

@@ -1,0 +1,43 @@
+[
+  {
+    "description": "    Exemplo de utilização do cypress",
+    "keyword": "Feature",
+    "name": "Exemplo",
+    "line": 1,
+    "id": "exemplo",
+    "tags": [],
+    "uri": "Exemplo.feature",
+    "elements": [
+      {
+        "id": "exemplo;teste",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "Teste",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "entrei na página inicial",
+            "result": {
+              "status": "passed",
+              "duration": 19783000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "devo ver \"PetshowFrontend\" no título.",
+            "result": {
+              "status": "passed",
+              "duration": 76000000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

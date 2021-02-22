@@ -1,0 +1,53 @@
+<section>    
+    <div class="conteiner-servicos-list" *ngIf="servicosDetalhados && servicosDetalhados.length; then servicosBlock else vazioBlock"></div>
+    
+    <ng-template #vazioBlock>
+        <p class="no_registered">{{'NENHUM_SERVICO_CADASTRADO_P' | translate}}</p>
+    </ng-template>
+
+    <ng-template #servicosBlock>
+        <div class="servico-list">
+            <mat-card *ngFor="let servico of servicosDetalhados">
+                <mat-card-title>
+                    {{servico.tipo.nome | translate}}
+                </mat-card-title>
+                <mat-card-content>
+                    <div class="servico-precos">
+                        <mat-card *ngFor="let preco of servico.precoPorTipo">
+                            <mat-card-subtitle>{{preco.tipoAnimal.nome}}</mat-card-subtitle>
+                            <mat-card-content>
+                                <span *ngIf="preco.tipoAnimal.porte">Porte: {{preco.tipoAnimal.porte}}</span><br *ngIf="preco.tipoAnimal.porte">
+                                <span *ngIf="preco.tipoAnimal.pelagem">Pelagem: {{preco.tipoAnimal.pelagem}}</span><br *ngIf="preco.tipoAnimal.porte"> 
+                                <span>{{preco.preco | currency: 'BRL'}}</span>
+                                <hr>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                    <div *ngIf="servico.adicionais && servico.adicionais.length; else adicionaisVazios">
+                        <mat-chip-list>
+                            <mat-chip *ngFor="let adicional of servico.adicionais">
+                                <span>{{adicional.nome}}</span> | <span>{{adicional.preco | currency: 'BRL'}}</span>
+                                <mat-icon class="icone" (click)="openDialogAtualizacao(adicional)"> edit </mat-icon>
+                                <mat-icon class="icone" (click)="openConfirmationDialog(adicional)"> delete </mat-icon>
+                            </mat-chip>
+                        </mat-chip-list>
+                    </div>
+
+                    <ng-template #adicionaisVazios>{{'NENHUM_ADICIONAL' | translate}}</ng-template>
+                </mat-card-content>
+                <mat-card-actions class="footer-buttons">
+                    <button mat-flat-button color="warn" (click)="removeServico(servico)">{{'REMOVER' | translate}}</button>
+                    <button mat-flat-button color="primary" (click)="openDialogInsercao(servico)">{{'NOVO_ADICIONAL' | translate}}</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>       
+
+        <mat-paginator #paginator
+            [length]="quantidadeTotal"
+            [pageIndex]="paginaAtual"
+            [pageSize]="quantidadeItens"
+            [pageSizeOptions]="[5, 7, 10, 15]"
+            (page)="pageEvent = eventoPagina($event)">
+        </mat-paginator>
+    </ng-template>
+</section>

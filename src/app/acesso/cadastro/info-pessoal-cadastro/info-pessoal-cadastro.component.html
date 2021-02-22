@@ -1,0 +1,40 @@
+<div *ngIf="usuario">
+    <mat-form-field>
+        <mat-label>{{'NOME_COMPLETO' | translate}}</mat-label>
+        <input matInput placeholder="João" minlength="3" [formControl]="nomeFormControl" [(ngModel)]="usuario.nome"/>
+        <mat-error *ngIf="nomeFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
+        <mat-error *ngIf="nomeFormControl.hasError('minlength')">{{'NOME_INVALIDO' | translate}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>CPF</mat-label>
+        <input matInput placeholder="123.456.789.09" minlength="11" mask="000.000.000-00" [formControl]="cpfFormControl"  [(ngModel)]="usuario.cpf"/>
+        <mat-error *ngIf="cpfFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
+        <mat-error *ngIf="cpfFormControl.errors && cpfFormControl.errors.cpfvalidator">{{'CPF_INVALIDO' | translate}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>{{'TELEFONE' | translate}}</mat-label>
+        <input matInput placeholder="(11) 9999-99999" minlength="10" mask="(00) 0000-00000" [formControl]="telefoneFormControl" [(ngModel)]="usuario.telefone"/>
+        <mat-error *ngIf="telefoneFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
+    </mat-form-field>
+</div>
+
+<div *ngIf="usuario">
+    <mat-form-field>
+        <mat-label>E-mail</mat-label>
+        <input matInput placeholder="exemplo@petshow.com" [formControl]="emailFormControl" [(ngModel)]="usuario.login.email"/>
+        <mat-error *ngIf="emailFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('email')">{{'EMAIL_INVALIDO' | translate}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>{{'SENHA' | translate}}</mat-label>
+        <input matInput type="password" minlength="8" [formControl]="senhaFormControl" [(ngModel)]="usuario.login.senha"/>
+        <mat-error *ngIf="senhaFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
+        <mat-error *ngIf="senhaFormControl.hasError('minlength')">{{'SENHA_MINIMO' | translate}}</mat-error>
+        <mat-error *ngIf="senhaFormControl.hasError('pattern')">{{'SENHA_PADRAO' | translate}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>{{'REPITA_SENHA' | translate}}</mat-label>
+        <input matInput [formControl]="confirmaSenhaFormControl" (change)="confirmarSenha($event.target.value)" type="password" [(ngModel)]="senhaRepetida"/>
+        <mat-error *ngIf="confirmaSenhaFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
+    </mat-form-field>
+</div>

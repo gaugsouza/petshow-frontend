@@ -1,0 +1,36 @@
+@import "../../global.scss";
+
+$button-bg: #4ce0de;
+$button-color: white;
+
+.selecao_servico {
+  padding: 10% 20%;
+  height: 60vh;
+  background-image: url("../../assets/icons/cat_home.jpg");
+  background-size: 1000px;
+
+  &__button-container {
+    padding: 10 0;
+    display: flex;
+    justify-content: space-around;
+
+    @media screen and (max-width: $tablet-width) {
+      flex-direction: column;
+    }
+  }
+
+  ::ng-deep .mat-flat-button {
+    color: $button-color !important;
+    font-size: 185% !important;
+    height: 45px !important;
+    background-color: $button-bg !important;
+    margin-bottom: 5%;
+  }
+}
+
+.attribution {
+  font-size: 8px;
+  left: 0px;
+  position: absolute;
+  bottom: 0px;
+}
