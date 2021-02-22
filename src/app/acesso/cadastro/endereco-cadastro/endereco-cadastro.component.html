@@ -4,7 +4,7 @@
     <div>
         <mat-form-field>
             <mat-label>{{'CEP' | translate}}</mat-label>
-            <input matInput mask="00000-000" minlength="8" maxlength="8" [(ngModel)]="endereco.cep" [formControl]="cepFormControl">
+            <input matInput mask="00000-000" minlength="8" [(ngModel)]="endereco.cep" [formControl]="cepFormControl">
             <mat-error *ngIf="cepFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
             <mat-error *ngIf="cepFormControl.hasError('minlength')">
                 {{'CEP_INVALIDO' | translate}}
