@@ -13,6 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PoliticaPrivacidadeComponent } from 'src/app/acesso/cadastro/politica-privacidade/politica-privacidade.component';
 import { ValidateBrService } from 'angular-validate-br';
 import { Endereco } from 'src/app/interfaces/endereco';
+import { Empresa } from 'src/app/interfaces/empresa';
 
 @Component({
   selector: 'app-cadastro-conta',
@@ -57,6 +58,10 @@ export class CadastroContaComponent implements OnInit {
   cidades:Cidade[] = [];
 
   isPoliticasAceitas:boolean=false;
+
+  exibeFormEmpresa:boolean = false;
+
+  empresa:Empresa;
 
   constructor(private loginService:LoginService,
               private consultaEstadoService:ConsultaEstadosService,
@@ -134,6 +139,10 @@ export class CadastroContaComponent implements OnInit {
     this.usuario.endereco = endereco;
   }
 
+  toggleFormEmpresa() {
+    this.exibeFormEmpresa = !this.exibeFormEmpresa;
+  }
+
   cadastrarConta(usuario:Usuario) {
     if (!this.isSenhasIguais()) {
       this.errorMessage = 'MENSAGEM_ERRO_SENHA';
@@ -152,4 +161,9 @@ export class CadastroContaComponent implements OnInit {
   toggleCheckBoxPoliticas() {
     this.isPoliticasAceitas = !this.isPoliticasAceitas;
   }
+
+  alteraEmpresa(empresa:Empresa) {
+    this.empresa = { ...empresa };
+  }
+
 }
