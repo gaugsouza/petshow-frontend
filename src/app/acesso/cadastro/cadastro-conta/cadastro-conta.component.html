@@ -21,6 +21,15 @@
                         (altera-endereco)="setaEndereco($event)"
                         ></app-endereco-cadastro>
 
+  <div *ngIf="isPrestador()">
+    <mat-checkbox (change)="toggleFormEmpresa()">Desejo cadastrar minha empresa</mat-checkbox>
+    <app-cadastro-empresa
+      *ngIf="exibeFormEmpresa"
+      [empresa]="empresa"
+      (altera-empresa)="alteraEmpresa($event)"
+    ></app-cadastro-empresa>
+  </div>
+
   <p *ngIf="errorMessage">{{errorMessage | translate}}</p>
   <p *ngIf="erroRequisicao">{{erroRequisicao | translate}}</p>
 
@@ -29,14 +38,6 @@
     <button mat-stroked-button color="link" (click)="openDialog()">{{'POLITICA-PRIVACIDADE' | translate}}</button>
   </div>
 
-  <div *ngIf="isPrestador()">
-    <mat-checkbox (change)="toggleFormEmpresa()">Cadastrar empresa</mat-checkbox>
-    <app-cadastro-empresa
-      *ngIf="exibeFormEmpresa"
-      [empresa]="empresa"
-      (altera-empresa)="alteraEmpresa($event)"
-    ></app-cadastro-empresa>
-  </div>
 
   
   <div class="form__button-container">

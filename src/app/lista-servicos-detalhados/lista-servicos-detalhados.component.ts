@@ -13,6 +13,7 @@ import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { USER_TOKEN } from '../util/constantes';
 import { Usuario } from '../interfaces/usuario';
 import { DataSharingService } from '../servicos/data-sharing.service';
+import { Prestador } from '../interfaces/prestador';
 @Component({
   selector: 'app-lista-servicos-detalhados',
   templateUrl: './lista-servicos-detalhados.component.html',
@@ -210,6 +211,14 @@ export class ListaServicosDetalhadosComponent implements OnInit {
 
   deveSelecionar(id:number) {
     return this.idsAComparar.includes(id);
+  }
+
+  geraTitulo(prestador:Prestador) {
+    if (!prestador.empresa.id) {
+      return prestador.nome;
+    }
+
+    return prestador.empresa.razaoSocial || prestador.empresa.nome;
   }
 
   alteraFiltro(filtro) {

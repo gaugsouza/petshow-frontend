@@ -33,13 +33,13 @@
     <div *ngIf="prestador">
         <mat-card>
             <mat-card-title>
-                <p>{{prestador.nome}}</p>
+                <p>{{ geraTitulo() }}</p>
             </mat-card-title>
             <mat-card-subtitle>
                 {{'DADOS_DO' | translate}} {{'PRESTADOR' | translate}}
             </mat-card-subtitle>
             <mat-card-content>
-                <p>{{'NOME' | translate}}: {{prestador.nome}}</p>
+                <p>{{'NOME' | translate}}: {{ geraTitulo() }}</p>
                 <div *ngIf="servicoDetalhado">
                     <mat-card>
                         <mat-card-subtitle>

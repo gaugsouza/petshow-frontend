@@ -14,6 +14,8 @@ import { PoliticaPrivacidadeComponent } from 'src/app/acesso/cadastro/politica-p
 import { ValidateBrService } from 'angular-validate-br';
 import { Endereco } from 'src/app/interfaces/endereco';
 import { Empresa } from 'src/app/interfaces/empresa';
+import { Observable } from 'rxjs';
+import { Prestador } from 'src/app/interfaces/prestador';
 
 @Component({
   selector: 'app-cadastro-conta',
@@ -61,7 +63,7 @@ export class CadastroContaComponent implements OnInit {
 
   exibeFormEmpresa:boolean = false;
 
-  empresa:Empresa;
+  empresa:Empresa = {};
 
   constructor(private loginService:LoginService,
               private consultaEstadoService:ConsultaEstadosService,
@@ -100,7 +102,8 @@ export class CadastroContaComponent implements OnInit {
     || this.confirmaSenhaFormControl.invalid
     || this.numeroFormControl.invalid
     || this.cepFormControl.invalid
-    || !this.isPoliticasAceitas;
+    || !this.isPoliticasAceitas
+    || !this.validaEmpresa();
   }
 
   isPrestador() {
@@ -125,7 +128,7 @@ export class CadastroContaComponent implements OnInit {
 
   cadastrarUsuario(usuario:Usuario) {
     this.disableButton();
-    this.loginService.cadastrarUsuario(usuario)
+    this.realizarCadastro(usuario)
       .subscribe((res) => {
         this.redirect(res);
       }, (err) => {
@@ -133,6 +136,14 @@ export class CadastroContaComponent implements OnInit {
         this.erroRequisicao = typeof err === 'string' ? err : 'ERRO_REQUISICAO';
         this.disableButton();
       });
+  }
+
+  realizarCadastro(usuario:Usuario):Observable<string> {
+    if (!this.exibeFormEmpresa) {
+      return this.loginService.cadastrarUsuario(usuario);
+    }
+    const prestadorEmpresa:Prestador = {...usuario as Prestador, empresa:this.empresa };
+    return this.loginService.cadastrarEmpresa(prestadorEmpresa);
   }
 
   setaEndereco(endereco:Endereco) {
@@ -164,6 +175,13 @@ export class CadastroContaComponent implements OnInit {
 
   alteraEmpresa(empresa:Empresa) {
     this.empresa = { ...empresa };
+  }
+
+  validaEmpresa() {
+    if (!this.exibeFormEmpresa) {
+      return true;
+    }
+    return this.empresa.nome && this.empresa.razaoSocial && this.empresa.cnpj && (this.empresa.endereco || {}).numero && (this.empresa.endereco || {}).logradouro && (this.empresa.endereco || {}).cep && (this.empresa.endereco || {}).cidade && (this.empresa.endereco || {}).estado && (this.empresa.endereco || {}).bairro;
   }
 
 }

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import ol from 'openlayers';
 import { FiltroServicos } from 'src/app/interfaces/filtro-servicos';
 import { Geolocalizacao } from 'src/app/interfaces/geolocalizacao';
+import { Prestador } from 'src/app/interfaces/prestador';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { DataSharingService } from 'src/app/servicos/data-sharing.service';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
@@ -150,8 +151,16 @@ export class MapaComponent implements OnInit {
         this.openDialog(servico);
       };
 
-      return this.criaPonto('assets/icons/iconePrestador.png', posicao, 'prestador', prestador.nome, evento);
+      return this.criaPonto('assets/icons/iconePrestador.png', posicao, 'prestador', this.geraNome(prestador), evento);
     });
+  }
+
+  geraNome(prestador:Prestador) {
+    if (!prestador.empresa.id) {
+      return prestador.nome;
+    }
+
+    return prestador.empresa.razaoSocial || prestador.empresa.nome;
   }
 
   private openDialog(servico:ServicoDetalhado) {

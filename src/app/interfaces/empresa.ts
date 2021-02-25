@@ -6,6 +6,6 @@ export interface Empresa {
     dono?:Prestador,
     endereco?:Endereco,
     nome?:string,
-    nomeSocial?:string
+    razaoSocial?:string
     cnpj?:string,
 }

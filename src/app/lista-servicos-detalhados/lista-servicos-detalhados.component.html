@@ -111,7 +111,7 @@
                         {{servicoDetalhado.tipo.nome | translate}} 
                     </div>
                     <span class="preco-servico">{{'A_PARTIR_DE' | translate}}: {{getPrecoMinimo(servicoDetalhado) | currency: 'BRL'}}</span>
-                    <span><a mat-button color="primary" href="/prestador/{{servicoDetalhado.prestadorId}}">{{servicoDetalhado.prestador.nome}}</a>
+                    <span><a mat-button color="primary" href="/prestador/{{servicoDetalhado.prestadorId}}">{{geraTitulo(servicoDetalhado.prestador)}}</a>
                         <a mat-button color="primary" href="/prestador/{{servicoDetalhado.prestadorId}}/servico/{{servicoDetalhado.id}}/avaliacao">{{'AVALIACOES' | translate}}</a>
                     </span>  
                     <div class="lista-servicos-detalhados__button-container">

@@ -38,6 +38,7 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
 import { AdicionalDialogComponent } from './adicional-dialog/adicional-dialog.component';
 import { ConfirmacaoCancelamentoComponent } from './confirmacao-cancelamento/confirmacao-cancelamento.component';
 import { ServicoPrecoDialogComponent } from './servico-preco-dialog/servico-preco-dialog.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -84,6 +85,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     MatCheckboxModule,
     MatIconModule,
     MatSlideToggleModule,
+    MatTabsModule,
   ],
   exports: [
     PerfilPrestadorComponent,

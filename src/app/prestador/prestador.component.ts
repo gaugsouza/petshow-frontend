@@ -32,6 +32,14 @@ export class PrestadorComponent implements OnInit {
       });
   }
 
+  getTitulo() {
+    if(!this.prestador.empresa.id) {
+      return this.prestador.nome;
+    }
+
+    return this.prestador.empresa.razaoSocial || this.prestador.empresa.nome;
+  }
+
   /* eslint-disable no-param-reassign */
   getMediaUsuario():string {
     if (!this.prestador.servicos || this.prestador.servicos.length === 0) {

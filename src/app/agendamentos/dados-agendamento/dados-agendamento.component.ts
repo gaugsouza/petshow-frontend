@@ -79,4 +79,12 @@ export class DadosAgendamentoComponent implements OnInit {
 
     return 'nao-realizado';
   }
+
+  geraTitulo() {
+    if (!this.prestador.empresa.id) {
+      return this.prestador.nome;
+    }
+
+    return this.prestador.empresa.razaoSocial || this.prestador.empresa.nome;
+  }
 }
