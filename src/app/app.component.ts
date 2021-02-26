@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { USER_TOKEN } from 'src/app/util/constantes';
+import { APP_LANG, USER_TOKEN } from 'src/app/util/constantes';
 import { LoginService } from 'src/app/servicos/login.service';
 import { DataSharingService } from 'src/app/servicos/data-sharing.service';
 import { Location } from '@angular/common';
@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
               private loginService:LoginService,
               private dataSharingService: DataSharingService,
               private location: Location) {
-    this.defineLangSettings(this.translate);
+    this.configuraLinguagem();
     this.localStorageService.getItem(USER_TOKEN)
       .subscribe((token) => {
         this.dataSharingService.isUsuarioLogado.next(!!(token));
@@ -42,12 +42,25 @@ export class AppComponent implements OnInit {
       });
   }
 
+  configuraLinguagem() {
+    this.localStorageService.getItem(APP_LANG).subscribe((lang:string) => {
+      if(!lang) {
+        this.localStorageService.setItem(APP_LANG, navigator.language && navigator.language.toUpperCase() !== 'PT-BR' ? 'en' : 'pt').subscribe(() => {
+          this.defineLangSettings(this.translate);
+        });
+      }
+    },
+    ()=>{},
+    () => this.defineLangSettings(this.translate));
+  }
+
   defineLangSettings(translate:TranslateService):void {
     translate.addLangs(['pt', 'en']);
-    const defaultLang = navigator.language && navigator.language.toUpperCase() !== 'PT-BR' ? 'en' : 'pt';
-    this.isPortugues = defaultLang === 'pt';
-    translate.setDefaultLang('pt');
-    translate.use(defaultLang);
+    this.localStorageService.getItem(APP_LANG).subscribe((lang:string) => {
+      this.isPortugues = lang === 'pt';
+      translate.setDefaultLang('pt');
+      translate.use(lang);
+    });  
   }
 
   ngOnInit() {
@@ -63,7 +76,7 @@ export class AppComponent implements OnInit {
         }
       });
     this.updateMenu(window.innerWidth);
-    this.redirectTo = !this.location.path() || this.location.path() === '/login' ? '' : `?redirectTo=${this.location.path()}`;
+    this.redirectTo = !this.location.path() || ['/login', '/cadastro'].includes(this.location.path()) ? '' : `?redirectTo=${this.location.path()}`;
   }
 
   updateMenu(innerWidth: number):void {
@@ -77,11 +90,16 @@ export class AppComponent implements OnInit {
   }
 
   langPt():void {
-    this.translate.use('pt');
+    this.localStorageService.setItem(APP_LANG, 'pt').subscribe(() => {
+      this.translate.use('pt');
+    });
   }
 
   langEn():void {
-    this.translate.use('en');
+    this.localStorageService.setItem(APP_LANG, 'en').subscribe(() => {
+      this.translate.use('en');
+    });
+    
   }
 
   changeLang():void {
