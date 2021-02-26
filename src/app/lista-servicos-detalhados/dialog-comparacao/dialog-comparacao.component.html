@@ -16,7 +16,7 @@
                 <mat-icon>{{element.servico1}}</mat-icon>
             </span>
             <span *ngIf="element.chave === 'mediaAvaliacao'" class="{{element.servico1.melhor ? 'melhor': ''}}"> {{element.servico1.valor | number: '1.1'}}</span>
-            <span *ngIf="element.chave === 'nome'"> {{element.servico1.valor }}</span></td>
+            <span *ngIf="element.chave === 'nome'"> {{ geraTipo(element.servico1.valor) | translate }} - {{geraNomePrestador(element.servico1.valor) }}</span></td>
         </ng-container>
     
         <ng-container matColumnDef="servico2">
@@ -27,7 +27,7 @@
               <mat-icon>{{element.servico2}}</mat-icon>
             </span>
             <span *ngIf="element.chave === 'mediaAvaliacao'" class="{{element.servico2.melhor ? 'melhor': ''}}"> {{element.servico2.valor | number: '1.1'}}</span>
-            <span *ngIf="element.chave === 'nome'"> {{element.servico2.valor }}</span></td>
+            <span *ngIf="element.chave === 'nome'"> {{ geraTipo(element.servico2.valor) | translate }} - {{geraNomePrestador(element.servico2.valor) }}</span></td>
         </ng-container>
     
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -38,7 +38,7 @@
       <div class="lista-precos-servicos">
         <h3>{{'PRECO_TIPO_ANIMAL' | translate}}: </h3>
         <div *ngFor="let servico of data.servicosComparados" class="precos-servico">
-            <h4>{{servico.nome}}</h4>
+            <h4>{{ geraTipo(servico.nome) | translate }} - {{geraNomePrestador(servico.nome) }} </h4>
             <mat-list>
                 <mat-list-item *ngFor="let preco of servico.tabelaPrecos">
                     <span>{{preco.tipoAnimal.nome}} -</span>
@@ -54,7 +54,7 @@
       <div class="lista-precos-servicos">
         <h3>{{'ADICIONAIS' | translate}}: </h3>
         <div *ngFor="let servico of data.servicosComparados" class="precos-servico">
-            <h4>{{servico.nome}}</h4>
+            <h4>{{ geraTipo(servico.nome) | translate }} - {{geraNomePrestador(servico.nome) }} </h4>
             <mat-list *ngIf="servico.adicionais && servico.adicionais.length; else semAdicionais">
                 <mat-list-item *ngFor="let adicional of servico.adicionais">
                     <span>{{adicional.nome}} -</span>
