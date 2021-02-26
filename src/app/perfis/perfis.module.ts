@@ -33,11 +33,11 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { AdicionalDialogComponent } from './adicional-dialog/adicional-dialog.component';
 import { ConfirmacaoCancelamentoComponent } from './confirmacao-cancelamento/confirmacao-cancelamento.component';
 import { ServicoPrecoDialogComponent } from './servico-preco-dialog/servico-preco-dialog.component';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle'; 
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);

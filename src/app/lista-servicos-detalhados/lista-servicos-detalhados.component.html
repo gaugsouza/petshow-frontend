@@ -1,3 +1,4 @@
+<!--TODO: Colocar checkbox para usar ou não geolocalização na busca-->
 <section>
     <div class="topo-listagem">
         <h3 class="page-section-title">{{'SERVICOS_DISPONIVEIS' | translate}}</h3>
@@ -89,6 +90,7 @@
             [filtro]="filtro"
             [isCliente]="isCliente"
             [isAtivo]="isAtivo"
+            [isLogado]="isLogado"
             (altera-filtro)="alteraFiltro($event)"
             ></app-geolocalizacao>
         </div>
@@ -115,8 +117,11 @@
                     <div class="lista-servicos-detalhados__button-container">
                         <mat-checkbox 
                             [disabled]="deveDesabilitar(servicoDetalhado.id)"
+                            [checked]="deveSelecionar(servicoDetalhado.id)"
                             (change)="selecionaIds($event.checked, servicoDetalhado.id)">{{'COMPARAR' | translate}}</mat-checkbox>
-                        <a mat-flat-button color="primary" href="prestador/{{servicoDetalhado.prestador.id}}/servicoDetalhado/{{servicoDetalhado.id}}/agendamento?isVisualizacao=false" [disabled]="!isCliente || !isAtivo">{{'AGENDAR' | translate}}</a>
+                        <a mat-flat-button color="primary" href="prestador/{{servicoDetalhado.prestador.id}}/servicoDetalhado/{{servicoDetalhado.id}}/agendamento?isVisualizacao=false" [disabled]="!isCliente || !isAtivo"
+                        matTooltip="{{tooltipText | translate}}"
+                        >{{'AGENDAR' | translate}}</a>
                     </div>
                 </div>
             </mat-list-item>

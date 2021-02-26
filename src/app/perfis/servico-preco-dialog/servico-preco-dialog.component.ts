@@ -8,7 +8,7 @@ import { ServicoDetalhadoTipoAnimal } from 'src/app/interfaces/servico-detalhado
 @Component({
   selector: 'app-servico-preco-dialog',
   templateUrl: './servico-preco-dialog.component.html',
-  styleUrls: ['./servico-preco-dialog.component.scss']
+  styleUrls: ['./servico-preco-dialog.component.scss'],
 })
 export class ServicoPrecoDialogComponent implements OnInit {
   tipoAnimalFormControl = new FormControl('', [
@@ -26,24 +26,28 @@ export class ServicoPrecoDialogComponent implements OnInit {
   precoFormControl = new FormControl('', [
     Validators.required,
   ]);
-  
+
   tiposDisponiveis: TipoAnimal[] = [];
+
   tipos: TipoAnimal[];
 
   tiposString: String[];
+
   tipoSelecionado: String;
-  
+
   portesTipo: {
     tipoAnimal: string,
     portes: string[]
-  } = 
+  } =
   {
-    tipoAnimal: "",
-    portes: []
+    tipoAnimal: '',
+    portes: [],
   }
+
   porteSelecionado: String;
-  
+
   pelagensString: String[] = [];
+
   pelagemSelecionada: String;
 
   isPortePelagemVisible: boolean = false;
@@ -55,14 +59,14 @@ export class ServicoPrecoDialogComponent implements OnInit {
     public usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
-    if(this.data.precoPorTipo){
-      let tipoAnimal = this.data.precoPorTipo.tipoAnimal;
-      this.tipoSelecionado = tipoAnimal.nome;  
+    if (this.data.precoPorTipo) {
+      const { tipoAnimal } = this.data.precoPorTipo;
+      this.tipoSelecionado = tipoAnimal.nome;
       this.tiposString = [this.tipoSelecionado];
 
       this.isPortePelagemVisible = tipoAnimal.porte && tipoAnimal.pelagem;
       this.porteSelecionado = tipoAnimal.porte;
-      this.portesTipo.portes = [tipoAnimal.porte]
+      this.portesTipo.portes = [tipoAnimal.porte];
       this.pelagemSelecionada = tipoAnimal.pelagem;
       this.pelagensString = [tipoAnimal.pelagem];
 
@@ -79,33 +83,33 @@ export class ServicoPrecoDialogComponent implements OnInit {
   }
 
   hasErrors() {
-    return this.tipoAnimalFormControl.hasError('required') || this.precoFormControl.hasError('required') || 
-      (this.isPortePelagemVisible && (this.porteFormControl.hasError('required') || this.pelagemFormControl.hasError('required')));
-  }  
+    return this.tipoAnimalFormControl.hasError('required') || this.precoFormControl.hasError('required')
+      || (this.isPortePelagemVisible && (this.porteFormControl.hasError('required') || this.pelagemFormControl.hasError('required')));
+  }
 
-  getTiposDisponiveis(){
-    this.usuarioService.buscarTiposAnimalEstimacao().subscribe(tiposString => {
-      let tipos: TipoAnimal[] = JSON.parse(tiposString);
-      tipos.forEach(tipo => {
-        if(! this.verificaTipoAnimalRegistrado(tipo, this.data.servico.precoPorTipo)){
+  getTiposDisponiveis() {
+    this.usuarioService.buscarTiposAnimalEstimacao().subscribe((tiposString) => {
+      const tipos: TipoAnimal[] = JSON.parse(tiposString);
+      tipos.forEach((tipo) => {
+        if (!this.verificaTipoAnimalRegistrado(tipo, this.data.servico.precoPorTipo)) {
           this.tiposDisponiveis.push(tipo);
-        }          
+        }
       });
-      
-      this.tiposString = Array.from(new Set(this.tiposDisponiveis.map(tipo => tipo.nome)));
+
+      this.tiposString = Array.from(new Set(this.tiposDisponiveis.map((tipo) => tipo.nome)));
     });
   }
 
-  getTipos(){
-    this.usuarioService.buscarTiposAnimalEstimacao().subscribe(tiposString => {
+  getTipos() {
+    this.usuarioService.buscarTiposAnimalEstimacao().subscribe((tiposString) => {
       this.tipos = JSON.parse(tiposString);
     });
   }
 
-  verificaTipoAnimalRegistrado(tipo, precosPortipoRegistrados){
+  verificaTipoAnimalRegistrado = (tipo, precosPortipoRegistrados) => {
     let isRegistrado = false;
-    precosPortipoRegistrados.forEach(precoPorTipo => {
-      if(tipo.id == precoPorTipo.tipoAnimal.id){
+    precosPortipoRegistrados.forEach((precoPorTipo) => {
+      if (tipo.id === precoPorTipo.tipoAnimal.id) {
         isRegistrado = true;
       }
     });
@@ -113,45 +117,43 @@ export class ServicoPrecoDialogComponent implements OnInit {
     return isRegistrado;
   }
 
-  carregarPorte(tipoAnimal){
+  carregarPorte(tipoAnimal) {
     this.porteSelecionado = undefined;
     this.pelagemSelecionada = undefined;
     this.pelagensString = [];
 
-    let tiposFiltrado = this.tiposDisponiveis.filter(tipo => tipo.nome === tipoAnimal);
-    let portes = Array.from(new Set(tiposFiltrado.map(tipo => tipo.porte)));
-    
+    const tiposFiltrado = this.tiposDisponiveis.filter((tipo) => tipo.nome === tipoAnimal);
+    const portes = Array.from(new Set(tiposFiltrado.map((tipo) => tipo.porte)));
+
     this.isPortePelagemVisible = portes.indexOf(null) < 0;
-    
+
     this.portesTipo = {
-      tipoAnimal: tipoAnimal,
-      portes: portes
-    };    
+      tipoAnimal,
+      portes,
+    };
   }
 
-  carregarPelagem(porte){
+  carregarPelagem(porte) {
     this.pelagemSelecionada = undefined;
-    let tiposFiltrado = this.tiposDisponiveis.filter(tipo => 
-      tipo.porte === porte &&
-      tipo.nome == this.portesTipo.tipoAnimal);
+    const tiposFiltrado = this.tiposDisponiveis.filter((tipo) => tipo.porte === porte
+      && tipo.nome === this.portesTipo.tipoAnimal);
 
-    this.pelagensString = Array.from(new Set(tiposFiltrado.map(tipo => tipo.pelagem)));
+    this.pelagensString = Array.from(new Set(tiposFiltrado.map((tipo) => tipo.pelagem)));
   }
 
-  constroiPrecoPorTipo(){
-    let tipoAnimal: TipoAnimal;
-    let tipos = this.data.precoPorTipo ? this.tipos : this.tiposDisponiveis;
+  constroiPrecoPorTipo() {
+    const tipos = this.data.precoPorTipo ? this.tipos : this.tiposDisponiveis;
 
-    tipoAnimal = tipos.find(tipo => 
-      tipo.nome === this.tipoSelecionado && 
-      (this.isPortePelagemVisible ?
-        (tipo.pelagem === this.pelagemSelecionada && tipo.porte === this.porteSelecionado) : true));
-    
-    let precoPorTipo: ServicoDetalhadoTipoAnimal = {
-      tipoAnimal: tipoAnimal,
-      preco: this.preco
+    const tipoAnimal:TipoAnimal = tipos.find((tipo) => tipo.nome === this.tipoSelecionado
+      && (this.isPortePelagemVisible
+        ? (tipo.pelagem === this.pelagemSelecionada
+          && tipo.porte === this.porteSelecionado) : true));
+
+    const precoPorTipo: ServicoDetalhadoTipoAnimal = {
+      tipoAnimal,
+      preco: this.preco,
     };
 
     return precoPorTipo;
-  } 
+  }
 }
