@@ -41,7 +41,9 @@ export class PrestadorComponent implements OnInit {
       soma += servico.mediaAvaliacao;
       return soma;
     }, 0);
-    return (somaMedias / this.prestador.servicos.length).toFixed(2);
+    const resultado = (somaMedias / this.prestador.servicos.length).toFixed(2);
+    if (resultado == "0.00") return "SEM_AVALIACOES";
+    else return resultado;
   }
 /* eslint-enable no-param-reassign */
 }

@@ -25,3 +25,4 @@ export const senhaFormControl = new FormControl('', [
 export const enderecoFormControl = new FormControl('', [
   Validators.required,
 ]);
+
