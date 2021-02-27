@@ -16,29 +16,15 @@ export class EnderecoCadastroComponent implements OnInit {
 
   @Input('endereco') endereco:Endereco;
 
-  estados:Estado[];
-
-  cidades:Cidade[];
-
   @Input('numero-control') numeroFormControl:FormControl;
 
   @Input('cep-control') cepFormControl:FormControl;
 
   erroBuscaCep:string;
 
-  constructor(private consultaEstadosService:ConsultaEstadosService,
-              private cepService:CepService) { }
+  constructor(private cepService:CepService) { }
 
   ngOnInit(): void {
-    this.consultaEstadosService.getEstados().subscribe((estados) => {
-      this.estados = JSON.parse(estados);
-    });
-  }
-
-  carregarCidades(uf:string) {
-    this.consultaEstadosService.getCidades(uf).subscribe((cidades) => {
-      this.cidades = JSON.parse(cidades);
-    });
   }
 
   buscarCep() {

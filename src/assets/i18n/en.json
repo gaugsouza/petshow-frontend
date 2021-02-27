@@ -233,6 +233,9 @@
   "NECESSARIO_LOGAR": "You must be logged in to perform the operation ",
   "ATIVAR_SERVICO_DETALHADO": "Are you sure that you want to enable this service?",
   "DESATIVAR_SERVICO_DETALHADO": "Are you sure that you want to disable this service?",
+  "ESCOLHA_ESTADO": "Select a state",
+  "ESCOLHA_CIDADE": "Select a city",
+  "NENHUM_TIPO_SERVICO_ENCONTRADO": "No services have been registered for the selected location",
 
   "POLITICA-LINHA4": "This website is maintained and operated by Pet Show LTDA.",
   "POLITICA-LINHA5": "We collect and use some personal data that belongs to those who use our website. In doing so, we act as the controller of such data and are subject to the provisions of Federal Law no. 13,709 / 2018 (General Law on Protection of Personal Data - LGPD).",

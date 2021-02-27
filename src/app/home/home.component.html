@@ -1,16 +1,50 @@
 <div class="background">
-    <div class=selecao_servico>
-        <!-- <h1>
-            {{'SELECIONE_SERVICO'| translate}}
-        </h1> -->
-        <mat-tab-group mat-align-tabs="center">
-            <mat-tab *ngFor="let grupo of grupos" class="menu-title" label="{{grupo | translate}}">
-                <div class=selecao_servico__button-container>
-                    <a mat-flat-button *ngFor="let servico of exibirServicosPorGrupo(grupo)" href="/servico-detalhado/tipo-servico/{{servico.id}}">{{servico.nome | translate}}</a>
-                </div>
-            </mat-tab>
-        </mat-tab-group>      
+    <div class="selecao-estados" *ngIf="estados.length">
+        <mat-form-field appearance="fill">
+            <mat-label>{{'ESCOLHA_ESTADO' | translate}}</mat-label>
+            <mat-select (selectionChange)="buscaCidades($event.value)" [(ngModel)]="estadoSelecionado">
+              <mat-option *ngFor="let estado of estados" [value]="estado">
+                {{estado.estado}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>{{'ESCOLHA_CIDADE' | translate}}</mat-label>
+            <mat-select (selectionChange)="selecionaCidade($event.value)" [(ngModel)]="cidadeSelecionada" [disabled]="!cidades.length">
+              <mat-option *ngFor="let cidade of cidades" [value]="cidade">
+                {{ cidade.cidade }}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
     </div>
+    <div *ngIf="cidadeSelecionada">
+
+        <div class="carregando" *ngIf="loading">
+            <mat-spinner></mat-spinner>
+        </div>
+        <div class="selecao_servico" *ngIf="!loading && servicos && servicos.length; else nenhumServicoEncontrado">
+            <!-- <h1>
+                {{'SELECIONE_SERVICO'| translate}}
+            </h1> -->
+            <mat-tab-group mat-align-tabs="center">
+                <mat-tab *ngFor="let grupo of grupos" class="menu-title" label="{{grupo | translate}}">
+                    <div class=selecao_servico__button-container>
+                        <a mat-flat-button *ngFor="let servico of exibirServicosPorGrupo(grupo)" href="/servico-detalhado/tipo-servico/{{servico.id}}?estado={{cidadeSelecionada.estadoId}}&cidade={{cidadeSelecionada.cidade}}">{{servico.nome | translate}}</a>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>      
+        </div>
+    
+        <ng-template #nenhumServicoEncontrado>
+            <div class="servicos-nao-encontrados" *ngIf="!loading && servicos && !servicos.length">
+                <h1>{{'NENHUM_TIPO_SERVICO_ENCONTRADO' | translate}}</h1>
+            </div>
+        </ng-template>
+    </div>
+
+    
+  
     <div class=attribution>
         <a href='https://www.freepik.com/photos/love'>{{'BACKGROUNG_REF' | translate}}</a>
     </div>
