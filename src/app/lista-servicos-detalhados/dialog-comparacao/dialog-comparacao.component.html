@@ -38,7 +38,7 @@
       <div class="lista-precos-servicos">
         <h3>{{'PRECO_TIPO_ANIMAL' | translate}}: </h3>
         <div *ngFor="let servico of data.servicosComparados" class="precos-servico">
-            <h4>{{servico.nome}}</h4>
+            <h4>{{servico.nome | translate}}</h4>
             <mat-list>
                 <mat-list-item *ngFor="let preco of servico.tabelaPrecos">
                     <span>{{preco.tipoAnimal.nome}} -</span>
@@ -54,7 +54,7 @@
       <div class="lista-precos-servicos">
         <h3>{{'ADICIONAIS' | translate}}: </h3>
         <div *ngFor="let servico of data.servicosComparados" class="precos-servico">
-            <h4>{{servico.nome}}</h4>
+            <h4>{{servico.nome | translate}}</h4>
             <mat-list *ngIf="servico.adicionais && servico.adicionais.length; else semAdicionais">
                 <mat-list-item *ngFor="let adicional of servico.adicionais">
                     <span>{{adicional.nome}} -</span>
