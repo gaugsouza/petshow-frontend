@@ -107,7 +107,7 @@
   "ADD_SERVICO_FORM": "Add service",
   "TIPO_SERVICO": "Type",
   "VALOR_SERVICO": "Price",
-  "DESC_SERVICO": "Description",
+  "DESCRICAO": "Description",
   "PLACEHOLDER_DESC_SERVICO": "Tell about the service",
   "SERVICOS_PRESTADOS": "Services Provided",
   "PRESTADOR_NAO_ENCONTRADO": "The informed provider was not found",

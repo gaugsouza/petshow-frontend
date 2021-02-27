@@ -107,7 +107,7 @@
   "ADD_SERVICO_FORM": "Adicionar serviço",
   "TIPO_SERVICO": "Tipo",
   "VALOR_SERVICO": "Preço",
-  "DESC_SERVICO": "Descrição",
+  "DESCRICAO": "Descrição",
   "PLACEHOLDER_DESC_SERVICO": "Fale um pouco sobre o serviço prestado",
   "SERVICOS_PRESTADOS":"Serviços Prestados",
   "PRESTADOR_NAO_ENCONTRADO":"Não foi encontrado o prestador informado",

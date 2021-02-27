@@ -5,7 +5,7 @@
         <input matInput [formControl]="nomeFormControl" maxlength="80" required [(ngModel)]="data.adicional.nome" />
     </mat-form-field>
     <mat-form-field>
-        <mat-label>{{'DESC_SERVICO' | translate}}</mat-label>
+        <mat-label>{{'DESCRICAO' | translate}}</mat-label>
         <textarea matInput [(ngModel)]="data.adicional.descricao" matInput placeholder="Your Message" maxlength="280" formControlName="message" cdkTextareaAutosize></textarea>
     </mat-form-field>
     <mat-form-field>
