@@ -39,6 +39,10 @@ export class FormularioComponent implements OnInit {
   }
 
   atualizaNota(campo:string, valor:number) {
+          this.avaliacao[campo] = valor;
+  }
+
+  adicionarAvaliacao() {
     const confirmaRef = this.confirmacao.open
     (ConfirmationDialogComponent,
       {
@@ -46,19 +50,6 @@ export class FormularioComponent implements OnInit {
       });
       confirmaRef.afterClosed().subscribe((result) => {
         if (result) {
-          this.avaliacao[campo] = valor;
-        }
-    });
-  }
-
-  adicionarAvaliacao() {
-    const cancelRef = this.cancelamento.open
-    (ConfirmacaoCancelamentoComponent,
-      {
-        data: 'DESEJA_CONFIRMAR_CANCELAMENTO',
-      });
-    cancelRef.afterClosed().subscribe((result) => {
-      if (result) {
         this.isEnabled = !this.isEnabled;
         this.adicionaAvaliacao.emit(this.avaliacao);
       }
@@ -66,7 +57,16 @@ export class FormularioComponent implements OnInit {
   }
 
   fecharFormulario() {
+    const cancelRef = this.cancelamento.open
+    (ConfirmacaoCancelamentoComponent,
+      {
+        data: 'DESEJA_CONFIRMAR_CANCELAMENTO',
+      });
+    cancelRef.afterClosed().subscribe((result) => {
+      if (result) {
     this.fechaFormulario.emit();
+  }
+});
   }
 
   getEstrelas(campo:string): any[] {
