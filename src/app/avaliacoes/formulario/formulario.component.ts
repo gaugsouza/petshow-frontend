@@ -44,16 +44,17 @@ export class FormularioComponent implements OnInit {
 
   adicionarAvaliacao() {
     const confirmaRef = this.confirmacao.open
-    (ConfirmationDialogComponent,
+    (ConfirmacaoCancelamentoComponent,
       {
+        // data: {mensagem: 'DESEJA_CONFIRMAR_CANCELAMENTO'},
         data: 'DESEJA_CONFIRMAR_CANCELAMENTO',
       });
       confirmaRef.afterClosed().subscribe((result) => {
         if (result) {
-        this.isEnabled = !this.isEnabled;
-        this.adicionaAvaliacao.emit(this.avaliacao);
-      }
-    });
+          this.isEnabled = !this.isEnabled;
+          this.adicionaAvaliacao.emit(this.avaliacao);
+        }
+      });
   }
 
   fecharFormulario() {
@@ -62,11 +63,11 @@ export class FormularioComponent implements OnInit {
       {
         data: 'DESEJA_CONFIRMAR_CANCELAMENTO',
       });
-    cancelRef.afterClosed().subscribe((result) => {
-      if (result) {
-    this.fechaFormulario.emit();
-  }
-});
+      cancelRef.afterClosed().subscribe((result) => {
+        if (result) {
+          this.fechaFormulario.emit();
+        }
+      });
   }
 
   getEstrelas(campo:string): any[] {
