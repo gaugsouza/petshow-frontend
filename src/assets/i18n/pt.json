@@ -128,7 +128,7 @@
   "MENSAGEM_CADASTRO_SUCESSO": "Cadastro realizado com sucesso!",
   "VERIFIQUE_EMAIL": "Cheque seu e-mail para ativar sua conta. Caso não apareça na caixa de entrada, verifique sua pasta de spam.",
   "VOLTAR_PARA_HOME": "Voltar para a home",
-  "EMAIL_JA_CADASTRADO": "Email já cadastrado no sistema",
+  "EMAIL_JA_CADASTRADO": "E-mail já cadastrado no sistema",
   "USUARIO_SENHA_INCORRETO": "Erro durante a autenticação, usuário ou senha incorretos",
   "CONTA_NAO_ENCONTRADA": "Conta não encontrada",
   "TIPO_DE_CLIENTE_INEXISTENTE": "Tipo de cliente inexistente",
