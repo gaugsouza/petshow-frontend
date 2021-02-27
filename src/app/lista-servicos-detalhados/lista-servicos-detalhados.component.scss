@@ -38,7 +38,7 @@ mat-slider {
 }
 
 .lista-servicos-detalhados {
-  margin-top: 25px;
+  margin-top: 5px;
   margin-bottom: 25px;
 
   &__item {
@@ -125,8 +125,7 @@ mat-slider {
   color: #fff;
 }
 
+
 .botao-compare{
-  mat-flat-button{
-    margin-right:0px;  
-  }
+  justify-content: right;
 }
