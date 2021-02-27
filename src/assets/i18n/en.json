@@ -47,7 +47,7 @@
   "DEIXE_COMENTARIO": "Leave a comment",
   "ENVIAR_AVALIACAO": "Submit Review",
   "AVALIACOES": "Reviews",
-  "SEM_AVALIACOES": "No reviews have been registered for this service",
+  "NENHUMA_AVALIACOES": "No reviews have been registered for this service",
   "PLACEHOLDER_AVALIACAO": "Ex. The service was great ...",
   "SELECIONE_SERVICO": "Select the desired service:",
   "SERVICOS_DISPONIVEIS": "Available services:",
@@ -235,6 +235,8 @@
   "DESATIVAR_SERVICO_DETALHADO": "Are you sure that you want to disable this service?",
   "DESEJA_CONCLUIR_AGENDAMENTO": "Do you really want to conclude the booking?",
   "SEM_AVALIACOES": "No evaluations",
+  "SELECIONE_HORARIO_AGENDAMENTO":"Select the booking time",
+  "HORARIO":"time",
 
 
 

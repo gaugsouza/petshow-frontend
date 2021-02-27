@@ -41,13 +41,13 @@
   "AVALIE_SERVICO": "Avalie o serviço!",
   "ATENCAO_PET": "Atenção com o pet",
   "QUALIDADE_PRODUTO": "Qualidade dos produtos",
-  "CUSTO_BENEFICIO": "Custo benefício",
+  "CUSTO_BENEFICIO": "Custo-benefício",
   "INFRAESTRUTURA": "Infraestrutura",
   "QUALIDADE_SERVICO": "Qualidade do serviço",
   "DEIXE_COMENTARIO": "Deixe um comentário",
   "ENVIAR_AVALIACAO": "Enviar avaliacão",
   "AVALIACOES": "Avaliações",
-  "SEM_AVALIACOES": "Nenhuma avaliação foi cadastrada para esse serviço",
+  "NENHUMA_AVALIACOES": "Nenhuma avaliação foi cadastrada para esse serviço",
   "PLACEHOLDER_AVALIACAO": "Ex. O atendimento foi ótimo...",
   "SELECIONE_SERVICO":"Selecione o serviço desejado:",
   "SERVICOS_DISPONIVEIS": "Serviços disponíveis: ",
@@ -237,6 +237,8 @@
   "DESATIVAR_SERVICO_DETALHADO": "Deseja prosseguir com a desativação deste serviço?",
   "DESEJA_CONCLUIR_AGENDAMENTO": "Deseja concluir o agengamento?",
   "SEM_AVALIACOES": "Sem avaliações",
+  "SELECIONE_HORARIO_AGENDAMENTO":"Selecione o horário para agendamento",
+  "HORARIO":"horário",
 
 
 
