@@ -19,15 +19,15 @@
             {{'TELEFONE_INVALIDO' | translate}}
         </mat-error>
     </mat-form-field>
-</div>
-
-<div *ngIf="usuario">
     <mat-form-field>
         <mat-label>E-mail</mat-label>
         <input matInput placeholder="exemplo@petshow.com" maxlength="256" [formControl]="emailFormControl" [(ngModel)]="usuario.login.email"/>
         <mat-error *ngIf="emailFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
         <mat-error *ngIf="emailFormControl.hasError('email')">{{'EMAIL_INVALIDO' | translate}}</mat-error>
     </mat-form-field>
+</div>
+
+<div *ngIf="usuario">
     <mat-form-field>
         <mat-label>{{'SENHA' | translate}}</mat-label>
         <input matInput type="password" minlength="8" maxlength="72" [formControl]="senhaFormControl" [(ngModel)]="usuario.login.senha"/>

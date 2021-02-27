@@ -18,7 +18,7 @@
             <mat-label>{{'LOGRADOURO' | translate}}</mat-label>
             <input matInput maxlength="80" [(ngModel)]="endereco.logradouro" [disabled]="true">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="fill">
             <mat-label>{{'NUMERO' | translate}}</mat-label>
             <input matInput maxlength="5" [formControl]="numeroFormControl" mask="0*" [(ngModel)]="endereco.numero" (change)="alteraCampo('numero', $event.target.value)">
             <mat-error *ngIf="numeroFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
