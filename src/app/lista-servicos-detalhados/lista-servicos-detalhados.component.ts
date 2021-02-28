@@ -14,6 +14,7 @@ import { USER_TOKEN } from '../util/constantes';
 import { Usuario } from '../interfaces/usuario';
 import { DataSharingService } from '../servicos/data-sharing.service';
 import { Prestador } from '../interfaces/prestador';
+import { GeolocalizacaoService } from '../servicos/geolocalizacao.service';
 @Component({
   selector: 'app-lista-servicos-detalhados',
   templateUrl: './lista-servicos-detalhados.component.html',
@@ -65,18 +66,31 @@ export class ListaServicosDetalhadosComponent implements OnInit {
               private dialog:MatDialog,
               private usuarioService:UsuarioService,
               private localStorageService:LocalStorageService,
-              private dataSharingService:DataSharingService) {}
+              private dataSharingService:DataSharingService,
+              private geolocalizacaoService:GeolocalizacaoService) {}
 
   ngOnInit(): void {
     this.tipoId = +this.route.snapshot.paramMap.get('id');
     this.filtro.tipoServicoId = this.tipoId;
+    this.montaFiltroEstado();
+  }
+
+  montaFiltroEstado() {
     this.route.queryParams.subscribe(params => {
-      const { estado, cidade } = params;
+      const { estado = 'SP', cidade = 'São Paulo' } = params;
       this.filtro = { ...this.filtro, cidade, estado };
-    }, 
-    ()=>{},
-    () => {
-      this.buscaUsuario();
+       navigator.geolocation.getCurrentPosition((pos) => {
+         const { coords: {latitude, longitude}} = pos;
+         this.filtro = { ...this.filtro, metrosGeoloc: 600, posicaoAtual: { geolocLongitude: longitude.toString(), geolocLatitude: latitude.toString() } };
+         this.buscaUsuario();
+       },
+       () => {
+         this.filtro = { ...this.filtro, posicaoAtual: {geolocLongitude: null, geolocLatitude: null}, metrosGeoloc: 600 };
+         this.buscaUsuario();
+       })
+    },
+    () => {},
+    () =>{
     });
   }
 
@@ -88,11 +102,13 @@ export class ListaServicosDetalhadosComponent implements OnInit {
         this.isAtivo = this.usuarioService.isAtivo(usuario);
 
         if (this.isCliente) {
-          this.filtro = {
-            ...this.filtro,
-            metrosGeoloc: 600,
-            posicaoAtual: { ...(usuario || {}).geolocalizacao },
-          };
+          if(!this.filtro.posicaoAtual.geolocLatitude) {
+            this.filtro = {
+              ...this.filtro,
+              metrosGeoloc: 600,
+              posicaoAtual: { ...(usuario || {}).geolocalizacao },
+            };
+          }
         }
       }, () => {
         this.isCliente = false;
@@ -100,15 +116,50 @@ export class ListaServicosDetalhadosComponent implements OnInit {
       },
       () => {
         this.tooltipText = this.geraTooltip();
-        this.buscarServicosDetalhadosPorTipo(this.filtro, this.paginaAtual, this.quantidadePagina);
+        this.validaGeolocalizacao(this.filtro);
       });
     },
     () => {
     },
     () => {
       this.tooltipText = this.geraTooltip();
-      this.buscarServicosDetalhadosPorTipo(this.filtro, this.paginaAtual, this.quantidadePagina);
+      this.validaGeolocalizacao(this.filtro);
     });
+  }
+
+  validaGeolocalizacao(filtro:FiltroServicos) {
+    this.geolocalizacaoService.buscaGeolocCidade(filtro.cidade, filtro.estado).subscribe((retorno:string) => {
+      const geolocs = JSON.parse(retorno);
+      const { posicaoAtual } = filtro;
+      const [ cidade, , centroCidade ] = geolocs;
+      const { boundingbox } = cidade;
+      const [latMin, latMax, lonMin, lonMax] = boundingbox;
+      console.log('informações', latMin, latMax, lonMin, lonMax, posicaoAtual);
+      console.log('latMin', Number.parseFloat(latMin), Number.parseFloat((posicaoAtual || {}).geolocLatitude || '0'), Number.parseFloat(latMin) <= Number.parseFloat((posicaoAtual || {}).geolocLatitude || '0'));
+      console.log('latMax', Number.parseFloat(latMax), Number.parseFloat((posicaoAtual || {}).geolocLatitude || '0'), Number.parseFloat(latMax) >= Number.parseFloat((posicaoAtual || {}).geolocLatitude || '0'));
+      console.log('lonMin',Number.parseFloat(lonMin),  Number.parseFloat((posicaoAtual || {}).geolocLongitude ||'0'), Number.parseFloat(lonMin) <= Number.parseFloat((posicaoAtual || {}).geolocLongitude ||'0'));
+      console.log('longMax', Number.parseFloat(lonMax), Number.parseFloat((posicaoAtual || {}).geolocLongitude || '0'), Number.parseFloat(lonMax) >= Number.parseFloat((posicaoAtual || {}).geolocLongitude || '0'))
+
+      if(!(Number.parseFloat(latMin) <= Number.parseFloat((posicaoAtual || {}).geolocLatitude || '0')) || !(Number.parseFloat(latMax) >= Number.parseFloat((posicaoAtual || {}).geolocLatitude || '0'))) {
+        console.log('entrou');
+        posicaoAtual.geolocLatitude = centroCidade.lat;
+      }
+
+      if(!(Number.parseFloat(lonMin) <= Number.parseFloat((posicaoAtual || {}).geolocLongitude ||'0')) || !(Number.parseFloat(lonMax) >= Number.parseFloat((posicaoAtual || {}).geolocLongitude || '0'))) {
+        console.log('entrou 2')
+        posicaoAtual.geolocLongitude = centroCidade.lon;
+      }
+
+      this.filtro = { ...this.filtro, posicaoAtual };
+      console.log('filtro', this.filtro)
+
+    },
+    () => {
+
+    }, 
+    ()=>{
+      this.buscarServicosDetalhadosPorTipo(this.filtro, this.paginaAtual, this.quantidadePagina);
+    })
   }
 
   geraTooltip() {

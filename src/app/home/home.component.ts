@@ -74,7 +74,6 @@ export class HomeComponent implements OnInit {
     this.loading = true;
     this.servicoService.getTiposPorCidade(cidade).subscribe((servicos) => {
       this.loading = false;
-      console.log(servicos);
       this.servicos = JSON.parse(servicos || '[]');
       this.grupos = Array.from(new Set(this.servicos.map((servico) => servico.grupo)));
     },
@@ -94,9 +93,14 @@ export class HomeComponent implements OnInit {
     this.cidades = [];
     this.cidadeSelecionada = null;
     this.estadoSelecionado = estado;
+    this.loading = true;
     this.consultaEstados.getCidades(this.estadoSelecionado.id).subscribe((cidades) => {
       this.cidades = JSON.parse(cidades);
       this.cidadeFormControl.enable();
+    },
+    () =>{},
+    () => {
+      this.loading = false;
     })
   }
 
