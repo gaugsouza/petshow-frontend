@@ -45,6 +45,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { DialogComparacaoComponent } from './lista-servicos-detalhados/dialog-comparacao/dialog-comparacao.component';
 import { ErrorDialogComponent } from './confirmation-dialog/error-dialog.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,7 +91,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     GeolocalizacaoModule,
     MatSliderModule,
     MatTooltipModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatAutocompleteModule
   ],
   providers: [
     JwtHelper,

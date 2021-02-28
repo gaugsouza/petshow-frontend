@@ -1,14 +1,29 @@
 <div class="background">
     <div class="selecao-estados" *ngIf="estados.length">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearence="fill">
             <mat-label>{{'ESCOLHA_ESTADO' | translate}}</mat-label>
-            <mat-select (selectionChange)="buscaCidades($event.value)" [(ngModel)]="estadoSelecionado">
-              <mat-option *ngFor="let estado of estados" [value]="estado">
-                {{estado.estado}}
-              </mat-option>
-            </mat-select>
+            <input matInput type="text"
+            [formControl]="estadoFormControl"
+            [matAutocomplete]="autoEstado"/>
+            <mat-autocomplete #autoEstado="matAutocomplete" [displayWith]="displayEstado" (optionSelected)="buscaCidades($event.option.value)">
+                <mat-option *ngFor="let estado of filteredEstados | async" [value]="estado">
+                    {{estado.estado}}
+                  </mat-option>
+            </mat-autocomplete>
         </mat-form-field>
 
+        <mat-form-field appearence="fill">
+            <mat-label>{{'ESCOLHA_CIDADE' | translate}}</mat-label>
+            <input matInput type="text"
+            [formControl]="cidadeFormControl"
+            [matAutocomplete]="autoCidade"/>
+            <mat-autocomplete #autoCidade="matAutocomplete" [displayWith]="displayCidade" (optionSelected)="selecionaCidade($event.option.value)">
+                <mat-option *ngFor="let cidade of filteredCidades | async" [value]="cidade">
+                    {{cidade.cidade}}
+                  </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+<!-- 
         <mat-form-field appearance="fill">
             <mat-label>{{'ESCOLHA_CIDADE' | translate}}</mat-label>
             <mat-select (selectionChange)="selecionaCidade($event.value)" [(ngModel)]="cidadeSelecionada" [disabled]="!cidades.length">
@@ -16,7 +31,9 @@
                 {{ cidade.cidade }}
               </mat-option>
             </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
+
+
     </div>
     <div *ngIf="cidadeSelecionada">
 
