@@ -59,6 +59,8 @@ export class ListaServicosDetalhadosComponent implements OnInit {
 
   isLogado:boolean = false;
 
+  isFiltrosVisiveis:boolean = true;
+
   constructor(private servicosService:ServicosService,
               private route: ActivatedRoute,
               private dialog:MatDialog,
@@ -70,6 +72,7 @@ export class ListaServicosDetalhadosComponent implements OnInit {
     this.tipoId = +this.route.snapshot.paramMap.get('id');
     this.filtro.tipoServicoId = this.tipoId;
     this.buscaUsuario();
+    if (screen.width < 768) this.isFiltrosVisiveis=false;
   }
 
   buscaUsuario() {
@@ -227,5 +230,9 @@ export class ListaServicosDetalhadosComponent implements OnInit {
     }
 
     return `${value}m`;
+  }
+
+  exibeFiltros():void {
+    this.isFiltrosVisiveis = !this.isFiltrosVisiveis;
   }
 }

@@ -30,10 +30,12 @@ export class PrestadorComponent implements OnInit {
         this.carregado = true;
         this.prestador = JSON.parse(prestador);
       });
+
   }
 
   /* eslint-disable no-param-reassign */
   getMediaUsuario():string {
+
     if (!this.prestador.servicos || this.prestador.servicos.length === 0) {
       return (0).toFixed(2);
     }
@@ -41,7 +43,16 @@ export class PrestadorComponent implements OnInit {
       soma += servico.mediaAvaliacao;
       return soma;
     }, 0);
-    return (somaMedias / this.prestador.servicos.length).toFixed(2);
+
+    const resultado = (somaMedias / this.prestador.servicos.length).toFixed(2);
+    
+    // const qtdeAvaliacoes = this.prestador.servicos.reduce((total:number, servico:ServicoDetalhado) => {
+    //   total += servico.avaliacoes.length;
+    //   return total;
+    // }, 0);
+
+    if (resultado=="0.00") return "SEM_AVALIACOES";
+    else return resultado;
   }
 /* eslint-enable no-param-reassign */
 }
