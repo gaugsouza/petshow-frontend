@@ -1,7 +1,30 @@
 @import "../../global.scss";
 
+
+.topo-listagem {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0 auto;
+  align-items: baseline;
+  @media screen and (max-width: $tablet-width) {
+    width: 100%;
+  }
+}
+
+.page-section-title {
+  font-size: 30px;
+  padding: 30px 0 0 75px;
+  color: $title-color;
+  @media screen and (max-width: $tablet-width) {
+    padding: 0px;
+  }
+}
+
+
 mat-list-item {
   margin-bottom: 15px;
+  height: auto !important;
 
   @media screen and (max-width: $tablet-width) {
     margin-bottom: 40px !important;
@@ -12,9 +35,6 @@ mat-list-item {
   margin: 0 auto; 
   ::ng-deep .mat-button {
     font-size: 20px !important;
-    // font-size: 185% !important;
-    // height: 45px !important;
-    // margin-bottom: 5%;
   }
 }
 
@@ -23,19 +43,6 @@ mat-slider {
   width: 100%;
 }
 
-.topo-listagem {
-  display: flex;
-  justify-content: space-between;
-  width: 80%;
-  margin: 0 auto;
-  align-items: baseline;
-}
-
-.page-section-title {
-  font-size: 30px;
-  padding: 30px 0 0 75px;
-  color: $title-color;
-}
 
 .lista-servicos-detalhados {
   margin-top: 5px;
@@ -67,15 +74,14 @@ mat-slider {
   &__button-container {
     margin: 0 auto;
     text-align: center;
+    mat-checkbox{
+      width:100%;
+    }
   }
 
   .preco-servico {
-    text-align: left;
+    font-size: 20px;
   }
-}
-
-.mat-list-item {
-  height: auto !important;
 }
 
 .nome_servico {
@@ -85,17 +91,21 @@ mat-slider {
   text-align: center;
 }
 
-.menu-servicos {
+.menu-servicos-not-mobile {
   @media screen and (max-width: $tablet-width) {
-    display: none;
+    // display: none;
+    mat-form-field{
+      width:100%;
+    }
+    span{
+      width:100%;
+    }
   }
 
   * {
     font-size: 16px;
   }
 }
-
-
 
 .grid-content {
   display: grid;
@@ -126,7 +136,24 @@ mat-slider {
 }
 
 
-.botao-compare{
+.botao_compare{
   display: grid;
   justify-content: end;
+  padding-right: 16px;
+  @media screen and (max-width: $tablet-width) {
+    display: none;
+  }
+}
+
+.botao_compare_mobile{
+  display: none;
+  @media screen and (max-width: $tablet-width) {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+  }
+  .material-icons {
+    margin: 0px auto;
+    font-family: 'Material Icons' !important;
+  }
 }

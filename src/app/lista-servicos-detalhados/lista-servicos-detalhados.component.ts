@@ -59,6 +59,8 @@ export class ListaServicosDetalhadosComponent implements OnInit {
 
   isLogado:boolean = false;
 
+  isFiltrosVisiveis:boolean = true;
+
   constructor(private servicosService:ServicosService,
               private route: ActivatedRoute,
               private dialog:MatDialog,
@@ -227,5 +229,9 @@ export class ListaServicosDetalhadosComponent implements OnInit {
     }
 
     return `${value}m`;
+  }
+
+  exibeFiltros():void {
+    this.isFiltrosVisiveis = !this.isFiltrosVisiveis;
   }
 }
