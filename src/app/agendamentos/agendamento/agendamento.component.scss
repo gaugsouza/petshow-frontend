@@ -25,6 +25,7 @@
   justify-content: space-around;
   display: grid;
   max-width: 150px;
+  flex-direction: column;
   // width: 25%;
   grid-template-columns: repeat(auto-fit, [col-start] minmax(100px, 1fr) [col-end]);
   gap: 20px;

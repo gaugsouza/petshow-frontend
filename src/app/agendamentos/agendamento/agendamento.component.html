@@ -25,7 +25,7 @@
     </app-servico-detalhado>
     <div class="button-container">
       <button mat-flat-button color="primary" matStepperPrevious>{{'VOLTAR' | translate}}</button>
-      <button mat-flat-button color="primary" matStepperNext [disabled]="!dataAgendamento">{{'PROXIMO' | translate}}</button>
+      <button mat-flat-button color="primary" matStepperNext [disabled]="!dataAgendamento" (click)="efetuarPagamento()">{{'PROXIMO' | translate}}</button>
     </div>
   </mat-step>
   <mat-step>

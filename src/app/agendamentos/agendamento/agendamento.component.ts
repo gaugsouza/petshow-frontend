@@ -72,7 +72,6 @@ export class AgendamentoComponent implements OnInit {
       }
       this.token = token;
       this.idCliente = this.jwtHelper.recuperaIdToken(this.token);
-      this.efetuarPagamento();
     });
 
     this.route.queryParams.subscribe((params) => {
@@ -128,16 +127,34 @@ export class AgendamentoComponent implements OnInit {
   }
   
   efetuarPagamento(){
-    this.pagamentoService.geraPreference(21, 63, this.token).subscribe(response => {
-      console.log(response)
+    let agendamento: Agendamento = {
+      data: this.datePipe.transform(this.dataAgendamento, 'dd/MM/yyyy HH:mm'),
+      precoFinal: this.getValorTotal(),
+      clienteId: this.idCliente,
+      prestadorId: this.idPrestador,
+      servicoDetalhadoId: this.idServico
+    }
+    
+    this.pagamentoService.geraPreference(agendamento, this.token).subscribe(response => {
       let script = document.createElement("script");
   
       script.src = "https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js";
       script.type = "text/javascript";
       script.dataset.preferenceId = response.preferenceId;
+      script.dataset.buttonLabel= "Agendar";
+      script.onclick = this.getValorTotal();
       
       document.getElementById("button-checkout").innerHTML = "";
-      document.querySelector("#button-checkout").appendChild(script);
+      document.querySelector("#button-checkout").appendChild(script); 
     })
+  }
+
+  getValorLista = (precos) => precos.reduce((acc, el) => { acc += el; return acc; }, 0);
+
+  getValorTotal() {
+    const valorTipos = this.getValorLista((this.precoPorTipo || []).map((el) => el.preco));
+
+    const valorAdicionais = this.getValorLista((this.adicionais || []).map((el) => el.preco));
+    return valorTipos + valorAdicionais;
   }
 }
