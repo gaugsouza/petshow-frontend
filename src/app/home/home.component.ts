@@ -79,7 +79,7 @@ export class HomeComponent implements OnInit {
       this.grupos = Array.from(new Set(this.servicos.map((servico) => servico.grupo)));
     },
     () => {
-      // this.loading = false;
+      this.loading = false;
       this.servicos = [];
     })
   }

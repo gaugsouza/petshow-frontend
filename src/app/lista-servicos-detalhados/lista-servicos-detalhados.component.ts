@@ -70,7 +70,14 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   ngOnInit(): void {
     this.tipoId = +this.route.snapshot.paramMap.get('id');
     this.filtro.tipoServicoId = this.tipoId;
-    this.buscaUsuario();
+    this.route.queryParams.subscribe(params => {
+      const { estado, cidade } = params;
+      this.filtro = { ...this.filtro, cidade, estado };
+    }, 
+    ()=>{},
+    () => {
+      this.buscaUsuario();
+    });
   }
 
   buscaUsuario() {
