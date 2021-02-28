@@ -64,6 +64,9 @@ export function HttpLoaderFactory(http:HttpClient) {
     ConfirmacaoCancelamentoComponent,
     ServicoPrecoDialogComponent,
   ],
+  entryComponents:[
+    ConfirmacaoCancelamentoComponent,
+  ],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -96,6 +99,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     EnderecoDialogComponent,
     AnimalEstimacaoComponent,
     FormularioAnimalComponent,
+    ConfirmacaoCancelamentoComponent,
   ],
   providers: [AgendamentoService],
 })

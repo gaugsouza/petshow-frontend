@@ -4,7 +4,6 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { Avaliacao } from 'src/app/interfaces/avaliacao';
 import { ConfirmacaoCancelamentoComponent } from 'src/app/perfis/confirmacao-cancelamento/confirmacao-cancelamento.component';
-import { ConfirmationDialogComponent } from 'src/app/perfis/confirmation-dialog/confirmation-dialog.component';
 import { AvaliacaoService } from 'src/app/servicos/avaliacao.service';
 
 @Component({
@@ -46,8 +45,8 @@ export class FormularioComponent implements OnInit {
     const confirmaRef = this.confirmacao.open
     (ConfirmacaoCancelamentoComponent,
       {
-        // data: {mensagem: 'DESEJA_CONFIRMAR_CANCELAMENTO'},
-        data: 'DESEJA_CONFIRMAR_CANCELAMENTO',
+        // data: {mensagem: 'DESEJA_CONFIRMAR_AVALIACAO'},
+        data: 'DESEJA_CONFIRMAR_AVALIACAO',
       });
       confirmaRef.afterClosed().subscribe((result) => {
         if (result) {
