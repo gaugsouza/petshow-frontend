@@ -12,5 +12,7 @@ export const AVALIACAO_SERVICE_URL = `${PRESTADOR_SERVICO_DETALHADO}/idServico/a
 export const SERVICO_AVALIADO_URL = `${SERVICO_DETALHADO_URL}/idServico/avaliacoes`;
 export const CONTA_SERVICE_URL = `${BASE_URL}/conta`;
 export const AGENDAMENTO_URL = `${BASE_URL}/agendamento`;
-export const PAGAMENTO_URL = `${BASE_URL}/pagamento`
-export const EMPRESA_URL = `${BASE_URL}/empresa`
+export const PAGAMENTO_URL = `${BASE_URL}/pagamento`;
+export const EMPRESA_URL = `${BASE_URL}/empresa`;
+
+export const MERCADO_PAGO_URL = "https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js";

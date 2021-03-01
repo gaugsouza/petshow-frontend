@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpHandlerService } from './http-handler.service';
 import { Observable } from 'rxjs';
 import { PAGAMENTO_URL } from '../util/url';
-import { Agendamento } from '../interfaces/agendamento';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +9,8 @@ import { Agendamento } from '../interfaces/agendamento';
 export class PagamentoService {
   constructor(private httpHandler:HttpHandlerService) { }
 
-  geraPreference(agendamento:Agendamento, token:string): Observable<any> {
-    const URL = `${PAGAMENTO_URL}/preference`;
-    return this.httpHandler.doPost<any>(URL, agendamento, token);
+  recuperaPreference(agendamentoId:number, clienteId:number, token:string): Observable<any> {
+    const URL = `${PAGAMENTO_URL}/agendamento/${agendamentoId}/cliente/${clienteId}/preference`;
+    return this.httpHandler.doGet<any>(URL, token);
   }
 }

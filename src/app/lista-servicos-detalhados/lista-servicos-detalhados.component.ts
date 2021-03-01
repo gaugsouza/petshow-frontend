@@ -15,6 +15,7 @@ import { Usuario } from '../interfaces/usuario';
 import { DataSharingService } from '../servicos/data-sharing.service';
 import { Prestador } from '../interfaces/prestador';
 import { GeolocalizacaoService } from '../servicos/geolocalizacao.service';
+
 @Component({
   selector: 'app-lista-servicos-detalhados',
   templateUrl: './lista-servicos-detalhados.component.html',

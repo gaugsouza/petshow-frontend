@@ -246,9 +246,8 @@
   "DESEJA_CONFIRMAR_AVALIACAO":"Do you want to confirm your evaluations?",
   "ADD_AVALIACAO":"Evaluate this service",
   "DISTANCIA_MAXIMA": "Maximum distance",
-
-
-
+  "PROSSEGUIR_AGENDAMENTO": "Do you want to procced to the payment step with the selected items?",
+  "RESUMO_PAGAMENTO": "Booking information and payment",
   
   "POLITICA-LINHA4": "This website is maintained and operated by Pet Show LTDA.",
   "POLITICA-LINHA5": "We collect and use some personal data that belongs to those who use our website. In doing so, we act as the controller of such data and are subject to the provisions of Federal Law no. 13,709 / 2018 (General Law on Protection of Personal Data - LGPD).",

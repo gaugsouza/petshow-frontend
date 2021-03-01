@@ -50,7 +50,7 @@ export class VisualizacaoAgendamentoComponent implements OnInit {
 
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       this.idUsuario = this.helper.recuperaIdToken(token);
-      this.agendamentoService.buscarAgendamento(this.idAgendamento, this.idUsuario, token)
+      this.agendamentoService.ativarAgendamento(this.idAgendamento, this.idUsuario, token)
         .subscribe((agendamento) => {
           this.agendamento = agendamento;
         });

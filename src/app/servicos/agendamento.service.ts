@@ -69,4 +69,14 @@ export class AgendamentoService {
       : HORARIOS_AGENDAMENTO;
     return horariosElegiveis.filter((el) => !horarios.includes(el));
   }
+
+  deletarAgendamento = (agendamentoId:number, clienteId:number, token: string) :Observable<any> => {
+    const URL = `${this.AGENDAMENTO_SERVICE_URL}/${agendamentoId}/cliente/${clienteId}`;
+    return this.httpHandler.doDelete<any>(URL, token);
+  }  
+
+  ativarAgendamento = (agendamentoId: number, clienteId: number, token: string) : Observable<any> => {
+    const URL = `${this.AGENDAMENTO_SERVICE_URL}/${agendamentoId}/cliente/${clienteId}`;
+    return this.httpHandler.doPatch<any>(URL, token);
+  }
 }
