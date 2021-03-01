@@ -238,12 +238,14 @@
   "SELECIONE_HORARIO_AGENDAMENTO":"Select the booking time",
   "HORARIO":"time",
   "BUSCAR_LOCAL":"Search address",
-  "SIM":"Yes",
-  "NAO":"No",
-  "DISTANCIA_MAXIMA": "Maximum distance",
   "ESCOLHA_ESTADO": "Select a state",
   "ESCOLHA_CIDADE": "Select a city",
   "NENHUM_TIPO_SERVICO_ENCONTRADO": "No services have been registered for the selected location",
+  "SIM":"YES",
+  "NAO":"NO",
+  "DESEJA_CONFIRMAR_AVALIACAO":"Do you want to confirm your evaluations?",
+  "ADD_AVALIACAO":"Evaluate this service",
+  "DISTANCIA_MAXIMA": "Maximum distance",
 
 
 

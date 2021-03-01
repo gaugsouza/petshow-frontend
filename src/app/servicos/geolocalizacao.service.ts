@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpHandlerService } from './http-handler.service';
+import { map } from 'rxjs/operators';
+import { Geolocalizacao } from 'src/app/interfaces/geolocalizacao';
+import { HttpHandlerService } from 'src/app/servicos/http-handler.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +14,11 @@ export class GeolocalizacaoService {
 
   buscaGeoloc = (rua:string = '', numero:string = '') :Observable<any> => {
     const URL = `${this.API_GEOLOC_URL}${rua} ${numero} ,Brazil&format=json`;
+    return this.http.doGet(URL);
+  }
+
+  buscaGeolocCidade = (cidade:string, estado:string) => {
+    const URL = `${this.API_GEOLOC_URL}${cidade}, ${estado}, Brazil&format=json`;
     return this.http.doGet(URL);
   }
 }

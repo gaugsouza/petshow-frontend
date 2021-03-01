@@ -119,10 +119,11 @@
             <mat-list-item *ngFor="let servicoDetalhado of servicosDetalhados">
                 <div class="lista-servicos-detalhados__item">
                     <div class="nome-prestador">
-                        <a mat-button class="lista-servicos-detalhados__button"  color="primary" href="/prestador/{{servicoDetalhado.prestadorId}}">{{servicoDetalhado.prestador.nome}}</a>
+                        <a mat-button class="lista-servicos-detalhados__button"  color="primary" href="/prestador/{{servicoDetalhado.prestadorId}}">{{geraTitulo(servicoDetalhado.prestador)}}</a>
                     </div>
                     <span class="preco-servico">{{'A_PARTIR_DE' | translate}}: {{getPrecoMinimo(servicoDetalhado) | currency: 'BRL'}}</span>
-                    <span><a mat-button color="primary" href="/prestador/{{servicoDetalhado.prestadorId}}">{{geraTitulo(servicoDetalhado.prestador)}}</a>
+                    <span>
+                        {{servicoDetalhado.tipo.nome | translate}} 
                         <a mat-button color="primary" href="/prestador/{{servicoDetalhado.prestadorId}}/servico/{{servicoDetalhado.id}}/avaliacao">{{'AVALIACOES' | translate}}</a>
                     </span>  
                     <div class="lista-servicos-detalhados__button-container">

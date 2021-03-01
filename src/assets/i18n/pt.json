@@ -240,12 +240,14 @@
   "SELECIONE_HORARIO_AGENDAMENTO":"Selecione o horário para agendamento",
   "HORARIO":"horário",
   "BUSCAR_LOCAL":"Buscar local",
-  "SIM":"Sim",
-  "NAO":"Não",
-  "DISTANCIA_MAXIMA": "Distância máxima",
   "ESCOLHA_ESTADO": "Selecione um estado",
   "ESCOLHA_CIDADE": "Selecione uma cidade",
   "NENHUM_TIPO_SERVICO_ENCONTRADO": "Nenhum serviço foi registrado para a localização selecionada",
+  "SIM":"SIM",
+  "NAO":"NÃO",
+  "DESEJA_CONFIRMAR_AVALIACAO":"Deseja confirmar a sua avaliação?",
+  "ADD_AVALIACAO":"Adicionar avaliação",
+  "DISTANCIA_MAXIMA": "Distância máxima",
 
   
   "POLITICA-LINHA4": "Este site é mantido e operado por Pet Show LTDA.",

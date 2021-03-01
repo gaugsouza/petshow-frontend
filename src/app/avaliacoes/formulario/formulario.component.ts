@@ -4,7 +4,6 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { Avaliacao } from 'src/app/interfaces/avaliacao';
 import { ConfirmacaoCancelamentoComponent } from 'src/app/perfis/confirmacao-cancelamento/confirmacao-cancelamento.component';
-import { ConfirmationDialogComponent } from 'src/app/perfis/confirmation-dialog/confirmation-dialog.component';
 import { AvaliacaoService } from 'src/app/servicos/avaliacao.service';
 
 @Component({
