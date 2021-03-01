@@ -139,12 +139,13 @@ export class MapaComponent implements OnInit {
   criaPontosServico(servicos:ServicoDetalhado[]) {
     return servicos.map((servico) => {
       const { prestador } = servico;
-      if (!prestador.geolocalizacao) {
+      const geolocalizacao = this.retornaGeolocalizacao(prestador);
+      if (!geolocalizacao) {
         return null;
       }
       const posicao:ol.Coordinate = [
-        Number.parseFloat(prestador.geolocalizacao.geolocLongitude),
-        Number.parseFloat(prestador.geolocalizacao.geolocLatitude),
+        Number.parseFloat(geolocalizacao.geolocLongitude),
+        Number.parseFloat(geolocalizacao.geolocLatitude),
       ];
       const evento = () => {
         this.openDialog(servico);
@@ -152,6 +153,13 @@ export class MapaComponent implements OnInit {
 
       return this.criaPonto('assets/icons/iconePrestador.png', posicao, 'prestador', this.geraNome(prestador), evento);
     });
+  }
+
+  retornaGeolocalizacao(prestador:Prestador) {
+    if (prestador.empresa) {
+      return prestador.empresa.geolocalizacao || null;
+    }
+    return prestador.geolocalizacao || null;
   }
 
   geraNome = (prestador:Prestador) => {

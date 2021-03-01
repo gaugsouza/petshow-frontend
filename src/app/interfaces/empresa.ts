@@ -1,4 +1,5 @@
 import { Endereco } from 'src/app/interfaces/endereco';
+import { Geolocalizacao } from 'src/app/interfaces/geolocalizacao';
 
 export interface Empresa {
     id?:number,
@@ -6,4 +7,5 @@ export interface Empresa {
     nome?:string,
     razaoSocial?:string
     cnpj?:string,
+    geolocalizacao?:Geolocalizacao
 }
