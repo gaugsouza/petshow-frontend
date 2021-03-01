@@ -13,6 +13,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { PoliticaPrivacidadeComponent } from 'src/app/acesso/cadastro/politica-privacidade/politica-privacidade.component';
 import { ValidateBrService } from 'angular-validate-br';
 import { Endereco } from 'src/app/interfaces/endereco';
+import { Empresa } from 'src/app/interfaces/empresa';
+import { Observable } from 'rxjs';
+import { Prestador } from 'src/app/interfaces/prestador';
 
 @Component({
   selector: 'app-cadastro-conta',
@@ -58,6 +61,10 @@ export class CadastroContaComponent implements OnInit {
 
   isPoliticasAceitas:boolean=false;
 
+  exibeFormEmpresa:boolean = false;
+
+  empresa:Empresa = {};
+
   constructor(private loginService:LoginService,
               private consultaEstadoService:ConsultaEstadosService,
               private router:Router,
@@ -95,7 +102,8 @@ export class CadastroContaComponent implements OnInit {
     || this.confirmaSenhaFormControl.invalid
     || this.numeroFormControl.invalid
     || this.cepFormControl.invalid
-    || !this.isPoliticasAceitas;
+    || !this.isPoliticasAceitas
+    || !this.validaEmpresa();
   }
 
   isPrestador() {
@@ -120,7 +128,7 @@ export class CadastroContaComponent implements OnInit {
 
   cadastrarUsuario(usuario:Usuario) {
     this.disableButton();
-    this.loginService.cadastrarUsuario(usuario)
+    this.realizarCadastro(usuario)
       .subscribe((res) => {
         this.redirect(res);
       }, (err) => {
@@ -130,8 +138,20 @@ export class CadastroContaComponent implements OnInit {
       });
   }
 
+  realizarCadastro(usuario:Usuario):Observable<string> {
+    if (!this.exibeFormEmpresa) {
+      return this.loginService.cadastrarUsuario(usuario);
+    }
+    const prestadorEmpresa:Prestador = {...usuario as Prestador, empresa:this.empresa };
+    return this.loginService.cadastrarEmpresa(prestadorEmpresa);
+  }
+
   setaEndereco(endereco:Endereco) {
     this.usuario.endereco = endereco;
+  }
+
+  toggleFormEmpresa() {
+    this.exibeFormEmpresa = !this.exibeFormEmpresa;
   }
 
   cadastrarConta(usuario:Usuario) {
@@ -152,4 +172,16 @@ export class CadastroContaComponent implements OnInit {
   toggleCheckBoxPoliticas() {
     this.isPoliticasAceitas = !this.isPoliticasAceitas;
   }
+
+  alteraEmpresa(empresa:Empresa) {
+    this.empresa = { ...empresa };
+  }
+
+  validaEmpresa() {
+    if (!this.exibeFormEmpresa) {
+      return true;
+    }
+    return this.empresa.nome && this.empresa.razaoSocial && this.empresa.cnpj && (this.empresa.endereco || {}).numero && (this.empresa.endereco || {}).logradouro && (this.empresa.endereco || {}).cep && (this.empresa.endereco || {}).cidade && (this.empresa.endereco || {}).estado && (this.empresa.endereco || {}).bairro;
+  }
+
 }

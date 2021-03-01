@@ -1,4 +1,6 @@
 export const USER_TOKEN = 'token';
+export const APP_LANG = 'appLang';
+
 
 export const STATUS_AGENDAMENTO = Object.freeze({
   agendado: ['AGENDADO'],

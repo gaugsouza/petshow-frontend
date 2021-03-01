@@ -13,3 +13,4 @@ export const SERVICO_AVALIADO_URL = `${SERVICO_DETALHADO_URL}/idServico/avaliaco
 export const CONTA_SERVICE_URL = `${BASE_URL}/conta`;
 export const AGENDAMENTO_URL = `${BASE_URL}/agendamento`;
 export const PAGAMENTO_URL = `${BASE_URL}/pagamento`
+export const EMPRESA_URL = `${BASE_URL}/empresa`

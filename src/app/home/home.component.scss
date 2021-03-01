@@ -3,9 +3,39 @@
 $button-bg: #304b76;
 $button-color: white;
 
+.selecao-estados {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  height: 140px;
+  align-items: end;
+
+  @media screen and (max-width: $tablet-width) {
+       grid-template-columns: 1fr;
+  }
+}
+
+.servicos-nao-encontrados {
+  h1 {
+    color: #364b76;
+    text-align: center;
+    border-bottom: 1px solid #364b76;
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+}
+
+.carregando {
+  margin: 0 auto;
+  width: 100px;
+}
+
 .selecao_servico {
-  padding: 5% 5%;
-  padding: 10% 5%;
+  padding: 0% 5%;
   height: 70vh;
   background-image: url("../../assets/icons/cat_home_2.jpg");
   background-repeat: no-repeat;

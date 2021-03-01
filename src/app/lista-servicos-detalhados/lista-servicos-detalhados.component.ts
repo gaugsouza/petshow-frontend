@@ -13,6 +13,7 @@ import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { USER_TOKEN } from '../util/constantes';
 import { Usuario } from '../interfaces/usuario';
 import { DataSharingService } from '../servicos/data-sharing.service';
+import { Prestador } from '../interfaces/prestador';
 @Component({
   selector: 'app-lista-servicos-detalhados',
   templateUrl: './lista-servicos-detalhados.component.html',
@@ -71,8 +72,14 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   ngOnInit(): void {
     this.tipoId = +this.route.snapshot.paramMap.get('id');
     this.filtro.tipoServicoId = this.tipoId;
-    this.buscaUsuario();
-    if (screen.width < 768) this.isFiltrosVisiveis=false;
+    this.route.queryParams.subscribe(params => {
+      const { estado, cidade } = params;
+      this.filtro = { ...this.filtro, cidade, estado };
+    }, 
+    ()=>{},
+    () => {
+      this.buscaUsuario();
+    });
   }
 
   buscaUsuario() {
@@ -92,15 +99,23 @@ export class ListaServicosDetalhadosComponent implements OnInit {
       }, () => {
         this.isCliente = false;
         this.isAtivo = false;
+        console.log(this.isCliente)
+        console.log(this.isAtivo)
       },
       () => {
         this.tooltipText = this.geraTooltip();
         this.buscarServicosDetalhadosPorTipo(this.filtro, this.paginaAtual, this.quantidadePagina);
+        console.log(this.isCliente)
+        console.log(this.isAtivo)
       });
     },
     () => {
+      console.log(this.isCliente)
+        console.log(this.isAtivo)
     },
     () => {
+      console.log(this.isCliente)
+        console.log(this.isAtivo)
       this.tooltipText = this.geraTooltip();
       this.buscarServicosDetalhadosPorTipo(this.filtro, this.paginaAtual, this.quantidadePagina);
     });
@@ -213,6 +228,14 @@ export class ListaServicosDetalhadosComponent implements OnInit {
 
   deveSelecionar(id:number) {
     return this.idsAComparar.includes(id);
+  }
+
+  geraTitulo(prestador:Prestador) {
+    if (!prestador.empresa.id) {
+      return prestador.nome;
+    }
+
+    return prestador.empresa.razaoSocial || prestador.empresa.nome;
   }
 
   alteraFiltro(filtro) {

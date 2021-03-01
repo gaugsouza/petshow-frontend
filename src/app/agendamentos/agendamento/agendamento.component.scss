@@ -8,6 +8,10 @@
   gap: 20px;
 }
 
+::ng-deep .mat-horizontal-stepper-header{
+  pointer-events: none !important;
+}
+
 .agendamento-block {
   display: flex;
   align-items: flex-start;

@@ -122,8 +122,7 @@
                         <a mat-button class="lista-servicos-detalhados__button"  color="primary" href="/prestador/{{servicoDetalhado.prestadorId}}">{{servicoDetalhado.prestador.nome}}</a>
                     </div>
                     <span class="preco-servico">{{'A_PARTIR_DE' | translate}}: {{getPrecoMinimo(servicoDetalhado) | currency: 'BRL'}}</span>
-                    <span>
-                        {{servicoDetalhado.tipo.nome | translate}} 
+                    <span><a mat-button color="primary" href="/prestador/{{servicoDetalhado.prestadorId}}">{{geraTitulo(servicoDetalhado.prestador)}}</a>
                         <a mat-button color="primary" href="/prestador/{{servicoDetalhado.prestadorId}}/servico/{{servicoDetalhado.id}}/avaliacao">{{'AVALIACOES' | translate}}</a>
                     </span>  
                     <div class="lista-servicos-detalhados__button-container">
@@ -132,8 +131,7 @@
                             [checked]="deveSelecionar(servicoDetalhado.id)"
                             (change)="selecionaIds($event.checked, servicoDetalhado.id)">{{'COMPARAR' | translate}}</mat-checkbox>
                         <a mat-flat-button color="primary" href="prestador/{{servicoDetalhado.prestador.id}}/servicoDetalhado/{{servicoDetalhado.id}}/agendamento?isVisualizacao=false" [disabled]="!isCliente || !isAtivo"
-                        matTooltip="{{tooltipText | translate}}"
-                        >{{'AGENDAR' | translate}}</a>
+                        matTooltip="{{tooltipText | translate}}">{{'AGENDAR' | translate}}</a>
                     </div>
                 </div>
             </mat-list-item>
