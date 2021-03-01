@@ -26,6 +26,11 @@ export class LoginService {
     return this.httpHandler.doPost<string>(URL, usuario);
   }
 
+  cadastrarEmpresa(usuario:Usuario):Observable<string> {
+    const URL = `${ACESSO_SERVICE_URL}/cadastro/empresa`;
+    return this.httpHandler.doPost<string>(URL, usuario);
+  }
+
   ativaConta(token:string):Observable<string> {
     const URL = `${ACESSO_SERVICE_URL}/ativar?token=${token}`;
     return this.httpHandler.doGet<string>(URL);

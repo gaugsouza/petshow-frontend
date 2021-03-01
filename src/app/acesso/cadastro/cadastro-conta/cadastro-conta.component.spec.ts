@@ -21,6 +21,8 @@ import { of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { CadastroEmpresaComponent } from '../../cadastro-empresa/cadastro-empresa.component';
 
 describe('CadastroContaComponent', () => {
   let component: CadastroContaComponent;
@@ -32,7 +34,8 @@ describe('CadastroContaComponent', () => {
         CadastroContaComponent,
         EnderecoCadastroComponent,
         InfoPessoalCadastroComponent,
-        PoliticaPrivacidadeComponent
+        PoliticaPrivacidadeComponent,
+        CadastroEmpresaComponent
       ],
       providers: [
         JwtHelper,
@@ -51,6 +54,7 @@ describe('CadastroContaComponent', () => {
         BrowserAnimationsModule,
         MatDialogModule,
         MatIconModule,
+        MatCheckboxModule,
       ]
     })
     .compileComponents();

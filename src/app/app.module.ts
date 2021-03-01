@@ -42,8 +42,11 @@ import { AgendamentosModule } from 'src/app/agendamentos/agendamentos.module';
 import { GeolocalizacaoModule } from 'src/app/geolocalizacao/geolocalizacao.module';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { DialogComparacaoComponent } from './lista-servicos-detalhados/dialog-comparacao/dialog-comparacao.component';
-import { ErrorDialogComponent } from './confirmation-dialog/error-dialog.component';
+import { DialogComparacaoComponent } from 'src/app/lista-servicos-detalhados/dialog-comparacao/dialog-comparacao.component';
+import { ErrorDialogComponent } from 'src/app/confirmation-dialog/error-dialog.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,6 +90,8 @@ import { ErrorDialogComponent } from './confirmation-dialog/error-dialog.compone
     GeolocalizacaoModule,
     MatSliderModule,
     MatTooltipModule,
+    MatProgressSpinnerModule,
+    MatAutocompleteModule,
   ],
   providers: [
     JwtHelper,

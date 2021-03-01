@@ -8,5 +8,7 @@ export interface FiltroServicos {
     possuiAdicionais?:boolean,
     ordenacao?:string,
     posicaoAtual?:Geolocalizacao,
-    metrosGeoloc?:number
+    metrosGeoloc?:number,
+    cidade?:string,
+    estado?:string
 }

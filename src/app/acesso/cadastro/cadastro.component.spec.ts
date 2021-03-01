@@ -18,6 +18,8 @@ import {CadastroContaComponent} from './cadastro-conta/cadastro-conta.component'
 import {TipoPessoa} from '../../enum/tipo-pessoa.enum';
 import { JwtHelper } from '../../util/jwt-helper';
 import { MatIconModule } from '@angular/material/icon';
+import {MatCheckboxModule} from '@angular/material/checkbox'
+import { CadastroEmpresaComponent } from '../cadastro-empresa/cadastro-empresa.component';
 
 describe('CadastroComponent', () => {
   let component: CadastroComponent;
@@ -29,7 +31,8 @@ describe('CadastroComponent', () => {
         CadastroComponent,
         CadastroContaComponent,
         EnderecoCadastroComponent,
-        InfoPessoalCadastroComponent
+        InfoPessoalCadastroComponent,
+        CadastroEmpresaComponent,
       ],
       providers: [
         JwtHelper
@@ -47,7 +50,8 @@ describe('CadastroComponent', () => {
         TranslateModule.forRoot(),
         MatDialogModule,
         MatCardModule,
-        MatIconModule
+        MatIconModule,
+        MatCheckboxModule
       ]
     })
     .compileComponents();
