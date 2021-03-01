@@ -18,7 +18,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class PerfilUsuarioComponent implements OnInit {
   animal:AnimalEstimacao = {
     nome: '',
-    tipo: { id: 2, nome: 'GATO' },
+    tipo: { id: 2, nome: 'VAZIO' },
   };
 
   usuario:Cliente;
@@ -109,7 +109,7 @@ export class PerfilUsuarioComponent implements OnInit {
   limpaAnimal() {
     this.animal = {
       nome: '',
-      tipo: { id: 2, nome: 'GATO' },
+      tipo: { id: 2, nome: 'VAZIO' },
     };
   }
 

@@ -29,7 +29,7 @@
     </mat-form-field>
     <mat-form-field>
         <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-        <input matInput [(ngModel)]="preco" mask='separator.2' [formControl]="precoFormControl"
+        <input matInput maxlength="12" [(ngModel)]="preco" mask='separator.2' [formControl]="precoFormControl"
             [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$" />
     </mat-form-field>
     <div class="dialog__button-container">

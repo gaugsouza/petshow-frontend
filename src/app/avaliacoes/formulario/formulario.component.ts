@@ -1,7 +1,9 @@
 import {
   Component, OnInit, Output, EventEmitter, Input,
 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Avaliacao } from 'src/app/interfaces/avaliacao';
+import { ConfirmacaoCancelamentoComponent } from 'src/app/perfis/confirmacao-cancelamento/confirmacao-cancelamento.component';
 import { AvaliacaoService } from 'src/app/servicos/avaliacao.service';
 
 @Component({
@@ -27,22 +29,44 @@ export class FormularioComponent implements OnInit {
 
   private NOTA_MAXIMA = 5;
 
-  constructor(private avaliacaoService:AvaliacaoService) { }
+  constructor( 
+    private confirmacao: MatDialog,
+    private cancelamento: MatDialog,
+    private avaliacaoService:AvaliacaoService) { }
 
   ngOnInit = (): void => {
   }
 
   atualizaNota(campo:string, valor:number) {
-    this.avaliacao[campo] = valor;
+          this.avaliacao[campo] = valor;
   }
 
   adicionarAvaliacao() {
-    this.isEnabled = !this.isEnabled;
-    this.adicionaAvaliacao.emit(this.avaliacao);
+    const confirmaRef = this.confirmacao.open
+    (ConfirmacaoCancelamentoComponent,
+      {
+        // data: {mensagem: 'DESEJA_CONFIRMAR_AVALIACAO'},
+        data: 'DESEJA_CONFIRMAR_AVALIACAO',
+      });
+      confirmaRef.afterClosed().subscribe((result) => {
+        if (result) {
+          this.isEnabled = !this.isEnabled;
+          this.adicionaAvaliacao.emit(this.avaliacao);
+        }
+      });
   }
 
   fecharFormulario() {
-    this.fechaFormulario.emit();
+    const cancelRef = this.cancelamento.open
+    (ConfirmacaoCancelamentoComponent,
+      {
+        data: 'DESEJA_CONFIRMAR_CANCELAMENTO',
+      });
+      cancelRef.afterClosed().subscribe((result) => {
+        if (result) {
+          this.fechaFormulario.emit();
+        }
+      });
   }
 
   getEstrelas(campo:string): any[] {
