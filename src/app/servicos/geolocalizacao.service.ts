@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Geolocalizacao } from 'src/app/interfaces/geolocalizacao';
 import { HttpHandlerService } from 'src/app/servicos/http-handler.service';
 
 @Injectable({

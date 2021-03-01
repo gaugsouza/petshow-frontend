@@ -43,7 +43,7 @@ export class FormularioAnimalComponent implements OnInit {
   }
 
   hasErrors() {
-    return this.nomeFormControl.hasError('required') || this.nomeFormControl.hasError('minLength') ||  this.animal.tipo.nome=='VAZIO';
+    return this.nomeFormControl.hasError('required') || this.nomeFormControl.hasError('minLength') || this.animal.tipo.nome === 'VAZIO';
   }
 
   getSelectionValue() {

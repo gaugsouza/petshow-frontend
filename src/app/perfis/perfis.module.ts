@@ -34,11 +34,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
-import { AdicionalDialogComponent } from './adicional-dialog/adicional-dialog.component';
-import { ConfirmacaoCancelamentoComponent } from './confirmacao-cancelamento/confirmacao-cancelamento.component';
-import { ServicoPrecoDialogComponent } from './servico-preco-dialog/servico-preco-dialog.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { ConfirmationDialogComponent } from 'src/app/perfis/confirmation-dialog/confirmation-dialog.component';
+import { AdicionalDialogComponent } from 'src/app/perfis/adicional-dialog/adicional-dialog.component';
+import { ConfirmacaoCancelamentoComponent } from 'src/app/perfis/confirmacao-cancelamento/confirmacao-cancelamento.component';
+import { ServicoPrecoDialogComponent } from 'src/app/perfis/servico-preco-dialog/servico-preco-dialog.component';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -65,7 +65,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     ConfirmacaoCancelamentoComponent,
     ServicoPrecoDialogComponent,
   ],
-  entryComponents:[
+  entryComponents: [
     ConfirmacaoCancelamentoComponent,
   ],
   imports: [

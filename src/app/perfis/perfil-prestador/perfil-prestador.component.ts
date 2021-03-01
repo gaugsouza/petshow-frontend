@@ -46,7 +46,6 @@ export class PerfilPrestadorComponent implements OnInit {
       this.prestadorService.buscaPrestador(id, token)
         .subscribe((usuario:Prestador) => {
           this.usuario = usuario;
-          console.log(this.usuario);
         },
         (err) => {
           this.handleError(err);
@@ -129,19 +128,18 @@ export class PerfilPrestadorComponent implements OnInit {
   }
 
   atualizaEnderecoEmpresa(endereco:Endereco):void {
-    const empresa  = { ...this.usuario.empresa, endereco };
+    const empresa = { ...this.usuario.empresa, endereco };
     this.atualizaEmpresa(empresa);
   }
 
   atualizaEmpresa(empresa:Empresa):void {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       this.empresaService.atualizaEmpresa(empresa, token)
-      .subscribe(() => {
-        this.getUsuario();
-      })
+        .subscribe(() => {
+          this.getUsuario();
+        });
     });
   }
-
 
   alteraTelefone(telefone:string):void {
     this.usuarioRequest = { ...this.usuario };

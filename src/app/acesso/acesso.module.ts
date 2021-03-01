@@ -19,8 +19,8 @@ import { SucessoCadastroComponent } from 'src/app/acesso/sucesso-cadastro/sucess
 import { TokenAtivacaoComponent } from 'src/app/acesso/token-ativacao/token-ativacao.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CadastroEmpresaComponent } from './cadastro-empresa/cadastro-empresa.component';
-import {MatCheckboxModule} from '@angular/material/checkbox'
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);

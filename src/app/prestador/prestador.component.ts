@@ -30,11 +30,10 @@ export class PrestadorComponent implements OnInit {
         this.carregado = true;
         this.prestador = JSON.parse(prestador);
       });
-
   }
 
   getTitulo() {
-    if(!this.prestador.empresa.id) {
+    if (!this.prestador.empresa.id) {
       return this.prestador.nome;
     }
 
@@ -43,7 +42,6 @@ export class PrestadorComponent implements OnInit {
 
   /* eslint-disable no-param-reassign */
   getMediaUsuario():string {
-
     if (!this.prestador.servicos || this.prestador.servicos.length === 0) {
       return 'SEM_AVALIACOES';
     }
@@ -51,16 +49,10 @@ export class PrestadorComponent implements OnInit {
       soma += servico.mediaAvaliacao;
       return soma;
     }, 0);
-    
-    let resultado = (somaMedias / this.prestador.servicos.length).toFixed(2);
-    // const qtdeAvaliacoes = this.prestador.servicos.reduce((total:number, servico:ServicoDetalhado) => {
-    //   total += servico.avaliacoes.length;
-    //   return total;
-    // }, 0);
 
-    console.log(resultado);
+    const resultado = (somaMedias / this.prestador.servicos.length).toFixed(2);
     if (!resultado) return 'SEM_AVALIACOES';
-    else return resultado;
+    return resultado;
   }
 /* eslint-enable no-param-reassign */
 }

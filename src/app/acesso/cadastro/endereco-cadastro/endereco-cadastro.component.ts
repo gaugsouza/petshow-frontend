@@ -1,7 +1,6 @@
 import {
   Component, OnInit, Input, Output, EventEmitter,
 } from '@angular/core';
-import { ConsultaEstadosService, Estado, Cidade } from 'src/app/servicos/consulta-estados.service';
 import { Endereco } from 'src/app/interfaces/endereco';
 import { FormControl } from '@angular/forms';
 import { CepService } from 'src/app/servicos/cep.service';
@@ -24,7 +23,7 @@ export class EnderecoCadastroComponent implements OnInit {
 
   constructor(private cepService:CepService) { }
 
-  ngOnInit(): void {
+  ngOnInit = (): void => {
   }
 
   buscarCep() {

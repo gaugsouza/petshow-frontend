@@ -142,7 +142,7 @@ export class CadastroContaComponent implements OnInit {
     if (!this.exibeFormEmpresa) {
       return this.loginService.cadastrarUsuario(usuario);
     }
-    const prestadorEmpresa:Prestador = {...usuario as Prestador, empresa:this.empresa };
+    const prestadorEmpresa:Prestador = { ...usuario as Prestador, empresa: this.empresa };
     return this.loginService.cadastrarEmpresa(prestadorEmpresa);
   }
 
@@ -181,7 +181,14 @@ export class CadastroContaComponent implements OnInit {
     if (!this.exibeFormEmpresa) {
       return true;
     }
-    return this.empresa.nome && this.empresa.razaoSocial && this.empresa.cnpj && (this.empresa.endereco || {}).numero && (this.empresa.endereco || {}).logradouro && (this.empresa.endereco || {}).cep && (this.empresa.endereco || {}).cidade && (this.empresa.endereco || {}).estado && (this.empresa.endereco || {}).bairro;
+    return this.empresa.nome
+    && this.empresa.razaoSocial
+    && this.empresa.cnpj
+    && (this.empresa.endereco || {}).numero
+    && (this.empresa.endereco || {}).logradouro
+    && (this.empresa.endereco || {}).cep
+    && (this.empresa.endereco || {}).cidade
+    && (this.empresa.endereco || {}).estado
+    && (this.empresa.endereco || {}).bairro;
   }
-
 }

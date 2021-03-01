@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpHandlerService } from './http-handler.service';
 import { Observable } from 'rxjs';
-import { PAGAMENTO_URL } from '../util/url';
-import { Agendamento } from '../interfaces/agendamento';
+import { HttpHandlerService } from 'src/app/servicos/http-handler.service';
+import { PAGAMENTO_URL } from 'src/app/util/url';
+import { Agendamento } from 'src/app/interfaces/agendamento';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PagamentoService {
   constructor(private httpHandler:HttpHandlerService) { }

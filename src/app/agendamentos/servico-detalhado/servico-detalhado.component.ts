@@ -134,6 +134,7 @@ export class ServicoDetalhadoComponent implements OnInit {
   }
 
   geraNomeEmpresa() {
-    return this.servicoDetalhado.prestador.empresa.razaoSocial || this.servicoDetalhado.prestador.empresa.nome;
+    return this.servicoDetalhado.prestador.empresa.razaoSocial
+    || this.servicoDetalhado.prestador.empresa.nome;
   }
 }

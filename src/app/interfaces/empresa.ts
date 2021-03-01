@@ -1,4 +1,4 @@
-import { Endereco } from "src/app/interfaces/endereco";
+import { Endereco } from 'src/app/interfaces/endereco';
 
 export interface Empresa {
     id?:number,

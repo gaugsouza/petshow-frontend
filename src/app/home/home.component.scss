@@ -14,11 +14,12 @@ $button-color: white;
   align-items: end;
 
   @media screen and (max-width: $tablet-width) {
-       grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
   }
 }
 
 .servicos-nao-encontrados {
+
   h1 {
     color: #364b76;
     text-align: center;
@@ -108,7 +109,7 @@ $button-color: white;
   background-color: white;
   background-size: cover;
 
-  
+
   /* Media Query for Mobile Devices */
   @media (max-width: 480px) {
     height: auto;
@@ -117,7 +118,7 @@ $button-color: white;
   /* Media Query for low resolution  Tablets, Ipads */
   @media (min-width: 598px) and (max-width: 767px) {
     height: auto;
-  }  
+  }
 }
 
 ::ng-deep .mat-tab-label-content {

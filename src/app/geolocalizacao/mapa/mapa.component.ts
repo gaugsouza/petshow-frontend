@@ -54,7 +54,6 @@ export class MapaComponent implements OnInit {
     // this.preencheDadosGeoloc();
     this.dataSharingService.filtroShared.subscribe((filtro) => {
       this.filtro = filtro;
-      console.log(filtro);
       this.preencheDadosGeoloc();
     });
   }
@@ -90,7 +89,6 @@ export class MapaComponent implements OnInit {
   /* eslint-disable func-names */
   criaMapa = (mapCenter:ol.Coordinate = [0, 0], mapZoom = 3, servicos = [], name?:string) => {
     document.getElementById('map').innerHTML = null;
-    console.log('entrou aqui');
     const cliente = this.criaPontoCliente(mapCenter, name);
     const pontosServicos = this.criaPontosServico(servicos);
     const source = new ol.source.Vector({
@@ -156,7 +154,7 @@ export class MapaComponent implements OnInit {
     });
   }
 
-  geraNome(prestador:Prestador) {
+  geraNome = (prestador:Prestador) => {
     if (!prestador.empresa.id) {
       return prestador.nome;
     }

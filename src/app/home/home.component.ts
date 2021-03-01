@@ -15,18 +15,23 @@ export class HomeComponent implements OnInit {
   servicos:Servico[];
 
   grupos: string[] = [];
+
   estados:Estado[] = [];
+
   cidades:Cidade[] = [];
 
   cidadeSelecionada: Cidade;
+
   estadoSelecionado: Estado;
 
   loading:boolean = false;
 
   filteredEstados: Observable<Estado[]>;
+
   filteredCidades: Observable<Cidade[]>;
 
   estadoFormControl:FormControl = new FormControl();
+
   cidadeFormControl:FormControl = new FormControl();
 
   constructor(private servicoService: ServicosService,
@@ -36,37 +41,32 @@ export class HomeComponent implements OnInit {
     this.buscaEstados();
     this.cidadeFormControl.disable();
     this.filteredEstados = this.estadoFormControl.valueChanges
-    .pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
+      .pipe(
+        startWith(''),
+        map((value) => this._filter(value)),
+      );
 
     this.filteredCidades = this.cidadeFormControl.valueChanges
-    .pipe(
-      startWith(''),
-      map(value => this._filterCidade(value || ''))
-    );
+      .pipe(
+        startWith(''),
+        map((value) => this._filterCidade(value || '')),
+      );
   }
 
-  displayEstado(estado:Estado) {
-    return (estado || {}).estado || '';
-  }
+  displayEstado = (estado:Estado) => (estado || {}).estado || ''
 
-  displayCidade(cidade:Cidade) {
-    return (cidade || {}).cidade || '';
-  }
+  displayCidade = (cidade:Cidade) => (cidade || {}).cidade || ''
 
   private _filter(value:string|Estado) : Estado[] {
-    
     const filterValue = typeof value === 'string' ? value.toLowerCase() : value.estado.toLowerCase();
 
-    return this.estados.filter(estado => estado.estado.toLowerCase().includes(filterValue));
+    return this.estados.filter((estado) => estado.estado.toLowerCase().includes(filterValue));
   }
 
   private _filterCidade(value:string|Cidade):Cidade[] {
     const filterValue = typeof value === 'string' ? value.toLowerCase() : value.cidade.toLowerCase();
 
-    return this.cidades.filter(cidade => cidade.cidade.toLowerCase().includes(filterValue));
+    return this.cidades.filter((cidade) => cidade.cidade.toLowerCase().includes(filterValue));
   }
 
   buscaTipos(cidade?:Cidade) {
@@ -76,19 +76,17 @@ export class HomeComponent implements OnInit {
       this.loading = false;
       this.servicos = JSON.parse(servicos || '[]');
       this.grupos = Array.from(new Set(this.servicos.map((servico) => servico.grupo)));
-      console.log('b', !this.loading && this.servicos && !this.servicos.length);
     },
     () => {
-      console.log('a');
       this.loading = false;
       this.servicos = [];
-    })
+    });
   }
 
   buscaEstados() {
     this.consultaEstados.getEstados().subscribe((estados) => {
       this.estados = JSON.parse(estados);
-    })
+    });
   }
 
   buscaCidades(estado:Estado) {
@@ -100,10 +98,10 @@ export class HomeComponent implements OnInit {
       this.cidades = JSON.parse(cidades);
       this.cidadeFormControl.enable();
     },
-    () =>{},
+    () => {},
     () => {
       this.loading = false;
-    })
+    });
   }
 
   exibirServicosPorGrupo(grupo) {

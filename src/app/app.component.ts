@@ -44,13 +44,13 @@ export class AppComponent implements OnInit {
 
   configuraLinguagem() {
     this.localStorageService.getItem(APP_LANG).subscribe((lang:string) => {
-      if(!lang) {
+      if (!lang) {
         this.localStorageService.setItem(APP_LANG, navigator.language && navigator.language.toUpperCase() !== 'PT-BR' ? 'en' : 'pt').subscribe(() => {
           this.defineLangSettings(this.translate);
         });
       }
     },
-    ()=>{},
+    () => {},
     () => this.defineLangSettings(this.translate));
   }
 
@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
       this.isPortugues = lang === 'pt';
       translate.setDefaultLang('pt');
       translate.use(lang);
-    });  
+    });
   }
 
   ngOnInit() {
@@ -99,7 +99,6 @@ export class AppComponent implements OnInit {
     this.localStorageService.setItem(APP_LANG, 'en').subscribe(() => {
       this.translate.use('en');
     });
-    
   }
 
   changeLang():void {

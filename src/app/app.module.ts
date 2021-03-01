@@ -44,9 +44,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DialogComparacaoComponent } from 'src/app/lista-servicos-detalhados/dialog-comparacao/dialog-comparacao.component';
 import { ErrorDialogComponent } from 'src/app/confirmation-dialog/error-dialog.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -92,7 +91,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatSliderModule,
     MatTooltipModule,
     MatProgressSpinnerModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
   ],
   providers: [
     JwtHelper,
