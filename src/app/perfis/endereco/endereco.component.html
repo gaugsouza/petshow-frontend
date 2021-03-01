@@ -4,8 +4,8 @@
     <mat-card class="endereco-block">
         <div>
             <p>{{'ENDERECO' | translate}}</p>
-            <span>{{endereco.logradouro}}, {{endereco.numero}}</span>
-            <span>{{endereco.complemento}}</span>
+            <span maxlength="10">{{endereco.logradouro}}, {{endereco.numero}}</span>
+            <span maxlength="5">{{endereco.complemento}}</span>
             <span>{{endereco.cep | mask: '00000-000'}}</span>
             <span>{{endereco.bairro}}</span>
             <span *ngIf="endereco.cidade && endereco.estado">{{endereco.cidade}} - {{endereco.estado}}</span>

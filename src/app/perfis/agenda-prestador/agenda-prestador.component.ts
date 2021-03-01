@@ -20,20 +20,14 @@ import { ConfirmacaoCancelamentoComponent } from 'src/app/perfis/confirmacao-can
 })
 export class AgendaPrestadorComponent implements OnInit {
   @Input('prestador-id') prestadorId: number;
-
   agendamentos: Agendamento[];
-
   animaisAtendidos: AnimalEstimacao[];
-
   pageEvent: PageEvent;
-
   quantidadeTotal: number;
-
   quantidadeItens: number = 5;
-
   paginaAtual: number = 0;
-
   statusAgendamento: StatusAgendamento[];
+
 
   constructor(private cancelamento: MatDialog,
     private agendamentoService: AgendamentoService,
@@ -80,19 +74,6 @@ export class AgendaPrestadorComponent implements OnInit {
     });
   }
 
-  concluiAgendamento(agendamento:Agendamento) {
-    const concluidoId = this.statusAgendamento.find((status) => STATUS_AGENDAMENTO.concluido
-      .includes(status.nome.toUpperCase()));
-    this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
-      this.agendamentoService.alterarStatusAgendamento(agendamento.prestadorId,
-        concluidoId.id, agendamento.id, token)
-        .subscribe(() => {
-          this.buscarAgendamentosPorPrestador(this.prestadorId, this.paginaAtual,
-            this.quantidadeItens);
-        });
-    });
-  }
-
   cancelaAgendamento(agendamento) {
     const cancelRef = this.cancelamento.open(ConfirmacaoCancelamentoComponent,
       {
@@ -114,6 +95,29 @@ export class AgendaPrestadorComponent implements OnInit {
     });
   }
 
+  concluiAgendamento(agendamento) {
+    const cancelRef = this.cancelamento.open(ConfirmacaoCancelamentoComponent,
+      {
+        data: 'DESEJA_CONCLUIR_AGENDAMENTO',
+      });
+    cancelRef.afterClosed().subscribe((result) => {
+      if (result) {
+        const concluidoId = this.statusAgendamento.find((status) => STATUS_AGENDAMENTO.concluido
+        .includes(status.nome.toUpperCase()));
+      this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+        this.agendamentoService.alterarStatusAgendamento(agendamento.prestadorId,
+          concluidoId.id, agendamento.id, token)
+          .subscribe(() => {
+            this.buscarAgendamentosPorPrestador(this.prestadorId, this.paginaAtual,
+              this.quantidadeItens);
+            });
+        });
+      }
+    });
+  }
+
+
+  
   isAtivo = (agendamento:Agendamento) => !STATUS_AGENDAMENTO.cancelado
     .includes(agendamento.status.nome.toUpperCase())
     && !STATUS_AGENDAMENTO.concluido.includes(agendamento.status.nome.toUpperCase());

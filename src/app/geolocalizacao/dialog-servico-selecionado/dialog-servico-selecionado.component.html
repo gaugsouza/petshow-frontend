@@ -31,7 +31,7 @@
                         {{ preco.tipoAnimal.nome | translate }} - 
                     </span>
                     <span *ngIf="preco.tipoAnimal.porte && preco.tipoAnimal.pelagem">
-                        Porte: {{preco.tipoAnimal.porte | translate }} - Pelagem: {{preco.tipoAnimal.pelagem | translate}} -
+                        {{'PORTE' | translate }}: {{preco.tipoAnimal.porte | translate }} - {{'PELAGEM' | translate }}<: {{preco.tipoAnimal.pelagem | translate}} -
                     </span>
                     <span>
                         {{preco.preco | currency:'BRL'}}
@@ -46,7 +46,7 @@
                         {{ adicional.nome | translate }} - 
                     </span>
                     <span *ngIf="adicional.descricao">
-                        Descrição: {{adicional.descricao }} -
+                        {{'DESCRICAO' | translate}}: {{adicional.descricao }} -
                     </span>
                     <span>
                         {{adicional.preco | currency:'BRL'}}

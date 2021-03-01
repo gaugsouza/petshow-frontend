@@ -109,6 +109,17 @@ $button-color: white;
   background-position: center bottom;
   background-color: white;
   background-size: cover;
+
+  
+  /* Media Query for Mobile Devices */
+  @media (max-width: 480px) {
+    height: auto;
+  }
+
+  /* Media Query for low resolution  Tablets, Ipads */
+  @media (min-width: 598px) and (max-width: 767px) {
+    height: auto;
+  }  
 }
 
 ::ng-deep .mat-tab-label-content {

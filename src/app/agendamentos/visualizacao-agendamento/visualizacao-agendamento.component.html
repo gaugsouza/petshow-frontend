@@ -15,7 +15,7 @@
 
   <div *ngIf="isAgendamentoConcluido(agendamento) && !isAgendamentoAvaliado()">
     <button mat-flat-button color="primary" (click)='abreFormulario()' *ngIf='!isFormVisible && isCliente'
-      class="botao-formulario">{{'ADD_COMENTARIO' | translate}}</button>
+      class="botao-formulario">{{'ADD_AVALIACAO' | translate}}</button>
 
 
     <app-formulario [avaliacao]='avaliacaoBase' *ngIf='isFormVisible'

@@ -24,7 +24,7 @@
                     <div class="servico-precos">
                         <mat-card *ngFor="let preco of servico.precoPorTipo" class="card-preco-por-tipo">
                             <div class="titulo-botao-servico">
-                                <mat-card-subtitle>{{preco.tipoAnimal.nome}}</mat-card-subtitle>
+                                <mat-card-subtitle>{{preco.tipoAnimal.nome | translate}}</mat-card-subtitle>
                                 <div class="acoes-preco-por-tipo">
                                     <button mat-icon-button class="button-editar-preco-por-tipo" [disabled]="! preco.ativo" (click)="openDialogServicoPreco('ATUALIZAR', servico, preco)">
                                         <mat-icon class="icone"> edit </mat-icon>
@@ -36,8 +36,8 @@
                                 </div>
                             </div>                            
                             <mat-card-content>
-                                <span *ngIf="preco.tipoAnimal.porte">Porte: {{preco.tipoAnimal.porte}}</span><br *ngIf="preco.tipoAnimal.porte">
-                                <span *ngIf="preco.tipoAnimal.pelagem">Pelagem: {{preco.tipoAnimal.pelagem}}</span><br *ngIf="preco.tipoAnimal.porte"> 
+                                <span *ngIf="preco.tipoAnimal.porte">Porte: {{preco.tipoAnimal.porte | translate}}</span><br *ngIf="preco.tipoAnimal.porte">
+                                <span *ngIf="preco.tipoAnimal.pelagem">Pelagem: {{preco.tipoAnimal.pelagem | translate}}</span><br *ngIf="preco.tipoAnimal.porte"> 
                                 <span>{{preco.preco | currency: 'BRL'}}</span>
                             </mat-card-content>
                         </mat-card>
