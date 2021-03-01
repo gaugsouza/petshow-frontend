@@ -46,6 +46,7 @@ export class PerfilPrestadorComponent implements OnInit {
       this.prestadorService.buscaPrestador(id, token)
         .subscribe((usuario:Prestador) => {
           this.usuario = usuario;
+          console.log(this.usuario);
         },
         (err) => {
           this.handleError(err);

@@ -47,7 +47,7 @@
                         </mat-card-subtitle>
                         <mat-card-content>
                             <p>{{'DETALHES_SERVICO' | translate}}: </p>
-                            <p>{{servicoDetalhado.tipo.nome}}</p>
+                            <p>{{servicoDetalhado.tipo.nome | translate}}</p>
                             <p *ngIf="servicoDetalhado.descricao">{{'DESCRICAO' | translate}}: {{servicoDetalhado.descricao}}</p>
                             <p>{{'DATA_AGENDAMENTO' | translate}}: {{dataAgendamento | date: 'dd/MM/yyyy HH:mm'}}</p>
                             <p *ngIf="status">{{'STATUS_AGENDAMENTO' | translate}}: <span class="{{getStatusClassColor()}}">{{status}}</span></p>

@@ -97,7 +97,8 @@ $button-color: white;
 }
 
 .background {
-  height: 100%;
+  position: absolute;
+  height: 95%;
   width: 100%;
   background-image: url("../../assets/icons/cat_home_2.jpg");
   background-repeat: no-repeat;

@@ -76,8 +76,10 @@ export class HomeComponent implements OnInit {
       this.loading = false;
       this.servicos = JSON.parse(servicos || '[]');
       this.grupos = Array.from(new Set(this.servicos.map((servico) => servico.grupo)));
+      console.log('b', !this.loading && this.servicos && !this.servicos.length);
     },
     () => {
+      console.log('a');
       this.loading = false;
       this.servicos = [];
     })

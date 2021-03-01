@@ -37,6 +37,8 @@ import { PrestadorComponent } from '../prestador/prestador.component';
 import { JwtHelper } from '../util/jwt-helper';
 import {APP_BASE_HREF} from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
 
 describe('ConfirmationDialogComponent', () => {
   let component: ErrorDialogComponent;
@@ -78,6 +80,8 @@ describe('ConfirmationDialogComponent', () => {
         MatSliderModule,
         HttpClientTestingModule,
         MatTooltipModule,
+        MatProgressSpinnerModule,
+        MatAutocompleteModule
       ],
       providers: [
         {
