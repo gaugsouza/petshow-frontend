@@ -63,7 +63,7 @@
                 <mat-label>{{'SELECIONE_HORARIO_AGENDAMENTO' | translate}}</mat-label>
                 <mat-select (selectionChange)="geraDataAtendimento($event.value)">
                     <mat-option *ngFor="let horario of horariosAgendamento" [value]="horario">
-                        {{'HORARIO' | translate}}
+                        {{horario}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
