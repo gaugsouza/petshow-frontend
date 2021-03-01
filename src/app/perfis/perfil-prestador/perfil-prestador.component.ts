@@ -9,6 +9,8 @@ import { JwtHelper } from 'src/app/util/jwt-helper';
 import { NotificationService } from 'src/app/servicos/notification.service';
 import { ErrorDialogComponent } from 'src/app/confirmation-dialog/error-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Empresa } from 'src/app/interfaces/empresa';
+import { EmpresaService } from 'src/app/servicos/empresa.service';
 
 @Component({
   selector: 'app-perfil-prestador',
@@ -30,6 +32,7 @@ export class PerfilPrestadorComponent implements OnInit {
               private localStorageService:LocalStorageService,
               public dialog:MatDialog,
               private jwtHelper: JwtHelper,
+              private empresaService:EmpresaService,
               @Inject('ServicoNotificationService') private servicoNotification: NotificationService<ServicoDetalhado>) { }
 
   ngOnInit(): void {
@@ -106,10 +109,36 @@ export class PerfilPrestadorComponent implements OnInit {
     });
   }
 
+  geraTitulo() {
+    if (!this.usuario.empresa.id) {
+      return this.usuario.nome;
+    }
+
+    return this.usuario.empresa.razaoSocial || this.usuario.empresa.nome;
+  }
+
+  geraSubtitulo() {
+    return this.usuario.nome;
+  }
+
   atualizaEndereco(endereco:Endereco):void {
     this.usuarioRequest = { ...this.usuario };
     this.usuarioRequest.endereco = endereco;
     this.atualizaUsuario();
+  }
+
+  atualizaEnderecoEmpresa(endereco:Endereco):void {
+    const empresa = { ...this.usuario.empresa, endereco };
+    this.atualizaEmpresa(empresa);
+  }
+
+  atualizaEmpresa(empresa:Empresa):void {
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
+      this.empresaService.atualizaEmpresa(empresa, token)
+        .subscribe(() => {
+          this.getUsuario();
+        });
+    });
   }
 
   alteraTelefone(telefone:string):void {

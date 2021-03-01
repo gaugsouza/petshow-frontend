@@ -11,7 +11,7 @@
   ></app-info-pessoal-cadastro>
 
   <mat-form-field *ngIf="isPrestador()">
-    <mat-label>{{'DESC_SERVICO' | translate}}</mat-label>
+    <mat-label>{{'DESCRICAO' | translate}}</mat-label>
     <textarea matInput></textarea>
   </mat-form-field>
 
@@ -21,6 +21,15 @@
                         (altera-endereco)="setaEndereco($event)"
                         ></app-endereco-cadastro>
 
+  <div *ngIf="isPrestador()">
+    <mat-checkbox (change)="toggleFormEmpresa()">Desejo cadastrar minha empresa</mat-checkbox>
+    <app-cadastro-empresa
+      *ngIf="exibeFormEmpresa"
+      [empresa]="empresa"
+      (altera-empresa)="alteraEmpresa($event)"
+    ></app-cadastro-empresa>
+  </div>
+
   <p *ngIf="errorMessage">{{errorMessage | translate}}</p>
   <p *ngIf="erroRequisicao">{{erroRequisicao | translate}}</p>
 
@@ -28,6 +37,7 @@
     <input type="checkbox" (change)="toggleCheckBoxPoliticas()" />{{'CONCORDO-COM-A' | translate}} 
     <button mat-stroked-button color="link" (click)="openDialog()">{{'POLITICA-PRIVACIDADE' | translate}}</button>
   </div>
+
 
   
   <div class="form__button-container">

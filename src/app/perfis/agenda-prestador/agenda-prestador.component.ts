@@ -80,19 +80,6 @@ export class AgendaPrestadorComponent implements OnInit {
     });
   }
 
-  concluiAgendamento(agendamento:Agendamento) {
-    const concluidoId = this.statusAgendamento.find((status) => STATUS_AGENDAMENTO.concluido
-      .includes(status.nome.toUpperCase()));
-    this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
-      this.agendamentoService.alterarStatusAgendamento(agendamento.prestadorId,
-        concluidoId.id, agendamento.id, token)
-        .subscribe(() => {
-          this.buscarAgendamentosPorPrestador(this.prestadorId, this.paginaAtual,
-            this.quantidadeItens);
-        });
-    });
-  }
-
   cancelaAgendamento(agendamento) {
     const cancelRef = this.cancelamento.open(ConfirmacaoCancelamentoComponent,
       {
@@ -105,6 +92,27 @@ export class AgendaPrestadorComponent implements OnInit {
         this.localStorageService.getItem(USER_TOKEN).subscribe((token: string) => {
           this.agendamentoService.alterarStatusAgendamento(agendamento.prestadorId,
             cancelaId.id, agendamento.id, token)
+            .subscribe(() => {
+              this.buscarAgendamentosPorPrestador(this.prestadorId, this.paginaAtual,
+                this.quantidadeItens);
+            });
+        });
+      }
+    });
+  }
+
+  concluiAgendamento(agendamento) {
+    const cancelRef = this.cancelamento.open(ConfirmacaoCancelamentoComponent,
+      {
+        data: 'DESEJA_CONCLUIR_AGENDAMENTO',
+      });
+    cancelRef.afterClosed().subscribe((result) => {
+      if (result) {
+        const concluidoId = this.statusAgendamento.find((status) => STATUS_AGENDAMENTO.concluido
+          .includes(status.nome.toUpperCase()));
+        this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
+          this.agendamentoService.alterarStatusAgendamento(agendamento.prestadorId,
+            concluidoId.id, agendamento.id, token)
             .subscribe(() => {
               this.buscarAgendamentosPorPrestador(this.prestadorId, this.paginaAtual,
                 this.quantidadeItens);

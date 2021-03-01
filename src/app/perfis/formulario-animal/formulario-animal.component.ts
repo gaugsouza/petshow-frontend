@@ -16,7 +16,6 @@ import { USER_TOKEN } from 'src/app/util/constantes';
 export class FormularioAnimalComponent implements OnInit {
   @Input() animal: AnimalEstimacao = {
     nome: '',
-    tipo: { id: 2, nome: 'GATO' },
   };
 
   @Output('adiciona-animal') adicionaAnimal = new EventEmitter<AnimalEstimacao>();
@@ -44,7 +43,7 @@ export class FormularioAnimalComponent implements OnInit {
   }
 
   hasErrors() {
-    return this.nomeFormControl.hasError('required') || this.nomeFormControl.hasError('minLength');
+    return this.nomeFormControl.hasError('required') || this.nomeFormControl.hasError('minLength') || this.animal.tipo.nome === 'VAZIO';
   }
 
   getSelectionValue() {
@@ -78,7 +77,7 @@ export class FormularioAnimalComponent implements OnInit {
   limpa() {
     this.animal = {
       nome: '',
-      tipo: this.tiposAnimal[0],
+      tipo: { id: 2, nome: 'VAZIO' },
     };
   }
 }

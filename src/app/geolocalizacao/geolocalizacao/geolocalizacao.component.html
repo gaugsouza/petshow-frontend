@@ -1,12 +1,12 @@
 <div class="geolocalizacao-items">
+    <app-busca
+        [filtro]="filtro"
+        (altera-filtro)="alterarFiltro($event)"
+    ></app-busca>
     <app-mapa
         [isAtivo]="isAtivo"
         [isCliente]="isCliente"
         [isLogado]="isLogado"
     ></app-mapa>
-    <app-busca
-        [filtro]="filtro"
-        (altera-filtro)="alterarFiltro($event)"
-    ></app-busca>
 </div>
 

@@ -32,16 +32,27 @@ export class PrestadorComponent implements OnInit {
       });
   }
 
+  getTitulo() {
+    if (!this.prestador.empresa.id) {
+      return this.prestador.nome;
+    }
+
+    return this.prestador.empresa.razaoSocial || this.prestador.empresa.nome;
+  }
+
   /* eslint-disable no-param-reassign */
   getMediaUsuario():string {
     if (!this.prestador.servicos || this.prestador.servicos.length === 0) {
-      return (0).toFixed(2);
+      return 'SEM_AVALIACOES';
     }
     const somaMedias = this.prestador.servicos.reduce((soma:number, servico:ServicoDetalhado) => {
       soma += servico.mediaAvaliacao;
       return soma;
     }, 0);
-    return (somaMedias / this.prestador.servicos.length).toFixed(2);
+
+    const resultado = (somaMedias / this.prestador.servicos.length).toFixed(2);
+    if (!resultado) return 'SEM_AVALIACOES';
+    return resultado;
   }
 /* eslint-enable no-param-reassign */
 }

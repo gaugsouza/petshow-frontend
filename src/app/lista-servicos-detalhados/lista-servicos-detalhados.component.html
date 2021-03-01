@@ -1,15 +1,22 @@
 <!--TODO: Colocar checkbox para usar ou não geolocalização na busca-->
-<section>
+<section >
     <div class="topo-listagem">
         <h3 class="page-section-title">{{'SERVICOS_DISPONIVEIS' | translate}}</h3>
-        <div>
-            <button mat-flat-button color="primary" 
-                    [disabled]="idsAComparar.length < 2"
-                    (click)="compararServicos()">{{'COMPARAR_SERVICOS' | translate}}</button>
-        </div>
     </div>
+
+    <div class="botao_compare_mobile">
+        <span class="material-icons">
+            <button  mat-button color="primary" (click)="exibeFiltros()">
+            <mat-icon>filter_list</mat-icon>
+            </button>
+        </span>
+        <button mat-flat-button color="primary" 
+        [disabled]="idsAComparar.length < 2"
+        (click)="compararServicos()">{{'COMPARAR_SERVICOS' | translate}}</button>
+    </div>
+
     <div class="grid-content">
-        <div class="menu-servicos">
+        <div class="menu-servicos-not-mobile" *ngIf="isFiltrosVisiveis==true">
             <mat-toolbar>
                 <mat-toolbar-row>
                     {{'FILTROS' | translate}}:
@@ -69,23 +76,24 @@
                 </mat-toolbar-row>
                 <mat-divider></mat-divider>
             </mat-toolbar>
-            <mat-toolbar-row>
-                <div class="distancia-filtro">
-                    <span>Distância máxima</span>
-                    <mat-slider
-                        thumbLabel
-                        [displayWith]="formatLabel"
-                        min="100"
-                        max="50000"
-                        [(ngModel)]="filtro.metrosGeoloc"
-                        tickInterval="100"
-                        (change)="alteraValorSlider($event.value)"
-                    ></mat-slider>
-                </div>
-            </mat-toolbar-row>
+        </div>
+
+
+        
+        <div> 
+            <div class="conteiner-lista-servicos-detalhados" *ngIf="servicosDetalhados && servicosDetalhados.length; then servicosDetalhadosBlock else vazioBlock"></div>
         </div>
         <div>
-            <div class="conteiner-lista-servicos-detalhados" *ngIf="servicosDetalhados && servicosDetalhados.length; then servicosDetalhadosBlock else vazioBlock"></div>
+            <span>{{'DISTANCIA_MAXIMA' | translate}}</span>
+            <mat-slider
+                thumbLabel
+                [displayWith]="formatLabel"
+                min="100"
+                max="50000"
+                [(ngModel)]="filtro.metrosGeoloc"
+                tickInterval="100"
+                (change)="alteraValorSlider($event.value)"
+            ></mat-slider>
             <app-geolocalizacao
             [filtro]="filtro"
             [isCliente]="isCliente"
@@ -94,8 +102,6 @@
             (altera-filtro)="alteraFiltro($event)"
             ></app-geolocalizacao>
         </div>
-        
-        
     </div>    
     
     <ng-template #vazioBlock>
@@ -104,14 +110,20 @@
 
     <ng-template #servicosDetalhadosBlock>
         <div>
+        <div class="botao_compare">
+            <button mat-flat-button color="primary" 
+            [disabled]="idsAComparar.length < 2"
+            (click)="compararServicos()">{{'COMPARAR_SERVICOS' | translate}}</button>
+        </div>
         <mat-list class="lista-servicos-detalhados">
             <mat-list-item *ngFor="let servicoDetalhado of servicosDetalhados">
                 <div class="lista-servicos-detalhados__item">
-                    <div class ="nome_servico">
-                        {{servicoDetalhado.tipo.nome | translate}} 
+                    <div class="nome-prestador">
+                        <a mat-button class="lista-servicos-detalhados__button"  color="primary" href="/prestador/{{servicoDetalhado.prestadorId}}">{{geraTitulo(servicoDetalhado.prestador)}}</a>
                     </div>
                     <span class="preco-servico">{{'A_PARTIR_DE' | translate}}: {{getPrecoMinimo(servicoDetalhado) | currency: 'BRL'}}</span>
-                    <span><a mat-button color="primary" href="/prestador/{{servicoDetalhado.prestadorId}}">{{servicoDetalhado.prestador.nome}}</a>
+                    <span>
+                        {{servicoDetalhado.tipo.nome | translate}} 
                         <a mat-button color="primary" href="/prestador/{{servicoDetalhado.prestadorId}}/servico/{{servicoDetalhado.id}}/avaliacao">{{'AVALIACOES' | translate}}</a>
                     </span>  
                     <div class="lista-servicos-detalhados__button-container">
@@ -120,8 +132,7 @@
                             [checked]="deveSelecionar(servicoDetalhado.id)"
                             (change)="selecionaIds($event.checked, servicoDetalhado.id)">{{'COMPARAR' | translate}}</mat-checkbox>
                         <a mat-flat-button color="primary" href="prestador/{{servicoDetalhado.prestador.id}}/servicoDetalhado/{{servicoDetalhado.id}}/agendamento?isVisualizacao=false" [disabled]="!isCliente || !isAtivo"
-                        matTooltip="{{tooltipText | translate}}"
-                        >{{'AGENDAR' | translate}}</a>
+                        matTooltip="{{tooltipText | translate}}">{{'AGENDAR' | translate}}</a>
                     </div>
                 </div>
             </mat-list-item>
@@ -136,4 +147,5 @@
         </mat-paginator>
     </div>
     </ng-template>
+    
 </section>

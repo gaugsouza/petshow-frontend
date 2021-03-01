@@ -44,7 +44,7 @@
     <ng-template #objectBlock let-chave='chave'>
       <mat-form-field appearance="fill">
         <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-        <input matInput [(ngModel)]="tiposInputModel[chave].preco" 
+        <input matInput maxlength="12" [(ngModel)]="tiposInputModel[chave].preco" 
             class="form__servico-valor" mask='separator.2'
           [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
           [errorStateMatcher]="matcher" [ngModelOptions]="{standalone: true}"/>

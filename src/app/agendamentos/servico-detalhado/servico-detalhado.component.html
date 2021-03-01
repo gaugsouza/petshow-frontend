@@ -11,15 +11,23 @@
                 <div>
                     <p><strong> {{'SERVICO_SELECIONADO' | translate}} </strong> </p>
                     <p>{{'NOME' | translate}}: {{servicoDetalhado.tipo.nome | translate}}</p> 
-                    <p *ngIf="servicoDetalhado.descricao && servicoDetalhado.descricao !== ''">{{'DESC_SERVICO' | translate}}: {{servicoDetalhado.descricao | translate}}</p>
+                    <p *ngIf="servicoDetalhado.descricao && servicoDetalhado.descricao !== ''">{{'DESCRICAO' | translate}}: {{servicoDetalhado.descricao | translate}}</p>
                 </div>
                 <br>
-                <div>
+                <div *ngIf="!empresaExiste(); else empresaBlock">
                     <p> <strong> {{'PRESTADOR' | translate}} </strong></p>
                     <p><strong>{{'NOME' | translate}}:</strong> {{servicoDetalhado.prestador.nome}}</p>
                     <p><strong>{{'CPF' | translate}}:</strong> {{servicoDetalhado.prestador.cpf | mask: '000.000.000-00'}}</p>
                     <p><strong>E-mail:</strong> {{servicoDetalhado.prestador.login.email}}</p>
                 </div>
+                <ng-template #empresaBlock>
+                    <div>
+                        <p><strong>Empresa</strong></p>
+                        <p><strong>{{'NOME' | translate}}:</strong> {{geraNomeEmpresa() }}</p>
+                        <p><strong>CNPJ:</strong> {{servicoDetalhado.prestador.empresa.cnpj | mask: '00.000.000/0000-00'}}</p>
+                    </div>
+                </ng-template>
+
                 <br>
                 <div>
                     <p><strong> {{'ENDERECO' | translate}} </strong></p>
@@ -52,7 +60,7 @@
             </mat-form-field>
 
             <mat-form-field *ngIf="horariosAgendamento.length">
-                <mat-label>Selecione o horário para agendamento</mat-label>
+                <mat-label>{{'SELECIONE_HORARIO_AGENDAMENTO' | translate}}</mat-label>
                 <mat-select (selectionChange)="geraDataAtendimento($event.value)">
                     <mat-option *ngFor="let horario of horariosAgendamento" [value]="horario">
                         {{horario}}
@@ -67,7 +75,7 @@
     <p>{{'ADICIONAIS' | translate}}: </p>
     <mat-selection-list #adicionalList (selectionChange)="selecionaAdicional(adicionalList.selectedOptions.selected)">
         <mat-list-option *ngFor="let adicional of servicoDetalhado.adicionais" [value]="adicional">
-            <p><strong>{{adicional.nome}}</strong> - <span *ngIf="adicional.descricao">{{'DESC_SERVICO' | translate}}: {{adicional.descricao }}</span> -  <span class="preco">{{adicional.preco | currency: 'BRL'}}</span></p>
+            <p><strong>{{adicional.nome}}</strong> - <span *ngIf="adicional.descricao">{{'DESCRICAO' | translate}}: {{adicional.descricao }}</span> -  <span class="preco">{{adicional.preco | currency: 'BRL'}}</span></p>
         </mat-list-option>
     </mat-selection-list>
 </ng-template>

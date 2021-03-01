@@ -12,6 +12,12 @@ import { Location, DatePipe } from '@angular/common';
 import { ServicosService } from 'src/app/servicos/servicos.service';
 import { ServicoDetalhadoTipoAnimal } from 'src/app/interfaces/servico-detalhado-tipo-animal';
 import { Adicional } from 'src/app/interfaces/adicional';
+import { PagamentoService } from 'src/app/servicos/pagamento.service';
+import { ConfirmationDialogComponent } from 'src/app/perfis/confirmation-dialog/confirmation-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatStepper } from '@angular/material/stepper';
+import { ErrorDialogComponent } from 'src/app/confirmation-dialog/error-dialog.component';
+import { MERCADO_PAGO_URL } from 'src/app/util/url';
 
 @Component({
   selector: 'app-agendamento',
@@ -60,7 +66,9 @@ export class AgendamentoComponent implements OnInit {
     private location: Location,
     private jwtHelper: JwtHelper,
     private servicoService:ServicosService,
-    private datePipe: DatePipe) {}
+    private datePipe: DatePipe,
+    private pagamentoService: PagamentoService,
+    private dialog:MatDialog) {}
 
   ngOnInit(): void {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
@@ -111,8 +119,10 @@ export class AgendamentoComponent implements OnInit {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       this.agendamentoService.adicionarAgendamento(this.agendamento, token)
         .subscribe((agendamento:Agendamento) => {
-          this.router.navigate([`/agendamento-sucesso/${agendamento.id}`]);
+          this.idAgendamento = agendamento.id;
+          this.geraPreference(agendamento.id);
         }, ({ error }) => {
+          this.openErrorDialog(error);
           this.erroAgendamento = error;
         });
     });
@@ -120,5 +130,77 @@ export class AgendamentoComponent implements OnInit {
 
   recuperaDataAtendimento(data:Date) {
     this.dataAgendamento = data;
+  }
+
+  geraPreference(agendamentoId:number) {
+    this.pagamentoService.recuperaPreference(agendamentoId,
+      this.idCliente, this.token).subscribe((response) => {
+      const script = document.createElement('script');
+
+      script.src = MERCADO_PAGO_URL;
+      script.type = 'text/javascript';
+      script.dataset.preferenceId = response.preferenceId;
+      script.dataset.buttonLabel = 'Efetuar Pagamento';
+      script.onclick = this.getValorTotal();
+
+      document.getElementById('button-checkout').innerHTML = '';
+      document.querySelector('#button-checkout').appendChild(script);
+    });
+  }
+
+  getValorLista = (precos) => precos.reduce((acc, el) => { acc += el; return acc; }, 0);
+
+  getValorTotal() {
+    const valorTipos = this.getValorLista((this.precoPorTipo || []).map((el) => el.preco));
+
+    const valorAdicionais = this.getValorLista((this.adicionais || []).map((el) => el.preco));
+    return valorTipos + valorAdicionais;
+  }
+
+  openConfirmationAgendar(stepper: MatStepper) {
+    const data = {
+      mensagem: 'PROSSEGUIR_AGENDAMENTO',
+      response: true,
+    };
+
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '400px',
+      data: { ...data },
+    });
+
+    dialogRef.afterClosed().subscribe((resposta) => {
+      if (resposta) {
+        if (resposta.response) {
+          this.criarAgendamento();
+
+          stepper.next();
+        }
+      }
+    });
+  }
+
+  openErrorDialog(erro) {
+    const data = {
+      mensagem: typeof erro === 'string' ? erro : 'ERRO_REQUISICAO',
+      textoBotao: 'Ok',
+    };
+
+    const dialogRef = this.dialog.open(ErrorDialogComponent, {
+      width: '400px',
+      data: { ...data },
+    });
+
+    dialogRef.backdropClick().subscribe(() => {
+      this.router.navigate([`prestador/${this.idPrestador}/servicoDetalhado/${this.idServico}/agendamento?isVisualizacao=false`]);
+    });
+  }
+
+  cancelarAgendamento(stepper: MatStepper) {
+    this.agendamentoService.deletarAgendamento(this.idAgendamento,
+      this.idCliente, this.token).subscribe(() => {
+      this.idAgendamento = undefined;
+      document.getElementById('button-checkout').innerHTML = '';
+      stepper.reset();
+    });
   }
 }

@@ -1,24 +1,23 @@
-import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
+import { EmpresaService } from './empresa.service';
 import { JwtHelper } from '../util/jwt-helper';
-import { Geolocalizacao } from '../interfaces/geolocalizacao';
-import { GeolocalizacaoService } from './geolocalizacao.service';
 
-describe('GeolocalizacaoService', () => {
-  let service: GeolocalizacaoService;
+describe('EmpresaService', () => {
+  let service: EmpresaService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientModule,
-        LoggerTestingModule,
+        HttpClientTestingModule,
+        LoggerTestingModule
       ],
       providers: [
         JwtHelper
       ]
     });
-    service = TestBed.inject(GeolocalizacaoService);
+    service = TestBed.inject(EmpresaService);
   });
 
   it('should be created', () => {

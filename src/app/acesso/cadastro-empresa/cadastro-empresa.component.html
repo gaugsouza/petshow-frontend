@@ -1,0 +1,39 @@
+<div *ngIf="empresa">
+    <hr>
+    <h2>Formulário de empresa</h2>
+    <mat-form-field>
+        <mat-label>Nome da empresa</mat-label>
+        <input matInput [(ngModel)]="empresa.nome" (change)="alteraEmpresa('nome', $event.target.value)" [formControl]="nomeFormControl"/>
+        <mat-error *ngIf="nomeFormControl.hasError('required')">Valor deve ser preenchido</mat-error>
+        <mat-error *ngIf="nomeFormControl.hasError('minlength')">Nome da empresa deve ter no mínimo três caracteres</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field>
+        <mat-label>Nome Fantasia</mat-label>
+        <input matInput [(ngModel)]="empresa.razaoSocial"
+        [formControl]="nomeSocialFormControl"
+        (change)="alteraEmpresa('razaoSocial', $event.target.value)" /> 
+        <mat-error *ngIf="nomeSocialFormControl.hasError('minlength')">Nome Fantasia deve ter no mínimo três caracteres</mat-error>
+
+        <mat-error *ngIf="nomeSocialFormControl.hasError('required')">Valor deve ser preenchido</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>CNPJ</mat-label>
+        <input matInput [(ngModel)]="empresa.cnpj" 
+        [formControl]="cnpjFormControl"
+        (change)="alteraEmpresa('cnpj', $event.target.value)" mask="00.000.000/0000-00"/>
+
+        <mat-error *ngIf="cnpjFormControl.hasError('required')">Valor deve ser preenchdo</mat-error>
+        <mat-error *ngIf="cnpjFormControl.errors && cnpjFormControl.errors.cnpjvalidator">CNPJ inválido</mat-error>
+    </mat-form-field>
+    
+
+    <app-endereco-cadastro
+        [endereco]="endereco"
+        [numero-control]="numeroFormControl"
+        [cep-control]="cepFormControl"
+        (altera-endereco)="alteraEnderecoEmpresa($event)"
+    >
+    </app-endereco-cadastro>
+    <hr>
+</div>

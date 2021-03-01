@@ -18,7 +18,7 @@
                             {{animal.nome}}
                         </mat-card-subtitle>
                         <mat-card-content>
-                            <p>{{animal.tipo.nome}}</p>
+                            <p>{{animal.tipo.nome | translate}}</p>
                             <p *ngIf="animal.tipo.porte">{{'PORTE' | translate}}: {{animal.tipo.porte}}</p>
                             <p *ngIf="animal.tipo.pelagem">{{'PELAGEM' | translate}}: {{animal.tipo.pelagem}}</p>
                         </mat-card-content>
@@ -33,22 +33,22 @@
     <div *ngIf="prestador">
         <mat-card>
             <mat-card-title>
-                <p>{{prestador.nome}}</p>
+                <p>{{ geraTitulo() }}</p>
             </mat-card-title>
             <mat-card-subtitle>
                 {{'DADOS_DO' | translate}} {{'PRESTADOR' | translate}}
             </mat-card-subtitle>
             <mat-card-content>
-                <p>{{'NOME' | translate}}: {{prestador.nome}}</p>
+                <p>{{'NOME' | translate}}: {{ geraTitulo() }}</p>
                 <div *ngIf="servicoDetalhado">
                     <mat-card>
                         <mat-card-subtitle>
-                            {{servicoDetalhado.tipo.nome}}
+                            {{servicoDetalhado.tipo.nome | translate}}
                         </mat-card-subtitle>
                         <mat-card-content>
                             <p>{{'DETALHES_SERVICO' | translate}}: </p>
-                            <p>{{servicoDetalhado.tipo.nome}}</p>
-                            <p *ngIf="servicoDetalhado.descricao">Descrição: {{servicoDetalhado.descricao}}</p>
+                            <p>{{servicoDetalhado.tipo.nome | translate}}</p>
+                            <p *ngIf="servicoDetalhado.descricao">{{'DESCRICAO' | translate}}: {{servicoDetalhado.descricao}}</p>
                             <p>{{'DATA_AGENDAMENTO' | translate}}: {{dataAgendamento | date: 'dd/MM/yyyy HH:mm'}}</p>
                             <p *ngIf="status">{{'STATUS_AGENDAMENTO' | translate}}: <span class="{{getStatusClassColor()}}">{{status}}</span></p>
                         </mat-card-content>
@@ -60,7 +60,7 @@
                     <mat-card *ngFor="let adicional of adicionais">
                         <mat-card-content>
                             <p>{{adicional.nome}}</p>
-                            <p *ngIf="adicional.descricao"> {{'DESC_SERVICO' | translate}}: {{adicional.descricao}}</p>
+                            <p *ngIf="adicional.descricao"> {{'DESCRICAO' | translate}}: {{adicional.descricao}}</p>
                             <p>{{adicional.preco | currency: 'BRL'}}</p>
                         </mat-card-content>
                     </mat-card>

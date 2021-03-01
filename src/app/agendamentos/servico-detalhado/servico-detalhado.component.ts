@@ -128,4 +128,13 @@ export class ServicoDetalhadoComponent implements OnInit {
     this.dataAgendamento.setHours(Number.parseInt(horario.split(':')[0], 10));
     this.recuperaData.emit(this.dataAgendamento);
   }
+
+  empresaExiste() {
+    return !!this.servicoDetalhado.prestador.empresa.id;
+  }
+
+  geraNomeEmpresa() {
+    return this.servicoDetalhado.prestador.empresa.razaoSocial
+    || this.servicoDetalhado.prestador.empresa.nome;
+  }
 }

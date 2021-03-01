@@ -1,7 +1,9 @@
 import {
   Component, OnInit, Output, EventEmitter, Input,
 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Avaliacao } from 'src/app/interfaces/avaliacao';
+import { ConfirmacaoCancelamentoComponent } from 'src/app/perfis/confirmacao-cancelamento/confirmacao-cancelamento.component';
 import { AvaliacaoService } from 'src/app/servicos/avaliacao.service';
 
 @Component({
@@ -27,7 +29,11 @@ export class FormularioComponent implements OnInit {
 
   private NOTA_MAXIMA = 5;
 
-  constructor(private avaliacaoService:AvaliacaoService) { }
+  constructor(
+    private confirmacao: MatDialog,
+    private cancelamento: MatDialog,
+    private avaliacaoService:AvaliacaoService,
+  ) { }
 
   ngOnInit = (): void => {
   }
@@ -37,26 +43,22 @@ export class FormularioComponent implements OnInit {
   }
 
   adicionarAvaliacao() {
-    this.isEnabled = !this.isEnabled;
     this.adicionaAvaliacao.emit(this.avaliacao);
   }
 
   fecharFormulario() {
-    this.fechaFormulario.emit();
+    const cancelRef = this.cancelamento.open(ConfirmacaoCancelamentoComponent,
+      {
+        data: 'DESEJA_CONFIRMAR_CANCELAMENTO',
+      });
+    cancelRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.fechaFormulario.emit();
+      }
+    });
   }
 
   getEstrelas(campo:string): any[] {
-    // if (!this.avaliacao) {
-    //   return [];
-    // }
-    // const nota = this.avaliacao[campo];
-    // const estrelasEmBranco = this.NOTA_MAXIMA - nota;
-    // const estrelas:any[string] = [
-    //   [...Array(nota).keys()].map(() => 'star'),
-    //   [...Array(estrelasEmBranco).keys()].map(() => 'star_border'),
-    // ];
-    // return estrelas.flatMap((el:any) => el);
-
     return this.avaliacaoService.getEstrelasAvaliacao(this.avaliacao, campo);
   }
 }
