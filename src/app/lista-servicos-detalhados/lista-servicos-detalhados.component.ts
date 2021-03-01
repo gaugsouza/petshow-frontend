@@ -103,6 +103,7 @@ export class ListaServicosDetalhadosComponent implements OnInit {
 
         if (this.isCliente) {
           if(!this.filtro.posicaoAtual.geolocLatitude) {
+            console.log('É cliente e o filtro tá nulo');
             this.filtro = {
               ...this.filtro,
               metrosGeoloc: 600,
@@ -118,12 +119,6 @@ export class ListaServicosDetalhadosComponent implements OnInit {
         this.tooltipText = this.geraTooltip();
         this.validaGeolocalizacao(this.filtro);
       });
-    },
-    () => {
-    },
-    () => {
-      this.tooltipText = this.geraTooltip();
-      this.validaGeolocalizacao(this.filtro);
     });
   }
 
@@ -139,6 +134,7 @@ export class ListaServicosDetalhadosComponent implements OnInit {
       console.log('latMax', Number.parseFloat(latMax), Number.parseFloat((posicaoAtual || {}).geolocLatitude || '0'), Number.parseFloat(latMax) >= Number.parseFloat((posicaoAtual || {}).geolocLatitude || '0'));
       console.log('lonMin',Number.parseFloat(lonMin),  Number.parseFloat((posicaoAtual || {}).geolocLongitude ||'0'), Number.parseFloat(lonMin) <= Number.parseFloat((posicaoAtual || {}).geolocLongitude ||'0'));
       console.log('longMax', Number.parseFloat(lonMax), Number.parseFloat((posicaoAtual || {}).geolocLongitude || '0'), Number.parseFloat(lonMax) >= Number.parseFloat((posicaoAtual || {}).geolocLongitude || '0'))
+      console.log(centroCidade);
 
       if(!(Number.parseFloat(latMin) <= Number.parseFloat((posicaoAtual || {}).geolocLatitude || '0')) || !(Number.parseFloat(latMax) >= Number.parseFloat((posicaoAtual || {}).geolocLatitude || '0'))) {
         console.log('entrou');
