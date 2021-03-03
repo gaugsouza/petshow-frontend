@@ -64,6 +64,8 @@ export class ServicosComponent implements OnInit {
           this.quantidadeTotal = totalElements || this.quantidadeTotal;
           this.paginaAtual = (pageable || {}).pageNumber || this.paginaAtual;
           this.quantidadeItens = size || this.quantidadeItens;
+
+          console.log(content);
         });
     });
   }

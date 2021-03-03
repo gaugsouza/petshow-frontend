@@ -170,11 +170,11 @@ export class FormularioServicoComponent implements OnInit {
 
     const isValid = inputs.map((el) => {
       if (!el.length) {
-        return !!el.preco;
+        return (el.preco || 0) > 0;
       }
 
       const returnPortes = el.map((e) => e.portes
-        .map((porte) => !!porte.preco)
+        .map((porte) => (porte.preco || 0) > 0 )
         .reduce((acc, preco) => acc && preco, true)).reduce((acc, valor) => acc && valor, true);
 
       return returnPortes;
