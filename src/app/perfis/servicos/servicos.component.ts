@@ -64,8 +64,6 @@ export class ServicosComponent implements OnInit {
           this.quantidadeTotal = totalElements || this.quantidadeTotal;
           this.paginaAtual = (pageable || {}).pageNumber || this.paginaAtual;
           this.quantidadeItens = size || this.quantidadeItens;
-
-          console.log(content);
         });
     });
   }
@@ -221,7 +219,6 @@ export class ServicosComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((adicional:Adicional) => {
-      console.log(adicional);
       if (adicional) {
         this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
           const prestadorId = this.jwtHelper.recuperaIdToken(token);
