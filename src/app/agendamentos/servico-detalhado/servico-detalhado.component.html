@@ -14,12 +14,20 @@
                     <p *ngIf="servicoDetalhado.descricao && servicoDetalhado.descricao !== ''">{{'DESCRICAO' | translate}}: {{servicoDetalhado.descricao | translate}}</p>
                 </div>
                 <br>
-                <div>
+                <div *ngIf="!empresaExiste(); else empresaBlock">
                     <p> <strong> {{'PRESTADOR' | translate}} </strong></p>
                     <p><strong>{{'NOME' | translate}}:</strong> {{servicoDetalhado.prestador.nome}}</p>
                     <p><strong>{{'CPF' | translate}}:</strong> {{servicoDetalhado.prestador.cpf | mask: '000.000.000-00'}}</p>
                     <p><strong>E-mail:</strong> {{servicoDetalhado.prestador.login.email}}</p>
                 </div>
+                <ng-template #empresaBlock>
+                    <div>
+                        <p><strong>Empresa</strong></p>
+                        <p><strong>{{'NOME' | translate}}:</strong> {{geraNomeEmpresa() }}</p>
+                        <p><strong>CNPJ:</strong> {{servicoDetalhado.prestador.empresa.cnpj | mask: '00.000.000/0000-00'}}</p>
+                    </div>
+                </ng-template>
+
                 <br>
                 <div>
                     <p><strong> {{'ENDERECO' | translate}} </strong></p>
@@ -55,7 +63,7 @@
                 <mat-label>{{'SELECIONE_HORARIO_AGENDAMENTO' | translate}}</mat-label>
                 <mat-select (selectionChange)="geraDataAtendimento($event.value)">
                     <mat-option *ngFor="let horario of horariosAgendamento" [value]="horario">
-                        {{'HORARIO' | translate}}
+                        {{horario}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>

@@ -1,12 +1,12 @@
 @import "../../global.scss";
 
-
 .topo-listagem {
   display: flex;
   justify-content: space-between;
   width: 80%;
   margin: 0 auto;
   align-items: baseline;
+
   @media screen and (max-width: $tablet-width) {
     width: 100%;
   }
@@ -16,11 +16,11 @@
   font-size: 30px;
   padding: 30px 0 0 75px;
   color: $title-color;
+
   @media screen and (max-width: $tablet-width) {
     padding: 0px;
   }
 }
-
 
 mat-list-item {
   margin-bottom: 15px;
@@ -31,18 +31,17 @@ mat-list-item {
   }
 }
 
-.nome-prestador{
-  margin: 0 auto; 
+.nome-prestador {
+  margin: 0 auto;
+
   ::ng-deep .mat-button {
     font-size: 20px !important;
   }
 }
 
-
 mat-slider {
   width: 100%;
 }
-
 
 .lista-servicos-detalhados {
   margin-top: 5px;
@@ -74,8 +73,9 @@ mat-slider {
   &__button-container {
     margin: 0 auto;
     text-align: center;
-    mat-checkbox{
-      width:100%;
+
+    mat-checkbox {
+      width: 100%;
     }
   }
 
@@ -94,11 +94,12 @@ mat-slider {
 .menu-servicos-not-mobile {
   @media screen and (max-width: $tablet-width) {
     // display: none;
-    mat-form-field{
-      width:100%;
+    mat-form-field {
+      width: 100%;
     }
-    span{
-      width:100%;
+
+    span {
+      width: 100%;
     }
   }
 
@@ -135,25 +136,27 @@ mat-slider {
   color: #fff;
 }
 
-
-.botao_compare{
+.botao_compare {
   display: grid;
   justify-content: end;
   padding-right: 16px;
+
   @media screen and (max-width: $tablet-width) {
     display: none;
   }
 }
 
-.botao_compare_mobile{
+.botao_compare_mobile {
   display: none;
+
   @media screen and (max-width: $tablet-width) {
     display: grid;
     width: 100%;
     grid-template-columns: 1fr 1fr;
   }
+
   .material-icons {
     margin: 0px auto;
-    font-family: 'Material Icons' !important;
+    font-family: "Material Icons" !important;
   }
 }

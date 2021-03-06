@@ -5,6 +5,7 @@ import { SERVICO_DETALHADO_URL, TIPO_SERVICO_URL, PRESTADOR_SERVICE_URL } from '
 import { FiltroServicos } from '../interfaces/filtro-servicos';
 import { Adicional } from '../interfaces/adicional';
 import { ServicoDetalhadoTipoAnimal } from '../interfaces/servico-detalhado-tipo-animal';
+import { Cidade } from './consulta-estados.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,11 @@ export class ServicosService {
 
   getTipos(): Observable<any> {
     const URL = TIPO_SERVICO_URL;
+    return this.httpHandler.doGet<any>(URL);
+  }
+
+  getTiposPorCidade(cidade:Cidade) {
+    const URL = `${TIPO_SERVICO_URL}?estado=${cidade.estadoId}&cidade=${cidade.cidade}`;
     return this.httpHandler.doGet<any>(URL);
   }
 

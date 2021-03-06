@@ -9,5 +9,6 @@ export interface ServicoComparado {
     tabelaPrecos?:ServicoDetalhadoTipoAnimal[],
     tiposAtendidos?:object,
     adicionais?:Adicional[],
-    nome?:string
+    nome?:string,
+    tipo?:string
 }

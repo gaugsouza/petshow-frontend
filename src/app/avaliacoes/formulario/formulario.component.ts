@@ -4,7 +4,6 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { Avaliacao } from 'src/app/interfaces/avaliacao';
 import { ConfirmacaoCancelamentoComponent } from 'src/app/perfis/confirmacao-cancelamento/confirmacao-cancelamento.component';
-import { ConfirmationDialogComponent } from 'src/app/perfis/confirmation-dialog/confirmation-dialog.component';
 import { AvaliacaoService } from 'src/app/servicos/avaliacao.service';
 
 @Component({
@@ -30,58 +29,36 @@ export class FormularioComponent implements OnInit {
 
   private NOTA_MAXIMA = 5;
 
-  constructor( 
+  constructor(
     private confirmacao: MatDialog,
     private cancelamento: MatDialog,
-    private avaliacaoService:AvaliacaoService) { }
+    private avaliacaoService:AvaliacaoService,
+  ) { }
 
   ngOnInit = (): void => {
   }
 
   atualizaNota(campo:string, valor:number) {
-          this.avaliacao[campo] = valor;
+    this.avaliacao[campo] = valor;
   }
 
   adicionarAvaliacao() {
-    const confirmaRef = this.confirmacao.open
-    (ConfirmacaoCancelamentoComponent,
-      {
-        // data: {mensagem: 'DESEJA_CONFIRMAR_CANCELAMENTO'},
-        data: 'DESEJA_CONFIRMAR_CANCELAMENTO',
-      });
-      confirmaRef.afterClosed().subscribe((result) => {
-        if (result) {
-          this.isEnabled = !this.isEnabled;
-          this.adicionaAvaliacao.emit(this.avaliacao);
-        }
-      });
+    this.adicionaAvaliacao.emit(this.avaliacao);
   }
 
   fecharFormulario() {
-    const cancelRef = this.cancelamento.open
-    (ConfirmacaoCancelamentoComponent,
+    const cancelRef = this.cancelamento.open(ConfirmacaoCancelamentoComponent,
       {
         data: 'DESEJA_CONFIRMAR_CANCELAMENTO',
       });
-      cancelRef.afterClosed().subscribe((result) => {
-        if (result) {
-          this.fechaFormulario.emit();
-        }
-      });
+    cancelRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.fechaFormulario.emit();
+      }
+    });
   }
 
   getEstrelas(campo:string): any[] {
-    // if (!this.avaliacao) {
-    //   return [];
-    // }
-    // const nota = this.avaliacao[campo];
-    // const estrelasEmBranco = this.NOTA_MAXIMA - nota;
-    // const estrelas:any[string] = [
-    //   [...Array(nota).keys()].map(() => 'star'),
-    //   [...Array(estrelasEmBranco).keys()].map(() => 'star_border'),
-    // ];
-    // return estrelas.flatMap((el:any) => el);
-
     return this.avaliacaoService.getEstrelasAvaliacao(this.avaliacao, campo);
   }
 }
