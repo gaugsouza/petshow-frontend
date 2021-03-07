@@ -3,5 +3,6 @@ export interface Adicional {
     nome?:string,
     descricao?:string,
     preco?:number,
-    servicoDetalhadoId?: number
+    servicoDetalhadoId?: number,
+    ativo?: boolean,
 }
