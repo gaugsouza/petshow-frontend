@@ -19,20 +19,24 @@
     </app-servico-detalhado>
     <div class="button-container">
       <button class="btn-esquerda" mat-flat-button color="primary" matStepperPrevious>{{'VOLTAR' | translate}}</button>
-      <button class="btn-direita" mat-flat-button color="primary" (click)="openConfirmationAgendar(stepper)"
-        [disabled]="!dataAgendamento">{{'AGENDAR' | translate}}</button>
+      <div class="btn-direita btn-agendar-container">
+        <button class="btn-esquerda" mat-stroked-button color="primary" (click)="abrirModalNegociacao()" [disabled]="!dataAgendamento">{{'FAZER_OFERTA' | translate}}</button>
+        <button class="btn-direita" mat-flat-button color="primary" (click)="openConfirmationAgendar(stepper)"
+          [disabled]="!dataAgendamento">{{'AGENDAR' | translate}}</button>
+      </div>
     </div>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>{{'RESUMO_PAGAMENTO' | translate}}</ng-template>
     <app-dados-agendamento *ngIf="idCliente" [idPrestador]="idPrestador" [animais]="animaisEstimacao"
       [precoPorTipo]="precoPorTipo" [isVisualizacao]="isVisualizacao" [adicionais]="adicionais"
-      [servicoDetalhado]="servicoSelecionado" [idCliente]="idCliente" [dataAgendamento]="dataAgendamento" [status]="">
+      [servicoDetalhado]="servicoSelecionado" [idCliente]="idCliente" [dataAgendamento]="dataAgendamento" [status]="" [negociacao]="negociacao">
     </app-dados-agendamento>
 
       <div class="button-container">
         <button class="btn-esquerda" mat-flat-button color="warn" (click)="cancelarAgendamento(stepper)">{{'CANCELAR' | translate}}</button>
-        <div class="btn-mercado-pago" id="button-checkout"></div> 
+        <div class="btn-mercado-pago" id="button-checkout" *ngIf="!negociacao"></div>
+        <button class="btn-direita" mat-flat-button color="primary" (click)="redirecionaTelaConfirmacao()" *ngIf="negociacao">{{'CONFIRMAR_AGENDAMENTO' | translate}}</button>
       </div>
 
   </mat-step>

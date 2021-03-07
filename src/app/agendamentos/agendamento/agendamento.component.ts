@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { AgendamentoService } from 'src/app/servicos/agendamento.service';
@@ -18,6 +18,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
 import { ErrorDialogComponent } from 'src/app/confirmation-dialog/error-dialog.component';
 import { MERCADO_PAGO_URL } from 'src/app/util/url';
+import { ModalNegociacaoComponent } from '../modal-negociacao/modal-negociacao.component';
+import { Negociacao } from 'src/app/interfaces/negociacao';
 
 @Component({
   selector: 'app-agendamento',
@@ -58,6 +60,10 @@ export class AgendamentoComponent implements OnInit {
   dataAgendamento:Date;
 
   erroAgendamento:string;
+
+  negociacao:Negociacao = null;
+
+  @ViewChild('stepper') private stepper: MatStepper;
 
   constructor(private route:ActivatedRoute,
     private localStorageService:LocalStorageService,
@@ -114,18 +120,25 @@ export class AgendamentoComponent implements OnInit {
       animaisAtendidosIds: [...(this.animaisEstimacao || []).map((el) => el.id)],
       adicionaisIds: [...(this.adicionais || []).map((el) => el.id)],
       data: this.datePipe.transform(this.dataAgendamento, 'dd/MM/yyyy HH:mm'),
+      negociacao: {...this.negociacao},
     };
 
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       this.agendamentoService.adicionarAgendamento(this.agendamento, token)
         .subscribe((agendamento:Agendamento) => {
           this.idAgendamento = agendamento.id;
-          this.geraPreference(agendamento.id);
+          if(!agendamento.negociacao) {
+            this.geraPreference(agendamento.id);
+          }
         }, ({ error }) => {
           this.openErrorDialog(error);
           this.erroAgendamento = error;
         });
     });
+  }
+
+  redirecionaTelaConfirmacao() {
+    this.router.navigate([`agendamento-sucesso/${this.idAgendamento}`]);
   }
 
   recuperaDataAtendimento(data:Date) {
@@ -202,5 +215,21 @@ export class AgendamentoComponent implements OnInit {
       document.getElementById('button-checkout').innerHTML = '';
       stepper.reset();
     });
+  }
+
+  abrirModalNegociacao() {
+    const dialogRef = this.dialog.open(
+      ModalNegociacaoComponent,
+      {
+        width: '600px',
+        data: {...this.negociacao}
+      }
+    );
+
+    dialogRef.afterClosed().subscribe((negociacao) => {
+      this.negociacao = {...negociacao};
+      console.log(this.negociacao);
+      this.openConfirmationAgendar(this.stepper);
+    })
   }
 }

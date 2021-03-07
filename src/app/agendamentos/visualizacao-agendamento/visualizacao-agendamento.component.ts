@@ -9,6 +9,7 @@ import { JwtHelper } from 'src/app/util/jwt-helper';
 import { UsuarioService } from 'src/app/servicos/usuario.service';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { TipoPessoa } from 'src/app/enum/tipo-pessoa.enum';
+import { Negociacao } from 'src/app/interfaces/negociacao';
 
 @Component({
   selector: 'app-visualizacao-agendamento',
@@ -47,12 +48,17 @@ export class VisualizacaoAgendamentoComponent implements OnInit {
 
   ngOnInit(): void {
     this.idAgendamento = +this.route.snapshot.paramMap.get('idAgendamento');
+    this.buscaAgendamento();
+  
+  }
 
+  buscaAgendamento() {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       this.idUsuario = this.helper.recuperaIdToken(token);
       this.agendamentoService.ativarAgendamento(this.idAgendamento, this.idUsuario, token)
         .subscribe((agendamento) => {
           this.agendamento = agendamento;
+          console.log(agendamento);
         });
 
       this.clienteService.getUsuario(token).subscribe((usuario:Usuario) => {
@@ -112,5 +118,14 @@ export class VisualizacaoAgendamentoComponent implements OnInit {
 
   fechaFormulario() {
     this.isFormVisible = false;
+  }
+
+  atualizaNegociacao(negociacao:Negociacao) {
+    console.log(negociacao);
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
+      this.agendamentoService.confirmarNegociacao(this.agendamento.id, this.agendamento.prestadorId, negociacao, token).subscribe(() => {
+        this.buscaAgendamento();
+      });
+    })
   }
 }

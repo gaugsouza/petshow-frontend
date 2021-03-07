@@ -1,15 +1,19 @@
 import {
-  ChangeDetectorRef, Component, Input, OnInit,
+  ChangeDetectorRef, Component, EventEmitter, Input, OnInit,
 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Adicional } from 'src/app/interfaces/adicional';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
 import { Cliente } from 'src/app/interfaces/cliente';
+import { Negociacao } from 'src/app/interfaces/negociacao';
 import { Prestador } from 'src/app/interfaces/prestador';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { ServicoDetalhadoTipoAnimal } from 'src/app/interfaces/servico-detalhado-tipo-animal';
+import { ConfirmacaoCancelamentoComponent } from 'src/app/perfis/confirmacao-cancelamento/confirmacao-cancelamento.component';
+import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { PrestadorService } from 'src/app/servicos/prestador.service';
 import { UsuarioService } from 'src/app/servicos/usuario.service';
-import { STATUS_AGENDAMENTO } from 'src/app/util/constantes';
+import { STATUS_AGENDAMENTO, USER_TOKEN } from 'src/app/util/constantes';
 
 @Component({
   selector: 'app-dados-agendamento',
@@ -35,13 +39,21 @@ export class DadosAgendamentoComponent implements OnInit {
 
   @Input('status') status:string;
 
+  @Input() negociacao:Negociacao;
+
+  @Input() isCliente?:boolean = null;
+
+  @Input() atualizaNegociacao?:EventEmitter<Negociacao> = new EventEmitter<Negociacao>();
+
   cliente:Cliente;
 
   prestador:Prestador;
 
   constructor(private prestadorService:PrestadorService,
               private clienteService:UsuarioService,
-              private ref:ChangeDetectorRef) { }
+              private ref:ChangeDetectorRef,
+              private dialog:MatDialog,
+              private localStorage:LocalStorageService) { }
 
   ngOnInit(): void {
     this.prestadorService.buscaPrestador(this.idPrestador).subscribe((prestador) => {
@@ -80,11 +92,43 @@ export class DadosAgendamentoComponent implements OnInit {
     return 'nao-realizado';
   }
 
+  geraStatusOferta(status:boolean) {
+    console.log(this.negociacao, status);
+    if(status === null) {
+      return 'PENDENTE';
+    }
+
+    return status ? 'ACEITO' : 'NEGADO';
+  }
+
+
   geraTitulo() {
     if (!this.prestador.empresa.id) {
       return this.prestador.nome;
     }
 
     return this.prestador.empresa.razaoSocial || this.prestador.empresa.nome;
+  }
+
+  clienteVisualizando() {
+    if(this.isCliente === null) {
+      return null;
+    }
+
+    return this.isCliente;
+  }
+
+  confirmarNegociacao(status:boolean) {
+    const dialogRef = this.dialog.open(ConfirmacaoCancelamentoComponent, {
+      width: '200px',
+      data: 'CONFIRMAR_NEGOCIACAO'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.negociacao = {...this.negociacao, respostaOferta: status};
+        this.atualizaNegociacao.emit(this.negociacao);
+      }
+    });
   }
 }
