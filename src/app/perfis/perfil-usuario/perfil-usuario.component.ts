@@ -46,7 +46,6 @@ export class PerfilUsuarioComponent implements OnInit {
 
   selecionaAnimal(animalEstimacao:AnimalEstimacao): void {
     this.animal = { ...animalEstimacao };
-    console.log(animalEstimacao)
     this.exibeFormulario(false);
   }
 
@@ -100,7 +99,7 @@ export class PerfilUsuarioComponent implements OnInit {
   editaAnimal(animalEstimacao : AnimalEstimacao) : void {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
       this.usuarioService.atualizarAnimalEstimacao(animalEstimacao.id, animalEstimacao, token)
-        .subscribe(obj => {
+        .subscribe((obj) => {
           this.getUsuario();
           this.limpaAnimal();
           this.animalNotification.notify(obj);

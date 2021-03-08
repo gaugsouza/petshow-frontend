@@ -51,7 +51,6 @@ export class FormularioAnimalComponent implements OnInit {
   }
 
   insereAnimal() {
-    console.log(this.animal)
     this.adicionaAnimal.emit(this.animal);
   }
 

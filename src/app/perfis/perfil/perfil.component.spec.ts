@@ -96,6 +96,7 @@ describe('PerfilComponent', () => {
         MatSlideToggleModule,
         MatTabsModule,
         MatCheckboxModule,
+        HttpClientTestingModule,
        ]
     })
     .compileComponents();

@@ -12,12 +12,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { JwtHelper } from 'src/app/util/jwt-helper';
 import { Adicional } from 'src/app/interfaces/adicional';
 import { ServicoDetalhadoTipoAnimal } from 'src/app/interfaces/servico-detalhado-tipo-animal';
-import { ServicoPrecoDialogComponent } from '../servico-preco-dialog/servico-preco-dialog.component';
-import { AdicionalDialogComponent } from '../adicional-dialog/adicional-dialog.component';
-import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
-import { PrestadorComponent } from 'src/app/prestador/prestador.component';
+import { ServicoPrecoDialogComponent } from 'src/app/perfis/servico-preco-dialog/servico-preco-dialog.component';
+import { AdicionalDialogComponent } from 'src/app/perfis/adicional-dialog/adicional-dialog.component';
+import { ConfirmationDialogComponent } from 'src/app/perfis/confirmation-dialog/confirmation-dialog.component';
 import { UsuarioService } from 'src/app/servicos/usuario.service';
-import { TipoAnimal } from 'src/app/enum/TipoAnimal';
 
 @Component({
   selector: 'app-servicos',
@@ -52,15 +50,15 @@ export class ServicosComponent implements OnInit {
   ngOnInit(): void {
     this.servicoNotification.notify({});
     this.servicoNotification.obs.subscribe(() => {
-      this.buscarServicosDetalhadosPorPrestador(this.prestadorId, this.paginaAtual, this.quantidadeItens);
+      this.buscarServicosDetalhadosPorPrestador(this.prestadorId, this.paginaAtual,
+        this.quantidadeItens);
     });
     this.usuarioService.buscarTiposAnimalEstimacao().subscribe(
       (response) => {
-        let tipos = JSON.parse(response)
-        this.tiposAnimais = Array.from(new Set(tipos.map(tipo => tipo.nome)));
-        console.log(this.tiposAnimais)
-      }
-    )
+        const tipos = JSON.parse(response);
+        this.tiposAnimais = Array.from(new Set(tipos.map((tipo) => tipo.nome)));
+      },
+    );
   }
 
   buscarServicosDetalhadosPorPrestador(prestadorId:number, pagina:number, quantidadeItens:number) {
@@ -88,13 +86,13 @@ export class ServicosComponent implements OnInit {
   }
 
   openDialogAtualizacao(adicional: Adicional) {
-    let newAdicional: Adicional = {
+    const newAdicional: Adicional = {
       id: adicional.id,
       nome: adicional.nome,
       descricao: adicional.descricao,
       preco: adicional.preco,
       servicoDetalhadoId: adicional.servicoDetalhadoId,
-      ativo: adicional.ativo
+      ativo: adicional.ativo,
     };
 
     const data = {
@@ -110,7 +108,6 @@ export class ServicosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((response:Adicional) => {
       if (response) {
-        console.log(response)
         this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
           const prestadorId = this.jwtHelper.recuperaIdToken(token);
 
@@ -122,7 +119,7 @@ export class ServicosComponent implements OnInit {
             });
         });
       }
-    });  
+    });
   }
 
   openConfirmationDialogAdicional(adicional) {
@@ -142,7 +139,6 @@ export class ServicosComponent implements OnInit {
         if (dado.response) {
           this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
             const prestadorId = this.jwtHelper.recuperaIdToken(token);
-            console.log(adicional)
             this.servicosService.desativarAdicional(prestadorId,
               adicional.servicoDetalhadoId, adicional.id, adicional.ativo, token)
               .subscribe(() => {
@@ -296,7 +292,7 @@ export class ServicosComponent implements OnInit {
     });
   }
 
-  possuiTipo(servico: ServicoDetalhado, nome: string) {
-    return servico.precoPorTipo.map(preco => preco.tipoAnimal.nome).includes(nome);
-  }
+  possuiTipo = (servico: ServicoDetalhado, nome: string) => servico.precoPorTipo
+    .map((preco) => preco.tipoAnimal.nome)
+    .includes(nome);
 }

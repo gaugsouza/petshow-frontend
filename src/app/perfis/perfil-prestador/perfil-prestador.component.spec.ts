@@ -89,6 +89,7 @@ describe('PerfilPrestadorComponent', () => {
         MatSlideToggleModule,
         MatTabsModule,
         MatCheckboxModule,
+        HttpClientTestingModule,
       ]
       
     })

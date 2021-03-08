@@ -22,6 +22,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { ConfigModule } from '../../config/config.module';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ServicosComponent', () => {
   let component: ServicosComponent;
@@ -55,6 +56,7 @@ describe('ServicosComponent', () => {
         MatIconModule,
         MatSlideToggleModule,
         MatTabsModule,
+        HttpClientTestingModule,
      ]
     })
     .compileComponents();
