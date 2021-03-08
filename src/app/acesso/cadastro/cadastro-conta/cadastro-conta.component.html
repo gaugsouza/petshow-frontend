@@ -12,7 +12,7 @@
 
   <mat-form-field *ngIf="isPrestador()">
     <mat-label>{{'DESCRICAO' | translate}}</mat-label>
-    <textarea matInput></textarea>
+    <textarea maxlength="280" matInput></textarea>
   </mat-form-field>
 
   <app-endereco-cadastro [endereco]="usuario.endereco"
