@@ -21,10 +21,6 @@
                         (altera-endereco)="setaEndereco($event)"
                         ></app-endereco-cadastro>
 
-<<<<<<< HEAD
-  <p textcolor="red" *ngIf="errorMessage">{{errorMessage | translate}}</p>
-  <p textcolor="red" *ngIf="erroRequisicao">{{erroRequisicao | translate}}</p>
-=======
   <div *ngIf="isPrestador()">
     <mat-checkbox (change)="toggleFormEmpresa()">Desejo cadastrar minha empresa</mat-checkbox>
     <app-cadastro-empresa
@@ -34,9 +30,8 @@
     ></app-cadastro-empresa>
   </div>
 
-  <p *ngIf="errorMessage">{{errorMessage | translate}}</p>
-  <p *ngIf="erroRequisicao">{{erroRequisicao | translate}}</p>
->>>>>>> be1bece40f788f63afc1cd336ac55c28406d7a3a
+  <p textcolor="red" *ngIf="errorMessage">{{errorMessage | translate}}</p>
+  <p textcolor="red" *ngIf="erroRequisicao">{{erroRequisicao | translate}}</p>
 
   <div>
     <input type="checkbox" (change)="toggleCheckBoxPoliticas()" />{{'CONCORDO-COM-A' | translate}} 
