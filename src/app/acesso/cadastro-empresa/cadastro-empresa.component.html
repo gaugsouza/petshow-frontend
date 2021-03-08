@@ -3,14 +3,14 @@
     <h2>Formulário de empresa</h2>
     <mat-form-field>
         <mat-label>Nome da empresa</mat-label>
-        <input matInput [(ngModel)]="empresa.nome" (change)="alteraEmpresa('nome', $event.target.value)" [formControl]="nomeFormControl"/>
+        <input maxlength="80" matInput [(ngModel)]="empresa.nome" (change)="alteraEmpresa('nome', $event.target.value)" [formControl]="nomeFormControl"/>
         <mat-error *ngIf="nomeFormControl.hasError('required')">Valor deve ser preenchido</mat-error>
         <mat-error *ngIf="nomeFormControl.hasError('minlength')">Nome da empresa deve ter no mínimo três caracteres</mat-error>
     </mat-form-field>
     
     <mat-form-field>
         <mat-label>Nome Fantasia</mat-label>
-        <input matInput [(ngModel)]="empresa.razaoSocial"
+        <input maxlength="90" matInput [(ngModel)]="empresa.razaoSocial"
         [formControl]="nomeSocialFormControl"
         (change)="alteraEmpresa('razaoSocial', $event.target.value)" /> 
         <mat-error *ngIf="nomeSocialFormControl.hasError('minlength')">Nome Fantasia deve ter no mínimo três caracteres</mat-error>
