@@ -47,6 +47,12 @@ mat-list-item {
   align-items: center;
 }
 
+.preco-por-tipo-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .button-editar-preco-por-tipo {
   display: flex;
 }
@@ -64,6 +70,8 @@ mat-list-item {
   margin-top: 5px;
 }
 
-.chips-adicional {
-  margin-top: 10px;
+.session-title {
+  display: block;
+  font-size: 16px;
+  margin: 12px 0 12px 0;
 }
