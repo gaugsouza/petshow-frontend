@@ -120,7 +120,7 @@ export class AgendamentoComponent implements OnInit {
       animaisAtendidosIds: [...(this.animaisEstimacao || []).map((el) => el.id)],
       adicionaisIds: [...(this.adicionais || []).map((el) => el.id)],
       data: this.datePipe.transform(this.dataAgendamento, 'dd/MM/yyyy HH:mm'),
-      negociacao: {...this.negociacao},
+      negociacao: this.negociacao ? {...this.negociacao} : null,
     };
 
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
@@ -228,7 +228,6 @@ export class AgendamentoComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((negociacao) => {
       this.negociacao = {...negociacao};
-      console.log(this.negociacao);
       this.openConfirmationAgendar(this.stepper);
     })
   }

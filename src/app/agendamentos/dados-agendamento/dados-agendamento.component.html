@@ -95,8 +95,8 @@
             </mat-card-content>
             <mat-card-actions *ngIf="!(clienteVisualizando() === null)">
                 <div *ngIf="!clienteVisualizando() && negociacao.respostaOferta === null; else clienteBtnContainer" class="btn-prestador-container">
-                    <button mat-flat-button color="primary" (click)="confirmarNegociacao(true)">{{'ACEITAR' | translate}}</button>
                     <button mat-flat-button color="warn" (click)="confirmarNegociacao(false)">{{'RECUSAR' | translate}}</button>
+                    <button mat-flat-button color="primary" (click)="confirmarNegociacao(true)">{{'ACEITAR' | translate}}</button>
                 </div>
                 <ng-template #clienteBtnContainer>
                     <div *ngIf="negociacao.respostaOferta && clienteVisualizando()">

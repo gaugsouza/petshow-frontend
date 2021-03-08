@@ -84,7 +84,6 @@ export class AgendamentoService {
 
   confirmarNegociacao = (agendamentoId:number, prestadorId:number, negociacao:Negociacao, token:string) => {
     const URL = `${this.AGENDAMENTO_SERVICE_URL}/${agendamentoId}/prestador/${prestadorId}/negociacao`;
-    console.log(URL, prestadorId, negociacao, token);
     return this.httpHandler.doPatch<any>(URL, token, negociacao);
   }
 }

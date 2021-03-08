@@ -39,15 +39,23 @@
       
     }
   }
+
+  &.botao-sozinho {
+    justify-content: flex-end;
+  }
 }
 
 .button-container {
   margin-top: 25px;
   width: 100%;
+
+  .btn-direita {
+    justify-self: flex-end;
+  }
 }
 
 .btn-agendar-container {
-  width: 200px;
+  width: 320px;
   @media(max-width: 525px) {
     width: 100%
   }
@@ -61,4 +69,8 @@
 .btn-mercado-pago {
   display: flex;
   margin-left: auto;
+}
+
+.btn {
+  width: 150px;
 }

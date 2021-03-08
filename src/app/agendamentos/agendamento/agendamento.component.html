@@ -7,8 +7,8 @@
         (recupera-animais-estimacao)="recuperaAnimaisEstimacaoSelecionados($event)">
       </app-animal-estimacao>
     </div>
-    <div class="button-container">
-      <button class="btn-direita" mat-flat-button color="primary" matStepperNext
+    <div class="button-container botao-sozinho">
+      <button class="btn-direita btn" mat-flat-button color="primary" matStepperNext
         [disabled]="!animaisEstimacao || !animaisEstimacao.length">{{'PROXIMO' | translate}}</button>
     </div>
   </mat-step>
@@ -18,10 +18,10 @@
       (retorna-adicionais)="recuperaAdicionais($event)" (recupera-data)="recuperaDataAtendimento($event)">
     </app-servico-detalhado>
     <div class="button-container">
-      <button class="btn-esquerda" mat-flat-button color="primary" matStepperPrevious>{{'VOLTAR' | translate}}</button>
+      <button class="btn-esquerda btn" mat-flat-button color="primary" matStepperPrevious>{{'VOLTAR' | translate}}</button>
       <div class="btn-direita btn-agendar-container">
-        <button class="btn-esquerda" mat-stroked-button color="primary" (click)="abrirModalNegociacao()" [disabled]="!dataAgendamento">{{'FAZER_OFERTA' | translate}}</button>
-        <button class="btn-direita" mat-flat-button color="primary" (click)="openConfirmationAgendar(stepper)"
+        <button class="btn-esquerda btn" mat-stroked-button color="primary" (click)="abrirModalNegociacao()" [disabled]="!dataAgendamento">{{'FAZER_OFERTA' | translate}}</button>
+        <button class="btn-direita btn" mat-flat-button color="primary" (click)="openConfirmationAgendar(stepper)"
           [disabled]="!dataAgendamento">{{'AGENDAR' | translate}}</button>
       </div>
     </div>
@@ -34,9 +34,9 @@
     </app-dados-agendamento>
 
       <div class="button-container">
-        <button class="btn-esquerda" mat-flat-button color="warn" (click)="cancelarAgendamento(stepper)">{{'CANCELAR' | translate}}</button>
+        <button class="btn-esquerda btn" mat-flat-button color="warn" (click)="cancelarAgendamento(stepper)">{{'CANCELAR' | translate}}</button>
         <div class="btn-mercado-pago" id="button-checkout" *ngIf="!negociacao"></div>
-        <button class="btn-direita" mat-flat-button color="primary" (click)="redirecionaTelaConfirmacao()" *ngIf="negociacao">{{'CONFIRMAR_AGENDAMENTO' | translate}}</button>
+        <button class="btn-direita btn" mat-flat-button color="primary" (click)="redirecionaTelaConfirmacao()" *ngIf="negociacao">{{'CONFIRMAR_AGENDAMENTO' | translate}}</button>
       </div>
 
   </mat-step>
