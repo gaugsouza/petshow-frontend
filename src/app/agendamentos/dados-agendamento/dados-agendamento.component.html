@@ -94,7 +94,7 @@
                 <p>Status: {{ geraStatusOferta(negociacao.respostaOferta) | translate}}</p>
             </mat-card-content>
             <mat-card-actions *ngIf="!(clienteVisualizando() === null)">
-                <div *ngIf="!clienteVisualizando() && negociacao.respostaOferta === null; else clienteBtnContainer">
+                <div *ngIf="!clienteVisualizando() && negociacao.respostaOferta === null; else clienteBtnContainer" class="btn-prestador-container">
                     <button mat-flat-button color="primary" (click)="confirmarNegociacao(true)">{{'ACEITAR' | translate}}</button>
                     <button mat-flat-button color="warn" (click)="confirmarNegociacao(false)">{{'RECUSAR' | translate}}</button>
                 </div>

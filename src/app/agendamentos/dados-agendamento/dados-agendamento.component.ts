@@ -1,5 +1,5 @@
 import {
-  ChangeDetectorRef, Component, EventEmitter, Input, OnInit,
+  ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Adicional } from 'src/app/interfaces/adicional';
@@ -43,7 +43,7 @@ export class DadosAgendamentoComponent implements OnInit {
 
   @Input() isCliente?:boolean = null;
 
-  @Input() atualizaNegociacao?:EventEmitter<Negociacao> = new EventEmitter<Negociacao>();
+  @Output() atualizaNegociacao?:EventEmitter<Negociacao> = new EventEmitter<Negociacao>();
 
   cliente:Cliente;
 
@@ -52,8 +52,7 @@ export class DadosAgendamentoComponent implements OnInit {
   constructor(private prestadorService:PrestadorService,
               private clienteService:UsuarioService,
               private ref:ChangeDetectorRef,
-              private dialog:MatDialog,
-              private localStorage:LocalStorageService) { }
+              private dialog:MatDialog) { }
 
   ngOnInit(): void {
     this.prestadorService.buscaPrestador(this.idPrestador).subscribe((prestador) => {
@@ -93,7 +92,6 @@ export class DadosAgendamentoComponent implements OnInit {
   }
 
   geraStatusOferta(status:boolean) {
-    console.log(this.negociacao, status);
     if(status === null) {
       return 'PENDENTE';
     }
@@ -125,9 +123,9 @@ export class DadosAgendamentoComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
       if(result) {
-        this.negociacao = {...this.negociacao, respostaOferta: status};
-        this.atualizaNegociacao.emit(this.negociacao);
+        this.atualizaNegociacao.emit({...this.negociacao, respostaOferta: status});
       }
     });
   }

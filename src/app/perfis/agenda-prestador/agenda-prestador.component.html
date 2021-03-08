@@ -38,6 +38,11 @@
               (click)="concluiAgendamento(agendamento)">{{'CONCLUIDO' | translate}}</button>
             <button mat-flat-button color="warn"
               (click)="cancelaAgendamento(agendamento)">{{'CANCELAR' | translate}}</button>
+            <a mat-flat-button color="primary" href="/agendamento/{{agendamento.id}}">
+              <!-- <span> -->
+                {{'VER_DETALHES' | translate}}
+              <!-- </span> -->
+            </a>
           </div>
         </div>
       </mat-list-item>

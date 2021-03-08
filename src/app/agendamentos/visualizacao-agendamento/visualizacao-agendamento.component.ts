@@ -58,7 +58,6 @@ export class VisualizacaoAgendamentoComponent implements OnInit {
       this.agendamentoService.ativarAgendamento(this.idAgendamento, this.idUsuario, token)
         .subscribe((agendamento) => {
           this.agendamento = agendamento;
-          console.log(agendamento);
         });
 
       this.clienteService.getUsuario(token).subscribe((usuario:Usuario) => {
@@ -121,7 +120,6 @@ export class VisualizacaoAgendamentoComponent implements OnInit {
   }
 
   atualizaNegociacao(negociacao:Negociacao) {
-    console.log(negociacao);
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       this.agendamentoService.confirmarNegociacao(this.agendamento.id, this.agendamento.prestadorId, negociacao, token).subscribe(() => {
         this.buscaAgendamento();
