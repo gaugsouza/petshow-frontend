@@ -25,6 +25,7 @@ export class ServicoPrecoDialogComponent implements OnInit {
 
   precoFormControl = new FormControl('', [
     Validators.required,
+    Validators.min(0.01),
   ]);
 
   tiposDisponiveis: TipoAnimal[] = [];
@@ -83,7 +84,7 @@ export class ServicoPrecoDialogComponent implements OnInit {
   }
 
   hasErrors() {
-    return this.tipoAnimalFormControl.hasError('required') || this.precoFormControl.hasError('required')
+    return this.tipoAnimalFormControl.hasError('required') || this.precoFormControl.hasError('required') || this.precoFormControl.hasError('min')
       || (this.isPortePelagemVisible && (this.porteFormControl.hasError('required') || this.pelagemFormControl.hasError('required')));
   }
 

@@ -31,6 +31,8 @@ export class PerfilUsuarioComponent implements OnInit {
 
   mensagemSucesso:string;
 
+  isInsertAnimal:boolean;
+
   constructor(private usuarioService:UsuarioService,
               private router:Router,
               public dialog:MatDialog,
@@ -44,7 +46,8 @@ export class PerfilUsuarioComponent implements OnInit {
 
   selecionaAnimal(animalEstimacao:AnimalEstimacao): void {
     this.animal = { ...animalEstimacao };
-    this.exibeFormulario();
+    console.log(animalEstimacao)
+    this.exibeFormulario(false);
   }
 
   getUsuario() : void {
@@ -68,10 +71,11 @@ export class PerfilUsuarioComponent implements OnInit {
     }, (err) => this.handleError(err));
   }
 
-  exibeFormulario() {
+  exibeFormulario(isInsertAnimal) {
     this.erroRequisicao = null;
     this.mensagemSucesso = null;
     this.isFormVisivel = true;
+    this.isInsertAnimal = isInsertAnimal;
   }
 
   ocultaFormulario() {
@@ -96,9 +100,10 @@ export class PerfilUsuarioComponent implements OnInit {
   editaAnimal(animalEstimacao : AnimalEstimacao) : void {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token : string) => {
       this.usuarioService.atualizarAnimalEstimacao(animalEstimacao.id, animalEstimacao, token)
-        .subscribe(() => {
+        .subscribe(obj => {
           this.getUsuario();
           this.limpaAnimal();
+          this.animalNotification.notify(obj);
           this.ocultaFormulario();
         },
         (err) => this.handleError(err));
