@@ -34,6 +34,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatIconModule} from '@angular/material/icon'; 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'; 
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
+import { ConfigModule } from '../../config/config.module';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatPseudoCheckboxModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
 
 
 describe('PerfilPrestadorComponent', () => {
@@ -61,26 +68,28 @@ describe('PerfilPrestadorComponent', () => {
          { provide: 'ServicoNotificationService', useFactory: () => (new NotificationService<ServicoDetalhado>()) }
        ],
        imports: [
-        MatListModule,
+        MatExpansionModule,
+        CommonModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatCardModule,
         MatInputModule,
         MatSelectModule,
-        BrowserAnimationsModule,
-        HttpClientTestingModule,
-        LoggerTestingModule,
-        FormsModule,
-        RouterTestingModule,
-        ReactiveFormsModule,
-        TranslateModule.forRoot(),
         MatDialogModule,
-        MatCardModule,
-        NgxMaskModule.forRoot(),
+        MatListModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ConfigModule,
         MatPaginatorModule,
         MatTooltipModule,
         MatChipsModule,
-        MatCheckboxModule,
+        MatTableModule,
+        MatPseudoCheckboxModule,
         MatIconModule,
         MatSlideToggleModule,
         MatTabsModule,
+        MatCheckboxModule,
+        HttpClientTestingModule,
       ]
       
     })
