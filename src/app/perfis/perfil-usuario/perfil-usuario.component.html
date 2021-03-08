@@ -10,12 +10,13 @@
     
     <h3 class="page-section-title">{{'ANIMAIS' | translate}}</h3>
 
-    <button mat-flat-button *ngIf="!isFormVisivel" color="primary" (click)="exibeFormulario()"
+    <button mat-flat-button *ngIf="!isFormVisivel" color="primary" (click)="exibeFormulario(true)"
     [disabled]="!usuario.isAtivo"
     matTooltip="{{usuario.isAtivo ? '' : 'ATIVE_CONTA_CLIENTE' | translate}}"
     >{{'ADD_ANIMAL' | translate}}</button>
     
     <app-formulario-animal [animal]="animal"
+    [isInsert]="isInsertAnimal"
     (adiciona-animal)="adicionaAnimal($event)"
     (atualiza-animal)="editaAnimal($event)"
     (cancelar-operacao)="cancelar()"

@@ -28,6 +28,12 @@ export class MapaComponent implements OnInit {
 
   private PRACA_DA_REPUBLICA_LON = '-46.64252052009493';
 
+  private ZOOM_BASE = 15;
+
+  private DISTANCIA_BASE = 600;
+
+  private PROPORCAO_ZOOM_BASE = 0.023;
+
   filtro:FiltroServicos;
 
   servicos:ServicoDetalhado[];
@@ -51,7 +57,6 @@ export class MapaComponent implements OnInit {
     private dataSharingService:DataSharingService) { }
 
   ngOnInit(): void {
-    // this.preencheDadosGeoloc();
     this.dataSharingService.filtroShared.subscribe((filtro) => {
       this.filtro = filtro;
       this.preencheDadosGeoloc();
@@ -77,12 +82,20 @@ export class MapaComponent implements OnInit {
     });
   }
 
+  private calculaZoom = (metros = 600) => {
+    const proporcaoDistancia = (metros - this.DISTANCIA_BASE) < 0
+      ? 0 : (metros - this.DISTANCIA_BASE) / 100;
+    const qtdZoomASubtrair = proporcaoDistancia * this.PROPORCAO_ZOOM_BASE;
+    return (this.ZOOM_BASE - qtdZoomASubtrair) < this.PROPORCAO_ZOOM_BASE
+      ? this.PROPORCAO_ZOOM_BASE : (this.ZOOM_BASE - qtdZoomASubtrair);
+  }
+
   geraMapa(geolocalizacao: Geolocalizacao, servicos:ServicoDetalhado[], name?:string) {
     this.latitude = Number.parseFloat((geolocalizacao || {}).geolocLatitude
     || this.PRACA_DA_REPUBLICA_LAT);
     this.longitude = Number.parseFloat((geolocalizacao || {}).geolocLongitude
     || this.PRACA_DA_REPUBLICA_LON);
-    this.zoom = this.geolocalizacao ? 15 : 10;
+    this.zoom = this.calculaZoom(this.filtro.metrosGeoloc); // this.geolocalizacao ? 15 : 10;
     this.criaMapa([this.longitude, this.latitude], this.zoom, servicos, name);
   }
 
@@ -155,8 +168,8 @@ export class MapaComponent implements OnInit {
     });
   }
 
-  retornaGeolocalizacao(prestador:Prestador) {
-    if (prestador.empresa) {
+  retornaGeolocalizacao = (prestador:Prestador) => {
+    if (prestador.empresa.id) {
       return prestador.empresa.geolocalizacao || null;
     }
     return prestador.geolocalizacao || null;
@@ -191,7 +204,6 @@ export class MapaComponent implements OnInit {
       geometry: new ol.geom.Point(ol.proj.fromLonLat(posicao)),
       name,
     });
-
     ponto.setStyle(new ol.style.Style({
       image: new ol.style.Icon({
         crossOrigin: 'anonimous',

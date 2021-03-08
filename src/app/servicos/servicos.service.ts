@@ -59,9 +59,9 @@ export class ServicosService {
   }
 
   desativarAdicional(prestadorId:number, servicoDetalhadoId:number,
-    adicionalId:number, token:string) {
-    const URL = `${PRESTADOR_SERVICE_URL}/${prestadorId}/servico-detalhado/${servicoDetalhadoId}/adicional/${adicionalId}`;
-    return this.httpHandler.doDelete<any>(URL, token);
+    adicionalId:number, ativo: boolean, token:string) {
+    const URL = `${PRESTADOR_SERVICE_URL}/${prestadorId}/servico-detalhado/${servicoDetalhadoId}/adicional/${adicionalId}?ativo=${ativo}`;
+    return this.httpHandler.doPatch<any>(URL, token);
   }
 
   adicionarTipoAnimalAceito(prestadorId:number, servicoDetalhadoId:number,

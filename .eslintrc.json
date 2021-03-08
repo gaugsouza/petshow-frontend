@@ -47,6 +47,7 @@
         "no-empty-function": "off",
         "no-underscore-dangle": "off",
         "no-nested-ternary": "off",
-        "no-param-reassign": "off"
+        "no-param-reassign": "off",
+        "no-useless-escape": "off"
     }
 }
