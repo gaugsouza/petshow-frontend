@@ -46,7 +46,7 @@ export class FormularioComponent implements OnInit {
     this.adicionaAvaliacao.emit(this.avaliacao);
   }
 
-  fecharFormulario() {
+  cancelarAvaliacao() {
     const cancelRef = this.cancelamento.open(ConfirmacaoCancelamentoComponent,
       {
         data: 'DESEJA_CONFIRMAR_CANCELAMENTO',

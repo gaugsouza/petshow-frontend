@@ -14,9 +14,9 @@ import { USER_TOKEN } from 'src/app/util/constantes';
   styleUrls: ['./formulario-animal.component.scss'],
 })
 export class FormularioAnimalComponent implements OnInit {
-  @Input() animal: AnimalEstimacao = {
-    nome: '',
-  };
+  @Input() animal: AnimalEstimacao;
+
+  @Input() isInsert: boolean;
 
   @Output('adiciona-animal') adicionaAnimal = new EventEmitter<AnimalEstimacao>();
 
@@ -77,7 +77,7 @@ export class FormularioAnimalComponent implements OnInit {
   limpa() {
     this.animal = {
       nome: '',
-      tipo: { id: 2, nome: 'VAZIO' },
+      tipo: { id: -1, nome: 'VAZIO' },
     };
   }
 }

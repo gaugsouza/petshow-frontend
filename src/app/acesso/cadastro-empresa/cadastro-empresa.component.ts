@@ -45,7 +45,7 @@ export class CadastroEmpresaComponent implements OnInit {
   }
 
   alteraEmpresa(campo:string, valor:string) {
-    if(campo === 'cnpj') {
+    if (campo === 'cnpj') {
       valor = valor.replace(/[\.|\-|\/]/g, '');
     }
     this.empresa = { ...this.empresa, [campo]: valor };

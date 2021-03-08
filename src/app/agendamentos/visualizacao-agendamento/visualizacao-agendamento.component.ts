@@ -117,6 +117,14 @@ export class VisualizacaoAgendamentoComponent implements OnInit {
 
   fechaFormulario() {
     this.isFormVisible = false;
+    this.avaliacaoBase = {
+      atencao: 0,
+      qualidadeProdutos: 0,
+      custoBeneficio: 0,
+      infraestrutura: 0,
+      qualidadeServico: 0,
+      comentario: null,
+    };
   }
 
   atualizaNegociacao(negociacao:Negociacao) {
