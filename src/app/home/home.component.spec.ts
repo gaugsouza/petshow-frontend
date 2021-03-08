@@ -36,6 +36,9 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ListaServicosDetalhadosComponent } from '../lista-servicos-detalhados/lista-servicos-detalhados.component';
 import { PrestadorComponent } from '../prestador/prestador.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
+
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
@@ -80,6 +83,8 @@ describe('HomeComponent', () => {
         GeolocalizacaoModule,
         MatSliderModule,
         MatTooltipModule,
+        MatProgressSpinnerModule,
+        MatAutocompleteModule
       ]
     })
     .compileComponents();

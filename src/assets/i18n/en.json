@@ -222,7 +222,7 @@
   "DESEJA_CONFIRMAR_AGENDAMENTO": "Do you want to confirm your booking?",
   "DESEJA_CONFIRMAR_CANCELAMENTO": "Do you really want to cancel?",
   "TABELA_PRECOS_PORTE_PELAGEM": "Table with the prices for size and cover of the animal",
-  "SING_IN": "Sing in",
+  "SING_IN": "Sign in",
   "LOGOUT": "Log out",
   "DESEJA_CONFIRMAR_REMOCAO": "Do you really want to remove this service?",
   "DESEJA_CONFIRMAR_REMOCAO_ANIMAL": "Do you really want to remove this animal?",
@@ -238,14 +238,16 @@
   "SELECIONE_HORARIO_AGENDAMENTO":"Select the booking time",
   "HORARIO":"time",
   "BUSCAR_LOCAL":"Search address",
+  "ESCOLHA_ESTADO": "Select a state",
+  "ESCOLHA_CIDADE": "Select a city",
+  "NENHUM_TIPO_SERVICO_ENCONTRADO": "No services have been registered for the selected location",
   "SIM":"YES",
   "NAO":"NO",
   "DESEJA_CONFIRMAR_AVALIACAO":"Do you want to confirm your evaluations?",
   "ADD_AVALIACAO":"Evaluate this service",
   "DISTANCIA_MAXIMA": "Maximum distance",
-
-
-
+  "PROSSEGUIR_AGENDAMENTO": "Do you want to procced to the payment step with the selected items?",
+  "RESUMO_PAGAMENTO": "Booking information and payment",
   
   "POLITICA-LINHA4": "This website is maintained and operated by Pet Show LTDA.",
   "POLITICA-LINHA5": "We collect and use some personal data that belongs to those who use our website. In doing so, we act as the controller of such data and are subject to the provisions of Federal Law no. 13,709 / 2018 (General Law on Protection of Personal Data - LGPD).",

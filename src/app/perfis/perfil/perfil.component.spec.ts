@@ -37,6 +37,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { AgendaClienteComponent } from '../agenda-cliente/agenda-cliente.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'; 
+import { MatTabsModule } from '@angular/material/tabs';
 
 describe('PerfilComponent', () => {
   let component: PerfilComponent;
@@ -86,6 +87,7 @@ describe('PerfilComponent', () => {
         MatCheckboxModule,
         MatIconModule,
         MatSlideToggleModule,
+        MatTabsModule
        ]
     })
     .compileComponents();

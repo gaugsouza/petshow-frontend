@@ -61,4 +61,8 @@ export class DialogComparacaoComponent implements OnInit {
 
     this.dataSource = [...this.dataSource, ...campos];
   }
+
+  geraNomePrestador = (valor:string) => valor.split('|')[1]
+
+  geraTipo = (valor:string) => valor.split('|')[0]
 }

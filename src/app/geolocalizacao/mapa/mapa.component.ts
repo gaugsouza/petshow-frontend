@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import ol from 'openlayers';
 import { FiltroServicos } from 'src/app/interfaces/filtro-servicos';
 import { Geolocalizacao } from 'src/app/interfaces/geolocalizacao';
+import { Prestador } from 'src/app/interfaces/prestador';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { DataSharingService } from 'src/app/servicos/data-sharing.service';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
@@ -88,7 +89,6 @@ export class MapaComponent implements OnInit {
   /* eslint-disable func-names */
   criaMapa = (mapCenter:ol.Coordinate = [0, 0], mapZoom = 3, servicos = [], name?:string) => {
     document.getElementById('map').innerHTML = null;
-
     const cliente = this.criaPontoCliente(mapCenter, name);
     const pontosServicos = this.criaPontosServico(servicos);
     const source = new ol.source.Vector({
@@ -139,19 +139,35 @@ export class MapaComponent implements OnInit {
   criaPontosServico(servicos:ServicoDetalhado[]) {
     return servicos.map((servico) => {
       const { prestador } = servico;
-      if (!prestador.geolocalizacao) {
+      const geolocalizacao = this.retornaGeolocalizacao(prestador);
+      if (!geolocalizacao) {
         return null;
       }
       const posicao:ol.Coordinate = [
-        Number.parseFloat(prestador.geolocalizacao.geolocLongitude),
-        Number.parseFloat(prestador.geolocalizacao.geolocLatitude),
+        Number.parseFloat(geolocalizacao.geolocLongitude),
+        Number.parseFloat(geolocalizacao.geolocLatitude),
       ];
       const evento = () => {
         this.openDialog(servico);
       };
 
-      return this.criaPonto('assets/icons/iconePrestador.png', posicao, 'prestador', prestador.nome, evento);
+      return this.criaPonto('assets/icons/iconePrestador.png', posicao, 'prestador', this.geraNome(prestador), evento);
     });
+  }
+
+  retornaGeolocalizacao(prestador:Prestador) {
+    if (prestador.empresa) {
+      return prestador.empresa.geolocalizacao || null;
+    }
+    return prestador.geolocalizacao || null;
+  }
+
+  geraNome = (prestador:Prestador) => {
+    if (!prestador.empresa.id) {
+      return prestador.nome;
+    }
+
+    return prestador.empresa.razaoSocial || prestador.empresa.nome;
   }
 
   private openDialog(servico:ServicoDetalhado) {

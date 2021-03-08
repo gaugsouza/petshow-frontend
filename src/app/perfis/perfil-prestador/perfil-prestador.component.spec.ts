@@ -33,6 +33,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatIconModule} from '@angular/material/icon'; 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'; 
+import { MatTabsModule } from '@angular/material/tabs';
+
 
 describe('PerfilPrestadorComponent', () => {
   let component: PerfilPrestadorComponent;
@@ -78,6 +80,7 @@ describe('PerfilPrestadorComponent', () => {
         MatCheckboxModule,
         MatIconModule,
         MatSlideToggleModule,
+        MatTabsModule,
       ]
       
     })
