@@ -6,6 +6,7 @@ import { Prestador } from 'src/app/interfaces/prestador';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { Avaliacao } from 'src/app/interfaces/avaliacao';
 import { Adicional } from 'src/app/interfaces/adicional';
+import { Negociacao } from 'src/app/interfaces/negociacao';
 
 export interface Agendamento {
     id?:number;
@@ -26,4 +27,5 @@ export interface Agendamento {
     animaisAtendidos?:AnimalEstimacao[];
     adicionaisIds?:number[];
     adicionais?:Adicional[];
+    negociacao?:Negociacao;
 }

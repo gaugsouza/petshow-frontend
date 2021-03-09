@@ -23,6 +23,8 @@ import { ServicoDetalhadoComponent } from 'src/app/agendamentos/servico-detalhad
 import { AnimalEstimacaoComponent } from 'src/app/agendamentos/animal-estimacao/animal-estimacao.component';
 import { AgendamentoComponent } from 'src/app/agendamentos/agendamento/agendamento.component';
 import { MatSelectModule } from '@angular/material/select';
+import { ModalNegociacaoComponent } from 'src/app/agendamentos/modal-negociacao/modal-negociacao.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 export function HttpLoaderFactory(http:HttpClient) {
   return new TranslateHttpLoader(http);
@@ -37,6 +39,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     DadosAgendamentoComponent,
     ConfirmacaoAgendamentoComponent,
     VisualizacaoAgendamentoComponent,
+    ModalNegociacaoComponent,
   ],
   imports: [
     CommonModule,
@@ -54,6 +57,7 @@ export function HttpLoaderFactory(http:HttpClient) {
     MatNativeDateModule,
     AvaliacoesModule,
     MatSelectModule,
+    MatDialogModule,
   ],
   exports: [
     AgendamentoComponent,

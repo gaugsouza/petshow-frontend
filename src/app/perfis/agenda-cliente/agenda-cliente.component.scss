@@ -23,7 +23,7 @@ mat-list-item {
     background: $item-bg;
     border: 1px solid $item-border;
     border-radius: 10px;
-    padding: 6px 0px;
+    padding: 6px 15px;
     width: 100%;
     margin: 0;
 
@@ -31,12 +31,28 @@ mat-list-item {
       grid-template-columns: 100%;
       width: 100%;
     }
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
   }
 
   &__button-container {
     display: flex;
     // flex-direction: column;
     justify-content: space-around;
+    margin-bottom: 5px;
+
+    & > * {
+      width: 100%;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
   }
 }
 

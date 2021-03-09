@@ -9,6 +9,9 @@
     [idCliente]="agendamento.clienteId"
     [dataAgendamento]="agendamento.data"
     [status]="agendamento.status.nome"
+    [negociacao]="agendamento.negociacao"
+    [isCliente]="isCliente"
+    (atualizaNegociacao)="atualizaNegociacao($event)"
     >
   </app-dados-agendamento>
 

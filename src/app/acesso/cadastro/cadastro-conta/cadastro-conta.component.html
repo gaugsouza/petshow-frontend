@@ -12,7 +12,7 @@
 
   <mat-form-field *ngIf="isPrestador()">
     <mat-label>{{'DESCRICAO' | translate}}</mat-label>
-    <textarea matInput></textarea>
+    <textarea maxlength="280" matInput></textarea>
   </mat-form-field>
 
   <app-endereco-cadastro [endereco]="usuario.endereco"
@@ -30,8 +30,8 @@
     ></app-cadastro-empresa>
   </div>
 
-  <p *ngIf="errorMessage">{{errorMessage | translate}}</p>
-  <p *ngIf="erroRequisicao">{{erroRequisicao | translate}}</p>
+  <p textcolor="red" *ngIf="errorMessage">{{errorMessage | translate}}</p>
+  <p textcolor="red" *ngIf="erroRequisicao">{{erroRequisicao | translate}}</p>
 
   <div>
     <input type="checkbox" (change)="toggleCheckBoxPoliticas()" />{{'CONCORDO-COM-A' | translate}} 

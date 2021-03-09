@@ -1,0 +1,22 @@
+<mat-dialog-content>
+    <div class="modal-negociacao-content">
+        <mat-form-field>
+            <mat-label>{{'OFERTA' | translate}}</mat-label>
+                <input matInput [(ngModel)]="preco" maxlength="12" mask="separator.2" 
+                [thousandSeparator]="'.'"
+                [decimalMarker]="','"
+                prefix="R$"
+                (change)="alteraPreco()"
+            />
+        </mat-form-field>
+        <button mat-flat-button color="warn" (click)="onNoClick()">
+            {{'CANCELAR' | translate}}
+        </button>
+        <button mat-flat-button color="primary" 
+            [mat-dialog-close]="data"
+            [disabled]="hasErrors()"
+        >
+            {{'ENVIAR_OFERTA' | translate}}
+        </button>
+    </div>
+</mat-dialog-content>
