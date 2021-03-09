@@ -52,6 +52,7 @@
                     <mat-form-field>
                         <mat-label>{{'PRECO_MIN' | translate}}</mat-label>
                         <input 
+                            maxlength="9"
                             matInput 
                             (blur)="blurInputs('menorPreco', menorPreco)"
                             [(ngModel)]="menorPreco"
@@ -65,6 +66,7 @@
                     <mat-form-field>
                         <mat-label>{{'PRECO_MAX' | translate}}</mat-label>
                         <input 
+                            maxlength="9"    
                             (blur)="blurInputs('maiorPreco', maiorPreco)"
                             matInput 
                             [(ngModel)]="maiorPreco"
