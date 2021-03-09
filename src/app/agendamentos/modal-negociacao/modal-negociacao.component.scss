@@ -1,0 +1,18 @@
+.modal-negociacao-content {
+  display: grid;
+  grid-template-columns: 1fr 150px 150px;
+  align-items: center;
+  gap: 20px;
+
+  @media (max-width: 525px) {
+    grid-template-columns: 1fr;
+
+    & > button {
+      width: 100%;
+    }
+  }
+
+  & > button {
+    width: 150px;
+  }
+}

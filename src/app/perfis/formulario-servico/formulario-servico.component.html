@@ -33,7 +33,7 @@
         <div *ngFor="let porte of tipo.portes">
           <mat-form-field appearance="fill">
             <mat-label>{{'PORTE' | translate}}: {{porte.porte}}</mat-label>
-            <input matInput [(ngModel)]="porte.preco" class="form__servico-valor"
+            <input maxlength="9" matInput [(ngModel)]="porte.preco" class="form__servico-valor"
               mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
               [errorStateMatcher]="matcher" name="porteP_pelagemCurta"/>
           </mat-form-field>
@@ -44,7 +44,7 @@
     <ng-template #objectBlock let-chave='chave'>
       <mat-form-field appearance="fill">
         <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-        <input matInput maxlength="12" [(ngModel)]="tiposInputModel[chave].preco" 
+        <input matInput maxlength="9" [(ngModel)]="tiposInputModel[chave].preco" 
             class="form__servico-valor" mask='separator.2'
           [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
           [errorStateMatcher]="matcher" [ngModelOptions]="{standalone: true}"/>

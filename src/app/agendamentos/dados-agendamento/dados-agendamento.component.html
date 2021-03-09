@@ -49,7 +49,7 @@
                             <p>{{servicoDetalhado.tipo.nome | translate}}</p>
                             <p *ngIf="servicoDetalhado.descricao">{{'DESCRICAO' | translate}}: {{servicoDetalhado.descricao}}</p>
                             <p>{{'DATA_AGENDAMENTO' | translate}}: {{dataAgendamento | date: 'dd/MM/yyyy HH:mm'}}</p>
-                            <p *ngIf="status">{{'STATUS_AGENDAMENTO' | translate}}: <span class="{{getStatusClassColor()}}">{{status}}</span></p>
+                            <p *ngIf="status">{{'STATUS_AGENDAMENTO' | translate}}: <span class="{{getStatusClassColor()}}">{{status | translate}}</span></p>
                         </mat-card-content>
                     </mat-card>
                 </div>
@@ -81,5 +81,28 @@
             </mat-card-content>
         </mat-card>
 
+    </div>
+
+    <div *ngIf="negociacao">
+        <mat-card>
+            <mat-card-title>
+                <p>{{'OFERTA' | translate}}</p>
+            </mat-card-title> 
+            <mat-card-content>
+                <p>{{'OFERTA' | translate }}: {{ negociacao.precoOferta | currency:'BRL'}}</p>
+                <p>Status: {{ geraStatusOferta(negociacao.respostaOferta) | translate}}</p>
+            </mat-card-content>
+            <mat-card-actions *ngIf="!(clienteVisualizando() === null)">
+                <div *ngIf="!clienteVisualizando() && negociacao.respostaOferta === null; else clienteBtnContainer" class="btn-prestador-container">
+                    <button mat-flat-button color="warn" (click)="confirmarNegociacao(false)">{{'RECUSAR' | translate}}</button>
+                    <button mat-flat-button color="primary" (click)="confirmarNegociacao(true)">{{'ACEITAR' | translate}}</button>
+                </div>
+                <ng-template #clienteBtnContainer>
+                    <div *ngIf="negociacao.respostaOferta && clienteVisualizando()">
+                        <button mat-flat-button color="primary">Efetuar pagamento</button>
+                    </div>
+                </ng-template>
+            </mat-card-actions>
+        </mat-card>
     </div>
 </div>
