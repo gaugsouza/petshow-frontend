@@ -18,8 +18,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
 import { ErrorDialogComponent } from 'src/app/confirmation-dialog/error-dialog.component';
 import { MERCADO_PAGO_URL } from 'src/app/util/url';
-import { ModalNegociacaoComponent } from '../modal-negociacao/modal-negociacao.component';
 import { Negociacao } from 'src/app/interfaces/negociacao';
+import { ModalNegociacaoComponent } from '../modal-negociacao/modal-negociacao.component';
 
 @Component({
   selector: 'app-agendamento',
@@ -120,14 +120,14 @@ export class AgendamentoComponent implements OnInit {
       animaisAtendidosIds: [...(this.animaisEstimacao || []).map((el) => el.id)],
       adicionaisIds: [...(this.adicionais || []).map((el) => el.id)],
       data: this.datePipe.transform(this.dataAgendamento, 'dd/MM/yyyy HH:mm'),
-      negociacao: this.negociacao ? {...this.negociacao} : null,
+      negociacao: this.negociacao ? { ...this.negociacao } : null,
     };
 
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       this.agendamentoService.adicionarAgendamento(this.agendamento, token)
         .subscribe((agendamento:Agendamento) => {
           this.idAgendamento = agendamento.id;
-          if(!agendamento.negociacao) {
+          if (!agendamento.negociacao) {
             this.geraPreference(agendamento.id);
           }
         }, ({ error }) => {
@@ -222,13 +222,13 @@ export class AgendamentoComponent implements OnInit {
       ModalNegociacaoComponent,
       {
         width: '600px',
-        data: {...this.negociacao}
-      }
+        data: { ...this.negociacao },
+      },
     );
 
     dialogRef.afterClosed().subscribe((negociacao) => {
-      this.negociacao = {...negociacao};
+      this.negociacao = { ...negociacao };
       this.openConfirmationAgendar(this.stepper);
-    })
+    });
   }
 }

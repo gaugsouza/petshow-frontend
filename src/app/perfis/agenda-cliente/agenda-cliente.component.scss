@@ -27,15 +27,15 @@ mat-list-item {
     width: 100%;
     margin: 0;
 
+    @media screen and (max-width: $tablet-width) {
+      grid-template-columns: 100%;
+      width: 100%;
+    }
+
     & > div {
       display: flex;
       flex-direction: column;
       justify-content: center;
-    }
-
-    @media screen and (max-width: $tablet-width) {
-      grid-template-columns: 100%;
-      width: 100%;
     }
   }
 
@@ -44,6 +44,7 @@ mat-list-item {
     // flex-direction: column;
     justify-content: space-around;
     margin-bottom: 5px;
+
     & > * {
       width: 100%;
     }

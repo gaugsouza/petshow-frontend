@@ -49,7 +49,6 @@ export class VisualizacaoAgendamentoComponent implements OnInit {
   ngOnInit(): void {
     this.idAgendamento = +this.route.snapshot.paramMap.get('idAgendamento');
     this.buscaAgendamento();
-  
   }
 
   buscaAgendamento() {
@@ -129,9 +128,11 @@ export class VisualizacaoAgendamentoComponent implements OnInit {
 
   atualizaNegociacao(negociacao:Negociacao) {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
-      this.agendamentoService.confirmarNegociacao(this.agendamento.id, this.agendamento.prestadorId, negociacao, token).subscribe(() => {
-        this.buscaAgendamento();
-      });
-    })
+      this.agendamentoService.confirmarNegociacao(this.agendamento.id,
+        this.agendamento.prestadorId, negociacao, token)
+        .subscribe(() => {
+          this.buscaAgendamento();
+        });
+    });
   }
 }

@@ -24,19 +24,18 @@
   justify-content: space-evenly;
 }
 
-
-.button-container, .btn-agendar-container {
+.button-container,
+.btn-agendar-container {
   display: flex;
   justify-content: space-between;
 
-  @media(max-width: 525px) {
+  @media (max-width: 525px) {
     flex-direction: column;
   }
 
   & > button {
     @media (max-width: 525px) {
       margin-bottom: 5px;
-      
     }
   }
 
@@ -56,8 +55,9 @@
 
 .btn-agendar-container {
   width: 320px;
-  @media(max-width: 525px) {
-    width: 100%
+
+  @media (max-width: 525px) {
+    width: 100%;
   }
 }
 

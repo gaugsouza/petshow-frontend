@@ -40,39 +40,6 @@ $button-color: white;
 .selecao_servico {
   padding: 0% 5%;
   height: 70vh;
-<<<<<<< HEAD
-  // background-image: url("../../assets/icons/cat_home_2.jpg");
-  // background-repeat: no-repeat;
-  // background-attachment: fixed;
-  // background-position: center bottom;
-  // background-color: white;
-  // background-size: 100%;
-
-  // @media screen and (max-width: $tablet-width) {
-  //   height: auto;
-  // }
-
-  // /* Media Query for Mobile Devices */
-  // @media (max-width: 480px) {
-  //   height: auto;
-  // }
-
-  // /* Media Query for low resolution  Tablets, Ipads */
-  // @media (min-width: 598px) and (max-width: 767px) {
-  //   height: 90vh;
-  // }
-
-  // /* Media Query for Tablets Ipads portrait mode */
-  // @media (min-width: 768px) and (max-width: 1024px) {
-  //   height: 80vh;
-  // }
-
-  // /* Media Query for Laptops and Desktops */
-  // @media (min-width: 1025px) {
-  //   height: 70vh;
-  // }
-=======
->>>>>>> e026126dbd5ddaca253e97e6f249f7d49c873078
 
   &__button-container {
     display: flex;
@@ -114,9 +81,8 @@ $button-color: white;
   background-color: white;
   background-size: 80%;
 
-
   @media screen and (max-width: $tablet-width) {
-    background-size:220% auto;
+    background-size: 220% auto;
   }
 }
 

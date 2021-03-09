@@ -10,10 +10,9 @@ import { Prestador } from 'src/app/interfaces/prestador';
 import { ServicoDetalhado } from 'src/app/interfaces/servico-detalhado';
 import { ServicoDetalhadoTipoAnimal } from 'src/app/interfaces/servico-detalhado-tipo-animal';
 import { ConfirmacaoCancelamentoComponent } from 'src/app/perfis/confirmacao-cancelamento/confirmacao-cancelamento.component';
-import { LocalStorageService } from 'src/app/servicos/local-storage.service';
 import { PrestadorService } from 'src/app/servicos/prestador.service';
 import { UsuarioService } from 'src/app/servicos/usuario.service';
-import { STATUS_AGENDAMENTO, USER_TOKEN } from 'src/app/util/constantes';
+import { STATUS_AGENDAMENTO } from 'src/app/util/constantes';
 
 @Component({
   selector: 'app-dados-agendamento',
@@ -91,14 +90,13 @@ export class DadosAgendamentoComponent implements OnInit {
     return 'nao-realizado';
   }
 
-  geraStatusOferta(status:boolean) {
-    if(status === null) {
+  geraStatusOferta = (status:boolean) => {
+    if (status === null) {
       return 'PENDENTE';
     }
 
     return status ? 'ACEITO' : 'NEGADO';
   }
-
 
   geraTitulo() {
     if (!this.prestador.empresa.id) {
@@ -109,7 +107,7 @@ export class DadosAgendamentoComponent implements OnInit {
   }
 
   clienteVisualizando() {
-    if(this.isCliente === null) {
+    if (this.isCliente === null) {
       return null;
     }
 
@@ -119,13 +117,12 @@ export class DadosAgendamentoComponent implements OnInit {
   confirmarNegociacao(status:boolean) {
     const dialogRef = this.dialog.open(ConfirmacaoCancelamentoComponent, {
       width: '200px',
-      data: 'CONFIRMAR_NEGOCIACAO'
+      data: 'CONFIRMAR_NEGOCIACAO',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      if(result) {
-        this.atualizaNegociacao.emit({...this.negociacao, respostaOferta: status});
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.atualizaNegociacao.emit({ ...this.negociacao, respostaOferta: status });
       }
     });
   }
