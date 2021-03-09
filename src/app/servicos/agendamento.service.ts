@@ -4,7 +4,8 @@ import { AGENDAMENTO_URL } from 'src/app/util/url';
 import { Agendamento } from 'src/app/interfaces/agendamento';
 import { Observable } from 'rxjs';
 import { Avaliacao } from 'src/app/interfaces/avaliacao';
-import { HORARIOS_AGENDAMENTO, HORARIOS_AGENDAMENTO_DOMINGO } from '../util/constantes';
+import { HORARIOS_AGENDAMENTO, HORARIOS_AGENDAMENTO_DOMINGO } from 'src/app/util/constantes';
+import { Negociacao } from 'src/app/interfaces/negociacao';
 
 @Injectable({
   providedIn: 'root',
@@ -79,5 +80,11 @@ export class AgendamentoService {
   : Observable<any> => {
     const URL = `${this.AGENDAMENTO_SERVICE_URL}/${agendamentoId}/cliente/${clienteId}`;
     return this.httpHandler.doPatch<any>(URL, token);
+  }
+
+  confirmarNegociacao = (agendamentoId:number, prestadorId:number, negociacao:Negociacao,
+    token:string) => {
+    const URL = `${this.AGENDAMENTO_SERVICE_URL}/${agendamentoId}/prestador/${prestadorId}/negociacao`;
+    return this.httpHandler.doPatch<any>(URL, token, negociacao);
   }
 }

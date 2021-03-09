@@ -67,9 +67,9 @@ export class HttpHandlerService {
       );
   }
 
-  doPatch<T>(url:string, accessToken?:string):Observable<T> {
+  doPatch<T>(url:string, accessToken?:string, body:any = null):Observable<T> {
     const headers = this.montaHeader(accessToken);
-    return this.http.patch<T>(url, null, headers)
+    return this.http.patch<T>(url, body, headers)
       .pipe(
         tap(() => this.logger.info(`Request feito a ${url}`)),
         catchError(({ error }) => {

@@ -81,9 +81,8 @@ $button-color: white;
   background-color: white;
   background-size: 80%;
 
-
   @media screen and (max-width: $tablet-width) {
-    background-size:220% auto;
+    background-size: 220% auto;
   }
 }
 

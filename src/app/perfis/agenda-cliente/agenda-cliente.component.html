@@ -39,18 +39,18 @@
               </span>
             </ng-template>
             <span>
-              <p>{{'STATUS' | translate}}: {{agendamento.status.nome}}</p>
+              <p>{{'STATUS' | translate}}: {{agendamento.status.nome | translate}}</p>
             </span>
           </div>
-          <div>
+          <div class="agendamento-list__buttons">
             <div class="agendamento-list__button-container" *ngIf="isAtivo(agendamento)">
               <button mat-flat-button color="warn"
                 (click)="cancelaAgendamento(agendamento)">{{'CANCELAR' | translate}}</button>
             </div>
-            <a mat-flat-button href="/agendamento/{{agendamento.id}}">
-              <span>
+            <a mat-flat-button color="primary" href="/agendamento/{{agendamento.id}}">
+              <!-- <span> -->
                 {{'VER_DETALHES' | translate}}
-              </span>
+              <!-- </span> -->
             </a>
 
           </div>

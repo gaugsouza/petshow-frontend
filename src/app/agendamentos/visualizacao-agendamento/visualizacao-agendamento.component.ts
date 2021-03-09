@@ -9,6 +9,7 @@ import { JwtHelper } from 'src/app/util/jwt-helper';
 import { UsuarioService } from 'src/app/servicos/usuario.service';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { TipoPessoa } from 'src/app/enum/tipo-pessoa.enum';
+import { Negociacao } from 'src/app/interfaces/negociacao';
 
 @Component({
   selector: 'app-visualizacao-agendamento',
@@ -47,7 +48,10 @@ export class VisualizacaoAgendamentoComponent implements OnInit {
 
   ngOnInit(): void {
     this.idAgendamento = +this.route.snapshot.paramMap.get('idAgendamento');
+    this.buscaAgendamento();
+  }
 
+  buscaAgendamento() {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       this.idUsuario = this.helper.recuperaIdToken(token);
       this.agendamentoService.ativarAgendamento(this.idAgendamento, this.idUsuario, token)
@@ -120,5 +124,15 @@ export class VisualizacaoAgendamentoComponent implements OnInit {
       qualidadeServico: 0,
       comentario: null,
     };
+  }
+
+  atualizaNegociacao(negociacao:Negociacao) {
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
+      this.agendamentoService.confirmarNegociacao(this.agendamento.id,
+        this.agendamento.prestadorId, negociacao, token)
+        .subscribe(() => {
+          this.buscaAgendamento();
+        });
+    });
   }
 }
