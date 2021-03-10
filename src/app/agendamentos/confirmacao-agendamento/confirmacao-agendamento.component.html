@@ -1,5 +1,7 @@
 <div class="cadastro-sucesso">
-    <h1>{{'AGENDAMENTO_CONCLUIDO' | translate}}</h1>
+    <h1 *ngIf="status === 'success'"> {{'AGENDAMENTO_CONCLUIDO' | translate}} </h1>
+    <h1 *ngIf="status === 'pending'"> {{'AGENDAMENTO_PENDENTE' | translate}} </h1>
+    <h1 *ngIf="status === 'failure'"> {{'AGENDAMENTO_FALHOU' | translate}} </h1>
     
     <app-visualizacao-agendamento>
     </app-visualizacao-agendamento>

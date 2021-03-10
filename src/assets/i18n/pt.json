@@ -175,6 +175,8 @@
   "PROXIMO": "Próximo",
   "ANIMAIS_ELEGIVEIS": "Animais de estimação elegíveis para esse serviço",
   "AGENDAMENTO_CONCLUIDO": "Agendamento concluído com sucesso!",
+  "AGENDAMENTO_PENDENTE": "Agendamento efetuado, aguarde a aprovação de sua oferta!",
+  "AGENDAMENTO_FALHOU": "Falha durante o pagamento do agendamento, verifique os dados novamente!",
   "DADOS_DO": "Dados do",
   "DETALHES_SERVICO": "Detalhes do serviço escolhido",
   "DATA_AGENDAMENTO": "Data do agendamento",
@@ -268,6 +270,9 @@
   "UPDATE_ANIMAL_FORM": "Atualizar animal de estimação",
   "NENHUM_PRECO_CADASTRADO": "Nenhum preço cadastrado para este tipo de animal",
   "VALOR_MINIMO": "O preço deve ser maior que R$0,01",
+<<<<<<< HEAD
+  "CONFIRMAR_OFERTA": "Deseja enviar esta oferta?",
+=======
   "DESEJO_CADASTRAR_EMPRESA": "Desejo cadastrar minha empresa",
   "CADASTRO_EMPRESA": "Cadastro de Empresa",
   "RAZAO_SOCIAL": "Razão Social",
@@ -277,6 +282,7 @@
   "CNPJ": "CNPJ",
   "CNPJ_INVALIDO": "CNPJ inválido",
 
+>>>>>>> 26652f0e757cf8106eadee026f7a2a4e09af1147
   
 
   

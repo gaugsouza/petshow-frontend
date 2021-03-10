@@ -21,7 +21,7 @@
       <button class="btn-esquerda btn" mat-flat-button color="primary" matStepperPrevious>{{'VOLTAR' | translate}}</button>
       <div class="btn-direita btn-agendar-container">
         <button class="btn-esquerda btn" mat-stroked-button color="primary" (click)="abrirModalNegociacao()" [disabled]="!dataAgendamento">{{'FAZER_OFERTA' | translate}}</button>
-        <button class="btn-direita btn" mat-flat-button color="primary" (click)="openConfirmationAgendar(stepper)"
+        <button class="btn-direita btn" mat-flat-button color="primary" (click)="openConfirmationAgendar(stepper, 'PROSSEGUIR_AGENDAMENTO')"
           [disabled]="!dataAgendamento">{{'AGENDAR' | translate}}</button>
       </div>
     </div>
