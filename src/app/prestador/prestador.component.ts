@@ -33,7 +33,7 @@ export class PrestadorComponent implements OnInit {
   }
 
   getTitulo() {
-    if (!this.prestador.empresa.id) {
+    if (!this.prestador.empresa) {
       return this.prestador.nome;
     }
 

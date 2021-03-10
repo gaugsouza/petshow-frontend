@@ -1,9 +1,9 @@
 <div *ngIf="usuario">
     <app-mensagem-ativacao [usuario]='usuario'></app-mensagem-ativacao>
     <h1 class="mat-display-2 client-name">{{geraTitulo()}}</h1>
-    <h2 *ngIf="usuario.empresa.id" class="subtitulo">{{geraSubtitulo()}}</h2>
+    <h2 *ngIf="usuario.empresa" class="subtitulo">{{geraSubtitulo()}}</h2>
     <hr>
-    <div class="informacoes-usuario" *ngIf="!usuario.empresa.id; else empresaBlock">
+    <div class="informacoes-usuario" *ngIf="!usuario.empresa; else empresaBlock">
         <app-informacoes-pessoais (altera-telefone)="alteraTelefone($event)"
         [usuario]='usuario'></app-informacoes-pessoais>
         <app-endereco (atualiza-endereco)="atualizaEndereco($event)" [endereco]='usuario.endereco'></app-endereco>
