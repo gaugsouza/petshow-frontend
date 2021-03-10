@@ -54,12 +54,11 @@ export class VisualizacaoAgendamentoComponent implements OnInit {
   ngOnInit(): void {
     this.idAgendamento = +this.route.snapshot.paramMap.get('idAgendamento');
     this.status = this.route.snapshot.paramMap.get('status');
-    if(this.status){
+    if (this.status) {
       this.atualizaStatus(this.idAgendamento, this.status);
     } else {
       this.buscaAgendamento();
     }
-    
   }
 
   buscaAgendamento() {
@@ -70,13 +69,13 @@ export class VisualizacaoAgendamentoComponent implements OnInit {
           this.agendamento = agendamento;
           this.clienteService.getUsuario(token).subscribe((usuario:Usuario) => {
             this.isCliente = (usuario || {}).tipo === TipoPessoa.CLIENTE || false;
-            if(agendamento.status.id === 4 && this.isCliente){
+            if (agendamento.status.id === 4 && this.isCliente) {
               this.geraPreference(agendamento.id, agendamento.cliente.id);
             }
           }, () => {
             this.isCliente = false;
-          });          
-       });
+          });
+        });
     });
 
     this.buscaAvaliacao(this.idAgendamento);
@@ -149,29 +148,29 @@ export class VisualizacaoAgendamentoComponent implements OnInit {
     });
   }
 
-  atualizaStatus(agendamentoId: number, status: string){
+  atualizaStatus(agendamentoId: number, status: string) {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
-      let statusId = this.recuperaStatusId(status);
-      let usuarioId = this.helper.recuperaIdToken(token);
+      const statusId = this.recuperaStatusId(status);
+      const usuarioId = this.helper.recuperaIdToken(token);
 
       this.agendamentoService.alterarStatusAgendamento(usuarioId,
         statusId, agendamentoId, token).subscribe(() => {
-          this.buscaAgendamento();
-        });
+        this.buscaAgendamento();
+      });
     });
   }
 
-  recuperaStatusId(status:string){
-      if(status==='success'){
-          return 1; //AGENDADO
-      }
-      if(status==='pending'){
-          return 5; //OFERTA_SOLICITADA
-      }
-      if(status==='failure'){
-          return 4; //PENDENTE_PAGAMENTO
-      }
-      return 3; //CANCELADO
+  recuperaStatusId = (status:string) => {
+    if (status === 'success') {
+      return 1; // AGENDADO
+    }
+    if (status === 'pending') {
+      return 5; // OFERTA_SOLICITADA
+    }
+    if (status === 'failure') {
+      return 4; // PENDENTE_PAGAMENTO
+    }
+    return 3; // CANCELADO
   }
 
   geraPreference(agendamentoId:number, usuarioId:number) {

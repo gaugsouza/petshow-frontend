@@ -129,8 +129,8 @@ export class DadosAgendamentoComponent implements OnInit {
     });
   }
 
-  getDataAgendamento(){
-    return this.dataAgendamento instanceof Date ?
-      this.datePipe.transform(this.dataAgendamento, 'dd/MM/yyyy HH:mm') : this.dataAgendamento;
+  getDataAgendamento() {
+    return this.dataAgendamento instanceof Date
+      ? this.datePipe.transform(this.dataAgendamento, 'dd/MM/yyyy HH:mm') : this.dataAgendamento;
   }
 }
