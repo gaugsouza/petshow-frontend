@@ -43,16 +43,15 @@
             </span>
           </div>
           <div class="agendamento-list__buttons">
-            <div class="agendamento-list__button-container" *ngIf="isAtivo(agendamento)">
-              <button mat-flat-button color="warn"
-                (click)="cancelaAgendamento(agendamento)">{{'CANCELAR' | translate}}</button>
-            </div>
             <a mat-flat-button color="primary" href="/agendamento/{{agendamento.id}}">
               <!-- <span> -->
                 {{'VER_DETALHES' | translate}}
               <!-- </span> -->
             </a>
-
+            <div class="agendamento-list__button-container" *ngIf="isAtivo(agendamento)">
+              <button mat-flat-button color="warn"
+                (click)="cancelaAgendamento(agendamento)">{{'CANCELAR' | translate}}</button>
+            </div>
           </div>
 
         </div>

@@ -13,6 +13,7 @@ import { ConfirmacaoCancelamentoComponent } from 'src/app/perfis/confirmacao-can
 import { PrestadorService } from 'src/app/servicos/prestador.service';
 import { UsuarioService } from 'src/app/servicos/usuario.service';
 import { STATUS_AGENDAMENTO } from 'src/app/util/constantes';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-dados-agendamento',
@@ -51,7 +52,8 @@ export class DadosAgendamentoComponent implements OnInit {
   constructor(private prestadorService:PrestadorService,
               private clienteService:UsuarioService,
               private ref:ChangeDetectorRef,
-              private dialog:MatDialog) { }
+              private dialog:MatDialog,
+              private datePipe:DatePipe) { }
 
   ngOnInit(): void {
     this.prestadorService.buscaPrestador(this.idPrestador).subscribe((prestador) => {
@@ -125,5 +127,10 @@ export class DadosAgendamentoComponent implements OnInit {
         this.atualizaNegociacao.emit({ ...this.negociacao, respostaOferta: status });
       }
     });
+  }
+
+  getDataAgendamento() {
+    return this.dataAgendamento instanceof Date
+      ? this.datePipe.transform(this.dataAgendamento, 'dd/MM/yyyy HH:mm') : this.dataAgendamento;
   }
 }

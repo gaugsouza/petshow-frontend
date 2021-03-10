@@ -10,6 +10,8 @@ import { UsuarioService } from 'src/app/servicos/usuario.service';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { TipoPessoa } from 'src/app/enum/tipo-pessoa.enum';
 import { Negociacao } from 'src/app/interfaces/negociacao';
+import { PagamentoService } from 'src/app/servicos/pagamento.service';
+import { MERCADO_PAGO_URL } from 'src/app/util/url';
 
 @Component({
   selector: 'app-visualizacao-agendamento',
@@ -20,6 +22,8 @@ export class VisualizacaoAgendamentoComponent implements OnInit {
   idUsuario:number;
 
   idAgendamento:number;
+
+  status:string;
 
   agendamento:Agendamento;
 
@@ -44,26 +48,34 @@ export class VisualizacaoAgendamentoComponent implements OnInit {
               private localStorageService:LocalStorageService,
               private agendamentoService:AgendamentoService,
               private helper:JwtHelper,
-              private clienteService:UsuarioService) { }
+              private clienteService:UsuarioService,
+              private pagamentoService: PagamentoService) { }
 
   ngOnInit(): void {
     this.idAgendamento = +this.route.snapshot.paramMap.get('idAgendamento');
-    this.buscaAgendamento();
+    this.status = this.route.snapshot.paramMap.get('status');
+    if (this.status) {
+      this.atualizaStatus(this.idAgendamento, this.status);
+    } else {
+      this.buscaAgendamento();
+    }
   }
 
   buscaAgendamento() {
     this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
       this.idUsuario = this.helper.recuperaIdToken(token);
       this.agendamentoService.ativarAgendamento(this.idAgendamento, this.idUsuario, token)
-        .subscribe((agendamento) => {
+        .subscribe((agendamento:Agendamento) => {
           this.agendamento = agendamento;
+          this.clienteService.getUsuario(token).subscribe((usuario:Usuario) => {
+            this.isCliente = (usuario || {}).tipo === TipoPessoa.CLIENTE || false;
+            if (agendamento.status.id === 4 && this.isCliente) {
+              this.geraPreference(agendamento.id, agendamento.cliente.id);
+            }
+          }, () => {
+            this.isCliente = false;
+          });
         });
-
-      this.clienteService.getUsuario(token).subscribe((usuario:Usuario) => {
-        this.isCliente = (usuario || {}).tipo === TipoPessoa.CLIENTE || false;
-      }, () => {
-        this.isCliente = false;
-      });
     });
 
     this.buscaAvaliacao(this.idAgendamento);
@@ -133,6 +145,48 @@ export class VisualizacaoAgendamentoComponent implements OnInit {
         .subscribe(() => {
           this.buscaAgendamento();
         });
+    });
+  }
+
+  atualizaStatus(agendamentoId: number, status: string) {
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
+      const statusId = this.recuperaStatusId(status);
+      const usuarioId = this.helper.recuperaIdToken(token);
+
+      this.agendamentoService.alterarStatusAgendamento(usuarioId,
+        statusId, agendamentoId, token).subscribe(() => {
+        this.buscaAgendamento();
+      });
+    });
+  }
+
+  recuperaStatusId = (status:string) => {
+    if (status === 'success') {
+      return 1; // AGENDADO
+    }
+    if (status === 'pending') {
+      return 5; // OFERTA_SOLICITADA
+    }
+    if (status === 'failure') {
+      return 4; // PENDENTE_PAGAMENTO
+    }
+    return 3; // CANCELADO
+  }
+
+  geraPreference(agendamentoId:number, usuarioId:number) {
+    this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
+      this.pagamentoService.recuperaPreference(agendamentoId,
+        usuarioId, token).subscribe((response) => {
+        const script = document.createElement('script');
+
+        script.src = MERCADO_PAGO_URL;
+        script.type = 'text/javascript';
+        script.dataset.preferenceId = response.preferenceId;
+        script.dataset.buttonLabel = 'Efetuar Pagamento';
+
+        document.getElementById('button-checkout').innerHTML = '';
+        document.querySelector('#button-checkout').appendChild(script);
+      });
     });
   }
 }

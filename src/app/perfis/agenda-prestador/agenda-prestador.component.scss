@@ -44,7 +44,11 @@ mat-list-item {
     padding-left: 0px;
     max-width: 150px;
 
-    & > button {
+    & > .button-top {
+      margin-bottom: 2px;
+    }
+
+    & > a {
       margin-bottom: 2px;
     }
   }
