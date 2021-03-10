@@ -13,7 +13,7 @@
     </mat-form-field>
     <mat-form-field>
         <mat-label>{{'TELEFONE' | translate}}</mat-label>
-        <input matInput placeholder="(11) 9999-99999" minlength="10" maxlength="15" mask="(00) 0000-00009" [formControl]="telefoneFormControl" [(ngModel)]="usuario.telefone"/>
+        <input matInput placeholder="(11) 99999-9999" minlength="10" maxlength="15" mask="(00) 00000-0009" [formControl]="telefoneFormControl" [(ngModel)]="usuario.telefone"/>
         <mat-error *ngIf="telefoneFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
         <mat-error *ngIf="telefoneFormControl.hasError('minlength')">
             {{'TELEFONE_INVALIDO' | translate}}

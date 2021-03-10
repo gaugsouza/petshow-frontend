@@ -22,7 +22,7 @@
                         ></app-endereco-cadastro>
 
   <div *ngIf="isPrestador()">
-    <mat-checkbox (change)="toggleFormEmpresa()">Desejo cadastrar minha empresa</mat-checkbox>
+    <mat-checkbox (change)="toggleFormEmpresa()">{{'DESEJO_CADASTRAR_EMPRESA' | translate}} </mat-checkbox>
     <app-cadastro-empresa
       *ngIf="exibeFormEmpresa"
       [empresa]="empresa"
