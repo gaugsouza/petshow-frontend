@@ -125,9 +125,11 @@ export class ListaServicosDetalhadosComponent implements OnInit {
           }
         }
         this.validaGeolocalizacao(this.filtro);
+        this.tooltipText = this.geraTooltip();
       }, () => {
         this.isCliente = false;
         this.isAtivo = false;
+        this.tooltipText = this.geraTooltip();
         this.validaGeolocalizacao(this.filtro);
       });
     });
