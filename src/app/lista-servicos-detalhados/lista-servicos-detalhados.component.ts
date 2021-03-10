@@ -270,7 +270,7 @@ export class ListaServicosDetalhadosComponent implements OnInit {
   }
 
   geraTitulo = (prestador:Prestador) => {
-    if (!prestador.empresa.id) {
+    if (!prestador.empresa) {
       return prestador.nome;
     }
 

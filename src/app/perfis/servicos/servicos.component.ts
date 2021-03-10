@@ -33,7 +33,7 @@ export class ServicosComponent implements OnInit {
 
   quantidadeTotal:number;
 
-  quantidadeItens:number = 5;
+  quantidadeItens:number = 4;
 
   paginaAtual:number = 0;
 

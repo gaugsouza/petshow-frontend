@@ -130,7 +130,7 @@ export class ServicoDetalhadoComponent implements OnInit {
   }
 
   empresaExiste() {
-    return !!this.servicoDetalhado.prestador.empresa.id;
+    return !!this.servicoDetalhado.prestador.empresa;
   }
 
   geraNomeEmpresa() {

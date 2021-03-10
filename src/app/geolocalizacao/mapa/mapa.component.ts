@@ -169,14 +169,14 @@ export class MapaComponent implements OnInit {
   }
 
   retornaGeolocalizacao = (prestador:Prestador) => {
-    if (prestador.empresa.id) {
+    if (prestador.empresa) {
       return prestador.empresa.geolocalizacao || null;
     }
     return prestador.geolocalizacao || null;
   }
 
   geraNome = (prestador:Prestador) => {
-    if (!prestador.empresa.id) {
+    if (!prestador.empresa) {
       return prestador.nome;
     }
 

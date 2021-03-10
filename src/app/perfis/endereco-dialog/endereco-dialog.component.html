@@ -2,7 +2,7 @@
     <p>{{'ALTERA_ENDERECO' | translate}}</p>
     <mat-form-field>
         <mat-label>CEP</mat-label>
-        <input [formControl]="cepFormControl" matInput [(ngModel)]="data.cep" mask="00000-000" minlength="8" maxlength="8"/>
+        <input [formControl]="cepFormControl" matInput [(ngModel)]="data.cep" mask="00000-000" minlength="8"/>
         <mat-error *ngIf="cepFormControl.hasError('minlength')">{{'CEP_INVALIDO' | translate}}</mat-error>
         <mat-error *ngIf="cepFormControl.hasError('required')">{{'CAMPO_OBRIGATORIO' | translate}}</mat-error>
         <mat-error *ngIf="cepFormControl.hasError('erroBusca')">{{erroBuscaCep | translate}}</mat-error>

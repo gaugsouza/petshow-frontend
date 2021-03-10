@@ -14,16 +14,34 @@
           </mat-error>
     </mat-form-field>
     
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" *ngIf="isInsert">
       <mat-label>{{'TIPO_ANIMAL' | translate}}</mat-label>
-      <mat-select [(ngModel)]="animal.tipo.nome" name="tipo_animal" [value]="animal.tipo.nome" class="form__animal-tipo" [disabled]="!isInsert">
-        <mat-option *ngFor="let tipo of tiposAnimal" [value]="tipo.nome">
-          {{tipo.nome | translate}}
+      <mat-select [(ngModel)]="nomeTipo" name="tipo_animal" [value]="animal.tipo.nome" class="form__animal-tipo" [disabled]="!isInsert" (selectionChange)="limpaCampos();montaTipo('nome', $event.value)">
+        <mat-option *ngFor="let tipo of getNomesTipoAnimal()" [value]="tipo">
+          {{tipo | translate}}
         </mat-option>
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field *ngIf="animal.tipo.nome=='cachorro'" appearance="fill">
+    <mat-form-field appearance="fill" *ngIf="nomeTipo && possuiPortes(nomeTipo) && isInsert">
+      <mat-label>{{ 'PORTE' | translate }}</mat-label>
+      <mat-select [(ngModel)]="porte" [value]="animal.tipo.porte" (selectionChange)="montaTipo('porte', $event.value)" [disabled]="!isInsert">
+      <mat-option *ngFor="let porte of getPortesAnimal(nomeTipo)" [value]="porte">
+        {{porte | translate}}
+      </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" *ngIf="nomeTipo && possuiPelagem(nomeTipo) && isInsert">
+      <mat-label>{{ 'PELAGEM' | translate }}</mat-label>
+      <mat-select [(ngModel)]="pelagem" [value]="animal.tipo.pelagem" (selectionChange)="montaTipo('pelagem', $event.value)" [disabled]="!isInsert">
+      <mat-option *ngFor="let pelagem of getPelagensAnimal(nomeTipo)" [value]="pelagem">
+        {{pelagem | translate}}
+      </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- <mat-form-field *ngIf="animal.tipo.nome=='cachorro'" appearance="fill">
       <mat-label>{{'PORTE' | translate}}</mat-label>
       <mat-select [(ngModel)]="animal.tipo.porte" [value]="animal.tipo.porte" class="form__animal-porte" [disabled]="!isInsert">
         <mat-option value="pequeno">{{'CURTA' | translate}}</mat-option>
@@ -39,7 +57,7 @@
         <mat-option value = "média">{{'MEDIO' | translate}}</mat-option>
         <mat-option value ="longa">{{'LONGA' | translate}}</mat-option>
       </mat-select>
-    </mat-form-field>
+    </mat-form-field> -->
     
     <div class="form__button-container">
       <button *ngIf="!animal.id" mat-flat-button color="primary" (click)="insereAnimal()" [disabled]="hasErrors()">{{'SALVAR' | translate}}</button>

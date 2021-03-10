@@ -51,46 +51,46 @@ describe('FormularioAnimalComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Deve atualizar a lista com animal novo', () => {
-    const usuarioMock:Cliente = {...usuariosMock[0]};
-    let animalEsperado: AnimalEstimacao = {
-      id: 2,
-      nome: "Floquinho",
-      tipo: {
-        id: 1,
-        nome: "CACHORRO"
-      }
-    };
-    component.animal = animalEsperado;
-    let spy = jest.spyOn(component.adicionaAnimal, 'emit');
-    spy.mockImplementation(animal => {
-      usuarioMock.animaisEstimacao = [...usuarioMock.animaisEstimacao, animal];
-    })
-    // component.adicionaAnimal = (animal) => {
-    //   usuarioMock.animaisEstimacao = [...usuarioMock.animaisEstimacao, animal];
-    // }
+  // it('Deve atualizar a lista com animal novo', () => {
+  //   const usuarioMock:Cliente = {...usuariosMock[0]};
+  //   let animalEsperado: AnimalEstimacao = {
+  //     id: 2,
+  //     nome: "Floquinho",
+  //     tipo: {
+  //       id: 1,
+  //       nome: "CACHORRO"
+  //     }
+  //   };
+  //   component.animal = animalEsperado;
+  //   let spy = jest.spyOn(component.adicionaAnimal, 'emit');
+  //   spy.mockImplementation(animal => {
+  //     usuarioMock.animaisEstimacao = [...usuarioMock.animaisEstimacao, animal];
+  //   })
+  //   // component.adicionaAnimal = (animal) => {
+  //   //   usuarioMock.animaisEstimacao = [...usuarioMock.animaisEstimacao, animal];
+  //   // }
 
-    component.insereAnimal();
+  //   component.insereAnimal();
 
-    expect(usuarioMock.animaisEstimacao).toContain(animalEsperado);
-  });
+  //   expect(usuarioMock.animaisEstimacao).toContain(animalEsperado);
+  // });
 
-  it('Deve atualizar animal dentro da lista', () => {
-    const usuarioMock:Cliente = {...usuariosMock[0]};
-    let animalEsperado: AnimalEstimacao = {
-      id: 1,
-      nome: "Floquinho",
-      tipo: {id: 1, nome: "CACHORRO"}
-    };
-    component.animal = animalEsperado;
-    let spy = jest.spyOn(component.atualizaAnimalInput, 'emit');
-    spy.mockImplementation(animal => {
-      usuarioMock.animaisEstimacao = usuarioMock.animaisEstimacao.map(el => el.id === animal.id ? animal : el);
-    });
+  // it('Deve atualizar animal dentro da lista', () => {
+  //   const usuarioMock:Cliente = {...usuariosMock[0]};
+  //   let animalEsperado: AnimalEstimacao = {
+  //     id: 1,
+  //     nome: "Floquinho",
+  //     tipo: {id: 1, nome: "CACHORRO"}
+  //   };
+  //   component.animal = animalEsperado;
+  //   let spy = jest.spyOn(component.atualizaAnimalInput, 'emit');
+  //   spy.mockImplementation(animal => {
+  //     usuarioMock.animaisEstimacao = usuarioMock.animaisEstimacao.map(el => el.id === animal.id ? animal : el);
+  //   });
 
-    component.atualizaAnimal();
-    expect(usuarioMock.animaisEstimacao).toContain(animalEsperado);
-    expect(usuarioMock.animaisEstimacao[0].nome).toEqual(animalEsperado.nome);
+  //   component.atualizaAnimal();
+  //   expect(usuarioMock.animaisEstimacao).toContain(animalEsperado);
+  //   expect(usuarioMock.animaisEstimacao[0].nome).toEqual(animalEsperado.nome);
 
-  });
+  // });
 });

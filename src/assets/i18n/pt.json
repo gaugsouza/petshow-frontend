@@ -85,9 +85,9 @@
   "BABA": "Babá",
   "CRECHE": "Creche",
   "HOSPEDAGEM": "Hospedagem",
-  "FUNERAL": "Funeral auau",
+  "FUNERAL": "Funeral",
   "VETERINARIO": "Consulta Veterinária",
-  "VETERINARIO_DOMICILIO": "Veterinária a domicilio",
+  "VETERINARIO_DOMICILIO": "Veterinário a domicílio",
   "ADESTRAMENTO": "Adestramento",
   "LEVA_TRAZ": "Leva e Traz",
   "ADOCAO": "Adoção",
@@ -270,8 +270,21 @@
   "UPDATE_ANIMAL_FORM": "Atualizar animal de estimação",
   "NENHUM_PRECO_CADASTRADO": "Nenhum preço cadastrado para este tipo de animal",
   "VALOR_MINIMO": "O preço deve ser maior que R$0,01",
+<<<<<<< HEAD
   "CONFIRMAR_OFERTA": "Deseja enviar esta oferta?",
+=======
+  "DESEJO_CADASTRAR_EMPRESA": "Desejo cadastrar minha empresa",
+  "CADASTRO_EMPRESA": "Cadastro de Empresa",
+  "RAZAO_SOCIAL": "Razão Social",
+  "VALOR_DEVE_PREENCHIDO": "Valor deve ser preenchido",
+  "DEVE_TER_MIN_3": "deve ter no mínimo três caracteres",
+  "NOME_FANTASIA": "Nome Fantasia",
+  "CNPJ": "CNPJ",
+  "CNPJ_INVALIDO": "CNPJ inválido",
+
+>>>>>>> 26652f0e757cf8106eadee026f7a2a4e09af1147
   
+
   
   "POLITICA-LINHA4": "Este site é mantido e operado por Pet Show LTDA.",
   "POLITICA-LINHA5": "Nós coletamos e utilizamos alguns dados pessoais que pertencem àqueles que utilizam nosso site. Ao fazê-lo, agimos na qualidade de controlador desses dados e estamos sujeitos às disposições da Lei Federal n. 13.709/2018 (Lei Geral de Proteção de Dados Pessoais – LGPD).",
