@@ -175,6 +175,8 @@
   "PROXIMO": "Próximo",
   "ANIMAIS_ELEGIVEIS": "Animais de estimação elegíveis para esse serviço",
   "AGENDAMENTO_CONCLUIDO": "Agendamento concluído com sucesso!",
+  "AGENDAMENTO_PENDENTE": "Agendamento efetuado, aguarde a aprovação de sua oferta!",
+  "AGENDAMENTO_FALHOU": "Falha durante o pagamento do agendamento, verifique os dados novamente!",
   "DADOS_DO": "Dados do",
   "DETALHES_SERVICO": "Detalhes do serviço escolhido",
   "DATA_AGENDAMENTO": "Data do agendamento",
@@ -268,6 +270,7 @@
   "UPDATE_ANIMAL_FORM": "Atualizar animal de estimação",
   "NENHUM_PRECO_CADASTRADO": "Nenhum preço cadastrado para este tipo de animal",
   "VALOR_MINIMO": "O preço deve ser maior que R$0,01",
+  "CONFIRMAR_OFERTA": "Deseja enviar esta oferta?",
   
   
   "POLITICA-LINHA4": "Este site é mantido e operado por Pet Show LTDA.",

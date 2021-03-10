@@ -138,7 +138,7 @@ export class AgendamentoComponent implements OnInit {
   }
 
   redirecionaTelaConfirmacao() {
-    this.router.navigate([`agendamento-sucesso/${this.idAgendamento}`]);
+    this.router.navigate([`agendamento-feedback/${this.idAgendamento}/pending`]);
   }
 
   recuperaDataAtendimento(data:Date) {
@@ -154,7 +154,6 @@ export class AgendamentoComponent implements OnInit {
       script.type = 'text/javascript';
       script.dataset.preferenceId = response.preferenceId;
       script.dataset.buttonLabel = 'Efetuar Pagamento';
-      script.onclick = this.getValorTotal();
 
       document.getElementById('button-checkout').innerHTML = '';
       document.querySelector('#button-checkout').appendChild(script);
@@ -170,9 +169,9 @@ export class AgendamentoComponent implements OnInit {
     return valorTipos + valorAdicionais;
   }
 
-  openConfirmationAgendar(stepper: MatStepper) {
+  openConfirmationAgendar(stepper: MatStepper, msg: string) {
     const data = {
-      mensagem: 'PROSSEGUIR_AGENDAMENTO',
+      mensagem: msg,
       response: true,
     };
 
@@ -228,7 +227,7 @@ export class AgendamentoComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((negociacao) => {
       this.negociacao = { ...negociacao };
-      this.openConfirmationAgendar(this.stepper);
+      this.openConfirmationAgendar(this.stepper, 'CONFIRMAR_OFERTA');
     });
   }
 }

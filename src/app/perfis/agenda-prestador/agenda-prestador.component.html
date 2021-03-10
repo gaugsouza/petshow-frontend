@@ -34,15 +34,12 @@
             <span><p>{{'STATUS' | translate}}: {{agendamento.status.nome | translate}}</p></span>
           </div>
           <div class="agendamento-list__button-container" *ngIf="isAtivo(agendamento)">
-            <button mat-flat-button color="success"
-              (click)="concluiAgendamento(agendamento)">{{'CONCLUIDO' | translate}}</button>
-            <button mat-flat-button color="warn"
-              (click)="cancelaAgendamento(agendamento)">{{'CANCELAR' | translate}}</button>
+            <button class="button-top" mat-flat-button color="success"
+              (click)="concluiAgendamento(agendamento)" *ngIf="agendamento.status.id === 1">{{'CONCLUIDO' | translate}}</button>
             <a mat-flat-button color="primary" href="/agendamento/{{agendamento.id}}">
-              <!-- <span> -->
                 {{'VER_DETALHES' | translate}}
-              <!-- </span> -->
             </a>
+            <button mat-flat-button color="warn" (click)="cancelaAgendamento(agendamento)">{{'CANCELAR' | translate}}</button>
           </div>
         </div>
       </mat-list-item>

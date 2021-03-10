@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-confirmacao-agendamento',
@@ -6,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./confirmacao-agendamento.component.scss'],
 })
 export class ConfirmacaoAgendamentoComponent implements OnInit {
-  constructor() { }
+  status: string;
 
-  ngOnInit = (): void => {
+  constructor(private route:ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.status = this.route.snapshot.paramMap.get('status');
   }
 }
