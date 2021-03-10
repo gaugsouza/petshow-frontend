@@ -89,7 +89,7 @@ export class ListaServicosDetalhadosComponent implements OnInit {
         const { coords: { latitude, longitude } } = pos;
         this.filtro = {
           ...this.filtro,
-          metrosGeoloc: 600,
+          metrosGeoloc: 20000,
           posicaoAtual: {
             geolocLongitude: longitude.toString(),
             geolocLatitude: latitude.toString(),
@@ -101,7 +101,7 @@ export class ListaServicosDetalhadosComponent implements OnInit {
         this.filtro = {
           ...this.filtro,
           posicaoAtual: { geolocLongitude: null, geolocLatitude: null },
-          metrosGeoloc: 600,
+          metrosGeoloc: 20000,
         };
         this.buscaUsuario();
       });
@@ -119,7 +119,7 @@ export class ListaServicosDetalhadosComponent implements OnInit {
           if (!this.filtro.posicaoAtual.geolocLatitude) {
             this.filtro = {
               ...this.filtro,
-              metrosGeoloc: 600,
+              metrosGeoloc: 20000,
               posicaoAtual: { ...(usuario || {}).geolocalizacao },
             };
           }
