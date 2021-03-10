@@ -48,8 +48,6 @@ export class FormularioAnimalComponent implements OnInit {
               private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
-    // this.tipoAnimal = {...this.animal.tipo};
-    console.log(this.animal);
     this.getTiposAnimal();
   }
 
@@ -62,8 +60,11 @@ export class FormularioAnimalComponent implements OnInit {
   }
 
   insereAnimal() {
-    const tipo = this.tiposAnimal.find(tipo => tipo.nome === this.tipoAnimal.nome && tipo.porte === this.tipoAnimal.porte && tipo.pelagem === this.tipoAnimal.pelagem);
-    this.animal = { ...this.animal, tipo }
+    const tipo = this.tiposAnimal
+      .find((t) => t.nome === this.tipoAnimal.nome
+    && t.porte === this.tipoAnimal.porte
+    && t.pelagem === this.tipoAnimal.pelagem);
+    this.animal = { ...this.animal, tipo };
     this.adicionaAnimal.emit(this.animal);
     this.afterInsert();
   }
@@ -79,39 +80,44 @@ export class FormularioAnimalComponent implements OnInit {
 
     this.animal = {
       nome: '',
-      tipo: { nome: '', porte: '', pelagem: ''},
+      tipo: { nome: '', porte: '', pelagem: '' },
     };
-
   }
+
   cancelarOperacao() {
     this.afterInsert();
     this.cancelaOperacao.emit();
   }
 
   getNomesTipoAnimal(): string[] {
-    return [... new Set((this.tiposAnimal || []).map(el => el.nome))];
+    return [...new Set((this.tiposAnimal || []).map((el) => el.nome))];
   }
 
   possuiPortes(nomeTipo:string):boolean {
-    return this.tiposAnimal.filter(tipo => tipo.nome === nomeTipo).map(tipo => !!tipo.porte).reduce((acc, el) => acc && el, true);
+    return this.tiposAnimal
+      .filter((tipo) => tipo.nome === nomeTipo)
+      .map((tipo) => !!tipo.porte)
+      .reduce((acc, el) => acc && el, true);
   }
 
   getPortesAnimal(nomeTipo:string) {
-    return [... new Set(this.tiposAnimal
-    .filter(tipo => tipo.nome === nomeTipo)
-    .filter(tipo => !!tipo.porte)
-    .map(tipo => tipo.porte))];
+    return [...new Set(this.tiposAnimal
+      .filter((tipo) => tipo.nome === nomeTipo)
+      .filter((tipo) => !!tipo.porte)
+      .map((tipo) => tipo.porte))];
   }
 
   possuiPelagem(nomeTipo:string) {
-    return this.tiposAnimal.filter(tipo => tipo.nome === nomeTipo).map(tipo => !!tipo.pelagem).reduce((acc, el) => acc && el, true);
+    return this.tiposAnimal.filter((tipo) => tipo.nome === nomeTipo)
+      .map((tipo) => !!tipo.pelagem)
+      .reduce((acc, el) => acc && el, true);
   }
 
   getPelagensAnimal(nomeTipo:string) {
-    return [... new Set(this.tiposAnimal
-    .filter(tipo => tipo.nome === nomeTipo)
-    .filter(tipo => !!tipo.pelagem)
-    .map(tipo => tipo.pelagem))];
+    return [...new Set(this.tiposAnimal
+      .filter((tipo) => tipo.nome === nomeTipo)
+      .filter((tipo) => !!tipo.pelagem)
+      .map((tipo) => tipo.pelagem))];
   }
 
   limpaCampos() {
@@ -120,27 +126,29 @@ export class FormularioAnimalComponent implements OnInit {
     this.tipoAnimal = {
       nome: '',
       porte: '',
-      pelagem: ''
+      pelagem: '',
     };
   }
 
   montaTipo(campo, valor) {
     this.tipoAnimal = {
       ...this.tipoAnimal,
-      [campo]: valor
+      [campo]: valor,
     };
   }
 
   tipoValido = (tipo:TipoAnimal):boolean => {
-    if(!tipo) {
+    if (!tipo) {
       return false;
     }
 
     const possuiNome = !!tipo.nome && tipo.nome !== 'VAZIO';
-    const possuiPorte = (this.possuiPortes(tipo.nome) && !!tipo.porte) || (this.getPortesAnimal(tipo.nome) || []).length === 0;
-    const possuiPelagem = (this.possuiPelagem(tipo.nome) && !!tipo.pelagem) || (this.getPelagensAnimal(tipo.nome) || []).length === 0;
+    const possuiPorte = (this.possuiPortes(tipo.nome) && !!tipo.porte)
+    || (this.getPortesAnimal(tipo.nome) || []).length === 0;
+    const possuiPelagem = (this.possuiPelagem(tipo.nome) && !!tipo.pelagem)
+    || (this.getPelagensAnimal(tipo.nome) || []).length === 0;
 
-   return possuiNome && possuiPorte && possuiPelagem;
+    return possuiNome && possuiPorte && possuiPelagem;
   }
 
   getTiposAnimal() {
@@ -150,7 +158,6 @@ export class FormularioAnimalComponent implements OnInit {
           tipos.forEach((tipo:any) => {
             this.tiposAnimal.push(tipo);
           });
-          console.log(this.tiposAnimal);
         },
       );
     });

@@ -46,7 +46,6 @@ export class PerfilUsuarioComponent implements OnInit {
 
   selecionaAnimal(animalEstimacao:AnimalEstimacao): void {
     this.animal = { ...animalEstimacao };
-    console.log(this.animal);
     this.exibeFormulario(false);
   }
 

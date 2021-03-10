@@ -110,7 +110,7 @@ export class PerfilPrestadorComponent implements OnInit {
   }
 
   geraTitulo() {
-    if (!this.usuario.empresa.id) {
+    if (!this.usuario.empresa) {
       return this.usuario.nome;
     }
 

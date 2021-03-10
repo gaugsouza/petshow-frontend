@@ -99,7 +99,7 @@ export class DadosAgendamentoComponent implements OnInit {
   }
 
   geraTitulo() {
-    if (!this.prestador.empresa.id) {
+    if (!this.prestador.empresa) {
       return this.prestador.nome;
     }
 
