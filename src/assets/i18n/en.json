@@ -263,10 +263,20 @@
   "ACEITAR": "Accept",
   "RECUSAR": "Refuse",
   "CONFIRMAR_NEGOCIACAO": "Do you want to proceed with your choice?",
-  
   "UPDATE_ANIMAL_FORM": "Update pet",
   "NENHUM_PRECO_CADASTRADO": "There are no prices registered to this pet type",
   "VALOR_MINIMO": "The price must be higher than R$0,01",
+  "DESEJO_CADASTRAR_EMPRESA": "I wish to register a company",
+  "CADASTRO_EMPRESA": "Register of Company",
+  "RAZAO_SOCIAL": "Business Name",
+  "VALOR_DEVE_PREENCHIDO": "Value must be filled",
+  "DEVE_TER_MIN_3": "must have at least three characters",
+  "NOME_FANTASIA": "Comercial Name",
+  "CNPJ": "CNPJ (Corporate Number)",
+  "CNPJ_INVALIDO": "Invalid CNPJ",
+
+
+
 
   "POLITICA-LINHA4": "This website is maintained and operated by Pet Show LTDA.",
   "POLITICA-LINHA5": "We collect and use some personal data that belongs to those who use our website. In doing so, we act as the controller of such data and are subject to the provisions of Federal Law no. 13,709 / 2018 (General Law on Protection of Personal Data - LGPD).",
