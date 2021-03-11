@@ -42,6 +42,8 @@ export class ListaServicosDetalhadosComponent implements OnInit {
 
   private NOTA_MAXIMA = 5;
 
+  private DISTANCIA_INICIAL_FILTRO = 10000;
+
   mediaAvaliacao:number = 0;
 
   filtroAdicional:boolean = false;
@@ -89,7 +91,7 @@ export class ListaServicosDetalhadosComponent implements OnInit {
         const { coords: { latitude, longitude } } = pos;
         this.filtro = {
           ...this.filtro,
-          metrosGeoloc: 600,
+          metrosGeoloc: this.DISTANCIA_INICIAL_FILTRO,
           posicaoAtual: {
             geolocLongitude: longitude.toString(),
             geolocLatitude: latitude.toString(),
@@ -101,7 +103,7 @@ export class ListaServicosDetalhadosComponent implements OnInit {
         this.filtro = {
           ...this.filtro,
           posicaoAtual: { geolocLongitude: null, geolocLatitude: null },
-          metrosGeoloc: 600,
+          metrosGeoloc: this.DISTANCIA_INICIAL_FILTRO,
         };
         this.buscaUsuario();
       });
@@ -119,15 +121,17 @@ export class ListaServicosDetalhadosComponent implements OnInit {
           if (!this.filtro.posicaoAtual.geolocLatitude) {
             this.filtro = {
               ...this.filtro,
-              metrosGeoloc: 600,
+              metrosGeoloc: this.DISTANCIA_INICIAL_FILTRO,
               posicaoAtual: { ...(usuario || {}).geolocalizacao },
             };
           }
         }
         this.validaGeolocalizacao(this.filtro);
+        this.tooltipText = this.geraTooltip();
       }, () => {
         this.isCliente = false;
         this.isAtivo = false;
+        this.tooltipText = this.geraTooltip();
         this.validaGeolocalizacao(this.filtro);
       });
     });

@@ -24,7 +24,7 @@
         </ng-template>
         
         <ng-template #avaliacoesBlock>
-            <h3 class="servico-topo">{{getNomeServico()}} - {{getNomePrestador()}} - {{getMediaAvaliacoes()}} <mat-icon>star</mat-icon></h3>
+            <h3 class="servico-topo">{{getNomeServico() | translate}} - {{getNomePrestador()}} - {{getMediaAvaliacoes()}} <mat-icon>star</mat-icon></h3>
             <hr>
             
             <div class="card-avaliacao" *ngFor="let avaliacao of getAvaliacoes()">
