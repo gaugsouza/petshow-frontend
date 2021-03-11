@@ -13,7 +13,7 @@
         <div class="agendamento-list__item">
           <div>
             <span>
-              <p>{{agendamento.servicoDetalhado.tipo.nome | translate}}</p>
+              <p> {{ geraTituloPrestador(agendamento.prestador) }} - {{agendamento.servicoDetalhado.tipo.nome | translate}}</p>
               <p>{{agendamento.data}}</p>
               <p>{{'PRECO_FINAL' | translate}}: {{agendamento.precoFinal | currency: 'BRL'}}</p>
             </span>
@@ -39,7 +39,7 @@
               </span>
             </ng-template>
             <span>
-              <p>{{'STATUS' | translate}}: {{agendamento.status.nome | translate}}</p>
+              <p>{{'STATUS' | translate}}: <span class="{{getStatusClassColor(agendamento)}}">{{agendamento.status.nome | translate}}</span></p>
             </span>
           </div>
           <div class="agendamento-list__buttons">

@@ -212,7 +212,7 @@ export class AgendamentoComponent implements OnInit {
       this.idCliente, this.token).subscribe(() => {
       this.idAgendamento = undefined;
       (document.getElementById('button-checkout') || {} as HTMLElement).innerHTML = '';
-      this.agendamento = {...this.agendamento, negociacao: null};
+      this.agendamento = { ...this.agendamento, negociacao: null };
       this.negociacao = null;
       stepper.reset();
     });
@@ -228,8 +228,10 @@ export class AgendamentoComponent implements OnInit {
     );
 
     dialogRef.afterClosed().subscribe((negociacao) => {
-      this.negociacao = { ...negociacao };
-      this.openConfirmationAgendar(this.stepper, 'CONFIRMAR_OFERTA');
+      if (negociacao) {
+        this.negociacao = { ...negociacao };
+        this.openConfirmationAgendar(this.stepper, 'CONFIRMAR_OFERTA');
+      }
     });
   }
 }

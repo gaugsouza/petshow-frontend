@@ -1,10 +1,9 @@
 .btn-mercado-pago {
-    display: flex;
-    justify-content: end;
-    margin-top: 10px;
+  display: flex;
+  justify-content: end;
+  margin-top: 10px;
 
-    @media (max-width: 525px) {
-        justify-content: center;    
-    }    
+  @media (max-width: 525px) {
+    justify-content: center;
+  }
 }
-
