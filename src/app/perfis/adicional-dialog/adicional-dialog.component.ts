@@ -14,6 +14,7 @@ export class AdicionalDialogComponent implements OnInit {
 
   precoFormControl = new FormControl('', [
     Validators.required,
+    Validators.min(0.01),
   ]);
 
   constructor(public dialogRef: MatDialogRef<AdicionalDialogComponent>,
@@ -27,6 +28,6 @@ export class AdicionalDialogComponent implements OnInit {
   }
 
   hasErrors() {
-    return this.nomeFormControl.hasError('required') || this.precoFormControl.hasError('required');
+    return this.nomeFormControl.hasError('required') || this.precoFormControl.hasError('required') || this.precoFormControl.hasError('min');
   }
 }
