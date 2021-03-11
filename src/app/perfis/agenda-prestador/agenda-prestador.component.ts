@@ -132,4 +132,15 @@ export class AgendaPrestadorComponent implements OnInit {
     this.buscarAgendamentosPorPrestador(this.prestadorId, pagina, quantidadeItens);
     return event;
   }
+
+  getStatusClassColor = (agendamento:Agendamento):string => {
+    if (STATUS_AGENDAMENTO.concluido.includes(agendamento.status.nome.toUpperCase())) {
+      return 'concluido';
+    }
+
+    if (STATUS_AGENDAMENTO.cancelado.includes(agendamento.status.nome.toUpperCase())) {
+      return 'cancelado';
+    }
+    return 'nao-realizado';
+  }
 }
