@@ -211,7 +211,9 @@ export class AgendamentoComponent implements OnInit {
     this.agendamentoService.deletarAgendamento(this.idAgendamento,
       this.idCliente, this.token).subscribe(() => {
       this.idAgendamento = undefined;
-      document.getElementById('button-checkout').innerHTML = '';
+      (document.getElementById('button-checkout') || {} as HTMLElement).innerHTML = '';
+      this.agendamento = {...this.agendamento, negociacao: null};
+      this.negociacao = null;
       stepper.reset();
     });
   }
