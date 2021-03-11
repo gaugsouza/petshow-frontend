@@ -10,8 +10,9 @@
     </mat-form-field>
     <mat-form-field>
         <mat-label>{{'VALOR_SERVICO' | translate}}</mat-label>
-        <input matInput maxlength="12" [formControl]="precoFormControl" required [(ngModel)]="data.adicional.preco" 
+        <input matInput maxlength="9" [formControl]="precoFormControl" required [(ngModel)]="data.adicional.preco" 
             mask='separator.2' [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$" />
+        <mat-error *ngIf="precoFormControl.hasError('min')">{{'VALOR_MINIMO' | translate}}</mat-error>
     </mat-form-field>
     <div class="dialog__button-container">
         <button mat-flat-button color="warn" (click)="onNoClick()">{{'CANCELAR' | translate}}</button>
