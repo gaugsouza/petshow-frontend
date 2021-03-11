@@ -31,7 +31,7 @@
                 </span>
               </ng-template>
             </ng-container>
-            <span><p>{{'STATUS' | translate}}: {{agendamento.status.nome | translate}}</p></span>
+            <span><p>{{'STATUS' | translate}}: <span class="{{getStatusClassColor(agendamento)}}">{{agendamento.status.nome | translate}}</span></p></span>
           </div>
           <div class="agendamento-list__button-container" *ngIf="isAtivo(agendamento)">
             <button class="button-top" mat-flat-button color="success"

@@ -6,6 +6,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { Agendamento } from 'src/app/interfaces/agendamento';
 import { AnimalEstimacao } from 'src/app/interfaces/animalEstimacao';
 import { ObjetoPaginado } from 'src/app/interfaces/paginacao';
+import { Prestador } from 'src/app/interfaces/prestador';
 import { StatusAgendamento } from 'src/app/interfaces/statusAgendamento';
 import { AgendamentoService } from 'src/app/servicos/agendamento.service';
 import { LocalStorageService } from 'src/app/servicos/local-storage.service';
@@ -106,5 +107,29 @@ export class AgendaClienteComponent implements OnInit {
     const quantidadeItens = event.pageSize;
     this.buscarAgendamentosPorCliente(this.clienteId, pagina, quantidadeItens);
     return event;
+  }
+
+  geraTituloPrestador = (prestador:Prestador) :string => {
+    if (!prestador) {
+      return '';
+    }
+
+    if (prestador.empresa) {
+      return prestador.empresa.razaoSocial || prestador.empresa.nome;
+    }
+
+    return prestador.nome;
+  }
+
+  getStatusClassColor = (agendamento:Agendamento):string => {
+    if (STATUS_AGENDAMENTO.concluido.includes(agendamento.status.nome.toUpperCase())) {
+      return 'concluido';
+    }
+
+    if (STATUS_AGENDAMENTO.cancelado.includes(agendamento.status.nome.toUpperCase())) {
+      return 'cancelado';
+    }
+
+    return 'nao-realizado';
   }
 }
