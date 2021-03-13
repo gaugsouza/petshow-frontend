@@ -7,10 +7,10 @@ import { APP_LANG, USER_TOKEN } from 'src/app/util/constantes';
 import { LoginService } from 'src/app/servicos/login.service';
 import { DataSharingService } from 'src/app/servicos/data-sharing.service';
 import { Location } from '@angular/common';
-import { UsuarioService } from './servicos/usuario.service';
-import { PrestadorService } from './servicos/prestador.service';
-import { Usuario } from './interfaces/usuario';
-import { Prestador } from './interfaces/prestador';
+import { UsuarioService } from 'src/app/servicos/usuario.service';
+import { PrestadorService } from 'src/app/servicos/prestador.service';
+import { Usuario } from 'src/app/interfaces/usuario';
+import { Prestador } from 'src/app/interfaces/prestador';
 
 @Component({
   selector: 'app-root',
@@ -50,10 +50,10 @@ export class AppComponent implements OnInit {
 
         this.usuarioService.getUsuario(token as string).subscribe((cliente:Usuario) => {
           this.prestadorService.getPrestador(token as string).subscribe((prestador:Prestador) => {
-              const {nome} = (cliente || prestador);  
-              this.nome = nome;
+            const { nome } = (cliente || prestador);
+            this.nome = nome;
           });
-        })
+        });
       });
   }
 

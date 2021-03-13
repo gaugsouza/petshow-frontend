@@ -1,15 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServicosService } from 'src/app/servicos/servicos.service';
 import { Servico } from 'src/app/interfaces/servico';
 import { Cidade, ConsultaEstadosService, Estado } from 'src/app/servicos/consulta-estados.service';
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
-import { DataSharingService } from '../servicos/data-sharing.service';
-import { LocalStorageService } from '../servicos/local-storage.service';
-import { UsuarioService } from '../servicos/usuario.service';
-import { USER_TOKEN } from '../util/constantes';
-import { MatAutocomplete } from '@angular/material/autocomplete';
+import { DataSharingService } from 'src/app/servicos/data-sharing.service';
+import { LocalStorageService } from 'src/app/servicos/local-storage.service';
+import { UsuarioService } from 'src/app/servicos/usuario.service';
+import { USER_TOKEN } from 'src/app/util/constantes';
 
 @Component({
   selector: 'app-home',
@@ -48,7 +47,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.buscaEstados();
     this.cidadeFormControl.disable();
-    
+
     this.filteredEstados = this.estadoFormControl.valueChanges
       .pipe(
         startWith(''),
@@ -79,7 +78,7 @@ export class HomeComponent implements OnInit {
   }
 
   buscaTipos(cidade?:Cidade) {
-    if(!cidade) {
+    if (!cidade) {
       return;
     }
     this.servicos = null;
@@ -98,14 +97,14 @@ export class HomeComponent implements OnInit {
   buscaEstados() {
     this.consultaEstados.getEstados().subscribe((estados) => {
       this.estados = JSON.parse(estados);
-      this.dataSharingService.isUsuarioLogado.subscribe(isLogado => {
-        if(isLogado) {
+      this.dataSharingService.isUsuarioLogado.subscribe((isLogado) => {
+        if (isLogado) {
           this.validaCliente();
           return;
         }
 
         this.getLocalizacaoFromStorage();
-      })
+      });
     });
   }
 
@@ -119,65 +118,62 @@ export class HomeComponent implements OnInit {
         this.localStorageService.setItem('ESTADO', this.estadoSelecionado).subscribe();
         this.localStorageService.setItem('CIDADE', this.cidadeSelecionada).subscribe();
         this.buscaCidades(this.estadoSelecionado);
-        
-        setTimeout(() => {              
-                this.loading = true;
-                this.cidadeFormControl.enable();
-                this.cidadeSelecionada = cidade
-                this.buscaTipos(this.cidadeSelecionada);
-        }, 1500)
-      })
-    })
+
+        setTimeout(() => {
+          this.loading = true;
+          this.cidadeFormControl.enable();
+          this.cidadeSelecionada = cidade;
+          this.buscaTipos(this.cidadeSelecionada);
+        }, 1500);
+      });
+    });
   }
 
   validaCliente() {
-    this.dataSharingService.isUsuarioLogado.subscribe(isLogado => {
-      if(!isLogado) {
+    this.dataSharingService.isUsuarioLogado.subscribe((isLogado) => {
+      if (!isLogado) {
         this.cidadeFormControl.disable();
         return;
       }
       this.localStorageService.getItem(USER_TOKEN).subscribe((token:string) => {
         this.usuarioService.getUsuario(token)
-        .subscribe((usuario) =>{
-          if (usuario && this.usuarioService.isCliente(usuario)) {
-            const { endereco:{ cidade, estado } } = usuario;
-            const estadoCliente:Estado = {
-              id: estado,
-              estado: null
-            };
-            
-            this.estadoSelecionado = this.estados.find(estado => estado.id === estadoCliente.id);
-            this.cidadeSelecionada = {
-              estadoId: estado,
-              cidade: cidade
-            }
-            
-  
-            this.estadoFormControl.setValue(this.estadoSelecionado);
-            this.cidadeFormControl.setValue(this.cidadeSelecionada);
+          .subscribe((usuario) => {
+            if (usuario && this.usuarioService.isCliente(usuario)) {
+              const { endereco: { cidade, estado } } = usuario;
+              const estadoCliente:Estado = {
+                id: estado,
+                estado: null,
+              };
 
-            this.localStorageService.setItem('ESTADO', this.estadoSelecionado).subscribe();
-            this.localStorageService.setItem('CIDADE', this.cidadeSelecionada).subscribe();
-            this.buscaCidades(this.estadoSelecionado);
-            setTimeout(() => {              
+              this.estadoSelecionado = this.estados.find((e) => e.id === estadoCliente.id);
+              this.cidadeSelecionada = {
+                estadoId: estado,
+                cidade,
+              };
+
+              this.estadoFormControl.setValue(this.estadoSelecionado);
+              this.cidadeFormControl.setValue(this.cidadeSelecionada);
+
+              this.localStorageService.setItem('ESTADO', this.estadoSelecionado).subscribe();
+              this.localStorageService.setItem('CIDADE', this.cidadeSelecionada).subscribe();
+              this.buscaCidades(this.estadoSelecionado);
+              setTimeout(() => {
                 this.loading = true;
                 this.cidadeFormControl.enable();
                 this.cidadeSelecionada = {
                   estadoId: estado,
-                  cidade: cidade
-                }
+                  cidade,
+                };
                 this.buscaTipos(this.cidadeSelecionada);
-            }, 1500)
-          }
-        })
+              }, 1500);
+            }
+          });
       });
     });
-
-   
   }
 
   buscaCidades(estado:Estado) {
-    if(!estado) {
+    if (!estado) {
       return;
     }
     this.cidades = [];
@@ -199,7 +195,7 @@ export class HomeComponent implements OnInit {
   }
 
   selecionaCidade(cidade:Cidade) {
-    if(!cidade) {
+    if (!cidade) {
       return;
     }
     this.cidadeSelecionada = cidade;
