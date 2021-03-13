@@ -12,9 +12,17 @@ app.use(helmet.contentSecurityPolicy({
     directives: {
         ...helmet.contentSecurityPolicy.getDefaultDirectives(),
         "default-src": ["'self'",'https://petshow-backend.herokuapp.com', 'https://br-cidade-estado-nodejs.glitch.me', 'https://nominatim.openstreetmap.org', 'https://www.mercadopago.com.br', 'https://viacep.com.br', 'https://fonts.googleapis.com/', 'https://fonts.gstatic.com', '*.tile.openstreetmap.org'],
-        "img-src": ['*.tile.openstreetmap.org']
+        "img-src": ["'self'", '*.tile.openstreetmap.org']
     }
 }));
+
+app.use((req, res, next) => {
+    res.setHeader(
+      "Permissions-Policy",
+      'geolocation=(self), microphone=()'
+    );
+    next();
+});
 
 const pathName = `${__dirname}/dist/petshow-frontend`;
 app.use(express.static(pathName));
