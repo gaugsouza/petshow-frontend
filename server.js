@@ -8,7 +8,14 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:true }));
 app.use(helmet());
-
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+        defaultSrc: ["'self'", "'https://petshow-backend.herokuapp.com'", "'https://br-cidade-estado-nodejs.glitch.me/estados'", "'https://nominatim.openstreetmap.org'", "'https://www.mercadopago.com.br'", "'https://viacep.com.br'"],
+        scriptSrc: ["'self'"],
+        objectSrc: ["'none'"],
+        upgradeInsecureRequests: [],
+    }
+}));
 
 const pathName = `${__dirname}/dist/petshow-frontend`;
 app.use(express.static(pathName));
