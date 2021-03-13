@@ -5,7 +5,10 @@
             <input matInput type="text"
             [formControl]="estadoFormControl"
             [matAutocomplete]="autoEstado"/>
-            <mat-autocomplete #autoEstado="matAutocomplete" [displayWith]="displayEstado" (optionSelected)="buscaCidades($event.option.value)">
+            <mat-autocomplete #autoEstado="matAutocomplete" 
+                [displayWith]="displayEstado" 
+                (optionSelected)="buscaCidades($event.option.value)"
+                >
                 <mat-option *ngFor="let estado of filteredEstados | async" [value]="estado">
                     {{estado.estado}}
                 </mat-option>
@@ -17,7 +20,10 @@
             <input matInput type="text"
             [formControl]="cidadeFormControl"
             [matAutocomplete]="autoCidade"/>
-            <mat-autocomplete #autoCidade="matAutocomplete" [displayWith]="displayCidade" (optionSelected)="selecionaCidade($event.option.value)">
+            <mat-autocomplete #autoCidade="matAutocomplete" 
+                [displayWith]="displayCidade" 
+                (optionSelected)="selecionaCidade($event.option.value)"
+            >
                 <mat-option *ngFor="let cidade of filteredCidades | async" [value]="cidade">
                     {{cidade.cidade}}
                   </mat-option>

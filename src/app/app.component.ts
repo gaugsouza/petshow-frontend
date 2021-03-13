@@ -7,6 +7,10 @@ import { APP_LANG, USER_TOKEN } from 'src/app/util/constantes';
 import { LoginService } from 'src/app/servicos/login.service';
 import { DataSharingService } from 'src/app/servicos/data-sharing.service';
 import { Location } from '@angular/common';
+import { UsuarioService } from './servicos/usuario.service';
+import { PrestadorService } from './servicos/prestador.service';
+import { Usuario } from './interfaces/usuario';
+import { Prestador } from './interfaces/prestador';
 
 @Component({
   selector: 'app-root',
@@ -26,12 +30,16 @@ export class AppComponent implements OnInit {
 
   public redirectTo:string = '';
 
+  public nome:string;
+
   constructor(private translate: TranslateService,
               private localStorageService: LocalStorageService,
               private router:Router,
               private loginService:LoginService,
               private dataSharingService: DataSharingService,
-              private location: Location) {
+              private location: Location,
+              private usuarioService:UsuarioService,
+              private prestadorService:PrestadorService) {
     this.configuraLinguagem();
     this.localStorageService.getItem(USER_TOKEN)
       .subscribe((token) => {
@@ -39,6 +47,13 @@ export class AppComponent implements OnInit {
         this.dataSharingService.isUsuarioLogado.subscribe((isLogado) => {
           this.isLogged = isLogado;
         });
+
+        this.usuarioService.getUsuario(token as string).subscribe((cliente:Usuario) => {
+          this.prestadorService.getPrestador(token as string).subscribe((prestador:Prestador) => {
+              const {nome} = (cliente || prestador);  
+              this.nome = nome;
+          });
+        })
       });
   }
 
