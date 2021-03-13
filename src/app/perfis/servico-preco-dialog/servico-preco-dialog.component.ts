@@ -127,7 +127,7 @@ export class ServicoPrecoDialogComponent implements OnInit {
     const tiposFiltrado = this.tiposDisponiveis.filter((tipo) => tipo.nome === tipoAnimal);
     const portes = Array.from(new Set(tiposFiltrado.map((tipo) => tipo.porte)));
 
-    this.isPortePelagemVisible = portes.indexOf("") < 0;
+    this.isPortePelagemVisible = portes.indexOf('') < 0;
 
     this.portesTipo = {
       tipoAnimal,
