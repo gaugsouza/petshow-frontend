@@ -14,7 +14,7 @@ app.use(helmet.contentSecurityPolicy({
         "default-src": ["'self'",'https://petshow-backend.herokuapp.com', 'https://br-cidade-estado-nodejs.glitch.me', 'https://nominatim.openstreetmap.org', 'https://www.mercadopago.com.br', 'https://viacep.com.br', 'https://fonts.googleapis.com/', 'https://fonts.gstatic.com', '*.tile.openstreetmap.org'],
         "img-src": ["'self'", '*.tile.openstreetmap.org'],
         "script-src": ["'self'", 'https://www.mercadopago.com.br/integrations'],
-        "style-src": ["'self'"]
+        "style-src": ["'self'", "https://fonts.googleapis.com"]
     }
 }));
 
