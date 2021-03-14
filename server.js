@@ -12,7 +12,7 @@ app.use(helmet.contentSecurityPolicy({
     directives: {
         ...helmet.contentSecurityPolicy.getDefaultDirectives(),
         "default-src": ["'self'",'https://petshow-backend.herokuapp.com', 'https://br-cidade-estado-nodejs.glitch.me', 'https://nominatim.openstreetmap.org', 'https://www.mercadopago.com.br', 'https://viacep.com.br', 'https://fonts.googleapis.com/', 'https://fonts.gstatic.com', '*.tile.openstreetmap.org'],
-        "img-src": ["'self'", '*.tile.openstreetmap.org', 'https://nominatim.openstreetmap.org', "https://openlayers.org", 'maps.gstatic.com', '*.googleapis.com', '*.ggpht' ],
+        "img-src": ["'self'", '*.tile.openstreetmap.org', 'https://nominatim.openstreetmap.org', "https://openlayers.org", 'maps.gstatic.com', '*.googleapis.com', '*.ggpht', "data:" ],
         "script-src": ["'self'", 'https://www.mercadopago.com.br/integrations', 'https://openlayers.org', 'maps.googleapis.com'],
         "style-src": ["'unsafe-inline'", "'self'", "https://fonts.googleapis.com", "https://openlayers.org"]
     }
