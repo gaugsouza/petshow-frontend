@@ -15,6 +15,7 @@ import { Usuario } from '../interfaces/usuario';
 import { DataSharingService } from '../servicos/data-sharing.service';
 import { Prestador } from '../interfaces/prestador';
 import { GeolocalizacaoService } from '../servicos/geolocalizacao.service';
+import { Cliente } from '../interfaces/cliente';
 
 @Component({
   selector: 'app-lista-servicos-detalhados',
@@ -125,6 +126,13 @@ export class ListaServicosDetalhadosComponent implements OnInit {
               posicaoAtual: { ...(usuario || {}).geolocalizacao },
             };
           }
+          this.filtro = {
+            ...this.filtro,
+            tiposAceitos: [...((usuario as Cliente).animaisEstimacao || []).map(animal => animal.tipo)]
+          }
+
+          console.log('filtro', this.filtro);
+
         }
         this.validaGeolocalizacao(this.filtro);
         this.tooltipText = this.geraTooltip();

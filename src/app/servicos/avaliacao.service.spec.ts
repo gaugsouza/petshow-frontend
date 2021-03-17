@@ -7,7 +7,7 @@ import { monica } from '../mocks/usuarioMock';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import { JwtHelper } from '../util/jwt-helper';
-
+import { HttpHandlerService } from './http-handler.service';
 describe('AvaliacaoService', () => {
   let service: AvaliacaoService;
   let httpMock: HttpTestingController;
@@ -112,8 +112,67 @@ describe('AvaliacaoService', () => {
     expect(avaliacao.cliente).toEqual(avaliacaoEsperada.cliente);
 
     });
+  });
 
+  describe('Testes unitários', () => {
+    let mock:HttpHandlerService;
+
+    beforeEach(() => {
+      mock = new HttpHandlerService(null, null, null);
+
+      mock.doGet = jest.fn((url, token) => null);
+      mock.doPost = jest.fn((url, body, token) => null);
+      mock.doPut = jest.fn((url, body, token) => null);
+      mock.doPatch = jest.fn((url, token, body) => null);
+      mock.doDelete = jest.fn((url, token) => null);
+
+      service = new AvaliacaoService(mock);
+    });
+
+    it('Deve retornar array vazia', () => {
+      const retorno = service.getEstrelasAvaliacao(null, '');
+
+      expect(retorno.length).toEqual(0);
+    })
     
+    it('Deve retornar media de avaliacoes', () => {
+      const retorno = service.getMediaAvaliacao([
+        {atencao: 1, qualidadeProdutos:1, custoBeneficio:1, infraestrutura:1, qualidadeServico:1, media: 1},
+        {atencao: 1, qualidadeProdutos:1, custoBeneficio:1, infraestrutura:1, qualidadeServico:1, media: 1},
+        {atencao: 1, qualidadeProdutos:1, custoBeneficio:1, infraestrutura:1, qualidadeServico:1, media: 1},
+      ]);
+
+      expect(retorno).toEqual(3);
+    });
+
+    it('Deve usar metodo get em buscarAvaliacoesPorServicoDetalhado', () => {
+      service.buscarAvaliacoesPorServicoDetalhado(1, 1,1);
+      expect(mock.doGet).toHaveBeenCalled();
+    })
+
+    it('Deve usar metodo get em buscaServicoAvaliadoPorId', () => {
+      service.buscaServicoAvaliadoPorId(1, 1);
+      expect(mock.doGet).toHaveBeenCalled();
+    })
+
+    it('Deve usar metodo post em adicionarAvaliacao', () => {
+      service.adicionarAvaliacao({atencao: 1, qualidadeProdutos:1, custoBeneficio:1, infraestrutura:1, qualidadeServico:1}, 1, 1, '');
+      expect(mock.doPost).toHaveBeenCalled();
+    });
+
+    it('Deve retornar labels com base em campo', () => {
+      const avaliacao = {
+        atencao: 1,
+        qualidadeProdutos: 1,
+        custoBeneficio: 1,
+        infraestrutura: 1,
+        qualidadeServico: 1
+      };
+
+      const esperado = ['star', 'star_border', 'star_border', 'star_border', 'star_border'];
+
+      expect(service.getEstrelasAvaliacao(avaliacao, 'atencao')).toEqual(esperado);
+    })
 
   });
 });
