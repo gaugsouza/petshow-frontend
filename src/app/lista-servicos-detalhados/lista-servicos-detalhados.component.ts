@@ -128,11 +128,9 @@ export class ListaServicosDetalhadosComponent implements OnInit {
           }
           this.filtro = {
             ...this.filtro,
-            tiposAceitos: [...((usuario as Cliente).animaisEstimacao || []).map(animal => animal.tipo)]
-          }
-
-          console.log('filtro', this.filtro);
-
+            tiposAceitos: [...((usuario as Cliente).animaisEstimacao || [])
+              .map((animal) => animal.tipo)],
+          };
         }
         this.validaGeolocalizacao(this.filtro);
         this.tooltipText = this.geraTooltip();
