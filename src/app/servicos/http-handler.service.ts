@@ -10,7 +10,15 @@ import { JwtHelper } from '../util/jwt-helper';
 })
 export class HttpHandlerService {
   private httpOptions = {
-    headers: new HttpHeaders({ 'Content-type': 'application/json' }),
+    headers: new HttpHeaders({
+      'Content-type': 'application/json',
+      'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+      'Content-Security-Policy': 'Content-Security-Policy: default-src https://petshow-backend.herokuapp.com; default-src http://localhost:4200',
+      'X-Frame-Options': 'SAMEORIGIN',
+      'X-Content-Type-Options': 'nosniff always',
+      'Referrer-Policy': 'no-referrer',
+      'Permissions-Policy': 'geolocation=(self "https://petshow-backend.herokuapp.com" "http://localhost:4200")',
+    }),
     responseType: 'text' as 'json',
   }
 

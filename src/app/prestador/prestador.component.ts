@@ -29,9 +29,7 @@ export class PrestadorComponent implements OnInit {
       .subscribe((prestador) => {
         this.carregado = true;
         this.prestador = JSON.parse(prestador);
-        this.prestador.servicos = this.prestador.servicos.filter(servico => {
-          return servico.ativo;
-        });
+        this.prestador.servicos = this.prestador.servicos.filter((servico) => servico.ativo);
       });
   }
 
@@ -52,12 +50,12 @@ export class PrestadorComponent implements OnInit {
       soma += servico.mediaAvaliacao;
       return soma;
     }, 0);
-    
+
     let servicosAtivosAvaliacao = 0;
 
-    this.prestador.servicos.forEach(servico => {
+    this.prestador.servicos.forEach((servico) => {
       servicosAtivosAvaliacao += (servico.ativo && servico.mediaAvaliacao) ? 1 : 0;
-    })
+    });
 
     const resultado = (somaMedias / servicosAtivosAvaliacao).toFixed(2);
     if (!resultado) return 'SEM_AVALIACOES';

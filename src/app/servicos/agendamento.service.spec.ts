@@ -1,9 +1,14 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
+import { Observable, of } from 'rxjs';
 import { JwtHelper } from '../util/jwt-helper';
 
 import { AgendamentoService } from './agendamento.service';
+import { HttpHandlerService } from './http-handler.service';
+jest.mock('./http-handler.service')
+const httpHandler = new HttpHandlerService(null, null, null);
+
 
 describe('AgendamentoService', () => {
   let service: AgendamentoService;
@@ -40,5 +45,85 @@ describe('AgendamentoService', () => {
     let retorno = service.getHorariosDisponiveis(horarios, dia);
 
     expect(retorno).toEqual(esperado);
+  });
+
+  describe('Testes dos services', () => {
+    let mock:HttpHandlerService;
+    beforeEach(() => {
+      mock = new HttpHandlerService(null, null, null);
+
+      mock.doGet = jest.fn((url, token) => null);
+      mock.doPost = jest.fn((url, body, token) => null);
+      mock.doPut = jest.fn((url, body, token) => null);
+      mock.doPatch = jest.fn((url, token, body) => null);
+      mock.doDelete = jest.fn((url, token) => null);
+
+      service = new AgendamentoService(mock);
+    });
+
+    it('Deve chamar metodo post de handler', () => {
+      service.adicionarAgendamento({}, '');
+
+      expect(mock.doPost).toHaveBeenCalled();
+    });
+
+    it('Deve chamar metodo get do handler', () => {
+      service.buscarAgendamentosPorCliente(1, 1, 1, '');
+      expect(mock.doGet).toHaveBeenCalledTimes(1);
+    });
+
+    it('Deve chamar metodo get do handler para agendamentos-prestador', () => {
+      service.buscarAgendamentosPorPrestador(1, 1, 1, '');
+      expect(mock.doGet).toHaveBeenCalledTimes(1);
+    });
+
+    it('Deve chamar metodo patch do handler', () => {
+      service.alterarStatusAgendamento(1, 1, 1, '');
+      expect(mock.doPatch).toHaveBeenCalledTimes(1);
+    });
+
+    it('Deve chamar método get em buscar status', () => {
+      service.buscarStatusAgendamento('');
+      expect(mock.doGet).toHaveBeenCalledTimes(1);
+    });
+
+    it('Deve chamar método get em buscar agendamento', () => {
+      service.buscarAgendamento(1, 1, '');
+      expect(mock.doGet).toHaveBeenCalled();
+    });
+
+    it('Deve chamar metodo post em adicionar avaliacao', () => {
+      service.adicionarAvaliacao(1, {atencao: 1, qualidadeProdutos:1, custoBeneficio:1, infraestrutura:1, qualidadeServico:1}, '');
+      expect(mock.doPost).toHaveBeenCalled();
+    });
+
+    it('Deve chamar metodo get em buscarAvaliacaoPorAgendamento', () => {
+      service.buscarAvaliacaoPorAgendamento(1, '');
+      expect(mock.doGet).toHaveBeenCalled();
+    });
+
+    it('Deve chamar metodo get em buscaHorariosIndisponiveis', () => {
+      service.buscaHorariosIndisponiveis(1, new Date(), '');
+      expect(mock.doGet).toHaveBeenCalled();
+    });
+
+    it('Deve chamar metodo delete em deletarAgendamento', () => {
+      service.deletarAgendamento(1, 1, '');
+      expect(mock.doDelete).toHaveBeenCalled();
+    });
+
+    it('Deve chamar metodo patch em ativarAgendamento', () => {
+      service.ativarAgendamento(1, 1, '');
+      expect(mock.doPatch).toHaveBeenCalled();
+    });
+
+    it('Deve chamar metodo patch em confirmarNegociacao', () => {
+      service.confirmarNegociacao(1, 1, {}, '');
+      expect(mock.doPatch).toHaveBeenCalled();
+    })
+
+
+
+
   });
 });

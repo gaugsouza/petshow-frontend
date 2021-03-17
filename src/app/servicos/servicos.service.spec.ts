@@ -4,7 +4,7 @@ import { ServicosService } from './servicos.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 import { JwtHelper } from '../util/jwt-helper';
-
+import { HttpHandlerService } from './http-handler.service';
 describe('ServicosService', () => {
   let injector: TestBed;
   let service: ServicosService;

@@ -1,4 +1,5 @@
 import { Geolocalizacao } from 'src/app/interfaces/geolocalizacao';
+import { TipoAnimal } from '../enum/TipoAnimal';
 
 export interface FiltroServicos {
     tipoServicoId?: number,
@@ -10,5 +11,6 @@ export interface FiltroServicos {
     posicaoAtual?:Geolocalizacao,
     metrosGeoloc?:number,
     cidade?:string,
-    estado?:string
+    estado?:string,
+    tiposAceitos?:TipoAnimal[]
 }
